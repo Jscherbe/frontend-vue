@@ -9,6 +9,8 @@
     "url": "git+https://github.com/Jscherbe/frontend-vue.git"
   },
   "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "keywords": [],
   "author": "Joseph Scherben <jscherbe@gmail.com>",
@@ -21,6 +23,16 @@
     "@ulu/utils": "^0.0.9"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.8",
+    "@storybook/addon-interactions": "^7.6.8",
+    "@storybook/addon-links": "^7.6.8",
+    "@storybook/blocks": "^7.6.8",
+    "@storybook/test": "^7.6.8",
+    "@storybook/vue3": "^7.6.8",
+    "@storybook/vue3-vite": "^7.6.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "storybook": "^7.6.8",
     "vite": "^5.0.8",
     "vue": "^3.3.11"
   }
