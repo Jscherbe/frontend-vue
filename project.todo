@@ -1,17 +1,19 @@
-Setup Docs:
-  ✔ Figure out which docs to use @done
-    ✔ Histoire @on-hold @done
-      * Tested
-      * Works well, but does not have support for docgen
-        * It is on the roadmap --> https://github.com/histoire-dev/histoire/issues/126
-    ✘ Storybook @cancelled
-      * Lots of support
-      * Seems to have support for auto docgen from comments
-      * Not vue centric and saw a lot of people commenting on that, it does seem like they overcame this and that the tool is pretty mature for Vue now. 
-      * Think this has the same issue as Histoire in that it may be overkill or useless (for more specific prop types, ie. sandboxing)
-    ✔ vue-styleguideist @done
-      * Docgen centric
-      * Looks like people are moving away from this project
-      * The docgen api is used by a lot of other projects but the app/output unsure
-      * Could use this for now and migrate to histoire in the future?
-      * Not sure how useful histoire will be for basic compontents
+Todos:
+  ✔ Setup Docs @done
+    ✔ Figure out which docs to use @done
+      ✘ Histoire @on-hold @cancelled
+        * Tested
+        * Works well, but does not have support for docgen
+          * It is on the roadmap --> https://github.com/histoire-dev/histoire/issues/126
+      ✔ Storybook @done
+        * Chose to use this since there is so much support and integrating it was pretty easy/painless
+        * Lots of support
+        * Seems to have support for auto docgen from comments
+        * Not vue centric and saw a lot of people commenting on that, it does seem like they overcame this and that the tool is pretty mature for Vue now. 
+        * Think this has the same issue as Histoire in that it may be overkill or useless (for more specific prop types, ie. sandboxing)
+      ✔ vue-styleguideist @done
+        * Docgen centric
+        * Looks like people are moving away from this project
+        * The docgen api is used by a lot of other projects but the app/output unsure
+        * Could use this for now and migrate to histoire in the future?
+        * Not sure how useful histoire will be for basic compontents
