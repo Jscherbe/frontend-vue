@@ -9,8 +9,8 @@
     "url": "git+https://github.com/Jscherbe/frontend-vue.git"
   },
   "scripts": {
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -o docs --docs"
+    "dev": "storybook dev -p 6006",
+    "build": "storybook build -o docs --docs"
   },
   "keywords": [],
   "author": "Joseph Scherben <jscherbe@gmail.com>",

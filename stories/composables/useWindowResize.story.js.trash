@@ -1,0 +1,8 @@
+import useWindowResize from "./useWindowResize.story.mdx";
+
+export default {
+  title: 'Composables/useWindowResize',
+  component: useWindowResize
+};
+
+export const Default = {};
