@@ -19,7 +19,6 @@ export default create({
   // textColor: '#333333',
   // barTextColor: '#999999',
   // barSelectedColor: '#3A10E5',
-  barBg: colors.lightGray,
   // inputBg: '#FFFFFF',
   // inputBorder: '#EAEAEA',
   // inputTextColor: '#333333',
