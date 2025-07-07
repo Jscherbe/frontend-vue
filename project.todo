@@ -1,4 +1,9 @@
 Todos:
+  ☐ Rename all components to Ulu Like UluButton
+  ☐ Figure out how to bundle this for distribution
+  ☐ Setup simple docs for each component
+  ☐ Update Modals to dialog
+  ☐ Bring in other components (Toast, FilterList, etc)
   ✔ Setup Docs @done
     ✔ Figure out which docs to use @done
       ✘ Histoire @on-hold @cancelled
