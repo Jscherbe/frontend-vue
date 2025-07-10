@@ -1,4 +1,8 @@
 Todos:
+  ☐ Documentation
+    ☐ Need to have actual templates for each so show code makes sense
+  ☐ Add FontAwesome
+  ☐ Setup vite build config and organize npm scripts like frontend library (deploy/etc)
   ☐ Rename all components to Ulu Like UluButton
   ☐ Figure out how to bundle this for distribution
   ☐ Setup simple docs for each component

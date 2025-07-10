@@ -23,20 +23,20 @@
 
 <script>
   export default {
-    name: "AppGrid",
+    name: "UluGrid",
     async mounted() {
-      const grid =  await import("@ulu/frontend/js/ui/grid.js");
+      const domUtils =  await import("@ulu/frontend/js/utils/dom.js");
       const performance = await import("@ulu/utils/performance.js");
       const { debounce } = performance;
-      const { setPositionClasses } = grid;
+      const { setPositionClasses } = domUtils;
       const setClasses = () => setPositionClasses(this.$el);
       setClasses();
-      this.reziseHandler = debounce(setClasses, 200, false, this);
-      window.addEventListener("resize", this.reziseHandler);
+      this.resizeHandler = debounce(setClasses, 200, false, this);
+      window.addEventListener("resize", this.resizeHandler);
     },
     beforeUnmount() {
-      if (this.reziseHandler) {
-        window.removeEventListener("resize", this.reziseHandler);
+      if (this.resizeHandler) {
+        window.removeEventListener("resize", this.resizeHandler);
       }
     }
   };

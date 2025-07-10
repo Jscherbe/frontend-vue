@@ -1,3 +1,7 @@
+
+import "./scss/styles.scss";
+import "./preview-icons.js";
+
 /** @type { import('@storybook/vue3-vite').Preview } */
 const preview = {
   parameters: {

@@ -1,5 +1,5 @@
 <template>
-  <img :src="`http://placekitten.com/${ size.width }/${ size.height }`" :alt="alt">
+  <img :src="`https://picsum.photos/${ size.width }/${ size.height }`" :alt="alt">
 </template>
 <script>
   import { randomInt } from "@ulu/utils/random.js";

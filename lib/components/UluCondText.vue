@@ -1,5 +1,5 @@
 <template>
-  <!-- Intentional Coersion to null (undefined and null, else print) -->
+  <!-- Intentional Coercion to null (undefined and null, else print) -->
   <component v-if="text != null" :is="element">
     {{ text }}
   </component>

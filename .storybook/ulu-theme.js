@@ -2,7 +2,7 @@ import { create } from 'storybook/theming';
 
 const colors = {
   accent: "#683894",
-  lightGray: "rgb(243.85, 243.65, 244.1)",
+  lightGray: "#f3f3f4",
 };
 
 const whiteAlpha = alpha => `rgba(255,255,255,${ alpha })`;

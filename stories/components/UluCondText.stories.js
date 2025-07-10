@@ -1,9 +1,9 @@
-import UluText from "../../lib/components/UluText.vue";
+import UluCondText from "../../lib/components/UluCondText.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {
-  title: 'Components/UluText',
-  component: UluText,
+  title: 'Components/UluCondText',
+  component: UluCondText,
   tags: ['autodocs'],
 };
 
