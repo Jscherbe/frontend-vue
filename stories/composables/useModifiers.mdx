@@ -1,25 +1,7 @@
-# useWindowResize
+# useModifiers
 
-Composable for listening to the window resize event, the event is debounced and the callbacks are called when it's finished.
+Composable for creating modifier classes for base class based on modifiers prop for a given component
 
 
 ```js
-import { computed } from "vue";
-import { useWindowResize } from "@ulu/frontend-vue/composables/useWindowResize.js;
-
-const { 
-  // Reactive Boolean
-  isResizing, 
-  // Method to register callback on start, returns a function to remove the listener
-  onResizeStart, 
-  // Method to register callback on end, returns a function to remove the listener
-  onResizeEnd 
-} = useWindowResize();
-
-const removeStart = onResizeStart(() => {
-  console.log("Resize started");
-});
-const removeEnd = onResizeEnd(() => {
-  console.log("Resize is finished");
-});
 ```
