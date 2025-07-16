@@ -1,34 +1,122 @@
-import UluBadge from "../../lib/components/UluBadge.vue";
+// Generated automatically with ./generate-story.js
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories
+import UluBadge from '../../lib/components/UluBadge.vue';
+import UluPlaceholderImage from "../../lib/components/UluPlaceholderImage.vue";
+
 export default {
-  title: 'Components/UluBadge',
   component: UluBadge,
-  tags: ['autodocs'],
-  // argTypes: {
-  //   slotDefault: {
-  //     control: 'text', 
-  //     description: '<strong>Content for the default slot</strong>'
-  //   },
-  // },
-  args: {
-    text: "JS"
+  title: 'Components/UluBadge',
+  tags: ["autodocs"],
+  argTypes: {
+    skeleton: {
+      control: { type: 'boolean' },
+      defaultValue: false,
+    },
+    size: {
+      control: { type: 'select', options: ['small', 'medium', 'large'] },
+      defaultValue: 'medium',
+    },
+    text: {
+      control: { type: 'text' },
+      defaultValue: '',
+    },
+    alt: {
+      control: { type: 'text' },
+      defaultValue: '',
+    },
+    type: {
+      control: { type: 'select', options: ['primary', 'secondary'] },
+      defaultValue: 'primary',
+    },
+    click: {
+      action: 'clicked',
+    },
+    to: {
+      control: { type: 'object' },
+      defaultValue: null,
+    },
+    href: {
+      control: { type: 'text' },
+      defaultValue: '',
+    },
+  }
+}
+
+const Template = (args) => ({
+  components: { UluBadge },
+  setup() {
+    return { args };
   },
-  // render: (args) => ({
-  //   components: { UluBadge }, // Register your component
-  //   setup() {
-  //     return { args }; // Make args available in the template
-  //   },
-  //   "template": `
-  //     <UluBadge v-bind="args">
-  //       <template #default v-if="args.slotDefault">{{ args.slotDefault }}</template>
-  //     </UluBadge>
-  //   `
-  // }),
+  template: `<UluBadge v-bind="args" />`, // Always use v-bind="args"
+});
+
+const TemplateImage = (args) => ({
+  components: { UluBadge, UluPlaceholderImage },
+  setup() {
+    return { args };
+  },
+  template: `
+    <UluBadge v-bind="args">
+      <UluPlaceholderImage imageId="64" width="300" height="300"/>
+    </UluBadge>
+  `, 
+});
+
+export const UsingImage = TemplateImage.bind({});
+UsingImage.args = {
+  // alt: "Jane Doe"
 };
 
-export const SizeExample = {
-  args: {
-    size: "large"
-  }
+// export const Secondary = Template.bind({});
+// Secondary.args = {
+//   type: 'secondary',
+//   text: "ULU"
+// };
+
+// export const Small = Template.bind({});
+// Small.args = {
+//   size: 'small',
+//   text: "ULU"
+// };
+
+// export const WithImage = Template.bind({});
+// WithImage.args = {
+//   size: 'medium',
+//   text: "ULU"
+// };
+
+export const Small = Template.bind({});
+Small.args = {
+  size: 'small',
+  text: "ULU"
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  size: 'large',
+  text: "ULU"
+};
+
+export const Clickable = Template.bind({});
+Clickable.args = {
+  click: () => console.log('clicked'),
+  text: "ULU"
+};
+
+export const Link = Template.bind({});
+Link.args = {
+  to: '/some-link',
+  text: "ULU"
+};
+
+export const Href = Template.bind({});
+Href.args = {
+  href: 'https://www.example.com',
+  text: "ULU"
+};
+
+export const WithAltText = Template.bind({});
+WithAltText.args = {
+  text: "JD",
+  alt: "Jane Doe"
 };

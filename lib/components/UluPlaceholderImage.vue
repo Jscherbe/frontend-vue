@@ -1,11 +1,12 @@
 <template>
-  <img :src="`https://picsum.photos/${ size.width }/${ size.height }`" :alt="alt">
+  <img :src="src" :alt="alt">
 </template>
 <script>
   import { randomInt } from "@ulu/utils/random.js";
   export default {
-    name: "PlaceholderImage",
+    name: "UluPlaceholderImage",
     props: {
+      imageId: String,
       /**
        * Width of the image
        */
@@ -30,6 +31,12 @@
       random: Boolean
     },
     computed: {
+      src() {
+        const { imageId } = this;
+        const { width, height } = this.size;
+        const id = imageId ? `id/${ imageId }/` : "";
+        return `https://picsum.photos/${ id }${ width }/${ height }`;
+      },
       size() {
         const { random, width, height } = this;
         if (random) {

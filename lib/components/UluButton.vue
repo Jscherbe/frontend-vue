@@ -39,7 +39,7 @@
 <script>
   import { RouterLink } from "vue-router";
   export default {
-    name: "AppButton",
+    name: "UluButton",
     props: {
       icon: String,
       iconBefore: Boolean,

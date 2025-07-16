@@ -23,7 +23,7 @@
 
 <script>
   export default {
-    name: "UluGrid",
+    name: "UluDataGrid",
     async mounted() {
       const domUtils =  await import("@ulu/frontend/js/utils/dom.js");
       const performance = await import("@ulu/utils/performance.js");

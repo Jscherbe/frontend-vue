@@ -16,22 +16,21 @@ export default {
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
 export const Default = {};
 
-// export const Secondary = {
-//   args: {
-//     label: 'Button',
-//   },
-// };
+export const UsingImageId = {
+  args: {
+    imageId: '67',
+  },
+};
 
-// export const Large = {
-//   args: {
-//     size: 'large',
-//     label: 'Button',
-//   },
-// };
+export const SettingSizes = {
+  args: {
+    width: '100',
+    height: '100',
+  },
+};
 
-// export const Small = {
-//   args: {
-//     size: 'small',
-//     label: 'Button',
-//   },
-// };
+export const RandomSize = {
+  args: {
+    random: true
+  },
+};
