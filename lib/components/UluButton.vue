@@ -13,7 +13,8 @@
         'button--icon' : iconOnly,
         'no-margin' : noMargin,
       },
-      classes
+      classes,
+      resolvedModifiers
     ]"
     v-bind="attrs"
     :aria-label="alt"
@@ -38,6 +39,7 @@
 
 <script>
   import { RouterLink } from "vue-router";
+  import { useModifiers } from "../composables/useModifiers.js";
   export default {
     name: "UluButton",
     props: {
@@ -57,7 +59,12 @@
       smaller: Boolean,
       outline: Boolean,
       noMargin: Boolean,
-      transparent: Boolean
+      transparent: Boolean,
+      modifiers: [String, Array]
+    },
+    setup(props) {
+      const { resolvedModifiers } = useModifiers(props, "button");
+      return { resolvedModifiers };
     },
     computed: {
       classes() {

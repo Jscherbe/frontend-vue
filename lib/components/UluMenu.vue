@@ -36,7 +36,7 @@
 
 <script>
   export default {
-    name: "AppMenu",
+    name: "UluMenu",
     props: {
       items: Array,
       classes: {

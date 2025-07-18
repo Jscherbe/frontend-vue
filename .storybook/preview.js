@@ -1,5 +1,6 @@
 import { setup } from "@storybook/vue3"; 
 import { createMemoryHistory, createRouter } from "vue-router";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 
 import "./scss/styles.scss";
 import "./preview-icons.js";
@@ -29,7 +30,11 @@ const router = createRouter({
 });
 
 // Register it in the application like normal app
-setup((app) => { app.use(router) });
+setup((app) => { 
+  app
+    .use(router)
+    .component("FaIcon", FontAwesomeIcon);
+});
 
 // Export a global decorator to wrap all stories with a router-view
 // IMPORTANT: Also the selector added below is to scope our CSS

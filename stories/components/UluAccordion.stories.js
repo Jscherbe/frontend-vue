@@ -7,19 +7,23 @@ export default {
   title: 'Components/UluAccordion',
   tags: ['autodocs'],
   argTypes: {
-    toggleText: {
+    defaultOpen: {
+      control: { type: 'boolean' },
+      description: "Whether open by default"
+    },
+    summaryText: {
       control: { type: 'text' },
       description: 'Test to use for accordion, alternatively use #toggle slot',
     },
-    toggleElement: {
+    summaryElement: {
       control: { type: 'select' },
       options: ['strong', 'h1', 'h2', 'h3'],
       defaultValue: 'strong',
       description: 'If using toggle text sets the inner element the text is wrapped in, usually a headline or strong',
     },
-    toggleClasses: {
+    classes: {
       control: { type: 'object' },
-      description: 'Classes to bind for the toggle button',
+      description: 'Classes to bind for the different elements ({ container, summary, summaryIcon, content })',
     },
     activeClass: {
       control: { type: 'text' },
@@ -34,22 +38,16 @@ const Template = (args) => ({
   setup() {
     return { args };
   },
-  template: `<UluAccordion v-bind="args" />`, // Always use v-bind="args"
+  template: `<UluAccordion v-bind="args">This is the content of the accordion</UluAccordion>`
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  toggleText: 'Toggle me!',
+export const Default = Template.bind({});
+Default.args = {
+  summaryText: 'Toggle me!',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  toggleText: 'Toggle me too!',
-  toggleElement: 'h2',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  toggleText: 'I am small!',
-  toggleClasses: ['small'],
+export const OpenByDefault = Template.bind({});
+OpenByDefault.args = {
+  summaryText: "I'm already open!",
+  defaultOpen: true,
 };

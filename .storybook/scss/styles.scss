@@ -1,7 +1,11 @@
 @use "@ulu/frontend/scss" as ulu;
 
+@include ulu.base-styles();
+
+// Components interfere with syntax highlighting
+// Using a selector we setup in preview for scoping
 .in-ulu {
-  @include ulu.base-styles();
   @include ulu.component-styles();
-  @include ulu.helper-styles();
 }
+
+@include ulu.helper-styles();

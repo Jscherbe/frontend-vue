@@ -1,27 +1,32 @@
 <template>
-  <Disclosure v-slot="{ open }">
-    <div class="accordion" :class="{ [activeClass]: open }">
+  <Disclosure :defaultOpen="defaultOpen" v-slot="{ open }">
+    <div 
+      class="accordion" 
+      :class="[
+        { [activeClass]: open }, 
+        classes.container, 
+        resolvedModifiers
+      ]"
+    >
       <DisclosureButton 
-        class="accordion__toggle" 
+        class="accordion__summary" 
         :class="[
           { [activeClass]: open }, 
-          toggleClasses
+          classes.summary
         ]"
       >
-        <slot name="toggle" :open="open">
-          <component :is="toggleElement">
-            {{ toggleText }}
+        <slot name="summary" :open="open">
+          <component :is="summaryTextElement">
+            {{ summaryText }}
           </component>
         </slot>
-        <slot name="toggleIcon" :open="open">
-          <FaIcon 
-            class="accordion__toggle-icon"
-            :icon="open ? 'fas fa-minus' : 'fas fa-plus'"
-            style="display: inline;"
-          />
+        <slot name="icon" :open="open">
+          <span class="accordion__icon" :class="classes.icon">
+            <FaIcon :icon="open ? closeIconClass : openIconClass" style="display: inline;"/>
+          </span>
         </slot>
       </DisclosureButton>
-      <DisclosurePanel class="accordion__content">
+      <DisclosurePanel class="accordion__content" :class="classes.content">
         <slot/>
       </DisclosurePanel>
     </div>
@@ -29,29 +34,58 @@
 </template>
 
 <script setup>
+  import { useModifiers } from "../composables/useModifiers.js";
   import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
-  defineProps({
+  const props = defineProps({
+    /**
+     * Whether the accordion is open by default
+     */
+    defaultOpen: Boolean,
     /**
      * Test to use for accordion, alternatively use #toggle slot
      */
-    toggleText: String,
+    summaryText: String,
     /**
-     * If using toggle text sets the inner element the text is wrapped in, usually a headline or strong
+     * If using summary text sets the inner element the text is wrapped in, usually a headline or strong
      */
-    toggleElement: {
+    summaryTextElement: {
       type: String,
       default: "strong"
     },
     /**
-     * Classes to bind for the toggle button
+     * Classes for elements ({ container, summary, icon, content })
+     * - Any valid class binding value per element
      */
-    toggleClasses: [String, Object, Array],
+    classes: {
+      type: Object,
+      default: () => ({})
+    },
     /**
      * Active class output on container and toggle elements
      */
     activeClass: {
       type: String,
       default: "is-active"
-    }
+    },
+    /**
+     * Icon class for opening
+     */
+    openIconClass: {
+      type: String,
+      default: "fas fa-plus"
+    },
+    /**
+     * Icon class for closing
+     */
+    closeIconClass: {
+      type: String,
+      default: "fas fa-minus"
+    },
+    /**
+     * Modifiers for tag class
+     */
+    modifiers: [String, Array]
   });
+
+  const { resolvedModifiers } = useModifiers(props, "button");
 </script>

@@ -1,6 +1,27 @@
 Todos:
-  ☐ Refactor to composition api versus options @important
-  ☐ Test using codellama to generate stories?
+  ☐ Need to add frontend components for:
+    ☐ skeleton
+    ☐ headline-label
+  ☐ Still pending major components
+    ☐ Popover
+    ☐ Tooltip
+    ☐ Modal
+  ☐ Setup the following stories
+    * Note: macbook pro won't run model, will need to run these on mac studio
+    Untested and Undocumented:
+      ☐ `node generate-story.js ./lib/components/UluList.vue ./stories/components/UluList.stories.js`
+      ☐ `node generate-story.js ./lib/components/UluTag.vue ./stories/components/UluTag.stories.js`
+      ☐ `node generate-story.js ./lib/components/UluCard.vue ./stories/components/UluCard.stories.js`
+      ☐ `node generate-story.js ./lib/components/UluSkipLink.vue ./stories/components/UluSkipLink.stories.js`
+      ☐ `node generate-story.js ./lib/components/UluNavStrip.vue ./stories/components/UluNavStrip.stories.js`
+      ☐ `node generate-story.js ./lib/components/UluMain.vue ./stories/components/UluMain.stories.js`
+      ☐ `node generate-story.js ./lib/components/UluTabsGroup.vue ./stories/components/UluTabsGroup.stories.js`
+      ☐ `node generate-story.js ./lib/components/UluTabsList.vue ./stories/components/UluTabsList.stories.js`
+      ☐ `node generate-story.js ./lib/components/UluTabsPanel.vue ./stories/components/UluTabsPanel.stories.js`
+      ☐ `node generate-story.js ./lib/components/UluTabsPanels.vue ./stories/components/UluTabsPanels.stories.js`
+      ☐ `node generate-story.js ./lib/components/UluTabsTab.vue ./stories/components/UluTabsTab.stories.js`
+  ☐ Refactor to composition api versus options @next-version
+  ✔ Test using codellama to generate stories? @done
   ☐ Documentation
     ☐ Need to have actual templates for each so show code makes sense
   ☐ Add FontAwesome

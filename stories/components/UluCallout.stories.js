@@ -25,15 +25,15 @@ export default {
   },
 };
 
-export const Primary = Template.bind({});
-Primary.args = {};
+export const Default = Template.bind({});
+Default.args = {};
 
 export const FullHeight = Template.bind({});
-Secondary.args = {
+FullHeight.args = {
   fullHeight: true,
 };
 
 export const WithModifier = Template.bind({});
-Small.args = {
+WithModifier.args = {
   modifiers: "danger",
 };

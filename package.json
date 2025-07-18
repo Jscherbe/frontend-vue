@@ -31,10 +31,11 @@
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "@storybook/addon-docs": "^9.0.14",
     "@storybook/addon-links": "^9.0.14",
     "@storybook/vue3-vite": "^9.0.14",
-    "@ulu/frontend": "^0.1.0-beta.68",
+    "@ulu/frontend": "^0.1.0-beta.69",
     "@vitejs/plugin-vue": "^6.0.0",
     "ollama": "^0.5.16",
     "react": "^18.2.0",

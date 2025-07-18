@@ -75,6 +75,10 @@ export default {
     transparent: {
       control: 'boolean',
       description: 'Whether the button should be displayed as transparent or not'
+    },
+    modifiers: {
+      control: 'text',
+      description: "Array or string of modifiers for base css class"
     }
   }
 };
