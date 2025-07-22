@@ -7,12 +7,12 @@
   >
     <header v-if="title" class="modal__header">
       <h2 class="modal__title" :class="titleClasses">
-        <FaIcon v-if="icon && !iconBefore" class="modal__title-icon" :icon="titleIcon" />
+        <FaIcon v-if="titleIcon" class="modal__title-icon" :icon="titleIcon" />
         <span class="modal__title-text">{{ title }}</span>
       </h2>
       <button class="modal__close" aria-label="Close modal" @click="close" autofocus>
         <slot name="closeIcon">
-          <FaIcon v-if="icon && !iconBefore" class="modal__close-icon" :icon="closeIcon" />
+          <FaIcon class="modal__close-icon" :icon="closeIcon" />
         </slot>
       </button>
     </header>
@@ -21,7 +21,7 @@
     </div>
     <div class="modal__resizer">
       <slot name="resizerIcon">
-        <FaIcon v-if="icon && !iconBefore" class="modal__resizer-icon" :icon="resizerIcon" />
+        <FaIcon class="modal__resizer-icon" :icon="resizerIcon" />
       </slot>
     </div>
   </dialog>
@@ -34,6 +34,10 @@
     props: {
       labelledby: String,
       describedby: String,
+      closeIcon: {
+        type: String,
+        default: "fas "
+      }
     },
     computed: {
       classes() {

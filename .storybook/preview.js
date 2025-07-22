@@ -1,6 +1,6 @@
 import { setup } from "@storybook/vue3"; 
 import { createMemoryHistory, createRouter } from "vue-router";
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 // import UluModals from "../lib/plugins/modals/plugin.js";
 
 import "./scss/styles.scss";
@@ -35,7 +35,7 @@ setup((app) => {
   app
     .use(router)
     // .use(UluModals)
-    .component("FaIcon", FontAwesomeIcon);
+    // .component("FaIcon", FontAwesomeIcon);
 });
 
 // Export a global decorator to wrap all stories with a router-view

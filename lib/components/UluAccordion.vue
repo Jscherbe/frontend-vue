@@ -22,12 +22,16 @@
         </slot>
         <slot name="icon" :open="open">
           <span class="accordion__icon" :class="classes.icon">
-            <FaIcon :icon="open ? closeIconClass : openIconClass" style="display: inline;"/>
+            <UluDefaultIcon 
+              v-if="defaultIcons"
+              v-bind="getDefaultIconProps(open ? 'close' : 'open')" 
+              style="display: inline;"
+            />
           </span>
         </slot>
       </DisclosureButton>
       <DisclosurePanel class="accordion__content" :class="classes.content">
-        <slot/>
+        <slot :open="open"/>
       </DisclosurePanel>
     </div>
   </Disclosure>
@@ -35,6 +39,7 @@
 
 <script setup>
   import { useModifiers } from "../composables/useModifiers.js";
+  import { useDefaultIcons } from "../composables/useDefaultIcons.js";
   import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
   const props = defineProps({
     /**
@@ -68,24 +73,21 @@
       default: "is-active"
     },
     /**
-     * Icon class for opening
-     */
-    openIconClass: {
-      type: String,
-      default: "fas fa-plus"
-    },
-    /**
-     * Icon class for closing
-     */
-    closeIconClass: {
-      type: String,
-      default: "fas fa-minus"
-    },
-    /**
      * Modifiers for tag class
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array],
+    /**
+     * Icons to use by default
+     */
+    defaultIcons: {
+      type: Object,
+      default: () => ({
+        open: "fas fa-plus",
+        close: "fas fa-minus"
+      })
+    }
   });
 
   const { resolvedModifiers } = useModifiers(props, "button");
+  const { UluDefaultIcon, getDefaultIconProps } = useDefaultIcons(props);
 </script>
