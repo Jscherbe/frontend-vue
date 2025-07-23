@@ -5,82 +5,6 @@ export default {
   component: UluButton,
   title: 'Components/UluButton',
   tags: ["autodocs"],
-  argTypes: {
-    icon: {
-      control: 'text',
-      description: 'Icon name'
-    },
-    iconBefore: {
-      control: 'boolean',
-      description: 'Whether the icon should be displayed before the text or not'
-    },
-    iconOnly: {
-      control: 'boolean',
-      description: 'Whether only the icon should be displayed or not'
-    },
-    to: {
-      control: 'text',
-      description: 'Target route of the link'
-    },
-    href: {
-      control: 'text',
-      description: 'Link URL'
-    },
-    download: {
-      control: 'boolean',
-      description: 'Whether the link should be downloaded or not'
-    },
-    type: {
-      control: 'select',
-      options: ['primary', 'secondary', 'small'],
-      description: 'Button type'
-    },
-    alt: {
-      control: 'text',
-      description: 'Alternative text for the button'
-    },
-    text: {
-      control: 'text',
-      description: 'Button text'
-    },
-    size: {
-      control: 'select',
-      options: ['small', 'smaller'],
-      description: 'Button size'
-    },
-    primary: {
-      control: 'boolean',
-      description: 'Whether the button should be displayed as primary or not'
-    },
-    secondary: {
-      control: 'boolean',
-      description: 'Whether the button should be displayed as secondary or not'
-    },
-    small: {
-      control: 'boolean',
-      description: 'Whether the button should be displayed as small or not'
-    },
-    smaller: {
-      control: 'boolean',
-      description: 'Whether the button should be displayed as smaller or not'
-    },
-    outline: {
-      control: 'boolean',
-      description: 'Whether the button should have an outline or not'
-    },
-    noMargin: {
-      control: 'boolean',
-      description: 'Whether the button should have a margin or not'
-    },
-    transparent: {
-      control: 'boolean',
-      description: 'Whether the button should be displayed as transparent or not'
-    },
-    modifiers: {
-      control: 'text',
-      description: "Array or string of modifiers for base css class"
-    }
-  }
 };
 
 const Template = (args) => ({
@@ -109,9 +33,9 @@ Small.args = {
   text: 'Small Button'
 };
 
-export const Smaller = Template.bind({});
-Smaller.args = {
-  smaller: true,
+export const Large = Template.bind({});
+Large.args = {
+  large: true,
   text: 'Smaller Button'
 };
 
@@ -131,4 +55,24 @@ export const Transparent = Template.bind({});
 Transparent.args = {
   transparent: true,
   text: 'Transparent Button'
+};
+
+export const WithIcon = Template.bind({});
+WithIcon.args = {
+  icon: "fas fa-plus",
+  text: 'Transparent Button',
+};
+
+export const WithIconBefore = Template.bind({});
+WithIconBefore.args = {
+  icon: "fas fa-plus",
+  iconBefore: true,
+  text: 'Transparent Button',
+};
+
+export const WithIconOnly = Template.bind({});
+WithIconOnly.args = {
+  icon: "fas fa-plus",
+  iconOnly: true,
+  text: 'Transparent Button',
 };
