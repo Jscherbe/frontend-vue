@@ -19,9 +19,9 @@
     v-bind="attrs"
     :aria-label="alt"
   >
-    <FaIcon 
+    <UluIcon 
       v-if="icon && iconBefore" 
-      :icon="icon"
+      v-bind="getIconProps(icon)" 
       class="button__icon"
     />
     <span v-if="$slots.default || text">
@@ -29,9 +29,9 @@
         {{ text }}
       </slot>
     </span>
-    <FaIcon 
-      v-if="icon && !iconBefore" 
-      :icon="icon"
+    <UluIcon 
+      v-if="icon && iconBefore" 
+      v-bind="getIconProps(icon)" 
       class="button__icon"
     />
   </component>
@@ -39,6 +39,7 @@
 
 <script>
   import { RouterLink } from "vue-router";
+  import { useIcon } from "../composables/useIcon.js";
   import { useModifiers } from "../composables/useModifiers.js";
   export default {
     name: "UluButton",
@@ -64,7 +65,8 @@
     },
     setup(props) {
       const { resolvedModifiers } = useModifiers(props, "button");
-      return { resolvedModifiers };
+      const { UluIcon, getIconProps } = useIcon(props.icon);
+      return { resolvedModifiers, UluIcon, getIconProps };
     },
     computed: {
       classes() {
