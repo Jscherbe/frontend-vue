@@ -1,6 +1,19 @@
 Todos:
+  ✔ Check for old instances of FaIcon in components replace with UluIcon @done
+  ✔ Consider putting teleport right in modal template @done
+  ✔ Should modal component be in components and agnostic of plugin @done
+    * As it won't be required to have the plugin or use it?
   ☐ Update templates
+    ☐ Modal
+    ☐ Modals
   ☐ Bring back in any needed functionality from old plugin
-  ☐ Check that we support all features the static library supports
   ☐ Create demo for global registered and local independent usage
   ☐ Test
+Modal Component:
+  ☐ Check frontend dialog (has stuff for scrollbar)
+  ☐ Need to account for no scroll
+  ☐ Need to check all frontend modal options
+    * Check that we support all features the static library supports
+  ✔ Setup click outside @done
+  ✔ Need to pass close method to slots @done
+  ✔ emit close and open events @done

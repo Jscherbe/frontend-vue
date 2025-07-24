@@ -21,12 +21,12 @@
   "homepage": "https://github.com/Jscherbe/frontend-vue#readme",
   "peerDependencies": {
     "@headlessui/vue": "^1.7.23",
-    "@ulu/frontend": "^0.1.0-beta.72",
+    "@ulu/frontend": "^0.1.0-beta.77",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
   },
   "dependencies": {
-    "@ulu/utils": "^0.0.24"
+    "@ulu/utils": "^0.0.26"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -35,7 +35,7 @@
     "@storybook/addon-docs": "^9.0.14",
     "@storybook/addon-links": "^9.0.14",
     "@storybook/vue3-vite": "^9.0.14",
-    "@ulu/frontend": "^0.1.0-beta.72",
+    "@ulu/frontend": "^0.1.0-beta.77",
     "@vitejs/plugin-vue": "^6.0.0",
     "ollama": "^0.5.16",
     "react": "^18.2.0",

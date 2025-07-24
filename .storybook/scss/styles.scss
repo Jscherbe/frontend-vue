@@ -1,5 +1,8 @@
 @use "@ulu/frontend/scss" as ulu;
 
+// Components that are teleported/etc need to be not scoped
+@include ulu.component-set-excludes(("modal"));
+
 @include ulu.base-styles();
 
 // Components interfere with syntax highlighting
@@ -7,5 +10,8 @@
 .in-ulu {
   @include ulu.component-styles();
 }
+
+// Include any components that are outside in-ulu container (teleports/etc)
+@include ulu.component-modal-styles();
 
 @include ulu.helper-styles();
