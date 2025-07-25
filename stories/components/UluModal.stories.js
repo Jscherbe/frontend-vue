@@ -64,3 +64,19 @@ PositionRightResizer.args = {
   allowResize: true
 };
 
+export const NoPreventScroll = Template.bind({});
+NoPreventScroll.args = {
+  title: "Modal Title",
+  position: "right",
+  preventScroll: false
+};
+
+export const PreventScrollNoPreventScrollShift = Template.bind({});
+PreventScrollNoPreventScrollShift.args = {
+  title: "Modal Title",
+  position: "right",
+  preventScroll: true,
+  preventScrollShift: false
+};
+
+

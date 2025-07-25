@@ -14,9 +14,10 @@
       @cancel.prevent="close"  
       @close="handleDialogCloseEvent"
       @click="handleClick"
+      @toggle="handleToggle"
     >
       <header 
-        v-if="title || $slots.title" 
+        v-if="hasHeader" 
         class="modal__header" 
         :class="classes.header"
       >
@@ -72,7 +73,7 @@
   import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../composables/useModifiers.js";
   import { throttle } from "@ulu/utils/performance.js";
-  import { wasClickOutside } from "@ulu/utils/browser/dom.js";
+  import { wasClickOutside, getScrollbarWidth } from "@ulu/utils/browser/dom.js";
   let modalCount = 0;
   export default {
     name: "UluModal",
@@ -95,6 +96,25 @@
         default: 'body'
       },
       /**
+       * When open and not non-modal, the body is prevented from scrolling (defaults to true).
+       */
+      preventScroll: {
+        type: Boolean,
+        default: true
+      },
+      /**
+       * Compensate for layout shift when preventing scroll. Which adds padding equal to scrollbars 
+       * width while dialog is open
+       */
+      preventScrollShift: {
+        type: Boolean,
+        default: true
+      },
+      /**
+       * Use non-modal interface for dialog
+       */
+      nonModal: Boolean,
+      /**
        * Close modal on click outside
        */
       clickOutsideCloses: {
@@ -109,6 +129,18 @@
        * Position (any position that modal.scss supports)
        */
       position: String,
+      /**
+       * If `true`, the modal body will fill the available space. 
+       */
+      bodyFills: Boolean,
+      /**
+       * If `true`, no backdrop will be displayed behind the modal
+       */
+      noBackdrop: Boolean,
+      /**
+       * If `true`, the modal will not have a minimum height
+       */
+      noMinHeight: Boolean,
       /**
        * Set aria-labelledby by element id (to add accessible label)
        * - Use this if you are not using the default modal title (custom titles)
@@ -158,7 +190,9 @@
       ++modalCount;
       return {
         containerWidth: null,
-        titleId: `ulu-modal-${ modalCount }-title`
+        titleId: `ulu-modal-${ modalCount }-title`,
+        bodyOverflowValue: null,
+        bodyPaddingRightValue: null,
       }
     },
     setup(props) {
@@ -166,20 +200,23 @@
       return { resolvedModifiers };
     },
     computed: {
+      hasHeader() {
+        return this.title || this.$slots.title;
+      },
       resolvedLabelledby() {
         const { labelledby, titleId } = this;
         return labelledby ? labelledby : titleId;
       },
       resolvedClasses() {
-        const { position, allowResize } = this;
-        const mods = [];
-        if (position) {
-          mods.push(position);
-        }
-        if (allowResize) {
-          mods.push("resize");
-        }
-        return mods.map(modifier => `modal--${ modifier }`);
+        const mods = [
+          this.position,
+          this.allowResize ? "resize" : "no-resize",
+          this.hasHeader ? "no-header" : null,
+          this.bodyFills ? "body-fills" : null,
+          this.noBackdrop ? "no-backdrop" : null,
+          this.noMinHeight ? "no-min-height" : null
+        ].filter(v => v);
+        return mods.map(mod => `modal--${ mod }`);
       },
       /**
        * Flag for if resizer script should be enabled
@@ -196,8 +233,8 @@
         if (newValue) {
           // Use nextTick to ensure the dialog element is in the DOM before calling showModal
           this.$nextTick(() => {
-            container.showModal();
-             this.$emit("open");
+            container[this.nonModal ? "show" : "showModal"]();
+            this.$emit("open");
           });
         } else {
           container.close();
@@ -221,13 +258,38 @@
         }
       },
       handleClick(event) {
-        const { clickOutsideCloses } = this;
-        
-        if (clickOutsideCloses) {
+        if (this.clickOutsideCloses) {
           const { target } = event;
           const { container } = this.$refs;
           if (target === container && wasClickOutside(container, event)) {
             this.close();
+          }
+        }
+      },
+      setupPreventScroll() {
+        const { body } = document;
+        this.bodyOverflowValue = body.style.overflow;
+        this.bodyPaddingRightValue = body.style.paddingRight;
+      },
+      destroyPreventScroll() {
+        const { body } = document;
+        body.style.paddingRight = this.bodyPaddingRightValue;
+        body.style.overflow = this.bodyOverflowValue;
+      },
+      handleToggle(event) {
+        if (!this.nonModal && this.preventScroll) {
+          const { body } = document;
+          const isOpen = event.newState === "open";
+          if (isOpen) {
+            this.bodyOverflowValue = body.style.overflow;
+            this.bodyPaddingRightValue = body.style.paddingRight;
+            // This will compensate for scrollbar jump (if user has it enabled)
+            if (this.preventScrollShift) {
+              body.style.paddingRight = `${ getScrollbarWidth() }px`;
+            }
+            body.style.overflow = "hidden";
+          } else {
+            this.destroyPreventScroll();
           }
         }
       },
@@ -263,6 +325,9 @@
     },
     mounted() {
       ++modalCount;
+      if (this.preventScroll) {
+        this.setupPreventScroll();
+      }
       // If the modal is initially visible, open it correctly
       if (this.modelValue) {
         this.modelValue = true; // Trigger watch to open the dialog correctly
@@ -273,6 +338,7 @@
       if (container && container.open) {
         container.close();
       }
+      this.destroyPreventScroll();
     }
   };
 </script>
