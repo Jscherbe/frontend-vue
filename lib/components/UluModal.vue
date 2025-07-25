@@ -15,6 +15,7 @@
       @close="handleDialogCloseEvent"
       @click="handleClick"
       @toggle="handleToggle"
+      @pointerdown="handlePointerdown"
     >
       <header 
         v-if="hasHeader" 
@@ -73,7 +74,7 @@
   import { useSlots, computed } from "vue";
   import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../composables/useModifiers.js";
-  import { throttle } from "@ulu/utils/performance.js";
+  import { throttle, debounce } from "@ulu/utils/performance.js";
   import { wasClickOutside, preventScroll as setupPreventScroll } from "@ulu/utils/browser/dom.js";
   let modalCount = 0;
   export default {
@@ -129,7 +130,10 @@
       /**
        * Position (any position that modal.scss supports)
        */
-      position: String,
+      position: {
+        type: String,
+        default: "center"
+      },
       /**
        * If `true`, the modal body will fill the available space. 
        */
@@ -194,6 +198,8 @@
         titleId: `ulu-modal-${ modalCount }-title`,
         bodyOverflowValue: null,
         bodyPaddingRightValue: null,
+        isPossiblyResizing: false,
+        isPointerDown: false
       }
     },
     setup(props) {
@@ -271,13 +277,63 @@
           this.$emit("close");
         }
       },
+      /**
+       * Used for native resize click outside prevention
+       */
+      handlePointerdown() {
+        this.isPointerDown = true;
+        const done = () => {
+          // After event queue (click) - so after the click handler determines click outside
+          setTimeout(() => {
+            this.isPointerDown = false;
+            this.isPossiblyResizing = false;
+          }, 0);
+        };
+        document.addEventListener("pointerup", done, { once: true });
+        document.addEventListener("pointercancel", done, { once: true });
+      },
       handleClick(event) {
-        if (this.clickOutsideCloses) {
+        if (this.clickOutsideCloses && !this.isPossiblyResizing) {
           const { target } = event;
           const { container } = this.$refs;
           if (target === container && wasClickOutside(container, event)) {
             this.close();
           }
+        }
+      },
+      /**
+       * Setup resize watcher for disabling click outside when dialog is changing sizes
+       * - Mainly for native css resize on center modals
+       * - Only worried about pointer events for this
+       */
+      setupResizeObserver() {
+        /**
+         * Called on every resize observed
+         * - Once it reaches 200ms it will switch the resize flag back to false
+         */
+        const handleResizeEnd = debounce(() => {
+          if (this.isPossiblyResizing && !this.isPointerDown) {
+            this.isPossiblyResizing = false;
+          }
+        }, 500);
+        /**
+         * Attach resize observer as a static property (for teardown)
+         */
+        this.resizeObserver = new ResizeObserver(() => {
+          if (this.isPointerDown) {
+            if (!this.isPossiblyResizing) this.isPossiblyResizing = true;
+            handleResizeEnd();
+          }
+        });
+        this.resizeObserver.observe(this.$refs.container);
+      },
+      /**
+       * Destroy the resize observer instance
+       */
+      destroyResizeObserver() {
+        if (this.resizeObserver) {
+          this.resizeObserver.disconnect();
+          this.resizeObserver = null;
         }
       },
       setupPreventScroll() {
@@ -340,6 +396,7 @@
       if (this.modelValue) {
         this.modelValue = true; // Trigger watch to open the dialog correctly
       }
+      this.setupResizeObserver();
     },
     beforeUnmount() {
       const { container } = this.$refs;
@@ -347,6 +404,7 @@
         container.close();
       }
       this.destroyPreventScroll();
+      this.destroyResizeObserver();
     }
   };
 </script>

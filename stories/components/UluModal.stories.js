@@ -1,6 +1,7 @@
 import { ref } from "vue";
 import UluModal from '../../lib/components/UluModal.vue';
 import UluButton from '../../lib/components/UluButton.vue';
+import placeholder from "../utils/placeholder.js";
 
 export default {
   component: UluModal,
@@ -19,9 +20,14 @@ const Template = (args) => ({
       <UluButton @click="isModalOpen = true">
         Show Modal
       </UluButton>
-      <UluModal v-model="isModalOpen" v-bind="args">
-        <p>This is the main content of the modal. You can close it via the 'X' button, Escape key, or by clicking outside (if enabled).</p>
-        <p>The visibility is controlled by <code>v-model</code> in this Storybook example.</p>
+      <UluModal v-model="isModalOpen" v-bind="args" >
+        <template #default="{ close }">
+          <p>This is the main content of the modal. The visibility is controlled by <code>v-model</code>.</p>
+          ${ placeholder.paragraph }
+          <p>
+            <UluButton @click="close" text="Close"/>
+          </p>
+        </template>
       </UluModal>
     </div>
   `
@@ -61,6 +67,13 @@ export const PositionRightResizer = Template.bind({});
 PositionRightResizer.args = {
   title: "Modal Title",
   position: "right",
+  allowResize: true
+};
+
+export const PositionCenterNativeResize = Template.bind({});
+PositionRightResizer.args = {
+  title: "Modal Title",
+  position: "center",
   allowResize: true
 };
 
