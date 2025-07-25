@@ -74,7 +74,7 @@
   import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../composables/useModifiers.js";
   import { throttle } from "@ulu/utils/performance.js";
-  import { wasClickOutside, getScrollbarWidth } from "@ulu/utils/browser/dom.js";
+  import { wasClickOutside, preventScroll as setupPreventScroll } from "@ulu/utils/browser/dom.js";
   let modalCount = 0;
   export default {
     name: "UluModal",
@@ -286,22 +286,16 @@
         this.bodyPaddingRightValue = body.style.paddingRight;
       },
       destroyPreventScroll() {
-        const { body } = document;
-        body.style.paddingRight = this.bodyPaddingRightValue;
-        body.style.overflow = this.bodyOverflowValue;
+        if (this.restoreScroll) {
+          this.restoreScroll();
+        }
       },
       handleToggle(event) {
         if (!this.nonModal && this.preventScroll) {
-          const { body } = document;
+          const { preventScrollShift: preventShift } = this;
           const isOpen = event.newState === "open";
           if (isOpen) {
-            this.bodyOverflowValue = body.style.overflow;
-            this.bodyPaddingRightValue = body.style.paddingRight;
-            // This will compensate for scrollbar jump (if user has it enabled)
-            if (this.preventScrollShift) {
-              body.style.paddingRight = `${ getScrollbarWidth() }px`;
-            }
-            body.style.overflow = "hidden";
+            this.restoreScroll = setupPreventScroll({ preventShift });
           } else {
             this.destroyPreventScroll();
           }
