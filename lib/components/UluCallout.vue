@@ -23,7 +23,7 @@
       modifiers: [String, Array]
     },
     setup(props) {
-      const { resolvedModifiers } = useModifiers(props, "callout");
+      const { resolvedModifiers } = useModifiers({ props, baseClass: "callout" });
       return { resolvedModifiers };
     }
   };

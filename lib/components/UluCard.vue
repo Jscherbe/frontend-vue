@@ -207,7 +207,7 @@
       }
     },
     setup(props) {
-      const { resolvedModifiers } = useModifiers(props, "card");
+      const { resolvedModifiers } = useModifiers({ props, baseClass: "card" });
       return { resolvedModifiers };
     },
     computed: {

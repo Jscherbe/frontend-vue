@@ -124,7 +124,7 @@
       modifiers: [String, Array]
     },
     setup(props) {
-      const { resolvedModifiers } = useModifiers(props, "button");
+      const { resolvedModifiers } = useModifiers({ props, baseClass: "button" });
       return { resolvedModifiers };
     },
     computed: {

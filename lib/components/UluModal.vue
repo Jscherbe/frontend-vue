@@ -6,7 +6,7 @@
   >
     <dialog
       class="modal" 
-      :class="[resolvedClasses, resolvedModifiers, classes.container]" 
+      :class="[resolvedModifiers, classes.container]" 
       :aria-labelledby="resolvedLabelledby" 
       :aria-describedby="describedby"
       ref="container" 
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+  import { useSlots, computed } from "vue";
   import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../composables/useModifiers.js";
   import { throttle } from "@ulu/utils/performance.js";
@@ -196,36 +197,49 @@
       }
     },
     setup(props) {
-      const { resolvedModifiers } = useModifiers(props, "button");
-      return { resolvedModifiers };
-    },
-    computed: {
-      hasHeader() {
-        return this.title || this.$slots.title;
-      },
-      resolvedLabelledby() {
-        const { labelledby, titleId } = this;
-        return labelledby ? labelledby : titleId;
-      },
-      resolvedClasses() {
-        const mods = [
-          this.position,
-          this.allowResize ? "resize" : "no-resize",
-          this.hasHeader ? "no-header" : null,
-          this.bodyFills ? "body-fills" : null,
-          this.noBackdrop ? "no-backdrop" : null,
-          this.noMinHeight ? "no-min-height" : null
-        ].filter(v => v);
-        return mods.map(mod => `modal--${ mod }`);
-      },
+      const slots = useSlots(); // Access slots via useSlots() helper
+
+      // Note: These two computed need to be defined in setup since their used in internalModifiers
+      const hasHeader = computed(() => props.title || slots.title);
       /**
        * Flag for if resizer script should be enabled
        * - Resizer only available for left and right
        */
-      resizerEnabled() {
-        const { allowResize, position } = this;
+      const resizerEnabled = computed(() => {
+        const { allowResize, position } = props;
         return allowResize && position && ["left", "right"].includes(position);
-      },
+      });
+
+      // Define the internal modifiers object as a computed property (so it can react to changes)
+      const internalModifiers = computed(() => ({
+        [props.position]: props.position, 
+        "resize": props.allowResize,
+        "no-resize": !props.allowResize,
+        "no-header": !hasHeader.value,
+        "body-fills": props.bodyFills,
+        "no-backdrop": props.noBackdrop,
+        "no-min-height": props.noMinHeight,
+        "non-modal": props.nonModal,
+        "resizer-active": resizerEnabled.value,
+      }));
+
+      const { resolvedModifiers } = useModifiers({ 
+        props: props, 
+        baseClass: "modal", 
+        internal: internalModifiers 
+      });
+
+      return { 
+        resolvedModifiers,
+        hasHeader,
+        resizerEnabled, 
+      };
+    },
+    computed: {
+      resolvedLabelledby() {
+        const { labelledby, titleId } = this;
+        return labelledby ? labelledby : titleId;
+      }
     },
     watch: {
       modelValue(newValue) {

@@ -40,7 +40,7 @@
       modifiers: [String, Array]
     },
     setup(props) {
-      const { resolvedModifiers } = useModifiers(props, "tag");
+      const { resolvedModifiers } = useModifiers({ props, baseClass: "tag" });
       return { resolvedModifiers };
     }
   };
