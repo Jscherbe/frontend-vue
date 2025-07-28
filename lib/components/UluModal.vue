@@ -15,7 +15,6 @@
       @close="handleDialogCloseEvent"
       @click="handleClick"
       @toggle="handleToggle"
-      @pointerdown="handlePointerdown"
     >
       <header 
         v-if="hasHeader" 
@@ -57,11 +56,7 @@
       >
         <slot name="footer"></slot>
       </div>
-      <div 
-        v-if="resizerEnabled" 
-        class="modal__resizer" 
-        @pointerdown="handleResizer"
-      >
+      <div v-if="resizerEnabled" class="modal__resizer" ref="resizer">
         <slot name="resizerIcon">
           <UluIcon class="modal__resizer-icon" :definition="resizerIcon" />
         </slot>
@@ -74,9 +69,12 @@
   import { useSlots, computed } from "vue";
   import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../composables/useModifiers.js";
-  import { throttle, debounce } from "@ulu/utils/performance.js";
   import { wasClickOutside, preventScroll as setupPreventScroll } from "@ulu/utils/browser/dom.js";
+  import { Resizer } from "@ulu/frontend/js/ui/resizer.js";
+  import { refToElement } from "../utils/dom.js";
+
   let modalCount = 0;
+  
   export default {
     name: "UluModal",
     components: {
@@ -198,8 +196,7 @@
         titleId: `ulu-modal-${ modalCount }-title`,
         bodyOverflowValue: null,
         bodyPaddingRightValue: null,
-        isPossiblyResizing: false,
-        isPointerDown: false
+        isResizing: false,
       }
     },
     setup(props) {
@@ -213,7 +210,15 @@
        */
       const resizerEnabled = computed(() => {
         const { allowResize, position } = props;
-        return allowResize && position && ["left", "right"].includes(position);
+        if (!allowResize || !position) return;
+
+        const resizablePositions = ["left", "right", "center"];
+        if (resizablePositions.includes(position)) {
+          return true;
+        } else {
+          console.warn(`Passed invalid position for resize (${ position }), use ${ resizablePositions.join(", ") }`);
+          return false;
+        }
       });
 
       // Define the internal modifiers object as a computed property (so it can react to changes)
@@ -277,63 +282,13 @@
           this.$emit("close");
         }
       },
-      /**
-       * Used for native resize click outside prevention
-       */
-      handlePointerdown() {
-        this.isPointerDown = true;
-        const done = () => {
-          // After event queue (click) - so after the click handler determines click outside
-          setTimeout(() => {
-            this.isPointerDown = false;
-            this.isPossiblyResizing = false;
-          }, 0);
-        };
-        document.addEventListener("pointerup", done, { once: true });
-        document.addEventListener("pointercancel", done, { once: true });
-      },
       handleClick(event) {
-        if (this.clickOutsideCloses && !this.isPossiblyResizing) {
+        if (this.clickOutsideCloses && !this.isResizing) {
           const { target } = event;
           const { container } = this.$refs;
           if (target === container && wasClickOutside(container, event)) {
             this.close();
           }
-        }
-      },
-      /**
-       * Setup resize watcher for disabling click outside when dialog is changing sizes
-       * - Mainly for native css resize on center modals
-       * - Only worried about pointer events for this
-       */
-      setupResizeObserver() {
-        /**
-         * Called on every resize observed
-         * - Once it reaches 200ms it will switch the resize flag back to false
-         */
-        const handleResizeEnd = debounce(() => {
-          if (this.isPossiblyResizing && !this.isPointerDown) {
-            this.isPossiblyResizing = false;
-          }
-        }, 500);
-        /**
-         * Attach resize observer as a static property (for teardown)
-         */
-        this.resizeObserver = new ResizeObserver(() => {
-          if (this.isPointerDown) {
-            if (!this.isPossiblyResizing) this.isPossiblyResizing = true;
-            handleResizeEnd();
-          }
-        });
-        this.resizeObserver.observe(this.$refs.container);
-      },
-      /**
-       * Destroy the resize observer instance
-       */
-      destroyResizeObserver() {
-        if (this.resizeObserver) {
-          this.resizeObserver.disconnect();
-          this.resizeObserver = null;
         }
       },
       setupPreventScroll() {
@@ -357,34 +312,37 @@
           }
         }
       },
-      handleResizer(resizeEvent) {
-        const { container } = this.$refs;
-        const fromLeft = this.position === "right";
-        const doc = document.documentElement;
-        const x = resizeEvent.clientX;
-        const width = parseInt(window.getComputedStyle(container).width, 10);
-        const onFrame = throttle(window.requestAnimationFrame);
-        // Reactive property disabled so that we can directly write styles below
-        this.containerWidth = null;
-        let lastWidth = null;
-
-        // if (overrideMaxWidth) {
-        //   container.style.maxWidth = 'none';
-        // }
-
-        const mousemove = event => {
-          onFrame(() => {
-            const polarity = fromLeft ? -1 : 1;
-            lastWidth = `${ width + ((event.clientX - x) * polarity) }px`;
-            container.style.width = lastWidth;
-          });
-        };
-        const cleanup = () => {
-          doc.removeEventListener("pointermove", mousemove, false);    
-          this.containerWidth = lastWidth;
-        };
-        doc.addEventListener("pointermove", mousemove, false);
-        doc.addEventListener("pointerup", cleanup, { capture: true, once: true });
+      setupResizer() {
+        const { position, resizerEnabled } = this;
+        if (resizerEnabled) {
+          const { container, resizer } = this.$refs;
+          const options = position === "center" ? 
+            { fromX: "right", fromY: "bottom", multiplier: 2 } : 
+            { fromX: position === "right" ? "left" : "right" };
+          this.resizerInstance = new Resizer(container, resizer, options);
+          this.handleResizerStart = () => {
+            this.isResizing = true;
+          };
+          this.handleResizerEnd = () => {
+            // After click has ended (next in event loop)
+            setTimeout(() => { this.isResizing = false; }, 0)
+          };
+          container.addEventListener("ulu:resizer:start", this.handleResizerStart);
+          container.addEventListener("ulu:resizer:end", this.handleResizerEnd);
+          console.log("this.resizerInstance:\n", this.resizerInstance);
+        } 
+      },
+      destroyResizer() {
+        if (this.resizerInstance) {
+          this.resizerInstance.destroy();
+          this.resizerInstance = null;
+        }
+        if (this.handleResizerStart) {
+          container.removeEventListener("ulu:resizer:start", this.handleResizerStart);
+        }
+        if (this.handleResizerEnd) {
+          container.removeEventListener("ulu:resizer:end", this.handleResizerEnd);
+        }
       }
     },
     mounted() {
@@ -392,11 +350,11 @@
       if (this.preventScroll) {
         this.setupPreventScroll();
       }
+      this.setupResizer();
       // If the modal is initially visible, open it correctly
       if (this.modelValue) {
         this.modelValue = true; // Trigger watch to open the dialog correctly
       }
-      this.setupResizeObserver();
     },
     beforeUnmount() {
       const { container } = this.$refs;
@@ -404,7 +362,7 @@
         container.close();
       }
       this.destroyPreventScroll();
-      this.destroyResizeObserver();
+      this.destroyResizer();
     }
   };
 </script>

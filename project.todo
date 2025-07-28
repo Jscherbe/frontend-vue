@@ -1,4 +1,6 @@
 Todos:
+  ☐ Remove modal native resizer and add x/y resizer for center
+    ☐ Remove all state related to this
   ☐ Create script for setting all fa icons
   ☐ Need to add frontend components for:
     ☐ skeleton
@@ -8,7 +10,7 @@ Todos:
     ☐ Tooltip
     ☐ Modal
   ☐ Setup the following stories
-    * Note: macbook pro won't run model, will need to run these on mac studio
+    * Note: Macbook pro won't run model, will need to run these on mac studio
     Untested and Undocumented:
       ☐ `node generate-story.js ./lib/components/UluList.vue ./stories/components/UluList.stories.js`
       ☐ `node generate-story.js ./lib/components/UluTag.vue ./stories/components/UluTag.stories.js`
@@ -50,3 +52,9 @@ Todos:
         * The docgen api is used by a lot of other projects but the app/output unsure
         * Could use this for now and migrate to histoire in the future?
         * Not sure how useful histoire will be for basic compontents
+
+Not Vital:
+  ☐ In the future, refactor resizer (in ulu/frontend) to be selfManaged too
+    * Move the logic for the resizing to dedicated methods and add option for selfManaged 
+      to disable event binding, then in vue bind events and bind the style change (width)
+      * Then it can work in both frontend and vue but bind events
