@@ -54,7 +54,9 @@ Todos:
         * Not sure how useful histoire will be for basic compontents
 
 Not Vital:
-  ☐ In the future, refactor resizer (in ulu/frontend) to be selfManaged too
-    * Move the logic for the resizing to dedicated methods and add option for selfManaged 
-      to disable event binding, then in vue bind events and bind the style change (width)
-      * Then it can work in both frontend and vue but bind events
+  ☐ Modal
+    ☐ Should 
+    ☐ In the future, refactor resizer (in ulu/frontend) to be selfManaged too
+      * Move the logic for the resizing to dedicated methods and add option for selfManaged 
+        to disable event binding, then in vue bind events and bind the style change (width)
+        * Then it can work in both frontend and vue but bind events

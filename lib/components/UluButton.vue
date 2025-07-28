@@ -17,7 +17,7 @@
       resolvedModifiers
     ]"
     v-bind="attrs"
-    :aria-label="alt || iconOnly && text"
+    :aria-label="resolvedAriaLabel"
   >
     <slot name="before"/>
     <UluIcon 
@@ -128,6 +128,10 @@
       return { resolvedModifiers };
     },
     computed: {
+      resolvedAriaLabel() {
+        const label = this.alt || this.iconOnly && text;
+        return label ? label : null;
+      },
       classes() {
         const classes = [];
         const { size } = this;

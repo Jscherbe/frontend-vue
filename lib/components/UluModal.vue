@@ -44,23 +44,21 @@
       <div 
         class="modal__body" 
         :class="classes.body" 
-        :close="close"
       >
-        <slot/>
+        <slot :close="close"/>
       </div>
       <div 
         v-if="$slots.footer" 
         class="site-modal__footer" 
         :class="classes.footer" 
-        :close="close"
       >
-        <slot name="footer"></slot>
+        <slot name="footer" :close="close"/>
       </div>
-      <div v-if="resizerEnabled" class="modal__resizer" ref="resizer">
+      <button v-if="resizerEnabled" class="modal__resizer" ref="resizer" type="button">
         <slot name="resizerIcon">
           <UluIcon class="modal__resizer-icon" :definition="resizerIcon" />
         </slot>
-      </div>
+      </button>
     </dialog>
   </Teleport>
 </template>
@@ -71,7 +69,6 @@
   import { useModifiers } from "../composables/useModifiers.js";
   import { wasClickOutside, preventScroll as setupPreventScroll } from "@ulu/utils/browser/dom.js";
   import { Resizer } from "@ulu/frontend/js/ui/resizer.js";
-  import { refToElement } from "../utils/dom.js";
 
   let modalCount = 0;
   
@@ -167,7 +164,7 @@
        */
       resizerIcon: {
         type: String,
-        default: "fas fa-grip-lines-vertical"
+        default: "fas fa-grip"
       },
       /**
        * Default icon for close button (uses UluIcon interface)
@@ -349,10 +346,10 @@
           };
           container.addEventListener("ulu:resizer:start", this.handleResizerStart);
           container.addEventListener("ulu:resizer:end", this.handleResizerEnd);
-          console.log("this.resizerInstance:\n", this.resizerInstance);
         } 
       },
       destroyResizer() {
+        const { container } = this.$refs;
         if (this.resizerInstance) {
           this.resizerInstance.destroy();
           this.resizerInstance = null;
