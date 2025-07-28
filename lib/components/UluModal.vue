@@ -264,6 +264,26 @@
         } else {
           container.close();
         }
+      },
+      resizerEnabled: {
+        immediate: false, // Don't run on initial mount, as setupResizer is called in mounted
+        handler(newValue) {
+          if (newValue) {
+            this.$nextTick(() => { 
+              this.setupResizer();
+            });
+          } else {
+            this.destroyResizer();
+          }
+        }
+      },
+      position(newValue, oldValue) {
+        if (newValue !== oldValue) {
+          this.destroyResizer(); 
+          this.$nextTick(() => { 
+            this.setupResizer();
+          });
+        }
       }
     },
     methods: {
