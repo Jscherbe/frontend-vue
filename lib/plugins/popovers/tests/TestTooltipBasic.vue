@@ -3,7 +3,7 @@
     <h2>Basic Test (long text in tooltip)</h2>
     <p>
       <button 
-        v-tooltip="longContent" 
+        v-ulu-tooltip="longContent" 
         style="background-color: lightblue;"
       >
         Some Button

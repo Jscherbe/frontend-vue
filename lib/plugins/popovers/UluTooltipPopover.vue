@@ -1,7 +1,8 @@
+<!-- NOTE: Need to rename classes when moving this into the library -->
 <template>
   <span 
     class="site-popover site-popover--tooltip is-active"
-    ref="floating"
+    ref="content"
     aria-hidden="true" 
     :data-placement="placement"
     :class="config.class"
@@ -19,7 +20,7 @@
     <span 
       v-if="config.arrow"
       class="site-popover__arrow" 
-      ref="floatingArrow"
+      ref="contentArrow"
       :style="arrowStyles"
     ></span>
   </span>
@@ -40,16 +41,15 @@
   const { config } = defineProps({
     config: Object
   });
-  const reference = toRef(config.reference);
-  const floating = ref(null);
-  const floatingArrow = ref(null);
-
+  const trigger = toRef(config.trigger);
+  const content = ref(null);
+  const contentArrow = ref(null);
   const middleware = [
     ...(config.inline ? [ inline() ] : []),
     ...(config.offset ? [ offset(config.offset) ] : []),
     flip(), 
     shift(),
-    ...(config.arrow ? [ arrow({ element: floatingArrow }) ] : []),
+    ...(config.arrow ? [ arrow({ element: contentArrow }) ] : []),
   ];
   
   const options = {
@@ -64,7 +64,7 @@
     middlewareData,
     update,
     isPositioned,
-  } = useFloating(reference, floating, options);
+  } = useFloating(trigger, content, options);
 
   const arrowStyles = computed(() => {
     const pos = middlewareData.value?.arrow;

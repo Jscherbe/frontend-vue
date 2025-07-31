@@ -4,12 +4,12 @@
   component (wrapper, renderless, etc) in the future 
 -->
 <template>
-  <Teleport :to="options.plugin.teleportTo">
+  <Teleport :to="options.plugin.tooltipTeleportTo">
     <TooltipPopover v-if="active" :config="activeConfig"/>
   </Teleport>
 </template>
 
 <script setup>
   import { active, activeConfig, options } from "./manager.js";
-  import TooltipPopover from "./TooltipPopover.vue";
-</script>./manager.js
+  import TooltipPopover from "./UluTooltipPopover.vue";
+</script>

@@ -10,6 +10,7 @@
     :to="to"
     :href="href"
     @click="click"
+    v-ulu-tooltip="tooltip"
   >
     <span class="badge__inner" :class="{ 'skeleton__background-color' : skeleton }">
       <!-- If just text user should use prop -->
@@ -29,7 +30,7 @@
 <script>
   import { RouterLink } from "vue-router";
   export default {
-    name: "UluBadge",
+    name: "AppBadge",
     props: {
       skeleton: Boolean,
       size: String,
@@ -39,6 +40,10 @@
       click: Function,
       to: [Object, String],
       href: String,
+      tooltip: {
+        type: [String, Number, Object, Boolean],
+        default: false
+      },
     },
     computed: {
       isInteractive() {
