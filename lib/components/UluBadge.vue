@@ -10,7 +10,6 @@
     :to="to"
     :href="href"
     @click="click"
-    v-ulu-tooltip="tooltip"
   >
     <span class="badge__inner" :class="{ 'skeleton__background-color' : skeleton }">
       <!-- If just text user should use prop -->
@@ -40,10 +39,6 @@
       click: Function,
       to: [Object, String],
       href: String,
-      tooltip: {
-        type: [String, Number, Object, Boolean],
-        default: false
-      },
     },
     computed: {
       isInteractive() {

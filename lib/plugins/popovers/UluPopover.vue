@@ -17,13 +17,12 @@
     <slot name="trigger" :isOpen="isOpen"/>
   </button>
   <span 
-    class="site-popover"
+    class="popover"
     ref="content"
     :class="[ 
-      size ? `site-popover--${ size }` : '',
+      size ? `popover--${ size }` : '',
       { 
-        'site-popover--no-padding' : noPadding,
-        'site-popover--w-footer' : $slots.footer,
+        'popover--no-padding' : noPadding,
         'is-active' : isOpen
       }, 
       classes.content,
@@ -35,17 +34,18 @@
     @keydown.esc="changeTo(false)"
     tabindex="-1"
   >
-    <span class="site-popover__inner">
+    <span class="popover__inner">
       <slot name="content" :close="close"/>
     </span>
-    <span v-if="$slots.footer" class="site-popover__footer">
+    <span v-if="$slots.footer" class="popover__footer">
       <slot name="footer" :close="close"/>
     </span>
     <span 
       v-if="config.arrow"
-      class="site-popover__arrow" 
+      class="popover__arrow" 
       ref="contentArrow"
       :style="arrowStyles"
+      data-ulu-popover-arrow
     ></span>
   </span>
 </template>

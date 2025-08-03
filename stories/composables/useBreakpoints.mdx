@@ -1,0 +1,48 @@
+# useModifiers
+
+Composable for adding breakpoint manager and related breakpoint info (via breakpoint manager from `@ulu/frontend/js/ui/breakpoints.js > BreakpointManager`)
+
+## Example Usage
+
+```vue
+<script setup>
+  import { ref, computed, provide } from "vue";
+  import { useBreakpoints } from "./composables/useBreakpoints.js";
+
+  const isMobile = ref(false);
+
+  // Example using the onReady callback to set reactive value isMobile
+  // - In this situation isMobile is being used as a primary change in  
+  //   the applications layout 
+  const options = { 
+    onReady(manager) {
+      manager.at("small").max(() => isMobile.value = true);
+      manager.at("large").min(() => isMobile.value = false);
+    }
+  };
+
+  // Composable returns the following
+  const { 
+    /**
+     * Reference to underlying BreakpointManager class
+    */
+    breakpointManager, 
+    /**
+     * Active breakpoint name
+    */
+    breakpointActive, 
+    /**
+     * Current resizeDirection ("up"|"down"|null)
+    */
+    breakpointDirection 
+  } = useBreakpoints(options);
+
+
+  // Allowing all components to access these values
+  provide("breakpointActive", computed(() => breakpointActive));
+  provide("breakpointDirection", computed(() => breakpointDirection));
+  provide("breakpointManager", computed(() => breakpointManager));
+  provide("isMobile", computed(() => isMobile));
+
+</script>
+```

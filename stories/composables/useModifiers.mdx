@@ -3,5 +3,15 @@
 Composable for creating modifier classes for base class based on modifiers prop for a given component
 
 
-```js
+```vue
+<script setup>
+  import { useModifiers } from "../composables/useModifiers.js";
+  const props = defineProps({
+    /**
+     * Modifiers for classes
+     */
+    modifiers: [String, Array],
+  });
+  const { resolvedModifiers } = useModifiers({ props, baseClass: "button" });
+</script>
 ```

@@ -20,15 +20,9 @@
         v-ulu-tooltip="iconOnly ? item.title : item.tooltip || null" 
       >
         <slot :item="item" :index="index">
-          <div v-if="item.icon" :class="classes.linkIconContainer">
-            <FaIcon 
-            :class="classes.linkIcon"
-            :icon="item.icon"
-            />
-            <span :class="classes.linkIconText" v-if="item.iconText">{{ item.iconText }}</span>
-          </div>
+          <UluIcon v-if="item.icon" :definition="item.icon" :class="classes.linkIcon"/>
           <span :class="classes.linkText">{{ item.title }}</span>
-          <AppTag v-if="item.count" :text="item.count" small/>
+          <UluTag v-if="item.tag" v-bind="item.tag"/>
         </slot>
       </component>
       <!-- Component calls itself recursively for children if allowed (noChildren) -->
@@ -42,17 +36,53 @@
 </template>
 
 <script>
-
+  import UluIcon from "./UluIcon.vue";
+  import UluTag from "./UluTag.vue";
+  /**
+   * Reusable menu component (ul > li > [a/button/router-link])
+   * - Requires ulu tooltip plugin (as items themselves can have tooltips)
+   */
   export default {
     name: "UluMenu",
-    emits: ["itemClick"],
+    components: {
+      UluIcon,
+      UluTag
+    },
+    emits: [
+      /**
+       * Fired anytime a item is clicked
+       */
+      "itemClick"
+    ],
     props: {
+      /**
+       * Items Array of Objects for each link
+       * [{
+       *   title: String (title of link)
+       *   icon: Icon definition passed to UluIcon
+       *   tag: Tag appearing after link text (count/etc), pass props you want bound to tag
+       *   tooltip: Add tooltip to menu item (pass options for tooltip), unless iconOnly than the title is presented in the tooltip
+       *   href: Will result in <a>
+       *   click: Will be called on click and result in <button>
+       *   to: Will result in <a> and use vue-router router-link component
+       * }]
+       */
       items: Array,
+      /**
+       * Classes object to add class bindings to the different elements
+       * - { list, item, link, linkActive, linkExactActive, linkIcon, linkText }
+       */
       classes: {
         type: Object,
         default: () => ({})
       },
+      /**
+       * Use icon only version of menu
+       */
       iconOnly: Boolean,
+      /**
+       * Do not print menu items children recursively
+       */
       noChildren: Boolean
     },
     methods: {

@@ -9,7 +9,7 @@
       resolvedModifiers
     ]"
   >
-    <FaIcon v-if="icon" :icon="icon" />
+    <UluIcon v-if="icon" :definition="icon" />
     <slot>
       {{ text }}
     </slot>
@@ -17,9 +17,13 @@
 </template>
 
 <script>
+  import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../composables/useModifiers.js";
   export default {
     name: "UluTag",
+    components: {
+      UluIcon
+    },
     props: {
       type: [String],
       /**
@@ -31,9 +35,10 @@
        */
       text: [String, Number],
       /**
-       * Font Awesome icon (before text)
+       * Icon prop, if used will set the icon for the button, will use UluIcon (which uses font-awesome icons conditionally)
+       * - If using custom icons use slot instead
        */
-      icon: String,
+      icon: [String, Array],
       /**
        * Modifiers for tag class
        */
