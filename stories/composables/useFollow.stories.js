@@ -1,3 +1,14 @@
+import TestTooltipFollow from "../../lib/plugins/popovers/tests/TestTooltipFollow.vue";
+
+export default {
+  title: 'composables/useFollow',
+  component: { TestTooltipFollow },
+  tags: ['autodocs'],
+  parameters: {
+    docs: {
+      source: {
+        language: "html",
+        code: `
 <template>
   <div 
     @pointerenter="showFollow"
@@ -27,7 +38,7 @@
     hide, 
     update 
   } = useFollow({
-    content: computed(() => `x: ${ Math.round(x.value) }, y: ${ Math.round(y.value) }`)
+    content: computed(() => \`x: \${ Math.round(x) }, y: \${ Math.round(y) }\`)
   });
 
   const showFollow = (event) => {
@@ -46,3 +57,23 @@
     hide();
   };
 </script>
+        `
+      }
+    }
+  }
+};
+
+// Template for basic usage
+const Template = (args) => ({
+  components: { TestTooltipFollow },
+  setup() {
+    return { args };
+  },
+  "template": `
+    <TestTooltipFollow/>
+  `,
+
+});
+
+export const Default = Template.bind({});
+Default.args = {};

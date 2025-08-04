@@ -8,7 +8,8 @@ const config = {
   ],
   addons: [
     "@storybook/addon-links", 
-    "@storybook/addon-docs"
+    "@storybook/addon-docs",
+    "storybook-addon-vue-mdx"
   ],
   staticDirs: ["./static"],
   framework: {
