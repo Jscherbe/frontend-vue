@@ -49,7 +49,10 @@ export const decorators = [
     beforeCreate() {
       router.isReady(); // This is good practice for async router setups
     },
-    template: '<router-view><div class="in-ulu"><story /></div></router-view>',
+    template: `
+      <router-view><div class="in-ulu"><story /></div></router-view>
+      <UluTooltipDisplay/>
+    `,
   }),
 ];
 

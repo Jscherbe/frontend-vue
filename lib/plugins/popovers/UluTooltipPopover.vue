@@ -1,7 +1,7 @@
 <!-- NOTE: Need to rename classes when moving this into the library -->
 <template>
   <span 
-    class="site-popover site-popover--tooltip is-active"
+    class="popover popover--tooltip is-active"
     ref="content"
     aria-hidden="true" 
     :data-placement="placement"
@@ -10,16 +10,16 @@
   >
     <span 
       v-if="config.isHtml" 
-      class="site-popover__inner" 
+      class="popover__inner" 
       v-html="config.content"
     >
     </span>
-    <span v-else class="site-popover__inner">
+    <span v-else class="popover__inner">
       {{ config.content }}
     </span>
     <span 
       v-if="config.arrow"
-      class="site-popover__arrow" 
+      class="popover__arrow" 
       ref="contentArrow"
       :style="arrowStyles"
     ></span>

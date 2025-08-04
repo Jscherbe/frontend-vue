@@ -1,7 +1,11 @@
 @use "@ulu/frontend/scss" as ulu;
 
 // Components that are teleported/etc need to be not scoped
-@include ulu.component-set-excludes(("modal", "button"));
+@include ulu.component-set-excludes((
+  "modal", 
+  "button",
+  "popover"
+));
 
 @include ulu.base-styles();
 
@@ -14,5 +18,6 @@
 // Include any components that are outside in-ulu container (teleports/etc)
 @include ulu.component-button-styles();
 @include ulu.component-modal-styles();
+@include ulu.component-popover-styles();
 
 @include ulu.helper-styles();
