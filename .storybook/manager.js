@@ -1,6 +1,6 @@
 import { addons } from 'storybook/manager-api';
-import uluTheme from './ulu-theme.js'; // Import your custom theme file
+import uluStorybookTheme from './preview-assets/ulu-storybook-theme.js'; 
 
 addons.setConfig({
-  theme: uluTheme,
+  theme: uluStorybookTheme,
 });

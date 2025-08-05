@@ -250,16 +250,20 @@
       }
     },
     watch: {
-      modelValue(newValue) {
-        const { container } = this.$refs;
-        if (newValue) {
+      modelValue: {
+        // So that it runs on mount (if modelValue is initially true)
+        immediate: true, 
+        handler(newValue) {
           // Use nextTick to ensure the dialog element is in the DOM before calling showModal
           this.$nextTick(() => {
-            container[this.nonModal ? "show" : "showModal"]();
-            this.$emit("open");
+            const { container } = this.$refs;
+            if (newValue) {
+              container[this.nonModal ? "show" : "showModal"]();
+              this.$emit("open");
+            } else {
+              container.close();
+            }
           });
-        } else {
-          container.close();
         }
       },
       resizerEnabled: {
@@ -368,10 +372,6 @@
         this.setupPreventScroll();
       }
       this.setupResizer();
-      // If the modal is initially visible, open it correctly
-      if (this.modelValue) {
-        this.modelValue = true; // Trigger watch to open the dialog correctly
-      }
     },
     beforeUnmount() {
       const { container } = this.$refs;

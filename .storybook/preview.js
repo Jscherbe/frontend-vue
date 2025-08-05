@@ -1,11 +1,13 @@
 import { setup } from "@storybook/vue3"; 
 import { createMemoryHistory, createRouter } from "vue-router";
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-// import UluModals from "../lib/plugins/modals/plugin.js";
+import UluModals from "../lib/plugins/modals/index.js";
 import UluPopoversPlugin from "../lib/plugins/popovers/index.js";
 
-import "./scss/styles.scss";
-import "./preview-icons.js";
+import modals from "./preview-assets/modals.js";
+
+import "./preview-assets/scss/styles.scss";
+import "./preview-assets/icons.js";
 
 /** @type { import('@storybook/vue3-vite').Preview } */
 const preview = {
@@ -36,7 +38,7 @@ setup((app) => {
   app
     .use(router)
     .use(UluPopoversPlugin)
-    // .use(UluModals)
+    .use(UluModals, { modals })
     // .component("FaIcon", FontAwesomeIcon);
 });
 
@@ -49,8 +51,11 @@ export const decorators = [
     beforeCreate() {
       router.isReady(); // This is good practice for async router setups
     },
-    template: `
-      <router-view><div class="in-ulu"><story /></div></router-view>
+    "template": `
+      <router-view>
+        <div class="in-ulu"><story /></div>
+      </router-view>
+      <UluModalsDisplay/>
       <UluTooltipDisplay/>
     `,
   }),

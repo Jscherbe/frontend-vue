@@ -1,6 +1,6 @@
 
 export default {
-  title: 'Directives/ulu-tooltip',
+  title: 'Plugins/popovers (tooltip demo)',
   argTypes: {
     tooltipText: {
       control: 'text',
