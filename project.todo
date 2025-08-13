@@ -1,4 +1,7 @@
 Todos:
+  ☐ Left off migrating other components (not namespaced yet)
+  ☐ Left off setting up toast plugin test @important
+    ☐ Need to setup frontend styling for this
   ☐ Make sure FaIcon's are refactored
   ☐ Normalize modifiers across all components
     * No type or things like that user should expect to use modifiers

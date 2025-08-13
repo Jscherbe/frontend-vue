@@ -3,6 +3,7 @@ import { createMemoryHistory, createRouter } from "vue-router";
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import UluModals from "../lib/plugins/modals/index.js";
 import UluPopoversPlugin from "../lib/plugins/popovers/index.js";
+import UluToastPlugin from "../lib/plugins/toast/index.js";
 
 import modals from "./preview-assets/modals.js";
 
@@ -38,6 +39,7 @@ setup((app) => {
   app
     .use(router)
     .use(UluPopoversPlugin)
+    .use(UluToastPlugin)
     .use(UluModals, { modals })
     // .component("FaIcon", FontAwesomeIcon);
 });
