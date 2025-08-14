@@ -8,7 +8,7 @@
 
 <script>
   export default {
-    name: "AppSpinner",
+    name: "UluSpokeSpinner",
     props: {
       size: String
     },

@@ -18,7 +18,7 @@
 
 <script>
   import UluIcon from "./UluIcon.vue";
-  import { useModifiers } from "../composables/useModifiers.js";
+  import { useModifiers } from "../../composables/useModifiers.js";
   export default {
     name: "UluTag",
     components: {

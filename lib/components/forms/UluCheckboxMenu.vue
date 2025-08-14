@@ -23,7 +23,7 @@
 
 <script>
   export default {
-    name: "CheckboxMenu",
+    name: "UluCheckboxMenu",
     props: {
       options: Array
     },

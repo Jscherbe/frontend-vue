@@ -51,7 +51,7 @@
   let uid = 0;
 
   export default {
-    name: "CollapsibleRegion",
+    name: "UluCollapsibleRegion",
     props: {
       /**
        * Set title for toggle (instead of using slot)

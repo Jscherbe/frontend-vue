@@ -1,0 +1,1 @@
+These are components not included currently but could be added later (as patterns/etc)

@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import { useModifiers } from "../composables/useModifiers.js";
+  import { useModifiers } from "../../composables/useModifiers.js";
   export default {
     name: "UluCallout",
     props: {

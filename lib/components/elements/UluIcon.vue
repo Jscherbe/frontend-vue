@@ -13,8 +13,8 @@
 
 <script setup>
 import { ref, defineAsyncComponent, markRaw, watchEffect, computed } from "vue";
-import { useIcon } from "../composables/useIcon.js";
-import { getSetting } from "../settings.js"; 
+import { useIcon } from "../../composables/useIcon.js";
+import { getSetting } from "../../settings.js"; 
 
 const iconComponent = ref(null);
 // Destructure the new method from useIcon

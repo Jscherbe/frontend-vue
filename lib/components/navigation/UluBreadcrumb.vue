@@ -1,3 +1,8 @@
+<!-- 
+  Updates to make: 
+  - Make breadcrumb agnostic of router and then make composable / utility for getting crumbs from vue-router or user routes etc
+-->
+
 <template>
   <nav 
     class="breadcrumbs" 

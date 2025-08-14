@@ -29,7 +29,7 @@
 <script>
   import { RouterLink } from "vue-router";
   export default {
-    name: "AppBadge",
+    name: "UluBadge",
     props: {
       skeleton: Boolean,
       size: String,

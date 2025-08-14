@@ -1,6 +1,6 @@
 // Generated automatically with ./generate-story.js
 
-import UluAccordion from '../../lib/components/UluAccordion.vue';
+import UluAccordion from '../../lib/components/collapsible/UluAccordion.vue';
 
 export default {
   component: UluAccordion,

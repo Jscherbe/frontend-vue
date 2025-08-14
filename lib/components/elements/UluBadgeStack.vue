@@ -5,14 +5,18 @@
       v-for="(item, index) in items"
       :key="index"
     >
-      <AppBadge v-bind="item" />
+      <UluBadge v-bind="item" />
     </li>
   </ul>
 </template>
 
 <script>
+  import UluBadge from "./UluBadge.vue";
   export default {
-    name: 'BadgeStack',
+    name: 'UluBadgeStack',
+    components: {
+      UluBadge
+    },
     props: {
       /**
        * Array of props for each badge

@@ -3,32 +3,45 @@
     <div class="type-truncate" ref="text">
       <slot/>
     </div>
-    <AppPopover 
+    <UluPopover 
       v-if="isOverflown && !resizing"
-      toggleAlt="Show Full Text"
+      triggerAlt="Show Full Text"
       size="large"
-      :classes="{ toggle: 'ui-icon type-base' }"
     >
-      <template #toggle>
-        <FaIcon :icon="$site.getIcon('detail')"/>
+      <template #trigger>
+        <UluIcon :definition="triggerIcon"/>
       </template>
       <template #content>
         <div class="type-word-break">
           <slot/>
         </div>
       </template>
-    </AppPopover>
+    </UluPopover>
   </div>
 </template>
 
 <script setup>
   import { ref, nextTick, onMounted, onUnmounted } from "vue";
   import useResize from "@/composables/window-resize.js";
+
+  import UluPopover from "../../plugins/popovers/UluPopover.vue";
+  import UluIcon from "../elements/UluIcon.vue";
+
+  defineProps({
+    /**
+     * Default icon for overflow popover trigger
+     */
+    triggerIcon: {
+      type: String,
+      default: "fas fa-ellipsis"
+    },
+  });
+
   const { resizing, onResizeEnd } = useResize();
   const text = ref(null);
   const isOverflown = ref(false);
   /**
-   * Function checks if text elemenet is overflown
+   * Function checks if text element is overflown
    */
   const update = () => {
     nextTick(() => {

@@ -38,9 +38,9 @@
 </template>
 
 <script setup>
-  import UluIcon from "./UluIcon.vue";
-  import { useModifiers } from "../composables/useModifiers.js";
-  import { useIcon } from "../composables/useIcon.js";
+  import UluIcon from "../elements/UluIcon.vue";
+  import { useModifiers } from "../../composables/useModifiers.js";
+  import { useIcon } from "../../composables/useIcon.js";
   import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
   const props = defineProps({
     /**

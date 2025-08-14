@@ -65,8 +65,8 @@
 
 <script>
   import { useSlots, computed } from "vue";
-  import UluIcon from "./UluIcon.vue";
-  import { useModifiers } from "../composables/useModifiers.js";
+  import UluIcon from "../elements/UluIcon.vue";
+  import { useModifiers } from "../../composables/useModifiers.js";
   import { wasClickOutside, preventScroll as setupPreventScroll } from "@ulu/utils/browser/dom.js";
   import { Resizer } from "@ulu/frontend/js/ui/resizer.js";
 

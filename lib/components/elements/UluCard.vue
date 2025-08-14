@@ -78,7 +78,7 @@
 
 <script>
   import { RouterLink } from "vue-router";
-  import { useModifiers } from "../composables/useModifiers.js";
+  import { useModifiers } from "../../composables/useModifiers.js";
   const titleLinkValidator = (_, props) => {
     const valid = !(props.to || props.href);
     if (!valid) {
