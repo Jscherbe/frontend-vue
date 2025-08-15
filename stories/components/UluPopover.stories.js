@@ -1,6 +1,5 @@
 // Generated automatically with ./generate-story.js
-
-import UluPopover from '../../lib/plugins/popovers/UluPopover.vue';
+import UluPopover from "../../lib/plugins/popovers/UluPopover.vue";
 
 export default {
   component: UluPopover,

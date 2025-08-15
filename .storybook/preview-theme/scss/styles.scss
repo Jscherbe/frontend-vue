@@ -1,4 +1,5 @@
 @use "@ulu/frontend/scss" as ulu;
+@use "../../../lib/index" as ulu-vue;
 
 // Components that are teleported/etc need to be not scoped
 @include ulu.component-set-excludes((
@@ -19,6 +20,8 @@
 @include ulu.component-button-styles();
 @include ulu.component-modal-styles();
 @include ulu.component-popover-styles();
-@include ulu.component-table-sticky-styles();
+
+// Frontend Vue specific files
+@include ulu-vue.component-table-sticky-styles();
 
 @include ulu.helper-styles();

@@ -1,5 +1,5 @@
 import { arrayCreate } from "@ulu/utils/array.js";
-import UluTableSticky from '../../lib/components/UluTableSticky.vue';
+import UluTableSticky from "../../lib/components/systems/table-sticky/UluTableSticky.vue";
 
 const columns = [
   {

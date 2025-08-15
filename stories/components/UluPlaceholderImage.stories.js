@@ -1,4 +1,4 @@
-import UluPlaceholderImage from "../../lib/components/UluPlaceholderImage.vue";
+import UluPlaceholderImage from "../../lib/components/utils/UluPlaceholderImage.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {

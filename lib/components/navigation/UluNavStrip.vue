@@ -8,9 +8,9 @@
     }"
   >
     <UluMenu 
-      class="nav-strip__list"
       :items="items" 
       :classes="{
+        list: 'nav-strip__list',
         item: 'nav-strip__item',
         link: 'nav-strip__link',
         linkExactActive: 'is-active'
@@ -20,8 +20,12 @@
 </template>
 
 <script>
+  import UluMenu from "./UluMenu.vue";
   export default {
     name: "UluNavStrip",
+    components: {
+      UluMenu
+    },
     props: {
       /**
        * Array of items for list (uses UluMenu, see structure there)

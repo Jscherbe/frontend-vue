@@ -1,7 +1,7 @@
 // Generated automatically with ./generate-story.js
 
-import UluBadge from '../../lib/components/core/ui/UluBadge.vue';
-import UluPlaceholderImage from "../../lib/components/UluPlaceholderImage.vue";
+import UluBadge from "../../lib/components/elements/UluBadge.vue";
+import UluPlaceholderImage from "../../lib/components/utils/UluPlaceholderImage.vue";
 
 export default {
   component: UluBadge,

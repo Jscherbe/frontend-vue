@@ -1,4 +1,4 @@
-import UluDataGrid from "../../lib/components/UluDataGrid.vue";
+import UluDataGrid from "../../lib/components/layout/UluDataGrid.vue";
 
 const TEMPLATE_CODE = `
 <UluDataGrid data-grid="columns: 12">  

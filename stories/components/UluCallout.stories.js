@@ -1,5 +1,5 @@
 // Generated automatically with ./generate-story.js
-import UluCallout from "../../lib/components/UluCallout.vue";
+import UluCallout from "../../lib/components/elements/UluCallout.vue";
 
 const Template = (args) => ({
   components: { UluCallout },

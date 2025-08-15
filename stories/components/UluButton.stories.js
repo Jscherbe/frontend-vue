@@ -1,6 +1,6 @@
 // Generated automatically with ./generate-story.js
+import UluButton from "../../lib/components/elements/UluButton.vue";
 
-import UluButton from '../../lib/components/UluButton.vue';
 export default {
   component: UluButton,
   title: 'Components/UluButton',

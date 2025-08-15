@@ -1,8 +1,8 @@
-import UluTabGroup from '../../lib/components/UluTabGroup.vue';
-import UluTabList from '../../lib/components/UluTabList.vue';
-import UluTab from '../../lib/components/UluTab.vue';
-import UluTabPanels from '../../lib/components/UluTabPanels.vue';
-import UluTabPanel from '../../lib/components/UluTabPanel.vue';
+import UluTabGroup from "../../lib/components/collapsible/UluTabGroup.vue";
+import UluTabList from "../../lib/components/collapsible/UluTabList.vue";
+import UluTab from "../../lib/components/collapsible/UluTab.vue";
+import UluTabPanels from "../../lib/components/collapsible/UluTabPanels.vue";
+import UluTabPanel from "../../lib/components/collapsible/UluTabPanel.vue";
  
 export default {
   component: UluTabGroup,

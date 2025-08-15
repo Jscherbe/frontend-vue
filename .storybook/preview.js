@@ -5,10 +5,10 @@ import UluModals from "../lib/plugins/modals/index.js";
 import UluPopoversPlugin from "../lib/plugins/popovers/index.js";
 import UluToastPlugin from "../lib/plugins/toast/index.js";
 
-import modals from "./preview-assets/modals.js";
+import modals from "./preview-theme/modals.js";
 
-import "./preview-assets/scss/styles.scss";
-import "./preview-assets/icons.js";
+import "./preview-theme/scss/styles.scss";
+import "./preview-theme/icons.js";
 
 /** @type { import('@storybook/vue3-vite').Preview } */
 const preview = {

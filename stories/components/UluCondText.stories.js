@@ -1,4 +1,4 @@
-import UluCondText from "../../lib/components/UluCondText.vue";
+import UluCondText from "../../lib/components/utils/UluCondText.vue";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 export default {

@@ -1,6 +1,6 @@
 import { ref } from "vue";
-import UluModal from '../../lib/components/UluModal.vue';
-import UluButton from '../../lib/components/UluButton.vue';
+import UluModal from "../../lib/components/collapsible/UluModal.vue";
+import UluButton from "../../lib/components/elements/UluButton.vue";
 import placeholder from "../utils/placeholder.js";
 
 export default {

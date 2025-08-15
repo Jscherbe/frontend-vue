@@ -1,5 +1,5 @@
 <template>
-  <div 
+  <nav 
     class="menu-stack"
     :class="{
       'menu-stack--hanging' : hanging,
@@ -17,7 +17,7 @@
       }" 
       :noChildren="noChildren"
     />
-  </div>
+  </nav>
 </template>
 
 <script>
@@ -28,6 +28,10 @@
       UluMenu
     },
     props: {
+      /**
+       * Menu item (see UluMenu)
+       */
+      items: Array,
       /**
        * Hanging style menu
        */

@@ -1,11 +1,27 @@
 // Generated automatically with ./generate-story.js
-
-import UluMenu from '../../lib/components/UluMenu.vue';
+import UluMenu from "../../lib/components/navigation/UluMenu.vue";
 
 export default {
   component: UluMenu,
   title: 'Components/UluMenu',
   tags: ['autodocs'],
+  parameters: {
+    docs: {
+      description: {
+        component: `
+The "UluMenu" component is a versatile navigation component that can be used for any traditional menu list (with the following structure, ul > li > a > span[icon/text]). 
+
+This mockup is adding classes like nav-strip component but any classes in traditional menu structure will work. This is used in UluNavStrip, UluMenuStack and other components that render menu. They all use the same API for the items array.
+
+Depending on the options passed per item the menu will render the links using either: 
+
+- item.href = "a" (link)
+- item.click = "button"
+- item.to = "router-link"
+`
+      }
+    }
+  }
 };
 
 const Template = (args) => ({
@@ -45,9 +61,7 @@ Default.args = {
     {
       title: "Example Link (tooltip)",
       href: "http://www.google.com",
-      tooltip: {
-        text: "Hello World!"
-      }
+      tooltip: "Hello World!"
     },
   ]
 };

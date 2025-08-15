@@ -1,4 +1,4 @@
-import UluButton from "../../lib/components/UluButton.vue";
+import UluButton from "../../lib/components/elements/UluButton.vue";
 
 export default {
   title: 'Plugins/modals',

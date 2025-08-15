@@ -36,8 +36,8 @@
 </template>
 
 <script>
-  import UluIcon from "./UluIcon.vue";
-  import UluTag from "./UluTag.vue";
+  import UluIcon from "../elements/UluIcon.vue";
+  import UluTag from "../elements/UluTag.vue";
   /**
    * Reusable menu component (ul > li > [a/button/router-link])
    * - Requires ulu tooltip plugin (as items themselves can have tooltips)
