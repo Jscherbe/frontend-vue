@@ -5,7 +5,7 @@ import UluModals from "../lib/plugins/modals/index.js";
 import UluPopoversPlugin from "../lib/plugins/popovers/index.js";
 import UluToastPlugin from "../lib/plugins/toast/index.js";
 
-import modals from "./preview-theme/modals.js";
+import modals from "../lib/plugins/modals/tests/test-modals.js";
 
 import "./preview-theme/scss/styles.scss";
 import "./preview-theme/icons.js";

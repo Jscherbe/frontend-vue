@@ -1,0 +1,78 @@
+# Modals
+
+Modals plugin allows configuring app-wide modals that are triggered by the global API. Register your modals when you install the plugin then interact with them using the global API.
+
+## Registering your app-wide modals
+
+Example ./scr/modals.js
+
+```js
+import { defineAsyncComponent } from "vue";
+
+export default [
+  {
+    name: "settings",
+    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),
+  }
+]
+```
+
+## Installing the plugin
+
+Example ./src/main.js
+
+```js
+import UluModals from "@ulu/frontend-vue/plugins/modals/index.js";
+import modals from "./src/modals.js";
+
+//...
+
+app.use(UluModals, { modals });
+
+```
+
+## Using Global API
+
+```js
+
+// Open a app-wide modal
+this.$uluModals.open({ exampleProp: value });
+
+// Close app-wide modal 
+this.$uluModals.close();
+
+// Add modals after post-install
+this.$uluModals.add({
+  name: "settings",
+  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),
+});
+
+// Remove a modal from the registry
+this.$uluModals.remove("settings");
+
+// Get Modal from registry (not usually needed)
+const settingsModal = this.$uluModals.get("settings");
+// console.log(settingsModal.name) ==> "settings"
+```
+
+## Using Composition API (via composable)
+
+Composable is used get access to modals API (through inject)
+
+```html
+
+<template>
+  <button @click="showSettingsModal">My Settings</button>
+</template>
+
+<script setup>
+  import { useModals } from "./useModals";
+
+  const modals = useModals();
+  const showSettingsModal = () => {
+    console.log("This is opening via uluModals composable");
+    modals.open("settings");
+  };
+</script>
+
+```

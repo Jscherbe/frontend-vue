@@ -38,6 +38,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@storybook/addon-docs": "^9.1.1",
     "@storybook/addon-links": "^9.1.1",
+    "@storybook/addon-essentials": "^9.0.0-alpha.12",
     "@storybook/vue3-vite": "^9.1.1",
     "@ulu/frontend": "^0.1.0-beta.87",
     "@vitejs/plugin-vue": "^6.0.0",

@@ -3,15 +3,16 @@ import { mergeConfig } from 'vite';
 /** @type { import('@storybook/vue3-vite').StorybookConfig } */
 const config = {
   stories: [
-    "../stories/**/*.mdx",
-    "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../lib/**/*.story.mdx", // Can't use .stories (old syntax that was used to create actual stories)
+    "../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
   addons: [
     "@storybook/addon-links", 
     "@storybook/addon-docs",
+    "@storybook/addon-essentials",
     "storybook-addon-vue-mdx"
   ],
-  staticDirs: ["./static"],
+  staticDirs: ["./preview-theme/static"],
   framework: {
     name: "@storybook/vue3-vite",
     options: {},
