@@ -21,14 +21,14 @@
     <p class="site-form__description">
       <em>Only images allowed (.jpg, .png)</em>
     </p>
-    <p v-if="fileErrors.length" class="site-dropzone__errors site-form__description site-form__error">
+    <div v-if="fileErrors.length" class="site-dropzone__errors site-form__description site-form__error">
       <ul class="list-unordered">
         <li v-for="(fileErr, index) in fileErrors" :key="index">
           <strong>{{ fileErr.file.name }}</strong>:
           <span>{{ fileErr.errors.map(e => e.message).join() }}</span>
         </li>
       </ul>
-    </p>
+    </div>
     <div class="site-dropzone__display margin-top" v-if="files.length">
       <component class="type-bold margin-bottom-small" :is="listElement">Files</component>
       <FilesDisplay class="site-dropzone__list" :files="files"/>
