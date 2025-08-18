@@ -26,7 +26,8 @@
     "vue-router": "^4.5.1"
   },
   "optionalDependencies": {
-    "gsap" : "^3.13.0"
+    "gsap" : "^3.13.0",
+    "fuse.js": "^6.6.2"
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.8",

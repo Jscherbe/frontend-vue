@@ -7,7 +7,7 @@ Composable for adding breakpoint manager and related breakpoint info (via breakp
 ```html
 <script setup>
   import { ref, computed, provide } from "vue";
-  import { useBreakpoints } from "./composables/useBreakpoints.js";
+  import { useBreakpointManager } from "./useBreakpointManager.js";
 
   const isMobile = ref(false);
 
@@ -35,7 +35,7 @@ Composable for adding breakpoint manager and related breakpoint info (via breakp
      * Current resizeDirection ("up"|"down"|null)
     */
     breakpointDirection 
-  } = useBreakpoints(options);
+  } = useBreakpointManager(options);
 
 
   // Allowing all components to access these values

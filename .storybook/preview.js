@@ -4,6 +4,7 @@ import { createMemoryHistory, createRouter } from "vue-router";
 import UluModals from "../lib/plugins/modals/index.js";
 import UluPopoversPlugin from "../lib/plugins/popovers/index.js";
 import UluToastPlugin from "../lib/plugins/toast/index.js";
+import { breakpointsPlugin } from "../lib/index.js";
 
 import modals from "../lib/plugins/modals/tests/test-modals.js";
 
@@ -41,6 +42,7 @@ setup((app) => {
     .use(UluPopoversPlugin)
     .use(UluToastPlugin)
     .use(UluModals, { modals })
+    .use(breakpointsPlugin)
     // .component("FaIcon", FontAwesomeIcon);
 });
 
