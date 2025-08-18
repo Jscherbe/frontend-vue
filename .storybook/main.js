@@ -9,7 +9,7 @@ const config = {
   addons: [
     "@storybook/addon-links", 
     "@storybook/addon-docs",
-    "@storybook/addon-essentials",
+    // "@storybook/addon-essentials",
     "storybook-addon-vue-mdx"
   ],
   staticDirs: ["./preview-theme/static"],

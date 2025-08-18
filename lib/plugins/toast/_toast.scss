@@ -1,0 +1,198 @@
+////
+/// @group toast
+/// Toast notifications
+////
+
+@use "sass:map";
+@use "sass:meta";
+
+@use "@ulu/frontend/scss/selector";
+@use "@ulu/frontend/scss/utils";
+@use "@ulu/frontend/scss/color";
+@use "@ulu/frontend/scss/element";
+@use "@ulu/frontend/scss/layout";
+@use "@ulu/frontend/scss/button";
+@use "@ulu/frontend/scss/typography";
+@use "@ulu/frontend/scss/cssvar";
+
+// Used for function fallback
+$-fallbacks: (
+  "box-shadow" : (
+    "function" : meta.get-function("get", false, "element"),
+    "property" : "box-shadow-above"
+  ),
+  "border-radius": (
+    "function": meta.get-function("get", false, "button"),
+    "property": "border-radius"
+  ),
+  "z-index": (
+    "function": meta.get-function("get", false, "layout"),
+    "property": "z-index-fixed"
+  ),
+  "date-font-weight": (
+    "function": meta.get-function("get", false, "typography"),
+    "property": "font-weight-light"
+  )
+);
+
+/// Module Settings
+/// @type Map
+/// @prop {CssValue} z-index [true] - Z-index of the toast container
+/// @prop {CssValue} box-shadow [true] - Box shadow for the toast
+/// @prop {Color} background-color [white] - Background color of the toast
+/// @prop {CssValue} border-radius [true] - Border radius of the toast
+/// @prop {CssValue} border-width [5px] - Border width of the toast
+/// @prop {Color} border-color [transparent] - Border color of the toast
+/// @prop {CssValue} padding [0 0 0 1rem] - Padding of the toast
+/// @prop {CssValue} line-height [1] - Line height of the toast
+/// @prop {CssValue} margin-bottom [0.5rem] - Margin bottom of the toast
+/// @prop {CssValue} container-top [1rem] - Top position of the toast container
+/// @prop {CssValue} container-right [1rem] - Right position of the toast container
+/// @prop {CssValue} container-width [min(24rem, 100vw - 2rem)] - Width of the toast container
+/// @prop {Color} date-color ["type-tertiary"] - Color of the date
+/// @prop {CssValue} date-font-weight [true] - Font weight of the date
+/// @prop {CssValue} icon-margin-right [0.7rem] - Margin right of the icon
+/// @prop {CssValue} icon-font-size [1.2rem] - Font size of the icon
+/// @prop {CssValue} actions-margin-right [3px] - Margin right of the actions container
+/// @prop {CssValue} action-margin-top [3px] - Margin top of the action buttons
+/// @prop {CssValue} content-padding [0.25rem 0.5rem 0.25rem 0] - Padding of the content
+/// @prop {CssValue} persistent-animation [UluWiggle 4s infinite] - Animation for persistent toasts
+
+$config: (
+  "z-index": true,
+  "box-shadow": true,
+  "background-color": white,
+  "border-radius": true,
+  "border-width": 5px,
+  "border-color": transparent,
+  "padding": 0 0 0 1rem,
+  "line-height": 1,
+  "margin-bottom": 0.5rem,
+  "container-top": 1rem,
+  "container-right": 1rem,
+  "container-width": min(24rem, 100vw - 2rem),
+  "date-color": "type-tertiary",
+  "date-font-weight": true,
+  "icon-margin-right": 0.7rem,
+  "icon-font-size": 1.2rem,
+  "actions-margin-right": 3px,
+  "action-margin-top": 3px,
+  "content-padding": (0.25rem 0.5rem 0.25rem 0),
+  "persistent-animation": (UluWiggle 4s infinite),
+) !default;
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+/// @example scss
+///   @include ulu-vue.toast-set(( "property" : value ));
+
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+/// @example scss
+///   @include ulu.toast-get("property");
+
+@function get($name) {
+  $value: utils.require-map-get($config, $name, "toast [config]");
+  @return utils.function-fallback($name, $value, $-fallbacks);
+}
+
+/// Prints component styles
+/// @demo toast
+/// @example scss
+///  @include ulu.toast-styles();
+
+@mixin styles {
+  $prefix: selector.class("toast");
+
+  #{ $prefix }-container {
+    position: fixed;
+    top: get("container-top");
+    right: get("container-right");
+    width: get("container-width");
+    z-index: get("z-index");
+  }
+
+  #{ $prefix } {
+    box-shadow: get("box-shadow");
+    background-color: get("background-color");
+    border-radius: get("border-radius");
+    border: get("border-width") solid get("border-color");
+    padding: get("padding");
+    line-height: get("line-height");
+    margin-bottom: get("margin-bottom");
+    display: flex;
+    align-items: center;
+  }
+
+  #{ $prefix }__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  #{ $prefix }__date {
+    color: get("date-color");
+    font-weight: get("date-font-weight");
+    margin-left: 1em;
+  }
+
+  #{ $prefix }__icon {
+    margin-right: get("icon-margin-right");
+    font-size: get("icon-font-size");
+  }
+
+  #{ $prefix }__actions {
+    flex-basis: min-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: get("actions-margin-right");
+  }
+
+  #{ $prefix }__action {
+    width: 100%;
+    margin: 0;
+    & + & {
+      margin-top: get("action-margin-top");
+    }
+  }
+
+  #{ $prefix }__close {
+    margin: 0;
+  }
+
+  #{ $prefix }__content {
+    margin-right: auto;
+    flex-grow: 1;
+    padding: get("content-padding");
+  }
+
+  #{ $prefix }--persistent {
+    animation: get("persistent-animation");
+    &:hover,
+    &:focus-within {
+      animation: none;
+    }
+  }
+
+  // Vue animation
+  #{ $prefix }--animation-move, 
+  #{ $prefix }--animation-enter-active,
+  #{ $prefix }--animation-leave-active {
+    transition: all 0.3s ease;
+  }
+  #{ $prefix }--animation-enter-from,
+  #{ $prefix }--animation-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  #{ $prefix }--animation-leave-active {
+    position: absolute;
+    width: 100%;
+  }
+}

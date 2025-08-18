@@ -59,6 +59,7 @@ export const decorators = [
       </router-view>
       <UluModalsDisplay/>
       <UluTooltipDisplay/>
+      <UluToastDisplay/>
     `,
   }),
 ];

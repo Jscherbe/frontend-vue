@@ -3,7 +3,7 @@
     <TransitionGroup 
       class="toast-container"
       :class="classes"
-      name="toast-animation" 
+      name="toast" 
       tag="div"
     >
       <component
