@@ -1,69 +1,73 @@
-<!-- 
-  Updates to make: 
-  - Make breadcrumb agnostic of router and then make composable / utility for getting crumbs from vue-router or user routes etc
--->
-
 <template>
   <nav 
-    class="breadcrumbs" 
+    :class="classes.nav" 
     aria-label="Breadcrumb"
-    v-if="crumbs.length"
+    v-if="items.length"
   >
-    <ul class="type-small">
-      <li v-for="(item, index) in crumbs" :key="index">
-        <!-- Note we may not need to tag aria current I thihnk the vue router's link component will already do that if the route matches -->
-        <router-link 
-          :to="item.to" 
-          class="link-secondary"
+    <ul :class="classes.list">
+      <li v-for="(item, index) in items" :key="index" :class="classes.item">
+        <router-link
+          :to="item.to"
+          :class="classes.link"
           :aria-current="item.current ? 'page' : null"
         >
-          {{ item.title }}
+          <slot :item="item">
+            {{ item.title }}
+          </slot>
         </router-link>
-        <FaIcon class="breadcrumbs__icon" icon="fas fa-chevron-right" />
+        <template v-if="index < items.length - 1">
+          <slot name="separator">
+            <UluIcon
+              :class="classes.separator"
+              :definition="separatorIcon"
+            />
+          </slot>
+        </template>
       </li>
     </ul>
   </nav>
 </template>
 
 <script>
-  import meta from "@/meta.js";
+  import UluIcon from '../elements/UluIcon.vue';
+  /**
+   * Breadcrumb trail component
+   * - Is now agnostic of router, pass precomputed breadcrumb trail via items prop
+   */
   export default {
-    name: 'AppBreadcrumb',
-    data() {
-      return {
-        activeContext: meta.activeContext
-      }
+    name: 'UluBreadcrumb',
+    components: {
+      UluIcon
     },
-    computed: {
-      crumbs() {
-        // Note this is kind of a work around becuase the vue-meta plugin is not exposing the $meta property
-        const { activeContext } = this;
-        const currentTitle = activeContext.title;
-        const { matched, path: currentPath } = this.$route;
-        let prevPath;
-        const crumbs = matched.reduce((arr, item, index) => {
-          let pageMeta = item.components.default?.metaInfo || {};
-          let title = pageMeta?.title || item.meta?.title || currentTitle;
-          const isLast = index === matched.length - 1;
-          // Don't add a crumb for a default child route ie. child path = ''
-          if (item.path === prevPath) {
-            return arr;
-          } else {
-            arr.push({ 
-              to: { 
-                // Use either the matches path or the path for the last one
-                // so it includes parameters
-                path: isLast ? currentPath : item.path
-              },
-              current: isLast,
-              title
-            });
-            prevPath = item.path;
-            return arr;
-          }
-        }, []);
-        // console.log(crumbs);
-        return crumbs;
+    props: {
+      /**
+       * Array of breadcrumb items.
+       * Each item is an object: { title: String, to: [String, Object], current: Boolean }
+       */
+      items: {
+        type: Array,
+        default: () => []
+      },
+      /**
+       * Icon to use as a separator.
+       */
+      separatorIcon: {
+        type: String,
+        default: "fas fa-chevron-right"
+      },
+      /**
+       * Classes object to be applied to elements.
+       * Keys: nav, list, item, link, icon
+       */
+      classes: {
+        type: Object,
+        default: () => ({
+          nav: "breadcrumb",
+          list: "breadcrumb__list",
+          item: "breadcrumb__item",
+          link: "breadcrumb__link",
+          separator: "breadcrumb__separator"
+        })
       }
     }
   }

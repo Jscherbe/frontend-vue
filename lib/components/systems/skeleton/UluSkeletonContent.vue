@@ -14,8 +14,8 @@
 </template>
 
 <script>
-  import { randomInt } from "@/utils/number.js";
-  import { arrayCreate } from "@/utils/array.js";
+  import { randomInt } from "@ulu/utils/random.js";
+  import { arrayCreate } from "@ulu/utils/array.js";
   export default {
     name: "SkeletonContent",
     props: {

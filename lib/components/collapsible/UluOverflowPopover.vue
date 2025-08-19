@@ -22,7 +22,7 @@
 
 <script setup>
   import { ref, nextTick, onMounted, onUnmounted } from "vue";
-  import useResize from "@/composables/window-resize.js";
+  import { useWindowResize } from "../../composables";
 
   import UluPopover from "../../plugins/popovers/UluPopover.vue";
   import UluIcon from "../elements/UluIcon.vue";
@@ -37,7 +37,7 @@
     },
   });
 
-  const { resizing, onResizeEnd } = useResize();
+  const { resizing, onResizeEnd } = useWindowResize();
   const text = ref(null);
   const isOverflown = ref(false);
   /**

@@ -6,7 +6,7 @@
 
 -->
 <template>
-  <SlideShow 
+  <UluSlideShow 
     class="slideshow--images" 
     :items="images"
     @slideChange="slideChange"
@@ -23,13 +23,16 @@
     <template #nav="{ index }">
       <img :src="images[index].src" :alt="`View image ${ index }`">
     </template>
-  </SlideShow>
+  </UluSlideShow>
 </template>
 
 <script>
-  import SlideShow from './SlideShow.vue';
+  import UluSlideShow from "./UluSlideShow.vue";
   export default {
     name: 'ImageSlideShow',
+    components: {
+      UluSlideShow,
+    },
     props: {
       images: Array,
       selectButton: Boolean
@@ -38,9 +41,6 @@
       images() {
         console.log('watch image from outer');
       }
-    },
-    components: {
-      SlideShow,
     },
     methods: {
       /**

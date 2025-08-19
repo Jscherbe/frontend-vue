@@ -1,10 +1,6 @@
 import { setup } from "@storybook/vue3"; 
 import { createMemoryHistory, createRouter } from "vue-router";
-// import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-import UluModals from "../lib/plugins/modals/index.js";
-import UluPopovers from "../lib/plugins/popovers/index.js";
-import UluToast from "../lib/plugins/toast/index.js";
-import UluBreakpoints from "../lib/plugins/breakpoints/index.js";
+import { modalsPlugin, popoversPlugin, toastPlugin, breakpointsPlugin } from "../lib/index.js";
 
 import modals from "../lib/plugins/modals/tests/test-modals.js";
 
@@ -39,11 +35,10 @@ const router = createRouter({
 setup((app) => { 
   app
     .use(router)
-    .use(UluPopovers)
-    .use(UluToast)
-    .use(UluModals, { modals })
-    .use(UluBreakpoints)
-    // .component("FaIcon", FontAwesomeIcon);
+    .use(popoversPlugin)
+    .use(toastPlugin)
+    .use(modalsPlugin, { modals })
+    .use(breakpointsPlugin)
 });
 
 // Export a global decorator to wrap all stories with a router-view

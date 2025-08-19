@@ -62,7 +62,7 @@
       v-if="$slots.image || imageSrc" 
       class="card__image"
       :class="[
-        { 'card__image--icon' : imageIcon }
+        { 'card__image--icon' : imageIcon },
         classes.image
       ]"
     >

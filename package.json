@@ -27,7 +27,8 @@
   },
   "optionalDependencies": {
     "gsap" : "^3.13.0",
-    "fuse.js": "^6.6.2"
+    "fuse.js": "^6.6.2",
+    "vue3-dropzone" : "^2.2.1"
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.8",

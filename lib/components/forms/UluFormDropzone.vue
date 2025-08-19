@@ -30,7 +30,7 @@
       </ul>
     </div>
     <div class="site-dropzone__display margin-top" v-if="files.length">
-      <component class="type-bold margin-bottom-small" :is="listElement">Files</component>
+      <strong>Files</strong>
       <FilesDisplay class="site-dropzone__list" :files="files"/>
     </div>
   </div>
@@ -42,13 +42,6 @@
 
   const files = ref([]);
   const fileErrors = ref([]);
-
-  defineProps({
-    listElement: {
-      type: String,
-      default: "h4"
-    }
-  });
 
   const $emit = defineEmits(["filesChange"]);
 
