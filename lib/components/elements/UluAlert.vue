@@ -1,5 +1,5 @@
 <template>
-  <div :class="resolvedModifiers">
+  <div class="callout" :class="resolvedModifiers">
     <div class="layout-flex">
       <UluIcon 
         class="type-large margin-right-small" 
@@ -22,10 +22,10 @@
 </template>
 
 <script>
+  import { computed } from "vue";
   import UluButton from "./UluButton.vue";
   import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
-  import { getIconByType } from "../../settings.js"; 
   /**
    * Callout with alert layout
    */
@@ -66,12 +66,6 @@
        * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
        */
       modifiers: [String, Array]
-    },
-    computed: {
-      resolvedIcon() {
-        const { icon, type } = this;
-        return icon || getIconByType(type);
-      }
     },
     setup(props) {
       const { resolvedModifiers } = useModifiers({ 

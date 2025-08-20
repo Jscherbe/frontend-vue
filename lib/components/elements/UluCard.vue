@@ -195,7 +195,7 @@
     data() {
       const { proxyClickOptions, proxyClick, titleHref, titleTo } = this;
       return {
-        proxyClickEnabled: proxyClick && (titleHref || titleTo),
+        proxyClickEnabled: (proxyClick && (titleHref || titleTo)) || null,
         resolvedProxyOptions: {
           selectorPrevent: "input, select, textarea, button, a, [tabindex='-1']",
           mousedownDurationPrevent: 250,
