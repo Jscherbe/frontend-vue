@@ -1,8 +1,5 @@
 <template>
-  <UluPopover
-    :classes="popoverClasses"
-    noPadding
-  >
+  <UluPopover :classes="popoverClasses">
     <template #trigger="{ isOpen }">
       <slot :isOpen="isOpen"/>
     </template>
@@ -33,6 +30,13 @@
         type: [String, Object, Array],
         default: "button"
       },
+      /**
+       * Pass classes object to UluPopover classes prop
+       */
+      popoverClasses: {
+        type: Object,
+        default: () => ({})
+      }
     }
   };
 </script>

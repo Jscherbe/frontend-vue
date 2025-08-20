@@ -1,8 +1,3 @@
-<!-- 
-  Version: 2.0.0
-  Reference:
-  - transitioning from auto: https://codepen.io/brundolf/pen/dvoGyw?editors=0010
--->
 <template>
   <div 
     class="CollapsibleRegion"
@@ -49,7 +44,9 @@
 <script>
   
   let uid = 0;
-
+  /**
+   * Utility component for creating disclosure type behaviors (show/hide)
+   */
   export default {
     name: "UluCollapsibleRegion",
     props: {
@@ -211,7 +208,7 @@
 
         let tid;
         // Measure the elements height, to set it from auto  
-        // to static so that we can transtion it
+        // to static so that we can transition it
         const element = this.$refs.content;
         const height = element.scrollHeight;
         // Set the elements height to a static value so we can transition it

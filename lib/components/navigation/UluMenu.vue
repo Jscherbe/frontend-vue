@@ -1,6 +1,10 @@
 <template>
   <ul v-if="items?.length" :class="classes.list">
-    <li v-for="(item, index) in items" :key="index" :class="classes.item">
+    <li 
+      v-for="(item, index) in items" 
+      :key="index" 
+      :class="[classes.item, item?.classes?.item]"
+    >
       <!-- 
         Note: The ternary spread method below is conditionally adding certain 
         props/handlers for each of the different element types.  
@@ -12,7 +16,7 @@
           ...(item.href ? { 'href' : item.href || '#' } : {}),
         }"
         @click="(event) => { handleItemClick(event, item) }"
-        :class="classes.link"
+        :class="[classes.link, item?.classes?.link]"
         :activeClass="classes.linkActive"
         :exactActiveClass="classes.linkExactActive"
         :aria-label="iconOnly ? item.title : null"
@@ -20,8 +24,12 @@
         v-ulu-tooltip="iconOnly ? item.title : item.tooltip || null" 
       >
         <slot :item="item" :index="index">
-          <UluIcon v-if="item.icon" :definition="item.icon" :class="classes.linkIcon"/>
-          <span :class="classes.linkText">{{ item.title }}</span>
+          <UluIcon 
+            v-if="item.icon" 
+            :definition="item.icon" 
+            :class="[classes.linkIcon, item?.classes?.linkIcon]"
+          />
+          <span :class="[classes.linkText, item?.classes?.linkText]">{{ item.title }}</span>
           <UluTag v-if="item.tag" v-bind="item.tag"/>
         </slot>
       </component>
