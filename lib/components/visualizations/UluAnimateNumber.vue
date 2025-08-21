@@ -1,5 +1,5 @@
 <template>
-  <span>{{  displayValue }}</span>
+  <span><slot :currentValue="currentValue">{{ currentValue }}</slot></span>
 </template>
 
 <script>
@@ -7,6 +7,9 @@
   export default {
     name: 'AnimateNumber',
     props: {
+      /**
+       * Number to animate as it changes
+       */
       value: Number
     },
     watch: {
@@ -14,14 +17,14 @@
         gsap.to(this, {
           tweenValue: this.value,
           onUpdate: () => {
-            this.displayValue = Math.ceil(this.tweenValue);
+            this.currentValue = Math.ceil(this.tweenValue);
           },
         });
       },
     },
     data() {
       return {
-        displayValue: this.value,
+        currentValue: this.value,
         tweenValue: this.value,
       };
     },
