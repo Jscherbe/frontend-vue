@@ -5,14 +5,14 @@
     </span>
     <UluIcon 
       class="external-link__icon margin-left-small-x display-inline"
-      :definition="iconDefinition"
+      type="externalLink"
+      :definition="icon"
     />
   </a>
 </template>
 
 <script>
   import UluIcon from "./UluIcon.vue";
-  import { getIconByType } from "../../settings.js";
 
   /**
    * Component for external links (adds icon after link text)
@@ -42,12 +42,6 @@
        * Override default icon
        */
       icon: String
-    },
-    computed: {
-      iconDefinition() {
-        const { icon } = this;
-        return icon || getIconByType("externalLink");
-      }
     }
   };
 </script>

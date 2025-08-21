@@ -34,8 +34,8 @@
         <button class="modal__close" aria-label="Close modal" @click="close" autofocus>
           <slot name="closeIcon">
             <UluIcon 
-              v-if="closeIcon" 
               class="modal__close-icon" 
+              type="close" 
               :definition="closeIcon" 
             />
           </slot>
@@ -56,7 +56,7 @@
       </div>
       <button v-if="resizerEnabled" class="modal__resizer" ref="resizer" type="button">
         <slot name="resizerIcon">
-          <UluIcon class="modal__resizer-icon" :definition="resizerIcon" />
+          <UluIcon class="modal__resizer-icon" :type="resizerIconType" :definition="resizerIcon" />
         </slot>
       </button>
     </dialog>
@@ -162,17 +162,11 @@
       /**
        * Default icon for resizer
        */
-      resizerIcon: {
-        type: String,
-        default: "fas fa-grip"
-      },
+      resizerIcon: String,
       /**
        * Default icon for close button (uses UluIcon interface)
        */
-      closeIcon: {
-        type: String,
-        default: "fas fa-xmark"
-      },
+      closeIcon: String,
       /**
        * Classes for elements ({ container, header, title, body, footer })
        * - Any valid class binding value per element
@@ -218,6 +212,10 @@
         }
       });
 
+      const resizerIconType = computed(() => {
+        return props.position === 'center' ? 'resizeBoth' : 'resizeHorizontal';
+      });
+
       // Define the internal modifiers object as a computed property (so it can react to changes)
       const internalModifiers = computed(() => ({
         [props.position]: props.position, 
@@ -240,7 +238,8 @@
       return { 
         resolvedModifiers,
         hasHeader,
-        resizerEnabled, 
+        resizerEnabled,
+        resizerIconType
       };
     },
     computed: {

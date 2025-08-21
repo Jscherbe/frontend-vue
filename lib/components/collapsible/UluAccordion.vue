@@ -21,10 +21,9 @@
           </component>
         </slot>
         <slot name="icon" :open="open">
-          <span v-if="defaultIcons" class="accordion__icon" :class="classes.icon">
+          <span class="accordion__icon" :class="classes.icon">
             <UluIcon 
-              :definition="getIconDefinition(open ? 'close' : 'open')" 
-              debug
+              :type="open ? 'collapse' : 'expand'"
               style="display: inline;"
             />
           </span>
@@ -40,7 +39,6 @@
 <script setup>
   import UluIcon from "../elements/UluIcon.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
-  import { useIcon } from "../../composables/useIcon.js";
   import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
   const props = defineProps({
     /**
@@ -76,20 +74,9 @@
     /**
      * Modifiers for tag class
      */
-    modifiers: [String, Array],
-    /**
-     * Icons to use by default
-     */
-    defaultIcons: {
-      type: Object,
-      default: () => ({
-        open: "fas fa-plus",
-        close: "fas fa-minus"
-      })
-    }
+    modifiers: [String, Array]
   });
 
   const { resolvedModifiers } = useModifiers({ props, baseClass: "button" });
-  const { getIconDefinition } = useIcon(props.defaultIcons);
   
 </script>

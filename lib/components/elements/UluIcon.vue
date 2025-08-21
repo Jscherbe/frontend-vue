@@ -1,11 +1,11 @@
 <template>
   <component
-    v-if="!useStaticFa && iconComponent && definition"
+    v-if="!useStaticFa && iconComponent && resolvedDefinition"
     :is="iconComponent"
     v-bind="iconProps"
   />
   <span
-    v-else-if="useStaticFa && definition"
+    v-else-if="useStaticFa && resolvedDefinition"
     :class="staticIconClasses"
     aria-hidden="true"
   ></span>
@@ -14,17 +14,21 @@
 <script setup>
 import { ref, defineAsyncComponent, markRaw, watchEffect, computed } from "vue";
 import { useIcon } from "../../composables/useIcon.js";
-import { getSetting } from "../../settings.js"; 
+import { getSetting, getIconByType } from "../../settings.js"; 
 
 const iconComponent = ref(null);
-// Destructure the new method from useIcon
 const { getIconProps, getClassesFromDefinition } = useIcon();
 
 let FaModule;
 
 const props = defineProps({
   /**
+   * Semantic type of icon to use, will be resolved from settings
+   */
+  type: String,
+  /**
    * Icon definition can be string (fa classes), or array or object (any prop format FaIcon accepts)
+   * - This will override the 'type' prop if both are provided
    */
   definition: [String, Array, Object, Boolean],
 });
@@ -33,14 +37,30 @@ const useStaticFa = computed(() => {
   return getSetting("fontAwesomeStatic");
 });
 
+// Resolve the final icon definition, giving precedence to the `definition` prop
+const resolvedDefinition = computed(() => {
+  if (props.definition) {
+    return props.definition;
+  }
+  if (props.type) {
+    try {
+      return getIconByType(props.type);
+    } catch (e) {
+      console.warn(e);
+      return null;
+    }
+  }
+  return null;
+});
+
 // This is now a computed property for component props
 const iconProps = computed(() => {
-  return getIconProps(props.definition);
+  return getIconProps(resolvedDefinition.value);
 });
 
 // Computed property for static icon classes, using the utility method
 const staticIconClasses = computed(() => {
-  return getClassesFromDefinition(props.definition);
+  return getClassesFromDefinition(resolvedDefinition.value);
 });
 
 // Watch for changes to prop
@@ -49,7 +69,7 @@ const staticIconClasses = computed(() => {
 // - Replace the empty component after load or if value changes
 watchEffect(async () => {
   // Only attempt to load the component if we are NOT using the static version
-  if (!useStaticFa.value && props.definition) {
+  if (!useStaticFa.value && resolvedDefinition.value) {
     if (iconComponent.value === null) {
       if (FaModule) {
         iconComponent.value = markRaw(FaModule.FontAwesomeIcon);
