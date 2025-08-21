@@ -700,8 +700,14 @@
         const getElement = object => document.getElementById(object.id);
 
         const setRowHeight = row => {
-          row.boxHeight = size(getElement(row), "height");
-          row.height = `${ row.boxHeight }px`;
+          const element = getElement(row);
+          // Ensure element still exists, sometimes (only seen in storybook the element 
+          // is removed before the unmounted/beforeUnmounted hook), this prevents the error 
+          // for missing element. #mounted-no-element
+          if (element) {
+            row.boxHeight = size(element, "height");
+            row.height = `${ row.boxHeight }px`;
+          }
         };
         // Set the tables header <tr> and <th> to their rendered sizes
         // By measuring each and updating it's column object data
@@ -709,8 +715,12 @@
         this.headerRows.forEach(row => {
           setRowHeight(row);
           row.columns.forEach(column => {
-            column.boxWidth = size(getElement(column), "width");
-            column.width = `${ column.boxWidth }px`;
+            const element = getElement(column);
+            // See #mounted-no-element
+            if (element) {
+              column.boxWidth = size(element, "width");
+              column.width = `${ column.boxWidth }px`;
+            }
           });
         });
         // If first column sticky the plugin needs to set  

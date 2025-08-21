@@ -1,0 +1,64 @@
+////
+/// @group facets
+/// Filterable/Sortable View
+////
+
+@use "sass:map";
+@use "sass:meta";
+
+@use "@ulu/frontend/scss/selector";
+@use "@ulu/frontend/scss/utils";
+@use "@ulu/frontend/scss/color";
+@use "@ulu/frontend/scss/element";
+
+
+// Used for function fallback
+$-fallbacks: (
+  // "box-shadow" : (
+  //   "function" : meta.get-function("get", false, "element"),
+  //   "property" : "box-shadow"
+  // ),
+);
+
+/// Module Settings
+/// @type Map
+/// @prop {CssValue}  example  [true] Example
+
+$config: (
+) !default;
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+/// @example scss
+///   @include ulu.component-facets-set(( "property" : value ));
+
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+/// @example scss
+///   @include ulu.component-facets-get("property");
+
+@function get($name) {
+  $value: utils.require-map-get($config, $name, "facets [config]");
+  @return utils.function-fallback($name, $value, $-fallbacks);
+}
+/// Prints component styles
+/// @demo facets
+/// @example scss
+///  @include ulu.component-facets-styles();
+
+@mixin styles {
+  $prefix: selector.class("facets");
+
+  #{ $prefix }__body {
+        .FacetView__body {
+        display: flex
+;
+    }
+  }
+}
+
+

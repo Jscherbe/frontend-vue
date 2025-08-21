@@ -1,19 +1,19 @@
 <template>
-  <ul class="FacetView__facet-list">
+  <ul class="UluFacets__facet-list">
     <li 
-      class="FacetView__facet"
+      class="UluFacets__facet"
       :class="classFacet"
       v-for="facet in children"
       :key="facet.uid"
     >
       <input 
-        class="FacetView__facet-checkbox"
+        class="UluFacets__facet-checkbox"
         :id="facetCheckboxId(facet)"
         type="checkbox" 
         v-model="facet.selected"
       >
       <label 
-        class="FacetView__facet-label" 
+        class="UluFacets__facet-label" 
         :for="facetCheckboxId(facet)"
       >
         {{ facet.label }}
@@ -24,7 +24,7 @@
 
 <script>
   export default {
-    name: 'FacetedViewList',
+    name: 'UluFacetsList',
     props: {
       groupUid: String,
       children: Array,

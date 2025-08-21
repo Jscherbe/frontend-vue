@@ -1,5 +1,5 @@
 <template>
-  <div class="FacetView__keyword-search">
+  <div class="UluFacets__keyword-search">
     <label :class="classes.searchLabel" :for="id">
       <strong>Search</strong>
     </label>
@@ -32,7 +32,7 @@
 <script>
   let uid = 0;
   export default {
-    name: '',
+    name: 'UluFacetsSearch',
     props: {
       classes: Object,
       modelValue: String,

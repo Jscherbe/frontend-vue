@@ -1,8 +1,8 @@
 <template>
-  <div class="FacetView">
-    <div class="FacetView__header" :class="classes.header">
+  <div class="UluFacets">
+    <div class="UluFacets__header" :class="classes.header">
       <slot name="header" :count="filteredItems.length"></slot>
-      <div class="FacetView__header-actions" :class="classes.headerActions">
+      <div class="UluFacets__header-actions" :class="classes.headerActions">
         <button 
           @click="toggleFilterVisibility"
           :class="classes.buttonFilterToggle" 
@@ -41,13 +41,13 @@
         </div>
       </div>
     </div>
-    <div class="FacetView__body">
-      <transition name="FacetViewFade" mode="out-in">
+    <div class="UluFacets__body">
+      <transition name="UluFacetsFade" mode="out-in">
         <div 
           v-show="!filtersHidden"
-          class="FacetView__filters"
+          class="UluFacets__filters"
           :id="filterId" 
-          :class="{ 'FacetView__filters--hidden' : filtersHidden }"
+          :class="{ 'UluFacets__filters--hidden' : filtersHidden }"
         >
           <UluFacetsSearch 
             :classes="classes"
@@ -56,10 +56,10 @@
             v-model="searchValue"
           />
           <UluCollapsibleRegion 
-            class="FacetView__group"
+            class="UluFacets__group"
             :class="classes.group"
-            :classToggle="['FacetView__group-toggle', classes.groupToggle]"
-            :classContent="['FacetView__group-content', classes.groupContent]"
+            :classToggle="['UluFacets__group-toggle', classes.groupToggle]"
+            :classContent="['UluFacets__group-content', classes.groupContent]"
             v-for="group in facets"
             :key="group.uid"
             :group="group"
@@ -81,7 +81,7 @@
               />
               <UluCollapsibleRegion 
                 v-if="group.children.length > maxVisible"
-                class="FacetView__more-facets"
+                class="UluFacets__more-facets"
                 :class="classes.moreFacets"
                 :clickOutsideCloses="false"
                 :closeOnEscape="false"
@@ -102,16 +102,16 @@
           </UluCollapsibleRegion>
         </div>
       </transition>
-      <transition name="FacetViewFade" mode="out-in">
+      <transition name="UluFacetsFade" mode="out-in">
         <ul
-          class="FacetView__results"
+          class="UluFacets__results"
           :class="classes.results"
           :key="filterIteration"
           v-if="resultsVisible && filteredItems.length"
         >
 
           <li
-            class="FacetView__results-item"
+            class="UluFacets__results-item"
             :class="classes.resultsItem"
             v-for="(item, index) in filteredItems"
             :key="index"
@@ -119,13 +119,13 @@
             <slot name="item" :item="item" :index="index"></slot>
           </li>
         </ul>
-        <div v-else class="FacetView__empty">
+        <div v-else class="UluFacets__empty">
           <slot name="empty">
             No Results Found
           </slot>
         </div>
       </transition>
-      <!-- <div class="FacetView__pagination"></div> -->
+      <!-- <div class="UluFacets__pagination"></div> -->
     </div>
   </div>
 </template>
@@ -146,7 +146,7 @@
     za: { text: "Z-A", sort: items => sortAlpha(items).reverse() },
   };
   export default {
-    name: 'FacetView',
+    name: 'UluFacets',
     components: { 
       UluCollapsibleRegion, 
       UluFacetsList,
@@ -244,8 +244,8 @@
         extraSortTypes
       } = this;
       return {
-        filterId: `facet-filters-${ ++idCounter }`,
-        sortId: `facet-sort-${ ++idCounter }`,
+        filterId: `ulu-facet-filters-${ ++idCounter }`,
+        sortId: `ulu-facet-sort-${ ++idCounter }`,
         selectedSort: initialSortType,
         sortTypes: {
           ...(noDefaultSorts ? {} : defaultSorts),
@@ -358,7 +358,7 @@
 </script>
 
 <style lang="scss">
-  .FacetView__more-facets {
+  .UluFacets__more-facets {
     display: flex;
     flex-direction: column;
     &.UluCollapsibleRegion--open,
@@ -368,13 +368,13 @@
       }
     }
   }
-  .FacetViewFade-enter-active,
-  .FacetViewFade-leave-active {
+  .UluFacetsFade-enter-active,
+  .UluFacetsFade-leave-active {
     transition: opacity 0.25s ease;
   }
 
-  .FacetViewFade-enter-from,
-  .FacetViewFade-leave-to {
+  .UluFacetsFade-enter-from,
+  .UluFacetsFade-leave-to {
     opacity: 0;
   }
 </style>
