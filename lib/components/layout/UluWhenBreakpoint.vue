@@ -5,7 +5,7 @@
 <script>
   export default {
     name: "UluWhenBreakpoint",
-    inject: ["breakpointManager"],
+    inject: ["uluBreakpointManager"],
     props: {
       max: String,
       min: String,
@@ -32,7 +32,7 @@
       }
     },
     watch: {
-      breakpointManager: {
+      uluBreakpointManager: {
         handler(manager) {
           if (manager && !this.handlersSetup) {
             this.setupHandlers(manager);
@@ -41,9 +41,9 @@
         immediate: true
       },
       propsIdentifier() {
-        if (this.breakpointManager && this.handlersSetup) {
+        if (this.uluBreakpointManager && this.handlersSetup) {
             this.tearDownHandlers();
-            this.setupHandlers(this.breakpointManager);
+            this.setupHandlers(this.uluBreakpointManager);
         }
       }
     },
@@ -69,9 +69,9 @@
         this.handlersSetup = true;
       },
       tearDownHandlers() {
-        if (this.breakpointManager) {
+        if (this.uluBreakpointManager) {
           this.handlers.forEach(({ name, direction, handler }) => {
-            this.breakpointManager.at(name).remove(handler, direction);
+            this.uluBreakpointManager.at(name).remove(handler, direction);
           });
         }
         this.handlers = [];

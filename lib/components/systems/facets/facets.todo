@@ -1,3 +1,7 @@
 Todos:
   ☐ Make filters open in modal on mobile
     ☐ Will need to require the isMobile
+  ☐ Work on facet layout
+    * Should it use the card component or be agnostic agnostic?
+      * How to make it easy to use that way?
+  ☐ Make the filters use UluModal on isMobile
