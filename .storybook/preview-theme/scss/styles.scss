@@ -8,6 +8,14 @@
   "popover"
 ));
 
+@include ulu.component-spoke-spinner-set-styles((
+  "small" : (
+    "size" : 30px,
+    "spoke-width" : 2px,
+    "spoke-height" : 8px
+  )
+));
+
 @include ulu.base-styles();
 
 // Components interfere with syntax highlighting

@@ -10,12 +10,15 @@
   export default {
     name: "UluSpokeSpinner",
     props: {
-      size: String
+      /**
+       * Type modifier for spinner (ie match scss style name)
+       */
+      type: String
     },
     computed: {
       modifierClass() {
-        const { size } = this;
-        return size ? `spoke-spinner--${ size }` : null;
+        const { type } = this;
+        return type ? `spoke-spinner--${ type }` : null;
       }
     }
   };

@@ -13,13 +13,13 @@
     :style="{ 
       listStyleType: listStyleType
     }"
+    :reversed="reversed"
+    :start="start"
   >
     <li 
       v-for="(item, index) in items" 
       :key="index"
       :class="classes.listItem"
-      :reversed="reversed"
-      :start="start"
     >
       <slot :item="item" :index="index">
         {{ item }}

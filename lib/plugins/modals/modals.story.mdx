@@ -1,8 +1,22 @@
+import { Canvas } from '@storybook/addon-docs/blocks';
+import * as ModalStories from '../../components/collapsible/UluModal.stories.js';
+
 # Modals
 
 Modals plugin allows configuring app-wide modals that are triggered by the global API. Register your modals when you install the plugin then interact with them using the global API.
 
 ## Registering your app-wide modals
+
+Create the modal component file like:
+
+```html
+<template>
+  <UluModal>
+    User setting modal…
+  </UluModal>
+</template>
+```
+
 
 Example ./scr/modals.js
 
@@ -76,3 +90,13 @@ Composable is used get access to modals API (through inject)
 </script>
 
 ```
+
+## Standalone Modal Component
+
+The `UluModal` **component is independent of this plugin.** The plugin is simply a convenient way to manage global modals (for things like a settings dialog) that need to be opened from anywhere in your application.
+
+You can use `UluModal` as the component that the plugin displays, or you can use it on its own for any case where you are managing the state locally within a component and don't need a global API.
+
+Here is a demonstration of the standalone `UluModal` component:
+
+<Canvas of={ModalStories.Default} />
