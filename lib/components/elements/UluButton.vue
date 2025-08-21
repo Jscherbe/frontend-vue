@@ -129,7 +129,7 @@
     },
     computed: {
       resolvedAriaLabel() {
-        const label = this.alt || this.iconOnly && text;
+        const label = this.alt || this.iconOnly && this.text;
         return label ? label : null;
       },
       classes() {

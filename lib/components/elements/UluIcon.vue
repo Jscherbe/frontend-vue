@@ -1,7 +1,12 @@
 <template>
   <component
-    v-if="!useStaticFa && iconComponent && resolvedDefinition"
-    :is="iconComponent"
+    v-if="customIconComponent"
+    :is="customIconComponent"
+    v-bind="customIconProps"
+  />
+  <component
+    v-else-if="!useStaticFa && faIconComponent && resolvedDefinition"
+    :is="faIconComponent"
     v-bind="iconProps"
   />
   <span
@@ -16,7 +21,7 @@
   import { useIcon } from "../../composables/useIcon.js";
   import { getSetting, getIconByType } from "../../settings.js"; 
 
-  const iconComponent = ref(null);
+  const faIconComponent = ref(null);
   const { getIconProps, getClassesFromDefinition } = useIcon();
 
   let FaModule;
@@ -37,6 +42,14 @@
     return getSetting("fontAwesomeStatic");
   });
 
+  const customIconComponent = computed(() => {
+    return getSetting("iconComponent");
+  });
+
+  const iconPropResolver = computed(() => {
+    return getSetting("iconPropResolver");
+  });
+
   // Resolve the final icon definition, giving precedence to the `definition` prop
   const resolvedDefinition = computed(() => {
     if (props.definition) {
@@ -51,6 +64,11 @@
       }
     }
     return null;
+  });
+
+  const customIconProps = computed(() => {
+    if (!customIconComponent.value || !resolvedDefinition.value) return null;
+    return iconPropResolver.value(resolvedDefinition.value);
   });
 
   // This is now a computed property for component props
@@ -70,21 +88,21 @@
   watchEffect(async () => {
     // Only attempt to load the component if we are NOT using the static version
     if (!useStaticFa.value && resolvedDefinition.value) {
-      if (iconComponent.value === null) {
+      if (faIconComponent.value === null) {
         if (FaModule) {
-          iconComponent.value = markRaw(FaModule.FontAwesomeIcon);
+          faIconComponent.value = markRaw(FaModule.FontAwesomeIcon);
         } else {
           const componentPromise = defineAsyncComponent(async () => {
             const module = await import("@fortawesome/vue-fontawesome");
             FaModule = module;
             return module.FontAwesomeIcon;
           });
-          iconComponent.value = markRaw(componentPromise);
+          faIconComponent.value = markRaw(componentPromise);
         }
       }
     } else {
       // If using static FA or no definition, ensure component is null
-      iconComponent.value = null;
+      faIconComponent.value = null;
     }
   });
 </script>

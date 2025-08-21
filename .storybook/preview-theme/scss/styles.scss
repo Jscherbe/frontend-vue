@@ -1,6 +1,13 @@
 @use "@ulu/frontend/scss" as ulu;
 @use "../../../lib/index" as ulu-vue;
 
+// Make default breakpoints a little smaller since stories are inside previews
+@include ulu.breakpoint-set-sizes((
+  "small"  : ulu.utils-pixel-to-em(680px, 16px),
+  "medium" : ulu.utils-pixel-to-em(1000px, 16px),
+  "large"  : ulu.utils-pixel-to-em(1400px, 16px)
+));
+
 // Components that are teleported/etc need to be not scoped
 @include ulu.component-set-excludes((
   "modal", 
