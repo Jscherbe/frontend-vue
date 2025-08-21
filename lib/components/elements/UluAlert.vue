@@ -4,6 +4,7 @@
       <UluIcon 
         class="type-large margin-right-small" 
         :class="`color-${ type }`"
+        :type="type"
         :definition="icon"
       />
       <div class="type-small">
@@ -47,10 +48,7 @@
       /**
        * Pass specific icon definition, else it will resolve based on common types
        */
-      icon: {
-        type: String,
-        default: "fas fa-circle-info"
-      },
+      icon: String,
       /**
        * Error, warning, info, success etc (must have these callout modifiers setup and this is used for type color [ie. color-error])
        */

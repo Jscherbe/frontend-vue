@@ -9,7 +9,7 @@
       size="large"
     >
       <template #trigger>
-        <UluIcon :definition="triggerIcon"/>
+        <UluIcon type="ellipsis" :definition="triggerIcon"/>
       </template>
       <template #content>
         <div class="type-word-break">
@@ -31,10 +31,7 @@
     /**
      * Default icon for overflow popover trigger
      */
-    triggerIcon: {
-      type: String,
-      default: "fas fa-ellipsis"
-    },
+    triggerIcon: String
   });
 
   const { resizing, onResizeEnd } = useWindowResize();
