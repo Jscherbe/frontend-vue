@@ -19,6 +19,7 @@
           <slot name="separator">
             <UluIcon
               :class="classes.separator"
+              type="pathSeparator"
               :definition="separatorIcon"
             />
           </slot>
@@ -51,10 +52,7 @@
       /**
        * Icon to use as a separator.
        */
-      separatorIcon: {
-        type: String,
-        default: "fas fa-chevron-right"
-      },
+      separatorIcon: String,
       /**
        * Classes object to be applied to elements.
        * Keys: nav, list, item, link, icon
