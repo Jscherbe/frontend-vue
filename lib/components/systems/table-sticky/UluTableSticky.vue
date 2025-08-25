@@ -180,7 +180,7 @@
   import UluTableStickyTable from "./UluTableStickyTable.vue";
   import { debounce } from "@ulu/utils/performance.js";
   import { runAfterFramePaint } from "@ulu/utils/browser/performance.js";
-  import cloneDeep from "lodash/cloneDeep";
+  import cloneDeep from "lodash.clonedeep";
   
   const arrayOfObjects = a => a.every(o => typeof o === "object");
   const required = true;
