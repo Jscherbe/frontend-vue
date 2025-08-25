@@ -1,6 +1,6 @@
 {
   "name": "@ulu/frontend-vue",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "description": "Frontend theming library (Vue)",
   "type": "module",
   "files" : [
@@ -48,7 +48,8 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.8",
-    "@ulu/utils": "^0.0.30"
+    "@ulu/utils": "^0.0.30",
+    "lodash" : "^4.17.21"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
