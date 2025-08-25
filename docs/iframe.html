@@ -1,7 +1,7 @@
 <!doctype html>
 <!--suppress HtmlUnknownTarget -->
 <html lang="en">
-  <head>
+  <head><script type="module" src="/vite-inject-mocker-entry.js"></script>
     <meta charset="utf-8" />
     <title>Storybook</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -46,7 +46,7 @@
       window.FRAMEWORK_OPTIONS = {};
       window.CHANNEL_OPTIONS = {};
       window.FEATURES = {"argTypeTargetsV7":true,"legacyDecoratorFileOrder":false,"disallowImplicitActionsInRenderV8":true,"viewport":true,"highlight":true,"controls":true,"interactions":true,"actions":true,"backgrounds":true,"outline":true,"measure":true};
-      window.STORIES = [{"titlePrefix":"","directory":"./stories","files":"**/*.mdx","importPathMatcher":"^\\.[\\\\/](?:stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.mdx)$"},{"titlePrefix":"","directory":"./stories","files":"**/*.stories.@(js|jsx|mjs|ts|tsx)","importPathMatcher":"^\\.[\\\\/](?:stories(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|mjs|ts|tsx))$"}];
+      window.STORIES = [{"titlePrefix":"","directory":"./lib","files":"**/*.story.mdx","importPathMatcher":"^\\.[\\\\/](?:lib(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.story\\.mdx)$"},{"titlePrefix":"","directory":"./lib","files":"**/*.stories.@(js|jsx|mjs|ts|tsx)","importPathMatcher":"^\\.[\\\\/](?:lib(?:\\/(?!\\.)(?:(?:(?!(?:^|\\/)\\.).)*?)\\/|\\/|$)(?!\\.)(?=.)[^/]*?\\.stories\\.(js|jsx|mjs|ts|tsx))$"}];
       window.DOCS_OPTIONS = {"defaultName":"Docs","docsMode":true};
       window.TAGS_OPTIONS = {"dev-only":{"excludeFromDocsStories":true},"docs-only":{"excludeFromSidebar":true},"test-only":{"excludeFromSidebar":true,"excludeFromDocsStories":true}};
 
@@ -529,7 +529,9 @@
   }
 </script>
 
-    <script type="module" crossorigin src="/frontend-vue/assets/iframe-CTD5_1X8.js"></script>
+    <script type="module" crossorigin src="/frontend-vue/assets/iframe-CL-JwaCw.js"></script>
+    <link rel="modulepreload" crossorigin href="/frontend-vue/assets/preload-helper-BJwshlQW.js">
+    <link rel="stylesheet" crossorigin href="/frontend-vue/assets/iframe-DcoR8O5w.css">
   </head>
 
   <body>
