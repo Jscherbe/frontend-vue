@@ -1,0 +1,5 @@
+**/tests/
+**/*.todo
+**/*.md
+**/*.stories.js
+**/*.story.mdx

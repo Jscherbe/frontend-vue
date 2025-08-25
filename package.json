@@ -3,9 +3,9 @@
   "version": "0.1.0-beta.1",
   "description": "Frontend theming library (Vue)",
   "type": "module",
-  "files": [
-    "dist",
-    "lib"
+  "files" : [
+    "lib",
+    "dist"
   ],
   "module": "./lib/index.js",
   "exports": {

@@ -1,10 +1,15 @@
+# No longer really used (Using package.json > files)
+
 # Storybook build output and configuration
 /docs
 /.storybook
 
-# Story and documentation files from anywhere in the project
-**/*.stories.js
-**/*.story.mdx
+# Exclude stories, docs, and tests from the `lib` directory
+lib/**/tests/
+lib/**/*.todo
+lib/**/*.md
+lib/**/*.stories.js
+lib/**/*.story.mdx
 
 # Development scripts and notes
 /generate-story-prompts
@@ -17,6 +22,6 @@ README.dev.md
 # Build configuration
 vite.config.js
 
-# Tests (Good Practice)
-**/*.test.js
-**/*.spec.js
+lib/**/*.test.js
+lib/**/*.spec.js
+
