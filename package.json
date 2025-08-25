@@ -1,34 +1,22 @@
 {
   "name": "@ulu/frontend-vue",
-  "version": "0.0.8",
+  "version": "0.1.0-beta.1",
   "description": "Frontend theming library (Vue)",
   "type": "module",
   "files": [
     "dist",
     "lib"
   ],
-  "main": "./dist/frontend-vue.umd.cjs",
-  "module": "./dist/frontend-vue.js",
+  "module": "./lib/index.js",
   "exports": {
     ".": {
-      "import": "./dist/frontend-vue.js",
-      "require": "./dist/frontend-vue.umd.cjs"
+      "import": "./lib/index.js"
     },
-    "./components": {
-      "import": "./lib/components/index.js"
+    "./dist": {
+      "import": "./dist/frontend-vue.js"
     },
-    "./composables": {
-      "import": "./lib/composables/index.js"
-    },
-    "./plugins": {
-      "import": "./lib/plugins/index.js"
-    },
-    "./settings": {
-      "import": "./lib/settings.js"
-    },
-    "./scss": {
-      "import": "./lib/_index.scss"
-    }
+    "./*": "./lib/*",
+    "./scss": "./lib/_index.scss"
   },
   "repository": {
     "type": "git",

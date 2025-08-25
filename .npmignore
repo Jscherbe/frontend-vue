@@ -1,4 +1,22 @@
+# Storybook build output and configuration
 /docs
-/stories
 /.storybook
+
+# Story and documentation files from anywhere in the project
+**/*.stories.js
+**/*.story.mdx
+
+# Development scripts and notes
+/generate-story-prompts
+/reference
+generate-story.js
+project.todo
+jsconfig.json
 README.dev.md
+
+# Build configuration
+vite.config.js
+
+# Tests (Good Practice)
+**/*.test.js
+**/*.spec.js

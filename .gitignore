@@ -29,6 +29,7 @@ dist-ssr
 
 /.vite/
 .storybook/cache
+debug-storybook.log
 
 # Environment Variables
 .env*
