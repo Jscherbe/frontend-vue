@@ -4,7 +4,8 @@
     :class="[
       {
         'tag--small' : small,
-        'type-small' : small
+        'type-small' : small,
+        [`tag--${ type }`] : type
       }, 
       resolvedModifiers
     ]"
