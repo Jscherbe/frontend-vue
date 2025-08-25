@@ -17,10 +17,10 @@
 </template>
 
 <script setup>
-  import { ref, defineAsyncComponent, markRaw, watchEffect, computed } from "vue";
+  import { ref, defineAsyncComponent, markRaw, watchEffect, computed, inject } from "vue";
   import { useIcon } from "../../composables/useIcon.js";
-  import { getSetting, getIconByType } from "../../settings.js"; 
 
+  const uluCore = inject('uluCore');
   const faIconComponent = ref(null);
   const { getIconProps, getClassesFromDefinition } = useIcon();
 
@@ -39,15 +39,15 @@
   });
 
   const useStaticFa = computed(() => {
-    return getSetting("fontAwesomeStatic");
+    return uluCore.getSetting("fontAwesomeStatic");
   });
 
   const customIconComponent = computed(() => {
-    return getSetting("iconComponent");
+    return uluCore.getSetting("iconComponent");
   });
 
   const iconPropResolver = computed(() => {
-    return getSetting("iconPropResolver");
+    return uluCore.getSetting("iconPropResolver");
   });
 
   // Resolve the final icon definition, giving precedence to the `definition` prop
@@ -57,7 +57,7 @@
     }
     if (props.type) {
       try {
-        return getIconByType(props.type);
+        return uluCore.getIcon(props.type);
       } catch (e) {
         console.warn(e);
         return null;

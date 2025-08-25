@@ -1,0 +1,83 @@
+# Core Plugin
+
+## Purpose
+
+The Core Plugin is the central, **required** plugin for the `@ulu/frontend-vue` library. Its primary purpose is to establish a single, reactive source of truth for configuration settings that are shared across multiple components. 
+
+By using Vue's `provide`/`inject` system, this plugin ensures that all components within your application access the same configuration, preventing inconsistencies that can arise from separate module imports.
+
+## Installation
+
+To use this library, you must register the `corePlugin` on your Vue app instance. You can also pass an options object to override the default settings.
+
+```javascript
+// src/main.js
+import { createApp } from 'vue';
+import App from './App.vue';
+import { corePlugin } from '@ulu/frontend-vue';
+
+const app = createApp(App);
+
+// Register the core plugin
+app.use(corePlugin, {
+  // Optional: override general settings
+  fontAwesomeStatic: true,
+
+  // Optional: override specific icons safely
+  icons: {
+    danger: 'my-custom-danger-icon',
+    close: 'my-custom-close-icon'
+  }
+});
+
+app.mount('#app');
+```
+
+## API Reference
+
+The plugin provides its API to your application in two ways:
+
+-   **Composition API:** `inject('uluCore')`
+-   **Options API:** `this.$uluCore`
+
+The API object contains the following methods:
+
+- `getSettings()`: Returns the full reactive settings object.
+- `getSetting(key)`: Retrieves a single setting by its key (e.g., `'fontAwesomeStatic'`).
+- `updateSetting(key, value)`: Updates a single setting.
+- `updateSettings(changes)`: Merges an object of changes into the settings.
+- `getDefaultSettings()`: Returns a non-reactive copy of the original default settings.
+- `getIcon(type)`: Retrieves a specific icon class string by its semantic type (e.g., `'danger'`, `'close'`).
+- `setIcon(type, definition)`: Safely sets or overrides a single icon definition.
+
+### Example Usage
+
+**Composition API (`<script setup>`)**
+```vue
+<script setup>
+import { inject, onMounted } from 'vue';
+
+const uluCore = inject('uluCore');
+
+onMounted(() => {
+  const icons = uluCore.getSetting('iconsByType');
+  console.log('Danger Icon:', icons.danger);
+
+  // Example of updating a single icon dynamically
+  uluCore.setIcon('success', 'my-awesome-success-icon');
+});
+</script>
+```
+
+**Options API**
+```vue
+<script>
+export default {
+  mounted() {
+    const icons = this.$uluCore.getSetting('icons');
+    console.log('Danger Icon:', icons.danger);
+  }
+}
+</script>
+```
+

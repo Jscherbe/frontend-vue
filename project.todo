@@ -1,3 +1,10 @@
+Build/Deployment:
+  ☐ Need to add typescript parser for jsdoc comments and generate types for IDE 
+  ☐ Need to make a core plugin which manages the settings and passes this to the app with provide/inject
+    ☐ So that there is only ever one instance of the settings module
+      * For example using native code in another project but using auto imports for components
+        * Results in the components using their own instance of settings.js 
+        * This can be avoided by building it in vs using modules to manage singleton state 
 Todos:
   ☐ Left off on
     ☐ Forms

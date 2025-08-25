@@ -1,6 +1,12 @@
 import { setup } from "@storybook/vue3"; 
 import { createMemoryHistory, createRouter } from "vue-router";
-import { modalsPlugin, popoversPlugin, toastPlugin, breakpointsPlugin } from "../lib/index.js";
+import { 
+  corePlugin, 
+  modalsPlugin, 
+  popoversPlugin, 
+  toastPlugin, 
+  breakpointsPlugin 
+} from "../lib/index.js";
 
 import modals from "../lib/plugins/modals/tests/test-modals.js";
 
@@ -35,6 +41,7 @@ const router = createRouter({
 setup((app) => { 
   app
     .use(router)
+    .use(corePlugin)
     .use(popoversPlugin)
     .use(toastPlugin)
     .use(modalsPlugin, { modals })

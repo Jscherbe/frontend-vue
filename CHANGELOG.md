@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.5
+
+- Refactor settings.js to core plugin (issues with different versions of module in build/bundle when testing, prefer centralized plugin that provide/injects)
+
 ## 0.1.0-beta.4
 
 - Change lodash dependency to module lodash-es 
