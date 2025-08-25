@@ -2,15 +2,43 @@
   "name": "@ulu/frontend-vue",
   "version": "0.0.8",
   "description": "Frontend theming library (Vue)",
-  "main": "index.js",
   "type": "module",
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "main": "./dist/frontend-vue.umd.cjs",
+  "module": "./dist/frontend-vue.js",
+  "exports": {
+    ".": {
+      "import": "./dist/frontend-vue.js",
+      "require": "./dist/frontend-vue.umd.cjs"
+    },
+    "./components": {
+      "import": "./lib/components/index.js"
+    },
+    "./composables": {
+      "import": "./lib/composables/index.js"
+    },
+    "./plugins": {
+      "import": "./lib/plugins/index.js"
+    },
+    "./settings": {
+      "import": "./lib/settings.js"
+    },
+    "./scss": {
+      "import": "./lib/_index.scss"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jscherbe/frontend-vue.git"
   },
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "storybook build -o docs --docs"
+    "docs:build": "storybook build -o docs --docs",
+    "build": "vite build",
+    "deploy": "npm run build && npm run docs:build"
   },
   "keywords": [],
   "author": "Joseph Scherben <jscherbe@gmail.com>",
@@ -26,9 +54,9 @@
     "vue-router": "^4.5.1"
   },
   "optionalDependencies": {
-    "gsap" : "^3.13.0",
+    "gsap": "^3.13.0",
     "fuse.js": "^6.6.2",
-    "vue3-dropzone" : "^2.2.1"
+    "vue3-dropzone": "^2.2.1"
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.8",

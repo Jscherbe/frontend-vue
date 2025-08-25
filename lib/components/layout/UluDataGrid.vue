@@ -22,13 +22,11 @@
 </template>
 
 <script>
+  import { setPositionClasses } from "@ulu/frontend/js/utils/dom.js";
+  import { debounce } from "@ulu/utils/performance.js";
   export default {
     name: "UluDataGrid",
     async mounted() {
-      const domUtils =  await import("@ulu/frontend/js/utils/dom.js");
-      const performance = await import("@ulu/utils/performance.js");
-      const { debounce } = performance;
-      const { setPositionClasses } = domUtils;
       const setClasses = () => setPositionClasses(this.$el);
       setClasses();
       this.resizeHandler = debounce(setClasses, 200, false, this);
