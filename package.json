@@ -24,7 +24,7 @@
   },
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "docs:build": "storybook build -o docs --docs",
+    "docs:build": "storybook build -o docs",
     "build": "vite build",
     "deploy": "npm run build && npm run docs:build"
   },
