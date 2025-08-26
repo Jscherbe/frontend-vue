@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.0-beta.9
+
+- Add snippets (not in package, available in repo `/resources/vscode`)
+- UluTitleRail - Add prop for rule modifier
+
 ## 0.1.0-beta.8
 
 - Make new composable for required injects (so user will be able to understand the failure and install plugin)

@@ -1,5 +1,10 @@
 <template>
-  <div class="rail rail--title-rail">
+  <div 
+    class="rail rail--title-rail"
+    :class="{
+      'rail--rule' : rule
+    }"
+  >
     <div class="rail__item rail__item--title" :class="classes.itemTitle">
       <component 
         class="layout-flex type-max-width-small no-margin" 
@@ -49,6 +54,7 @@
         type: String,
         default: "h2"
       },
+      rule: Boolean
     }
   }
 </script>

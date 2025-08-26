@@ -13,6 +13,8 @@ This library provides a set of reusable, themeable, and accessible Vue 3 compone
     - [Core Plugin (Required)](#core-plugin-required)
     - [Optional Plugins](#optional-plugins)
   - [3. Component Usage](#3-component-usage)
+- [Resources](#resources)
+  - [Snippets](#snippets)
 
 
 ## Installation
@@ -111,3 +113,8 @@ Components are designed to be imported individually. This approach is highly rec
 
 
 
+# Resources
+
+## Snippets
+
+- Snippets for vscode are available in the repo's at [/resources/vscode/](https://github.com/Jscherbe/frontend-vue/tree/main/resources/vscode)
