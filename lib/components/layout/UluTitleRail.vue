@@ -8,10 +8,9 @@
         :style="{ alignItems: iconAlign }"
       >
         <UluIcon 
-          v-if="icon || iconType" 
+          v-if="icon"
           :class="classes.icon"
-          :type="iconType" 
-          :definition="icon"
+          :icon="icon"
         />
         <slot>
           {{ title }}
@@ -38,7 +37,6 @@
         type: String,
         default: "baseline"
       },
-      iconType: String,
       classes: {
         type: Object,
         default: () => ({

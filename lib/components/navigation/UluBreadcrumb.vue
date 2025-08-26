@@ -19,8 +19,7 @@
           <slot name="separator">
             <UluIcon
               :class="classes.separator"
-              type="pathSeparator"
-              :definition="separatorIcon"
+              :icon="separatorIcon || 'type:pathSeparator'"
             />
           </slot>
         </template>

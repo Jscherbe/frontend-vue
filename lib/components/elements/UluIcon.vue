@@ -28,14 +28,10 @@
 
   const props = defineProps({
     /**
-     * Semantic type of icon to use, will be resolved from settings
-     */
-    type: String,
-    /**
      * Icon definition can be string (fa classes), or array or object (any prop format FaIcon accepts)
      * - This will override the 'type' prop if both are provided
      */
-    definition: [String, Array, Object, Boolean],
+    icon: [String, Array, Object, Boolean],
   });
 
   const useStaticFa = computed(() => {
@@ -52,18 +48,17 @@
 
   // Resolve the final icon definition, giving precedence to the `definition` prop
   const resolvedDefinition = computed(() => {
-    if (props.definition) {
-      return props.definition;
-    }
-    if (props.type) {
+    const { icon } = props;
+    if (typeof icon === 'string' && icon.startsWith('type:')) {
       try {
-        return uluCore.getIcon(props.type);
+        const type = icon.substring(5);
+        return uluCore.getIcon(type);
       } catch (e) {
         console.warn(e);
         return null;
       }
     }
-    return null;
+    return icon;
   });
 
   const customIconProps = computed(() => {

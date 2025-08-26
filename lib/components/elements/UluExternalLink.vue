@@ -5,8 +5,7 @@
     </span>
     <UluIcon 
       class="external-link__icon margin-left-small-x display-inline"
-      type="externalLink"
-      :definition="icon"
+      :icon="icon || 'type:externalLink'"
     />
   </a>
 </template>

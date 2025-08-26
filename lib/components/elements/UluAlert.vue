@@ -4,8 +4,7 @@
       <UluIcon 
         class="type-large margin-right-small" 
         :class="`color-${ type }`"
-        :type="type"
-        :definition="icon"
+        :icon="icon || `type:${type}`"
       />
       <div class="type-small">
         <div>

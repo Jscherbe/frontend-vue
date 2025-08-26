@@ -26,7 +26,7 @@
             <UluIcon 
               v-if="titleIcon" 
               class="modal__title-icon" 
-              :definition="titleIcon" 
+              :icon="titleIcon" 
             />
             <span class="modal__title-text">{{ title }}</span>
           </slot>
@@ -35,8 +35,7 @@
           <slot name="closeIcon">
             <UluIcon 
               class="modal__close-icon" 
-              type="close" 
-              :definition="closeIcon" 
+              :icon="closeIcon || 'type:close'" 
             />
           </slot>
         </button>
@@ -56,7 +55,7 @@
       </div>
       <button v-if="resizerEnabled" class="modal__resizer" ref="resizer" type="button">
         <slot name="resizerIcon">
-          <UluIcon class="modal__resizer-icon" :type="resizerIconType" :definition="resizerIcon" />
+          <UluIcon class="modal__resizer-icon" :icon="resizerIcon || resizerIconType" />
         </slot>
       </button>
     </dialog>
@@ -213,7 +212,7 @@
       });
 
       const resizerIconType = computed(() => {
-        return props.position === 'center' ? 'resizeBoth' : 'resizeHorizontal';
+        return props.position === 'center' ? 'type:resizeBoth' : 'type:resizeHorizontal';
       });
 
       // Define the internal modifiers object as a computed property (so it can react to changes)

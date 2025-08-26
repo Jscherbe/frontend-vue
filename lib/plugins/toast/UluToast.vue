@@ -43,7 +43,7 @@
       </button>
     </div>
     <button class="toast__close" :class="classes.closeButton" @click="toast.close">
-      <UluIcon type="close"/>
+      <UluIcon :icon="'type:close'"/>
     </button>
   </div>
 </template>

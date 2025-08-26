@@ -9,7 +9,7 @@
       size="large"
     >
       <template #trigger>
-        <UluIcon type="ellipsis" :definition="triggerIcon"/>
+        <UluIcon :icon="triggerIcon || 'type:ellipsis'"/>
       </template>
       <template #content>
         <div class="type-word-break">

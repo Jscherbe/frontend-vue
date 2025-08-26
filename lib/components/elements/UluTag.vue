@@ -10,7 +10,7 @@
       resolvedModifiers
     ]"
   >
-    <UluIcon v-if="icon" :definition="icon" />
+    <UluIcon v-if="icon" :icon="icon" />
     <slot>
       {{ text }}
     </slot>

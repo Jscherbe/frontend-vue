@@ -26,7 +26,7 @@
         <slot :item="item" :index="index">
           <UluIcon 
             v-if="item.icon" 
-            :definition="item.icon" 
+            :icon="item.icon" 
             :class="[classes.linkIcon, item?.classes?.linkIcon]"
           />
           <span :class="[classes.linkText, item?.classes?.linkText]">{{ item.title }}</span>

@@ -22,7 +22,7 @@
     <slot name="before"/>
     <UluIcon 
       v-if="icon && (iconBefore || iconOnly)"
-      :definition="icon"
+      :icon="icon"
       class="button__icon"
     />
     <span v-if="($slots.default || text) && !iconOnly">
@@ -32,7 +32,7 @@
     </span>
     <UluIcon 
       v-if="icon && (!iconBefore && !iconOnly)"
-      :definition="icon"
+      :icon="icon"
       class="button__icon"
     />
     <slot name="after"/>

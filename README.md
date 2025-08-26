@@ -4,8 +4,16 @@ Vue component library for the [Ulu frontend](https://jscherbe.github.io/frontend
 
 This library provides a set of reusable, themeable, and accessible Vue 3 components. It is designed to be modular, allowing you to import only the components and features you need, ensuring your application remains lightweight and performant.
 
-- [Documentation](https://jscherbe.github.io/frontend-vue/)
+- [Documentation / Demos](https://jscherbe.github.io/frontend-vue/)
 - [Change Log](CHANGELOG.md)
+- [Installation](#installation)
+- [General Usage](#usage)
+  - [1. SCSS Setup](#1-scss-setup)
+  - [2. Plugin Registration](#2-plugin-registration)
+    - [Core Plugin (Required)](#core-plugin-required)
+    - [Optional Plugins](#optional-plugins)
+  - [3. Component Usage](#3-component-usage)
+
 
 ## Installation
 
@@ -88,7 +96,7 @@ Components are designed to be imported individually. This approach is highly rec
 **Example:**
 ```vue
 <script setup>
-import { UluButton, UluAlert } from '@ulu/frontend-vue';
+  import { UluButton, UluAlert } from '@ulu/frontend-vue';
 </script>
 
 <template>

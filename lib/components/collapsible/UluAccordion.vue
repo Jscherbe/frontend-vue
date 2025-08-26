@@ -23,7 +23,7 @@
         <slot name="icon" :open="open">
           <span class="accordion__icon" :class="classes.icon">
             <UluIcon 
-              :type="open ? 'collapse' : 'expand'"
+              :icon="open ? 'type:collapse' : 'type:expand'"
               style="display: inline;"
             />
           </span>
