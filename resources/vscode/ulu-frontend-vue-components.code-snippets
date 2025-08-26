@@ -1,0 +1,667 @@
+{
+  "UluAccordion (slot)": {
+    "prefix": "ulu-accordion-slot",
+    "body": [
+      "<UluAccordion>",
+      "  $0",
+      "</UluAccordion>"
+    ],
+    "description": "UluAccordion with default slot"
+  },
+  "UluCollapsibleRegion (slot)": {
+    "prefix": "ulu-collapsible-region-slot",
+    "body": [
+      "<UluCollapsibleRegion>",
+      "  $0",
+      "</UluCollapsibleRegion>"
+    ],
+    "description": "UluCollapsibleRegion with default slot"
+  },
+  "UluDropdown (slot)": {
+    "prefix": "ulu-dropdown-slot",
+    "body": [
+      "<UluDropdown>",
+      "  $0",
+      "</UluDropdown>"
+    ],
+    "description": "UluDropdown with default slot"
+  },
+  "UluModal (slot)": {
+    "prefix": "ulu-modal-slot",
+    "body": [
+      "<UluModal>",
+      "  $0",
+      "</UluModal>"
+    ],
+    "description": "UluModal with default slot"
+  },
+  "UluOverflowPopover (slot)": {
+    "prefix": "ulu-overflow-popover-slot",
+    "body": [
+      "<UluOverflowPopover>",
+      "  $0",
+      "</UluOverflowPopover>"
+    ],
+    "description": "UluOverflowPopover with default slot"
+  },
+  "UluTab (slot)": {
+    "prefix": "ulu-tab-slot",
+    "body": [
+      "<UluTab>",
+      "  $0",
+      "</UluTab>"
+    ],
+    "description": "UluTab with default slot"
+  },
+  "UluTabGroup (slot)": {
+    "prefix": "ulu-tab-group-slot",
+    "body": [
+      "<UluTabGroup>",
+      "  $0",
+      "</UluTabGroup>"
+    ],
+    "description": "UluTabGroup with default slot"
+  },
+  "UluTabList (slot)": {
+    "prefix": "ulu-tab-list-slot",
+    "body": [
+      "<UluTabList>",
+      "  $0",
+      "</UluTabList>"
+    ],
+    "description": "UluTabList with default slot"
+  },
+  "UluTabPanel (slot)": {
+    "prefix": "ulu-tab-panel-slot",
+    "body": [
+      "<UluTabPanel>",
+      "  $0",
+      "</UluTabPanel>"
+    ],
+    "description": "UluTabPanel with default slot"
+  },
+  "UluTabPanels (slot)": {
+    "prefix": "ulu-tab-panels-slot",
+    "body": [
+      "<UluTabPanels>",
+      "  $0",
+      "</UluTabPanels>"
+    ],
+    "description": "UluTabPanels with default slot"
+  },
+  "UluAlert (slot)": {
+    "prefix": "ulu-alert-slot",
+    "body": [
+      "<UluAlert>",
+      "  $0",
+      "</UluAlert>"
+    ],
+    "description": "UluAlert with default slot"
+  },
+  "UluBadge (slot)": {
+    "prefix": "ulu-badge-slot",
+    "body": [
+      "<UluBadge>",
+      "  $0",
+      "</UluBadge>"
+    ],
+    "description": "UluBadge with default slot"
+  },
+  "UluBadgeStack (slot)": {
+    "prefix": "ulu-badge-stack-slot",
+    "body": [
+      "<UluBadgeStack>",
+      "  $0",
+      "</UluBadgeStack>"
+    ],
+    "description": "UluBadgeStack with default slot"
+  },
+  "UluButton (props)": {
+    "prefix": "ulu-button-props",
+    "body": [
+      "<UluButton ${1:variant=\"${2|primary,secondary,tertiary,text|}\"} ${3:size=\"${4|small,medium,large|}\"} ${5:disabled} ${6:loading} ${7:icon=\"${8}\"} ${9:icon-only} ${10:href=\"${11}\"} ${12:to=\"${13}\">",
+		"\t$0",
+      "</UluButton>"
+    ],
+    "description": "UluButton with common props"
+  },
+  "UluButton (slot)": {
+    "prefix": "ulu-button-slot",
+    "body": [
+      "<UluButton>",
+		"\t$0",
+      "</UluButton>"
+    ],
+    "description": "UluButton with default slot"
+  },
+  "UluCallout (slot)": {
+    "prefix": "ulu-callout-slot",
+    "body": [
+      "<UluCallout>",
+      "  $0",
+      "</UluCallout>"
+    ],
+    "description": "UluCallout with default slot"
+  },
+  "UluCard (slot)": {
+    "prefix": "ulu-card-slot",
+    "body": [
+      "<UluCard>",
+      "  $0",
+      "</UluCard>"
+    ],
+    "description": "UluCard with default slot"
+  },
+  "UluDefinitionList (slot)": {
+    "prefix": "ulu-definition-list-slot",
+    "body": [
+      "<UluDefinitionList>",
+      "  $0",
+      "</UluDefinitionList>"
+    ],
+    "description": "UluDefinitionList with default slot"
+  },
+  "UluExternalLink (slot)": {
+    "prefix": "ulu-external-link-slot",
+    "body": [
+      "<UluExternalLink>",
+      "  $0",
+      "</UluExternalLink>"
+    ],
+    "description": "UluExternalLink with default slot"
+  },
+  "UluIcon (slot)": {
+    "prefix": "ulu-icon-slot",
+    "body": [
+      "<UluIcon>",
+      "  $0",
+      "</UluIcon>"
+    ],
+    "description": "UluIcon with default slot"
+  },
+  "UluList (slot)": {
+    "prefix": "ulu-list-slot",
+    "body": [
+      "<UluList>",
+      "  $0",
+      "</UluList>"
+    ],
+    "description": "UluList with default slot"
+  },
+  "UluMain (slot)": {
+    "prefix": "ulu-main-slot",
+    "body": [
+      "<UluMain>",
+      "  $0",
+      "</UluMain>"
+    ],
+    "description": "UluMain with default slot"
+  },
+  "UluSpokeSpinner (slot)": {
+    "prefix": "ulu-spoke-spinner-slot",
+    "body": [
+      "<UluSpokeSpinner>",
+      "  $0",
+      "</UluSpokeSpinner>"
+    ],
+    "description": "UluSpokeSpinner with default slot"
+  },
+  "UluTag (props)": {
+    "prefix": "ulu-tag-props",
+    "body": [
+      "<UluTag :type=\"${1:}\" :small=\" ${2:false}\" :text=\" ${3:}\" :icon=\" ${4:}\" :modifiers=\" ${5:}\">",
+      "  $0",
+      "</UluTag>"
+    ],
+    "description": "UluTag with common props"
+  },
+  "UluTag (default slot)": {
+    "prefix": "ulu-tag-slot",
+    "body": [
+      "<UluTag>",
+      "  $0",
+      "</UluTag>"
+    ],
+    "description": "UluTag with default slot"
+  },
+  "UluCheckboxMenu (slot)": {
+    "prefix": "ulu-checkbox-menu-slot",
+    "body": [
+      "<UluCheckboxMenu>",
+      "  $0",
+      "</UluCheckboxMenu>"
+    ],
+    "description": "UluCheckboxMenu with default slot"
+  },
+  "UluFileDisplay (slot)": {
+    "prefix": "ulu-file-display-slot",
+    "body": [
+      "<UluFileDisplay>",
+      "  $0",
+      "</UluFileDisplay>"
+    ],
+    "description": "UluFileDisplay with default slot"
+  },
+  "UluFormFile (slot)": {
+    "prefix": "ulu-form-file-slot",
+    "body": [
+      "<UluFormFile>",
+      "  $0",
+      "</UluFormFile>"
+    ],
+    "description": "UluFormFile with default slot"
+  },
+  "UluFormMessage (slot)": {
+    "prefix": "ulu-form-message-slot",
+    "body": [
+      "<UluFormMessage>",
+      "  $0",
+      "</UluFormMessage>"
+    ],
+    "description": "UluFormMessage with default slot"
+  },
+  "UluFormSelect (slot)": {
+    "prefix": "ulu-form-select-slot",
+    "body": [
+      "<UluFormSelect>",
+      "  $0",
+      "</UluFormSelect>"
+    ],
+    "description": "UluFormSelect with default slot"
+  },
+  "UluFormText (slot)": {
+    "prefix": "ulu-form-text-slot",
+    "body": [
+      "<UluFormText>",
+      "  $0",
+      "</UluFormText>"
+    ],
+    "description": "UluFormText with default slot"
+  },
+  "UluSearchForm (slot)": {
+    "prefix": "ulu-search-form-slot",
+    "body": [
+      "<UluSearchForm>",
+      "  $0",
+      "</UluSearchForm>"
+    ],
+    "description": "UluSearchForm with default slot"
+  },
+  "UluAdaptiveLayout (slot)": {
+    "prefix": "ulu-adaptive-layout-slot",
+    "body": [
+      "<UluAdaptiveLayout>",
+      "  $0",
+      "</UluAdaptiveLayout>"
+    ],
+    "description": "UluAdaptiveLayout with default slot"
+  },
+  "UluDataGrid (slot)": {
+    "prefix": "ulu-data-grid-slot",
+    "body": [
+      "<UluDataGrid>",
+      "  $0",
+      "</UluDataGrid>"
+    ],
+    "description": "UluDataGrid with default slot"
+  },
+  "UluTitleRail (props)": {
+    "prefix": "ulu-title-rail-props",
+    "body": [
+      "<UluTitleRail :title=\" ${1:}\" :icon=\" ${2:}\" :iconAlign=\" ${3:'baseline'}\" :classes=\" ${4:{}}\" :titleElement=\" ${5:'h2'}\">",
+      "  $0",
+      "</UluTitleRail>"
+    ],
+    "description": "UluTitleRail with common props"
+  },
+  "UluTitleRail (default slot)": {
+    "prefix": "ulu-title-rail-slot",
+    "body": [
+      "<UluTitleRail>",
+      "  $0",
+      "</UluTitleRail>"
+    ],
+    "description": "UluTitleRail with default slot"
+  },
+  "UluTitleRail (end slot)": {
+    "prefix": "ulu-title-rail-end-slot",
+    "body": [
+      "<UluTitleRail>",
+      "  <template #end>",
+      "    $0",
+      "  </template>",
+      "</UluTitleRail>"
+    ],
+    "description": "UluTitleRail with end slot"
+  },
+  "UluWhenBreakpoint (props)": {
+    "prefix": "ulu-when-breakpoint-props",
+    "body": [
+      "<UluWhenBreakpoint ${1:max=\" ${2}\"} ${3:min=\" ${4}\"} ${5:only=\" ${6}\">",
+		"\t$0",
+      "</UluWhenBreakpoint>"
+    ],
+    "description": "UluWhenBreakpoint with common props"
+  },
+  "UluWhenBreakpoint (slot)": {
+    "prefix": "ulu-when-breakpoint-slot",
+    "body": [
+      "<UluWhenBreakpoint>",
+		"\t$0",
+      "</UluWhenBreakpoint>"
+    ],
+    "description": "UluWhenBreakpoint with default slot"
+  },
+  "UluBreadcrumb (props)": {
+    "prefix": "ulu-breadcrumb-props",
+    "body": [
+      "<UluBreadcrumb :items=\" ${1:[]}\" :separatorIcon=\" ${2:}\" :classes=\" ${3:{}}\">",
+      "  $0",
+      "</UluBreadcrumb>"
+    ],
+    "description": "UluBreadcrumb with common props"
+  },
+  "UluBreadcrumb (default slot)": {
+    "prefix": "ulu-breadcrumb-slot",
+    "body": [
+      "<UluBreadcrumb :items=\" ${1:[]}\" :separatorIcon=\" ${2:}\">",
+      "  <template #default=\" { item } \">",
+      "    $0",
+      "  </template>",
+      "</UluBreadcrumb>"
+    ],
+    "description": "UluBreadcrumb with default slot"
+  },
+  "UluBreadcrumb (separator slot)": {
+    "prefix": "ulu-breadcrumb-separator-slot",
+    "body": [
+      "<UluBreadcrumb :items=\" ${1:[]}\" :separatorIcon=\" ${2:}\">",
+      "  <template #separator>",
+      "    $0",
+      "  </template>",
+      "</UluBreadcrumb>"
+    ],
+    "description": "UluBreadcrumb with separator slot"
+  },
+  "UluMenu (props)": {
+    "prefix": "ulu-menu-props",
+    "body": [
+      "<UluMenu :items=\" ${1:[]}\" :classes=\" ${2:{}}\" :iconOnly=\" ${3:false}\" :noChildren=\" ${4:false}\">",
+      "  $0",
+      "</UluMenu>"
+    ],
+    "description": "UluMenu with common props"
+  },
+  "UluMenu (slot)": {
+    "prefix": "ulu-menu-slot",
+    "body": [
+      "<UluMenu :items=\" ${1:[]}\">",
+      "  <template #default=\" { item, index } \">",
+      "    $0",
+      "  </template>",
+      "</UluMenu>"
+    ],
+    "description": "UluMenu with default slot"
+  },
+  "UluMenuStack (slot)": {
+    "prefix": "ulu-menu-stack-slot",
+    "body": [
+      "<UluMenuStack>",
+      "  $0",
+      "</UluMenuStack>"
+    ],
+    "description": "UluMenuStack with default slot"
+  },
+  "UluNavStrip (slot)": {
+    "prefix": "ulu-nav-strip-slot",
+    "body": [
+      "<UluNavStrip>",
+      "  $0",
+      "</UluNavStrip>"
+    ],
+    "description": "UluNavStrip with default slot"
+  },
+  "UluSkipLink (slot)": {
+    "prefix": "ulu-skip-link-slot",
+    "body": [
+      "<UluSkipLink>",
+      "  $0",
+      "</UluSkipLink>"
+    ],
+    "description": "UluSkipLink with default slot"
+  },
+  "UluFacets (slot)": {
+    "prefix": "ulu-facets-slot",
+    "body": [
+      "<UluFacets>",
+      "  $0",
+      "</UluFacets>"
+    ],
+    "description": "UluFacets with default slot"
+  },
+  "UluFacetsList (slot)": {
+    "prefix": "ulu-facets-list-slot",
+    "body": [
+      "<UluFacetsList>",
+      "  $0",
+      "</UluFacetsList>"
+    ],
+    "description": "UluFacetsList with default slot"
+  },
+  "UluFacetsSearch (slot)": {
+    "prefix": "ulu-facets-search-slot",
+    "body": [
+      "<UluFacetsSearch>",
+      "  $0",
+      "</UluFacetsSearch>"
+    ],
+    "description": "UluFacetsSearch with default slot"
+  },
+  "UluScrollAnchors (slot)": {
+    "prefix": "ulu-scroll-anchors-slot",
+    "body": [
+      "<UluScrollAnchors>",
+      "  $0",
+      "</UluScrollAnchors>"
+    ],
+    "description": "UluScrollAnchors with default slot"
+  },
+  "UluScrollAnchorsNav (slot)": {
+    "prefix": "ulu-scroll-anchors-nav-slot",
+    "body": [
+      "<UluScrollAnchorsNav>",
+      "  $0",
+      "</UluScrollAnchorsNav>"
+    ],
+    "description": "UluScrollAnchorsNav with default slot"
+  },
+  "UluScrollAnchorsNavAnimated (slot)": {
+    "prefix": "ulu-scroll-anchors-nav-animated-slot",
+    "body": [
+      "<UluScrollAnchorsNavAnimated>",
+      "  $0",
+      "</UluScrollAnchorsNavAnimated>"
+    ],
+    "description": "UluScrollAnchorsNavAnimated with default slot"
+  },
+  "UluScrollAnchorsSection (slot)": {
+    "prefix": "ulu-scroll-anchors-section-slot",
+    "body": [
+      "<UluScrollAnchorsSection>",
+      "  $0",
+      "</UluScrollAnchorsSection>"
+    ],
+    "description": "UluScrollAnchorsSection with default slot"
+  },
+  "UluShowSkeleton (slot)": {
+    "prefix": "ulu-show-skeleton-slot",
+    "body": [
+      "<UluShowSkeleton>",
+      "  $0",
+      "</UluShowSkeleton>"
+    ],
+    "description": "UluShowSkeleton with default slot"
+  },
+  "UluSkeletonContent (slot)": {
+    "prefix": "ulu-skeleton-content-slot",
+    "body": [
+      "<UluSkeletonContent>",
+      "  $0",
+      "</UluSkeletonContent>"
+    ],
+    "description": "UluSkeletonContent with default slot"
+  },
+  "UluSkeletonMedia (slot)": {
+    "prefix": "ulu-skeleton-media-slot",
+    "body": [
+      "<UluSkeletonMedia>",
+      "  $0",
+      "</UluSkeletonMedia>"
+    ],
+    "description": "UluSkeletonMedia with default slot"
+  },
+  "UluSkeletonTextInline (slot)": {
+    "prefix": "ulu-skeleton-text-inline-slot",
+    "body": [
+      "<UluSkeletonTextInline>",
+      "  $0",
+      "</UluSkeletonTextInline>"
+    ],
+    "description": "UluSkeletonTextInline with default slot"
+  },
+  "UluImageSlideShow (slot)": {
+    "prefix": "ulu-image-slide-show-slot",
+    "body": [
+      "<UluImageSlideShow>",
+      "  $0",
+      "</UluImageSlideShow>"
+    ],
+    "description": "UluImageSlideShow with default slot"
+  },
+  "UluSlideShow (slot)": {
+    "prefix": "ulu-slide-show-slot",
+    "body": [
+      "<UluSlideShow>",
+      "  $0",
+      "</UluSlideShow>"
+    ],
+    "description": "UluSlideShow with default slot"
+  },
+  "UluSlideShowSlide (slot)": {
+    "prefix": "ulu-slide-show-slide-slot",
+    "body": [
+      "<UluSlideShowSlide>",
+      "  $0",
+      "</UluSlideShowSlide>"
+    ],
+    "description": "UluSlideShowSlide with default slot"
+  },
+  "UluTableSticky (slot)": {
+    "prefix": "ulu-table-sticky-slot",
+    "body": [
+      "<UluTableSticky>",
+      "  $0",
+      "</UluTableSticky>"
+    ],
+    "description": "UluTableSticky with default slot"
+  },
+  "UluTableStickyRows (slot)": {
+    "prefix": "ulu-table-sticky-rows-slot",
+    "body": [
+      "<UluTableStickyRows>",
+      "  $0",
+      "</UluTableStickyRows>"
+    ],
+    "description": "UluTableStickyRows with default slot"
+  },
+  "UluTableStickyTable (slot)": {
+    "prefix": "ulu-table-sticky-table-slot",
+    "body": [
+      "<UluTableStickyTable>",
+      "  $0",
+      "</UluTableStickyTable>"
+    ],
+    "description": "UluTableStickyTable with default slot"
+  },
+  "UluCondText (slot)": {
+    "prefix": "ulu-cond-text-slot",
+    "body": [
+      "<UluCondText>",
+      "  $0",
+      "</UluCondText>"
+    ],
+    "description": "UluCondText with default slot"
+  },
+  "UluEmpty (slot)": {
+    "prefix": "ulu-empty-slot",
+    "body": [
+      "<UluEmpty>",
+      "  $0",
+      "</UluEmpty>"
+    ],
+    "description": "UluEmpty with default slot"
+  },
+  "UluEmptyView (slot)": {
+    "prefix": "ulu-empty-view-slot",
+    "body": [
+      "<UluEmptyView>",
+      "  $0",
+      "</UluEmptyView>"
+    ],
+    "description": "UluEmptyView with default slot"
+  },
+  "UluPlaceholderImage (slot)": {
+    "prefix": "ulu-placeholder-image-slot",
+    "body": [
+      "<UluPlaceholderImage>",
+      "  $0",
+      "</UluPlaceholderImage>"
+    ],
+    "description": "UluPlaceholderImage with default slot"
+  },
+  "UluPlaceholderText (slot)": {
+    "prefix": "ulu-placeholder-text-slot",
+    "body": [
+      "<UluPlaceholderText>",
+      "  $0",
+      "</UluPlaceholderText>"
+    ],
+    "description": "UluPlaceholderText with default slot"
+  },
+  "UluRouteAnnouncer (slot)": {
+    "prefix": "ulu-route-announcer-slot",
+    "body": [
+      "<UluRouteAnnouncer>",
+      "  $0",
+      "</UluRouteAnnouncer>"
+    ],
+    "description": "UluRouteAnnouncer with default slot"
+  },
+  "UluAnimateNumber (slot)": {
+    "prefix": "ulu-animate-number-slot",
+    "body": [
+      "<UluAnimateNumber>",
+      "  $0",
+      "</UluAnimateNumber>"
+    ],
+    "description": "UluAnimateNumber with default slot"
+  },
+  "UluProgressBar (slot)": {
+    "prefix": "ulu-progress-bar-slot",
+    "body": [
+      "<UluProgressBar>",
+      "  $0",
+      "</UluProgressBar>"
+    ],
+    "description": "UluProgressBar with default slot"
+  },
+  "UluProgressDonut (slot)": {
+    "prefix": "ulu-progress-donut-slot",
+    "body": [
+      "<UluProgressDonut>",
+      "  $0",
+      "</UluProgressDonut>"
+    ],
+    "description": "UluProgressDonut with default slot"
+  }
+}
