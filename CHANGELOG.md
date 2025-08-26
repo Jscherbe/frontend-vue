@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.7
+
+- Expose generated typescript types (from jsdoc comments in lib) for IDE support/annotations
+
 ## 0.1.0-beta.6
 
 - Redesign icon system API (so that Ulu icon only has one defining prop) to make it easier for components to support icon customization while also supporting both by type or specific icons
