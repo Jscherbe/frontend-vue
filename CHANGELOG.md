@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.1.0-beta.8
+
+- Make new composable for required injects (so user will be able to understand the failure and install plugin)
+  - Add new meta module with injectRegistry for lookup
+  - Can be used with external or site specific inject
+  - If plugin will tell user the missing plugin
+- Refactor layout components UluAdaptiveLayout.vue, UluWhenBreakpoint.vue to use this and to composition API
+
 ## 0.1.0-beta.7
 
 - Expose generated typescript types (from jsdoc comments in lib) for IDE support/annotations

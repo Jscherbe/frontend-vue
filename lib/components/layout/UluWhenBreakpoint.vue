@@ -2,85 +2,79 @@
   <slot v-if="shouldShow" />
 </template>
 
-<script>
-  export default {
-    name: "UluWhenBreakpoint",
-    inject: ["uluBreakpointManager"],
-    props: {
-      max: String,
-      min: String,
-      only: String,
-    },
-    data() {
-      return {
-        conditions: {},
-        handlers: [],
-        handlersSetup: false,
-      };
-    },
-    computed: {
-      shouldShow() {
-        if (!this.handlersSetup) return false;
-        const props = ['max', 'min', 'only'].filter(p => this[p]);
-        if (props.length === 0) {
-          return false;
-        }
-        return Object.values(this.conditions).every(c => c);
-      },
-      propsIdentifier() {
-        return `${this.max || ''}-${this.min || ''}-${this.only || ''}`;
-      }
-    },
-    watch: {
-      uluBreakpointManager: {
-        handler(manager) {
-          if (manager && !this.handlersSetup) {
-            this.setupHandlers(manager);
-          }
-        },
-        immediate: true
-      },
-      propsIdentifier() {
-        if (this.uluBreakpointManager && this.handlersSetup) {
-            this.tearDownHandlers();
-            this.setupHandlers(this.uluBreakpointManager);
-        }
-      }
-    },
-    methods: {
-      setupHandlers(manager) {
-        const setupCondition = (direction) => {
-          const breakpointName = this[direction];
-          if (breakpointName) {
-            this.conditions[direction] = false;
-            const handler = {
-              on: () => { this.conditions[direction] = true; },
-              off: () => { this.conditions[direction] = false; },
-            };
-            manager.at(breakpointName)[direction](handler);
-            this.handlers.push({ name: breakpointName, direction, handler });
-          }
+<script setup>
+  import { ref, computed, watch, onBeforeUnmount } from 'vue';
+  import { useRequiredInject } from '../../composables/useRequiredInject.js';
+
+  const props = defineProps({
+    max: String,
+    min: String,
+    only: String,
+  });
+
+  const uluBreakpointManager = useRequiredInject('uluBreakpointManager');
+
+  const conditions = ref({});
+  const handlers = ref([]);
+  const handlersSetup = ref(false);
+
+  const shouldShow = computed(() => {
+    if (!handlersSetup.value) return false;
+    const activeProps = ['max', 'min', 'only'].filter(p => props[p]);
+    if (activeProps.length === 0) {
+      return false;
+    }
+    return Object.values(conditions.value).every(c => c);
+  });
+
+  const setupHandlers = (manager) => {
+    const setupCondition = (direction) => {
+      const breakpointName = props[direction];
+      if (breakpointName) {
+        conditions.value[direction] = false;
+        const handler = {
+          on: () => { conditions.value[direction] = true; },
+          off: () => { conditions.value[direction] = false; },
         };
-
-        setupCondition('max');
-        setupCondition('min');
-        setupCondition('only');
-
-        this.handlersSetup = true;
-      },
-      tearDownHandlers() {
-        if (this.uluBreakpointManager) {
-          this.handlers.forEach(({ name, direction, handler }) => {
-            this.uluBreakpointManager.at(name).remove(handler, direction);
-          });
-        }
-        this.handlers = [];
-        this.conditions = {};
-        this.handlersSetup = false;
+        manager.at(breakpointName)[direction](handler);
+        handlers.value.push({ name: breakpointName, direction, handler });
       }
-    },
-    beforeUnmount() {
-      this.tearDownHandlers();
-    },
+    };
+
+    setupCondition('max');
+    setupCondition('min');
+    setupCondition('only');
+
+    handlersSetup.value = true;
   };
+
+  const tearDownHandlers = () => {
+    if (uluBreakpointManager) {
+      handlers.value.forEach(({ name, direction, handler }) => {
+        uluBreakpointManager.at(name).remove(handler, direction);
+      });
+    }
+    handlers.value = [];
+    conditions.value = {};
+    handlersSetup.value = false;
+  };
+
+  watch(uluBreakpointManager, (manager) => {
+    if (manager && !handlersSetup.value) {
+      setupHandlers(manager);
+    }
+  }, { immediate: true });
+
+  // Watch all the props and update if they change
+  // - Using array syntax to avoid "deep" flag
+  watch([() => props.max, () => props.min, () => props.only], () => {
+    if (uluBreakpointManager && handlersSetup.value) {
+      tearDownHandlers();
+      setupHandlers(uluBreakpointManager);
+    }
+  });
+
+  onBeforeUnmount(() => {
+    tearDownHandlers();
+  });
 </script>

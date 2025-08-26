@@ -3,9 +3,7 @@
   <slot v-else name="mobile" />
 </template>
 
-<script>
-  export default {
-    name: "AdaptiveLayout",
-    inject: ["uluIsMobile"],
-  };
+<script setup>
+  import { useRequiredInject } from '../../composables/useRequiredInject.js';
+  const uluIsMobile = useRequiredInject('uluIsMobile');
 </script>
