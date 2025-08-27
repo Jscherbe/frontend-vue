@@ -1,9 +1,13 @@
 # Change Log
 
+## 0.1.0-beta.10
+
+- Add `UluButtonVerbose` component
+
 ## 0.1.0-beta.9
 
 - Add snippets (not in package, available in repo `/resources/vscode`)
-- UluTitleRail - Add prop for rule modifier
+- `UluTitleRail` - Add prop for rule modifier
 
 ## 0.1.0-beta.8
 
