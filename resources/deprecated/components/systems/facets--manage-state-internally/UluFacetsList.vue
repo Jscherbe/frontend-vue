@@ -10,8 +10,7 @@
         class="UluFacets__facet-checkbox"
         :id="facetCheckboxId(facet)"
         type="checkbox" 
-        :checked="facet.selected"
-        @change="$emit('facet-change', { groupUid, facetUid: facet.uid, selected: $event.target.checked })"
+        v-model="facet.selected"
       >
       <label 
         class="UluFacets__facet-label" 
@@ -31,7 +30,6 @@
       children: Array,
       classFacet: String
     },
-    emits: ['facet-change'],
     methods: {
       facetCheckboxId(facet) {
         return `facet-${ this.groupUid }-${ facet.uid }`;
