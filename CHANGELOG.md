@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.1.0-beta.12
+
+- Working on making facets system helper (useFacets) more flexible for sorts
+  - Add helpers to useFacets to reduce boilerplate code needed with the conversion from monolithic design to modular user controls state and output/etc design:
+    - Added `facetFields` option to automatically generate facet groups and values from the items list.
+    - Exposed a `handleFacetChange` method to simplify managing facet selection state.
+    - Corrected filtering logic to use AND (`every`) when combining different facet groups instead of OR (`some`).
+    - Made `clearFilters` more robust by resetting selections instead of recreating facets.
+    - Improved automatic facet generation to react to changes in the source items list.
+
 ## 0.1.0-beta.11
 
 - Refactor facets from monolithic architecture to modular separate components, provide composable to reuse filtering/sorting/etc logic that used to be built into the main component. This way we can: (a) have the same easy setup for simple data (in browser filtering), (b) Have the flexibility to layout however, (c) Provide preset layout that is the usual scenario (ie. sidebar with list/card view)
