@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.1.0-beta.13
+## 0.1.0-beta.13 - 0.1.0-beta.14
 
 - Make useFacets default alpha sorter account for missing values
 
