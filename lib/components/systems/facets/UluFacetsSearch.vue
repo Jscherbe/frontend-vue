@@ -10,58 +10,35 @@
       type="text" 
       :placeholder="placeholder"
     >
-    <!-- <button 
-      v-if="value"
-      :class="classes.searchClear" 
-      @click="clear"
-      :aria-label="classes.searchClearIcon ? 'Clear Search' : false"
-      type="button" 
-    >
-      <span 
-        v-if="classes.searchClearIcon" 
-        :class="classes.searchClearIcon"
-        aria-hidden="true"
-      ></span>
-      <span v-else>
-        Clear
-      </span>
-    </button> -->
   </div>
 </template>
 
-<script>
-  let uid = 0;
-  export default {
-    name: 'UluFacetsSearch',
-    props: {
-      classes: Object,
-      modelValue: String,
-      placeholder: {
-        type: String,
-        default: "Keywords…"
-      }
-    },
-    data() {
-      return {
-        id: `facet-view-keyword-${ ++uid }`
-      }
-    },
-    computed: {
-      localValue: {
-        get() {
-          return this.modelValue;
-        },
-        set(val) {
-          this.$emit('update:modelValue', val);
-        }
-      }
-    },
-    methods: {
-      clear() {
-        // this.value = null;
-        // this.applied = false;
-        // this.$emit("search", null);
-      }
-    }
+<script setup>
+import { computed } from 'vue';
+
+const props = defineProps({
+  classes: {
+    type: Object,
+    default: () => ({})
+  },
+  modelValue: String,
+  placeholder: {
+    type: String,
+    default: "Keywords…"
   }
+});
+
+const emit = defineEmits(['update:modelValue']);
+
+let uid = 0;
+const id = `facet-view-keyword-${++uid}`;
+
+const localValue = computed({
+  get() {
+    return props.modelValue;
+  },
+  set(val) {
+    emit('update:modelValue', val);
+  }
+});
 </script>
