@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.11
+
+- Refactor facets from monolithic architecture to modular separate components, provide composable to reuse filtering/sorting/etc logic that used to be built into the main component. This way we can: (a) have the same easy setup for simple data (in browser filtering), (b) Have the flexibility to layout however, (c) Provide preset layout that is the usual scenario (ie. sidebar with list/card view)
+
 ## 0.1.0-beta.10
 
 - Add `UluButtonVerbose` component

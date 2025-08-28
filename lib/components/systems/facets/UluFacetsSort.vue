@@ -20,26 +20,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+  import { ref } from 'vue';
 
-let idCounter = 0;
+  let idCounter = 0;
 
-defineProps({
-  classes: {
-    type: Object,
-    default: () => ({})
-  },
-  sortTypes: {
-    type: Object,
-    default: () => ({})
-  },
-  modelValue: {
-    type: String,
-    default: ''
-  }
-});
+  defineProps({
+    classes: {
+      type: Object,
+      default: () => ({})
+    },
+    sortTypes: {
+      type: Object,
+      default: () => ({})
+    },
+    modelValue: {
+      type: String,
+      default: ''
+    }
+  });
 
-const emit = defineEmits(['update:modelValue']);
+  const emit = defineEmits(['update:modelValue']);
 
-const sortId = ref(`ulu-facet-sort-${++idCounter}`);
+  const sortId = ref(`ulu-facet-sort-${++idCounter}`);
 </script>

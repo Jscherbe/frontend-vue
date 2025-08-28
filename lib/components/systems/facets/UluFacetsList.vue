@@ -11,7 +11,7 @@
         :id="facetCheckboxId(facet)"
         type="checkbox" 
         :checked="facet.selected"
-        @change="$emit('facet-change', { groupUid, facetUid: facet.uid, selected: $event.target.checked })"
+        @change="emit('facet-change', { groupUid, facetUid: facet.uid, selected: $event.target.checked })"
       >
       <label 
         class="UluFacets__facet-label" 
@@ -23,19 +23,16 @@
   </ul>
 </template>
 
-<script>
-  export default {
-    name: 'UluFacetsList',
-    props: {
-      groupUid: String,
-      children: Array,
-      classFacet: String
-    },
-    emits: ['facet-change'],
-    methods: {
-      facetCheckboxId(facet) {
-        return `facet-${ this.groupUid }-${ facet.uid }`;
-      }
-    }
+<script setup>
+  const props = defineProps({
+    groupUid: String,
+    children: Array,
+    classFacet: String
+  });
+
+  const emit = defineEmits(['facet-change']);
+
+  function facetCheckboxId(facet) {
+    return `facet-${props.groupUid}-${facet.uid}`;
   }
 </script>

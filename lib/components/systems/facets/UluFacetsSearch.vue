@@ -14,31 +14,31 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+  import { computed } from 'vue';
 
-const props = defineProps({
-  classes: {
-    type: Object,
-    default: () => ({})
-  },
-  modelValue: String,
-  placeholder: {
-    type: String,
-    default: "Keywords…"
-  }
-});
+  const props = defineProps({
+    classes: {
+      type: Object,
+      default: () => ({})
+    },
+    modelValue: String,
+    placeholder: {
+      type: String,
+      default: "Keywords…"
+    }
+  });
 
-const emit = defineEmits(['update:modelValue']);
+  const emit = defineEmits(['update:modelValue']);
 
-let uid = 0;
-const id = `facet-view-keyword-${++uid}`;
+  let uid = 0;
+  const id = `facet-view-keyword-${++uid}`;
 
-const localValue = computed({
-  get() {
-    return props.modelValue;
-  },
-  set(val) {
-    emit('update:modelValue', val);
-  }
-});
+  const localValue = computed({
+    get() {
+      return props.modelValue;
+    },
+    set(val) {
+      emit('update:modelValue', val);
+    }
+  });
 </script>

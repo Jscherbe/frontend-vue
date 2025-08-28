@@ -23,35 +23,35 @@
 </template>
 
 <script setup>
-defineProps({
-  items: {
-    type: Array,
-    required: true
-  },
-  tag: {
-    type: String,
-    default: 'ul'
-  },
-  transitionName: {
-    type: String,
-    default: 'UluFacetsFade'
-  }
-});
+  defineProps({
+    items: {
+      type: Array,
+      required: true
+    },
+    tag: {
+      type: String,
+      default: 'ul'
+    },
+    transitionName: {
+      type: String,
+      default: 'UluFacetsFade'
+    }
+  });
 </script>
 
 <style lang="scss">
-.UluFacetsResults__list {
-  list-style: none;
-  padding: 0;
-}
+  .UluFacetsResults__list {
+    list-style: none;
+    padding: 0;
+  }
 
-.UluFacetsFade-enter-active,
-.UluFacetsFade-leave-active {
-  transition: opacity 0.25s ease;
-}
+  .UluFacetsFade-enter-active,
+  .UluFacetsFade-leave-active {
+    transition: opacity 0.25s ease;
+  }
 
-.UluFacetsFade-enter-from,
-.UluFacetsFade-leave-to {
-  opacity: 0;
-}
+  .UluFacetsFade-enter-from,
+  .UluFacetsFade-leave-to {
+    opacity: 0;
+  }
 </style>

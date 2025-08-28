@@ -51,23 +51,23 @@
 </template>
 
 <script setup>
-import UluFacetsList from "./UluFacetsList.vue";
-import UluCollapsibleRegion from "../../collapsible/UluCollapsibleRegion.vue";
+  import UluFacetsList from "./UluFacetsList.vue";
+  import UluCollapsibleRegion from "../../collapsible/UluCollapsibleRegion.vue";
 
-defineProps({
-  classes: {
-    type: Object,
-    default: () => ({})
-  },
-  maxVisible: {
-    type: Number,
-    default: 5
-  },
-  facets: {
-    type: Array,
-    default: () => []
-  }
-});
+  defineProps({
+    classes: {
+      type: Object,
+      default: () => ({})
+    },
+    maxVisible: {
+      type: Number,
+      default: 5
+    },
+    facets: {
+      type: Array,
+      default: () => []
+    }
+  });
 
-const emit = defineEmits(['facet-change']);
+  const emit = defineEmits(['facet-change']);
 </script>
