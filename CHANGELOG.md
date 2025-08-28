@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.13
+
+- Make useFacets default alpha sorter account for missing values
+
 ## 0.1.0-beta.12
 
 - Working on making facets system helper (useFacets) more flexible for sorts
