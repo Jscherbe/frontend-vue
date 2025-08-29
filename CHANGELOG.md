@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.15
+
+- Setup UluPager component (matches ulu frontend pager structure for styling)
+
 ## 0.1.0-beta.13 - 0.1.0-beta.14
 
 - Make useFacets default alpha sorter account for missing values
