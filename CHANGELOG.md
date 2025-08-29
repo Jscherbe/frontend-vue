@@ -1,17 +1,22 @@
 # Change Log
 
+## 0.1.0-beta.16
+
+- Add `usePagination` composable to make handling pagination easy to setup with various components
+  - Can be used with UluPager, Custom logic or something like the facets system
+
 ## 0.1.0-beta.15
 
-- Setup UluPager component (matches ulu frontend pager structure for styling)
+- Setup `UluPager` component (matches ulu frontend pager structure for styling)
 
 ## 0.1.0-beta.13 - 0.1.0-beta.14
 
-- Make useFacets default alpha sorter account for missing values
+- Make `useFacets` default alpha sorter account for missing values
 
 ## 0.1.0-beta.12
 
-- Working on making facets system helper (useFacets) more flexible for sorts
-  - Add helpers to useFacets to reduce boilerplate code needed with the conversion from monolithic design to modular user controls state and output/etc design:
+- Working on making facets system helper (`useFacets`) more flexible for sorts
+  - Add helpers to `useFacets` to reduce boilerplate code needed with the conversion from monolithic design to modular user controls state and output/etc design:
     - Added `facetFields` option to automatically generate facet groups and values from the items list.
     - Exposed a `handleFacetChange` method to simplify managing facet selection state.
     - Corrected filtering logic to use AND (`every`) when combining different facet groups instead of OR (`some`).
