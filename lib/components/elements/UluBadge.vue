@@ -26,33 +26,32 @@
   </component>
 </template>
 
-<script>
+<script setup>
+  import { computed } from "vue";
   import { RouterLink } from "vue-router";
-  export default {
-    name: "UluBadge",
-    props: {
-      skeleton: Boolean,
-      size: String,
-      text: String,
-      alt: String,
-      type: String,
-      click: Function,
-      to: [Object, String],
-      href: String,
-    },
-    computed: {
-      isInteractive() {
-        return Boolean(this.to || this.click);
-      },
-      element() {
-        const { click, to, href } = this;
-        /* eslint-disable */
-        return  click ? 'button' : 
-                to ? RouterLink : 
-                href ? 'a' : 
-                'span';
-        /* eslint-enable */
-      }
-    }
-  };
+
+  const props = defineProps({
+    skeleton: Boolean,
+    size: String,
+    text: String,
+    alt: String,
+    type: String,
+    click: Function,
+    to: [Object, String],
+    href: String,
+  });
+
+  const isInteractive = computed(() => {
+    return Boolean(props.to || props.click);
+  });
+
+  const element = computed(() => {
+    const { click, to, href } = props;
+    /* eslint-disable */
+    return  click ? "button" : 
+            to ? RouterLink : 
+            href ? "a" : 
+            "span";
+    /* eslint-enable */
+  });
 </script>

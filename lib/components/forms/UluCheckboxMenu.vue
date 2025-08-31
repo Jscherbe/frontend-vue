@@ -21,16 +21,12 @@
   </ul>
 </template>
 
-<script>
-  export default {
-    name: "UluCheckboxMenu",
-    props: {
-      options: Array
-    },
-    methods: {
-      getId(index) {
-        return `checkbox-menu-opt-${ index }`;
-      }
-    }
+<script setup>
+  defineProps({
+    options: Array
+  });
+
+  const getId = (index) => {
+    return `checkbox-menu-opt-${ index }`;
   };
 </script>

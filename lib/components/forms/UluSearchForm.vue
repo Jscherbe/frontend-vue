@@ -18,14 +18,11 @@
   </div>
 </template>
 
-<script>
-  export default {
-    name: "SearchForm",
-    props: {
-      placeholder: {
-        type: String,
-        default: "Titles, keyword…"
-      }
+<script setup>
+  defineProps({
+    placeholder: {
+      type: String,
+      default: "Titles, keyword…"
     }
-  };
+  });
 </script>

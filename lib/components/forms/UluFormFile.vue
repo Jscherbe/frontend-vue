@@ -18,30 +18,28 @@
   </div>
 </template>
 
-<script>
-  let count = 0;
-  export default {
-    name: "FormFile",
-    props: {
-      label: {
-        type: String,
-        default: "Select File"
-      },
-      labelHidden: Boolean,
-      noClasses: Boolean,
-      multiple: Boolean,
-      inputAttrs: Object
+<script setup>
+  const getNextId = (() => {
+    let count = 0;
+    return () => `file-input-id-${++count}`;
+  })();
+
+  defineProps({
+    label: {
+      type: String,
+      default: "Select File"
     },
-    emits: ["filesChange"],
-    data() {
-      return {
-        id: `file-input-id-${ ++count }`
-      };
-    },
-    methods: {
-      onChangeFile(event) {
-        this.$emit("filesChange", event.target.files);
-      }
-    }
+    labelHidden: Boolean,
+    noClasses: Boolean,
+    multiple: Boolean,
+    inputAttrs: Object
+  });
+
+  const emit = defineEmits(["filesChange"]);
+
+  const id = getNextId();
+
+  const onChangeFile = (event) => {
+    emit("filesChange", event.target.files);
   };
 </script>

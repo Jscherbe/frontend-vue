@@ -10,18 +10,13 @@
   </ul>
 </template>
 
-<script>
+<script setup>
   import UluBadge from "./UluBadge.vue";
-  export default {
-    name: 'UluBadgeStack',
-    components: {
-      UluBadge
-    },
-    props: {
-      /**
-       * Array of props for each badge
-       */
-      items: Array
-    }
-  }
+
+  defineProps({
+    /**
+     * Array of props for each badge
+     */
+    items: Array
+  });
 </script>

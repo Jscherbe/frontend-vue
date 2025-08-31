@@ -18,20 +18,20 @@
   </div>
 </template>
 
-<script>
-  let count = 0;
-  export default {
-    name: "FormSelect",
-    props: {
-      label: String,
-      modelValue: String,
-      options: Array,
-      labelHidden: Boolean
-    },
-    data() {
-      return {
-        id: `select-id-${ ++count }`
-      };
-    }
-  };
+<script setup>
+  const getNextId = (() => {
+    let count = 0;
+    return () => `select-id-${++count}`;
+  })();
+
+  defineProps({
+    label: String,
+    modelValue: String,
+    options: Array,
+    labelHidden: Boolean
+  });
+
+  defineEmits(['update:modelValue']);
+
+  const id = getNextId();
 </script>

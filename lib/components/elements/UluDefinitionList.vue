@@ -19,22 +19,19 @@
   </dl>
 </template>
 
-<script>
-  export default {
-    name: "UluDefinitionList",
-    props: {
-      /**
-       * Array of term, and description (props in object)
-       * - Can use slots also
-       */
-      items: Array,
-      /**
-       * Classes object for different elements { list, item, term, description }
-       */
-      classes: {
-        type: Object,
-        default: () => ({})
-      }
+<script setup>
+  defineProps({
+    /**
+     * Array of term, and description (props in object)
+     * - Can use slots also
+     */
+    items: Array,
+    /**
+     * Classes object for different elements { list, item, term, description }
+     */
+    classes: {
+      type: Object,
+      default: () => ({})
     }
-  };
+  });
 </script>

@@ -14,19 +14,19 @@
   </div>
 </template>
 
-<script>
-  let count = 0;
-  export default {
-    name: "FormText",
-    props: {
-      label: String,
-      modelValue: String,
-      labelHidden: Boolean
-    },
-    data() {
-      return {
-        id: `text-input-id-${ ++count }`
-      };
-    }
-  };
+<script setup>
+  const getNextId = (() => {
+    let count = 0;
+    return () => `text-input-id-${++count}`;
+  })();
+
+  defineProps({
+    label: String,
+    modelValue: String,
+    labelHidden: Boolean
+  });
+
+  defineEmits(['update:modelValue']);
+
+  const id = getNextId();
 </script>

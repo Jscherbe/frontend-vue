@@ -10,37 +10,31 @@
   </a>
 </template>
 
-<script>
+<script setup>
   import UluIcon from "./UluIcon.vue";
 
   /**
    * Component for external links (adds icon after link text)
    */
-  export default {
-    name: "UluExternalLink",
-    components: {
-      UluIcon
+  defineProps({
+    /**
+     * Text for link or use slot
+     */
+    text: String,
+    /**
+     * Link href
+     */
+    href: String,
+    /**
+     * Link target
+     */
+    target: {
+      type: String,
+      default: "_blank"
     },
-    props: {
-      /**
-       * Text for link or use slot
-       */
-      text: String,
-      /**
-       * Link href
-       */
-      href: String,
-      /**
-       * Link target
-       */
-      target: {
-        type: String,
-        default: "_blank"
-      },
-      /**
-       * Override default icon
-       */
-      icon: String
-    }
-  };
+    /**
+     * Override default icon
+     */
+    icon: String
+  });
 </script>

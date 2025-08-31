@@ -9,12 +9,9 @@
   </p>
 </template>
 
-<script>
-  export default {
-    name: "FormMessage",
-    props: {
-      warning: Boolean,
-      error: Boolean,
-    }
-  };
+<script setup>
+  defineProps({
+    warning: Boolean,
+    error: Boolean,
+  });
 </script>
