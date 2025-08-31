@@ -1,11 +1,9 @@
 <template>
-  <div class="skeleton__block skeleton__block--media layout-flex-center-all">
-    <FaIcon style="font-size: 2rem" icon="image"/>
+  <div class="skeleton skeleton-block--media">
+    <UluIcon icon="type:image"/>
   </div>
 </template>
 
-<script>
-  export default {
-    name: "SkeletonMedia",
-  };
+<script setup>
+  import UluIcon from "../../elements/UluIcon.vue";
 </script>

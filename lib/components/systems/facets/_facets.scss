@@ -54,9 +54,8 @@ $config: (
   $prefix: selector.class("facets");
 
   #{ $prefix }__body {
-        .FacetView__body {
-        display: flex
-;
+    .FacetView__body {
+      display: flex;
     }
   }
 }

@@ -34,3 +34,6 @@ debug-storybook.log
 # Environment Variables
 .env*
 !/.env.example
+
+# Model contexts for node modules
+.contexts/

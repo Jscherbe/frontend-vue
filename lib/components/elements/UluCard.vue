@@ -54,7 +54,7 @@
         </component>
         <slot name="body"/>
       </div>
-      <div class="card__aside" v-if="$slots.body">
+      <div class="card__aside" v-if="$slots.aside">
         <slot name="aside"/>
       </div>
     </div>
