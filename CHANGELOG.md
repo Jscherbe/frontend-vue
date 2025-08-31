@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.18
+
+- Finish setting up utils, which can be imported as { utils } and used like `utils.dom.refToElement()` or `utils.router.nativeLinkRouter()`. Setup basic story/docs for these.
+
 ## 0.1.0-beta.17
 
 - Add `components/systems/skeleton` component

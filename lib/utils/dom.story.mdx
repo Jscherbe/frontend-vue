@@ -1,0 +1,33 @@
+# Dom
+
+## refToElement
+
+The `refToElement` utility resolves a Vue template ref's unwrapped value to its underlying DOM element. This works whether the `ref` is on a standard HTML element or on a Vue component instance.
+
+## Example Usage
+
+This example shows how to use `refToElement` within a Vue component's `setup` function to get the underlying `HTMLElement` from a `ref`.
+
+```js
+import { ref, onMounted } from 'vue';
+import { utils } from '@ulu/frontend-vue/utils';
+const { dom } = utils;
+
+// Template:
+// <div ref="htmlEl"></div>
+// <child-component ref="componentEl"></child-component>
+
+// Logic:
+// 1. Define refs for your template elements
+const htmlEl = ref(null);
+const componentEl = ref(null);
+
+// 2. Use the utility after the component has mounted
+onMounted(() => {
+  const resolvedHtmlEl = dom.refToElement(htmlEl.value);
+  console.log(resolvedHtmlEl); // -> HTMLElement <div>
+
+  const resolvedComponentEl = dom.refToElement(componentEl.value);
+  console.log(resolvedComponentEl); // -> The root HTMLElement of ChildComponent
+});
+```
