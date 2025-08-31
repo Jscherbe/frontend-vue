@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.17
+
+- Add `components/systems/skeleton` component
+
 ## 0.1.0-beta.16
 
 - Add `usePagination` composable to make handling pagination easy to setup with various components
