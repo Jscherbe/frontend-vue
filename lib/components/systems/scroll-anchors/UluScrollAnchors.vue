@@ -10,6 +10,7 @@
   import { SECTIONS, REGISTER, UNREGISTER } from "./symbols.js";
   export default {
     name: "ScrollAnchors",
+    emits: ["section-change"],
     props: {
       firstItemActive: Boolean,
       /**
@@ -97,7 +98,7 @@
                 } else if (lastExiting && section.active) {
                   removeActive();
                 }
-                this.$emit("sectionChange", { 
+                this.$emit("section-change", { 
                   section, 
                   sections, 
                   active: isIntersecting 

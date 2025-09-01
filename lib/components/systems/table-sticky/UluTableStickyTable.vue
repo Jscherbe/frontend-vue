@@ -50,7 +50,7 @@
             :class="{ 
               'table-sticky__sort-button--focused' : column.sortFocused,
             }"
-            @click="$emit('columnSorted', column)"
+            @click="$emit('column-sorted', column)"
             @focus="handleSortFocus(column, true)"
             @blur="handleSortFocus(column, false)"
             :aria-pressed="column.sortApplied ? 'true' : 'false'"
@@ -199,9 +199,9 @@
         const { id } = column;
         const old = headerRefs[id];
         if (old) {
-          this.$emit("actualHeaderRemoved", old);
+          this.$emit("actual-header-removed", old);
         }
-        this.$emit("actualHeaderAdded", el);
+        this.$emit("actual-header-added", el);
         headerRefs[id] = el;
       },
       /**

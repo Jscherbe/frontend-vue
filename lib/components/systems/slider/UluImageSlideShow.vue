@@ -9,7 +9,7 @@
   <UluSlideShow 
     class="slideshow--images" 
     :items="images"
-    @slideChange="slideChange"
+    @slide-change="slideChange"
   >
     <template #slide="{ item }">
       <img :src="item.src" :alt="item.alt">

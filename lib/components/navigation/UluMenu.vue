@@ -60,7 +60,7 @@
       /**
        * Fired anytime a item is clicked
        */
-      "itemClick"
+      "item-click"
     ],
     props: {
       /**
@@ -98,7 +98,7 @@
         if (item.click) {
           item.click(event);
         }
-        this.$emit("itemClick", { item, event });
+        this.$emit("item-click", { item, event });
       }
     }
   };

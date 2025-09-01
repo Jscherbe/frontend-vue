@@ -99,6 +99,7 @@
 <script>
   export default {
     name: 'SlideShow',
+    emits: ['slide-change'],
     props: {
       /**
        * Should slides be focusable by tab key
@@ -278,7 +279,7 @@
             this.$nextTick(() => {
               const slide = this.getSlideByElement(entry.target);
               slide.active = entry.isIntersecting;
-              this.$emit('slideChange', { slide, track, nav });
+              this.$emit('slide-change', { slide, track, nav });
             });
           });
         };

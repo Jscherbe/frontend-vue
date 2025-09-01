@@ -43,7 +43,7 @@
             pointerEvents: sizesCalculated ? 'auto' : 'none',
             width: tableWidth
           }"
-          @columnSorted="applySort"
+          @column-sorted="applySort"
         >
           <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
             <slot :name="name" v-bind="slotData" />
@@ -66,7 +66,7 @@
           opacity: headerOpacityX,
           pointerEvents: headerVisibleX ? 'auto' : 'none'
         }"
-        @columnSorted="applySort"
+        @column-sorted="applySort"
       >
         <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
           <slot :name="name" v-bind="slotData" />
@@ -138,9 +138,9 @@
         :getRowValue="getRowValue"
         :getColumnTitle="getColumnTitle"
         @vue:mounted="tableReady"
-        @actualHeaderRemoved="headerRemoved"
-        @actualHeaderAdded="headerAdded"
-        @columnSorted="applySort"
+        @actual-header-removed="headerRemoved"
+        @actual-header-added="headerAdded"
+        @column-sorted="applySort"
       >
         <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
           <slot :name="name" v-bind="slotData" />
@@ -167,7 +167,7 @@
         opacity: headerOpacityX,
         pointerEvents: headerVisibleX ? 'auto' : 'none'
       }"
-      @columnSorted="applySort"
+      @column-sorted="applySort"
     >
       <template v-for="(_, name) in $slots" v-slot:[name]="slotData">
         <slot :name="name" v-bind="slotData" />
@@ -443,7 +443,7 @@
         } else {
           column.sortApplied = true;
         }
-        this.$emit("columnSort", column);
+        this.$emit("column-sort", column);
       },
       onColumnResize() {
         if (this.sizesPainted) {

@@ -35,11 +35,11 @@
     inputAttrs: Object
   });
 
-  const emit = defineEmits(["filesChange"]);
+  const emit = defineEmits(["file-change"]);
 
   const id = getNextId();
 
   const onChangeFile = (event) => {
-    emit("filesChange", event.target.files);
+    emit("file-change", event.target.files);
   };
 </script>
