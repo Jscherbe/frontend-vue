@@ -4,6 +4,7 @@
 
 - Update all custom emitted events to kebab case
   - Change UluFormFile event to singular from 'files-changed' to 'file-changed'
+- Remove all legacy FaIcon icons left in components, replace with UluIcon
 
 ## 0.1.0-beta.19
 
