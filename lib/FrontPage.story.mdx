@@ -1,0 +1,154 @@
+
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { version } from '../package.json';
+import * as ButtonStories from './components/elements/UluButton.stories.js';
+import * as CardStories from './components/elements/UluCard.stories.js';
+
+<Meta title="Introduction" />
+
+# ULU Frontend Vue v{version}
+
+Welcome to the living style guide for the ULU Vue component library. This library provides a comprehensive set of accessible, reusable, and composable Vue 3 components, composables, and plugins to build modern web applications.
+
+This documentation provides interactive examples and detailed API documentation for every part of the library.
+
+---
+
+## Core Concepts
+
+The ULU ecosystem is built on two main packages:
+
+- **`@ulu/frontend`**: The framework-agnostic core. It contains the foundational SCSS for styling, vanilla JavaScript utilities, and base components. It knows nothing about Vue.
+- **`@ulu/frontend-vue`** (This Library): The Vue 3 implementation. It provides wrapper components, composables, and plugins that build upon and integrate seamlessly with the `@ulu/frontend` core.
+
+This separation allows for a consistent design system that can be applied to any web technology, while providing a rich, idiomatic experience for Vue developers.
+
+---
+
+## Installation
+
+To get started, add the library to your project.
+
+```bash
+npm install @ulu/frontend-vue
+```
+
+Next, you must register the required plugins in your main application entry point (`main.js`). The `corePlugin` is essential, and other plugins like `breakpointsPlugin`, `popoverPlugin` are optional. Some components require plugins. If a required plugin is missing, an error is thrown.
+
+**`src/main.js`**
+```javascript
+import { createApp } from 'vue';
+import App from './App.vue';
+import { 
+  corePlugin, 
+  breakpointsPlugin, 
+  toastPlugin, 
+  modalsPlugin, 
+  popoversPlugin 
+} from '@ulu/frontend-vue';
+import router from './router'; // Your vue-router instance
+
+// Import the main SCSS entry point
+import '@ulu/frontend-vue/lib/_index.scss';
+
+const app = createApp(App);
+
+app.use(router);
+
+// Register ULU plugins
+app.use(corePlugin, {
+  // Optional: override default icons
+  iconsByType: {
+    danger: 'fas fa-exclamation-triangle',
+    close: 'fas fa-times'
+  }
+});
+app.use(breakpointsPlugin);
+app.use(toastPlugin);
+app.use(modalsPlugin, { 
+  modals: [
+    /* your global modals */
+  ] 
+});
+app.use(popoversPlugin);
+
+
+app.mount('#app');
+```
+
+Finally, you need to add the display components for plugins like `toast` and `modals` to your root `App.vue` file.
+
+**`src/App.vue`**
+```html
+<template>
+  <!-- Your App Layout -->
+  <router-view />
+
+  <!-- ULU Plugin Display Components -->
+  <UluToastDisplay />
+  <UluModalsDisplay />
+  <UluTooltipDisplay />
+</template>
+```
+
+---
+
+## What's Inside?
+
+The library is organized into several key areas:
+
+### Components
+
+These are the reusable building blocks of your UI. They are organized by function into categories like `elements`, `collapsible`, `forms`, `layout`, `navigation`, and `systems`.
+
+**Simple Component Example: `UluButton`**
+
+<Canvas of={ButtonStories.Primary} />
+
+**Complex Component Example: `UluCard`**
+
+<Canvas of={CardStories.Default} />
+
+### Composables
+
+Reusable, stateful logic that can be shared across components.
+
+- `useFacets`: A powerful composable for client-side filtering, searching, and sorting of data.
+- `usePagination`: Handles all the logic for paginating a list of items, including integration with Vue Router.
+- `useBreakpointManager`: A reactive interface to CSS breakpoints.
+- `useModifiers`: A utility for creating BEM-style modifier classes.
+- `useWindowResize`: A debounced window resize event listener.
+- `useRequiredInject`: A utility to ensure required dependencies are injected from plugins.
+
+### Plugins
+
+Plugins provide global functionality and APIs that can be accessed from anywhere in your application.
+
+- **`corePlugin` (Required)**: Manages global settings, primarily for the icon system.
+- **`breakpointsPlugin`**: Provides reactive information about the current CSS breakpoint (`uluIsMobile`, `uluBreakpointActive`).
+- **`modalsPlugin`**: A system for registering and triggering global modals (e.g., for settings or confirmation dialogs).
+- **`toastPlugin`**: A global API (`$uluToast`) for showing toast notifications.
+- **`popoversPlugin`**: Enables a simple `v-ulu-tooltip` directive for tooltips and provides the `UluPopover` component.
+
+**Example: Triggering a Toast Notification**
+```javascript
+import { useToast } from '@ulu/frontend-vue';
+
+const toast = useToast();
+
+toast.add({
+  title: 'Success!',
+  description: 'Your profile has been updated.',
+  class: 'is-success'
+});
+```
+
+### Component Systems
+
+Systems are complex, multi-component features that solve a specific problem.
+
+- **Facets**: A complete system for faceted search, built around the `useFacets` composable. Includes components for search, sort, filters, and results display.
+- **Scroll Anchors**: A system for creating navigations that track the user's scroll position within a page.
+- **Skeleton**: A set of components for creating beautiful and effective loading states.
+- **Table Sticky**: A powerful table component with sticky headers and columns.
+- **Slider**: A flexible slideshow/carousel component.

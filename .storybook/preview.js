@@ -16,13 +16,23 @@ import "./preview-theme/icons.js";
 /** @type { import('@storybook/vue3-vite').Preview } */
 const preview = {
   parameters: {
-    actions: { argTypesRegex: "^on[A-Z].*" },
+    actions: { 
+      argTypesRegex: "^on[A-Z].*" 
+    },
     controls: {
       matchers: {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
     },
+    options: {
+      // Sort alphabetical based on filenames
+      storySort: (a, b) => {
+        return a.importPath === b.importPath ? 
+          0 : 
+          a.importPath.localeCompare(b.importPath, undefined, { numeric: true });
+      }
+    }
   },
 };
 

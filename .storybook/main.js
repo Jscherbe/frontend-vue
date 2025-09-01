@@ -3,6 +3,7 @@ import { mergeConfig } from 'vite';
 /** @type { import('@storybook/vue3-vite').StorybookConfig } */
 const config = {
   stories: [
+    "../lib/FrontPage.story.mdx",
     "../lib/**/*.story.mdx", // Can't use .stories (old syntax that was used to create actual stories)
     "../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)",
   ],
