@@ -37,3 +37,6 @@ debug-storybook.log
 
 # Model contexts for node modules
 .contexts/
+
+# Local AI Context
+GEMINI.md

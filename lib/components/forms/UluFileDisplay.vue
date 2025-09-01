@@ -1,21 +1,30 @@
 <template>
   <a class="layout-flex-baseline" :href="fileUrl" :download="file.name">
-    <FaIcon class="ui-icon" :icon="['far', $site.getIcon('file')]"/>
-    <span class="margin-left-small-x">
-      {{ file.name }}
-      <span class="tag tag--small tag--outline type-small-x">{{ fileSize }}</span>
-    </span>
+    <slot :fileName="file.name" :fileSize="fileSize">
+      <UluIcon class="ui-icon" :icon="icon"/>
+      <span class="margin-left-small-x">
+        {{ file.name }}
+        <UluTag v-if="!noFileSize" :text="fileSize" small outline />
+      </span>
+    </slot>
   </a>
 </template>
 
 <script setup>
   import { computed } from "vue";
+  import UluIcon from "../elements/UluIcon.vue";
+  import UluTag from "../elements/UluTag.vue";
 
   const props = defineProps({
     file: {
       required: true,
-      type: Object
-    }
+      type: Object,
+    },
+    icon: {
+      type: String,
+      default: "type:file"
+    },
+    noFileSize: Boolean
   });
 
   const fileUrl = computed(() => {

@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.1.0-beta.19
+
+- Convert some components to composition API
+- Update `UluTag` component to have size, template adjustments/fixes
+- Add `flowInline` prop to `UluIcon` 
+- Working on setting up stories (documentation) for form components
+
 ## 0.1.0-beta.18
 
 - Finish setting up utils, which can be imported as { utils } and used like `utils.dom.refToElement()` or `utils.router.nativeLinkRouter()`. Setup basic story/docs for these.

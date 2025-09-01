@@ -6,20 +6,21 @@ Build/Deployment:
         * Results in the components using their own instance of settings.js 
         * This can be avoided by building it in vs using modules to manage singleton state 
 Todos:
+  ☐ Make sure FaIcon's are refactored @important
+  ☐ Convert all events to kebab case @important
   ☐ Create utility for counter id stuff (reoccurring need), can just be a closure
   ☐ Convert everything to composition API going forward @in-progress
   ☐ Make sure props have jsdoc comments for each component
-  ☐ Left off on
-    ☐ Forms
-      ☐ Left off on Checkbox Menu (should it use menu-stack)
+  ☐ Forms @in-progress
+    ✔ Left off on Checkbox Menu (should it use menu-stack) @done
   ☐ Make breadcrumbs agnostic
   ☐ Need to add badge stack to ulu frontend
   ☐ Need to add skeleton to frontend
   ☐ Need to add spoke spinner to frontend
   ☐ Left off migrating other components (not namespaced yet)
-  ☐ Left off setting up toast plugin test @important
-    ☐ Need to setup frontend styling for this
-  ☐ Make sure FaIcon's are refactored
+  ✔ Left off setting up toast plugin test @important @done
+    ✔ Need to setup frontend styling for this @done
+  
   ☐ Normalize modifiers across all components
     * No type or things like that user should expect to use modifiers
   ☐ Check all components against AR

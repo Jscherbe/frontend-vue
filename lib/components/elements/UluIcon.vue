@@ -3,15 +3,17 @@
     v-if="customIconComponent"
     :is="customIconComponent"
     v-bind="customIconProps"
+    :class="commonClasses"
   />
   <component
     v-else-if="!useStaticFa && faIconComponent && resolvedDefinition"
     :is="faIconComponent"
     v-bind="iconProps"
+    :class="commonClasses"
   />
   <span
     v-else-if="useStaticFa && resolvedDefinition"
-    :class="staticIconClasses"
+    :class="[staticIconClasses, commonClasses]"
     aria-hidden="true"
   ></span>
 </template>
@@ -32,6 +34,10 @@
      * - This will override the 'type' prop if both are provided
      */
     icon: [String, Array, Object, Boolean],
+    /**
+     * Whether the icon should use flow inline
+     */
+    flowInline: Boolean
   });
 
   const useStaticFa = computed(() => {
@@ -75,6 +81,10 @@
   const staticIconClasses = computed(() => {
     return getClassesFromDefinition(resolvedDefinition.value);
   });
+
+  const commonClasses = computed(() => ({
+    'flow-inline': props.flowInline
+  }));
 
   // Watch for changes to prop
   // - Use watchEffect because we are watching reactive object property access (props)
