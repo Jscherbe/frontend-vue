@@ -37,7 +37,7 @@
     /**
      * Whether the icon should use flow inline
      */
-    flowInline: Boolean
+    spaced: Boolean
   });
 
   const useStaticFa = computed(() => {
@@ -83,7 +83,7 @@
   });
 
   const commonClasses = computed(() => ({
-    'flow-inline': props.flowInline
+    'flow-inline': props.spaced
   }));
 
   // Watch for changes to prop

@@ -10,7 +10,7 @@
       resolvedModifiers
     ]"
   >
-    <UluIcon v-if="icon" :icon="icon" flowInline />
+    <UluIcon v-if="icon" :icon="icon" spaced />
     <slot>
       <span>{{ text }}</span>
     </slot>

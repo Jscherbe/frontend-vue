@@ -4,7 +4,7 @@
 
 - Convert some components to composition API
 - Update `UluTag` component to have size, template adjustments/fixes
-- Add `flowInline` prop to `UluIcon` 
+- Add `spaced` prop to `UluIcon` which will apply `.flow-inline` utility class
 - Working on setting up stories (documentation) for form components
 
 ## 0.1.0-beta.18
