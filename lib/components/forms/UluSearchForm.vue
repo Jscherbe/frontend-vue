@@ -13,12 +13,13 @@
       class="search-form__submit button button--primary"
       aria-label="Submit Search"
     >
-      <FaIcon :icon="$site.getIcon('search')"/>
+      <UluIcon icon="type:search" />
     </button>
   </div>
 </template>
 
 <script setup>
+  import UluIcon from "../elements/UluIcon.vue";
   defineProps({
     placeholder: {
       type: String,

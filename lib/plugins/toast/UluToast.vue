@@ -13,7 +13,7 @@
   >
     <div v-if="toast.icon || $slots.icon" class="toast__icon" :class="classes.icon">
       <slot name="icon" :toast="toast">
-        <FaIcon v-if="toast.icon" :icon="toast.icon"/>
+        <UluIcon v-if="toast.icon" :icon="toast.icon"/>
       </slot>
     </div>
     <div class="toast__content" :class="classes.content">

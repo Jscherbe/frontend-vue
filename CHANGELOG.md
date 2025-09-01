@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.0-beta.20
+
+- Update all custom emitted events to kebab case
+  - Change UluFormFile event to singular from 'files-changed' to 'file-changed'
+
 ## 0.1.0-beta.19
 
 - Convert some components to composition API

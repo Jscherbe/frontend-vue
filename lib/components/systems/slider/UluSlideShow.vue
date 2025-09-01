@@ -50,7 +50,7 @@
             @click="previous"
             :disabled="!canScrollLeft"
           >
-            <FaIcon class="slideshow__control-icon" icon="fas fa-chevron-left"/>
+            <UluIcon class="slideshow__control-icon" icon="type:next"/>
           </button>
         </li>
         <li class="slideshow__controls-item slideshow__controls-item--next">
@@ -60,7 +60,7 @@
             @click="next"
             :disabled="!canScrollRight"
           >
-            <FaIcon class="slideshow__control-icon" icon="fas fa-chevron-right"/>
+            <UluIcon class="slideshow__control-icon" icon="type:previous" />
           </button>
         </li>
       </ul>
@@ -97,9 +97,13 @@
 </template>
 
 <script>
+  import UluIcon from "../../elements/UluIcon.vue";
   export default {
     name: 'SlideShow',
     emits: ['slide-change'],
+    components: {
+      UluIcon
+    },
     props: {
       /**
        * Should slides be focusable by tab key
