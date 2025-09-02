@@ -77,6 +77,7 @@ Todos:
         * Not sure how useful histoire will be for basic compontents
 
 Not Vital:
+  ☐ Need to work on types and how they are setup in package.json they work when importing direct files but not from index.js
   ☐ Modal
     ☐ Should 
     ☐ In the future, refactor resizer (in ulu/frontend) to be selfManaged too
