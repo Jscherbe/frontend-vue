@@ -6,12 +6,20 @@ const config = {
     "../lib/FrontPage.story.mdx",
     "../lib/**/*.story.mdx", // Can't use .stories (old syntax that was used to create actual stories)
     "../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "../lib/**/*.doc.mdx"
   ],
   addons: [
     "@storybook/addon-links", 
     "@storybook/addon-docs",
     // "@storybook/addon-essentials",
-    "storybook-addon-vue-mdx"
+    "storybook-addon-vue-mdx",
+    {
+      name: 'storybook-addon-jsdoc-to-mdx',
+      options: {
+        folderPaths: ['./lib/'], // paths to folders with JS/TS code
+        extensions: ['js'] // file extensions to include
+      }
+    }
   ],
   staticDirs: ["./preview-theme/static"],
   framework: {

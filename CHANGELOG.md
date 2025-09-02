@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.22
+
+- Add generated Typescript declarations (types) to published package for IDE support
+
 ## 0.1.0-beta.21
 
 - Remove placeholder for `useDocumentTitle` argument titleTemplate
