@@ -1,17 +1,14 @@
 # Change Log
 
-## 0.1.0-beta.20
-
-- Update all custom emitted events to kebab case
-  - Change UluFormFile event to singular from 'files-changed' to 'file-changed'
-- Remove all legacy FaIcon icons left in components, replace with UluIcon
-
 ## 0.1.0-beta.19
 
 - Convert some components to composition API
 - Update `UluTag` component to have size, template adjustments/fixes
 - Add `spaced` prop to `UluIcon` which will apply `.flow-inline` utility class
 - Working on setting up stories (documentation) for form components
+- Update all custom emitted events to kebab case
+  - Change UluFormFile event to singular from 'files-changed' to 'file-changed'
+- Remove all legacy FaIcon icons left in components, replace with UluIcon
 
 ## 0.1.0-beta.18
 
