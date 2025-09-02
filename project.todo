@@ -77,6 +77,9 @@ Todos:
         * Not sure how useful histoire will be for basic compontents
 
 Not Vital:
+  ☐ Need to go through router utils and normalize title resolution to a single function so that all titles are resolved the same way, I think we can only use the usePageTitles titles in breadcrumbs
+    ☐ Need to reevaluate this solution, it relies on the components being mounted which isn't good for menus
+      * It works for breadcrumbs because your on that page so the dynamic page title has been set but for menus this wouldn't work. Need to re-think this, maybe the routes meta title as a function is really the only universal solution. It does require duplicating dynamic stuff (ie. you load the content in the component based on params, etc. You would need to do the same in the routes, so you would need to abstract the logic for loading whatever needs to be loaded to get the title in both places)
   ☐ Need to work on types and how they are setup in package.json they work when importing direct files but not from index.js
   ☐ Modal
     ☐ Should 
