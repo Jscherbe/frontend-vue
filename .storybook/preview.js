@@ -26,8 +26,15 @@ const preview = {
       },
     },
     options: {
-      // Sort alphabetical based on filenames
+      // Sort alphabetical based on filenames (except frontpage)
       storySort: (a, b) => {
+        const frontPath = "lib/FrontPage.story.mdx";
+        if (a.importPath.includes(frontPath)) {
+          return -1;
+        }
+        if (b.importPath.includes(frontPath)) {
+          return 1;
+        }
         return a.importPath === b.importPath ? 
           0 : 
           a.importPath.localeCompare(b.importPath, undefined, { numeric: true });
