@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.0-beta.20
+
+- Setup new utility function `$createBreadcrumb` for simple route based breadcrumb trail
+- Setup new composable `usePageTitle` for setting page titles (including computed page titles)
+- Setup new composable `useDocumentTitle` for automatically injecting page title from `usePageTitle` in unhead useHead
+
 ## 0.1.0-beta.19
 
 - Convert some components to composition API
