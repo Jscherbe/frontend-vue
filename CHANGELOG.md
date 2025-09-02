@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.21
+
+- Remove placeholder for `useDocumentTitle` argument titleTemplate
+
 ## 0.1.0-beta.20
 
 - Setup new utility function `$createBreadcrumb` for simple route based breadcrumb trail
