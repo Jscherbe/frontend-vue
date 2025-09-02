@@ -111,6 +111,21 @@ export function $createSectionMenu(route: any, options: {
     item: any;
 }): Array<RouteMenuItem>;
 /**
+ * For a given $route, this will generate a breadcrumb trail.
+ * It iterates through `route.matched` to build the trail.
+ * - Prioritizes titles set via the `usePageTitle` composable for the current page.
+ * - Falls back to `meta.title` (string or function).
+ * - Skips routes where `meta.breadcrumb` is set to `false`.
+ * - Avoids duplicate crumbs for nested routes with empty paths.
+ * @param {Object} route The Vue Router `$route` object.
+ * @returns {Array.<{title: String, to: Object, current: Boolean}>} An array of breadcrumb items.
+ */
+export function $createBreadcrumb(route: any): Array<{
+    title: string;
+    to: any;
+    current: boolean;
+}>;
+/**
  * Route Menu Item
  */
 export type RouteMenuItem = {
