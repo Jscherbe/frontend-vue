@@ -13,13 +13,6 @@ const config = {
     "@storybook/addon-docs",
     // "@storybook/addon-essentials",
     "storybook-addon-vue-mdx",
-    {
-      name: 'storybook-addon-jsdoc-to-mdx',
-      options: {
-        folderPaths: ['./lib/'], // paths to folders with JS/TS code
-        extensions: ['js'] // file extensions to include
-      }
-    }
   ],
   staticDirs: ["./preview-theme/static"],
   framework: {
