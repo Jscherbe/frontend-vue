@@ -28,13 +28,12 @@ const preview = {
     options: {
       // Sort alphabetical based on filenames (except frontpage)
       storySort: (a, b) => {
-        const frontPath = "lib/FrontPage.story.mdx";
-        if (a.importPath.includes(frontPath)) {
-          return -1;
-        }
-        if (b.importPath.includes(frontPath)) {
-          return 1;
-        }
+        const isIntro = p => p.title.endsWith("Introduction");
+        // Move intros to top
+        if (isIntro(a)) return -1;
+        if (isIntro(b)) return 1;
+
+        // Else alphabetical by paths
         return a.importPath === b.importPath ? 
           0 : 
           a.importPath.localeCompare(b.importPath, undefined, { numeric: true });

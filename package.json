@@ -1,6 +1,6 @@
 {
   "name": "@ulu/frontend-vue",
-  "version": "0.1.0-beta.23",
+  "version": "0.1.0-beta.24",
   "description": "A modular and tree-shakeable Vue 3 component library for the Ulu frontend",
   "type": "module",
   "files": [
@@ -19,6 +19,7 @@
     "./*": "./lib/*",
     "./scss": "./lib/_index.scss"
   },
+  "types": "./types/index.d.ts",
   "typesVersions": {
     "*": {
       "*": [
