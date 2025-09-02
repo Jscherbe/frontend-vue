@@ -11,7 +11,8 @@
   "module": "./lib/index.js",
   "exports": {
     ".": {
-      "import": "./lib/index.js"
+      "import": "./lib/index.js",
+      "types": "./types/index.d.ts"
     },
     "./dist": {
       "import": "./dist/frontend-vue.js"

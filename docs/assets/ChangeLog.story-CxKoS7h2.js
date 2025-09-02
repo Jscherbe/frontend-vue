@@ -1,4 +1,4 @@
-# Change Log
+import{I as e}from"./jsx-runtime-BfpWGPQD.js";import{useMDXComponents as i}from"./index-DIzwWG-n.js";import{M as a,c as s}from"./blocks-CLkxjWXN.js";import{r}from"./index-vwjNkSeb.js";import"./iframe-Nq88G_pO.js";import"./preload-helper-BJwshlQW.js";const l=`# Change Log
 
 ## 0.1.0-beta.22-25
 
@@ -6,19 +6,19 @@
 
 ## 0.1.0-beta.21
 
-- Remove placeholder for `useDocumentTitle` argument titleTemplate
+- Remove placeholder for \`useDocumentTitle\` argument titleTemplate
 
 ## 0.1.0-beta.20
 
-- Setup new utility function `$createBreadcrumb` for simple route based breadcrumb trail
-- Setup new composable `usePageTitle` for setting page titles (including computed page titles)
-- Setup new composable `useDocumentTitle` for automatically injecting page title from `usePageTitle` in unhead useHead
+- Setup new utility function \`$createBreadcrumb\` for simple route based breadcrumb trail
+- Setup new composable \`usePageTitle\` for setting page titles (including computed page titles)
+- Setup new composable \`useDocumentTitle\` for automatically injecting page title from \`usePageTitle\` in unhead useHead
 
 ## 0.1.0-beta.19
 
 - Convert some components to composition API
-- Update `UluTag` component to have size, template adjustments/fixes
-- Add `spaced` prop to `UluIcon` which will apply `.flow-inline` utility class
+- Update \`UluTag\` component to have size, template adjustments/fixes
+- Add \`spaced\` prop to \`UluIcon\` which will apply \`.flow-inline\` utility class
 - Working on setting up stories (documentation) for form components
 - Update all custom emitted events to kebab case
   - Change UluFormFile event to singular from 'files-changed' to 'file-changed'
@@ -26,33 +26,33 @@
 
 ## 0.1.0-beta.18
 
-- Finish setting up utils, which can be imported as { utils } and used like `utils.dom.refToElement()` or `utils.router.nativeLinkRouter()`. Setup basic story/docs for these.
+- Finish setting up utils, which can be imported as { utils } and used like \`utils.dom.refToElement()\` or \`utils.router.nativeLinkRouter()\`. Setup basic story/docs for these.
 
 ## 0.1.0-beta.17
 
-- Add `components/systems/skeleton` component
+- Add \`components/systems/skeleton\` component
 
 ## 0.1.0-beta.16
 
-- Add `usePagination` composable to make handling pagination easy to setup with various components
+- Add \`usePagination\` composable to make handling pagination easy to setup with various components
   - Can be used with UluPager, Custom logic or something like the facets system
 
 ## 0.1.0-beta.15
 
-- Setup `UluPager` component (matches ulu frontend pager structure for styling)
+- Setup \`UluPager\` component (matches ulu frontend pager structure for styling)
 
 ## 0.1.0-beta.13 - 0.1.0-beta.14
 
-- Make `useFacets` default alpha sorter account for missing values
+- Make \`useFacets\` default alpha sorter account for missing values
 
 ## 0.1.0-beta.12
 
-- Working on making facets system helper (`useFacets`) more flexible for sorts
-  - Add helpers to `useFacets` to reduce boilerplate code needed with the conversion from monolithic design to modular user controls state and output/etc design:
-    - Added `facetFields` option to automatically generate facet groups and values from the items list.
-    - Exposed a `handleFacetChange` method to simplify managing facet selection state.
-    - Corrected filtering logic to use AND (`every`) when combining different facet groups instead of OR (`some`).
-    - Made `clearFilters` more robust by resetting selections instead of recreating facets.
+- Working on making facets system helper (\`useFacets\`) more flexible for sorts
+  - Add helpers to \`useFacets\` to reduce boilerplate code needed with the conversion from monolithic design to modular user controls state and output/etc design:
+    - Added \`facetFields\` option to automatically generate facet groups and values from the items list.
+    - Exposed a \`handleFacetChange\` method to simplify managing facet selection state.
+    - Corrected filtering logic to use AND (\`every\`) when combining different facet groups instead of OR (\`some\`).
+    - Made \`clearFilters\` more robust by resetting selections instead of recreating facets.
     - Improved automatic facet generation to react to changes in the source items list.
 
 ## 0.1.0-beta.11
@@ -61,12 +61,12 @@
 
 ## 0.1.0-beta.10
 
-- Add `UluButtonVerbose` component
+- Add \`UluButtonVerbose\` component
 
 ## 0.1.0-beta.9
 
-- Add snippets (not in package, available in repo `/resources/vscode`)
-- `UluTitleRail` - Add prop for rule modifier
+- Add snippets (not in package, available in repo \`/resources/vscode\`)
+- \`UluTitleRail\` - Add prop for rule modifier
 
 ## 0.1.0-beta.8
 
@@ -100,4 +100,5 @@
 
 ## 0.1.0-beta.2
 
-- Add lodash dependency
+- Add lodash dependency`;function o(t){return e(r.Fragment,{children:[e(a,{title:"Overview/Change Log"}),`
+`,e(s,{children:l})]})}function h(t={}){const{wrapper:n}={...i(),...t.components};return n?e(n,{...t,children:e(o,{...t})}):o()}const f=[];export{f as __namedExportsOrder,h as default};
