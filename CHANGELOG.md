@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.1.0-beta.22
+## 0.1.0-beta.22-23
 
 - Add generated Typescript declarations (types) to published package for IDE support
 
