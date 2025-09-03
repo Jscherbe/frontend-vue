@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.27
+
+- Update `UluBreadcrumb` to match current @ulu/frontend scss "breadcrumb" component structure/classes
+
 ## 0.1.0-beta.26
 
 - Unify `utils.router` page title resolution so all functions pull title from route's meta the same way. Note this will be the pattern for labeling pages moving forward because it works better as source of truth and in component set titles don't work well for menus

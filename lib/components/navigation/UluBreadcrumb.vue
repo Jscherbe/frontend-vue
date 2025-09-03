@@ -4,9 +4,10 @@
     aria-label="Breadcrumb"
     v-if="items.length"
   >
-    <ul :class="classes.list">
+    <ol :class="classes.list">
       <li v-for="(item, index) in items" :key="index" :class="classes.item">
         <router-link
+          v-if="!item.current"
           :to="item.to"
           :class="classes.link"
           :aria-current="item.current ? 'page' : null"
@@ -15,6 +16,11 @@
             {{ item.title }}
           </slot>
         </router-link>
+        <span v-else :class="item.current">
+          <slot :item="item">
+            {{ item.title }}
+          </slot>
+        </span>
         <template v-if="index < items.length - 1">
           <slot name="separator">
             <UluIcon
@@ -24,7 +30,7 @@
           </slot>
         </template>
       </li>
-    </ul>
+    </ol>
   </nav>
 </template>
 
@@ -63,6 +69,7 @@
           list: "breadcrumb__list",
           item: "breadcrumb__item",
           link: "breadcrumb__link",
+          current: "breadcrumb__current",
           separator: "breadcrumb__separator"
         })
       }
