@@ -1,1 +1,1 @@
-{"version":3,"file":"useDocumentTitle.d.ts","sourceRoot":"","sources":["../../lib/composables/useDocumentTitle.js"],"names":[],"mappings":"AAKA;;;;;;;;;;;GAWG;AACH,2CAJG;IAAyB,aAAa,GAA9B,MAAM;IACa,QAAQ;IACR,OAAO;CACpC,QA8BA"}
+{"version":3,"file":"useDocumentTitle.d.ts","sourceRoot":"","sources":["../../lib/composables/useDocumentTitle.js"],"names":[],"mappings":"AAQA;;;;;;;;;;;;;;GAcG;AACH,2CALG;IAAqD,KAAK,GAAlD,OAAO,KAAK,EAAE,GAAG,CAAC,MAAM,CAAC,GAAG,MAAM;IACjB,aAAa,GAA9B,MAAM;IACa,QAAQ;IACR,OAAO;CACpC,QAsCA"}

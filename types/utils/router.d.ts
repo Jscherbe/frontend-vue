@@ -4,6 +4,16 @@
  * @module router-utils
  */
 /**
+ * Resolves a route's title from its meta.
+ * - If `meta.title` is a function, it's called with the `currentRoute` (or the route itself).
+ * - Otherwise, `meta.title` is returned.
+ * This function is the single source of truth for resolving titles from route configuration.
+ * @param {object} route The route or route match object.
+ * @param {object} [currentRoute] The current route from `useRoute()`, passed to functional titles.
+ * @returns {string|undefined} The resolved title, or undefined if not found.
+ */
+export function getRouteTitle(route: object, currentRoute?: object): string | undefined;
+/**
  * Route Menu Item
  * @typedef {Object} RouteMenuItem
  * @property {String} path - Menu item route path
@@ -39,12 +49,6 @@ export function createSectionMenu(routes: any, sectionPath: any, options: {
     item: any;
 }): Array<RouteMenuItem>;
 /**
- * For a given route this will return the route that renders. For routes without
- * children this is the route itself for those with children (first child with empty path)
- * @param {Object} route Route object to resolve
- * @returns {Object} Resolved route
- */
-/**
  * For a given array of child routes return the index
  * @param {Array} children Children array of routes
  * @returns {Object} Route
@@ -64,7 +68,7 @@ export function createMenuItem(route: any, routePath: any, options: {
     indexMeta: Function;
 }): RouteMenuItem;
 /**
- * Test if route is static (doesn't incude parameters)
+ * Test if route is static (doesn't include parameters)
  * @param {Object} route Route object to test
  * @returns {Boolean} Whether or not this route is static (not dynamic)
  */
@@ -113,7 +117,6 @@ export function $createSectionMenu(route: any, options: {
 /**
  * For a given $route, this will generate a breadcrumb trail.
  * It iterates through `route.matched` to build the trail.
- * - Prioritizes titles set via the `usePageTitle` composable for the current page.
  * - Falls back to `meta.title` (string or function).
  * - Skips routes where `meta.breadcrumb` is set to `false`.
  * - Avoids duplicate crumbs for nested routes with empty paths.
