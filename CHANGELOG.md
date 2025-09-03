@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.1.0-beta.26
+
+- Unify `utils.router` page title resolution so all functions pull title from route's meta the same way. Note this will be the pattern for labeling pages moving forward because it works better as source of truth and in component set titles don't work well for menus
+- Remove `usePageTitle` composable, this in component title setting pattern doesn't work well for breadcrumbs and menus (since we need this information before components are used/mounted)
+- Move page title setting functionality to `useDocumentTitle` if a page truly needs dynamic title (ie. browser tab title) `useDocumentTitle` can be passed a title in a specific component (ie. for title that would be different than the pages title [like shopping cart with count])
+
+
+
 ## 0.1.0-beta.22-25
 
 - Add generated Typescript declarations (types) to published package for IDE support
