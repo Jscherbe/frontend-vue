@@ -1,0 +1,99 @@
+////
+/// @group index
+/// Output all base styles
+////
+
+@forward "root" as root-*;
+@forward "normalize" as normalize-*;
+@forward "print" as print-*;
+@forward "color" as color-*;
+@forward "elements" as elements-*;
+@forward "keyframes" as keyframes-*;
+@forward "typography" as typography-*;
+@forward "layout" as layout-*;
+
+@use "sass:list";
+
+@use "../utils";
+@use "normalize";
+@use "root";
+@use "elements";
+@use "print";
+@use "typography";
+@use "color";
+@use "keyframes";
+@use "layout";
+
+/// Default includes, all modules
+/// @type List
+
+$all-includes: (
+  "normalize",
+  "root",
+  "elements," 
+  "print", 
+  "elements", 
+  "keyframes", 
+  "typography",
+  "color",
+  "layout"
+);
+
+/// Current included modules (for output when using styles), defaults to all
+/// @type List
+
+$current-includes: $all-includes;
+
+/// Change default includes (when user prints modules)
+/// - This available as configuration so that it can be configured (to allow easily copying configuration)
+/// @param {List} $includes List of modules by name to be included when styles are printed
+
+@mixin set-includes($includes) {
+  @include utils.require-list-contains($all-includes, $includes, "base.set-includes", true);
+  $current-includes: $includes !global;
+}
+
+/// Exclude certain items from includes
+/// @param {List} $excludes List of item names
+
+@mixin set-excludes($excludes) {
+  $current-includes: utils.list-without($current-includes, $excludes) !global;
+}
+
+/// Prints all Base styles
+/// @name base-styles
+/// @param {List} $includes [$all-includes] A list of components to include (defaults to current)
+/// @example scss
+///  @include ulu.base-styles();
+
+@mixin styles($includes: $current-includes) {
+  @include utils.file-header("base");
+  
+  @include utils.require-list-contains($all-includes, $includes, "base.$includes", true);
+  
+  @if (list.index($includes, "normalize")) {
+    @include normalize.styles;
+  }
+  @if (list.index($includes, "root")) {
+    @include root.styles;
+  }
+  @if (list.index($includes, "elements")) {
+    @include elements.styles;
+  }
+  @if (list.index($includes, "keyframes")) {
+    @include keyframes.styles;
+  }
+  @if (list.index($includes, "typography")) {
+    @include typography.styles;
+  }
+  @if (list.index($includes, "color")) {
+    @include color.styles;
+  }
+  @if (list.index($includes, "layout")) {
+    @include layout.styles;
+  }
+  @if (list.index($includes, "print")) {
+    @include normalize.styles;
+  }
+}
+

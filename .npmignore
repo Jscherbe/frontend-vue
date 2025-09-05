@@ -25,3 +25,4 @@ vite.config.js
 lib/**/*.test.js
 lib/**/*.spec.js
 
+.ctx/

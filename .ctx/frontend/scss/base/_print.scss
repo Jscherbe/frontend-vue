@@ -1,0 +1,51 @@
+////
+/// @group print
+/// Output base print CSS styles
+////
+
+/// Printed Media Stylesheet
+/// - Note this is a portion of the print styles from the original framework
+///   and may be outdated. Most of the styling options have been removed though
+/// @example scss
+///  @include ulu.base-print-styles();
+
+@mixin styles {
+  @include utils.file-header('base', 'print');
+
+  @media (print) {
+    * {
+      background: transparent !important;
+      color: black !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+      filter: none !important;
+    }
+    a, 
+    a:visited {
+      text-decoration: underline;
+    }
+    pre, 
+    blockquote {
+      page-break-inside: avoid;
+    }
+    tr, img {
+      page-break-inside: avoid;
+    }
+    img {
+      max-width: 100% !important;
+    }
+    p, 
+    h2, 
+    h3 {
+      orphans: 3;
+      widows: 3;
+    }
+    h2, 
+    h3 {
+      page-break-after: avoid;
+    }
+    @page {
+      margin: 0.5in;
+    }
+  }
+}

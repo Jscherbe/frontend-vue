@@ -1,0 +1,261 @@
+////
+/// @group menu-stack
+////
+
+@use "sass:meta";
+@use "sass:map";
+@use "sass:math";
+@use "sass:selector" as sassSelector;
+
+@use "../utils";
+@use "../color";
+@use "../element";
+@use "../selector";
+@use "../button";
+@use "../typography";
+
+// Used for function fallback
+$-fallbacks: (
+  "link-border-radius" : (
+    "function" : meta.get-function("get", false, "button"),
+    "property" : "border-radius"
+  ),
+  "label-line-height" : (
+    "function" : meta.get-function("get", false, "typography"),
+    "property" : "line-height-dense"
+  ),
+  "link-line-height" : (
+    "function" : meta.get-function("get", false, "typography"),
+    "property" : "line-height-dense"
+  )
+);
+    
+/// Module Settings
+/// @type Map
+/// @prop {Dimension} selectable-input-width [3em] The width of the checkbox/radio input
+/// @prop {Boolean} link-separated-margin [false] Enables a margin between the items in the menu-stack.
+/// @prop {Boolean} link-separated-rule-style [false] Enables a rule between the items in the menu-stack.
+/// @prop {Dimension} nested-indent [0.5em] The indentation of child lists within the menu-stack.
+/// @prop {Dimension} rule-margin [0.5em] Sets the padding and margin of the rule.
+/// @prop {String} rule-style [default] Determines the styling of the rule. Uses the rule.scss component.
+/// @prop {Number} toggle-icon-rotate [false] Set a value to rotate the collapsible item toggle icon rotation when open (ie. 90deg)
+/// @prop {Dimension} compact-link-padding-x [0.75em] The links horizontal padding when using the compact option.
+/// @prop {Dimension} compact-link-padding-y [0.25em] The links vertical padding when using the compact option.
+/// @prop {Color} label-color [null] The type color of the label.
+/// @prop {Dimension} label-margin [0.5em] The margin of the label.
+/// @prop {CssValue} label-text-transform [uppercase] Transforms the label text.
+/// @prop {CssValue} label-type-size [false] Adjusts the type size of the label. Only uses font-size from type size.
+/// @prop {CssValue} label-line-height [true] Adjust the label line-height, defaults to typography line-height-dense
+/// @prop {list} link-active-selectors [(.is-active, '[aria-current=page]')] Selectors to apply active styling.
+/// @prop {Color} link-background-color [transparent] The background color of the menu-stack toggle. 
+/// @prop {Color} link-background-color-active [rgb(219, 219, 219)] The background color of the menu-stack toggle when active.
+/// @prop {Color} link-background-color-hover [rgb(219, 219, 219)] The background color of the menu-stack toggle when hovered or focused.
+/// @prop {Dimension} link-border-radius [true] The border radius of the menu-stack toggle. If set to true, will use the border radius from the button component.
+/// @prop {String} link-color [link] The type color of the menu-stack toggle. This uses color.scss, so the value of this option should be a color variable from color.scss.
+/// @prop {Color} link-color-active [black] The type color of the menu-stack toggle when active.
+/// @prop {String} link-color-hover [link-hover] The type color of the menu-stack toggle when hovered or focused.  This uses color.scss, so the value of this option should be a color variable from color.scss.
+/// @prop {CssValue} link-font-weight [null] The font weight of the menu-stack toggle.
+/// @prop {CssValue} label-line-height [true] Adjust the link line-height, defaults to typography line-height-dense
+/// @prop {Dimension} link-icon-margin [0.65em] Adds a right margin to the icon.
+/// @prop {Dimension} link-icon-width [1em] The width of the icon.
+/// @prop {Dimension} link-margin [0.2em] Margin for the menu-stack toggle.
+/// @prop {Dimension} link-padding-x [1em] Horizontal padding for menu-stack toggle.
+/// @prop {Dimension} link-padding-y [0.35em] Vertical padding for menu-stack toggle.
+
+$config: (
+  "selectable-input-width" : 3em,
+  "nested-indent" : 0.5em,
+  "rule-style" : "light",
+  "rule-margin" : 0.5em,
+  "toggle-icon-rotate" : false,
+  "label-color" : null,
+  "label-margin" : 0.5em,
+  "label-text-transform" : uppercase,
+  "label-type-size" : false,
+  "label-line-height" : true,
+  "link-separated-margin" : false,
+  "link-separated-rule-style" : false,
+  "link-active-selectors" : (".is-active", '[aria-current="page"]'),
+  "link-background-color" : transparent,
+  "link-background-color-active" : rgb(219, 219, 219),
+  "link-background-color-hover" : rgb(240, 240, 240),
+  "link-border-radius" : true,
+  "link-color" : "link",
+  "link-color-active" : black,
+  "link-color-hover" : "link-hover",
+  "link-font-weight" : null,
+  "link-line-height" : true,
+  "link-icon-margin" : 0.65em,
+  "link-icon-width" : 1em,
+  "link-margin" : 0.2em,
+  "link-padding-x": 1.25em,
+  "link-padding-y": 0.5em,
+  "compact-link-padding-x": 0.75em,
+  "compact-link-padding-y": 0.25em,
+) !default;
+
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+/// @example scss
+///   @include ulu.component-menu-stack-set(( "property" : value ));
+
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+/// @example scss
+///   @include ulu.component-menu-stack-get("property");
+
+@function get($name) {
+  $value: utils.require-map-get($config, $name, "menu-stack [config]");
+  @return utils.function-fallback($name, $value, $-fallbacks);
+}
+
+// Internal fallback helper
+@function -fallback($op1, $op2) {
+  @return utils.map-fallback($config, $op1, $op2);
+}
+
+/// Prints component styles
+/// @example scss
+///  @include ulu.component-menu-stack-styles();
+/// @todo Colors stuff
+/// @todo Selector prefix
+
+@mixin styles {
+  $prefix: selector.class("menu-stack");
+  $selectable-y: (get("link-padding-y") + get("link-margin"));
+
+  #{ $prefix }--separated {
+    border-top: element.get-rule-style(get("rule-style"));
+    padding-top: get("rule-margin");
+    margin-top: get("rule-margin");
+  }
+  #{ $prefix }__label {
+    text-transform: get("label-text-transform");
+    padding-bottom: get("label-margin");
+    color: color.get(get("label-color"));
+    line-height: get("label-line-height");
+    @if (get("label-type-size")) {
+      @include typography.size(get("label-type-size"), $only-font-size: true);
+    }
+  }
+  #{ $prefix }__item--separator-before {
+    border-top: element.get-rule-style(-fallback("link-separated-rule-style", "rule-style"));
+    margin-top: -fallback("link-separated-margin", "link-padding-y");
+    padding-top: -fallback("link-separated-margin", "link-padding-y");
+  }
+  #{ $prefix }__item--separator-after {
+    border-bottom: element.get-rule-style(-fallback("link-separated-rule-style", "rule-style"));
+    margin-bottom: -fallback("link-separated-margin", "link-padding-y");
+    padding-bottom: -fallback("link-separated-margin", "link-padding-y");
+  }
+  #{ $prefix }__list {
+    & & {
+      padding-left: get("nested-indent");
+    }
+  }
+  // By default the link hangs outside the container so that 
+  // the icons/text align to the text (above/below)
+  // - Use the modifier "site-menu--contained" to keep the links within 
+  //   the parent container (no optical alignment), should be within something that contains it
+  #{ $prefix }__link,
+  #{ $prefix }__selectable,
+  #{ $prefix }__toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: get("link-padding-y") get("link-padding-x");
+    margin: get("link-margin") 0;
+    border-radius: get("link-border-radius");
+    font-weight: get("link-font-weight");
+    line-height: get("link-line-height");
+    color: color.get(get("link-color"));
+    background-color: color.get(get("link-background-color"));
+    box-sizing: border-box;
+    &:hover,
+    &:focus {
+      color: color.get(get("link-color-hover"));
+      background-color: color.get(get("link-background-color-hover"));
+    }
+    @each $active-selector in get("link-active-selectors") {
+      &#{ $active-selector } {
+        &,
+        &:hover {
+          color: color.get(get("link-color-active"));
+          background-color: color.get(get("link-background-color-active"));
+        }
+      }
+    }
+  }
+  #{ $prefix }__selectable {
+    padding: 0;
+    position: relative;
+  }
+  #{ $prefix }__selectable [type="checkbox"],
+  #{ $prefix }__selectable [type="radio"],
+  #{ $prefix }__selectable-input {
+    position: absolute;
+    top: $selectable-y;
+    left: get("link-padding-x");
+  }
+  #{ $prefix }__selectable label,
+  #{ $prefix }__selectable-label {
+    width: 100%;
+    padding: $selectable-y get("link-padding-x") $selectable-y get("selectable-input-width");
+  }
+  #{ $prefix }__link-text {
+    display: block;
+    flex-grow: 1;
+  }
+  #{ $prefix }__link-icon {
+    margin-right: get("link-icon-margin");
+    width: get("link-icon-width");
+  }
+  #{ $prefix }__collapsible {
+    margin: 0;
+    @if (get("toggle-icon-rotate")) {
+      &[open] {
+        #{ $prefix }__toggle-icon {
+          transform: rotate(get("toggle-icon-rotate"));
+        }
+      }
+    }
+  }
+  #{ $prefix }__toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  // Modifiers
+
+  // Link buttons hang outside in margin so that text optically aligns
+  #{ $prefix }--hanging {
+    // padding-left: get("link-padding-x");
+    // padding-right: get("link-padding-x");
+    > #{ $prefix }__list > #{ $prefix }__item {
+      > #{ $prefix }__link, 
+      >#{ $prefix }__collapsible > #{ $prefix }__toggle {
+        margin-left: -(get("link-padding-x"));
+        margin-right: -(get("link-padding-x"));
+        width: calc(100% + (get("link-padding-x") * 2));
+      }
+    } 
+    
+    // #{ $prefix }__toggle { 
+    //   width: auto;
+    // }
+  }
+  #{ $prefix }--compact {
+    #{ $prefix }__link {
+      border-radius: 0;
+      margin: 0;
+      padding: get("compact-link-padding-y") get("compact-link-padding-x");
+    }
+  }
+}

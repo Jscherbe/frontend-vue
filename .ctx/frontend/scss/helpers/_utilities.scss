@@ -1,0 +1,130 @@
+////
+/// @group utilities
+/// Output general utility helper classes
+////
+
+@use "../utils";
+@use "../layout";
+@use "../selector";
+@use "../typography";
+
+/// Print utilities helper styles
+/// - Includes classes like (.crop-margins, .no-scroll-y, .image-full-width, etc)
+/// @example scss
+///  @include ulu.helper-utilities-styles();
+
+@mixin styles {
+
+  $prefix-no-scroll: selector.class("no-scroll");
+  $prefix-image: selector.class("image");
+  $prefix-margin: selector.class("margin");
+  $prefix-no-margin: selector.class("no-margin");
+  $prefix-crop-margins: selector.class("crop-margins");
+  $prefix-no-padding: selector.class("no-padding");
+  $prefix-align-self: selector.class("align-self");
+
+
+  @include utils.file-header('helpers', 'utilities');
+  
+  // Consider removing
+  #{ $prefix-no-scroll }-y { 
+    overflow-y: hidden; 
+  }
+  #{ $prefix-no-scroll }-x { 
+    overflow-x: hidden; 
+  }
+  #{ selector.class("full-height") } {
+    height: 100%;
+  }
+  #{ selector.class("full-width") } {
+    width: 100%;
+  }
+  #{ selector.class("flex-basis-full") } {
+    flex-basis: 100%;
+  }
+  #{ selector.class("full-min-height") } {
+    min-height: 100%;
+  }
+  #{ $prefix-image }-fill {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #{ $prefix-image }-full-width img,
+  #{ $prefix-image }-full-width {
+    width: 100%;
+    height: auto;
+  }
+  #{ $prefix-margin }-auto,
+  #{ selector.class("center") } {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  #{ $prefix-margin }-left-auto {
+    margin-left: auto;
+  }
+  #{ $prefix-margin }-right-auto {
+    margin-right: auto;
+  }
+  #{ $prefix-no-margin } {
+    margin: 0;
+  }
+  #{ $prefix-no-margin }-top {
+    margin-top: 0;
+  }
+  #{ $prefix-no-margin }-bottom {
+    margin-bottom: 0;
+  }
+  #{ $prefix-no-margin }-left {
+    margin-left: 0;
+  }
+  #{ $prefix-no-margin }-right {
+    margin-right: 0;
+  }
+  #{ $prefix-crop-margins } {
+    &:not( #{ $prefix-crop-margins }--last) >:first-child {
+      margin-top: 0;
+    }
+    &:not( #{ $prefix-crop-margins }--first) >:last-child {
+      margin-bottom: 0;
+    }
+  }
+  #{ $prefix-no-padding } {
+    padding: 0;
+  }
+  #{ $prefix-no-padding }-top {
+    padding-top: 0;
+  }
+  #{ $prefix-no-padding }-bottom {
+    padding-bottom: 0;
+  }
+  #{ $prefix-no-padding }-left {
+    padding-left: 0;
+  }
+  #{ $prefix-no-padding }-right {
+    padding-right: 0;
+  }
+  #{ $prefix-align-self }-start {
+    align-self: start;
+  }
+  #{ $prefix-align-self }-center {
+    align-self: center;
+  }
+  #{ $prefix-align-self }-end {
+    align-self: end;
+  }
+  #{ $prefix-align-self }-baseline {
+    align-self: baseline;
+  }
+  #{ selector.class("overflow-hidden") } {
+    overflow: hidden;
+  }
+  #{ selector.class("flow-inline") } {
+    &:not(:first-child) {
+      margin-left: typography.get("space-size");
+    }
+    &:not(:last-child) {
+      margin-right: typography.get("space-size");
+    }
+  }
+}

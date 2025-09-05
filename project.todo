@@ -6,6 +6,7 @@ Build/Deployment:
         * Results in the components using their own instance of settings.js 
         * This can be avoided by building it in vs using modules to manage singleton state 
 Todos:
+  ☐ Finish facets layout
   ☐ Create utility for counter id stuff (reoccurring need), can just be a closure
   ☐ Convert everything to composition API going forward @in-progress
   ☐ Make sure props have jsdoc comments for each component

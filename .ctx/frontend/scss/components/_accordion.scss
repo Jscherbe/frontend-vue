@@ -1,0 +1,231 @@
+////
+/// @group accordion
+/// Outputs accordion component stylesheet, which can be used with <details> or custom disclosure components
+////
+
+// Internal note: We don't require the content to be wrapped, this is so that this can be used on details elements outside of our control. So we use negative margins
+
+@use "sass:map";
+@use "sass:math";
+
+@use "../selector";
+@use "../utils";
+@use "../color";
+@use "../typography";
+
+/// Module Settings
+/// @type Map
+/// @prop {Color}  background-color  [accordion-background] This is the background color of the accordion before it is expanded. 
+/// @prop {Color}  background-color-open  [accordion-background-open] This is the background color of the accordion before it is expanded. This will change the background color of the accordion's summary as well as the details.
+/// @prop {String} border-color ["rule"]
+/// @prop {Number} border-radius  [0] This applies a rounding of edges for the accordion. If there are multiple accordions in a stack, this will only apply to the top of the first accordion and the bottom of the last accordion.
+/// @prop {Dimension} border-width  [1px] The width of the borders of the accordions
+/// @prop {CssValue} box-shadow  [none] Adds a box shadow to accordion container
+/// @prop {Dimension} margin  [3rem] text This is the margin above and below the accordion. Multiple Accordions will stack. See margin-between below.
+/// @prop {Dimension} margin-between  [0] This adds a margin between adjacent accordions. By default, accordions do not have any net margin between each other.
+/// @prop {Dimension} padding-x  [1.5em] Singular value for the left and right padding
+/// @prop {Dimension} padding-y  [1.5em] Singular value for the top and bottom padding
+/// @prop {Color} icon-background-color  [transparent] The background color of the icon.
+/// @prop {Color} icon-background-color-hover  [transparent] The background color of the icon when hovered or focused.
+/// @prop {Number} icon-border-radius  [50%] The border-radius of the icon.
+/// @prop {String} icon-color  [link] Color of the icon. This uses color.scss, so the value of this option should be a color variable from color.scss.
+/// @prop {String} icon-color-hover  [link-hover] Color of the icon when hovered or focused on. This uses color.scss, so the value of this options should be a color variable from color.scss.
+/// @prop {Dimension} icon-font-size  [1.5rem] The font-size of the icon.
+/// @prop {Dimension} icon-size  [auto] The size of the icon. Used as the base in the flex property.
+/// @prop {Dimension} icon-stroke-width [0.15em]
+/// @prop {Color} summary-background-color  [null] The background color for the summary (toggle button) of the accordion
+/// @prop {Color} summary-color  [null] The color of the text in the accordion summary.
+/// @prop {Color} summary-color-hover  [null] The color of the text in the accordion summary when hovering or focusing on it.
+/// @prop {Dimension} summary-line-height  [null] Adjusts the line height of the summary element.
+/// @prop {Dimension} summary-padding-y  [1rem] The vertical padding of the summary.
+/// @prop {Dimension} summary-type-size  [false] The size of the text in the accordion summary. 
+/// @prop {Dimension} transparent-padding-y  [1em] The upper and lower padding of the transparent summary.
+/// @prop {Dimension} transparent-padding-x  [0] The upper and lower padding of the transparent summary.
+/// @prop {Dimension} borderless-margin-between  [0.5rem] Margin between accordions when using no-border modiifier
+
+$config: (
+  "background-color":            "background",
+  "background-color-open":       white,
+  "border-color":                "rule-light",
+  "border-radius":               0,
+  "border-width":                1px,
+  "box-shadow":                  none,
+  "margin":                      3rem,
+  "margin-between":              0,
+  "padding-x":                   1.5em,
+  "padding-y":                   1.5em,
+  "icon-background-color":       transparent,
+  "icon-background-color-hover": transparent,
+  "icon-border-radius":          50%,
+  "icon-color":                  "link",
+  "icon-color-hover":            "link-hover",
+  "icon-font-size":              1.5rem,
+  "icon-size":                   auto,
+  "icon-stroke-width":           0.15em,
+  "summary-background-color":    #f6f6f6,
+  "summary-color":               null,
+  "summary-background-color-hover": null,
+  "summary-color-hover":         null,
+  "summary-line-height":         null,
+  "summary-padding-y":           1rem,
+  "summary-type-size":           false,
+  "transparent-padding-x":       0,
+  "transparent-padding-y":       1em,
+  "borderless-margin-between" :  0.5rem
+) !default;
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+/// @example scss
+///   @include ulu.component-accordion-set(( "property" : value ));
+
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+/// @example scss
+///   @include ulu.component-accordion-get("property");
+
+@function get($name) {
+  @return utils.require-map-get($config, $name, "accordion [config]");
+}
+
+/// Prints component styles
+/// @demo accordion
+/// @example scss
+///  @include ulu.component-accordion-styles();
+
+@mixin styles {
+  $prefix: selector.class("accordion");
+  $padding-x: get("padding-x");
+  $padding-x-double: get("padding-x") * 2;
+  $border: get("border-width") solid color.get(get("border-color"));
+
+  // When not one of our custom classed details components
+  #{ $prefix } {
+    position: relative; // For active border
+    border-radius: 0;
+    padding-left: $padding-x;
+    padding-right: $padding-x;
+    margin-top: get("margin");
+    margin-bottom: get("margin");
+    border: $border;
+    background-color: color.get(get("background-color"));
+    box-shadow: get("box-shadow");
+    &:first-of-type {
+      border-top-left-radius: get("border-radius");
+      border-top-right-radius: get("border-radius");
+    }
+    &:last-of-type {
+      border-bottom-left-radius: get("border-radius");
+      border-bottom-right-radius: get("border-radius");
+    }
+    & + & {
+      $gap: -(get("margin") - get("margin-between"));
+      margin-top: $gap;
+      margin-top: calc($gap - get("border-width"));
+    }
+    &[open], 
+    &.is-active  {
+      background-color: color.get(get("background-color-open"));
+      padding-bottom: get("padding-y");
+      z-index: 2; // Above child details
+      > #{ $prefix }__summary {
+        margin-bottom: get("padding-y");
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0; 
+        border-bottom: $border;
+      }
+    }
+  }
+  #{ $prefix }__summary {
+    background-color: color.get(get("summary-background-color"));
+    color: color.get(get("summary-color"));
+    margin-left: -($padding-x);
+    margin-right: -($padding-x);
+    line-height: get("summary-line-height");
+    padding: get("summary-padding-y") $padding-x;
+    vertical-align: top;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    width: calc(100% + $padding-x-double); // To fix if using <button>
+ 
+    &:has(#{ $prefix }__icon) {
+      display: flex;
+      list-style: none; // Remove the default arrow (old safari?)
+      &::-webkit-details-marker,
+      &::marker {
+        display: none;
+        content: "";
+      }
+    }
+    
+    @if (get("summary-type-size")) {
+      @include typography.size(get("summary-type-size"));
+    }
+    &:hover {
+      background-color: color.get(get("summary-background-color-hover"));
+      color: color.get(get("summary-color-hover"));
+      #{ $prefix }__icon {
+        background-color: color.get(get("icon-background-color-hover"));
+        color: color.get(get("icon-color-hover"));
+      }
+    }
+  }
+  #{ $prefix }__icon {
+    flex: 0 0 get("icon-size");
+    color: color.get(get("icon-color"));
+    margin-left: auto;
+    padding-left: 0.5em;
+    background-color: color.get(get("icon-background-color"));
+    border-radius: get("icon-border-radius");
+    width: get("icon-size");
+    height: get("icon-size");
+    font-size: get("icon-font-size");
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  #{ $prefix }--transparent {
+    border-left: none;
+    border-right: none;
+    background-color: transparent;
+    padding-left: get("transparent-padding-x");
+    padding-right: get("transparent-padding-x");
+    > #{ $prefix }__summary {
+      margin-left: -(get("transparent-padding-x"));
+      margin-right: -(get("transparent-padding-x"));
+      width: 100%;
+      padding: get("transparent-padding-y") get("transparent-padding-x");
+      background-color: transparent;
+      border: none;
+    }
+    &[open], 
+    &.is-active {
+      background-color: transparent;
+      > #{ $prefix }__summary{
+        border-bottom: none;
+        margin-bottom: 0;
+      }
+    }
+  }
+  #{ $prefix }--borderless {
+    border: none;
+    & + & {
+      $gap: -(get("margin") - get("borderless-margin-between"));
+      margin-top: $gap;
+      margin-top: calc($gap - get("border-width"));
+    }
+    &[open],
+    &.is-active {
+      & > .accordion__summary {
+        border-bottom: none;
+      }
+    }
+  }
+}

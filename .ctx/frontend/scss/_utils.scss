@@ -1,0 +1,859 @@
+////
+/// @group utils
+/// Basic utility functions/mixins used throughout system
+////
+
+@use "sass:map";
+@use "sass:meta";
+@use "sass:math";
+@use "sass:list";
+@use "sass:string";
+
+/// Module Settings
+/// @type Map
+/// @prop {Boolean} debug-maps [true] Enable or disable debug map output
+/// @prop {Boolean} file-header-comments [true] Enable or disable module/file header comments
+/// @prop {Number} responsive-change [0.5vw] Default responsive amount to modify items using responsive-property mixin
+/// @prop {Number} pixel-em-base [16px] Default base pixel font size for pixel-to-em
+
+$config: (
+  "debug-maps": true,
+  "file-header-comments": true,
+  "responsive-change": 0.5vw,
+  "pixel-em-base" : 16px,
+) !default;
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+/// @example scss - General example
+///   @include ulu.utils-set(( "property" : value ));
+
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+/// @example scss {compile} Example usage
+///   .test-em-to-pixel {
+///     width: ulu.utils-get("pixel-em-base");
+///   }
+/// @return {Dimension} 
+
+@function get($name) {
+  @return require-map-get($config, $name, 'utils');
+}
+
+/// Get a required value from a map, throw an error if not found
+/// - Remember that that maps cannot intentionally use null (use false instead, if trying to avoid output if not configured)
+/// @param {Map} $map The map to get the value from
+/// @param {String} $key The key in the map to get value from
+/// @param {String} $context The context of using this function for debugging help
+/// @example scss {compile} Example usage
+///   .test-require-map {
+///     $test-map: ("test-font-size": 12px);
+///     font-size: ulu.utils-require-map-get($test-map, "test-font-size");
+///   }
+/// @return {*} The value from the map
+
+@function require-map-get($map, $key, $context: "unknown") {
+  // $value: map.get($map, $key);
+  @if (map.has-key($map, $key)) {
+    @return map.get($map, $key);
+  } @else {
+    @if (get("debug-maps")) {
+      @debug $map;
+    }
+    @error 'ULU: Unable to find  "#{ $key }" in #{ $context } map.';
+  }
+}
+
+/// Ensure a value is present in the list, throw an error if not found
+/// @param {List} $list The map to get the value from
+/// @param {String} $value The value to search for in the list
+/// @param {String} $context The context of using this function for debugging help
+/// @param {String} $warn Display warning instead of throwing error
+
+@mixin require-list-has($list, $value, $context: "unknown", $warn: false) {
+  $index: list.index($list, $value);
+  @if ($index == null) {
+    $message: 'ULU: Unable to find item "#{ $value }" in #{ $context } list.';
+    @if ($warn) {
+      @warn $message;
+    } @else {
+      @error $message;
+    }
+  }
+}
+
+/// Require that the list only is only made up of allowed items
+/// @param {List} $allowed The list of allowed items
+/// @param {String} $list The list to test allowed against
+/// @param {String} $context The context of using this function for debugging help
+/// @param {String} $warn Display warning instead of throwing error
+
+@mixin require-list-contains($allowed, $list, $context: "unknown", $warn: false) {
+  @each $item in $list {
+    @include require-list-has($allowed, $item, $context, $warn);
+  }
+}
+
+/// Returns true if we should include something (map of booleans)
+/// @param {String} $name Name of item to see if it's included
+/// @param {Map} $includes Map of includes
+/// @example scss {compile} Example usage
+///   $include-styles : (
+///     "h2" : true,
+///     "h3" : false
+///   );
+///   @if(ulu.utils-included("h2", $include-styles)) {
+///     h2 {
+///       font-size: 24px;
+///     }
+///   }
+///   @if(ulu.utils-included("h3", $include-styles)) {
+///     h3 {
+///       font-size: 18px;
+///     }
+///   }
+
+@function included($name, $includes) {
+  $value: map.get($includes, $name);
+  @return $value == true;
+}
+
+/// Returns true if we should include something (used for output checking)
+/// @param {List} $context The root area of the framework this file comes from
+/// @param {List} $name The name of the specific area/file (optional)
+
+@mixin file-header($context, $name: "") {
+  @if ("file-header-comments") {
+/* 
+=============================================================================
+#{ $context }:#{ $name }
+============================================================================= 
+*/
+  }
+}
+
+/// Provide a default when value type is not correct
+/// @param {String} $type type of value it should be
+/// @param {String} $value the value to provide if it is that type
+/// @param {String} $fallback the fallback value
+/// @example scss {compile} Example usage
+///   $user-accent-color: #FE5F55;
+///   $user-error-color: "##C6ECAE";
+///   $default-color: #777DA7;
+///   .accent-color {
+///     background-color: ulu.utils-if-type("color", $user-accent-color, $default-color);
+///   }
+///   .error-color {
+///     background-color: ulu.utils-if-type("color", $user-error-color, $default-color);
+///   }
+/// @return {CssValue} Returns the value or the fallback.
+
+@function if-type($type, $value, $fallback) {
+  @if meta.type-of($value) == $type {
+    @return $value;
+  } @else {
+    @return $fallback;
+  }
+}
+
+/// Returns number unit info, and strips the unit
+/// @param {String} $number Number to get meta info for
+/// @return {Map} With properties (unit, value, invalid [true/false if not number])
+/// @example scss {compile} Example usage
+///   $size-info: ulu.utils-number-info(24px);
+///   $size-info-invalid: ulu.utils-number-info("Twenty Four Pixels");
+///   .number-info-result {
+///     content: meta.inspect($size-info);
+///   }
+///   .number-info-invalid-result {
+///     content: meta.inspect($size-info-invalid);
+///   }
+///
+
+@function number-info($number, $errors: false) {
+
+  @if (meta.type-of($number) == 'number') {
+    $is-unitless: math.is-unitless($number);
+    @return (
+      "unit": if($is-unitless, null, math.unit($number)),
+      "value": if($is-unitless, $number, strip-unit($number)),
+      "invalid" : false
+    );
+
+  } @else {
+    @if ($errors) {
+      @error "Expected Number, got #{ meta.type-of($number) } for #{ $number }";
+    }
+    @return (
+      "unit": null,
+      "value": $number,
+      "invalid" : true
+    );
+  }
+}
+
+/// Adds unit to unitless number
+/// @param {Number} $number The unitless number to add unit to
+/// @param {String} $unit The unit to add to number
+/// @return {String} Number with unit attached (can't be used in maths)
+/// @example scss {compile} Example usage
+///   $number: 12;
+///   $unit: "px";
+///   $number-with-unit: ulu.utils-add-unit($number, $unit);
+///   .add-unit-result {
+///     content: $number-with-unit;
+///   }
+///
+
+@function add-unit($number, $unit) {
+  @return $number + string.unquote($unit);
+}
+
+/// Checks if two numbers are the same unit
+/// @param {Number} $number 
+/// @param {String} $other-number 
+/// @return {Boolean} Whether they have the same unit type
+/// Could be made into multiple arguments in future if needed 
+/// @example scss {compile} Example usage
+///   $number-1: 12px;
+///   $number-2: 12px;
+///   $number-3: 12rem;
+///   .positive-result {
+///     content: ulu.utils-units-match($number-1, $number-2);
+///   }
+///   .negative-result {
+///     content: ulu.utils-units-match($number-1, $number-3);
+///   }
+///
+
+@function units-match($number, $other-number) {
+  @return math.unit($number) == math.unit($other-number);
+}
+
+/// Reusable merge method 
+/// @param {Map} $original Source map 
+/// @param {Map} $changes Changes to merge into source map
+/// @param {String} $mode How to merge changes (merge [defualt], deep, or overwrite)
+/// @example scss {compile} Example usage
+///   $map-1: (
+///     "inner-map" : (
+///       "color" : "green",
+///       "secondary-color" : "green"
+///     ),
+///     "color" : "green",
+///     "secondary-color" : "green"
+///   );
+///   $map-2: (
+///     "inner-map" : (
+///       "color" : "red"
+///     ),
+///     "color" : "red",
+///   );
+///   .result-default {
+///     $merged-map: ulu.utils-map-merge($map-1, $map-2);
+///     content: meta.inspect($merged-map);
+///   }
+///   .result-deep {
+///     $merged-map-deep: ulu.utils-map-merge($map-1, $map-2, "deep");
+///     content: meta.inspect($merged-map-deep);
+///   }
+///   .result-overwrite {
+///     $merged-map-overwrite: ulu.utils-map-merge($map-1, $map-2, "overwrite");
+///     content: meta.inspect($merged-map-overwrite);
+///   }
+///
+
+@function map-merge($original, $changes, $mode: null) {
+  @if ($mode == "deep") {
+    @return map.deep-merge($original, $changes);
+  } @else if ($mode == "overwrite") {
+    @return $changes;
+  } @else {
+    @return map.merge($original, $changes);
+  }
+}
+
+/// Returns true/false if map has property
+/// @param {Map} $map Source map 
+/// @param {String} $key Property to check for
+/// @return {Boolean}
+/// @example scss {compile} Example usage
+///   $map-1 : (
+///     "has-key" : true
+///   );
+///   $map-2 : (
+///     "missing-key" : true
+///   );
+///   .map-1 {
+///     content: ulu.utils-map-has($map-1, "has-key");
+///   }
+///   .map-2 {
+///     content: ulu.utils-map-has($map-2, "has-key");
+///   }
+///
+
+@function map-has($map, $key) {
+  @if (meta.type-of($map) != "map") {
+    @error "map-has(): Incorrect type for $map (should be map)";
+  }
+  @return map.get($map, $key) != null;
+}
+
+/// Repeatable pattern in core
+/// @deprecated Left in for compatibility, will be removed, use map-merge with mode
+
+@function map-merge-or-overwrite($original, $changes, $deep: false, $overwrite: false) {
+  $mode: null;
+  @if $deep {
+    $mode: "deep";
+  } @else if $overwrite {
+    $mode: "overwrite";
+  }
+  @return map-merge($original, $changes, $mode);
+}
+
+/// Utility for providing fallbacks, the first truthy value (non false or null) will be returned
+/// @return {*} The first truthy value
+/// @example scss {compile} Example usage
+///   $fallback-text: "No input received";
+///   .user-name:after {
+///     $user-name: "Johnny";
+///     content: ulu.utils-fallback($user-name, $fallback-text);
+///   }
+///   .user-birthdate:after {
+///     $user-birthdate: null;
+///     content: ulu.utils-fallback($user-birthdate, $fallback-text);
+///   }
+///
+
+@function fallback($args...) {
+  @each $arg in $args {
+    @if ($arg) {
+      @return $arg;
+    }
+  }
+  @return null;
+}
+
+/// Provides fallback values from the same map
+/// @return {*} 
+/// @example scss {compile} Example usage
+///   $map: (
+///     "name": doug,
+///     "gpa": "3",
+///     "grade": "B",
+///   );
+///   .fallback-map {
+///     // iterates through properties until it finds one that is a key in the map. 
+///     content: ulu.utils-map-fallback($map, "gpa", "grade", "average");
+///   }
+///
+
+@function map-fallback($map, $properties...) {
+  @each $prop in $properties {
+    $value: map.get($map, $prop);
+    @if ($value) {
+      @return $value;
+    }
+  }
+  @return null;
+}
+
+
+/// Checks if a map contains one or more of the keys
+/// @param {Map} $map The map to check
+/// @param {List} $keys The list of keys to check for
+/// @param {List} $options Options for how this behaves
+/// @param {List} $options.with-value Requires that at least one of the map entries from the list has a value other than null
+/// @example scss {compile} Example usage
+///   $map : (
+///     "has-key" : true
+///   );
+///   $keys : (
+///     "has-key",
+///     "needs-key",
+///   );
+///   .map-contains-any-result {
+///     content: ulu.utils-map-contains-any($map, $keys);
+///   }
+///
+@function map-contains-any($map, $keys, $options: ()) {
+  @if (meta.type-of($map) != "map") {
+    @error "map-contains-any(): Incorrect type for $map (should be map)";
+  }
+  @if (meta.type-of($keys) != "list") {
+    @error "map-contains-any(): Incorrect type for $keys (should be list)";
+  }
+  @each $key in $keys {
+    @if map.has-key($map, $key) {
+      @if map.get($options, "with-value") {
+        @if map.get($map, $key) != null {
+          @return true;
+        }
+      } @else {
+        @return true;
+      }
+    }
+  }
+  @return false;
+}
+
+/// Helps in providing a dynamic fallback for modules whose defaults should come from another
+/// @param {String} $prop Property trying to get fallback for
+/// @param {*} $value The value that may need the fallback
+/// @param {Map} $lookup Map of properties to functions (use sass:meta > meta.get-function to populate)
+/// @return {*} The user's original value, or if the value is true get the default value from the provided function
+/// @example scss {compile} Example usage
+///
+
+@function function-fallback($prop, $value, $lookup) {
+  $arguments: null;
+  // If there was already a value return it else resolve through passed function
+  @if ($value == true)  {
+    $function: map.get($lookup, $prop);
+    // Allow user to pass a nested map to route to another property
+    @if (meta.type-of($function) == "map") {
+      $functionMap: $function;
+      $function: map.get($functionMap, "function");
+      $prop: map.get($functionMap, "property");
+      // Arguments will override everything (allow calling functions with args)
+      $arguments: map.get($functionMap, "arguments");
+    }
+    @if ($function) { 
+      @if ($arguments) {
+        @if (meta.type-of($arguments) == "list") {
+          @return meta.call($function, $arguments...);
+        } @else {
+          @error "Arguments must be a list, use single list for single argument ie '(3,)'";
+        }
+      } @else {
+        @return meta.call($function, $prop);
+      }
+    } 
+  }
+  @return $value;
+}
+
+/// If the value passed is equal to true use the default, else return the value
+/// @param {*} $value The value to check
+/// @param {*} $default The value to return when true
+@function default($value, $default) {
+  @return if($value == true, $default, $value);
+}
+
+/// Replaces all or one occurrence of a string within a string
+/// @param {String} $string String to operate on
+/// @param {String} $find String to find within string
+/// @param {String} $replace String to replace found strings
+/// @param {Boolean} $all Default true replace all matches, if false replace only first
+
+@function string-replace($string, $find, $replace, $all: true) {
+
+  $index: string.index($string, $find);
+  
+  @if ($index) {
+    $start: if($index == 1, "", string.slice($string, 1, string.length($find) - 1));
+    $end: string.slice($string, $index + string.length($find));
+    $new: $start + $replace;
+    @if ($all) {
+      @return $new + string-replace($end, $find, $replace);
+    } @else {
+      @return $new + $end;
+    }
+  } @else {
+    @return $string;
+  }
+}
+
+/// Remove an item from a list (not map)
+/// - Used for excluding things or as general utility
+/// @param {List} $list String to operate on
+/// @param {*} $remove Element in the list to remove
+/// @return {List} New list with item removed
+
+@function list-remove($list, $remove) {
+  $new-list: (); 
+  @each $item in $list {
+    @if $item != $remove {
+      $new-list: list.append($new-list, $item); 
+    }
+  }
+  @return $new-list;
+}
+
+/// Remove an item from a list (not map)
+/// - Used for excluding things or as general utility
+/// @param {List} $list String to operate on
+/// @param {List} $remove List elements that should each be removed
+/// @return {List} New list with item removed
+
+@function list-without($list, $removal-list) {
+  $new-list: ();
+  @each $item in $list {
+    @if not list.index($removal-list, $item) { 
+      $new-list: list.append($new-list, $item);
+    }
+  }
+  @return $new-list;
+}
+
+/// Join a list with a separator
+/// @param {List} $list List to join
+/// @param {String} $separator [", "] Separator to use
+/// @param {Boolean} $to-string [true] The resulting list with join separator will be converted to a string (false will return new list with separators added between original items
+/// @return {String|List} If separator was +, the result would be "value1 + value2" or (value1, "+", value2) depending on $to-string argument
+
+@function list-join($list, $separator: ", ", $to-string: true) {
+  $joined: ();
+  $length: list.length($list);
+  @for $i from 1 through $length {
+    $item: list.nth($list, $i);
+    $joined: list.append($joined, $item);
+    @if $i < $length {
+      $joined: list.append($joined, $separator);
+    }
+  }
+  @if ($to-string) {
+    @return #{ $joined };
+  } @else {
+    @return $joined;
+  }
+}
+
+/// Resolve spacing info (ie. margin/padding like arguments)
+/// - Will normalize the argument that may be shorthand or single value
+/// - Used for programmatic things with single value config options for padding/margin
+/// 
+/// @param {Number|List} $value The value to resolve (usually a config option)
+/// @example scss Example of getting left value
+///   $user-padding: (1em, 2em, 4em);
+///   $spacing: get-spacing($user-padding);
+///   // $spacing ("top" : 1em, "right" : 2em, "bottom" : 4em, "left" : 2em);
+/// 
+///   .example {
+///     left: map.get($spacing, "left");
+///     // left = 2em
+///   }
+/// @return {Map} Map with spacing info for each side (top, right, bottom, left)
+/// @throw If the list length > 4 (incorrect syntax for shorthand)
+
+@function get-spacing($value) {
+  $is-list: meta.type-of($value) == "list";
+  $length: if($is-list, list.length($value), 1);
+  $single: $length == 1;
+  $top: if($is-list, list.nth($value, 1), $value);  // Top is always the same
+
+  @if ($length > 4) {
+    @error "Spacing has more than 4 arguments (not correct shorthand)";
+  }
+
+  @return (
+    "top" :    $top,
+    "right" :  if($single, $top, list.nth($value, 2)),
+    "bottom" : if($single, $top, list.nth($value, if($length >= 3, 3, 1))),
+    "left" :   if($single, $top, list.nth($value, if($length == 4, 4, 2)))
+  );
+}
+
+/// Resolve the top spacing value for margin/padding like arguments
+/// @param {Number|List} $value The value to resolve (usually a config option)
+/// @example scss Example of getting top value
+///   $user-padding: (1em, 2em, 4em);
+/// 
+///   .example {
+///     top: get-spacing-top($user-padding);
+///     // top = 2em
+///   }
+/// @return {Number}
+
+@function get-spacing-top($value) {
+  @return map.get(get-spacing($value), "top");
+}
+
+/// Resolve the right spacing value for margin/padding like arguments
+/// @param {Number|List} $value The value to resolve (usually a config option)
+/// @example scss Example of getting right value
+///   $user-padding: (1em, 2em, 4em);
+/// 
+///   .example {
+///     right: get-spacing-right($user-padding);
+///     // right = 2em
+///   }
+/// @return {Number}
+
+@function get-spacing-right($value) {
+  @return map.get(get-spacing($value), "right");
+}
+
+/// Resolve the bottom spacing value for margin/padding like arguments
+/// @param {Number|List} $value The value to resolve (usually a config option)
+/// @example scss Example of getting bottom value
+///   $user-padding: (1em, 2em, 4em);
+/// 
+///   .example {
+///     bottom: get-spacing-bottom($user-padding);
+///     // bottom = 2em
+///   }
+/// @return {Number}
+
+@function get-spacing-bottom($value) {
+  @return map.get(get-spacing($value), "bottom");
+}
+
+/// Resolve the left spacing value for margin/padding like arguments
+/// @param {Number|List} $value The value to resolve (usually a config option)
+/// @example scss Example of getting left value
+///   $user-padding: (1em, 2em, 4em);
+/// 
+///   .example {
+///     left: get-spacing-left($user-padding);
+///     // left = 2em
+///   }
+/// @return {Number}
+
+@function get-spacing-left($value) {
+  @return map.get(get-spacing($value), "left");
+}
+
+/// Strips the unit from the number
+/// - Normally this shouldn't be needed
+/// @link https://stackoverflow.com/questions/12328259/how-do-you-strip-the-unit-from-any-number-in-sass/12335841#12335841 Original source (Miriam Suzanne)
+/// @example scss {compile} Example usage
+///   .test {
+///     line-height: ulu.utils-strip-unit(4rem);
+///   }
+
+@function strip-unit($value) {
+  @if (is-number($value)) {
+    @if (math.is-unitless($value)) {
+      @return $value;
+    } @else {
+      @return math.div($value, ($value * 0 + 1));
+    }
+  } @else {
+    @error "Expected number, got #{ $value }";
+  }
+}
+
+/// Calculate the size of something at a given scale (percentage/exponential)
+/// @param {Number} $base The number the scale starts at
+/// @param {Number} $ratio The amount the scale changes over one set
+/// @param {Number} $sizes The number of steps in the scale
+/// @param {Number} $size The step you are trying to calculate
+/// @return {Number}
+
+@function ratio-scale-size($base, $ratio, $sizes, $size) {
+  @return $base * math.pow($ratio, math.div($size, $sizes));
+}
+
+/// Convert from pixel to em
+/// @param {Number} $pixels The number the scale starts at
+/// @param {Number} $base How many pixels equal 1em
+/// @return {Number} Em Conversion
+
+@function pixel-to-em($pixels, $base: get("pixel-em-base")) {
+  @return math.div($pixels, $base) + 1em;
+}
+
+/// Provides user with a fallback for a calc that's just an enhancement
+/// @param {String} $property The CSS property to set
+/// @param {*} $value The value to set on the property
+/// @param {Css} $responsive-change The amount to change (vw or vh units) (combined with unit past)
+
+@mixin responsive-property(
+  $property, 
+  $value, 
+  $responsive-change: get("responsive-change")
+) {
+  #{ $property } : $value;
+  #{ $property } : calc(#{ $value } + #{ $responsive-change });
+}
+
+/// Calculates the hypotenuse of a triangle
+/// - Can be used to get length between two corners of a rectangle
+/// @param {Number} $width The width of the triangle
+/// @param {Number} $height The height of the triangle
+/// @return {Number} Hypotenuse of a triangle
+
+@function hypotenuse($width, $height) {
+  @return math.sqrt(math.pow($width, 2) + math.pow($height, 2));
+}
+
+/// Get's the info about a box shadow 
+/// @param {List} $shadow The box shadow property (ie. 0 0 4px red)
+/// @return {Map} Map with info about the shadow with the following keys (inset, offset-x, offset-y, blur, spread, color)
+/// @throw When shadow is not type list
+
+@function box-shadow-info($shadow) {
+  @if (meta.type-of($shadow) != "list") {
+    @error "Box shadow passed is not correct type (list)";
+  }
+  $result: (
+    "inset": false,
+    "offset-x": 0,
+    "offset-y": 0,
+    "blur": 0,
+    "spread": 0,
+    "color": null,
+  );
+
+  $number-keys: ("offset-x", "offset-y", "blur", "spread");
+  $number-index: 1;
+
+  @each $value in $shadow {
+    $type: meta.type-of($value);
+    @if $type == "color" {
+      $result: map.merge($result, ("color": $value));
+    } @else if $type == "string" and $value == inset {
+      $result: map.merge($result, ("inset": true));
+    } @else if $type == "number" and $number-index <= 4 {
+      // Add each back in by key in the order they appear
+      // if not found it's the default
+      $result: map.merge($result, (list.nth($number-keys, $number-index): $value));
+      $number-index: $number-index + 1;
+    }
+  }
+  
+  @return $result;
+}
+
+/// Get's the extent (how far the shadow extends past the box's edge)
+/// - This will only work on box-shadows that have matching units for the numbers
+/// @param {List} $shadow The box shadow property (ie. 0 0 4px red)
+/// @param {String} $side Optionally pass the side of box to get extend for, if not specified offsets are ignored and just the extent of the shadow is passed
+/// @return {Number} The size the shadow extends past it's box
+
+@function box-shadow-extent($shadow, $side: null) {
+  $info: box-shadow-info($shadow);
+  $extent: map.get($info, "spread") + map.get($info, "blur");
+  $offset-x: map.get($info, "offset-x");
+  $offset-y: map.get($info, "offset-y");
+  @if (not $side) {
+    @return $extent;
+  } @else {
+    @if ($side == "top") {
+      @return $extent - $offset-y;
+    } @else if ($side == "bottom") {
+      @return $extent + $offset-y;
+    } @else if ($side == "left") {
+      @return $extent - $offset-x;
+    } @else if ($side == "right") {
+      @return $extent + $offset-x;
+    }
+  }
+}
+
+/// Determines if value passed is a list
+/// @param {*} $value Value to check
+/// @return {Boolean} Whether the item was type list
+
+@function is-list($value) {
+  @return meta.type-of($value) == "list";
+}
+
+/// Determines if value passed is a map
+/// @param {*} $value Value to check
+/// @return {Boolean} Whether the item was type map
+
+@function is-map($value) {
+  @return meta.type-of($value) == "map";
+}
+
+/// Determines if value passed is a number
+/// @param {*} $value Value to check
+/// @return {Boolean} Whether the item was type number
+
+@function is-number($value) {
+  @return meta.type-of($value) == "number";
+}
+
+/// Determines if value passed is a string
+/// @param {*} $value Value to check
+/// @return {Boolean} Whether the item was type string
+
+@function is-string($value) {
+  @return meta.type-of($value) == "string";
+}
+
+/// Determines if value passed is a color
+/// @param {*} $value Value to check
+/// @return {Boolean} Whether the item was type color
+
+@function is-color($value) {
+  @return meta.type-of($value) == "color";
+}
+
+
+
+// /// Determines if value passed is a bool
+// /// @param {*} $value Value to check
+// /// @return {Boolean} Whether the item was type bool
+
+// @function is-bool($value) {
+//   @return meta.type-of($value) == "bool";
+// }
+
+// /// Determines if value passed is a null
+// /// @param {*} $value Value to check
+// /// @return {Boolean} Whether the item was type null
+
+// @function is-null($value) {
+//   @return meta.type-of($value) == "null";
+// }
+
+/// Returns true if number passed is even
+/// - Allows unit and unitless numbers
+/// @param {Number} $number The number to check
+/// @return {Boolean} Whether or not it is an even number
+
+@function is-even($number) {
+  @if (is-number($number)) {
+    @return strip-unit($number) % 2 == 0;
+  } @else {
+    @error "Expected Number, got #{ $number }";
+  }
+}
+
+/// Returns true if number passed is odd
+/// @param {Number} $number The number to check
+/// @return {Boolean} Whether or not it is an odd number
+
+@function is-odd($number) {
+  @return not is-even($number);
+}
+
+/// Always returns a map
+/// @param {*} $value The value to check if is map
+/// @return {Map} The $value if it was a map, else empty map
+
+@function ensure-map($value) {
+  @return if(is-map($value), $value, ());
+}
+
+/// Returns true if edge passed is an end (top/bottom)
+/// @param {String} $edge The edge string to test
+/// @return {Boolean} Whether the edge was an end (versus side/x-axis)
+/// @throw If $edge is not a valid value (not top/bottom/left/right)
+
+@function is-end($edge) {
+  @if ($edge == "top" or $edge == "bottom") {
+    @return true;
+  } @else if ($edge == "left" or $edge == "right") {
+    @return false;
+  } @else {
+    @error "Expected side to be top/bottom/left/right, got #{ $edge }";
+  }
+}
+
+/// Returns true if edge passed is an side (left/right)
+/// @param {String} $edge The edge string to test
+/// @return {Boolean} Whether the edge was an side (versus end/y-axis)
+/// @throw If $edge is not a valid value (not top/bottom/left/right)
+
+@function is-side($edge) {
+  @return not is-end($edge);
+}

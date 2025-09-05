@@ -1,0 +1,90 @@
+////
+/// @group index
+/// Outputs helper stylesheets (overriding stylesheets that should be output after base and components)
+////
+
+@forward "typography" as typography-*;
+@forward "display"  as display-*;
+@forward "utilities"  as utilities-*;
+@forward "print"  as print-*;
+@forward "units"  as units-*;
+@forward "color"  as color-*;
+
+@use "sass:list";
+
+@use "../utils";
+@use "typography";
+@use "display";
+@use "utilities";
+@use "units";
+@use "print";
+@use "color";
+
+/// Default includes, all modules
+/// @type List
+
+$all-includes: (
+  "typography", 
+  "units",
+  "display",
+  "utilities", 
+  "print",
+  "color"
+);
+
+/// Current included modules (for output when using styles), defaults to all
+/// @type List
+
+$current-includes: $all-includes;
+
+/// Change default includes (when user prints modules)
+/// - This available as configuration so that it can be configured (to allow easily copying configuration)
+/// @param {List} $includes List of modules by name to be included when styles are printed
+
+@mixin set-includes($includes) {
+  @include utils.require-list-contains($all-includes, $includes, "helpers.set-includes", true);
+  $current-includes: $includes !global;
+}
+
+/// Exclude certain items from includes
+/// @param {List} $excludes List of item names
+
+@mixin set-excludes($excludes) {
+  $current-includes: utils.list-without($current-includes, $excludes) !global;
+}
+
+/// Prints all Helper styles
+/// @name helper-styles
+/// @param {List} $includes [$all-includes] A list of components to include (defaults to all)
+/// @example scss
+///  @include ulu.helper-styles();
+
+@mixin styles($includes: $current-includes) {
+  @include utils.file-header("helpers");
+  
+  @include utils.require-list-contains($all-includes, $includes, "helpers.$includes", true);
+
+  @if (list.index($includes, "typography")) {
+    @include typography.styles;
+  }
+  @if (list.index($includes, "units")) {
+    @include units.styles;
+  }
+  @if (list.index($includes, "display")) {
+    @include display.styles;
+  }
+  @if (list.index($includes, "utilities")) {
+    @include utilities.styles;
+  }
+  @if (list.index($includes, "print")) {
+    @include print.styles;
+  }
+  @if (list.index($includes, "color")) {
+    @include color.styles;
+  }
+}
+
+
+
+
+

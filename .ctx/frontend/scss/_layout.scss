@@ -1,0 +1,280 @@
+////
+/// @group layout
+////
+
+@use "sass:map";
+@use "sass:list";
+@use "sass:meta";
+@use "utils";
+@use "breakpoint";
+@use "color";
+
+/// Module Settings
+/// @type Map
+/// @prop {Number} margin [2rem] Common margin for site
+/// @prop {Number} max-width [90rem] Common max-width for site
+/// @prop {Number} z-index-above [1000] Common z-index, below sticky
+/// @prop {Number} z-index-fixed [100] Common z-index, above everything
+/// @prop {Number} z-index-sticky [450] Common z-index for sticky or stuck items
+
+$config: (
+  "margin":            2rem,
+  "max-width":         90rem,
+  "z-index-above":     450,
+  "z-index-fixed":     1000,
+  "z-index-sticky":    100,
+) !default;
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+///   @include ulu.layout-set(( "property" : value ));
+
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+///   @include ulu.layout-get("property");
+@function get($name) {
+  @return utils.require-map-get($config, $name, "layout [config]");
+}
+
+/// Containers Lookup (use set-containers)
+/// @type Map
+/// @ignore This needs to be below the methods it uses!
+
+$containers: (
+  "container" : (
+    "width" : 100%,
+    "max-width" : get("max-width"),
+    "padding" : (get("margin") get("margin")),
+    "breakpoints" : null,
+    "responsive" : false,
+    "responsive-amount" : 3vw
+  )
+) !default;
+
+/// Set layout containers
+/// - See the $containers variable for example of container properties
+/// @param {Map} $changes Map of changes
+/// @param {String} $merge-mode Merge mode see utils.map-merge() [null|"deep"|"overwrite"]
+
+@mixin set-containers($changes, $merge-mode: null) {
+  $containers: utils.map-merge($containers, $changes, $merge-mode) !global;
+}
+
+/// Get a container map
+/// @param {Map} $name Container name
+/// @param {String} $breakpoint Return only the properties for a specific breakpoint for the container
+
+@function get-container($name, $breakpoint: false, $required: true) {
+  $container: null;
+  @if ($required) {
+    $container: utils.require-map-get($containers, $name, "Layout [get-container]");
+  } @else {
+    $container: map.get($containers, $name);
+  }
+
+  @if ($container and $breakpoint) {
+    $breakpoints: map.get($container, "breakpoints");
+    @if ($required) {
+      @if ($breakpoints) {
+        @return utils.require-map-get($breakpoints, $breakpoint, "[container breakpoint]");
+      } @else {
+        @error 'ULU: No container breakpoints for container "#{ $name }", requested breakpoint #{ $breakpoint }';
+      }
+    } @else {
+      @if ($breakpoints) {
+        @return map.get($breakpoints, $breakpoint);
+      } @else {
+        @return null;
+      }
+    }
+  }
+
+  @return $container;
+}
+
+/// Returns padding to another property including breakpoints
+/// ie. { top: $containers-padding; }
+/// @param {String} $property Property name to apply the padding value to
+/// @param {String} $name The container name
+/// @param {Boolean} $sides [true] Match the container padding for the sides (left/right), false will match the containers end padding (top/bottom) 
+
+@mixin match-container-padding($property, $name: "container", $sides: true) {
+  $container: get-container($name);
+  $breakpoints: map.get($container, "breakpoints");
+  #{ $property }: get-container-padding($name, $sides);
+  @if $breakpoints {
+    @each $breakpoint, $props in $breakpoints {
+      $direction: map.get($props, "direction");
+      @include breakpoint.from($breakpoint, $direction) {
+        #{ $property }: get-container-padding($name, $sides, $breakpoint);
+      }
+    }
+  }
+}
+
+/// For a given property for every breakpoint in a given container
+/// creates a css calc value that will match the containers side margin
+/// The margin is created via empty space when the container hits the max-width
+/// If passing include padding it would be the containers
+/// side (x) + the padding. This accounts for the containers max-width to give an absolute value
+/// @param {String} $property Property name to apply the margin value to
+/// @param {String} $name The container name
+/// @param {Boolean} $include-padding [true] Include the containers padding in the margin calculation
+
+@mixin match-container-margin($property, $name: "container", $include-padding: true) {
+  $container: get-container($name);
+  $breakpoints: map.get($container, "breakpoints");
+  $padding: if($include-padding, get-container-padding($name, true), 0);
+  $max: map.get($container, "max-width");
+  #{ $property }: max(((100vw - $max) / 2) + $padding, $padding);
+  @if $breakpoints {
+    @each $breakpoint, $props in $breakpoints {
+      $direction: map.get($props, "direction");
+      @include breakpoint.from($breakpoint, $direction) {
+        $pad: if($include-padding, get-container-padding($name, true, $breakpoint), 0);
+        #{ $property }: max(((100vw - $max) / 2) + $pad, $pad);
+      }
+    }
+  }
+}
+
+/// Get a containers padding value
+/// @param {String} $name Container name
+/// @param {Boolean} $sides [true] Get the left/right value, false return top/bottom
+/// @param {String} $specific-breakpoint [false] Get the value for a specific breakpoint
+
+@function get-container-padding($name, $sides: true, $specific-breakpoint: false) {
+  $container: get-container($name, $specific-breakpoint);
+  $padding: map.get($container, "padding");
+  $is-list: meta.type-of($padding) == "list"; // Else number
+  @if (not $is-list) {
+    @return $padding;
+  } @else {
+    @return list.nth($padding, if($sides, 2, 1));
+  }
+}
+
+/// Print the containers padding properties
+/// @param {String} $name The container name
+/// @param {Boolean} $sides [true] Sides by default, false is ends
+/// @param {Boolean} $specific-breakpoint [false] Only for a specific breakpoint
+
+@mixin container-padding($name, $sides: true, $ends: true, $specific-breakpoint: false) {
+  $container: get-container($name, $specific-breakpoint);
+  $responsive: map.get($container, "responsive");
+  $x: get-container-padding-x($name, $specific-breakpoint);
+  $y: get-container-padding-y($name, $specific-breakpoint);
+  $resp-amount: if(meta.type-of($responsive) == number, $responsive, utils.get("responsive-change"));
+  
+  @if $responsive {
+    @if $sides {
+      @include utils.responsive-property("padding-left", $x, $resp-amount);
+      @include utils.responsive-property("padding-right", $x, $resp-amount);
+    }
+    @if $ends {
+      @include utils.responsive-property("padding-top", $y, $resp-amount);
+      @include utils.responsive-property("padding-bottom", $y, $resp-amount);
+    }
+  } @else {
+    @if $sides {
+      padding-left: $x;
+      padding-right: $x;
+    }
+    @if $ends {
+      padding-top: $y;
+      padding-bottom: $y;
+    }
+  }
+}
+
+/// Get containers padding X value (side)
+/// @param {String} $name Container name
+/// @param {Boolean} $specific-breakpoint For a specific breakpoint
+
+@function get-container-padding-x($name, $specific-breakpoint: false) {
+  @return get-container-padding($name, true, $specific-breakpoint);
+}
+
+/// Get containers padding Y value (ends)
+/// @param {String} $name Container name
+/// @param {Boolean} $specific-breakpoint For a specific breakpoint
+
+@function get-container-padding-y($name, $specific-breakpoint: false) {
+  @return get-container-padding($name, false, $specific-breakpoint);
+}
+
+/// Print all container styles for a given container
+/// @param {String} $name Container name
+/// @param {Boolean} $specific-breakpoint Only for a specific breakpoint (else includes both the base styles and breakpoint styles)
+
+@mixin container-styles($name: "container", $specific-breakpoint: false) {
+  $container: get-container($name,  $specific-breakpoint);
+  $breakpoints: map.get($container, "breakpoints");
+  
+  $width: map.get($container, "width");
+
+  @if ($width == null) {
+    $width: 100%;
+  }
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: $width;
+  max-width: map.get($container, "max-width");
+  @include container-padding($name, $specific-breakpoint: $specific-breakpoint);
+
+  // Recursive print other breakpoints
+  @if $breakpoints and not $specific-breakpoint {
+    @each $breakpoint, $props in $breakpoints {
+      $direction: map.get($props, "direction");
+      @include breakpoint.from($breakpoint, $direction) {
+        @include container-styles($name, $breakpoint);
+      }
+    }
+  }
+}
+
+/// Prints clearfix styles
+
+@mixin clearfix() {
+  &::before,
+  &::after {
+    content: "";
+    display: table;
+    flex-basis: 0; // Flexbox, clear fix for pseudo elements in Safari
+    order: 1;
+  }
+  &::after { 
+    clear: both; 
+  }
+}
+
+/// Removes scrollbar with CSS
+@mixin remove-scrollbar() {
+  -ms-overflow-style: none; /* for Internet Explorer, Edge */
+  scrollbar-width: none; /* for Firefox */
+  &::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+  }
+}
+
+/// Layout utility for absolute (zero on all sides)
+/// - Probably helpful for gzip if we use this when these exact styles are needed
+///   so they are identical for compression
+/// @param {Boolean} $set-size [false] Whether or not to use sizes to fill the space (height/width 100%) versus setting bottom and right to 0)
+@mixin absolute-fill($set-size: false) {
+  position: absolute;
+  top: 0;
+  left: 0;
+  @if not $set-size {
+    right: 0;
+    bottom: 0;
+  } @else {
+    width: 100%;
+    height: 100%;
+  }
+}

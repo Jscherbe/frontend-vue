@@ -1,0 +1,415 @@
+////
+/// @group element
+////
+
+@use "sass:map";
+@use "sass:meta";
+@use "color";
+@use "utils";
+
+/// Module Settings
+/// @type Map
+/// @prop {Number} backdrop-blur Backdrop blur amount used on elements/components
+/// @prop {Color} backdrop-color Backdrop color (modal overlays, etc)
+/// @prop {Dimension} list-item-indent [1.5em]
+/// @prop {List} text-shadow Common text shadow
+/// @prop {Number} border-radius Common element border radius
+/// @prop {Number} border-radius-large Common element border radius (large)
+/// @prop {Number} border-radius-small Common element border radius (small)
+/// @prop {List} box-shadow Box-shadow definition for elements that are on top of page
+/// @prop {List} box-shadow-above Box-shadow definition for elements that are above the page (fixed items, etc)
+/// @prop {CssValue} box-shadow-hover [0 1px 5px color.get('box-shadow-hover')]
+/// @prop {CssValue} box-shadow-inset [0 1px 5px color.get('box-shadow')]
+/// @prop {List} box-shadow-raised Box-shadow definition for elements that are raised off of the page (dropdowns, etc)
+/// @prop {String} link-text-decoration
+/// @prop {Color} link-text-decoration-color
+/// @prop {String} link-text-decoration-default Whether links use underline, remember that removing underline will create an accessibility issue (not relying on color)
+/// @prop {Color} link-text-decoration-color-hover
+/// @prop {Number} link-text-underline-offset
+/// @prop {String} link-text-decoration-style
+/// @prop {String} link-text-decoration-style-hover
+/// @prop {Number} link-text-decoration-thickness
+/// @prop {Number} margin Common element margin
+/// @prop {Number} margin-large Common element margin (large)
+/// @prop {Number} margin-small Common element margin (small) (default for lists)
+/// @prop {String} ol-list-style-type Ordered list type (level 1)
+/// @prop {String} ol-list-style-type-2 Ordered list type (level 2)
+/// @prop {String} ol-list-style-type-3 Ordered list type (level 3)
+/// @prop {String} ul-list-style-type
+/// @prop {String} ul-list-style-type-2
+/// @prop {String} ul-list-style-type-3
+
+$config: (
+  "backdrop-blur":                    4px,
+  "backdrop-color":                   rgba(73, 73, 73, 0.459),
+  "list-item-indent" :                1.5em,
+  "text-shadow":                      0 1px 4px rgba(0,0,0,0.3),
+  "border-radius":                    6px,
+  "border-radius-small":              3px,
+  "border-radius-large":              12px,
+  "box-shadow":                       0 1px 5px color.get('box-shadow'),
+  "box-shadow-above":                 0 1px 20px color.get('box-shadow'),
+  "box-shadow-hover":                 0 1px 5px color.get('box-shadow-hover'),
+  "box-shadow-inset":                 0 1px 5px color.get('box-shadow'),
+  "box-shadow-raised":                0 1px 12px color.get('box-shadow'),
+  "link-text-decoration":             underline,
+  "link-text-decoration-color":       initial,
+  "link-text-decoration-color-hover": false,
+  "link-text-decoration-default":     none,
+  "link-text-underline-offset" :     auto,
+  "link-text-decoration-style":       dotted,
+  "link-text-decoration-style-hover": solid,
+  "link-text-decoration-thickness":   0.1em,
+  "margin":                           1em,
+  "margin-small":                     0.65em,
+  "margin-large":                     2em,
+  "ol-list-style-type":               decimal,
+  "ol-list-style-type-2":             lower-alpha,
+  "ol-list-style-type-3":             lower-roman,
+  "ul-list-style-type":               disc,
+  "ul-list-style-type-2":             circle,
+  "ul-list-style-type-3":             square,
+  "cap-color" :                       "accent",
+  "cap-size" :                        5px
+) !default;
+
+/// Rule style map, redefine defaults or add to
+/// @type Map
+
+$rule-styles: (
+  "default": 1px solid color.get("rule"),
+  "light":   1px solid color.get("rule-light"),
+) !default;
+
+/// Common rule margins (space between rule and type)
+/// @type Map
+
+$rule-margins: (
+  "smallest": 0.5rem,
+  "small":    1rem,
+  "medium":   2rem,
+  "large":    3rem
+) !default;
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+///   @include ulu.element-set(( "property" : value ));
+
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+///   @include ulu.element-get("property");
+
+@function get($name) {
+  @return utils.require-map-get($config, $name, "element [config]");
+}
+
+/// Sets rule styles
+/// @param {Map} $changes Map of changes
+
+@mixin set-rule-styles($changes) {
+  $rule-styles: map.merge($rule-styles, $changes) !global;
+}
+
+/// Sets rule margins
+/// @param {Map} $changes Map of changes
+/// @param {String} $merge-mode Merge mode see utils.map-merge() [null|"deep"|"overwrite"]
+
+@mixin set-rule-margins($changes, $merge-mode: null) {
+  $rule-margins: utils.map-merge($rule-margins, $changes, $merge-mode) !global;
+}
+
+/// Get a rule style
+/// @param {Map} $changes Map of changes
+/// @return {CssValue} Rule style (css border value)
+
+@function get-rule-style($name: "default") {
+  @return utils.require-map-get($rule-styles, $name, "element [rule style]");
+}
+
+/// Get an optional rule style (which is a border)
+/// - If the value is a string we return the rule style, else we return the value
+/// - Used for things where configuration for say a border can be a user defined border or a string (they want an existing rule-style)
+/// - Except when passing "none"/none this will return as-is (since it's a border property)
+/// @param {*} $value The value to check
+/// @return {*} Rule style if string, else value
+
+@function get-optional-rule-style($value) {
+  @if (meta.type-of($value) == "string") {
+    @return get-rule-style($value);
+  } @else {
+    @return $value;
+  }
+}
+
+/// Sets rule margin
+/// @param {Map} $changes Map of changes
+
+@function get-rule-margin($name) {
+  @return utils.require-map-get($rule-margins, $name, "element [rule style]");
+}
+
+/// Get full rule CSS (style and margin)
+/// @param {Map} $changes Map of changes
+
+@mixin rule(
+  $style-name: "default", 
+  $margin-name: null
+) {
+  @include rule-style($style-name);
+  @include rule-margin($margin-name);
+}
+
+/// Output CSS for a rule's style (not margins
+/// @param {String} $name ["default"] name of rule style
+
+@mixin rule-style($name: "default") {
+  border-bottom: get-rule-style($name);
+}
+
+/// Output CSS for a rule's margin
+/// @param {String} $name ["default"] name of rule style
+
+@mixin rule-margin($name:  null) {
+  $margin: if($name, get-rule-margin($name), get("margin"));
+  margin-top: $margin;
+  margin-bottom: $margin;
+}
+
+/// Print the default link styling (no hover and focus styles)
+/// - Default link styling just sets the color and the link-text-decoration-default
+/// - This is usually output at the top of the stylesheet to style the general <a> element
+/// - Use link() mixin to print the full link styling (when used in content/text) which includes the full 
+///   styling (text-decoration, etc)
+/// @param {Boolean} $visited Include visited style
+/// @param {Boolean} $active Include active style
+
+@mixin link-defaults($hover: true, $visited: false) {
+  color: color.get("link");
+  text-decoration: get("link-text-decoration-default");
+  @if ($hover) {
+    &:hover {
+      color: color.get("link-hover");
+    }
+  }
+  @if ($visited) {
+    &:visited {
+      color: color.get("link-visited");
+    }
+  }
+}
+
+/// Output link CSS styles (this is the full link styling when used in content/text)
+/// @param {Boolean} $visited Include visited style
+/// @param {Boolean} $active Include active style
+
+@mixin link($visited: false, $active: false) {
+  color: color.get("link");
+  text-decoration: get("link-text-decoration");
+  text-decoration-style: get("link-text-decoration-style");
+  text-decoration-color: get("link-text-decoration-color");
+  text-decoration-thickness: get("link-text-decoration-thickness");
+  text-underline-offset: get("link-text-underline-offset");
+  &:hover {
+    color: color.get("link-hover");
+    text-decoration-style: get("link-text-decoration-style-hover");
+    text-decoration-color: get("link-text-decoration-color-hover");
+  }
+  @if ($visited) {
+    &:visited {
+      color: color.get("link-visited");
+    }
+  }
+  @if ($active) {
+    &:active {
+      color: color.get("link-active");
+    }
+  }
+}
+
+/// Print the ordered list items styling
+/// @param {Boolean} $bullet-color Optional bullet color (defaults to palette 'bullet')
+
+@mixin styles-ordered-list($bullet-color: "bullet") {
+  margin-bottom: get("margin");
+  list-style: get("ol-list-style-type") outside;
+  li {
+    margin-bottom: get("margin-small");
+    margin-left: get("list-item-indent");
+  }
+  > li {
+    &::marker {
+      color: color.get($bullet-color);
+    }
+  }
+  ol {
+    // margin: get("margin-small") 0;
+    list-style-type: get("ol-list-style-type-2");
+    ol { 
+      list-style-type: get("ol-list-style-type-3");
+    }
+  }
+  ul,
+  ol {
+    margin-top: get("margin-small");
+    margin-bottom: get("margin-small");
+  }
+}
+
+/// Print the unordered list items styling
+/// @param {Boolean} $bullet-color Optional bullet color
+
+@mixin styles-unordered-list($bullet-color: "bullet") {
+  list-style: get("ul-list-style-type") outside;
+  li {
+    margin-left: get("list-item-indent");
+    margin-bottom: get("margin-small");
+    &::marker {
+      color: color.get($bullet-color);
+    }
+  }
+  ul {
+    list-style-type: get("ul-list-style-type-2") ;
+  }
+   ul ul {
+    list-style-type: get("ul-list-style-type-3");
+  }
+  ul,
+  ol {
+    margin-top: get("margin-small");
+    margin-bottom: get("margin-small");
+  }
+}
+
+/// Hide text for assistive devices
+/// @param {Boolean} $hidden Defaults to true, pass false to override the hidden css (ie. on focus)
+/// @example scss
+///   @include ulu.layout-hidden-visually()
+///   // Reset styling
+///   @include ulu.layout-hidden-visually(false)
+
+@mixin hidden-visually($hidden: true) {
+  @if $hidden {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  } @else {
+    clip: auto;
+    clip-path: none;
+    height: auto;
+    overflow: visible;
+    position: static;
+    white-space: normal;
+    width: auto;
+  }
+}
+
+
+/// Layout utility to add a colored bar (cap) to an element's edge, positioned over the element and its border
+/// - You need to set position (relative, fixed) on parent
+/// @param {String} $side The side to place the cap (top, bottom, left, right)
+/// @param {Map} $options Options for the appearance of the cap
+/// @param {Color} $options.color [$config.cap-color] The color for the end cap
+/// @param {Number} $options.size [$config.cap-size] The width/height of the cap
+/// @param {Number} $options.offset [0] A positive number of the amount the cap should extend outside the box (to account for border-width) 
+/// @param {Number} $options.border-radius [null] An optional border-radius to apply to the outward-facing edges of the cap (used to match parent)
+/// @param {Boolean} $before [true] Whether or not to use the ::before element (if not uses :after)
+
+@mixin cap(
+  $side,
+  $options: (),
+  $before: true,
+) {
+  $defaults: (
+    "color" : get("cap-color"), 
+    "size" : get("cap-size"), 
+    "offset" : 0, 
+    "color-hover" : null,
+    "border-radius" : null,
+    "padding-adjust" : null,
+  );
+  $config: map.merge($defaults, $options);
+  $element: if($before, "::before", "::after");
+
+  &#{ $element } {
+    content: "";
+    position: absolute;
+    display: block;
+  }
+
+  @include cap-appearance($side, $config, $before);
+}
+
+
+
+/// Provides the appearance styles for a given cap
+/// - If an option is not provided it won't be output
+/// - This is used to update the caps styling (states, modifiers, etc)
+/// @param {String} $side The side to place the cap (top, bottom, left, right)
+/// @param {Map} $options Options for the appearance of the cap (see options from element.cap)
+/// @param {Boolean} $before Whether or not to use the ::before element (if not uses :after)
+
+@mixin cap-appearance(
+  $side,
+  $options: (),
+  $before: true
+) {
+  $element: if($before, "::before", "::after");
+  $size: map.get($options, "size");
+  $offset: map.get($options, "offset");
+  $border-radius: map.get($options, "border-radius");
+  $padding-adjust: map.get($options, "padding-adjust");
+  
+  $end: $side == "top" or $side == "bottom";
+  $position: if($offset, 0 - $offset, null);
+
+  @if ($padding-adjust and $size) {
+    padding-#{ $side }: calc($padding-adjust + $size);
+  }
+
+  &#{ $element } {
+    background-color: color.get(map.get($options, "color"));
+    #{ $side }: $position;
+
+    @if $end {
+      left: $position;
+      right: $position;
+      height: $size;
+    } @else {
+      top: $position;
+      bottom: $position;
+      width: $size;
+    }
+    
+    @if $border-radius {
+      @if $end {
+        border-#{ $side }-left-radius: $border-radius;
+        border-#{ $side }-right-radius: $border-radius;
+      } @else {
+        border-top-#{ $side }-radius: $border-radius;
+        border-bottom-#{ $side }-radius: $border-radius;
+      }
+    }
+  }
+}
+
+/// Add backdrop-filter blur
+/// @param {CssUnit} $amount [get("backdrop-blur")] Amount to blur
+/// 
+@mixin backdrop-filter-blur($amount: get("backdrop-blur")) {
+  backdrop-filter: blur($amount);
+}
+
+/// Accessibly hide focus ring while keeping it when it's required
+@mixin focus-ring-required-only() {
+  &:focus:not(:focus-visible) {
+    outline: none;
+  }
+}

@@ -1,0 +1,30 @@
+////
+/// @group root
+/// Responsible for outputting the base :root custom properties for ulu
+////
+
+@use "sass:map";
+
+@use "../utils";
+@use "../cssvar";
+
+/// Output custom properties in :root for base stylesheet
+/// @example scss
+///  @include ulu.base-root-styles();
+
+@mixin styles {
+  @include utils.file-header('base', 'root');
+  // Core/default css-vars
+  :root {
+    @include custom-properties();
+    @include cssvar.declare-breakpoint();
+  }
+}
+
+/// Output custom properties for ulu
+
+@mixin custom-properties() {
+  --ulu-sticky-top-offset: 0px; // Should be adjusted by user
+  --ulu-sticky-bottom-offset: 0px; // Should be adjusted by user
+  --ulu-scrollbar-width: 0px; // Needs to be set by JS
+}

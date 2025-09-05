@@ -1,0 +1,51 @@
+////
+/// @group horizontal-rule
+////
+
+@use "sass:map";
+@use "../utils";
+@use "../element";
+
+/// Module Settings
+/// @type Map
+/// @prop {Dimension} min-height [1em] Min height for rule.
+/// @prop {Dimension} margin [1em] Top and bottom margin for rule.
+
+$config: (
+  "margin": 1em,
+  "min-height": 1em,
+) !default;
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+/// @example scss 
+///   @include ulu.component-horizontal-rule-set(( "property" : value ));
+
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+/// @example scss 
+///   @include ulu.component-horizontal-rule-get("property");
+
+@function get($name) {
+  @return utils.require-map-get($config, $name, "horizontal-rule [config]");
+}
+
+/// Prints adaptive spacing component styles
+/// @example scss
+///  @include ulu.component-horizontal-styles();
+
+@mixin styles {
+  .horizontal-rule {
+    display: inline-block;
+    min-height: get("min-height");
+    vertical-align: middle;
+    border-right: element.get-rule-style();
+    margin: 0 get("margin");
+    flex-grow: 0;
+    align-self: stretch;
+  }
+}

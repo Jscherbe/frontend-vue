@@ -38,7 +38,7 @@
     "build": "vite build",
     "types": "npx tsc",
     "deploy": "npm run types && npm run build && npm run docs:build",
-    "update-contexts": "rm -rf .contexts && mkdir -p .contexts/frontend && cp -R node_modules/@ulu/frontend/scss node_modules/@ulu/frontend/js .contexts/frontend/"
+    "update-contexts": "rm -rf .ctx && mkdir -p .ctx/frontend && cp -R node_modules/@ulu/frontend/scss node_modules/@ulu/frontend/js .ctx/frontend/"
   },
   "keywords": [
     "vue",
