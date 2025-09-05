@@ -1,17 +1,22 @@
 <template>
-  <div class="UluFacetsFiltersDropdown">
-    <div v-for="group in facets" :key="group.uid" class="UluFacetsFiltersDropdown__group">
-      <UluPopover :classes="{ trigger: 'button' }">
+  <div :class="classes.container">
+    <div v-for="group in facets" :key="group.uid" :class="classes.group">
+      <UluPopover 
+        :classes="{ 
+          trigger: classes.trigger,
+          content: classes.content
+        }
+      ">
         <template #trigger>
           <span>{{ group.name }}: <strong>{{ selectedLabel(group) }}</strong></span>
-          <UluIcon icon="fas fa-chevron-down" style="margin-left: 0.5em;" />
+          <UluIcon :class="classes.triggerIcon" icon="fas fa-chevron-down" />
         </template>
         <template #content="{ close }">
-          <UluCheckboxMenu
+          <UluSelectableMenu
             :legend="group.name"
-            type="radio"
+            :type="group.multiple ? 'checkbox' : 'radio'"
             :options="getMenuOptions(group)"
-            :model-value="selectedUid(group)"
+            :model-value="selectedUids(group)"
             @update:model-value="onFilterChange(group, $event, close)"
           />
         </template>
@@ -22,50 +27,86 @@
 
 <script setup>
 import UluPopover from '../../../plugins/popovers/UluPopover.vue';
-import UluCheckboxMenu from '../../forms/UluCheckboxMenu.vue';
+import UluSelectableMenu from '../../forms/UluSelectableMenu.vue';
 import UluIcon from '../../elements/UluIcon.vue';
 
 const props = defineProps({
   facets: {
     type: Array,
     default: () => []
+  },
+  classes: {
+    type: Object,
+    default: () => ({
+      trigger: "button",
+      triggerIcon: "button__icon"
+      // content: null,
+      // container: null,
+      // group: null
+    })
   }
 });
 
 const emit = defineEmits(['facet-change']);
 
 const getMenuOptions = (group) => {
+  if (group.multiple) {
+    return group.children;
+  }
   return [{ label: `All ${group.name}s`, uid: '' }, ...group.children];
 };
 
-const selectedUid = (group) => {
+const selectedUids = (group) => {
+  if (group.multiple) {
+    return group.children.filter(c => c.selected).map(c => c.uid);
+  }
   return group.children.find(c => c.selected)?.uid || '';
 };
 
 const selectedLabel = (group) => {
-  return group.children.find(c => c.selected)?.label || `All`;
+  const selectedItems = group.children.filter(c => c.selected);
+  const count = selectedItems.length;
+
+  if (count === 0) {
+    return 'All';
+  }
+
+  if (group.multiple) {
+    if (count === 1) {
+      return selectedItems[0].label;
+    }
+    return `${count} selected`;
+  }
+
+  return selectedItems[0].label;
 };
 
-function onFilterChange(group, selectedUid, closePopover) {
-  group.children.forEach(facet => {
-    const shouldBeSelected = facet.uid === selectedUid;
-    if (facet.selected !== shouldBeSelected) {
-      emit('facet-change', {
-        groupUid: group.uid,
-        facetUid: facet.uid,
-        selected: shouldBeSelected
-      });
-    }
-  });
-  closePopover();
+function onFilterChange(group, value, closePopover) {
+  if (group.multiple) {
+    const selectedUids = new Set(value);
+    group.children.forEach(facet => {
+      const shouldBeSelected = selectedUids.has(facet.uid);
+      if (facet.selected !== shouldBeSelected) {
+        emit('facet-change', {
+          groupUid: group.uid,
+          facetUid: facet.uid,
+          selected: shouldBeSelected
+        });
+      }
+    });
+  } else {
+    const selectedUid = value;
+    group.children.forEach(facet => {
+      const shouldBeSelected = facet.uid === selectedUid;
+      if (facet.selected !== shouldBeSelected) {
+        emit('facet-change', {
+          groupUid: group.uid,
+          facetUid: facet.uid,
+          selected: shouldBeSelected
+        });
+      }
+    });
+    closePopover();
+  }
 }
 </script>
-
-<style lang="scss">
-.UluFacetsFiltersDropdown {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-</style>

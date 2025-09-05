@@ -299,17 +299,17 @@
     ],
     "description": "UluTag with default slot"
   },
-  "UluCheckboxMenu (slot)": {
+  "UluSelectableMenu (slot)": {
     "prefix": [
       "UluVue",
-      "UluCheckboxMenu"
+      "UluSelectableMenu"
     ],
     "body": [
-      "<UluCheckboxMenu>",
+      "<UluSelectableMenu>",
       "  $0",
-      "</UluCheckboxMenu>"
+      "</UluSelectableMenu>"
     ],
-    "description": "UluCheckboxMenu with default slot"
+    "description": "UluSelectableMenu with default slot"
   },
   "UluFileDisplay (slot)": {
     "prefix": [

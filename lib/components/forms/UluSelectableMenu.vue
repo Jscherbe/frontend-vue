@@ -1,6 +1,6 @@
 <template>
-  <fieldset class="menu-stack form-theme">
-    <legend v-if="legend" class="hidden-visually">{{ legend }}</legend>
+  <div class="menu-stack form-theme" :role="groupRole" :aria-labelledby="legendId">
+    <div v-if="legend" :id="legendId" class="hidden-visually">{{ legend }}</div>
     <ul class="menu-stack__list">
       <li class="menu-stack__item" v-for="(option, index) in options" :key="index">
         <div class="menu-stack__selectable">
@@ -20,7 +20,7 @@
         </div>
       </li>
     </ul>
-  </fieldset>
+  </div>
 </template>
 
 <script setup>
@@ -39,6 +39,8 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const name = computed(() => props.legend ? props.legend.toLowerCase().replace(/\s+/g, '-') : `menu-${Math.random().toString(36).substring(7)}`);
+const legendId = computed(() => name.value ? `${name.value}-legend` : null);
+const groupRole = computed(() => props.type === 'radio' ? 'radiogroup' : 'group');
 
 const getId = (index) => `${name.value}-${index}`;
 
