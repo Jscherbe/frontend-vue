@@ -5,7 +5,7 @@ This story demonstrates the `useFacets` composable and its associated components
 ```html
 <script setup>
   import { ref } from 'vue';
-  import { useFacets, UluFacetsSidebarLayout, UluFacetsSearch, UluFacetsSort, UluFacetsFilters, UluFacetsResults } from '@ulu/frontend-vue'; // Adjust import path
+  import { useFacets, UluFacetsSidebarLayout, UluFacetsSearch, UluFacetsSort, UluFacetsFilterLists, UluFacetsResults } from '@ulu/frontend-vue'; // Adjust import path
   import { mockItems } from './_mock-data';
 
   const allItems = ref(mockItems);
@@ -55,7 +55,7 @@ This story demonstrates the `useFacets` composable and its associated components
         <h3>Filters</h3>
         <button v-if="facets.some(f => f.selectedCount > 0)" @click="clearFilters">Clear</button>
       </div>
-      <UluFacetsFilters :facets="facets" @facet-change="handleFacetChange" :max-visible="5" />
+      <UluFacetsFilterLists :facets="facets" @facet-change="handleFacetChange" :max-visible="5" />
     </template>
     <template #main>
       <UluFacetsResults :items="displayItems">

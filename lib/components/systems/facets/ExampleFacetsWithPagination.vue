@@ -9,7 +9,7 @@
           <template #sidebar>
             <UluFacetsSearch v-model="searchValue" />
             <UluFacetsSort v-model="selectedSort" :sort-types="sortTypes" />
-            <UluFacetsFilters :facets="facets" @facet-change="handleFacetChange" />
+            <UluFacetsFilterLists :facets="facets" @facet-change="handleFacetChange" />
           </template>
           <template #main>
             <UluFacetsResults :items="paginatedItems">
@@ -45,7 +45,7 @@
     useFacets,
     usePagination,
     UluFacetsSidebarLayout,
-    UluFacetsFilters,
+    UluFacetsFilterLists,
     UluFacetsSort,
     UluFacetsSearch,
     UluFacetsResults

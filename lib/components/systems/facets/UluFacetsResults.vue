@@ -1,13 +1,15 @@
 <template>
   <div class="UluFacetsResults">
-    <transition-group 
+    <transition-group
       v-if="items.length"
-      :tag="tag" 
+      :tag="tag"
       :name="transitionName"
       class="UluFacetsResults__list"
+      :class="classes.list"
     >
       <li
         class="UluFacetsResults__item"
+        :class="classes.item"
         v-for="(item, index) in items"
         :key="item.id || index"
       >
@@ -35,6 +37,10 @@
     transitionName: {
       type: String,
       default: 'UluFacetsFade'
+    },
+    classes: {
+      type: Object,
+      default: () => ({})
     }
   });
 </script>

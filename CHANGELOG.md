@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.1.0-beta.28
+
+- New `UluFacetsFilterSelects` and `UluFacetsFilterPopovers` components to provide flexible UI options for displaying facet filters.
+- New `UluFacetsHeaderLayout` component for layouts where filter controls appear above the results list.
+- Renamed `UluFacetsFilters` to `UluFacetsFilterLists` to more accurately describe its function and to align with new filter components.
+- Enhanced `UluCheckboxMenu` to support `type="radio"`, a `legend` prop for accessibility, and proper `v-model` handling for both radio and checkbox types.
+- Enhanced `UluFacetsResults` to accept a `classes` object prop (`{ list, item }`) for custom styling of internal elements, conforming to library conventions.
+
 ## 0.1.0-beta.27
 
 - Update `UluBreadcrumb` to match current @ulu/frontend scss "breadcrumb" component structure/classes
