@@ -1,38 +1,67 @@
 <template>
-  <ul class="UluFacets__facet-list">
-    <li 
-      class="UluFacets__facet"
-      :class="classFacet"
-      v-for="facet in children"
-      :key="facet.uid"
-    >
-      <input 
-        class="UluFacets__facet-checkbox"
-        :id="facetCheckboxId(facet)"
-        type="checkbox" 
-        :checked="facet.selected"
-        @change="emit('facet-change', { groupUid, facetUid: facet.uid, selected: $event.target.checked })"
-      >
-      <label 
-        class="UluFacets__facet-label" 
-        :for="facetCheckboxId(facet)"
-      >
-        {{ facet.label }}
-      </label>
-    </li>
-  </ul>
+  <UluSelectableMenu
+    class="UluFacets__facet-list"
+    :legend="groupUid"
+    :type="type"
+    :options="menuOptions"
+    :model-value="modelValue"
+    @update:model-value="handleChange"
+  >
+    <template #default="{ option }">
+      {{ option.label }}
+    </template>
+  </UluSelectableMenu>
 </template>
 
 <script setup>
-  const props = defineProps({
-    groupUid: String,
-    children: Array,
-    classFacet: String
-  });
+import { computed } from 'vue';
+import UluSelectableMenu from '../../forms/UluSelectableMenu.vue';
 
-  const emit = defineEmits(['facet-change']);
+const props = defineProps({
+  groupUid: String,
+  groupName: String,
+  children: Array,
+  type: {
+    type: String,
+    default: 'checkbox',
+  },
+  modelValue: [String, Array],
+});
 
-  function facetCheckboxId(facet) {
-    return `facet-${props.groupUid}-${facet.uid}`;
+const emit = defineEmits(['facet-change']);
+
+const menuOptions = computed(() => {
+  if (props.type === 'radio') {
+    return [{ label: `All ${props.groupName}s`, uid: '' }, ...props.children];
   }
+  return props.children;
+});
+
+function handleChange(value) {
+  if (props.type === 'radio') {
+    const selectedUid = value;
+    props.children.forEach(facet => {
+      const shouldBeSelected = facet.uid === selectedUid;
+      if (facet.selected !== shouldBeSelected) {
+        emit('facet-change', {
+          groupUid: props.groupUid,
+          facetUid: facet.uid,
+          selected: shouldBeSelected
+        });
+      }
+    });
+  } else {
+    const selectedUids = new Set(value);
+    props.children.forEach(facet => {
+      const shouldBeSelected = selectedUids.has(facet.uid);
+      if (facet.selected !== shouldBeSelected) {
+        emit('facet-change', {
+          groupUid: props.groupUid,
+          facetUid: facet.uid,
+          selected: shouldBeSelected
+        });
+      }
+    });
+  }
+}
 </script>

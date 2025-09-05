@@ -2,17 +2,17 @@
   <div class="menu-stack form-theme" :role="groupRole" :aria-labelledby="legendId">
     <div v-if="legend" :id="legendId" class="hidden-visually">{{ legend }}</div>
     <ul class="menu-stack__list">
-      <li class="menu-stack__item" v-for="(option, index) in options" :key="index">
+      <li class="menu-stack__item" v-for="option in options" :key="option.uid">
         <div class="menu-stack__selectable">
           <input
             :type="type"
-            :id="getId(index)"
+            :id="getId(option)"
             :name="name"
             :value="option.uid"
             :checked="isChecked(option)"
             @change="handleChange(option, $event)"
           >
-          <label :for="getId(index)">
+          <label :for="getId(option)">
             <slot :option="option">
               {{ option?.label || option?.title || option?.text }}
             </slot>
@@ -42,7 +42,7 @@ const name = computed(() => props.legend ? props.legend.toLowerCase().replace(/\
 const legendId = computed(() => name.value ? `${name.value}-legend` : null);
 const groupRole = computed(() => props.type === 'radio' ? 'radiogroup' : 'group');
 
-const getId = (index) => `${name.value}-${index}`;
+const getId = (option) => `${name.value}-${option.uid}`;
 
 const isChecked = (option) => {
   if (props.type === 'radio') {

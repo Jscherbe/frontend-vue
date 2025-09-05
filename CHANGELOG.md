@@ -2,9 +2,9 @@
 
 ## 0.1.0-beta.28
 
-- New `UluFacetsFilterSelects` and `UluFacetsFilterPopovers` components to provide flexible UI options for displaying facet filters.
+- New `UluFacetsFilterSelects` and `UluFacetsFilterPopovers` components to provide flexible UI options for displaying facet filters. Popovers offer both single and multiple while selects is native select single selection
 - New `UluFacetsHeaderLayout` component for layouts where filter controls appear above the results list.
-- Renamed `UluFacetsFilters` to `UluFacetsFilterLists` to more accurately describe its function and to align with new filter components.
+- Renamed `UluFacetsFilters` to `UluFacetsFilterLists` to more accurately describe its function and to align with new filter components. Also make this allow for both multiple and single selections
 - Changed `UluCheckboxMenu` to `UluSelectableMenu` to support `type="radio"`, a `legend` prop for accessibility, and proper `v-model` handling for both radio and checkbox types.
 - Enhanced `UluFacetsResults` to accept a `classes` object prop (`{ list, item }`) for custom styling of internal elements, conforming to library conventions.
 

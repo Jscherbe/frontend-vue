@@ -13,9 +13,9 @@ This story demonstrates the `useFacets` composable and its associated components
   // 1. Define fields for automatic facet generation
   // Use 'getValue' for custom logic, like extracting the year from a Date object.
   const facetFields = [
-    { name: 'Category', uid: 'category', open: true },
-    { name: 'Author', uid: 'author', open: true },
-    { name: 'Year', uid: 'date', open: true, getValue: item => item.date.getFullYear() }
+    { name: 'Category', uid: 'category', open: true, multiple: true }, // Set `multiple: true` for checkbox behavior
+    { name: 'Author', uid: 'author', open: true }, // Defaults to single-select (radio)
+    { name: 'Year', uid: 'date', open: true, getValue: item => item.date.getFullYear() } // Defaults to single-select (radio)
   ];
 
   // 2. Define any extra sort types

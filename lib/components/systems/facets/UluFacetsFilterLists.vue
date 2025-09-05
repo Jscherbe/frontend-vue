@@ -22,7 +22,9 @@
         <UluFacetsList
           :children="group.children.slice(0, maxVisible)"
           :groupUid="group.uid"
-          :classFacet="classes.facet"
+          :groupName="group.name"
+          :type="group.multiple ? 'checkbox' : 'radio'"
+          :model-value="selectedUids(group)"
           @facet-change="emit('facet-change', $event)"
         />
         <UluCollapsibleRegion
@@ -40,7 +42,9 @@
             <UluFacetsList
               :children="group.children.slice(maxVisible)"
               :groupUid="group.uid"
-              :classFacet="classes.facet"
+              :groupName="group.name"
+              :type="group.multiple ? 'checkbox' : 'radio'"
+              :model-value="selectedUids(group)"
               @facet-change="emit('facet-change', $event)"
             />
           </template>
@@ -70,4 +74,11 @@
   });
 
   const emit = defineEmits(['facet-change']);
+
+  const selectedUids = (group) => {
+    if (group.multiple) {
+      return group.children.filter(c => c.selected).map(c => c.uid);
+    }
+    return group.children.find(c => c.selected)?.uid || '';
+  };
 </script>
