@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.0-beta.29
+
+- Update popover plugin's `UluPopover` compenent markup to match frontend
+  - Remove incorrect aria-hidden
+  - Add aria-labelledby to link the trigger to the content
+
 ## 0.1.0-beta.28
 
 - New `UluFacetsFilterSelects` and `UluFacetsFilterPopovers` components to provide flexible UI options for displaying facet filters. Popovers offer both single and multiple while selects is native select single selection
