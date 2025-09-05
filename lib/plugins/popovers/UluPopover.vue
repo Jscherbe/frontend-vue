@@ -4,6 +4,7 @@
     type="button" 
     ref="trigger"
     @click="toggle"
+    :id="triggerId"
     :disabled="disabled"
     :class="[ 
       { [activeClass] : isOpen }, 
@@ -27,7 +28,7 @@
       }, 
       classes.content,
     ]"
-    :aria-hidden="isOpen ? 'false' : 'true'" 
+    :aria-labelledby="triggerId" 
     :id="id" 
     :style="floatingStyles"
     :data-placement="placement"
@@ -95,6 +96,7 @@
   });
 
   const id = newUid();
+  const triggerId = newUid();
   const config = Object.assign({}, defaults.popover, props.config);
   const isOpen = ref(props.startOpen || false);
   const trigger = ref(null);

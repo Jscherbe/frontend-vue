@@ -6,6 +6,10 @@ Build/Deployment:
         * Results in the components using their own instance of settings.js 
         * This can be avoided by building it in vs using modules to manage singleton state 
 Todos:
+  ☐ Unify the unique id system
+    * At least prefix all ids, possibly check for existence in a utility (like other newId functions?)
+  ✔ Remove aria-hidden from popover content (why is that on there?) @done
+    * Check matches frontend HTML
   ☐ Finish facets layout
   ☐ Create utility for counter id stuff (reoccurring need), can just be a closure
   ☐ Convert everything to composition API going forward @in-progress
