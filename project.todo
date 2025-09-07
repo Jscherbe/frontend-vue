@@ -92,3 +92,5 @@ Not Vital:
       * Move the logic for the resizing to dedicated methods and add option for selfManaged 
         to disable event binding, then in vue bind events and bind the style change (width)
         * Then it can work in both frontend and vue but bind events
+Stories that need updated:
+  ☐ Update the story for facets popover (trigger slot) @no-important

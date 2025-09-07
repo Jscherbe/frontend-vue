@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.32
+
+- Fixed facet sorting in `useFacets` to sort by the display label alphabetically instead of the underlying `uid`.
+
 ## 0.1.0-beta.31
 
 - `UluFacetsFilterPopovers.vue` Add "trigger" slot
