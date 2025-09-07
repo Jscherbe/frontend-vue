@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.31
+
+- `UluFacetsFilterPopovers.vue` Add "trigger" slot
+
 ## 0.1.0-beta.30
 
 - Improved `useFacets` composable by centralizing single-selection logic in `handleFacetChange`. This makes the system more robust and ensures correct behavior for facet groups that do not allow multiple selections.

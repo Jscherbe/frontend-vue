@@ -8,7 +8,9 @@
         }
       ">
         <template #trigger>
-          <span>{{ group.name }}: <strong>{{ selectedLabel(group) }}</strong></span>
+          <slot name="trigger" :group="group" :label="selectedLabel(group)">
+            <span>{{ group.name }}: <strong>{{ selectedLabel(group) }}</strong></span>
+          </slot>
           <UluIcon :class="classes.triggerIcon" icon="fas fa-chevron-down" />
         </template>
         <template #content="{ close }">
