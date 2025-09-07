@@ -5,6 +5,7 @@
       <li class="menu-stack__item" v-for="option in options" :key="option.uid">
         <div class="menu-stack__selectable">
           <input
+            class="menu-stack__selectable-input"
             :type="type"
             :id="getId(option)"
             :name="name"
@@ -12,7 +13,7 @@
             :checked="isChecked(option)"
             @change="handleChange(option, $event)"
           >
-          <label :for="getId(option)">
+          <label class="menu-stack__selectable-label" :for="getId(option)">
             <slot :option="option">
               {{ option?.label || option?.title || option?.text }}
             </slot>

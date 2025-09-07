@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.33
+
+- Update `UluSelectableMenu` to have correct child classes to match frontend component
+
 ## 0.1.0-beta.32
 
 - Fixed facet sorting in `useFacets` to sort by the display label alphabetically instead of the underlying `uid`.
