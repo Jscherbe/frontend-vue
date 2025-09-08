@@ -94,3 +94,4 @@ Not Vital:
         * Then it can work in both frontend and vue but bind events
 Stories that need updated:
   ☐ Update the story for facets popover (trigger slot) @no-important
+  ☐ Update the story for facets popover and selectable menu for hideInputs

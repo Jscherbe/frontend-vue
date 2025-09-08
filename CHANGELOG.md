@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.0-beta.34
+
+- Update `UluSelectableMenu` and `UluFacetsFilterPopovers` to have hideInputs prop
+
 ## 0.1.0-beta.33
 
 - Update `UluSelectableMenu` to have correct child classes to match frontend component

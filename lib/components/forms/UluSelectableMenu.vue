@@ -1,11 +1,15 @@
 <template>
-  <div class="menu-stack form-theme" :role="groupRole" :aria-labelledby="legendId">
+  <div 
+    class="menu-stack form-theme" 
+    :class="{ 'menu-stack--hide-inputs' : hideInputs }"
+    :role="groupRole" 
+    :aria-labelledby="legendId"
+  >
     <div v-if="legend" :id="legendId" class="hidden-visually">{{ legend }}</div>
     <ul class="menu-stack__list">
       <li class="menu-stack__item" v-for="option in options" :key="option.uid">
         <div class="menu-stack__selectable">
           <input
-            class="menu-stack__selectable-input"
             :type="type"
             :id="getId(option)"
             :name="name"
@@ -13,7 +17,7 @@
             :checked="isChecked(option)"
             @change="handleChange(option, $event)"
           >
-          <label class="menu-stack__selectable-label" :for="getId(option)">
+          <label :for="getId(option)">
             <slot :option="option">
               {{ option?.label || option?.title || option?.text }}
             </slot>
@@ -35,11 +39,12 @@ const props = defineProps({
     default: 'checkbox',
   },
   modelValue: [String, Array],
+  hideInputs: Boolean
 });
 
 const emit = defineEmits(['update:modelValue']);
 
-const name = computed(() => props.legend ? props.legend.toLowerCase().replace(/\s+/g, '-') : `menu-${Math.random().toString(36).substring(7)}`);
+const name = computed(() => props.legend ? props.legend.toLowerCase().replace(/\s+/g, '-') : `menu-${ Math.random().toString(36).substring(7) }`);
 const legendId = computed(() => name.value ? `${name.value}-legend` : null);
 const groupRole = computed(() => props.type === 'radio' ? 'radiogroup' : 'group');
 

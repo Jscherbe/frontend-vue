@@ -20,6 +20,7 @@
             :options="getMenuOptions(group)"
             :model-value="selectedUids(group)"
             @update:model-value="onFilterChange(group, $event, close)"
+            :hideInputs="hideInputs"
           />
         </template>
       </UluPopover>
@@ -46,7 +47,8 @@ const props = defineProps({
       // container: null,
       // group: null
     })
-  }
+  },
+  hideInputs: Boolean
 });
 
 const emit = defineEmits(['facet-change']);
