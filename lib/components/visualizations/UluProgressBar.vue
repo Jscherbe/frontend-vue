@@ -3,7 +3,6 @@
     class="progress-bar"
     :class="{
       'progress-bar--small' : small,
-      'progress-bar--icon-left' : iconOnLeft,
       'type-small' : small
     }"
   >
@@ -53,42 +52,46 @@
   </div>
 </template>
 
-<script>
-  export default {
-    name: 'ProgressBar',
-    props: {
-      small: Boolean,
-      label: {
-        type: String,
-        default: "Progress"
-      },
-      labelHidden: Boolean,
-      total: Number,
-      deficit: Number,
-      amount: Number,
-      iconOnLeft: Boolean
+<script setup>
+  import { computed } from "vue";
+
+  const props = defineProps({
+    small: Boolean,
+    label: {
+      type: String,
+      default: "Progress"
     },
-    computed: {
-      percentage() {
-        const { amount, total } = this;
-        return amount / total * 100;
-      },
-      defPercentage() {
-        const { deficit, total } = this;
-        return deficit ? deficit / total * 100 : 0;
-      },
-      isComplete() {
-        return this.amount >= this.total;
-      },
-      status() {
-        return this.isComplete ? {
-          type: "success",
-          message: "Item Completed"
-        } : this.deficit ? {
-          type: "danger",
-          message: "Item Has Deficit"
-         } : null;
-      }
+    labelHidden: Boolean,
+    total: Number,
+    deficit: Number,
+    amount: Number
+  });
+
+  const percentage = computed(() => {
+    return props.amount / props.total * 100;
+  });
+  const defPercentage = computed(() => {
+    return props.deficit ? props.deficit / props.total * 100 : 0;
+  });
+  const isComplete = computed(() => {
+    return props.amount >= props.total;
+  });
+  const status = computed(() => {
+    if (isComplete.value) {
+      return {
+        type: "success",
+        message: "Item Completed"
+      };
+    } else if (props.deficit) {
+      return {
+        type: "success",
+        message: "Item Completed"
+      };
+    } else {
+      return {
+        type: "danger",
+        message: "Item Has Deficit"
+      };
     }
-  }
+  });
 </script>
