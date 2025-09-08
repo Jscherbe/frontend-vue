@@ -1,10 +1,10 @@
 <template>
   <div class="UluFacetsFilters">
     <UluCollapsibleRegion
-      class="UluFacets__group"
+      class="ulu-facets__group"
       :class="classes.group"
-      :classToggle="['UluFacets__group-toggle', classes.groupToggle]"
-      :classContent="['UluFacets__group-content', classes.groupContent]"
+      :classToggle="['ulu-facets__group-toggle', classes.groupToggle]"
+      :classContent="['ulu-facets__group-content', classes.groupContent]"
       v-for="group in facets"
       :key="group.uid"
       :group="group"
@@ -29,7 +29,7 @@
         />
         <UluCollapsibleRegion
           v-if="group.children.length > maxVisible"
-          class="UluFacets__more-facets"
+          class="ulu-facets__more-facets"
           :class="classes.moreFacets"
           :clickOutsideCloses="false"
           :closeOnEscape="false"

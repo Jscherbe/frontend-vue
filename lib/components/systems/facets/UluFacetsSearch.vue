@@ -1,5 +1,5 @@
 <template>
-  <div class="UluFacets__keyword-search">
+  <div class="ulu-facets__keyword-search">
     <label :class="classes.searchLabel" :for="id">
       <strong>Search</strong>
     </label>

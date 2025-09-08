@@ -1,16 +1,16 @@
 <template>
-  <div class="UluFacetsDropdownFilters">
+  <div class="facets-dropdown-filters">
     <div
-      class="UluFacetsDropdownFilters__group"
+      class="facets-dropdown-filters__group"
       v-for="group in facets"
       :key="group.uid"
     >
-      <label :for="`facet-dropdown-${group.uid}`" class="UluFacetsDropdownFilters__label">
+      <label :for="`facet-dropdown-${group.uid}`" class="facets-dropdown-filters__label">
         {{ group.name }}
       </label>
       <select
         :id="`facet-dropdown-${group.uid}`"
-        class="UluFacetsDropdownFilters__select"
+        class="facets-dropdown-filters__select"
         @change="onFilterChange(group, $event)"
       >
         <option value="">All {{ group.name }}s</option>
@@ -57,13 +57,13 @@ function onFilterChange(group, event) {
 </script>
 
 <style lang="scss">
-.UluFacetsDropdownFilters {
+.facets-dropdown-filters {
   display: flex;
   gap: 1rem;
   align-items: center;
   flex-wrap: wrap;
 }
-.UluFacetsDropdownFilters__group {
+.facets-dropdown-filters__group {
   display: flex;
   gap: 0.5rem;
   align-items: center;

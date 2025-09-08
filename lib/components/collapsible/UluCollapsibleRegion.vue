@@ -1,15 +1,15 @@
 <template>
   <div 
-    class="CollapsibleRegion"
+    class="collapsible-region"
     @keydown.esc="handleEscape"
     :class="{ 
-      'CollapsibleRegion--open' : isOpen,
-      'CollapsibleRegion--closed' : !isOpen,
-      'CollapsibleRegion--transitioning' : isTransitioning
+      'collapsible-region--open' : isOpen,
+      'collapsible-region--closed' : !isOpen,
+      'collapsible-region--transitioning' : isTransitioning
     }"
   >
     <button 
-      class="CollapsibleRegion__toggle"
+      class="collapsible-region__toggle"
       :id="toggleId"
       :aria-controls="contentId" 
       :aria-expanded="isOpen"
@@ -20,7 +20,7 @@
       </slot>
     </button>
     <div 
-      class="CollapsibleRegion__content"
+      class="collapsible-region__content"
       tabindex="-1"
       ref="content"
       :id="contentId"
@@ -34,7 +34,7 @@
       as they interfere with getting accurate measurements of the content
       when it's hidden (scrollHeight) 
       -->
-      <div class="CollapsibleRegion__content-inner">
+      <div class="collapsible-region__content-inner">
         <slot/>
       </div>
     </div>

@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.0-beta.35
+
+- `UluFacetsSidebarLayout.vue` make filters responsive (in modal on mobile)
+- Update component class names from PascalCase to kebab-case for `UluCollapsibleRegion` and all `UluFacets` components for consistency.
+- Update facets components from component names to simplified kebab case names
+
 ## 0.1.0-beta.34
 
 - Update `UluSelectableMenu` and `UluFacetsFilterPopovers` to have hideInputs prop

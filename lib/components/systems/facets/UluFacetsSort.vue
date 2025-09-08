@@ -1,5 +1,5 @@
 <template>
-  <div class="UluFacetsSort" :class="classes.sortForm">
+  <div class="facets-sort" :class="classes.sortForm">
     <label 
       :for="sortId" 
       :class="classes.sortFormLabel"

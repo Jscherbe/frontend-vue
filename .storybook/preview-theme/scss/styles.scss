@@ -12,7 +12,9 @@
 @include ulu.component-set-excludes((
   "modal", 
   "button",
-  "popover"
+  "popover",
+  "menu-stack",
+  "form-theme"
 ));
 
 @include ulu.component-spoke-spinner-set-styles((
@@ -33,6 +35,8 @@
 
 // Include any components that are outside in-ulu container (teleports/etc)
 @include ulu.component-button-styles();
+@include ulu.component-form-theme-styles();
+@include ulu.component-menu-stack-styles();
 @include ulu.component-modal-styles();
 @include ulu.component-popover-styles();
 
