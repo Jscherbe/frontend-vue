@@ -1,6 +1,6 @@
 <template>
   <div class="UluFacetsFilters">
-    <UluCollapsibleRegion
+    <UluCollapsible
       class="ulu-facets__group"
       :class="classes.group"
       :classToggle="['ulu-facets__group-toggle', classes.groupToggle]"
@@ -27,7 +27,7 @@
           :model-value="selectedUids(group)"
           @facet-change="emit('facet-change', $event)"
         />
-        <UluCollapsibleRegion
+        <UluCollapsible
           v-if="group.children.length > maxVisible"
           class="ulu-facets__more-facets"
           :class="classes.moreFacets"
@@ -48,25 +48,34 @@
               @facet-change="emit('facet-change', $event)"
             />
           </template>
-        </UluCollapsibleRegion>
+        </UluCollapsible>
       </template>
-    </UluCollapsibleRegion>
+    </UluCollapsible>
   </div>
 </template>
 
 <script setup>
   import UluFacetsList from "./UluFacetsList.vue";
-  import UluCollapsibleRegion from "../../collapsible/UluCollapsibleRegion.vue";
+  import UluCollapsible from "../../collapsible/UluCollapsible.vue";
 
   defineProps({
+    /**
+     * An object of classes to apply to the component.
+     */
     classes: {
       type: Object,
       default: () => ({})
     },
+    /**
+     * The maximum number of facets to show before showing the "More" button.
+     */
     maxVisible: {
       type: Number,
       default: 5
     },
+    /**
+     * An array of facet groups to display.
+     */
     facets: {
       type: Array,
       default: () => []

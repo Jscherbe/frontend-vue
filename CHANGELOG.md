@@ -4,6 +4,9 @@
 
 - `UluProgressCircle` component for circular progress indicators. Replaces and enhances the old `UluProgressDonut`.
 - `UluProgressBar` component, refactored for a more flexible API with modifier props and an `icon` slot.
+- Make sure all component props are documented (displayed in documentation/storybook)
+- `UluCollapsibleRegion` renamed to `UluCollapsible`. Also added classes prop (with default with the old preset classes [but in kebab case now]), so that we can use for accordion
+- `UluAccordion` update to use `UluCollapsible` (classes prop keys change and slots name changes to match UluCollapsible, **breaking change if using classes**, they now match classes keys for UluCollapsible for consistency)
 
 ## 0.1.0-beta.35
 

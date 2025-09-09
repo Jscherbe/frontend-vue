@@ -31,13 +31,37 @@
   import { RouterLink } from "vue-router";
 
   const props = defineProps({
+    /**
+     * Whether to display a skeleton loading state.
+     */
     skeleton: Boolean,
+    /**
+     * The size of the badge (e.g., 'small', 'large').
+     */
     size: String,
+    /**
+     * The text content of the badge.
+     */
     text: String,
+    /**
+     * Alt text for the badge, for accessibility.
+     */
     alt: String,
+    /**
+     * The type or style of the badge (e.g., 'primary', 'secondary').
+     */
     type: String,
+    /**
+     * A function to call when the badge is clicked. Renders as a <button>.
+     */
     click: Function,
+    /**
+     * A Vue Router link location. Renders as a <router-link>.
+     */
     to: [Object, String],
+    /**
+     * A URL. Renders as a standard <a> tag.
+     */
     href: String,
   });
 

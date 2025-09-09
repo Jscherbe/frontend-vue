@@ -21,6 +21,9 @@
 <script setup>
   import UluIcon from "../elements/UluIcon.vue";
   defineProps({
+    /**
+     * The placeholder text for the search input.
+     */
     placeholder: {
       type: String,
       default: "Titles, keyword…"

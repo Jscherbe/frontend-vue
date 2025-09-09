@@ -37,11 +37,20 @@
       UluIcon
     },
     props: {
+      /**
+       * Icon to display next to the title.
+       */
       icon: String,
+      /**
+       * The alignment of the icon with the title.
+       */
       iconAlign: {
         type: String,
         default: "baseline"
       },
+      /**
+       * Classes for the different elements in the component.
+       */
       classes: {
         type: Object,
         default: () => ({
@@ -49,11 +58,20 @@
           icon: "margin-right-small"
         })
       },
+      /**
+       * The title to display.
+       */
       title: String,
+      /**
+       * The HTML element to use for the title.
+       */
       titleElement: {
         type: String,
         default: "h2"
       },
+      /**
+       * If true, a rule will be displayed under the title.
+       */
       rule: Boolean
     }
   }

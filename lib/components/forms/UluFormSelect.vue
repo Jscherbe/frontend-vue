@@ -25,9 +25,21 @@
   })();
 
   defineProps({
+    /**
+     * The label for the select input.
+     */
     label: String,
+    /**
+     * The value of the select input (for v-model).
+     */
     modelValue: String,
+    /**
+     * An array of options for the select input. Each option should be an object with `value` and `text` properties.
+     */
     options: Array,
+    /**
+     * If true, the label will be visually hidden.
+     */
     labelHidden: Boolean
   });
 

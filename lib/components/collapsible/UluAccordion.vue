@@ -1,52 +1,45 @@
 <template>
-  <Disclosure :defaultOpen="defaultOpen" v-slot="{ open }">
-    <div 
-      class="accordion" 
-      :class="[
-        { [activeClass]: open }, 
-        classes.container, 
-        resolvedModifiers
-      ]"
-    >
-      <DisclosureButton 
-        class="accordion__summary" 
-        :class="[
-          { [activeClass]: open }, 
-          classes.summary
-        ]"
-      >
-        <slot name="summary" :open="open">
-          <component :is="summaryTextElement">
-            {{ summaryText }}
-          </component>
-        </slot>
-        <slot name="icon" :open="open">
-          <span class="accordion__icon" :class="classes.icon">
-            <UluIcon 
-              :icon="open ? 'type:collapse' : 'type:expand'"
-              style="display: inline;"
-            />
-          </span>
-        </slot>
-      </DisclosureButton>
-      <DisclosurePanel class="accordion__content" :class="classes.content">
-        <slot :open="open"/>
-      </DisclosurePanel>
-    </div>
-  </Disclosure>
+  <UluCollapsible
+    :start-open="defaultOpen"
+    :title="summaryText"
+    :classes="mergedClasses"
+    :transition-height="true"
+  >
+    <template #toggle="{ isOpen: open }">
+      <slot name="toggle" :open="open">
+        <component :is="summaryTextElement">
+          {{ summaryText }}
+        </component>
+      </slot>
+      <slot name="icon" :open="open">
+        <span class="accordion__icon" :class="classes.icon">
+          <UluIcon 
+            :icon="open ? 'type:collapse' : 'type:expand'"
+            style="display: inline;"
+          />
+        </span>
+      </slot>
+    </template>
+
+    <template #default="{ isOpen: open }">
+      <slot :open="open"/>
+    </template>
+  </UluCollapsible>
 </template>
 
 <script setup>
+  import { computed } from 'vue';
   import UluIcon from "../elements/UluIcon.vue";
+  import UluCollapsible from "./UluCollapsible.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
-  import { Disclosure, DisclosureButton, DisclosurePanel } from "@headlessui/vue";
+
   const props = defineProps({
     /**
      * Whether the accordion is open by default
      */
     defaultOpen: Boolean,
     /**
-     * Test to use for accordion, alternatively use #toggle slot
+     * Text to use for accordion, alternatively use #toggle slot
      */
     summaryText: String,
     /**
@@ -57,12 +50,19 @@
       default: "strong"
     },
     /**
-     * Classes for elements ({ container, summary, icon, content })
+     * Classes for elements. See UluCollapsible for all available class keys (toggle, content, etc).
+     * The 'icon' key is also available for the icon span.
      * - Any valid class binding value per element
      */
     classes: {
       type: Object,
-      default: () => ({})
+      default: () => ({
+        container: 'accordion',
+        toggle: 'accordion__summary',
+        content: 'accordion__content',
+        containerOpen: 'is-active',
+        containerTransitioning: 'is-active'
+      })
     },
     /**
      * Active class output on container and toggle elements
@@ -72,11 +72,16 @@
       default: "is-active"
     },
     /**
-     * Modifiers for tag class
+     * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
     modifiers: [String, Array]
   });
 
-  const { resolvedModifiers } = useModifiers({ props, baseClass: "button" });
-  
+  const { resolvedModifiers } = useModifiers({ props, baseClass: "accordion" });
+
+  const mergedClasses = computed(() => {
+    const merged = { ...props.classes };
+    merged.container = [merged.container, resolvedModifiers.value];
+    return merged;
+  });
 </script>

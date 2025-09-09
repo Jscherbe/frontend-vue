@@ -25,13 +25,28 @@
   })();
 
   defineProps({
+    /**
+     * The label for the file input.
+     */
     label: {
       type: String,
       default: "Select File"
     },
+    /**
+     * If true, the label will be visually hidden.
+     */
     labelHidden: Boolean,
+    /**
+     * If true, default classes will not be applied.
+     */
     noClasses: Boolean,
+    /**
+     * If true, allows multiple file selection.
+     */
     multiple: Boolean,
+    /**
+     * Additional attributes to bind to the input element.
+     */
     inputAttrs: Object
   });
 

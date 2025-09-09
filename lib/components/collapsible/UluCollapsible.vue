@@ -1,15 +1,23 @@
 <template>
   <div 
-    class="collapsible-region"
     @keydown.esc="handleEscape"
-    :class="{ 
-      'collapsible-region--open' : isOpen,
-      'collapsible-region--closed' : !isOpen,
-      'collapsible-region--transitioning' : isTransitioning
-    }"
+    :class="[
+      classes.container,
+      {
+        [classes.containerOpen]: isOpen && !isTransitioning,
+        [classes.containerClosed]: !isOpen && !isTransitioning,
+        [classes.containerTransitioning]: isTransitioning
+      }
+    ]"
   >
     <button 
-      class="collapsible-region__toggle"
+      :class="[
+        classes.toggle,
+        {
+          [classes.toggleOpen]: isOpen && !isTransitioning,
+          [classes.toggleClosed]: !isOpen && !isTransitioning
+        }
+      ]"
       :id="toggleId"
       :aria-controls="contentId" 
       :aria-expanded="isOpen"
@@ -20,7 +28,7 @@
       </slot>
     </button>
     <div 
-      class="collapsible-region__content"
+      :class="classes.content"
       tabindex="-1"
       ref="content"
       :id="contentId"
@@ -34,7 +42,7 @@
       as they interfere with getting accurate measurements of the content
       when it's hidden (scrollHeight) 
       -->
-      <div class="collapsible-region__content-inner">
+      <div :class="classes.contentInner">
         <slot/>
       </div>
     </div>
@@ -48,7 +56,7 @@
    * Utility component for creating disclosure type behaviors (show/hide)
    */
   export default {
-    name: "UluCollapsibleRegion",
+    name: "UluCollapsible",
     props: {
       /**
        * Set title for toggle (instead of using slot)
@@ -88,6 +96,24 @@
           // Make sure that it's a valid css duration (ms|s)
           return value.includes("s");
         }
+      },
+      /**
+       * Classes for elements ({ container, toggle, content, contentInner })
+       * - Any valid class binding value per element
+       */
+      classes: {
+        type: Object,
+        default: () => ({
+          container: 'collapsible-region',
+          toggle: 'collapsible-region__toggle',
+          content: 'collapsible-region__content',
+          contentInner: 'collapsible-region__content-inner',
+          containerOpen: 'collapsible-region--open',
+          containerClosed: 'collapsible-region--closed',
+          containerTransitioning: 'collapsible-region--transitioning',
+          toggleOpen: 'is-open',
+          toggleClosed: 'is-closed'
+        })
       },
     },
     data() {

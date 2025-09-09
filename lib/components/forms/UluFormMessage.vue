@@ -11,7 +11,13 @@
 <script setup>
   import UluIcon from "../elements/UluIcon.vue";
   defineProps({
+    /**
+     * If true, the message will be styled as a warning.
+     */
     warning: Boolean,
+    /**
+     * If true, the message will be styled as an error.
+     */
     error: Boolean,
   });
 </script>

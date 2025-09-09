@@ -13,11 +13,11 @@
       </div>
     </div>
     <div class="progress-bar__track">
-      <div class="progress-bar__bar" :style="{ width: `${amountPercentage}%` }"></div>
+      <div class="progress-bar__bar" :style="{ width: barWidth }"></div>
       <div
         v-if="deficit > 0"
         class="progress-bar__bar--deficit"
-        :style="{ width: `${deficitPercentage}%` }"
+        :style="{ width: deficitBarWidth }"
       ></div>
     </div>
     <div v-if="!loader && !indeterminate" class="progress-bar__values">
@@ -99,15 +99,17 @@ const props = defineProps({
   indeterminate: Boolean,
 });
 
-const amountPercentage = computed(() => {
-  if (props.total === 0) return 0;
-  return (props.amount / props.total) * 100;
+const getCssPercentage = (amount, total) => {
+  const percent = total === 0 ? 0 : (amount / total) * 100;
+  return `${ percent }%`;
+};
+
+const barWidth = computed(() => {
+  if (props.indeterminate) return null; // No value for width
+  return getCssPercentage(props.amount, props.total);
 });
 
-const deficitPercentage = computed(() => {
-  if (props.total === 0 || props.deficit === 0) return 0;
-  return (props.deficit / props.total) * 100;
-});
+const deficitBarWidth = computed(() => getCssPercentage(props.deficit, props.total));
 
 const componentClasses = computed(() => {
   return {

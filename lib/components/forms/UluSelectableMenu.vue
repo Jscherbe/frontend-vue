@@ -32,13 +32,28 @@
 import { computed } from 'vue';
 
 const props = defineProps({
+  /**
+   * The legend for the menu.
+   */
   legend: String,
+  /**
+   * An array of options for the menu.
+   */
   options: Array,
+  /**
+   * The type of input to use ('checkbox' or 'radio').
+   */
   type: {
     type: String,
     default: 'checkbox',
   },
+  /**
+   * The value of the menu (for v-model).
+   */
   modelValue: [String, Array],
+  /**
+   * If true, the input elements will be visually hidden.
+   */
   hideInputs: Boolean
 });
 

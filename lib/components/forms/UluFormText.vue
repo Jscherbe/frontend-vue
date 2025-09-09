@@ -21,8 +21,17 @@
   })();
 
   defineProps({
+    /**
+     * The label for the text input.
+     */
     label: String,
+    /**
+     * The value of the text input (for v-model).
+     */
     modelValue: String,
+    /**
+     * If true, the label will be visually hidden.
+     */
     labelHidden: Boolean
   });
 

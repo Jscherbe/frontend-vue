@@ -24,7 +24,7 @@
        */
       items: Array,
       /**
-       * Class to use on trigger
+       * Class(es) to apply to the trigger element.
        */
       triggerClass: {
         type: [String, Object, Array],

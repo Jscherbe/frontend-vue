@@ -34,10 +34,16 @@ import UluSelectableMenu from '../../forms/UluSelectableMenu.vue';
 import UluIcon from '../../elements/UluIcon.vue';
 
 const props = defineProps({
+  /**
+   * An array of facet groups to display.
+   */
   facets: {
     type: Array,
     default: () => []
   },
+  /**
+   * An object of classes to apply to the component.
+   */
   classes: {
     type: Object,
     default: () => ({
@@ -48,6 +54,9 @@ const props = defineProps({
       // group: null
     })
   },
+  /**
+   * If true, the input elements will be visually hidden.
+   */
   hideInputs: Boolean
 });
 

@@ -7,8 +7,17 @@
   import { useRequiredInject } from '../../composables/useRequiredInject.js';
 
   const props = defineProps({
+    /**
+     * The maximum breakpoint to show the content at.
+     */
     max: String,
+    /**
+     * The minimum breakpoint to show the content at.
+     */
     min: String,
+    /**
+     * Only show the content at this breakpoint.
+     */
     only: String,
   });
 

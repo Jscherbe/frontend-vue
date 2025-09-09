@@ -16,14 +16,23 @@
   import UluTag from "../elements/UluTag.vue";
 
   const props = defineProps({
+    /**
+     * The File object to be displayed.
+     */
     file: {
       required: true,
       type: Object,
     },
+    /**
+     * The icon to display next to the file name.
+     */
     icon: {
       type: String,
       default: "type:file"
     },
+    /**
+     * If true, the file size will not be displayed.
+     */
     noFileSize: Boolean
   });
 
