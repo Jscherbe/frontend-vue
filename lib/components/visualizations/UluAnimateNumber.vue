@@ -4,11 +4,17 @@
 
 <script>
   import gsap from "gsap";
+
+  /**
+   * Animates a number from a previous value to a new value.
+   * @slot default - The default slot for customizing the display of the number.
+   * @binding {number} currentValue - The current animated value.
+   */
   export default {
     name: 'AnimateNumber',
     props: {
       /**
-       * Number to animate as it changes
+       * The target number to animate to.
        */
       value: Number
     },

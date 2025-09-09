@@ -1,45 +1,33 @@
 <template>
-  <div 
-    class="progress-bar"
-    :class="{
-      'progress-bar--small' : small,
-      'type-small' : small
-    }"
-  >
-    <div class="progress-bar__header">
-      <strong 
-        class="progress-bar__label" 
-        :class="{ 
-          'type-normal' : small,
-          'hidden-visually' : labelHidden,
-        }"
+  <div :class="componentClasses">
+    <div v-if="label || $slots.icon" class="progress-bar__header">
+      <strong
+        v-if="label"
+        class="progress-bar__label"
+        :class="{ 'hidden-visually': labelHidden }"
       >
         {{ label }}
       </strong>
-      <div v-if="status" class="progress-bar__icon">
-        <StatusIcon :type="status.type" />
-        <span class="hidden-visually">{{ status.message }}</span>
+      <div v-if="$slots.icon" class="progress-bar__icon">
+        <slot name="icon" />
       </div>
     </div>
     <div class="progress-bar__track">
-      <div 
-        class="progress-bar__bar"
-        :style="`width: ${ percentage }%`"
-      ></div>
-      <div 
-        v-if="deficit"
+      <div class="progress-bar__bar" :style="{ width: `${amountPercentage}%` }"></div>
+      <div
+        v-if="deficit > 0"
         class="progress-bar__bar--deficit"
-        :style="`width: ${ defPercentage }%`"
+        :style="{ width: `${deficitPercentage}%` }"
       ></div>
     </div>
-    <div class="progress-bar__values">
+    <div v-if="!loader && !indeterminate" class="progress-bar__values">
       <div class="progress-bar__value progress-bar__value--amount">
         <strong class="hidden-visually">Amount:</strong>
         {{ amount }}
       </div>
-      <div 
-        v-if="deficit > 0" 
-        class="progress-bar__value progress-bar__value--deficit color-status is-danger"
+      <div
+        v-if="deficit > 0"
+        class="progress-bar__value progress-bar__value--deficit"
       >
         <strong class="hidden-visually">Deficit: </strong>
         -{{ deficit }}
@@ -53,45 +41,83 @@
 </template>
 
 <script setup>
-  import { computed } from "vue";
+import { computed } from "vue";
 
-  const props = defineProps({
-    small: Boolean,
-    label: {
-      type: String,
-      default: "Progress"
-    },
-    labelHidden: Boolean,
-    total: Number,
-    deficit: Number,
-    amount: Number
-  });
+/**
+ * A linear progress bar to display progress, with support for various styles and a deficit indicator.
+ * @slot icon - A slot for placing an icon in the header, typically to indicate status.
+ */
+const props = defineProps({
+  /**
+   * The label to display above the progress bar.
+   */
+  label: String,
+  /**
+   * Hides the label visually, but keeps it for screen readers.
+   */
+  labelHidden: Boolean,
+  /**
+   * The current amount of progress.
+   */
+  amount: {
+    type: Number,
+    default: 0,
+  },
+  /**
+   * The total amount that represents 100% progress.
+   */
+  total: {
+    type: Number,
+    default: 100,
+  },
+  /**
+   * The amount of deficit to display on the bar.
+   */
+  deficit: {
+    type: Number,
+    default: 0,
+  },
+  /**
+   * Renders a smaller version of the progress bar.
+   */
+  small: Boolean,
+  /**
+   * Applies the 'positive' style (e.g., green).
+   */
+  positive: Boolean,
+  /**
+   * Applies the 'negative' style (e.g., red).
+   */
+  negative: Boolean,
+  /**
+   * Applies styles for use as a thin loader.
+   */
+  loader: Boolean,
+  /**
+   * Applies an indeterminate animation for unknown progress.
+   */
+  indeterminate: Boolean,
+});
 
-  const percentage = computed(() => {
-    return props.amount / props.total * 100;
-  });
-  const defPercentage = computed(() => {
-    return props.deficit ? props.deficit / props.total * 100 : 0;
-  });
-  const isComplete = computed(() => {
-    return props.amount >= props.total;
-  });
-  const status = computed(() => {
-    if (isComplete.value) {
-      return {
-        type: "success",
-        message: "Item Completed"
-      };
-    } else if (props.deficit) {
-      return {
-        type: "success",
-        message: "Item Completed"
-      };
-    } else {
-      return {
-        type: "danger",
-        message: "Item Has Deficit"
-      };
-    }
-  });
+const amountPercentage = computed(() => {
+  if (props.total === 0) return 0;
+  return (props.amount / props.total) * 100;
+});
+
+const deficitPercentage = computed(() => {
+  if (props.total === 0 || props.deficit === 0) return 0;
+  return (props.deficit / props.total) * 100;
+});
+
+const componentClasses = computed(() => {
+  return {
+    'progress-bar': true,
+    'progress-bar--small': props.small,
+    'progress-bar--positive': props.positive,
+    'progress-bar--negative': props.negative,
+    'progress-bar--loader': props.loader,
+    'progress-bar--indeterminate': props.indeterminate,
+    'type-small': props.small, // From original component, seems to control font size
+  };
+});
 </script>

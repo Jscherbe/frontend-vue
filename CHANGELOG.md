@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.0-beta.36
+
+- `UluProgressCircle` component for circular progress indicators. Replaces and enhances the old `UluProgressDonut`.
+- `UluProgressBar` component, refactored for a more flexible API with modifier props and an `icon` slot.
+
 ## 0.1.0-beta.35
 
 - `UluFacetsSidebarLayout.vue` make filters responsive (in modal on mobile)
