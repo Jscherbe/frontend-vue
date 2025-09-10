@@ -28,6 +28,7 @@
 - `UluMenu`: Allow menu users to define classes for itemSeparatorBefore/itemSeparatorAfter
 - `UluMenuStack`: Allow items to have separators above or below them using `separatorBefore` and `separatorAfter` properties on each item.
 - Add missing toast-animation for toast plugin
+- Add counts to `useFacets` to use in filter display
 
 ## 0.1.0-beta.35
 

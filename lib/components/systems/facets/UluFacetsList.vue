@@ -8,7 +8,7 @@
     @update:model-value="handleChange"
   >
     <template #default="{ option }">
-      {{ option.label }}
+      {{ option.label }} <span v-if="option.count !== undefined">({{ option.count }})</span>
     </template>
   </UluSelectableMenu>
 </template>
