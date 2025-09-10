@@ -2,16 +2,14 @@
   <div class="UluFacetsFilters">
     <UluCollapsible
       class="ulu-facets__group"
-      :class="classes.group"
-      :classToggle="['ulu-facets__group-toggle', classes.groupToggle]"
-      :classContent="['ulu-facets__group-content', classes.groupContent]"
       v-for="group in facets"
       :key="group.uid"
-      :group="group"
+      :classes="{
+        container: ['ulu-facets__group', classes.group],
+        toggle: ['ulu-facets__group-toggle', classes.groupToggle],
+        content: ['ulu-facets__group-content', classes.groupContent]
+      }"
       :startOpen="group.open"
-      :clickOutsideCloses="false"
-      :closeOnEscape="false"
-      :transitionHeight="true"
     >
       <template #toggle="{ isOpen }">
         <slot name="groupToggle" :group="group" :isOpen="isOpen">
@@ -36,7 +34,7 @@
           :transitionHeight="true"
         >
           <template #toggle="{ isOpen }">
-            {{ isOpen ? "- Less" : "+ More" }}
+            {{ isOpen ? "View Less" : "Show More" }}
           </template>
           <template #default>
             <UluFacetsList

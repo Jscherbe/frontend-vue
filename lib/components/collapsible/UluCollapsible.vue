@@ -39,7 +39,10 @@
     /**
      * v-model for controlling open state
      */
-    modelValue: Boolean,
+    modelValue: {
+      type: Boolean,
+      default: undefined
+    },
     /**
      * Set title for toggle (instead of using slot)
      */
