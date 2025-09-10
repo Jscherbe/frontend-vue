@@ -1,10 +1,11 @@
 <template>
   <UluCollapsible
-    v-model="model"
-    :start-open="defaultOpen"
+    :model-value="modelValue"
+    :start-open="startOpen"
     :title="summaryText"
     :classes="mergedClasses"
-    :transition-height="true"
+    :animate="animate"
+    @update:model-value="$emit('update:modelValue', $event)"
   >
     <template #toggle="{ isOpen: open }">
       <slot name="toggle" :open="open">
@@ -36,16 +37,26 @@
 
   const props = defineProps({
     /**
-     * v-model for controlling open state
+     * v-model for controlling open state  (optional)
      */
     modelValue: {
       type: Boolean,
-      default: null
+      default: undefined
     },
     /**
      * Whether the accordion is open by default
      */
-    defaultOpen: Boolean,
+    startOpen: Boolean,
+    /**
+     * Enable or configure animations.
+     * - `false` (default) to disable all animations.
+     * - `true` to enable animations with default settings.
+     * - An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' }).
+     */
+    animate: {
+      type: [Boolean, Object],
+      default: false
+    },
     /**
      * Text to use for accordion, alternatively use #toggle slot
      */
@@ -68,16 +79,8 @@
         container: 'accordion',
         toggle: 'accordion__summary',
         content: 'accordion__content',
-        containerOpen: 'is-active',
-        containerTransitioning: 'is-active'
+        containerOpen: 'is-active'
       })
-    },
-    /**
-     * Active class output on container and toggle elements
-     */
-    activeClass: {
-      type: String,
-      default: "is-active"
     },
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
@@ -86,11 +89,6 @@
   });
 
   const emit = defineEmits(['update:modelValue']);
-
-  const model = computed({
-    get: () => props.modelValue,
-    set: (value) => emit('update:modelValue', value)
-  });
 
   const { resolvedModifiers } = useModifiers({ props, baseClass: "accordion" });
 

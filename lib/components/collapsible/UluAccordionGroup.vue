@@ -2,12 +2,11 @@
   <div class="accordion-group">
     <UluAccordion
       v-for="(item, index) in internalItems"
-      :key="item.id || index"
-      v-model="item.isOpen"
-      @update:modelValue="() => handleToggle(index)"
+      :key="index"
+      :model-value="item.isOpen"
+      @update:modelValue="(newValue) => handleToggle(index, newValue)"
       :summary-text="item.title"
       :classes="item.classes"
-      :default-open="item.isOpen"
     >
       <slot name="item" :item="item" :index="index">
         {{ item.content }}
@@ -23,7 +22,7 @@ import UluAccordion from './UluAccordion.vue';
 const props = defineProps({
   /**
    * Array of items to render as accordions.
-   * Each item can have: title, content, isOpen, classes, id
+   * Each item can have: title, content, isOpen, classes
    */
   items: {
     type: Array,
@@ -34,16 +33,22 @@ const props = defineProps({
 const internalItems = ref([]);
 
 watch(() => props.items, (newItems) => {
-  internalItems.value = JSON.parse(JSON.stringify(newItems));
+  internalItems.value = newItems.map(item => ({
+    ...item,
+    isOpen: item.isOpen || false
+  }));
 }, { immediate: true, deep: true });
 
-function handleToggle(selectedIndex) {
-  // console.log("handle", selectedIndex);
-  
-  internalItems.value.forEach((item, index) => {
-    if (index !== selectedIndex) {
-      item.isOpen = false;
-    }
-  });
+
+function handleToggle(selectedIndex, newValue) {
+  if (newValue) {
+    // if opening, close all others
+    internalItems.value.forEach((item, index) => {
+      item.isOpen = index === selectedIndex;
+    });
+  } else {
+    // if closing, just close that one
+    internalItems.value[selectedIndex].isOpen = false;
+  }
 }
 </script>

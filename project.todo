@@ -6,9 +6,10 @@ Build/Deployment:
         * Results in the components using their own instance of settings.js 
         * This can be avoided by building it in vs using modules to manage singleton state 
 Todos:
-  ☐ Accordion
-    ☐ Need to fix animation for accordion (think just update frontend not to support native details instead though)
-    ☐ Maybe consider using that animate height auto library? And remove our custom logic
+  ☐ Update all Collapsible usage outside of accordions
+  ✔ Accordion @done
+    ✔ Need to fix animation for accordion (think just update frontend not to support native details instead though) @done
+    ✔ Maybe consider using that animate height auto library? And remove our custom logic @done
   ☐ Finish project bar (needs to templating to make it open ended) (ie. remove preset values)
   ☐ Unify the unique id system
     * At least prefix all ids, possibly check for existence in a utility (like other newId functions?)

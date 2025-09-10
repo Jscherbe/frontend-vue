@@ -8,6 +8,7 @@
 - `UluCollapsibleRegion` renamed to `UluCollapsible`. Also added classes prop (with default with the old preset classes [but in kebab case now]), so that we can use for accordion
 - `UluAccordion` update to use `UluCollapsible` (classes prop keys change and slots name changes to match UluCollapsible, **breaking change if using classes**, they now match classes keys for UluCollapsible for consistency)
 - `UluCollapsible` and `UluAccordion` now allow v-model (for cases where you need to control it from the parent component [accordion groups, etc])
+- `UluCollapsible` and `UluAccordion` now allow v-model (for cases where you need to control it from the parent component [accordion groups, etc])
 - Add - `UluAccordionGroup` for sets of accordions (one open at time)
 
 ## 0.1.0-beta.35
