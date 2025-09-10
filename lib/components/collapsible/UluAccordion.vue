@@ -1,5 +1,6 @@
 <template>
   <UluCollapsible
+    v-model="model"
     :start-open="defaultOpen"
     :title="summaryText"
     :classes="mergedClasses"
@@ -34,6 +35,13 @@
   import { useModifiers } from "../../composables/useModifiers.js";
 
   const props = defineProps({
+    /**
+     * v-model for controlling open state
+     */
+    modelValue: {
+      type: Boolean,
+      default: null
+    },
     /**
      * Whether the accordion is open by default
      */
@@ -75,6 +83,13 @@
      * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
     modifiers: [String, Array]
+  });
+
+  const emit = defineEmits(['update:modelValue']);
+
+  const model = computed({
+    get: () => props.modelValue,
+    set: (value) => emit('update:modelValue', value)
   });
 
   const { resolvedModifiers } = useModifiers({ props, baseClass: "accordion" });
