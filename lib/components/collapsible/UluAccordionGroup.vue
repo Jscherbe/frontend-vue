@@ -38,7 +38,7 @@ watch(() => props.items, (newItems) => {
 }, { immediate: true, deep: true });
 
 function handleToggle(selectedIndex) {
-  console.log("handle", selectedIndex);
+  // console.log("handle", selectedIndex);
   
   internalItems.value.forEach((item, index) => {
     if (index !== selectedIndex) {

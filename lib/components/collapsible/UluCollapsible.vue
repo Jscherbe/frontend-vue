@@ -39,6 +39,8 @@
 <script setup>
   import { ref, computed, nextTick, watch } from 'vue';
 
+  import { generateUid } from '../../utils/uid.js';
+
   defineOptions({ name: 'UluCollapsible' });
 
   const props = defineProps({
@@ -46,8 +48,8 @@
      * v-model for controlling open state
      */
     modelValue: {
-      type: Boolean,
-      default: null
+      type: [Boolean, String],
+      default: 'unset'
     },
     /**
      * Set title for toggle (instead of using slot)
@@ -112,7 +114,7 @@
 
   const content = ref(null);
 
-  const isControlled = computed(() => props.modelValue !== null);
+  const isControlled = computed(() => props.modelValue !== 'unset');
   const internalIsOpen = ref(props.startOpen);
 
   const isOpen = computed({
@@ -128,12 +130,19 @@
     }
   });
 
-  watch(() => props.modelValue, (newValue) => {
-    if (!isControlled.value) return;
+  watch(() => props.modelValue, (newValue, oldValue) => {
+    if (!isControlled.value || newValue === oldValue) return;
 
-    if (newValue && !isOpen.value) {
+    // If a transition is already running, queue the new action
+    // to be run once the current transition completes.
+    if (isTransitioning.value) {
+      queuedAction = newValue ? 'open' : 'close';
+      return;
+    }
+
+    if (newValue) {
       open();
-    } else if (!newValue && isOpen.value) {
+    } else {
       close();
     }
   });
@@ -146,20 +155,12 @@
   const contentHeight = ref(isOpen.value ? 'auto' : '0px');
   const contentOpacity = ref(props.transitionFades && !isOpen.value ? 0 : 1);
 
-  let uid = 0;
-  const getUid = () => {
-    const id = `ulu-collapsible-${++uid}`;
-    if (typeof document !== 'undefined' && document.getElementById(id)) {
-      return getUid();
-    }
-    return id;
-  };
-
-  const toggleId = ref(getUid());
-  const contentId = ref(getUid());
+  const toggleId = ref(generateUid('ulu-collapsible-toggle'));
+  const contentId = ref(generateUid('ulu-collapsible-content'));
 
   // Transitions add function here used if needing to cancel
   let onCleanupTransition = null;
+  let queuedAction = null;
 
   const getUnitlessDuration = (value) => {
     const duration = parseFloat(value.split(',')[0]);
@@ -215,13 +216,29 @@
     }
     isTransitioning.value = false;
     onCleanupTransition = null;
+
+    // When a transition is canceled (because a new open/close action has been
+    // triggered), we should not process any queued actions.
+    if (_canceled) {
+      return;
+    }
+
+    // Check for and run any queued action
+    if (queuedAction) {
+      if (queuedAction === 'open') {
+        open();
+      } else if (queuedAction === 'close') {
+        close();
+      }
+      queuedAction = null;
+    }
   }
 
   /**
    * Function that will handle setting the styles in a way that allows for
    * transitioning from display: none to height: auto. With optional fade.
    */
-  function open() {
+  const open = () => {
     // If there are no animations
     if (!props.transitionHeight) {
       isOpen.value = true;
@@ -269,7 +286,7 @@
    * Function that will handle setting the styles in a way that allows for
    * transitioning from height: auto to display: none
    */
-  function close() {
+  const close = () => {
     // If there are no animations
     if (!props.transitionHeight) {
       isOpen.value = false;
@@ -277,55 +294,39 @@
       return;
     }
     removeTransition(true);
-    let tid;
-    // Measure the elements height, to set it from auto  
-    // to static so that we can transition it
-    const element = content.value;
-    const height = element.scrollHeight;
-    // Set the elements height to a static value so we can transition it
-    // then on next tick when that value is set, start the transition
-    const setup = () => {
+
+    // 1. Set a static height to transition from.
+    contentHeight.value = content.value.scrollHeight + 'px';
+    isTransitioning.value = true;
+    emit('collapsible-closing');
+
+    // 2. Wait for the DOM to update with the static height, then start the transition.
+    nextTick(() => {
+      let tid;
+      const element = content.value;
+      const complete = () => {
+        isOpen.value = false;
+        isHidden.value = true;
+        removeTransition();
+        emit('collapsible-closed');
+      };
+
+      onCleanupTransition = () => {
+        clearTimeout(tid);
+        element.removeEventListener('transitionend', complete);
+      };
+
+      // 3. Listen for the end of the transition.
       element.addEventListener('transitionend', complete);
-      contentHeight.value = height + 'px';
-      nextTick(init);
-    };
-    // Enable transitions and then on next update start it
-    // by setting the height to 0
-    const init = () => {
-      transitionsDisabled.value = false;
-      nextTick(() => {
-        requestAnimationFrame(transition);
-      });
-    };
-    const transition = () => {
+      
+      // 4. Set the height to 0 to trigger the transition.
       contentHeight.value = '0px';
       if (props.transitionFades) {
         contentOpacity.value = 0;
       }
-    };
-    const complete = () => {
-      isOpen.value = false;
-      isHidden.value = true;
-      removeTransition();
-      emit('collapsible-closed');
-    };
-    const fallback = () => {
-      transition();
-      complete();
-    };
-    onCleanupTransition = () => {
-      clearTimeout(tid);
-      element.removeEventListener('transitionend', complete);
-    };
-    // Temporarily disable the transitions on the element,
-    // on next tick when transistions are disabled (removing transiton-property) 
-    // attach the fallback and setup the transition
-    transitionsDisabled.value = true;
-    isTransitioning.value = true;
-    emit('collapsible-closing');
-    nextTick(() => {
-      requestAnimationFrame(setup);
-      tid = setTimeout(fallback, transitionTimeout);
+
+      // 5. Set a fallback timer just in case the event doesn't fire.
+      tid = setTimeout(complete, transitionTimeout);
     });
   }
 
