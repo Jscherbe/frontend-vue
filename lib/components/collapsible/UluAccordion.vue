@@ -2,15 +2,15 @@
   <UluCollapsible
     :model-value="modelValue"
     :start-open="startOpen"
-    :title="toggleText"
+    :trigger-text="triggerText"
     :classes="mergedClasses"
     :animate="animate"
     @update:model-value="$emit('update:modelValue', $event)"
   >
-    <template #toggle="{ isOpen: open }">
-      <slot name="toggle" :open="open">
-        <component :is="toggleTextElement">
-          {{ toggleText }}
+    <template #trigger="{ isOpen: open, toggle }">
+      <slot name="trigger" :open="open" :toggle="toggle">
+        <component :is="triggerTextElement">
+          {{ triggerText }}
         </component>
       </slot>
       <slot name="icon" :open="open">
@@ -23,8 +23,8 @@
       </slot>
     </template>
 
-    <template #default="{ isOpen: open }">
-      <slot :open="open"/>
+    <template #default="{ isOpen: open, toggle }">
+      <slot :open="open" :toggle="toggle"/>
     </template>
   </UluCollapsible>
 </template>
@@ -58,13 +58,13 @@
       default: false
     },
     /**
-     * Text to use for accordion, alternatively use #toggle slot
+     * Text to use for accordion, alternatively use #trigger slot
      */
-    toggleText: String,
+    triggerText: String,
     /**
      * If using summary text sets the inner element the text is wrapped in, usually a headline or strong
      */
-    toggleTextElement: {
+    triggerTextElement: {
       type: String,
       default: "strong"
     },

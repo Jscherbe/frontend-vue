@@ -3,7 +3,7 @@
     <TransitionGroup 
       class="toast-container"
       :class="classes"
-      name="toast" 
+      name="toast-animation" 
       tag="div"
     >
       <component
@@ -33,3 +33,20 @@
     }
   }
 </script>
+
+<style lang="css">
+  .toast-animation-move, 
+  .toast-animation-enter-active,
+  .toast-animation-leave-active {
+    transition: all 0.3s ease;
+  }
+  .toast-animation-enter-from,
+  .toast-animation-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  .toast-animation-leave-active {
+    position: absolute;
+    width: 100%;
+  }
+</style>

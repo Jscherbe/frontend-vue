@@ -13,7 +13,7 @@
           </slot>
           <UluIcon :class="classes.triggerIcon" icon="fas fa-chevron-down" />
         </template>
-        <template #content="{ close }">
+        <template #default="{ close }">
           <UluSelectableMenu
             :legend="group.name"
             :type="group.multiple ? 'checkbox' : 'radio'"

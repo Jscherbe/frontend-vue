@@ -1,42 +1,42 @@
 <template>
   <UluPopover :classes="popoverClasses">
     <template #trigger="{ isOpen }">
-      <slot :isOpen="isOpen"/>
+      <slot name="trigger" :isOpen="isOpen">
+        <span>{{ triggerText }}</span>
+        <UluIcon 
+          class="button__icon" 
+          icon="type:dropdownExpand" 
+          :style="{ transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.2s' }"
+        />
+      </slot>
     </template>
-    <template #content>
+    <template #default>
       <UluMenuStack :items="items"/>
     </template>
   </UluPopover>
 </template>
 
-<script>
+<script setup>
   import UluPopover from "../../plugins/popovers/UluPopover.vue";
   import UluMenuStack from "../navigation/UluMenuStack.vue";
-  export default {
-    name: "UluDropdown",
-    components: {
-      UluPopover,
-      UluMenuStack
-    },
-    props: {
-      /**
-       * Dropdown menu items (to be passed to UluMenu)
-       */
-      items: Array,
-      /**
-       * Class(es) to apply to the trigger element.
-       */
-      triggerClass: {
-        type: [String, Object, Array],
-        default: "button"
-      },
-      /**
-       * Pass classes object to UluPopover classes prop
-       */
-      popoverClasses: {
-        type: Object,
-        default: () => ({})
-      }
+  import UluIcon from "../elements/UluIcon.vue";
+  defineProps({
+    /**
+     * Dropdown menu items (to be passed to UluMenu)
+     */
+    items: Array,
+    /**
+     * Optional text if not using slot
+     */
+    triggerText: String,
+    /**
+     * Pass classes object to UluPopover classes prop
+     */
+    popoverClasses: {
+      type: Object,
+      default: () => ({
+        trigger: "button"
+      })
     }
-  };
+  });
 </script>

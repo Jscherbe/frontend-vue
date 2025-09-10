@@ -1,6 +1,6 @@
 <template>
   <div
-    ref="parent"
+    ref="container"
     @keydown.esc="handleEscape"
     :class="[classes.container, containerStateClasses]"
   >
@@ -11,8 +11,8 @@
       :aria-expanded="isOpen"
       @click="toggle"
     >
-      <slot name="toggle" :isOpen="isOpen">
-        {{ title }}
+      <slot name="trigger" :isOpen="isOpen" :toggle="toggle">
+        {{ triggerText }}
       </slot>
     </button>
     <div
@@ -24,14 +24,14 @@
       :aria-labelledby="toggleId"
     >
       <div :class="classes.contentInner">
-        <slot/>
+        <slot :isOpen="isOpen" :toggle="toggle" />
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-  import { ref, computed, watch } from 'vue';
+  import { ref, computed, watch, onMounted } from 'vue';
   import { useAutoAnimate } from '@formkit/auto-animate/vue';
   import { newId } from '../../utils/dom.js';
 
@@ -44,9 +44,9 @@
       default: undefined
     },
     /**
-     * Set title for toggle (instead of using slot)
+     * Set text for trigger (instead of using slot)
      */
-    title: String,
+    triggerText: String,
     /**
      * Closes with escape key
      */
@@ -57,13 +57,13 @@
     startOpen: Boolean,
     /**
      * Enable or configure animations.
-     * - `false` (default) to disable all animations.
-     * - `true` to enable animations with default settings.
+     * - `true` to enable animations with default settings (default)
+     * - `false` (disable)
      * - An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' }).
      */
     animate: {
       type: [Boolean, Object],
-      default: false
+      default: true
     },
     /**
      * Classes for elements ({ container, toggle, content, contentInner })
@@ -91,11 +91,12 @@
     return {};
   });
 
-  const [parent, enableAnimations] = useAutoAnimate(autoAnimateOptions);
+  const [container, enableAnimations] = useAutoAnimate(autoAnimateOptions);
 
-  watch(() => props.animate, (value) => {
-    enableAnimations(!!value);
-  }, { immediate: true });
+  // Animation needs to be disabled after the component is mounted
+  onMounted(() => { enableAnimations(!!props.animate) });
+  // Then we can watch for changes
+  watch(() => props.animate, v => { enableAnimations(!!v) });
 
   const userControlled = computed(() => props.modelValue !== undefined);
   const internalIsOpen = ref(props.startOpen);

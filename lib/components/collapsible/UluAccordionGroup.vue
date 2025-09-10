@@ -5,7 +5,7 @@
       :key="index"
       :model-value="item.isOpen"
       @update:modelValue="(newValue) => handleToggle(index, newValue)"
-      :toggle-text="item.title"
+      :trigger-text="item.title"
       :classes="item.classes"
     >
       <slot name="item" :item="item" :index="index">

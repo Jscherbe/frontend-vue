@@ -13,7 +13,9 @@
         item: 'menu-stack__item',
         link: 'menu-stack__link',
         linkText: 'menu-stack__link-text',
-        linkIcon: 'menu-stack__link-icon'
+        linkIcon: 'menu-stack__link-icon',
+        itemSeparatorBefore: 'menu-stack__item--separator-before',
+        itemSeparatorAfter: 'menu-stack__item--separator-after'
       }" 
       :noChildren="noChildren"
     />

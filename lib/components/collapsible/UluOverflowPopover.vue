@@ -11,7 +11,7 @@
       <template #trigger>
         <UluIcon :icon="triggerIcon || 'type:ellipsis'"/>
       </template>
-      <template #content>
+      <template #default>
         <div class="type-word-break">
           <slot/>
         </div>

@@ -4,7 +4,7 @@
       <template #trigger>
         I have footer
       </template>
-      <template #content>
+      <template #default>
         This is the content of the tooltip
       </template>
       <template #footer="{ close }">

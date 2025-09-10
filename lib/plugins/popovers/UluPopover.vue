@@ -15,7 +15,9 @@
     :aria-label="triggerAlt"
     v-ulu-tooltip="tooltip ? tooltip : null"
   >
-    <slot name="trigger" :isOpen="isOpen"/>
+    <slot name="trigger" :isOpen="isOpen" :toggle="toggle" :close="close">
+      {{ triggerText }}
+    </slot>
   </button>
   <span 
     class="popover"
@@ -36,7 +38,7 @@
     tabindex="-1"
   >
     <span class="popover__inner">
-      <slot name="content" :close="close"/>
+      <slot :isOpen="isOpen" :toggle="toggle" :close="close"/>
     </span>
     <span v-if="$slots.footer" class="popover__footer">
       <slot name="footer" :close="close"/>
@@ -66,6 +68,7 @@
 
   const emit = defineEmits(["toggle"]);
   const props = defineProps({
+    triggerText: String,
     triggerAlt: String,
     disabled: Boolean,
     tooltip: String,

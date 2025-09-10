@@ -3,7 +3,12 @@
     <li 
       v-for="(item, index) in items" 
       :key="index" 
-      :class="[classes.item, item?.classes?.item]"
+      :class="[
+        classes.item,
+        item?.classes?.item,
+        item.separatorBefore ? classes.itemSeparatorBefore : '',
+        item.separatorAfter ? classes.itemSeparatorAfter : ''
+      ]"
     >
       <!-- 
         Note: The ternary spread method below is conditionally adding certain 

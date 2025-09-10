@@ -4,7 +4,7 @@
       <template #trigger>
         Open Me
       </template>
-      <template #content="{ close }">
+      <template #default="{ close }">
         This is the content of the tooltip, <button class="link" @click="close">close this tooltip</button>.
       </template>
     </UluPopover>

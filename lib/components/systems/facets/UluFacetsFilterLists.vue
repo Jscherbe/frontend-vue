@@ -6,12 +6,12 @@
       :key="group.uid"
       :classes="{
         container: ['ulu-facets__group', classes.group],
-        toggle: ['ulu-facets__group-toggle', classes.groupToggle],
+        trigger: ['ulu-facets__group-toggle', classes.groupToggle],
         content: ['ulu-facets__group-content', classes.groupContent]
       }"
       :startOpen="group.open"
     >
-      <template #toggle="{ isOpen }">
+      <template #trigger="{ isOpen }">
         <slot name="groupToggle" :group="group" :isOpen="isOpen">
           {{ group.name }}
         </slot>
@@ -33,7 +33,7 @@
           :closeOnEscape="false"
           :transitionHeight="true"
         >
-          <template #toggle="{ isOpen }">
+          <template #trigger="{ isOpen }">
             {{ isOpen ? "View Less" : "Show More" }}
           </template>
           <template #default>

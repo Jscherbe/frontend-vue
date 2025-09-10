@@ -1,7 +1,12 @@
 # Change Log
 
-## 0.1.0-beta.36
+## 0.1.1-beta.1
 
+- **BREAKING CHANGE:** Unified the API for components with trigger/content behavior (`UluCollapsible`, `UluAccordion`, `UluPopover`, `UluDropdown`, etc.) to improve consistency and developer experience.
+  - The slot for the clickable element has been standardized to `trigger`. (Previously `toggle` or `default` in some components).
+  - The prop for the trigger's text content has been standardized to `triggerText`. (Previously `title` or `toggleText`).
+  - The slot for the main content that is shown/hidden has been standardized to `default`. (Previously `content` in some components).
+  - State and control functions (`{ isOpen, toggle, close }`) are now more consistently passed to slots.
 - `UluProgressCircle` component for circular progress indicators. Replaces and enhances the old `UluProgressDonut`.
 - `UluProgressBar` component, refactored for a more flexible API with modifier props and an `icon` slot.
 - Make sure all component props are documented (displayed in documentation/storybook)
@@ -20,6 +25,9 @@
   - Now uses auto animate library to fade/transition height
   - Add new animate prop which can be true or optional config for @formkit/auto-animate 
 - Add - `UluAccordionGroup` for sets of accordions (one open at time)
+- `UluMenu`: Allow menu users to define classes for itemSeparatorBefore/itemSeparatorAfter
+- `UluMenuStack`: Allow items to have separators above or below them using `separatorBefore` and `separatorAfter` properties on each item.
+- Add missing toast-animation for toast plugin
 
 ## 0.1.0-beta.35
 
