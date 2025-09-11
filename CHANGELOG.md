@@ -28,7 +28,13 @@
 - `UluMenu`: Allow menu users to define classes for itemSeparatorBefore/itemSeparatorAfter
 - `UluMenuStack`: Allow items to have separators above or below them using `separatorBefore` and `separatorAfter` properties on each item.
 - Add missing toast-animation for toast plugin
-- Add counts to `useFacets` to use in filter display
+- **Enhanced `useFacets` with Item Counts:**
+  - A `countMode` option (`'intuitive'`, `'simple'`, `'none'`) now controls how item counts are calculated and displayed for each facet.
+  - **`intuitive` mode:** Provides highly contextual counts.
+    - For *unselected* items, the count reflects the results if that filter were **added**.
+    - For *selected* items, the count reflects how many of the **current results** match that filter.
+  - **`simple` mode:** Counts are calculated against items that match filters from *other* groups, offering a less expensive performance footprint.
+  - **Fixed:** The counting logic for selected items in `intuitive` mode is now more accurate and predictable.
 
 ## 0.1.0-beta.35
 
