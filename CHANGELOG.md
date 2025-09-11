@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.1.1-beta.2
+
+- **`UluProgressBar` Enhanced Customization**: The progress bar has been significantly updated for greater flexibility.
+  - New props have been added: `classes` (for custom styling), `labelElement`, `noValues`, `amountInHeader`.
+  - A `formatValue` function prop allows for easy formatting of display values (e.g., adding units like '%').
+  - New named slots (`valueAmount`, `valueDeficit`, `valueTotal`) provide full control over the HTML structure of the value display.
+- **`UluProgressCircle` API Alignment**: Refactored the component to align its API with `UluProgressBar`.
+  - Converted to Composition API.
+  - Added a `noValue` prop to hide the percentage display.
+  - Added a `formatValue` function prop for easy value formatting.
+  - Added a `value` slot for full control over the value's HTML.
+
 ## 0.1.1-beta.1
 
 - **BREAKING CHANGE:** Unified the API for components with trigger/content behavior (`UluCollapsible`, `UluAccordion`, `UluPopover`, `UluDropdown`, etc.) to improve consistency and developer experience.

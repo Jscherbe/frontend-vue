@@ -1,13 +1,26 @@
 <template>
   <div :class="componentClasses">
-    <div v-if="label || $slots.icon" class="progress-bar__header">
-      <strong
+    <div 
+      v-if="label || $slots.label || $slots.icon || amountInHeader" 
+      class="progress-bar__header"
+    >
+      <component
         v-if="label"
+        :is="labelElement"
         class="progress-bar__label"
-        :class="{ 'hidden-visually': labelHidden }"
+        :class="[classes.label, { 'hidden-visually': labelHidden }]"
       >
-        {{ label }}
-      </strong>
+        <slot name="label">
+          {{ label }}
+        </slot>
+      </component>
+      <div 
+        v-if="amountInHeader"  
+        class="progress-bar__value progress-bar__value--amount"
+      >
+        <strong class="hidden-visually">Amount:</strong>
+        <slot name="valueAmount" :value="amount">{{ formatValue(amount, 'amount') }}</slot>
+      </div>
       <div v-if="$slots.icon" class="progress-bar__icon">
         <slot name="icon" />
       </div>
@@ -20,21 +33,21 @@
         :style="{ width: deficitBarWidth }"
       ></div>
     </div>
-    <div v-if="!loader && !indeterminate" class="progress-bar__values">
+    <div 
+      v-if="!noValues && !amountInHeader && (!loader && !indeterminate)" 
+      class="progress-bar__values"
+    >
       <div class="progress-bar__value progress-bar__value--amount">
         <strong class="hidden-visually">Amount:</strong>
-        {{ amount }}
+        <slot name="valueAmount" :value="amount">{{ formatValue(amount, 'amount') }}</slot>
       </div>
-      <div
-        v-if="deficit > 0"
-        class="progress-bar__value progress-bar__value--deficit"
-      >
+      <div v-if="deficit > 0" class="progress-bar__value progress-bar__value--deficit">
         <strong class="hidden-visually">Deficit: </strong>
-        -{{ deficit }}
+        <slot name="valueDeficit" :value="deficit">-{{ formatValue(deficit, 'deficit') }}</slot>
       </div>
       <div class="progress-bar__value progress-bar__value--total">
         <strong class="hidden-visually">Total:</strong>
-        {{ total }}
+        <slot name="valueTotal" :value="total">{{ formatValue(total, 'total') }}</slot>
       </div>
     </div>
   </div>
@@ -49,13 +62,27 @@ import { computed } from "vue";
  */
 const props = defineProps({
   /**
-   * The label to display above the progress bar.
+   * The label to display above the progress bar. (or use label slot)
    */
   label: String,
   /**
    * Hides the label visually, but keeps it for screen readers.
    */
   labelHidden: Boolean,
+  /**
+   * Optional classes object (currently only allowing { label } class)
+   */
+  classes: {
+    type: Object,
+    default: () => ({})
+  },
+  /**
+   * Element to use for label
+   */
+  labelElement: {
+    type: String,
+    default: "strong"
+  },
   /**
    * The current amount of progress.
    */
@@ -97,6 +124,22 @@ const props = defineProps({
    * Applies an indeterminate animation for unknown progress.
    */
   indeterminate: Boolean,
+  /**
+   * Omit values from output (the numbers below the progress bar)
+   */
+  noValues: Boolean,
+  /**
+   * A function to format the numerical values (amount, deficit, total).
+   * Takes the value and type ('amount', 'deficit', 'total') as input and should return a string.
+   */
+  formatValue: {
+    type: Function,
+    default: (value, type) => value,
+  },
+  /**
+   * Will put the amount only in header (there is a headerValue slot it you want to format)
+   */
+  amountInHeader: Boolean
 });
 
 const getCssPercentage = (amount, total) => {
