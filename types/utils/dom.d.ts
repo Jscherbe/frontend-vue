@@ -5,4 +5,5 @@
  * @returns {HTMLElement} The HTMLElement or undefined if not found/resolved.
  */
 export function refToElement(value: HTMLElement | any): HTMLElement;
+export function newId(prefix?: string): any;
 //# sourceMappingURL=dom.d.ts.map
