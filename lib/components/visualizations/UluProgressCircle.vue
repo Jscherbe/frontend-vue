@@ -61,7 +61,7 @@ const props = defineProps({
    */
   formatValue: {
     type: Function,
-    default: (value) => `${value}%`,
+    default: (value) => `${ value }%`,
   },
   /**
    * Hides the percentage value display.
