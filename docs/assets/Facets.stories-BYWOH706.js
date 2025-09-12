@@ -1,53 +1,4 @@
-import { ref } from 'vue';
-import { useFacets } from './useFacets.js';
-import UluFacetsFilterLists from './UluFacetsFilterLists.vue';
-import UluFacetsResults from './UluFacetsResults.vue';
-import UluFacetsSearch from './UluFacetsSearch.vue';
-import UluFacetsSort from './UluFacetsSort.vue';
-import UluFacetsSidebarLayout from './UluFacetsSidebarLayout.vue';
-import { mockItems } from './_mock-data';
-
-export default {};
-
-// Define facet fields for automatic generation
-const mockFacetFields = [
-  { name: 'Category', uid: 'category', open: true, multiple: true },
-  { name: 'Author', uid: 'author', open: true }
-];
-
-const defaultSetup = (args) => {
-  const allItems = ref(args.items);
-  const { 
-    facets, 
-    searchValue, 
-    selectedSort, 
-    sortTypes, 
-    displayItems, 
-    selectedFacets, 
-    clearFilters,
-    handleFacetChange
-  } = useFacets(allItems, {
-    facetFields: args.facetFields,
-    extraSortTypes: args.extraSortTypes,
-    initialSortType: args.initialSortType,
-    countMode: args.countMode,
-    searchOptions: args.searchOptions
-  });
-
-  return { 
-    args, 
-    facets, 
-    searchValue, 
-    selectedSort, 
-    sortTypes, 
-    displayItems, 
-    selectedFacets, 
-    clearFilters, 
-    handleFacetChange
-  };
-};
-
-const storyTemplate = `
+import{Y as h,Z as F,$ as S,a0 as v,a1 as b,z as C}from"./iframe--wWzAahP.js";import{u as U}from"./useFacets-BOyaU0ox.js";import{m as x}from"./_mock-data-euri91_s.js";import"./preload-helper-BJwshlQW.js";const M={},l=[{name:"Category",uid:"category",open:!0,multiple:!0},{name:"Author",uid:"author",open:!0}],o=e=>{const n=C(e.items),{facets:c,searchValue:m,selectedSort:u,sortTypes:p,displayItems:d,selectedFacets:g,clearFilters:f,handleFacetChange:y}=U(n,{facetFields:e.facetFields,extraSortTypes:e.extraSortTypes,initialSortType:e.initialSortType,countMode:e.countMode,searchOptions:e.searchOptions});return{args:e,facets:c,searchValue:m,selectedSort:u,sortTypes:p,displayItems:d,selectedFacets:g,clearFilters:f,handleFacetChange:y}},_=`
   <UluFacetsSidebarLayout>
     <template #header>
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;">
@@ -87,16 +38,7 @@ const storyTemplate = `
       </UluFacetsResults>
     </template>
   </UluFacetsSidebarLayout>
-`;
-
-const baseArgs = {
-  items: mockItems,
-  searchPlaceholder: 'Search articles...',
-  maxVisible: 5,
-};
-
-// Story for the convenience layout component
-export const Default = (args) => ({
+`,i={items:x,searchPlaceholder:"Search articles...",maxVisible:5},t=e=>({components:{UluFacetsFilterLists:b,UluFacetsResults:v,UluFacetsSearch:S,UluFacetsSort:F,UluFacetsSidebarLayout:h},setup:()=>o(e),template:_});t.args={...i,facetFields:l,countMode:"none"};const s=e=>({...t(e),setup:()=>o(e)});s.args={...i,facetFields:l,countMode:"simple"};s.storyName="Counts (Simple)";const a=e=>({...t(e),setup:()=>o(e)});a.args={...i,facetFields:l,countMode:"intuitive"};a.storyName="Counts (Intuitive)";const r=e=>({...t(e),setup:()=>o(e)});r.args={...i,facetFields:[{name:"Category",uid:"category",open:!0,multiple:!0,match:"all"},{name:"Author",uid:"author",open:!0}],countMode:"intuitive"};r.storyName="Counts (Intuitive) with AND logic";t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`args => ({
   components: {
     UluFacetsFilterLists,
     UluFacetsResults,
@@ -106,46 +48,13 @@ export const Default = (args) => ({
   },
   setup: () => defaultSetup(args),
   template: storyTemplate
-});
-Default.args = {
-  ...baseArgs,
-  facetFields: mockFacetFields,
-  countMode: 'none'
-};
-
-export const CountsSimple = (args) => ({
+})`,...t.parameters?.docs?.source}}};s.parameters={...s.parameters,docs:{...s.parameters?.docs,source:{originalSource:`args => ({
   ...Default(args),
-  setup: () => defaultSetup(args),
-});
-CountsSimple.args = {
-  ...baseArgs,
-  facetFields: mockFacetFields,
-  countMode: 'simple'
-};
-CountsSimple.storyName = 'Counts (Simple)';
-
-export const CountsIntuitive = (args) => ({
+  setup: () => defaultSetup(args)
+})`,...s.parameters?.docs?.source}}};a.parameters={...a.parameters,docs:{...a.parameters?.docs,source:{originalSource:`args => ({
   ...Default(args),
-  setup: () => defaultSetup(args),
-});
-CountsIntuitive.args = {
-  ...baseArgs,
-  facetFields: mockFacetFields,
-  countMode: 'intuitive'
-};
-CountsIntuitive.storyName = 'Counts (Intuitive)';
-
-export const CountsIntuitiveAndLogic = (args) => ({
+  setup: () => defaultSetup(args)
+})`,...a.parameters?.docs?.source}}};r.parameters={...r.parameters,docs:{...r.parameters?.docs,source:{originalSource:`args => ({
   ...Default(args),
-  setup: () => defaultSetup(args),
-});
-CountsIntuitiveAndLogic.args = {
-  ...baseArgs,
-  facetFields: [
-    { name: 'Category', uid: 'category', open: true, multiple: true, match: 'all' },
-    { name: 'Author', uid: 'author', open: true }
-  ],
-  countMode: 'intuitive'
-};
-CountsIntuitiveAndLogic.storyName = 'Counts (Intuitive) with AND logic';
-
+  setup: () => defaultSetup(args)
+})`,...r.parameters?.docs?.source}}};const D=["Default","CountsSimple","CountsIntuitive","CountsIntuitiveAndLogic"];export{a as CountsIntuitive,r as CountsIntuitiveAndLogic,s as CountsSimple,t as Default,D as __namedExportsOrder,M as default};

@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.1.1-beta.3
+
+- Update vscode snippets in `resources/vscode/ulu-frontend-vue-components.code-snippets`
+- **Optimized `useFacets` Counting:**
+  - The counting mechanism for `countMode: 'intuitive'` has been rewritten to use an inverted index.
+  - This new approach avoids expensive re-filtering of the entire item set, resolving performance issues and UI freezes on large datasets.
+
 ## 0.1.1-beta.2
 
 - **`UluProgressBar` Enhanced Customization**: The progress bar has been significantly updated for greater flexibility.

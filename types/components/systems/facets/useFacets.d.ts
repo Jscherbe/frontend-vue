@@ -11,6 +11,7 @@
  * @param {Object} [options.searchOptions={}] - Configuration options for Fuse.js.
  * @param {Function} [options.getItemFacet] - A function to retrieve facet information from an item. Should always return an array of values.
  * @param {Function} [options.getSortValue] - A function to get the value to sort by from an item.
+ * @param {String} [options.countMode='none'] - The mode for calculating facet counts. Can be 'none', 'simple', or 'intuitive'.
  */
 export function useFacets(allItems: import("vue").Ref<Array<any>>, options?: {
     initialFacets?: any[];
@@ -22,6 +23,7 @@ export function useFacets(allItems: import("vue").Ref<Array<any>>, options?: {
     searchOptions?: any;
     getItemFacet?: Function;
     getSortValue?: Function;
+    countMode?: string;
 }): {
     facets: import("vue").Ref<any, any>;
     searchValue: import("vue").Ref<string, string>;
