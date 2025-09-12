@@ -1,10 +1,8 @@
 <template>
-  <nav 
+  <component
     class="menu-stack"
-    :class="{
-      'menu-stack--hanging' : hanging,
-      'menu-stack--compact' : compact
-    }"
+    :is="containerElement" 
+    :class="resolvedModifiers"
   >
     <UluMenu 
       :items="items" 
@@ -19,33 +17,52 @@
       }" 
       :noChildren="noChildren"
     />
-  </nav>
+  </component>
 </template>
 
-<script>
+<script setup>
+  import { computed } from "vue";
   import UluMenu from "./UluMenu.vue";
-  export default {
-    name: "UluMenuStack",
-    components: {
-      UluMenu
+  import { useModifiers } from "../../composables/useModifiers.js";
+
+  const props = defineProps({
+    /**
+     * Menu item (see UluMenu)
+     */
+    items: Array,
+    /**
+    * The HTML element to use as the container (e.g., 'nav', 'div', 'aside').
+     */
+    containerElement: {
+      type: String,
+      default: "nav"
     },
-    props: {
-      /**
-       * Menu item (see UluMenu)
-       */
-      items: Array,
-      /**
-       * Hanging style menu
-       */
-      hanging: Boolean,
-      /**
-       * Compact style menu
-       */
-      compact: Boolean,
-      /**
-       * Don't include children of menu
-       */
-      noChildren: Boolean
-    }
-  };
+    /**
+     * Hanging style menu
+     */
+    hanging: Boolean,
+    /**
+     * Compact style menu
+     */
+    compact: Boolean,
+    /**
+     * Don't include children of menu
+     */
+    noChildren: Boolean,
+    /**
+     * Class modifiers (ie. 'transparent', 'secondary', etc)
+     */
+    modifiers: [String, Array]
+  });
+
+  const internalModifiers = computed(() => ({
+    'hanging' : props.hanging,
+    'compact' : props.compact,
+  }));
+
+  const { resolvedModifiers } = useModifiers({ 
+    props, 
+    internal: internalModifiers,
+    baseClass: "menu-stack"
+  });
 </script>

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.1-beta.6
+
+- `UluMenuStack` Added `modifiers` prop and `containerElement` prop (convert to composition API)
+
 ## 0.1.1-beta.5
 
 - Adding back (types, typesVersions) to test published version (without it vscode intellisense isn't working)
