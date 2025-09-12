@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.1-beta.7
+
+- `UluMenu` Fix router link props (activeClass, exactActiveClass) if the user doesn't define the value in classes prop. Now if undefined the defaults classes from vue-router will work correctly. Also fixed binding router props when menu item isn't a route link.
+
 ## 0.1.1-beta.6
 
 - `UluMenuStack` Added `modifiers` prop and `containerElement` prop (convert to composition API)

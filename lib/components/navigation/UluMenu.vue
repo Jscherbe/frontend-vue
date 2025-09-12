@@ -17,13 +17,15 @@
       <component
         :is="item.to || item.path ? 'router-link' : item.click ? 'button' : 'a'"
         v-bind="{
-          ...(item.to || item.path ? { to: item.to || item.path } : {}),
+          ...(item.to || item.path ? {
+            to: item.to || item.path,
+            activeClass: classes.linkActive || null,
+            exactActiveClass: classes.linkExactActive || null
+          } : {}),
           ...(item.href ? { 'href' : item.href || '#' } : {}),
         }"
         @click="(event) => { handleItemClick(event, item) }"
         :class="[classes.link, item?.classes?.link]"
-        :activeClass="classes.linkActive"
-        :exactActiveClass="classes.linkExactActive"
         :aria-label="iconOnly ? item.title : null"
         :id="item.id"
         v-ulu-tooltip="iconOnly ? item.title : item.tooltip || null" 
