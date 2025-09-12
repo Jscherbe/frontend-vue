@@ -4,5 +4,5 @@
  * @param {Object} options Configuration options overrides
  * @return {Object} { manager, active, direction } (all are null in SSR environment until init)
  */
-export function useBreakpointManager(options: any): any;
+export function useBreakpointManager(options: Object): Object;
 //# sourceMappingURL=useBreakpointManager.d.ts.map

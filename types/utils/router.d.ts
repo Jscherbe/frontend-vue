@@ -28,8 +28,8 @@ export function getRouteTitle(route: object, currentRoute?: object): string | un
  * @returns {Array.<RouteMenuItem>} Array of menu items
  */
 export function createBaseMenu(routes: any, options: {
-    qualifier: any;
-    item: any;
+    qualifier: Object;
+    item: Object;
 }): Array<RouteMenuItem>;
 /**
  * Returns menu flat (no parent children)
@@ -46,14 +46,14 @@ export function flattenMenu(menu: any): any;
  */
 export function createSectionMenu(routes: any, sectionPath: any, options: {
     includeIndex: boolean;
-    item: any;
+    item: Object;
 }): Array<RouteMenuItem>;
 /**
  * For a given array of child routes return the index
  * @param {Array} children Children array of routes
  * @returns {Object} Route
  */
-export function getChildIndexRoute(children: any[]): any;
+export function getChildIndexRoute(children: any[]): Object;
 /**
  * Creates common menu item structure from route, pulls title and weight from meta (on route or index child)
  * @param {Object} route Route
@@ -63,7 +63,7 @@ export function getChildIndexRoute(children: any[]): any;
  * @param {Function} options.indexMeta Include the routes index child's meta (merged on top of route meta)
  * @returns {RouteMenuItem} Menu item
  */
-export function createMenuItem(route: any, routePath: any, options: {
+export function createMenuItem(route: Object, routePath: Object | undefined, options: {
     modify: Function;
     indexMeta: Function;
 }): RouteMenuItem;
@@ -72,32 +72,32 @@ export function createMenuItem(route: any, routePath: any, options: {
  * @param {Object} route Route object to test
  * @returns {Boolean} Whether or not this route is static (not dynamic)
  */
-export function isStaticRoute(route: any): boolean;
+export function isStaticRoute(route: Object): boolean;
 /**
  *
  * @param {Object} route Route object to test
  * @returns {Boolean} Whether or not this route is a static base route
  */
-export function isStaticBaseRoute(route: any): boolean;
+export function isStaticBaseRoute(route: Object): boolean;
 /**
  * Function to make normal <a> behave as router links instread of page reload
  * @param {Object} router Router instance (ie src/router) to push routes to
  * @param {Object} event The event object that triggered route change (ie. onclick) pass event object
  */
-export function nativeLinkRouter(router: any, event: any): void;
+export function nativeLinkRouter(router: Object, event: Object): void;
 /**
  * Returns the child routes for base route
  * @param {Object} route Route Object
  * @returns
  */
-export function $getRouteChildren(route: any, parent?: any): any;
+export function $getRouteChildren(route: Object, parent?: Object | null): any;
 /**
  * Returns the route's parent
  * @param {Object} route Route Object
  * @param {Object} deepest By default this returns the routes parent, if deepest it will return it's base route (top level parent)
  * @return {Object|Null} Parent route, if there is no parent route for the given route this will return null
  */
-export function $getParentRoute(route: any, deepest: any): any | null;
+export function $getParentRoute(route: Object, deepest: Object): Object | null;
 /**
  * For a given $route will return all it's children as menu items,
  * using the route's meta.title property for the title. This is for sections only (routes with children)
@@ -109,10 +109,10 @@ export function $getParentRoute(route: any, deepest: any): any | null;
  * @param {Object} options.item Options for createMenuItem
  * @returns {Array.<RouteMenuItem>} Array of menu items
  */
-export function $createSectionMenu(route: any, options: {
-    parent: any;
+export function $createSectionMenu(route: Object, options: {
+    parent: Object;
     includeIndex: boolean;
-    item: any;
+    item: Object;
 }): Array<RouteMenuItem>;
 /**
  * For a given $route, this will generate a breadcrumb trail.
@@ -123,9 +123,9 @@ export function $createSectionMenu(route: any, options: {
  * @param {Object} route The Vue Router `$route` object.
  * @returns {Array.<{title: String, to: Object, current: Boolean}>} An array of breadcrumb items.
  */
-export function $createBreadcrumb(route: any): Array<{
+export function $createBreadcrumb(route: Object): Array<{
     title: string;
-    to: any;
+    to: Object;
     current: boolean;
 }>;
 /**

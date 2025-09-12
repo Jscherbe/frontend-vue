@@ -3,8 +3,16 @@
  * @param {Object} userOptions
  * @param {Object} options Resolved options
  */
-export function init(userOptions?: any): {
-    plugin: any;
+export function init(userOptions?: Object): {
+    plugin: {
+        constructor: Function;
+        toString(): string;
+        toLocaleString(): string;
+        valueOf(): Object;
+        hasOwnProperty(v: PropertyKey): boolean;
+        isPrototypeOf(v: Object): boolean;
+        propertyIsEnumerable(v: PropertyKey): boolean;
+    };
     popover: {
         inline: boolean;
         delay: number;
@@ -13,7 +21,21 @@ export function init(userOptions?: any): {
         offset: number;
         arrow: boolean;
     };
-    tooltip: any;
+    tooltip: {
+        inline: boolean;
+        delay: number;
+        placement: string;
+        strategy: string;
+        offset: number;
+        arrow: boolean;
+        constructor: Function;
+        toString(): string;
+        toLocaleString(): string;
+        valueOf(): Object;
+        hasOwnProperty(v: PropertyKey): boolean;
+        isPrototypeOf(v: Object): boolean;
+        propertyIsEnumerable(v: PropertyKey): boolean;
+    };
 };
 /**
    * Config for a single tooltip instance
@@ -30,7 +52,15 @@ export function show(config: any): void;
  */
 export function hide(): void;
 export namespace options {
-    let plugin: any;
+    let plugin: {
+        constructor: Function;
+        toString(): string;
+        toLocaleString(): string;
+        valueOf(): Object;
+        hasOwnProperty(v: PropertyKey): boolean;
+        isPrototypeOf(v: Object): boolean;
+        propertyIsEnumerable(v: PropertyKey): boolean;
+    };
     let popover: {
         inline: boolean;
         delay: number;
@@ -39,7 +69,21 @@ export namespace options {
         offset: number;
         arrow: boolean;
     };
-    let tooltip: any;
+    let tooltip: {
+        inline: boolean;
+        delay: number;
+        placement: string;
+        strategy: string;
+        offset: number;
+        arrow: boolean;
+        constructor: Function;
+        toString(): string;
+        toLocaleString(): string;
+        valueOf(): Object;
+        hasOwnProperty(v: PropertyKey): boolean;
+        isPrototypeOf(v: Object): boolean;
+        propertyIsEnumerable(v: PropertyKey): boolean;
+    };
 }
 /**
  * Whether or not the tooltip is active
@@ -48,5 +92,5 @@ export const active: import("vue").Ref<boolean, boolean>;
 /**
  * Current tooltip config
  */
-export const activeConfig: import("vue").Ref<any, any>;
+export const activeConfig: import("vue").Ref<null, null>;
 //# sourceMappingURL=manager.d.ts.map

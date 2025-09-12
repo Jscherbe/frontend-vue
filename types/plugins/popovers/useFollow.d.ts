@@ -3,12 +3,12 @@ export default function useFollowPoint(userOptions: any): {
      * Reactive X value
      * @type {Object}
      */
-    x: any;
+    x: Object;
     /**
      * Reactive Y value
      * @type {Object}
      */
-    y: any;
+    y: Object;
     /**
      * Show follow tooltip
      */
@@ -24,8 +24,8 @@ export default function useFollowPoint(userOptions: any): {
      * @param {Object} changes.y New 'y' value
      */
     update(changes: {
-        x: any;
-        y: any;
+        x: Object;
+        y: Object;
     }): void;
 };
 //# sourceMappingURL=useFollow.d.ts.map

@@ -13,22 +13,38 @@
  * @param {Function} [options.getSortValue] - A function to get the value to sort by from an item.
  * @param {String} [options.countMode='none'] - The mode for calculating facet counts. Can be 'none', 'simple', or 'intuitive'.
  */
-export function useFacets(allItems: import("vue").Ref<Array<any>>, options?: {
-    initialFacets?: any[];
-    facetFields?: any[];
-    initialSearchValue?: string;
-    initialSortType?: string;
-    noDefaultSorts?: boolean;
-    extraSortTypes?: any;
-    searchOptions?: any;
-    getItemFacet?: Function;
-    getSortValue?: Function;
-    countMode?: string;
+export function useFacets(allItems: import("vue").Ref<Array<Object>>, options?: {
+    initialFacets?: any[] | undefined;
+    facetFields?: any[] | undefined;
+    initialSearchValue?: string | undefined;
+    initialSortType?: string | undefined;
+    noDefaultSorts?: boolean | undefined;
+    extraSortTypes?: Object | undefined;
+    searchOptions?: Object | undefined;
+    getItemFacet?: Function | undefined;
+    getSortValue?: Function | undefined;
+    countMode?: string | undefined;
 }): {
-    facets: import("vue").Ref<any, any>;
+    facets: import("vue").Ref<never[], never[]>;
     searchValue: import("vue").Ref<string, string>;
     selectedSort: import("vue").Ref<string, string>;
-    sortTypes: import("vue").ComputedRef<any>;
+    sortTypes: import("vue").ComputedRef<{
+        constructor: Function;
+        toString(): string;
+        toLocaleString(): string;
+        valueOf(): Object;
+        hasOwnProperty(v: PropertyKey): boolean;
+        isPrototypeOf(v: Object): boolean;
+        propertyIsEnumerable(v: PropertyKey): boolean;
+        az?: {
+            text: string;
+            sort: (items: any) => any;
+        } | undefined;
+        za?: {
+            text: string;
+            sort: (items: any) => any;
+        } | undefined;
+    }>;
     displayItems: import("vue").ComputedRef<any>;
     selectedFacets: import("vue").ComputedRef<any[]>;
     clearFilters: () => void;

@@ -64,6 +64,6 @@ export function useModifiers({ props, baseClass, internal }: {
         [x: string]: any;
     } | import("vue").ComputedRef<string | string[] | {
         [x: string]: any;
-    }>;
+    }> | undefined;
 }): object;
 //# sourceMappingURL=useModifiers.d.ts.map

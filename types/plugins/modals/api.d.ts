@@ -3,7 +3,7 @@ export namespace modalsState {
     export { modals };
 }
 export function createApi(resolveModalOptions: any): {
-    open(name: any, props?: any): void;
+    open(name: any, props?: null): void;
     /**
      * Close the active modal
      * @param {String|Node} focusTo The element or selector for an element to programmatically focus after modal close
@@ -14,7 +14,7 @@ export function createApi(resolveModalOptions: any): {
      * Get a modal's config object by name
      * @return {Object} Modal config object
      */
-    get(name: any): any;
+    get(name: any): Object;
     /**
      * Add a modal config
      */
@@ -23,12 +23,15 @@ export function createApi(resolveModalOptions: any): {
      * Removes a modal config by name
      * @return {Object} Modal that was removed
      */
-    remove(name: any): any;
+    remove(name: any): Object;
 };
 /**
  * Reactive data from state
  */
-declare const data: any;
+declare const data: {
+    active: null;
+    activeProps: null;
+};
 declare const modals: any[];
 export {};
 //# sourceMappingURL=api.d.ts.map

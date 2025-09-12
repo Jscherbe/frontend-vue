@@ -14,19 +14,14 @@
       "import": "./lib/index.js",
       "types": "./types/index.d.ts"
     },
+    "./*": {
+      "import" : "./lib/*",
+      "types" : "./types/*"
+    },
     "./dist": {
       "import": "./dist/frontend-vue.js"
     },
-    "./*": "./lib/*",
     "./scss": "./lib/_index.scss"
-  },
-  "types": "./types/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./types/*"
-      ]
-    }
   },
   "repository": {
     "type": "git",
@@ -36,7 +31,7 @@
     "dev": "storybook dev -p 6006",
     "docs:build": "storybook build -o docs",
     "build": "vite build",
-    "types": "npx tsc",
+    "types": "vue-tsc",
     "deploy": "npm run types && npm run build && npm run docs:build",
     "update-contexts": "rm -rf .ctx && mkdir -p .ctx/frontend && cp -R node_modules/@ulu/frontend/scss node_modules/@ulu/frontend/js .ctx/frontend/"
   },
@@ -58,12 +53,12 @@
   },
   "homepage": "https://github.com/Jscherbe/frontend-vue#readme",
   "peerDependencies": {
+    "@formkit/auto-animate": "^0.9.0",
     "@headlessui/vue": "^1.7.23",
     "@ulu/frontend": "^0.1.0-beta.112",
     "@unhead/vue": "^2.0.11",
     "vue": "^3.5.17",
-    "vue-router": "^4.5.1",
-    "@formkit/auto-animate" : "^0.9.0"
+    "vue-router": "^4.5.1"
   },
   "optionalDependencies": {
     "fuse.js": "^6.6.2",
@@ -76,6 +71,7 @@
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {
+    "@formkit/auto-animate": "^0.9.0",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/vue-fontawesome": "^3.0.8",
@@ -95,7 +91,7 @@
     "typescript": "^5.3.3",
     "vite": "^7.0.0",
     "vue-router": "^4.5.1",
-    "@formkit/auto-animate" : "^0.9.0"
+    "vue-tsc": "^3.0.6"
   },
   "volta": {
     "node": "22.17.0"

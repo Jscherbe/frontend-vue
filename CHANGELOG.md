@@ -1,8 +1,12 @@
 # Change Log
 
+## 0.1.1-beta.4
+
+- Updated typescript declaration generetions to generate decalrations for .vue files and .js files in library. Remove old typescript `package.json` (types, typesVersions) so that only the exports hold paths to types
+- Update vscode snippets in `resources/vscode/ulu-frontend-vue-components.code-snippets`
+
 ## 0.1.1-beta.3
 
-- Update vscode snippets in `resources/vscode/ulu-frontend-vue-components.code-snippets`
 - **Optimized `useFacets` Counting:**
   - The counting mechanism for `countMode: 'intuitive'` has been rewritten to use an inverted index.
   - This new approach avoids expensive re-filtering of the entire item set, resolving performance issues and UI freezes on large datasets.

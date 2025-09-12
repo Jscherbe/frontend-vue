@@ -1,5 +1,5 @@
 declare namespace _default {
-    let plugin: any;
+    let plugin: Object;
     namespace popover {
         let inline: boolean;
         let delay: number;
@@ -8,7 +8,7 @@ declare namespace _default {
         let offset: number;
         let arrow: boolean;
     }
-    let tooltip: any;
+    let tooltip: Object;
 }
 export default _default;
 //# sourceMappingURL=defaults.d.ts.map

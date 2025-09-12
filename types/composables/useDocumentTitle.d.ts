@@ -14,9 +14,9 @@
  * @param {Function} [options.useHead=defaultUseHead] - Injectable `useHead` for testing.
  */
 export function useDocumentTitle(options?: {
-    title?: import("vue").Ref<string> | string;
-    titleTemplate?: string;
-    useRoute?: Function;
-    useHead?: Function;
+    title?: string | import("vue").Ref<string, string> | undefined;
+    titleTemplate?: string | undefined;
+    useRoute?: Function | undefined;
+    useHead?: Function | undefined;
 }): void;
 //# sourceMappingURL=useDocumentTitle.d.ts.map
