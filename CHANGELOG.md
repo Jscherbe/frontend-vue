@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.1-beta.5
+
+- Adding back (types, typesVersions) to test published version (without it vscode intellisense isn't working)
+
 ## 0.1.1-beta.4
 
 - Updated typescript declaration generetions to generate decalrations for .vue files and .js files in library. Remove old typescript `package.json` (types, typesVersions) so that only the exports hold paths to types

@@ -1,6 +1,6 @@
 {
   "name": "@ulu/frontend-vue",
-  "version": "0.1.1-beta.4",
+  "version": "0.1.1-beta.5",
   "description": "A modular and tree-shakeable Vue 3 component library for the Ulu frontend",
   "type": "module",
   "files": [
@@ -15,13 +15,21 @@
       "types": "./types/index.d.ts"
     },
     "./*": {
-      "import" : "./lib/*",
-      "types" : "./types/*"
+      "import": "./lib/*",
+      "types": "./types/*"
     },
     "./dist": {
       "import": "./dist/frontend-vue.js"
     },
     "./scss": "./lib/_index.scss"
+  },
+  "types": "./types/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./types/*"
+      ]
+    }
   },
   "repository": {
     "type": "git",
