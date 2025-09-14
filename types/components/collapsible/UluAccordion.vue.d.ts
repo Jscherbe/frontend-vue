@@ -16,16 +16,15 @@ declare const __VLS_component: import("vue").DefineComponent<{}, {
 }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 type __VLS_Slots = {
     trigger?: ((props: {
-        open: boolean | undefined;
-        toggle: typeof toggle;
+        isOpen: boolean | undefined;
     }) => any) | undefined;
 } & {
     icon?: ((props: {
-        open: boolean | undefined;
+        isOpen: boolean | undefined;
     }) => any) | undefined;
 } & {
     default?: ((props: {
-        open: true;
+        isOpen: true;
         toggle: typeof toggle;
     }) => any) | undefined;
 };

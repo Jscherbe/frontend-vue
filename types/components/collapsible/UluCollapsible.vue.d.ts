@@ -16,7 +16,6 @@ declare const __VLS_component: import("vue").DefineComponent<{}, {
 type __VLS_Slots = {
     trigger?: ((props: {
         isOpen: boolean | undefined;
-        toggle: typeof toggle;
     }) => any) | undefined;
 } & {
     default?: ((props: {

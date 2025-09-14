@@ -12,7 +12,7 @@ declare const __VLS_component: import("vue").DefineComponent<{}, {
     facets: unknown[];
 }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 type __VLS_Slots = {
-    groupToggle?: ((props: {
+    groupTrigger?: ((props: {
         group: unknown;
         isOpen: boolean | undefined;
     }) => any) | undefined;
