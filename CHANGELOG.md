@@ -1,11 +1,18 @@
 # Change Log
 
+## 0.1.1-beta.16
+
+- `lib/components/systems/facets/UluFacetsActiveFilters` 
+  - Add classes option and provide basic layout with defaults
+  - Add classes, and labelElement props
+  - Make list for accessibility
+
 ## 0.1.1-beta.15
 
-- `lib/components/systems/facets/` Make all classes consistent (
+- `lib/components/systems/facets/` Make all classes consistent 
   - Remove ulu- prefix
   - For individual components create base classes vs base and parent facets BEM class
-  - Change FacetsFilterLists classname to facets-filters)
+  - Change FacetsFilterLists classname to facets-filters
 
 ## 0.1.1-beta.14
 
