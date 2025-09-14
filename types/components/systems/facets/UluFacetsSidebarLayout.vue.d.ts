@@ -3,12 +3,20 @@ export default _default;
 type __VLS_WithSlots<T, S> = T & (new () => {
     $slots: S;
 });
-declare const __VLS_component: import("vue").DefineComponent<{}, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
+declare const __VLS_component: import("vue").DefineComponent<{}, {
+    $props: Partial<typeof __VLS_props>;
+    classes: Record<string, any>;
+    mobileButtonText: string;
+}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 type __VLS_Slots = {
     header?: ((props: {}) => any) | undefined;
 } & {
     main?: ((props: {}) => any) | undefined;
 } & {
     sidebar?: ((props: {}) => any) | undefined;
+};
+declare const __VLS_props: {
+    readonly classes: Record<string, any>;
+    readonly mobileButtonText: string;
 };
 //# sourceMappingURL=UluFacetsSidebarLayout.vue.d.ts.map
