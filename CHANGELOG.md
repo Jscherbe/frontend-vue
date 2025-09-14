@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.1.1-beta.11
+
+- Fix few naming inconsistencies with `trigger` vs `toggle` (we're using trigger as global naming), updated in classes objects prop names where needed (there were a few missed in previous update) 
+  - Facets, Acco
+- Remove `UluCollapsible` trigger slot prop `toggle` as that doesn't make sense and should have never been included in slots props, including `UluAccordion` which forwarded the same prop
+- `UluAccordion` 
+  - Change slot props for open state from 'open' to 'isOpen'
+  - Animate is enabled by default
+- `UluPopover` - Remove unnessaray `toggle` slot prop
+
+
+
 ## 0.1.1-beta.10
 
 - **`useFacets` Bug Fix:** Fixed a critical bug where mutating state within a computed property (`selectedFacets`) caused a "Maximum recursive updates exceeded" error. The `selectedCount` logic has been refactored into the appropriate methods (`handleFacetChange`, `clearFilters`) and initialization watcher, resolving the reactivity loop without changing external behavior.

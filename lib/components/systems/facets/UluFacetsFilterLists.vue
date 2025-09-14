@@ -6,13 +6,13 @@
       :key="group.uid"
       :classes="{
         container: ['ulu-facets__group', classes.group],
-        trigger: ['ulu-facets__group-toggle', classes.groupToggle],
+        trigger: ['ulu-facets__group-trigger', classes.groupTrigger],
         content: ['ulu-facets__group-content', classes.groupContent]
       }"
       :startOpen="group.open"
     >
       <template #trigger="{ isOpen }">
-        <slot name="groupToggle" :group="group" :isOpen="isOpen">
+        <slot name="groupTrigger" :group="group" :isOpen="isOpen">
           {{ group.name }}
         </slot>
       </template>

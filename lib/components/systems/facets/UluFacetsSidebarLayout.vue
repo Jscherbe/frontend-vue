@@ -49,7 +49,7 @@
       default: "Filters & Sort"
     },
     /**
-     * Classes for elements. See UluCollapsible for all available class keys (toggle, content, etc).
+     * Classes for elements. See UluCollapsible for all available class keys (trigger, content, etc).
      * The 'icon' key is also available for the icon span.
      * - Any valid class binding value per element
      */

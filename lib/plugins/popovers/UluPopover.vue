@@ -15,7 +15,7 @@
     :aria-label="triggerAlt"
     v-ulu-tooltip="tooltip ? tooltip : null"
   >
-    <slot name="trigger" :isOpen="isOpen" :toggle="toggle" :close="close">
+    <slot name="trigger" :isOpen="isOpen" :close="close">
       {{ triggerText }}
     </slot>
   </button>

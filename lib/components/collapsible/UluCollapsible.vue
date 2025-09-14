@@ -5,13 +5,13 @@
     :class="[classes.container, containerStateClasses]"
   >
     <button
-      :class="classes.toggle"
-      :id="toggleId"
+      :class="classes.trigger"
+      :id="triggerId"
       :aria-controls="contentId"
       :aria-expanded="isOpen"
       @click="toggle"
     >
-      <slot name="trigger" :isOpen="isOpen" :toggle="toggle">
+      <slot name="trigger" :isOpen="isOpen">
         {{ triggerText }}
       </slot>
     </button>
@@ -21,7 +21,7 @@
       tabindex="-1"
       :id="contentId"
       :aria-hidden="!isOpen"
-      :aria-labelledby="toggleId"
+      :aria-labelledby="triggerId"
     >
       <div :class="classes.contentInner">
         <slot :isOpen="isOpen" :toggle="toggle" />
@@ -66,14 +66,14 @@
       default: true
     },
     /**
-     * Classes for elements ({ container, toggle, content, contentInner })
+     * Classes for elements ({ container, trigger, content, contentInner })
      * - Any valid class binding value per element
      */
     classes: {
       type: Object,
       default: () => ({
         container: 'ulu-collapsible',
-        toggle: 'ulu-collapsible__toggle',
+        trigger: 'ulu-collapsible__trigger',
         content: 'ulu-collapsible__content',
         contentInner: 'ulu-collapsible__content-inner',
         containerOpen: 'ulu-collapsible--open',
@@ -114,7 +114,7 @@
     }
   });
 
-  const toggleId = ref(newId('ulu-collapsible-toggle'));
+  const triggerId = ref(newId('ulu-collapsible-trigger'));
   const contentId = ref(newId('ulu-collapsible-content'));
 
   const containerStateClasses = computed(() => {
