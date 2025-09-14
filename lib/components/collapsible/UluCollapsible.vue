@@ -2,7 +2,7 @@
   <div
     ref="container"
     @keydown.esc="handleEscape"
-    :class="[classes.container, containerStateClasses]"
+    :class="[classes.container, isOpen ? classes.containerOpen : classes.containerClosed]"
   >
     <button
       :class="classes.trigger"
@@ -113,18 +113,6 @@
 
   const triggerId = ref(newId('ulu-collapsible-trigger'));
   const contentId = ref(newId('ulu-collapsible-content'));
-
-  const containerStateClasses = computed(() => {
-    const c = props.classes;
-    const stateClasses = {};
-    if (c.containerOpen && isOpen.value) {
-      stateClasses[c.containerOpen] = true;
-    }
-    if (c.containerClosed && !isOpen.value) {
-      stateClasses[c.containerClosed] = true;
-    }
-    return stateClasses;
-  });
 
   /**
    * Function used to toggle the collapsible

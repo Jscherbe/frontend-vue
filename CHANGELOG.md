@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.1-beta.13
+
+- Fix `UluCollapsible` open/closed class bindings
+
 ## 0.1.1-beta.12
 
 - Remove `UluCollapsible` remove the inner container as it's no longer needed for animation
