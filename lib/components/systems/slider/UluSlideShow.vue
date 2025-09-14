@@ -50,7 +50,7 @@
             @click="previous"
             :disabled="!canScrollLeft"
           >
-            <UluIcon class="slideshow__control-icon" icon="type:next"/>
+            <UluIcon class="slideshow__control-icon" icon="type:previous"/>
           </button>
         </li>
         <li class="slideshow__controls-item slideshow__controls-item--next">
@@ -60,7 +60,7 @@
             @click="next"
             :disabled="!canScrollRight"
           >
-            <UluIcon class="slideshow__control-icon" icon="type:previous" />
+            <UluIcon class="slideshow__control-icon" icon="type:next" />
           </button>
         </li>
       </ul>
