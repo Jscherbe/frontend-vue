@@ -1,6 +1,6 @@
 <template>
   <UluSelectableMenu
-    class="ulu-facets__facet-list"
+    class="facets-list"
     :legend="groupUid"
     :type="type"
     :options="menuOptions"

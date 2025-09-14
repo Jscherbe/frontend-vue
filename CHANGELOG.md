@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.1.1-beta.15
+
+- `lib/components/systems/facets/` Make all classes consistent (
+  - Remove ulu- prefix
+  - For individual components create base classes vs base and parent facets BEM class
+  - Change FacetsFilterLists classname to facets-filters)
+
 ## 0.1.1-beta.14
 
 - Add class `ulu-facets__filter-lists` to `UluFacetsFilterLists`

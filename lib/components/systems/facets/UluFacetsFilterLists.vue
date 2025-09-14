@@ -1,14 +1,14 @@
 <template>
-  <div class="ulu-facets__filter-lists">
+  <div class="facets-filters">
     <UluCollapsible
       v-for="group in facets"
       :key="group.uid"
       :classes="{
-        container: ['ulu-facets__group', classes.group],
-        containerOpen: ['ulu-facets__group--open', classes.groupOpen],
-        containerClosed: ['ulu-facets__group--closed', classes.groupClosed],
-        trigger: ['ulu-facets__group-trigger', classes.groupTrigger],
-        content: ['ulu-facets__group-content', classes.groupContent]
+        container: ['facets-filters__group', classes.group],
+        containerOpen: ['facets-filters__group--open', classes.groupOpen],
+        containerClosed: ['facets-filters__group--closed', classes.groupClosed],
+        trigger: ['facets-filters__group-trigger', classes.groupTrigger],
+        content: ['facets-filters__group-content', classes.groupContent]
       }"
       :startOpen="group.open"
     >
@@ -29,7 +29,7 @@
         />
         <UluCollapsible
           v-if="group.children.length > maxVisible"
-          class="ulu-facets__more-facets"
+          class="facets-filters__more-facets"
           :class="classes.moreFacets"
           :clickOutsideCloses="false"
           :closeOnEscape="false"

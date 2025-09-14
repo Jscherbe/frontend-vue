@@ -1,9 +1,9 @@
 <template>
-  <div v-if="activeFilters.length" class="ulu-facets-active-filters">
+  <div v-if="activeFilters.length" class="facets-active-filters">
     <slot name="label">
-      <strong class="ulu-facets-active-filters__label">Active Filters:</strong>
+      <strong class="facets-active-filters__label">Active Filters:</strong>
     </slot>
-    <div class="ulu-facets-active-filters__items">
+    <div class="facets-active-filters__items">
       <UluButton
         v-for="filter in activeFilters"
         :key="`${filter.groupUid}-${filter.uid}`"
@@ -60,25 +60,3 @@ function clearFilters() {
   emit('clear-filters');
 }
 </script>
-
-<style lang="scss">
-.ulu-facets-active-filters {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid #eee;
-
-  &__label {
-    margin-right: 0.5rem;
-  }
-
-  &__items {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-}
-</style>
