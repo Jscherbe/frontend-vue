@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.1-beta.14
+
+- Add class `ulu-facets__filter-lists` to `UluFacetsFilterLists`
+
 ## 0.1.1-beta.13
 
 - Fix `UluCollapsible` open/closed class bindings

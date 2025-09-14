@@ -1,5 +1,5 @@
 <template>
-  <div class="UluFacetsFilters">
+  <div class="ulu-facets__filter-lists">
     <UluCollapsible
       v-for="group in facets"
       :key="group.uid"
