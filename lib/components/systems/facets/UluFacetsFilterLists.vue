@@ -22,6 +22,7 @@
           :groupUid="group.uid"
           :groupName="group.name"
           :type="group.multiple ? 'checkbox' : 'radio'"
+          :compact="compact"
           :model-value="selectedUids(group)"
           @facet-change="emit('facet-change', $event)"
         />
@@ -42,6 +43,7 @@
               :groupUid="group.uid"
               :groupName="group.name"
               :type="group.multiple ? 'checkbox' : 'radio'"
+              :compact="compact"
               :model-value="selectedUids(group)"
               @facet-change="emit('facet-change', $event)"
             />
@@ -77,7 +79,11 @@
     facets: {
       type: Array,
       default: () => []
-    }
+    },
+    /**
+     * Whether to use compact modifier on selectable menu
+     */
+    compact: Boolean,
   });
 
   const emit = defineEmits(['facet-change']);

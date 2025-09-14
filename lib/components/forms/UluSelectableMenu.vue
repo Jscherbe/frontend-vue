@@ -1,7 +1,10 @@
 <template>
   <div 
     class="menu-stack form-theme" 
-    :class="{ 'menu-stack--hide-inputs' : hideInputs }"
+    :class="{ 
+      'menu-stack--hide-inputs' : hideInputs,
+      'menu-stack--compact' : compact
+    }"
     :role="groupRole" 
     :aria-labelledby="legendId"
   >
@@ -40,6 +43,10 @@ const props = defineProps({
    * An array of options for the menu.
    */
   options: Array,
+  /**
+   * Use compact modifier on menu stack
+   */
+  compact: Boolean,
   /**
    * The type of input to use ('checkbox' or 'radio').
    */

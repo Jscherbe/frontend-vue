@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.1.1-beta.10
+
+- **`useFacets` Bug Fix:** Fixed a critical bug where mutating state within a computed property (`selectedFacets`) caused a "Maximum recursive updates exceeded" error. The `selectedCount` logic has been refactored into the appropriate methods (`handleFacetChange`, `clearFilters`) and initialization watcher, resolving the reactivity loop without changing external behavior.
+- **New `UluFacetsActiveFilters` Component:** Added a new component to the facets system that displays a list of currently active filters. Each filter can be removed individually by clicking it, and a "Clear All" button is provided to remove all active filters at once.
+- **Facets Storybook:** Added a new story, "With Initial Filters," to demonstrate and test the behavior of the facets system when filters are pre-selected on load.
+- `UluSelectableMenu`, `UluFacetsFilterLists`, `UluFacetsFilterList` - Add `compact` prop for menu modifier
+
+
 ## 0.1.1-beta.9
 
 - `plugins/core` and `UluSlideShow` fix incorrect prev/next icons (swapped)

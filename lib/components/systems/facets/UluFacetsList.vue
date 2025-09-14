@@ -4,6 +4,7 @@
     :legend="groupUid"
     :type="type"
     :options="menuOptions"
+    :compact="compact"
     :model-value="modelValue"
     @update:model-value="handleChange"
   >
@@ -25,6 +26,7 @@ const props = defineProps({
     type: String,
     default: 'checkbox',
   },
+  compact: Boolean,
   modelValue: [String, Array],
 });
 
