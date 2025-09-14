@@ -23,9 +23,7 @@
       :aria-hidden="!isOpen"
       :aria-labelledby="triggerId"
     >
-      <div :class="classes.contentInner">
-        <slot :isOpen="isOpen" :toggle="toggle" />
-      </div>
+      <slot :isOpen="isOpen" :toggle="toggle" />
     </div>
   </div>
 </template>
@@ -66,7 +64,7 @@
       default: true
     },
     /**
-     * Classes for elements ({ container, trigger, content, contentInner })
+     * Classes for elements ({ container, trigger, content })
      * - Any valid class binding value per element
      */
     classes: {
@@ -75,7 +73,6 @@
         container: 'ulu-collapsible',
         trigger: 'ulu-collapsible__trigger',
         content: 'ulu-collapsible__content',
-        contentInner: 'ulu-collapsible__content-inner',
         containerOpen: 'ulu-collapsible--open',
         containerClosed: 'ulu-collapsible--closed'
       })

@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.1-beta.12
+
+- Remove `UluCollapsible` remove the inner container as it's no longer needed for animation
+- Remove `lib/components/systems/facets/UluFacetsFilterLists.vue` Add classes for collapsible class options containerOpen (groupOpen), containerClosed (groupClosed)
+
 ## 0.1.1-beta.11
 
 - Fix few naming inconsistencies with `trigger` vs `toggle` (we're using trigger as global naming), updated in classes objects prop names where needed (there were a few missed in previous update) 
@@ -9,8 +14,6 @@
   - Change slot props for open state from 'open' to 'isOpen'
   - Animate is enabled by default
 - `UluPopover` - Remove unnessaray `toggle` slot prop
-
-
 
 ## 0.1.1-beta.10
 

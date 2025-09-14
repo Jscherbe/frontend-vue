@@ -6,6 +6,8 @@
       :key="group.uid"
       :classes="{
         container: ['ulu-facets__group', classes.group],
+        containerOpen: ['ulu-facets__group--open', classes.groupOpen],
+        containerClosed: ['ulu-facets__group--closed', classes.groupClosed],
         trigger: ['ulu-facets__group-trigger', classes.groupTrigger],
         content: ['ulu-facets__group-content', classes.groupContent]
       }"
