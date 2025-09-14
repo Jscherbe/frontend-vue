@@ -1,4 +1,5 @@
 export { useFacets } from "./facets/useFacets.js";
+export { default as UluFacetsActiveFilters } from "./facets/UluFacetsActiveFilters.vue";
 export { default as UluFacetsFilterLists } from "./facets/UluFacetsFilterLists.vue";
 export { default as UluFacetsFilterPopovers } from "./facets/UluFacetsFilterPopovers.vue";
 export { default as UluFacetsFilterSelects } from "./facets/UluFacetsFilterSelects.vue";

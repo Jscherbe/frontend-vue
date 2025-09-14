@@ -7,6 +7,7 @@ declare const __VLS_component: import("vue").DefineComponent<{}, {
     $emit: typeof emit;
     $props: Partial<typeof __VLS_props>;
     classes: Record<string, any>;
+    compact: boolean;
     maxVisible: number;
     facets: unknown[];
 }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
@@ -19,6 +20,7 @@ type __VLS_Slots = {
 declare const emit: (event: "facet-change", ...args: any[]) => void;
 declare const __VLS_props: {
     readonly classes: Record<string, any>;
+    readonly compact: boolean;
     readonly maxVisible: number;
     readonly facets: unknown[];
 };

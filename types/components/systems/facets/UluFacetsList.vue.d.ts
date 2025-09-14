@@ -2,6 +2,7 @@ declare const _default: import("vue").DefineComponent<{}, {
     $emit: typeof emit;
     $props: Partial<typeof props>;
     type: string;
+    compact: boolean;
     children?: unknown[] | undefined;
     modelValue?: string | unknown[] | undefined;
     groupUid?: string | undefined;
@@ -11,6 +12,7 @@ export default _default;
 declare const emit: (event: "facet-change", ...args: any[]) => void;
 declare const props: {
     readonly type: string;
+    readonly compact: boolean;
     readonly children?: unknown[] | undefined;
     readonly modelValue?: string | unknown[] | undefined;
     readonly groupUid?: string | undefined;

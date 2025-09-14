@@ -7,6 +7,7 @@ declare const __VLS_component: import("vue").DefineComponent<{}, {
     $emit: typeof emit;
     $props: Partial<typeof props>;
     type: string;
+    compact: boolean;
     hideInputs: boolean;
     options?: unknown[] | undefined;
     legend?: string | undefined;
@@ -20,6 +21,7 @@ type __VLS_Slots = {
 declare const emit: (event: "update:modelValue", ...args: any[]) => void;
 declare const props: {
     readonly type: string;
+    readonly compact: boolean;
     readonly hideInputs: boolean;
     readonly options?: unknown[] | undefined;
     readonly legend?: string | undefined;
