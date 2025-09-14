@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.1-beta.9
+
+- `UluSlideShow` fix incorrect prev/next icons (swapped) in UluSlideShow
+
 ## 0.1.1-beta.8
 
 - `UluFacetsSidebarLayout` change default classname to `facets-sidebar` from `facets-sidebar-layout`, also add classes (just button for now) and mobileButtonText props
