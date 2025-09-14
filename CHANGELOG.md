@@ -2,7 +2,7 @@
 
 ## 0.1.1-beta.9
 
-- `UluSlideShow` fix incorrect prev/next icons (swapped) in UluSlideShow
+- `plugins/core` and `UluSlideShow` fix incorrect prev/next icons (swapped)
 
 ## 0.1.1-beta.8
 
