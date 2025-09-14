@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.1-beta.8
+
+- `UluFacetsSidebarLayout` change default classname to `facets-sidebar` from `facets-sidebar-layout`, also add classes (just button for now) and mobileButtonText props
+
 ## 0.1.1-beta.7
 
 - `UluMenu` Fix router link props (activeClass, exactActiveClass) if the user doesn't define the value in classes prop. Now if undefined the defaults classes from vue-router will work correctly. Also fixed binding router props when menu item isn't a route link.

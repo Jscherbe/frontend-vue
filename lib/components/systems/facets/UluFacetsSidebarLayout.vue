@@ -1,21 +1,23 @@
 <template>
   <div 
-    class="facets-sidebar-layout" 
-    :class="{ 'facets-sidebar-layout--filters-hidden' : isMobile }"
+    class="facets-sidebar" 
+    :class="{ 'facets-sidebar--filters-hidden' : isMobile }"
   >
-    <div class="facets-sidebar-layout__header">
+    <div class="facets-sidebar__header">
       <slot name="header"></slot>
     </div>
 
-    <div v-show="isMobile" class="facets-sidebar-layout__mobile-controls">
-      <button class="button" @click="showMobileFilters = true">Filters & Sort</button>
+    <div v-show="isMobile" class="facets-sidebar__mobile-controls">
+      <button :class="classes.mobileButton" @click="showMobileFilters = true">
+        {{ mobileButtonText }}
+      </button>
     </div>
 
-    <div class="facets-sidebar-layout__body">
+    <div class="facets-sidebar__body">
       <!-- Desktop container for the sidebar -->
-      <div v-show="!isMobile" class="facets-sidebar-layout__sidebar" ref="desktopTarget"></div>
+      <div v-show="!isMobile" class="facets-sidebar__sidebar" ref="desktopTarget"></div>
       
-      <div class="facets-sidebar-layout__main">
+      <div class="facets-sidebar__main">
         <slot name="main"></slot>
       </div>
     </div>
@@ -28,7 +30,7 @@
       allowResize
     >
       <!-- Mobile container for the sidebar -->
-      <div class="facets-sidebar-layout__sidebar" ref="mobileTarget"></div>
+      <div class="facets-sidebar__sidebar" ref="mobileTarget"></div>
     </UluModal>
 
     <teleport :to="teleportTarget" v-if="teleportTarget">
@@ -40,6 +42,24 @@
 <script setup>
   import { ref, inject, computed } from 'vue';
   import UluModal from '../../collapsible/UluModal.vue';
+
+  defineProps({
+    mobileButtonText: {
+      type: String,
+      default: "Filters & Sort"
+    },
+    /**
+     * Classes for elements. See UluCollapsible for all available class keys (toggle, content, etc).
+     * The 'icon' key is also available for the icon span.
+     * - Any valid class binding value per element
+     */
+    classes: {
+      type: Object,
+      default: () => ({
+        mobileButton: 'button'
+      })
+    }
+  })
 
   const showMobileFilters = ref(false);
   const isMobile = inject("uluIsMobile");
@@ -57,13 +77,13 @@
 </script>
 
 <style lang="scss">
-  .facets-sidebar-layout__body {
+  .facets-sidebar__body {
     display: grid;
     grid-template-columns: 250px 1fr;
     gap: 2rem;
   }
-  .facets-sidebar-layout--filters-hidden {
-    .facets-sidebar-layout__body {
+  .facets-sidebar--filters-hidden {
+    .facets-sidebar__body {
       grid-template-columns: 1fr;
     }
   }
