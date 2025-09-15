@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.1-beta.18
+
+- `UluDefinitionList` Added new props to match frontend scss module modifiers and add base class to component
+
 ## 0.1.1-beta.17
 
 - Create `lib/components/systems/facets/UluFacetsFilterAccordions.vue` for accordion implementation of filter lists, `UluFacetsFilterLists` is the unstyled collapsible version

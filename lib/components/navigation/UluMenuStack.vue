@@ -56,8 +56,8 @@
   });
 
   const internalModifiers = computed(() => ({
-    'hanging' : props.hanging,
-    'compact' : props.compact,
+    "hanging" : props.hanging,
+    "compact" : props.compact,
   }));
 
   const { resolvedModifiers } = useModifiers({ 
