@@ -152,7 +152,13 @@
         default: () => ({})
       },
       /**
-       * Whether to proxy clicks of non-interactive elements (making whole card clickable)
+       * Whether to proxy clicks of non-interactive elements (making whole card clickable).
+       * This is for accessibility, allowing a non-link card to have a primary action.
+       * The proxy action is determined in the following order:
+       * 1. If the title has a link (`titleTo` or `titleHref`), it will proxy the click to the title's link.
+       * 2. If not, it will look for an element with the `data-ulu-card-proxy-target` attribute within the card's slots and click it.
+       * 3. If no proxy target is found, it will emit a `proxy-click` event.
+       * Note: This should not be used with the `to` or `href` props.
        */
       proxyClick: Boolean,
       /**
@@ -193,15 +199,24 @@
       modifiers: [Array, String]
     },
     data() {
-      const { proxyClickOptions, proxyClick, titleHref, titleTo } = this;
+      const { proxyClickOptions, proxyClick, titleHref, titleTo, to, href } = this;
+
+      if (proxyClick && (to || href)) {
+        console.warn("UluCard: 'proxyClick' should not be used with 'to' or 'href' props. The 'proxyClick' prop is for making a non-link card behave like a link for accessibility. The 'to' and 'href' props turn the entire card into a link element, which should be avoided for cards with verbose content.");
+      }
+
+      const isClickable = proxyClick;
+
       return {
-        proxyClickEnabled: (proxyClick && (titleHref || titleTo)) || null,
+        isTitleProxy: isClickable && (titleHref || titleTo),
+        isEventProxy: isClickable && !(titleHref || titleTo),
+        proxyClickEnabled: isClickable || null,
         resolvedProxyOptions: {
           selectorPrevent: "input, select, textarea, button, a, [tabindex='-1']",
           mousedownDurationPrevent: 250,
           ...proxyClickOptions
         },
-        cursorStyle: null,
+        cursorStyle: isClickable ? 'pointer' : null,
         proxyStart: null,
         shouldProxy: false
       }
@@ -222,19 +237,28 @@
         const { resolvedProxyOptions } = this;
         const { selectorPrevent } = resolvedProxyOptions;
         this.shouldProxy = false;
-        if (!target.matches(selectorPrevent)) {
+        if (!target.closest(selectorPrevent)) {
           this.shouldProxy = true;
           this.proxyStart = timeStamp;
         }
       },
       onMouseup({ timeStamp }) {
-        if (!this.proxyClickEnabled) return;
-        const { link } = this.$refs;
+        if (!this.proxyClickEnabled || !this.shouldProxy) return;
         const { resolvedProxyOptions } = this;
         const { mousedownDurationPrevent } = resolvedProxyOptions;
-        if (this.shouldProxy && timeStamp - this.proxyStart < mousedownDurationPrevent) {
-          link.click();
+        if (timeStamp - this.proxyStart < mousedownDurationPrevent) {
+          if (this.isTitleProxy) {
+            this.$refs.link.click();
+          } else if (this.isEventProxy) {
+            const proxyTarget = this.$el.querySelector('[data-ulu-card-proxy-target]');
+            if (proxyTarget) {
+              proxyTarget.click();
+            } else {
+              this.$emit('proxy-click');
+            }
+          }
         }
+        this.shouldProxy = false;
       },
     }
   };
