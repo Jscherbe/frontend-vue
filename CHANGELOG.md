@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.1-beta.21
+
+- Add `UluSanityRichText` which is conditional output in portable text for wysiwyg like content (includes setup for images)
+- Add `UluConditionalWrapper` (used internally) which outputs optional wrapper based on prop or outputs it's content without wrapper. Has (is and unwrapped props, is defines what the wrapper will be if not unwrapped)
+- Change `UluCondText` to `UluConditionalText` since the library uses full words for everything for clarity over abbreviated names
+
 ## 0.1.1-beta.20
 
 - `UluCard` Make sure title element is not printed if no title or title slot (cards without titles)

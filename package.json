@@ -1,6 +1,6 @@
 {
   "name": "@ulu/frontend-vue",
-  "version": "0.1.1-beta.20",
+  "version": "0.1.1-beta.21",
   "description": "A modular and tree-shakeable Vue 3 component library for the Ulu frontend",
   "type": "module",
   "files": [
@@ -69,6 +69,7 @@
     "vue-router": "^4.5.1"
   },
   "optionalDependencies": {
+    "@portabletext/vue": "^1.0.14",
     "fuse.js": "^6.6.2",
     "gsap": "^3.13.0",
     "vue3-dropzone": "^2.2.1"

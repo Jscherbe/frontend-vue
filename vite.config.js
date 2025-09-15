@@ -22,7 +22,8 @@ export default defineConfig({
         "@ulu/utils",
         "gsap",
         "fuse.js",
-        "vue3-dropzone"
+        "vue3-dropzone",
+        "@portabletext/vue"
       ],
     },
   },

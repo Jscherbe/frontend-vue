@@ -26,7 +26,7 @@
     props: {
       /**
        * Allow user to bypass this functionality
-       * - Function should return true if the page should be annouced
+       * - Function should return true if the page should be announced
        * - Function is passed  (to, from, $route) => {}
        *   - to/from are path strings
        */

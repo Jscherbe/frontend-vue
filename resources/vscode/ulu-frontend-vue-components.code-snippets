@@ -846,7 +846,7 @@
     ],
     "description": "UluTableStickyTable with default slot"
   },
-  "UluCondText (slot)": {
+  "UluConditionalText (slot)": {
     "prefix": [
       "UluVue",
       "UluCondText"
