@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.1.1-beta.19
+
+- `UluCard` Updated proxy click behavior to add two new modes 
+  - If you add `data-ulu-card-proxy-target` it will look for an element within the card to proxy the click to (if not using titleHref, titleTo)
+  - If you don't have titleHref, titleTo, or data-ulu-card-proxy-target it will just emit 'proxy-click' event for user to do stuff on there side
+  - Also refactor to composition API
+
 ## 0.1.1-beta.18
 
 - `UluDefinitionList` Added new props to match frontend scss module modifiers and add base class to component
