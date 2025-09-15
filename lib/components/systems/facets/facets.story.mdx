@@ -6,7 +6,7 @@ This story demonstrates the `useFacets` composable and its associated components
 <script setup>
   import { ref } from 'vue';
   import { useFacets } from './useFacets.js';
-  import UluFacetsFilterLists from './UluFacetsFilterLists.vue';
+  import UluFacetsFilterAccordions from './UluFacetsFilterAccordions.vue';
   import UluFacetsResults from './UluFacetsResults.vue';
   import UluFacetsSearch from './UluFacetsSearch.vue';
   import UluFacetsSort from './UluFacetsSort.vue';
@@ -62,7 +62,7 @@ This story demonstrates the `useFacets` composable and its associated components
         <h3>Filters</h3>
         <button v-if="selectedFacets.length > 0" @click="clearFilters" style="border: none; background: none; color: blue; cursor: pointer;">Clear</button>
       </div>
-      <UluFacetsFilterLists :facets="facets" @facet-change="handleFacetChange" :max-visible="5" />
+      <UluFacetsFilterAccordions :facets="facets" @facet-change="handleFacetChange" :max-visible="5" />
     </template>
     <template #main>
       <UluFacetsResults :items="displayItems">

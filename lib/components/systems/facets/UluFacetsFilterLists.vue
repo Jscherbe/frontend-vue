@@ -31,9 +31,6 @@
           v-if="group.children.length > maxVisible"
           class="facets-filters__more-facets"
           :class="classes.moreFacets"
-          :clickOutsideCloses="false"
-          :closeOnEscape="false"
-          :transitionHeight="true"
         >
           <template #trigger="{ isOpen }">
             {{ isOpen ? "View Less" : "Show More" }}
