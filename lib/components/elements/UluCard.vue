@@ -22,6 +22,7 @@
     <div class="card__body">
       <div class="card__main">
         <component 
+          v-if="title || $slots.title"
           :is="titleElement" 
           class="card__title" 
           :class="classes.title"

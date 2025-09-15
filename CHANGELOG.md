@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.1-beta.20
+
+- `UluCard` Make sure title element is not printed if no title or title slot (cards without titles)
+
 ## 0.1.1-beta.19
 
 - `UluCard` Updated proxy click behavior to add two new modes 
