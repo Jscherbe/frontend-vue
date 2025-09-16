@@ -4,8 +4,6 @@
 export const store: {
     toasts: never[];
     pluginOptions: {
-        componentName: string;
-        componentNameDisplay: string;
         teleportTo: string;
         position: string[];
     };
@@ -52,14 +50,10 @@ export const store: {
         actions: never[];
     };
     setToastOptions: (options: any) => {
-        componentName: string;
-        componentNameDisplay: string;
         teleportTo: string;
         position: string[];
     };
     setPluginOptions: (options: any) => {
-        componentName: string;
-        componentNameDisplay: string;
         teleportTo: string;
         position: string[];
     };

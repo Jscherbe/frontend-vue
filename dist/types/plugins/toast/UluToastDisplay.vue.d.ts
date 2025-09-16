@@ -1,8 +1,6 @@
 declare const _default: import("vue").DefineComponent<{}, {}, {
     toasts: never[];
     pluginOptions: {
-        componentName: string;
-        componentNameDisplay: string;
         teleportTo: string;
         position: string[];
     };

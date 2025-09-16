@@ -9,14 +9,6 @@ export default function install(app: any, userOptions: UluModalsPluginOptions): 
  */
 export type UluModalsPluginOptions = {
     /**
-     * Name for modals component that displays app-wide modals
-     */
-    componentNameDisplay: string;
-    /**
-     * Name for modal component
-     */
-    componentNameModal: string;
-    /**
      * Modals configs [{ name, component, props }]
      */
     modals: any[];

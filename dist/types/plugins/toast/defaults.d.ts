@@ -42,8 +42,6 @@ declare namespace _default {
         let actions: never[];
     }
     namespace pluginOptions {
-        let componentName: string;
-        let componentNameDisplay: string;
         let teleportTo: string;
         let position: string[];
     }
