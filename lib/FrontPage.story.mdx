@@ -152,3 +152,28 @@ Systems are complex, multi-component features that solve a specific problem.
 - **Skeleton**: A set of components for creating beautiful and effective loading states.
 - **Table Sticky**: A powerful table component with sticky headers and columns.
 - **Slider**: A flexible slideshow/carousel component.
+
+### Resolver
+
+Resolver for [`unplugin-vue-components`](https://github.com/unplugin/unplugin-vue-components/tree/main]) is available to use like:
+
+```js
+// vite.config.js
+
+import { defineConfig } from "vite";
+import Components from "unplugin-vue-components/vite";
+import { UluUnpluginResolver } from "@ulu/frontend-vue/resolver";
+
+export default defineConfig({
+  plugins: [
+    // ...
+    Components({ 
+      resolvers: [
+        UluUnpluginResolver()
+      ]
+    }),
+    // ...
+  ],
+  // ...
+});
+```

@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.2-beta.3
+
+- Internal: move resolver to `dis
+- t`  so it has typescript declarations, import is the same  
+
 ## 0.1.2-beta.2
 
 - Add [`unplugin-vue-components`](https://github.com/unplugin/unplugin-vue-components/tree/main]) resolver to exports via `import { UluUnpluginResolver } from @ulu/frontend-vue/resolver` 

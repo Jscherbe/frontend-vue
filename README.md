@@ -111,10 +111,33 @@ Components are designed to be imported individually. This approach is highly rec
 ```
 
 
-
-
 # Resources
 
 ## Snippets
 
 - Snippets for vscode are available in the repo's at [/resources/vscode/](https://github.com/Jscherbe/frontend-vue/tree/main/resources/vscode)
+
+## Resolver
+
+Resolver for [`unplugin-vue-components`](https://github.com/unplugin/unplugin-vue-components/tree/main]) is available to use like:
+
+```js
+// vite.config.js
+
+import { defineConfig } from "vite";
+import Components from "unplugin-vue-components/vite";
+import { UluUnpluginResolver } from "@ulu/frontend-vue/resolver";
+
+export default defineConfig({
+  plugins: [
+    // ...
+    Components({ 
+      resolvers: [
+        UluUnpluginResolver()
+      ]
+    }),
+    // ...
+  ],
+  // ...
+});
+```
