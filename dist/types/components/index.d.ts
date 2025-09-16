@@ -36,6 +36,7 @@ export { default as UluBreadcrumb } from "./navigation/UluBreadcrumb.vue";
 export { default as UluMenu } from "./navigation/UluMenu.vue";
 export { default as UluMenuStack } from "./navigation/UluMenuStack.vue";
 export { default as UluNavStrip } from "./navigation/UluNavStrip.vue";
+export { default as UluPager } from "./navigation/UluPager.vue";
 export { default as UluSkipLink } from "./navigation/UluSkipLink.vue";
 export { default as UluConditionalText } from "./utils/UluConditionalText.vue";
 export { default as UluConditionalWrapper } from "./utils/UluConditionalWrapper.vue";

@@ -1,9 +1,12 @@
 # Change Log
 
+## 0.1.2-beta.4
+
+- Fix missing export for `UluPager`
+
 ## 0.1.2-beta.3
 
-- Internal: move resolver to `dis
-- t`  so it has typescript declarations, import is the same  
+- Internal: move resolver to `dist`  so it has typescript declarations, import is the same  
 
 ## 0.1.2-beta.2
 
