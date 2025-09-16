@@ -1,36 +1,21 @@
 {
   "name": "@ulu/frontend-vue",
-  "version": "0.1.1-beta.21",
+  "version": "0.1.2-beta.1",
   "description": "A modular and tree-shakeable Vue 3 component library for the Ulu frontend",
   "type": "module",
   "files": [
-    "lib",
     "dist",
-    "types"
+    "lib"
   ],
-  "module": "./lib/index.js",
+  "module": "./dist/frontend-vue.js",
   "exports": {
     ".": {
-      "import": "./lib/index.js",
-      "types": "./types/index.d.ts"
-    },
-    "./*": {
-      "import": "./lib/*",
-      "types": "./types/*"
-    },
-    "./dist": {
-      "import": "./dist/frontend-vue.js"
+      "import": "./dist/frontend-vue.js",
+      "types": "./dist/types/index.d.ts"
     },
     "./scss": "./lib/_index.scss"
   },
-  "types": "./types/index.d.ts",
-  "typesVersions": {
-    "*": {
-      "*": [
-        "./types/*"
-      ]
-    }
-  },
+  "types": "./dist/types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jscherbe/frontend-vue.git"
@@ -40,7 +25,7 @@
     "docs:build": "storybook build -o docs",
     "build": "vite build",
     "types": "vue-tsc",
-    "deploy": "npm run types && npm run build && npm run docs:build",
+    "deploy": "rm -rf dist && npm run types && npm run build && npm run docs:build",
     "update-contexts": "rm -rf .ctx && mkdir -p .ctx/frontend && cp -R node_modules/@ulu/frontend/scss node_modules/@ulu/frontend/js .ctx/frontend/"
   },
   "keywords": [

@@ -1,5 +1,20 @@
 # Change Log
 
+## 0.1.2-beta.1
+
+- **Breaking** Refactor so that importing this package is the bundled version only like:
+  - `import { anExport } from "@ulu/frontend-vue";`
+  - `"@ulu/frontend-vue/scss"` for scss modules.\
+  - This is to fix issues with using deep imports in projects (importing modules directly)
+  - The new bundle excludes all vendor modules and you should install them in your project
+  - The new combined module is `dist/frontend-vue.js` 
+    - The module should be tree shakeable this way
+    - Current size of entire library 222.30 kB │ gzip: 56.96 kB (everything)
+  - `types/` have been moved to `dist/` and remapped in package exports / types
+  - Removed `typesVersions` config from package.json. This was added to make vscode typescript intellisense work correctly, but now that everything is unified into one export this hopefully works correctly
+  - Raw `lib/` directory is still available but is not part of the exports (just files if needed)
+- Fix unmounted hook name `plugins/popover/directive` 
+
 ## 0.1.1-beta.21
 
 - Add `UluSanityRichText` which is conditional output in portable text for wysiwyg like content (includes setup for images)
