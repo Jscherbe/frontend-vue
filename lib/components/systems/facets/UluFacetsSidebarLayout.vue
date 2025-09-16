@@ -75,16 +75,3 @@
     }
   });
 </script>
-
-<style lang="scss">
-  .facets-sidebar__body {
-    display: grid;
-    grid-template-columns: 250px 1fr;
-    gap: 2rem;
-  }
-  .facets-sidebar--filters-hidden {
-    .facets-sidebar__body {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>

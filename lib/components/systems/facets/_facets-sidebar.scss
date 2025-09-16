@@ -1,0 +1,60 @@
+////
+/// @group facets-sidebar
+/// Basic styles for the UluFacetsSidebarLayout component
+////
+
+@use "sass:map";
+@use "sass:meta";
+
+@use "@ulu/frontend/scss/selector";
+@use "@ulu/frontend/scss/utils";
+
+/// Module Settings
+/// @type Map
+/// @prop {List} template-columns [(250px 1fr)] template columns for sidebar/body widths
+/// @prop {CssUnit} gap [2rem] Gap for grid
+
+$config: (
+  "template-columns" : (max(25%, 300px) 1fr),
+  "gap" : 2rem
+) !default;
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+/// @example scss
+///   @include ulu.component-facets-sidebar-set(( "property" : value ));
+
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+/// @example scss
+///   @include ulu.component-facets-sidebar-get("property");
+
+@function get($name) {
+  @return utils.require-map-get($config, $name, "facets-sidebar [config]");
+}
+
+/// Prints component styles
+/// @demo facets-sidebar
+/// @example scss
+///  @include ulu.component-facets-sidebar-styles();
+
+@mixin styles {
+  $prefix: selector.class("facets-sidebar");
+
+  #{ $prefix }__body {
+    display: grid;
+    grid-template-columns: get("template-columns");
+    gap: get("gap");
+  }
+  #{ $prefix }--filters-hidden {
+    #{ $prefix }__body {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+

@@ -42,6 +42,7 @@
 
 // Frontend Vue specific files
 @include ulu-vue.component-table-sticky-styles();
+@include ulu-vue.component-facets-sidebar-styles();
 @include ulu-vue.plugin-toast-styles();
 
 @include ulu.helper-styles();

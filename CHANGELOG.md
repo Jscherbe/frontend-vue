@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.1.2-beta.5
+
+- `UluFacetsSidebarLayout`
+  - Replaced static styles that were included in component SFC with scss module
+  - Added scss module for the basic layout for facets sidebar component
+    - Use like 
+    - `@use "@ulu/frontend-vue/scss" as ulu-vue;`
+    - `@include ulu-vue.component-facets-sidebar-set(( // options ));`
+    - `@include ulu-vue.component-facets-sidebar-styles();`
+
 ## 0.1.2-beta.4
 
 - Fix missing export for `UluPager`
