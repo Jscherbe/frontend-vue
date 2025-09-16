@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.2-beta.2
+
+- Add [`unplugin-vue-components`](https://github.com/unplugin/unplugin-vue-components/tree/main]) resolver to exports via `import { UluUnpluginResolver } from @ulu/frontend-vue/resolver` 
+- Remove `toast` and `modals` plugins options for `componentName` and `componentDisplayName`. As they are not likely to conflict since the library is namespaced with "Ulu" (reduce unneeded code). **Breaking** if used which is unlikely
+
 ## 0.1.2-beta.1
 
 - **Breaking** Refactor so that importing this package is the bundled version only like:

@@ -13,7 +13,8 @@
       "import": "./dist/frontend-vue.js",
       "types": "./dist/types/index.d.ts"
     },
-    "./scss": "./lib/_index.scss"
+    "./scss": "./lib/_index.scss",
+    "./resolver": "./resolver.js"
   },
   "types": "./dist/types/index.d.ts",
   "repository": {
