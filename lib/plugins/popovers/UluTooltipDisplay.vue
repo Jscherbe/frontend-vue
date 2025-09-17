@@ -1,15 +1,14 @@
-<!-- 
-  Note: 
-  Using the name TooltipDisplay incase we want to create abstract 
-  component (wrapper, renderless, etc) in the future 
--->
 <template>
-  <Teleport :to="options.plugin.tooltipTeleportTo">
-    <TooltipPopover v-if="active" :config="activeConfig"/>
+  <Teleport v-if="tooltip?.state.visible" :to="tooltip.state.config.teleportTo || 'body'">
+    <UluTooltipPopover :trigger="tooltip.state.trigger" :config="tooltip.state.config" />
   </Teleport>
 </template>
 
 <script setup>
-  import { active, activeConfig, options } from "./manager.js";
-  import TooltipPopover from "./UluTooltipPopover.vue";
+import { inject } from 'vue';
+import { TooltipStateKey } from './index.js';
+import UluTooltipPopover from './UluTooltipPopover.vue';
+
+// Inject the global tooltip state from the plugin
+const tooltip = inject('uluTooltipState');
 </script>

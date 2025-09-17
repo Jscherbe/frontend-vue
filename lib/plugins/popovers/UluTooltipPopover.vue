@@ -8,14 +8,13 @@
     :class="config.class"
     :style="floatingStyles"
   >
-    <span 
-      v-if="config.isHtml" 
-      class="popover__inner" 
-      v-html="config.content"
-    >
+    <span v-if="config.isHtml" class="popover__inner" v-html="config.content">
     </span>
     <span v-else class="popover__inner">
-      {{ config.content }}
+      <component v-if="config.component" :is="config.component" v-bind="config.componentProps"/>
+      <template v-else>
+        {{ config.content }}
+      </template>
     </span>
     <span 
       v-if="config.arrow"
@@ -27,7 +26,7 @@
 </template>
 
 <script setup>
-  import { ref, toRef, computed } from "vue";
+  import { ref, toRef, computed, watch } from "vue";
   import { 
     useFloating,
     autoUpdate,
@@ -38,33 +37,48 @@
     arrow,
   } from "@floating-ui/vue";
 
-  const { config } = defineProps({
-    config: Object
+  const props = defineProps({
+    config: Object,
+    trigger: {
+      type: Object,
+      default: null
+    }
   });
-  const trigger = toRef(config.trigger);
+
   const content = ref(null);
   const contentArrow = ref(null);
-  const middleware = [
-    ...(config.inline ? [ inline() ] : []),
-    ...(config.offset ? [ offset(config.offset) ] : []),
-    flip(), 
-    shift(),
-    ...(config.arrow ? [ arrow({ element: contentArrow }) ] : []),
-  ];
-  
-  const options = {
-    placement: config.placement,
-    whileElementsMounted: autoUpdate,
-    middleware
-  }; 
+
+  const middleware = ref([]);
+  const placementConfig = computed(() => props.config?.placement);
 
   const { 
     floatingStyles, 
-    placement, 
+    placement,
     middlewareData,
     update,
     isPositioned,
-  } = useFloating(trigger, content, options);
+  } = useFloating(toRef(props, 'trigger'), content, {
+    placement: placementConfig,
+    whileElementsMounted: autoUpdate,
+    middleware: middleware,
+  });
+
+  watch(
+    [() => props.config, contentArrow],
+    ([config, arrowEl]) => {
+      const mw = [];
+      if (!config) return;
+      if (config.inline) mw.push(inline());
+      if (config.offset) mw.push(offset(config.offset));
+      mw.push(flip());
+      mw.push(shift());
+      if (config.arrow && arrowEl) {
+        mw.push(arrow({ element: arrowEl }));
+      }
+      middleware.value = mw;
+    },
+    { immediate: true, deep: true }
+  );
 
   const arrowStyles = computed(() => {
     const pos = middlewareData.value?.arrow;
@@ -76,8 +90,9 @@
     };
   });
 
-  if (config.onReady) {
-    config.onReady({ update, isPositioned });
-  }
-
+  watch(() => props.config, (config) => {
+    if (config && config.onReady) {
+      config.onReady({ update, isPositioned });
+    }
+  });
 </script>

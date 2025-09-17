@@ -53,8 +53,9 @@
   </span>
 </template>
 <script setup>
-  import { computed, ref, unref, nextTick } from "vue";
-  import { options as defaults } from "./manager.js";
+  import { computed, ref, unref, nextTick, inject } from "vue";
+  import { PopoverOptionsKey } from "./index.js";
+  import defaults from "./defaults.js";
   import { newUid } from "./utils.js";
   import { 
     useFloating,
@@ -74,7 +75,10 @@
     tooltip: String,
     size: String,
     noPadding: Boolean,
-    config: Object,
+    config: {
+      type: Object,
+      default: () => ({})
+    },
     startOpen: Boolean,
     activeClass: {
       type: String,
@@ -100,12 +104,20 @@
 
   const id = newUid();
   const triggerId = newUid();
-  const config = Object.assign({}, defaults.popover, props.config);
+
+  // Inject global options, falling back to the static defaults file.
+  const injectedOptions = inject(PopoverOptionsKey);
+  const baseConfig = injectedOptions ? injectedOptions.popover : defaults.popover;
+
+  // Create a plain config object, same as pre-refactor.
+  const config = { ...baseConfig, ...props.config };
+  
   const isOpen = ref(props.startOpen || false);
   const trigger = ref(null);
   const content = ref(null);
   const contentArrow = ref(null);
 
+  // Create plain middleware and options objects, not computed.
   const middleware = [
     ...(config.inline ? [ inline() ] : []),
     ...(config.offset ? [ offset(config.offset) ] : []),
