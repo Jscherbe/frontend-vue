@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.2-beta.7
+
+- `useUluFloating` Add computed property for `isFixedStrategy`
+- `popovers` plugin
+  - Account for fixed strategy with popover styles (has correct `popover--fixed` modifier)
+
 ## 0.1.2-beta.6
 
 - Add `useUluFloating` composable (used in popovers/tooltips)

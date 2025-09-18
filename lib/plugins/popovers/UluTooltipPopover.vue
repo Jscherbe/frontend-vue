@@ -5,7 +5,12 @@
     ref="content"
     :id="TOOLTIP_ID"
     :data-placement="placement"
-    :class="resolvedConfig.class"
+    :class="[
+      {
+        'popover--fixed' : isFixedStrategy
+      },
+      resolvedConfig.class
+    ]"
     :style="floatingStyles"
   >
     <span v-if="resolvedConfig.isHtml" class="popover__inner" v-html="resolvedConfig.content">
@@ -45,5 +50,6 @@
     placement,
     arrowStyles,
     contentArrow,
+    isFixedStrategy
   } = useUluFloating(toRef(props, 'trigger'), content, resolvedConfig);
 </script>

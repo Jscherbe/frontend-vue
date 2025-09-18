@@ -26,6 +26,7 @@
       size ? `popover--${ size }` : '',
       { 
         'popover--no-padding' : noPadding,
+        'popover--fixed' : isFixedStrategy,
         'is-active' : isOpen
       }, 
       classes.content,
@@ -114,7 +115,8 @@
     placement, 
     update,
     arrowStyles,
-    contentArrow
+    contentArrow,
+    isFixedStrategy
   } = useUluFloating(trigger, content, resolvedConfig);
 
   const toggle = () => {
