@@ -10,6 +10,8 @@
   - Update tooltip to allow for reactive values and component as a value if needed
     - Keep the pre-exisiting API for the directive but allow for reactivity API (ie. ref/etc)
   - Add composable `useTooltip` for any manual tooltip needs
+  - Tooltip (show/hide) set `aria-describedby` attribute to link tooltip to element for accessibility
+  - Tooltip composable for following type tooltip (for mouse cursor) is now exported as `useTooltipFollow` (wasn't exported publicly before but was originally called useFollow)
   - Move floating ui to new `useUluFloating` composable to share duplicated code between tooltips and popovers
 
 ## 0.1.2-beta.5

@@ -18,7 +18,7 @@
 
 <script setup>
   import { computed } from "vue";
-  import useFollow from "../useFollow.js";
+  import useTooltipFollow from "../useTooltipFollow.js";
 
   const { 
     x, 
@@ -26,7 +26,7 @@
     show, 
     hide, 
     update 
-  } = useFollow({
+  } = useTooltipFollow({
     content: computed(() => `x: ${ Math.round(x.value) }, y: ${ Math.round(y.value) }`)
   });
 

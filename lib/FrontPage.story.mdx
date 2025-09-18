@@ -18,10 +18,23 @@ This documentation provides interactive examples and detailed API documentation 
 
 The ULU ecosystem is built on two main packages:
 
-- **`@ulu/frontend`**: The framework-agnostic core. It contains the foundational SCSS for styling, vanilla JavaScript utilities, and base components. It knows nothing about Vue.
+- **`@ulu/frontend`**: The framework-agnostic core. It contains the foundational SCSS for styling, vanilla JavaScript utilities, and base components. It knows nothing about Vue. 
 - **`@ulu/frontend-vue`** (This Library): The Vue 3 implementation. It provides wrapper components, composables, and plugins that build upon and integrate seamlessly with the `@ulu/frontend` core.
 
 This separation allows for a consistent design system that can be applied to any web technology, while providing a rich, idiomatic experience for Vue developers.
+
+**Note:** For `@ulu/frontend` (components) that you are using from this Vue library. You need to output the component stylesheets like you would normally (create global stylesheet). The components in this library do not at the frontend scss modules. While they could be included in each component this would make it so that you can't build your own implementations (local app component / etc) with the class structures since the styles would only be available if that component is used. 
+
+Example global stylesheet outputting all "included" components and base styles. Note you can configure whats output with ulu.component-set-includes for example. Note there are many ways to assemble the stylesheet (manual per component mixins, etc), this example shows the convenience modules which output each modules stylesheet based on includes/excludes.
+
+```sass
+@use "config"; // Your config changes for example
+@use "@ulu/frontend/scss/stylesheets/base-styles.scss"; // Outputs base styles that are included
+@use "@ulu/frontend/scss/stylesheets/component-styles.scss"; // Outputs component styles that are included
+@use "@ulu/frontend/scss/stylesheets/helper-styles.scss"; // Outputs helper styles that are included
+```
+
+*Please see `@ulu/frontend` library for full documentation of configuring and outputting stylesheet*
 
 ---
 

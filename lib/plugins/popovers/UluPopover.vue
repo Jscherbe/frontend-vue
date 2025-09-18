@@ -55,9 +55,9 @@
 <script setup>
   import { ref, computed, unref, nextTick } from "vue";
   import { useRequiredInject } from "../../composables/useRequiredInject.js";
-  import { PopoverOptionsKey } from "./index.js";
+  import { POPOVER_OPTIONS_KEY } from "./index.js";
   import defaults from "./defaults.js";
-  import { newUid } from "./utils.js";
+  import { newId } from "../../utils/dom.js";
   import { useUluFloating } from "../../composables/useUluFloating.js";
 
   const emit = defineEmits(["toggle"]);
@@ -95,11 +95,11 @@
     }
   });
 
-  const id = newUid();
-  const triggerId = newUid();
+  const id = newId();
+  const triggerId = newId();
 
   // Inject global options, falling back to the static defaults file.
-  const injectedOptions = useRequiredInject(PopoverOptionsKey);
+  const injectedOptions = useRequiredInject(POPOVER_OPTIONS_KEY);
   const baseConfig = injectedOptions ? injectedOptions.popover : defaults.popover;
 
   // Create a plain config object, same as pre-refactor.
@@ -113,7 +113,6 @@
     floatingStyles, 
     placement, 
     update,
-    isPositioned,
     arrowStyles,
     contentArrow
   } = useUluFloating(trigger, content, resolvedConfig);
@@ -124,6 +123,7 @@
 
   const changeTo = (toOpen) => {
     isOpen.value = toOpen;
+    
     const focusArgs = { 
       trigger: unref(trigger), 
       content: unref(content), 
@@ -154,7 +154,7 @@
         destroyOutsideClick();
       }
       outsideHandler = event => {
-        if (!content.value.contains(event.target)) {
+        if (content.value && !content.value.contains(event.target)) {
           changeTo(false);
         }
       };

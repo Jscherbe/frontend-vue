@@ -3,7 +3,7 @@
   <span 
     class="popover popover--tooltip is-active"
     ref="content"
-    aria-hidden="true" 
+    :id="TOOLTIP_ID"
     :data-placement="placement"
     :class="resolvedConfig.class"
     :style="floatingStyles"
@@ -28,6 +28,7 @@
 <script setup>
   import { ref, toRef, computed } from "vue";
   import { useUluFloating } from "../../composables/useUluFloating.js";
+  import { TOOLTIP_ID } from "./index.js";
 
   const props = defineProps({
     config: Object,
