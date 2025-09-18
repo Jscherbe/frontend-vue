@@ -44,7 +44,7 @@
       <slot name="footer" :close="close"/>
     </span>
     <span 
-      v-if="config.arrow"
+      v-if="resolvedConfig.arrow"
       class="popover__arrow" 
       ref="contentArrow"
       :style="arrowStyles"
@@ -53,19 +53,12 @@
   </span>
 </template>
 <script setup>
-  import { computed, ref, unref, nextTick, inject } from "vue";
+  import { ref, computed, unref, nextTick } from "vue";
+  import { useRequiredInject } from "../../composables/useRequiredInject.js";
   import { PopoverOptionsKey } from "./index.js";
   import defaults from "./defaults.js";
   import { newUid } from "./utils.js";
-  import { 
-    useFloating,
-    autoUpdate,
-    offset,
-    inline,
-    flip,
-    shift,
-    arrow,
-  } from "@floating-ui/vue";
+  import { useUluFloating } from "../../composables/useUluFloating.js";
 
   const emit = defineEmits(["toggle"]);
   const props = defineProps({
@@ -106,52 +99,24 @@
   const triggerId = newUid();
 
   // Inject global options, falling back to the static defaults file.
-  const injectedOptions = inject(PopoverOptionsKey);
+  const injectedOptions = useRequiredInject(PopoverOptionsKey);
   const baseConfig = injectedOptions ? injectedOptions.popover : defaults.popover;
 
   // Create a plain config object, same as pre-refactor.
-  const config = { ...baseConfig, ...props.config };
+  const resolvedConfig = computed(() => ({ ...baseConfig, ...props.config }));
   
   const isOpen = ref(props.startOpen || false);
   const trigger = ref(null);
   const content = ref(null);
-  const contentArrow = ref(null);
 
-  // Create plain middleware and options objects, not computed.
-  const middleware = [
-    ...(config.inline ? [ inline() ] : []),
-    ...(config.offset ? [ offset(config.offset) ] : []),
-    flip(), 
-    shift(),
-    ...(config.arrow ? [ arrow({ element: contentArrow }) ] : []),
-  ];
-  const options = {
-    placement: config.placement,
-    whileElementsMounted: autoUpdate,
-    middleware
-  }; 
-  
   const { 
     floatingStyles, 
     placement, 
-    middlewareData,
     update,
     isPositioned,
-  } = useFloating(trigger, content, options);
-
-  const arrowStyles = computed(() => {
-    const pos = middlewareData.value?.arrow;
-    if (!pos) return null;
-    return {
-      position: "absolute",
-      left: pos?.x != null ? `${ pos.x }px` : "",
-      top: pos?.y != null ? `${ pos.y }px` : "",
-    };
-  });
-
-  if (config.onReady) {
-    config.onReady({ update, isPositioned });
-  }
+    arrowStyles,
+    contentArrow
+  } = useUluFloating(trigger, content, resolvedConfig);
 
   const toggle = () => {
     changeTo(!isOpen.value);

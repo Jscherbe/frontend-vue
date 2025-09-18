@@ -5,10 +5,10 @@
 </template>
 
 <script setup>
-import { inject } from 'vue';
+import { useRequiredInject } from "../../composables/useRequiredInject.js";
 import { TooltipStateKey } from './index.js';
 import UluTooltipPopover from './UluTooltipPopover.vue';
 
 // Inject the global tooltip state from the plugin
-const tooltip = inject('uluTooltipState');
+const tooltip = useRequiredInject(TooltipStateKey);
 </script>

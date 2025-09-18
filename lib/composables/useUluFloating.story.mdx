@@ -1,0 +1,79 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import * as stories from './useUluFloating.stories.js';
+
+<Meta title="Composables/useUluFloating" of={stories} />
+
+# useUluFloating
+
+`useUluFloating` is a composable that provides a simple interface to the `@floating-ui/vue` library.
+
+<Canvas>
+  <Story name="Default" />
+</Canvas>
+
+## Props
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>trigger</code></td>
+      <td><code>Ref&lt;HTMLElement&gt;</code></td>
+      <td>The trigger element.</td>
+    </tr>
+    <tr>
+      <td><code>content</code></td>
+      <td><code>Ref&lt;HTMLElement&gt;</code></td>
+      <td>The content element.</td>
+    </tr>
+    <tr>
+      <td><code>config</code></td>
+      <td><code>Ref&lt;UluFloatingConfig&gt;</code></td>
+      <td>The configuration for the floating element.</td>
+    </tr>
+  </tbody>
+</table>
+
+### UluFloatingConfig
+
+<table>
+  <thead>
+    <tr>
+      <th>Prop</th>
+      <th>Type</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>placement</code></td>
+      <td><code>Placement</code></td>
+      <td>The placement of the floating element.</td>
+    </tr>
+    <tr>
+      <td><code>inline</code></td>
+      <td><code>boolean</code></td>
+      <td>Whether the floating element is inline.</td>
+    </tr>
+    <tr>
+      <td><code>offset</code></td>
+      <td><code>number</code></td>
+      <td>The offset of the floating element.</td>
+    </tr>
+    <tr>
+      <td><code>arrow</code></td>
+      <td><code>boolean</code></td>
+      <td>Whether the floating element has an arrow.</td>
+    </tr>
+    <tr>
+      <td><code>onReady</code></td>
+      <td><code>function</code></td>
+      <td>Callback function when the floating element is ready.</td>
+    </tr>
+  </tbody>
+</table>

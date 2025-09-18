@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.1.2-beta.7
+
+- Add `useUluFloating` composable (used in popovers/tooltips)
+- `popovers` Plugin
+  - Internal: Major changes overall, remove internal manager.js that was used to share state, instead use provide/inject from plugin
+  - Remove `options.plugins.global` for whether or not to install the components globally and directive, it will just always install these
+  - Update tooltip directive to use new internal api for sharing state and configuration
+  - Update tooltip to allow for reactive values and component as a value if needed
+    - Keep the pre-exisiting API for the directive but allow for reactivity API (ie. ref/etc)
+  - Add composable `useTooltip` for any manual tooltip needs
+  - Move floating ui to new `useUluFloating` composable to share duplicated code between tooltips and popovers
+
 ## 0.1.2-beta.5
 
 - `UluFacetsSidebarLayout`
