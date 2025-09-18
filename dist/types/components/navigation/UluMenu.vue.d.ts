@@ -70,10 +70,10 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
     UluIcon: import("vue").DefineComponent<{}, {
         $props: Partial<{
             readonly spaced: boolean;
-            readonly icon?: string | boolean | unknown[] | Record<string, any> | undefined;
+            readonly icon?: string | boolean | Record<string, any> | unknown[] | undefined;
         }>;
         spaced: boolean;
-        icon?: string | boolean | unknown[] | Record<string, any> | undefined;
+        icon?: string | boolean | Record<string, any> | unknown[] | undefined;
     }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
     UluTag: {
         new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<{}> & Readonly<{}>, {

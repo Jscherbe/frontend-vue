@@ -6,6 +6,7 @@ type __VLS_WithSlots<T, S> = T & (new () => {
 declare const __VLS_component: import("vue").DefineComponent<{}, {
     $emit: typeof emit;
     $props: Partial<typeof props>;
+    config: Record<string, any>;
     disabled: boolean;
     noPadding: boolean;
     startOpen: boolean;
@@ -15,7 +16,6 @@ declare const __VLS_component: import("vue").DefineComponent<{}, {
     directFocus: Function;
     size?: string | undefined;
     tooltip?: string | undefined;
-    config?: Record<string, any> | undefined;
     triggerText?: string | undefined;
     triggerAlt?: string | undefined;
 }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
@@ -37,6 +37,7 @@ type __VLS_Slots = {
 };
 declare const emit: (event: "toggle", ...args: any[]) => void;
 declare const props: {
+    readonly config: Record<string, any>;
     readonly disabled: boolean;
     readonly noPadding: boolean;
     readonly startOpen: boolean;
@@ -46,7 +47,6 @@ declare const props: {
     readonly directFocus: Function;
     readonly size?: string | undefined;
     readonly tooltip?: string | undefined;
-    readonly config?: Record<string, any> | undefined;
     readonly triggerText?: string | undefined;
     readonly triggerAlt?: string | undefined;
 };

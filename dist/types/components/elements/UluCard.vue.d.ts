@@ -6,8 +6,8 @@ type __VLS_WithSlots<T, S> = T & (new () => {
 declare const __VLS_component: import("vue").DefineComponent<{}, {
     $emit: typeof emit;
     $props: Partial<typeof props>;
-    classes: Record<string, any>;
     overlay: boolean;
+    classes: Record<string, any>;
     horizontal: boolean;
     titleElement: string;
     cardElement: string;
@@ -43,8 +43,8 @@ type __VLS_Slots = {
 };
 declare const emit: (event: "proxy-click", ...args: any[]) => void;
 declare const props: {
-    readonly classes: Record<string, any>;
     readonly overlay: boolean;
+    readonly classes: Record<string, any>;
     readonly horizontal: boolean;
     readonly titleElement: string;
     readonly cardElement: string;

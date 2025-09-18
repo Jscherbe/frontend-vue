@@ -6,5 +6,7 @@ export namespace injectRegistry {
     let uluBreakpointManager: string;
     let uluModals: string;
     let uluToast: string;
+    let uluPopoverOptions: string;
+    let uluTooltipState: string;
 }
 //# sourceMappingURL=meta.d.ts.map

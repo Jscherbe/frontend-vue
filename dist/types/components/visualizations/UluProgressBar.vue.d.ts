@@ -5,8 +5,8 @@ type __VLS_WithSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import("vue").DefineComponent<{}, {
     $props: Partial<typeof props>;
-    classes: Record<string, any>;
     small: boolean;
+    classes: Record<string, any>;
     labelHidden: boolean;
     amount: number;
     labelElement: string;
@@ -47,8 +47,8 @@ type __VLS_Slots = {
  * @slot icon - A slot for placing an icon in the header, typically to indicate status.
  */
 declare const props: {
-    readonly classes: Record<string, any>;
     readonly small: boolean;
+    readonly classes: Record<string, any>;
     readonly labelHidden: boolean;
     readonly amount: number;
     readonly labelElement: string;

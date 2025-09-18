@@ -1,2 +1,2 @@
-export function useModals(): any;
+export function useModals(): object;
 //# sourceMappingURL=useModals.d.ts.map

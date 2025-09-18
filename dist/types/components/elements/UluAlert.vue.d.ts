@@ -67,7 +67,7 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
         to: (ObjectConstructor | StringConstructor)[];
         href: StringConstructor;
         target: StringConstructor;
-        download: (StringConstructor | BooleanConstructor)[];
+        download: (BooleanConstructor | StringConstructor)[];
         alt: StringConstructor;
         text: StringConstructor;
         size: StringConstructor;
@@ -102,7 +102,7 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
         to: (ObjectConstructor | StringConstructor)[];
         href: StringConstructor;
         target: StringConstructor;
-        download: (StringConstructor | BooleanConstructor)[];
+        download: (BooleanConstructor | StringConstructor)[];
         alt: StringConstructor;
         text: StringConstructor;
         size: StringConstructor;
@@ -128,19 +128,19 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
         UluIcon: import("vue").DefineComponent<{}, {
             $props: Partial<{
                 readonly spaced: boolean;
-                readonly icon?: string | boolean | unknown[] | Record<string, any> | undefined;
+                readonly icon?: string | boolean | Record<string, any> | unknown[] | undefined;
             }>;
             spaced: boolean;
-            icon?: string | boolean | unknown[] | Record<string, any> | undefined;
+            icon?: string | boolean | Record<string, any> | unknown[] | undefined;
         }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
     }, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
     UluIcon: import("vue").DefineComponent<{}, {
         $props: Partial<{
             readonly spaced: boolean;
-            readonly icon?: string | boolean | unknown[] | Record<string, any> | undefined;
+            readonly icon?: string | boolean | Record<string, any> | unknown[] | undefined;
         }>;
         spaced: boolean;
-        icon?: string | boolean | unknown[] | Record<string, any> | undefined;
+        icon?: string | boolean | Record<string, any> | unknown[] | undefined;
     }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 }, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 export default _default;

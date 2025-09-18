@@ -33,8 +33,10 @@ export function createBaseMenu(routes: any, options: {
 }): Array<RouteMenuItem>;
 /**
  * Returns menu flat (no parent children)
+ * @param {Array<RouteMenuItem>} menu The menu to flatten.
+ * @returns {Array<RouteMenuItem>} The flattened menu.
  */
-export function flattenMenu(menu: any): any;
+export function flattenMenu(menu: Array<RouteMenuItem>): Array<RouteMenuItem>;
 /**
  * Print out a section's menu based on path
  * @param {*} routes All routes
@@ -88,9 +90,9 @@ export function nativeLinkRouter(router: Object, event: Object): void;
 /**
  * Returns the child routes for base route
  * @param {Object} route Route Object
- * @returns
+ * @returns {Array<Object>|undefined} The child routes.
  */
-export function $getRouteChildren(route: Object, parent?: Object | null): any;
+export function $getRouteChildren(route: Object, parent?: Object | null): Array<Object> | undefined;
 /**
  * Returns the route's parent
  * @param {Object} route Route Object

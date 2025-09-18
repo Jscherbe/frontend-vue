@@ -5,10 +5,10 @@ type __VLS_WithSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import("vue").DefineComponent<{}, {
     $props: Partial<typeof props>;
-    classes: Record<string, any>;
     table: boolean;
-    inline: boolean;
+    classes: Record<string, any>;
     compact: boolean;
+    inline: boolean;
     inlineAll: boolean;
     separated: boolean;
     separatedFirst: boolean;
@@ -28,10 +28,10 @@ type __VLS_Slots = {
     }) => any) | undefined;
 };
 declare const props: {
-    readonly classes: Record<string, any>;
     readonly table: boolean;
-    readonly inline: boolean;
+    readonly classes: Record<string, any>;
     readonly compact: boolean;
+    readonly inline: boolean;
     readonly inlineAll: boolean;
     readonly separated: boolean;
     readonly separatedFirst: boolean;

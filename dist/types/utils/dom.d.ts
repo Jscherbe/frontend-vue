@@ -5,5 +5,12 @@
  * @returns {HTMLElement} The HTMLElement or undefined if not found/resolved.
  */
 export function refToElement(value: HTMLElement | Object): HTMLElement;
-export function newId(prefix?: string): any;
+/**
+ * Generates a new unique ID with an optional prefix.
+ * It ensures the ID is not already present in the document.
+ *
+ * @param {string} [prefix="ulu-id"] - The prefix for the new ID.
+ * @returns {string} The unique ID.
+ */
+export function newId(prefix?: string): string;
 //# sourceMappingURL=dom.d.ts.map

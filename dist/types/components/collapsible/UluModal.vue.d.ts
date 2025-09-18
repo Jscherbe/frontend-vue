@@ -9,7 +9,7 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
      * Set to `null` or `undefined` for `body` fallback with disabled as false.
      */
     teleport: {
-        type: (ObjectConstructor | StringConstructor | BooleanConstructor)[];
+        type: (ObjectConstructor | BooleanConstructor | StringConstructor)[];
         default: string;
     };
     /**
@@ -132,7 +132,7 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
      * Set to `null` or `undefined` for `body` fallback with disabled as false.
      */
     teleport: {
-        type: (ObjectConstructor | StringConstructor | BooleanConstructor)[];
+        type: (ObjectConstructor | BooleanConstructor | StringConstructor)[];
         default: string;
     };
     /**
@@ -227,9 +227,9 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
     onOpen?: ((...args: any[]) => any) | undefined;
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }>, {
+    position: string;
     classes: Record<string, any>;
     clickOutsideCloses: boolean;
-    position: string;
     modelValue: boolean;
     nonModal: boolean;
     allowResize: boolean;
@@ -243,10 +243,10 @@ declare const _default: import("vue").DefineComponent<import("vue").ExtractPropT
     UluIcon: import("vue").DefineComponent<{}, {
         $props: Partial<{
             readonly spaced: boolean;
-            readonly icon?: string | boolean | unknown[] | Record<string, any> | undefined;
+            readonly icon?: string | boolean | Record<string, any> | unknown[] | undefined;
         }>;
         spaced: boolean;
-        icon?: string | boolean | unknown[] | Record<string, any> | undefined;
+        icon?: string | boolean | Record<string, any> | unknown[] | undefined;
     }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 }, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 export default _default;

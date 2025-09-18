@@ -6,9 +6,9 @@ type __VLS_WithSlots<T, S> = T & (new () => {
 declare const __VLS_component: import("vue").DefineComponent<{}, {
     $emit: typeof emit;
     $props: Partial<typeof props>;
+    animate: boolean | Record<string, any>;
     startOpen: boolean;
     classes: Record<string, any>;
-    animate: boolean | Record<string, any>;
     triggerTextElement: string;
     triggerText?: string | undefined;
     modifiers?: string | unknown[] | undefined;
@@ -30,9 +30,9 @@ type __VLS_Slots = {
 };
 declare const emit: (event: "update:modelValue", ...args: any[]) => void;
 declare const props: {
+    readonly animate: boolean | Record<string, any>;
     readonly startOpen: boolean;
     readonly classes: Record<string, any>;
-    readonly animate: boolean | Record<string, any>;
     readonly triggerTextElement: string;
     readonly triggerText?: string | undefined;
     readonly modifiers?: string | unknown[] | undefined;

@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.1.2-beta.7
+## 0.1.2-beta.6
 
 - Add `useUluFloating` composable (used in popovers/tooltips)
 - `popovers` Plugin
