@@ -9,9 +9,11 @@
  * @param {Boolean} [options.noDefaultSorts=false] - If true, the default 'A-Z' and 'Z-A' sorts will not be included.
  * @param {Object} [options.extraSortTypes={}] - Additional sort types to be merged with the default ones.
  * @param {Object} [options.searchOptions={}] - Configuration options for Fuse.js.
- * @param {Function} [options.getItemFacet] - A function to retrieve facet information from an item. Should always return an array of values.
  * @param {Function} [options.getSortValue] - A function to get the value to sort by from an item.
  * @param {String} [options.countMode='none'] - The mode for calculating facet counts. Can be 'none', 'simple', or 'intuitive'.
+ * @param {Object} [options.urlSync] - Optional configuration to sync state with URL.
+ * @param {import('vue-router').Router} [options.urlSync.router] - The Vue Router instance.
+ * @param {import('vue-router').RouteLocationNormalizedLoaded} [options.urlSync.route] - The current route instance.
  */
 export function useFacets(allItems: import("vue").Ref<Array<Object>>, options?: {
     initialFacets?: any[] | undefined;
@@ -21,9 +23,12 @@ export function useFacets(allItems: import("vue").Ref<Array<Object>>, options?: 
     noDefaultSorts?: boolean | undefined;
     extraSortTypes?: Object | undefined;
     searchOptions?: Object | undefined;
-    getItemFacet?: Function | undefined;
     getSortValue?: Function | undefined;
     countMode?: string | undefined;
+    urlSync?: {
+        router?: import("vue-router").Router | undefined;
+        route?: import("vue-router").RouteLocationNormalizedLoadedGeneric | undefined;
+    } | undefined;
 }): {
     facets: import("vue").Ref<never[], never[]>;
     searchValue: import("vue").Ref<string, string>;
