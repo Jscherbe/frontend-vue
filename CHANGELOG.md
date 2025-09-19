@@ -2,6 +2,9 @@
 
 ## 0.1.2-beta.8
 
+- **`useFacets` now includes integrated URL synchronization.**
+  - A new `urlSync` option has been added. When provided with a Vue Router instance and the current route, it will keep the facet state (filters, search, sorting) synchronized with the URL query parameters
+  - Remove option for `getItemFacet` as it is unneeded (was incorrectly being used in 'simple' count mechanism)
 
 ## 0.1.2-beta.7
 
@@ -29,8 +32,8 @@
   - Replaced static styles that were included in component SFC with scss module
   - Added scss module for the basic layout for facets sidebar component
     - Use like 
-    - `@use "@ulu/frontend-vue/scss" as ulu-vue;`
-    - `@include ulu-vue.component-facets-sidebar-set(( // options ));`
+    - `@use "@ulu/frontend-vue/scss" as ulu-vue;
+    - `@include ulu-vue.component-facets-sidebar-set(( // options ));
     - `@include ulu-vue.component-facets-sidebar-styles();`
 
 ## 0.1.2-beta.4
@@ -49,8 +52,8 @@
 ## 0.1.2-beta.1
 
 - **Breaking** Refactor so that importing this package is the bundled version only like:
-  - `import { anExport } from "@ulu/frontend-vue";`
-  - `"@ulu/frontend-vue/scss"` for scss modules.\
+  - `import { anExport } from "@ulu/frontend-vue";
+  - "@ulu/frontend-vue/scss" for scss modules.\
   - This is to fix issues with using deep imports in projects (importing modules directly)
   - The new bundle excludes all vendor modules and you should install them in your project
   - The new combined module is `dist/frontend-vue.js` 
