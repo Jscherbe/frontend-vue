@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.1.2-beta.8
+
+
 ## 0.1.2-beta.7
 
 - `useUluFloating` Add computed property for `isFixedStrategy`
