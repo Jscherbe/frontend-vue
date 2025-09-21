@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.2-beta.9
+
+- **`useFacets` Fix timing issue with internal init watcher (use watchPostEffect instead)
+
 ## 0.1.2-beta.8
 
 - **`useFacets` now includes integrated URL synchronization.**
