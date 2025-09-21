@@ -10,8 +10,7 @@
   >
   <label :for="id">
     <slot>
-      {{ label }}
-      <UluFormRequiredChar v-if="required" />
+      {{ label }}<UluFormRequiredChar v-if="required" />
     </slot>
   </label>
 </template>

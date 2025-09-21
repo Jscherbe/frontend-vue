@@ -55,8 +55,7 @@
 
 <script setup>
 import UluIcon from '../elements/UluIcon.vue';
-
-let pagerCounter = 0;
+import { newId } from '../../utils/dom.js';
 
 const props = defineProps({
   /**
@@ -89,7 +88,7 @@ const props = defineProps({
   }
 });
 
-const headingId = `ulu-pager-${ pagerCounter++ }`;
+const headingId = newId('ulu-pager');
 
 /**
  * Generates the title for a page link.

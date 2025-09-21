@@ -2,9 +2,9 @@
 
 ## 0.1.3-beta.1
 
-- **`components/forms/` Setup components to match `.form-theme` (frontend component)
+- **`components/forms/` Add form element components to match `.form-theme` (frontend component)
   - Changes how some of the pre-existing form components are templated and they now include the classes for the frontend component
-  - 
+- Internal: Update components that need unique id's to use newId util for simplicity
 
 ## 0.1.2-beta.9
 

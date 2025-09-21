@@ -1,8 +1,7 @@
 <template>
   <label :class="{ 'hidden-visually' : labelHidden }" :for="id">
     <slot name="label">
-      {{ label }}
-      <UluFormRequiredChar v-if="required" />
+      {{ label }}<UluFormRequiredChar v-if="required" />
     </slot>
   </label>
   <textarea

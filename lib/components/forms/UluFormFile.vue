@@ -4,8 +4,7 @@
     :for="id"
   >
     <slot name="label">
-      {{ label }}
-      <UluFormRequiredChar v-if="required" />
+      {{ label }}<UluFormRequiredChar v-if="required" />
     </slot>
   </label>
   <input 

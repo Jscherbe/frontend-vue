@@ -20,9 +20,7 @@
 </template>
 
 <script setup>
-  import { ref } from 'vue';
-
-  let idCounter = 0;
+  import { newId } from '../../../utils/dom.js';
 
   defineProps({
     classes: {
@@ -41,5 +39,5 @@
 
   const emit = defineEmits(['update:modelValue']);
 
-  const sortId = ref(`ulu-facet-sort-${++idCounter}`);
+  const sortId = newId('ulu-facet-sort');
 </script>

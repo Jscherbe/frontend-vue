@@ -15,6 +15,7 @@
 
 <script setup>
   import { computed } from 'vue';
+  import { newId } from '../../../utils/dom.js';
 
   const props = defineProps({
     classes: {
@@ -30,8 +31,7 @@
 
   const emit = defineEmits(['update:modelValue']);
 
-  let uid = 0;
-  const id = `facet-view-keyword-${++uid}`;
+  const id = newId('facet-view-keyword');
 
   const localValue = computed({
     get() {

@@ -6,15 +6,17 @@ type __VLS_WithSlots<T, S> = T & (new () => {
 declare const __VLS_component: import("vue").DefineComponent<{}, {
     $emit: typeof __VLS_emit;
     $props: Partial<typeof __VLS_props>;
+    required: boolean;
     labelHidden: boolean;
     label?: string | undefined;
     modelValue?: string | undefined;
 }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 type __VLS_Slots = {
-    default?: ((props: {}) => any) | undefined;
+    label?: ((props: {}) => any) | undefined;
 };
 declare const __VLS_emit: (event: "update:modelValue", ...args: any[]) => void;
 declare const __VLS_props: {
+    readonly required: boolean;
     readonly labelHidden: boolean;
     readonly label?: string | undefined;
     readonly modelValue?: string | undefined;

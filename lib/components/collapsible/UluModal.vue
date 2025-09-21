@@ -68,8 +68,7 @@
   import { useModifiers } from "../../composables/useModifiers.js";
   import { wasClickOutside, preventScroll as setupPreventScroll } from "@ulu/utils/browser/dom.js";
   import { Resizer } from "@ulu/frontend/js/ui/resizer.js";
-
-  let modalCount = 0;
+  import { newId } from "../../utils/dom.js";
   
   export default {
     name: "UluModal",
@@ -180,10 +179,9 @@
       modifiers: [String, Array]
     },
     data() {
-      ++modalCount;
       return {
         containerWidth: null,
-        titleId: `ulu-modal-${ modalCount }-title`,
+        titleId: newId('ulu-modal-title'),
         bodyOverflowValue: null,
         bodyPaddingRightValue: null,
         isResizing: false,

@@ -7,6 +7,7 @@ declare const __VLS_component: import("vue").DefineComponent<{}, {
     $emit: typeof emit;
     $props: Partial<typeof __VLS_props>;
     label: string;
+    required: boolean;
     labelHidden: boolean;
     noClasses: boolean;
     multiple: boolean;
@@ -18,6 +19,7 @@ type __VLS_Slots = {
 declare const emit: (event: "file-change", ...args: any[]) => void;
 declare const __VLS_props: {
     readonly label: string;
+    readonly required: boolean;
     readonly labelHidden: boolean;
     readonly noClasses: boolean;
     readonly multiple: boolean;
