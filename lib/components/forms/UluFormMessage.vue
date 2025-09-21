@@ -1,7 +1,7 @@
 <template>
-  <p class="site-form__description" :class="{
-    'site-form__error' : error,
-    'site-form__warning' : warning
+  <p class="form-theme__description" :class="{
+    'form-theme__error' : error,
+    'form-theme__warning' : warning
   }">
     <UluIcon v-if="error || warning" :icon="`type:${ error ? 'error' : 'warning' }`" />
     <slot/>

@@ -5,17 +5,12 @@
       <UluFormRequiredChar v-if="required" />
     </slot>
   </label>
-  <select 
-    :id="id" 
-    :value="modelValue" 
-    @input="$emit('update:modelValue', $event.target.value)"
+  <textarea
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)" 
+    :id="id"
     :required="required"
-  >
-    <option disabled value="">Please select one</option>
-    <option v-for="(option, index) in options" :key="index" :value="option.value">
-      {{ option.text }}
-    </option>
-  </select>
+  ></textarea>
 </template>
 
 <script setup>
@@ -24,17 +19,13 @@
 
   defineProps({
     /**
-     * The label for the select input.
+     * The label for the textarea.
      */
     label: String,
     /**
-     * The value of the select input (for v-model).
+     * The value of the textarea (for v-model).
      */
     modelValue: String,
-    /**
-     * An array of options for the select input. Each option should be an object with `value` and `text` properties.
-     */
-    options: Array,
     /**
      * If true, the label will be visually hidden.
      */

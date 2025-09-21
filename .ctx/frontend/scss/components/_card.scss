@@ -50,6 +50,7 @@
 /// @prop {String} clickable-card-interact-selector [&:hover, &:focus-within] The selectors for the cards being interacted with.
 /// @prop {Dimension} footer-padding-y [0.25rem] The top and bottom padding for the footer.
 /// @prop {Dimension} footer-min-height [2.5rem] The min height for the footer
+/// @prop {Dimension} footer-justify [flex-end] Flex alignment of footer items (on end by default)
 /// @prop {String} prefix [card] The class name used to add card styling.
 /// @prop {Boolean} transition-enabled [true] Enable or disable transition for card.
 /// @prop {CssValue} transition-timing-function [ease-in-out] The timing function for the card animation.
@@ -87,11 +88,13 @@ $config: (
   "color-hover" : null,
   "footer-padding-y" : 0.25rem,
   "footer-min-height" : 2.5rem,
+  "footer-justify" : flex-end,
   "horizontal-breakpoint" : "small",
   "horizontal-image-width" : min(33%, 20rem),
-  "horizontal-body-max-width" : 40rem,
   "horizontal-min-height" : 20rem,
   "horizontal-max-width" : 80rem,
+  "horizontal-main-max-width" : 40rem,
+  "horizontal-aside-width" : 40%,
   "header-margin" : 0.75em,
   "image-ratio" : 56.25%,
   "image-aspect-ratio": list.slash(5, 3),
@@ -126,7 +129,6 @@ $config: (
   "overlay-background-color": rgba(0, 0, 0, 0.6),
   "overlay-shading": true,
   "overlay-body-padding-y": 1rem,
-  // new below
   "aside-rule" : false,
   "aside-rule-width" : 1px,
   "aside-background-color" : transparent,
@@ -151,49 +153,6 @@ $config: (
   @return utils.require-map-get($config, $name, "card [config]");
 }
 
-/// Mixin styles for card when it has proxy click enabled and is being interacted with (hover/focus)
-/// @param {Boolean} $hover [false] Apply styles when the card is being hover/focused within, else applies styles to rest state of a clickable card (one who has a proxy click setup)
-/// Prints component styles
-/// @example scss
-///  @include ulu.component-card-styles();
-
-@mixin when-clickable($hover: false) {
-  $prefix: selector.class("card");
-  // When proxy click enabled
-  @if (get("clickable-card-enabled") and get("clickable-card-selector")) {
-    #{ $prefix }#{ get("clickable-card-selector") },
-    a#{ $prefix },
-    button#{ $prefix },
-    #{ $prefix }--clickable {
-      @if ($hover) {
-        #{ get("clickable-card-interact-selector") } {
-          @content;
-        }
-      } @else {
-        @content;
-      }
-    }
-  // Without proxy click (only if interactive)
-  } @else {
-    a#{ $prefix },
-    button#{ $prefix },
-    #{ $prefix }--clickable {
-      @if ($hover) {
-        #{ get("clickable-card-interact-selector") } {
-          @content;
-        }
-      } @else {
-        @content;
-      }
-    }
-  } 
-}
-
-
-@mixin shared-transition-styles() {
-  transition-duration: get("transition-duration");
-  transition-timing-function: get("transition-timing-function");
-}
 /// Prints component styles
 /// @demo card
 /// @example scss
@@ -215,8 +174,6 @@ $config: (
     flex-direction: column;
     justify-content: flex-end;
     max-width: get("max-width");
-    // Not absolutely necessary, incase we want to remove in future
-    overflow: hidden; 
 
     // Border is on pseudo so that it's on top of image/etc
     &::after {
@@ -224,7 +181,12 @@ $config: (
       content: if(get("border"), "", null);
       border: get("border");
       border-radius: get("border-radius");
-      z-index: 4;
+      // Below body and footer but above the image
+      // - Note: Starting at 3 instead of 2 so that content can move to 
+      //   layer 2 on overlay modifier
+      // - General style doesn't need bleeding for content so this allows 
+      //   popovers/etc to not be affected by this pseudo hover border
+      z-index: 3; 
       pointer-events: none;
     }
   }
@@ -249,7 +211,8 @@ $config: (
     #{ $prefix },
     #{ $prefix }::after,
     #{ $prefix }__title {
-      @include shared-transition-styles();
+      transition-duration: get("transition-duration");
+      transition-timing-function: get("transition-timing-function");
       transition-property: get("transition-properties");
     }
   } 
@@ -319,15 +282,13 @@ $config: (
     }
   }
 
-  #{ $prefix }__footer {
-    padding: get("padding");
-  }
-  #{ $prefix }__main {
+  #{ $prefix }__footer,
+  #{ $prefix }__main,
+  #{ $prefix }__aside {
     padding: get("padding");
   }
   #{ $prefix }__aside {
     position: relative;
-    padding: get("padding");
   }
 
   #{ $prefix }__image--icon {
@@ -348,7 +309,8 @@ $config: (
   #{ $prefix }__body,
   #{ $prefix }__footer { 
     position: relative;
-    z-index: 2; // Above image
+    // Above image and pseudo (in case we have popovers/etc)
+    z-index: 4; 
   }
   #{ $prefix }__body {
     display: flex;
@@ -375,13 +337,12 @@ $config: (
   //   and text without relying so much on padding
   #{ $prefix }__footer {
     flex: 0;
-    z-index: 4;
     padding-top: get("footer-padding-y");
     padding-bottom: get("footer-padding-y");
     min-height: get("footer-min-height");
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: get("footer-justify");
   }
   // body + footer {
   // means body keeps before pseudo element while footer loses it
@@ -389,10 +350,18 @@ $config: (
     // overflow: hidden;
     aspect-ratio: get("overlay-aspect-ratio");
     height: min-content;
+    
+    // On overlay putting the body/footer above the image and below the hover pseudo
+    // - If we have popovers in overlay this would need to be set above the pseudo
+    // - The trade off would be that the gradients background would be above the hover border, keeping them above will preserve the look / feel since popovers are probably not needed for this style
+    #{ $prefix }__body,
+    #{ $prefix }__footer {
+      z-index: 2;
+    }
     #{ $prefix }__body {
       position: relative;
       flex-grow: 0;
-      z-index: 2;
+     
       color: color.get(get("color-overlay"));
       background-color: color.get(get("overlay-background-color"));
       min-height: 0;
@@ -520,19 +489,17 @@ $config: (
     }
     #{ $prefix }__body {
       flex-direction: row;
-      max-width: get("horizontal-body-max-width");
+      justify-content: space-between;
     }
-    
+    #{ $prefix }__main {
+      flex-grow: 1;
+      max-width: get("horizontal-main-max-width");
+    }
+    #{ $prefix }__aside {
+      flex: 0 0 get("horizontal-aside-width");
+      height: 100%;
+    }
     @if(get("aside-rule")) {
-      #{ $prefix }__main {
-        flex: 1 1 60%;
-      }
-      #{ $prefix }__aside {
-        flex: 1 1 40%;
-        height: 100%;
-        // flex-basis: 40%;
-        // min-width: 40%;
-      }
       #{ $prefix }__aside::after {
         content: "";
         position: absolute;
@@ -560,6 +527,47 @@ $config: (
   }
 }
 
+
+/// Mixin styles for card when it has proxy click enabled and is being interacted with (hover/focus)
+/// @param {Boolean} $hover [false] Apply styles when the card is being hover/focused within, else applies styles to rest state of a clickable card (one who has a proxy click setup)
+/// Prints component styles
+/// @example scss
+///  @include ulu.component-card-styles();
+
+@mixin when-clickable($hover: false) {
+  $prefix: selector.class("card");
+  // When proxy click enabled
+  @if (get("clickable-card-enabled") and get("clickable-card-selector")) {
+    #{ $prefix }#{ get("clickable-card-selector") },
+    a#{ $prefix },
+    button#{ $prefix },
+    #{ $prefix }--clickable {
+      @if ($hover) {
+        #{ get("clickable-card-interact-selector") } {
+          @content;
+        }
+      } @else {
+        @content;
+      }
+    }
+  // Without proxy click (only if interactive)
+  } @else {
+    a#{ $prefix },
+    button#{ $prefix },
+    #{ $prefix }--clickable {
+      @if ($hover) {
+        #{ get("clickable-card-interact-selector") } {
+          @content;
+        }
+      } @else {
+        @content;
+      }
+    }
+  } 
+}
+
+
+// Internal mixin for DRY
 @mixin -card-horizontal-no-image-styles() {
   $prefix: selector.class("card");
   grid-template-columns: 1fr;
@@ -568,29 +576,3 @@ $config: (
     grid-column: 1 / 2;
   }
 }
-
-// OLD CSS FOR HORIZONTAL
-  // #{ $prefix }--horizontal {
-  //   display: flex;
-  //   flex-direction: row;
-  //   justify-content: center;
-  //   align-items: center;
-  //   #{ $prefix }__image {
-  //     align-self: stretch;
-  //     border-top-right-radius: 0;
-  //     border-bottom-left-radius: get("border-radius");
-  //     width: get("horizontal-image-width");
-  //     flex: 0 0 get("horizontal-image-width");
-  //     // max-width: 30rem;
-  //     // min-height: 28rem;
-  //     // padding-top: 0;
-  //   }
-  //   #{ $prefix }__body {
-  //     display: flex;
-  //     flex: 1;
-  //     flex-direction: column;
-  //     justify-content: center;
-  //     max-width: get("horizontal-body-max-width");
-  //   }
-  // }
-

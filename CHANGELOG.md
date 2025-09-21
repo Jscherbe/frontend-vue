@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.3-beta.1
+
+- **`components/forms/` Setup components to match `.form-theme` (frontend component)
+  - Changes how some of the pre-existing form components are templated and they now include the classes for the frontend component
+  - 
+
 ## 0.1.2-beta.9
 
 - **`useFacets` Fix timing issue with internal init watcher (use watchPostEffect instead)

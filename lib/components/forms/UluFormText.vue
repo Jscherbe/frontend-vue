@@ -1,24 +1,22 @@
 <template>
-  <div class="site-form__item site-form__item--text">
-    <label :class="{ 'hidden-visually' : labelHidden }" :for="id">
-      <slot>
-        {{ label }}
-      </slot>
-    </label>
-    <input 
-      type="text" 
-      :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)" 
-      :id="id"
-    >
-  </div>
+  <label :class="{ 'hidden-visually' : labelHidden }" :for="id">
+    <slot name="label">
+      {{ label }}
+      <UluFormRequiredChar v-if="required" />
+    </slot>
+  </label>
+  <input 
+    type="text" 
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event.target.value)" 
+    :id="id"
+    :required="required"
+  >
 </template>
 
 <script setup>
-  const getNextId = (() => {
-    let count = 0;
-    return () => `text-input-id-${++count}`;
-  })();
+  import { newId } from "../../utils/dom.js";
+  import UluFormRequiredChar from "./UluFormRequiredChar.vue";
 
   defineProps({
     /**
@@ -32,10 +30,14 @@
     /**
      * If true, the label will be visually hidden.
      */
-    labelHidden: Boolean
+    labelHidden: Boolean,
+    /**
+     * If true, the field will be required.
+     */
+    required: Boolean
   });
 
   defineEmits(['update:modelValue']);
 
-  const id = getNextId();
+  const id = newId();
 </script>

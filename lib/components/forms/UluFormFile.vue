@@ -1,28 +1,26 @@
 <template>
-  <div class="site-form__item site-form__item--file">
-    <label 
-      :class="{ 'hidden-visually' : labelHidden }" 
-      :for="id"
-    >
-      <slot name="label">
-        {{ label }}
-      </slot>
-    </label>
-    <input 
-      type="file" 
-      @change="onChangeFile" 
-      :multiple="multiple"
-      :id="id"
-      v-bind="inputAttrs"
-    />
-  </div>
+  <label 
+    :class="{ 'hidden-visually' : labelHidden }" 
+    :for="id"
+  >
+    <slot name="label">
+      {{ label }}
+      <UluFormRequiredChar v-if="required" />
+    </slot>
+  </label>
+  <input 
+    type="file" 
+    @change="onChangeFile" 
+    :multiple="multiple"
+    :id="id"
+    v-bind="inputAttrs"
+    :required="required"
+  />
 </template>
 
 <script setup>
-  const getNextId = (() => {
-    let count = 0;
-    return () => `file-input-id-${++count}`;
-  })();
+  import { newId } from "../../utils/dom.js";
+  import UluFormRequiredChar from "./UluFormRequiredChar.vue";
 
   defineProps({
     /**
@@ -47,12 +45,16 @@
     /**
      * Additional attributes to bind to the input element.
      */
-    inputAttrs: Object
+    inputAttrs: Object,
+    /**
+     * If true, the field will be required.
+     */
+    required: Boolean
   });
 
   const emit = defineEmits(["file-change"]);
 
-  const id = getNextId();
+  const id = newId();
 
   const onChangeFile = (event) => {
     emit("file-change", event.target.files);
