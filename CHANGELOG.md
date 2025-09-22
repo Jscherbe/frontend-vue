@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3-beta.3
+
+- `UluFacetSort` and `UluFacetSearch` simplify classes prop keys
+
 ## 0.1.3-beta.2
 
 - `UluModal` Fix not declared value for modalCount (previously replaced by newId)

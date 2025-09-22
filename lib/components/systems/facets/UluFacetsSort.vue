@@ -1,8 +1,8 @@
 <template>
-  <div class="facets-sort" :class="classes.sortForm">
+  <div class="facets-sort" :class="classes.container">
     <label 
       :for="sortId" 
-      :class="classes.sortFormLabel"
+      :class="classes.label"
     >
       <slot>Sort:</slot>
     </label>
@@ -10,7 +10,7 @@
       :value="modelValue"
       @change="emit('update:modelValue', $event.target.value)"
       :id="sortId" 
-      :class="classes.sortFormSelect"
+      :class="classes.select"
     >
       <option v-for="(item, key) in sortTypes" :value="key" :key="key">
         {{ item.text }}

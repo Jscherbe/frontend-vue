@@ -1,11 +1,11 @@
 <template>
-  <div class="facets-search">
-    <label :class="classes.searchLabel" :for="id">
+  <div class="facets-search" :class="classes.container">
+    <label :class="classes.label" :for="id">
       <strong>Search</strong>
     </label>
     <input 
       :id="id" 
-      :class="classes.searchInput" 
+      :class="classes.input" 
       v-model="localValue"
       type="text" 
       :placeholder="placeholder"
