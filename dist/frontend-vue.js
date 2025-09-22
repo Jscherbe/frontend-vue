@@ -944,7 +944,7 @@ const xo = {
     }
   },
   mounted() {
-    ++modalCount, this.preventScroll && this.setupPreventScroll(), this.setupResizer();
+    this.preventScroll && this.setupPreventScroll(), this.setupResizer();
   },
   beforeUnmount() {
     const { container: e } = this.$refs;

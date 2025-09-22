@@ -1,7 +1,7 @@
 
 <template>
   <Teleport 
-    :to="teleport === false ? null : teleport" 
+    :to="teleport === false ? null : teleport"  
     :disabled="teleport === false"
   >
     <dialog
@@ -363,7 +363,6 @@
       }
     },
     mounted() {
-      ++modalCount;
       if (this.preventScroll) {
         this.setupPreventScroll();
       }

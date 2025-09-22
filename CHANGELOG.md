@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3-beta.2
+
+- `UluModal` Fix not declared value for modalCount (previously replaced by newId)
+
 ## 0.1.3-beta.1
 
 - **`components/forms/` Add form element components to match `.form-theme` (frontend component)
