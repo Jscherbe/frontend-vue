@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3-beta.4
+
+- Fix missing exports for new form components, update api exports documentation
+
 ## 0.1.3-beta.3
 
 - `UluFacetSort` and `UluFacetSearch` simplify classes prop keys
