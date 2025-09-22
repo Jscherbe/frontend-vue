@@ -6,6 +6,7 @@ Build/Deployment:
         * Results in the components using their own instance of settings.js 
         * This can be avoided by building it in vs using modules to manage singleton state 
 Todos:
+  ☐ Check modals, page scrolling to top on click, might be a timing issue between dialog show and reactivity updates
   ☐ Should make element components for rule and rule short
   ☐ Need to go through remaining styles in components
     ☐ toast-animation (should this just be in the toast component style module) and Scroll anchors (rail, etc)
