@@ -218,16 +218,7 @@ const ho = ["id", "data-placement"], mo = ["innerHTML"], go = {
      * The directive name to use (default 'ulu-tooltip' = <el v-ulu-tooltip="'hello world'">)
      * @type {String}
      */
-    directiveName: "ulu-tooltip",
-    /**
-     * The element that the tooltip should be rendered within
-     * - Default bottom of the body (on top of everything)
-     * - Doesn't need to be inline for accessibility since tooltips are just an enhancement
-     *   content displayed within them should be hidden for assistive devices, 
-     *   they are not visible to assistive devices
-     * @type {String}
-     */
-    tooltipTeleportTo: "body"
+    directiveName: "ulu-tooltip"
   },
   /**
    * Default Popover Options
@@ -269,6 +260,15 @@ const ho = ["id", "data-placement"], mo = ["innerHTML"], go = {
    * @type {Object}
    */
   tooltip: {
+    /**
+     * The element that the tooltip should be rendered within
+     * - Default bottom of the body if this is unset
+     * - Doesn't need to be inline for accessibility since tooltips are just an enhancement
+     *   content displayed within them should be hidden for assistive devices, 
+     *   they are not visible to assistive devices
+     * @type {String}
+     */
+    teleportTo: null,
     /**
      * Optional class binding for tooltip element
      * @type {String|Object|Array}
@@ -541,6 +541,10 @@ function oh(e, s = {}) {
     trigger: null,
     config: {}
   }), l = (d, v) => {
+    if (d && !v.teleportTo) {
+      const y = d.closest("dialog");
+      y && (v.teleportTo = y);
+    }
     n.trigger && n.trigger !== d && n.trigger?.removeAttribute && n.trigger.removeAttribute("aria-describedby"), d?.setAttribute && d.setAttribute("aria-describedby", Ys), n.trigger = d, n.config = v, n.visible = !0;
   }, o = () => {
     n.trigger?.removeAttribute && n.trigger.removeAttribute("aria-describedby"), n.visible = !1;
