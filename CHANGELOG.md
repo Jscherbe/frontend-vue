@@ -1,5 +1,13 @@
 # Change Log
 
+## 0.1.3-beta.5
+
+- `plugins/popover` 
+  - Remove unused pluginOption `tooltipTeleportTo` 
+  - Add default to tooltip for `teleportTo` (body by default)
+  - Setup a behavior in the showTooltip to check if `teleportTo` is defined, if so respect it, else check if tooltip would be displayed within a html `<dialog>` element, if it is change teleportTo the dialog
+    - Since dialogs are in top layer tooltip in body would be underneath it. So this is a workaround for this so you don't have to keep a ref of the dialog
+
 ## 0.1.3-beta.4
 
 - Fix missing exports for new form components, update api exports documentation
