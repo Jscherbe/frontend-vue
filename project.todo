@@ -6,6 +6,8 @@ Build/Deployment:
         * Results in the components using their own instance of settings.js 
         * This can be avoided by building it in vs using modules to manage singleton state 
 Todos:
+  ✔ Facets selects needs method (probably classes) to get form theme @done
+    * Maybe we should just use form components in all facets, or should we leave it open ended / disconnected / headless
   ✔ Check modals, page scrolling to top on click, might be a timing issue between dialog show and reactivity updates @done
     * Everything seems to be working here, must have been related to site specific?
   ☐ Should make element components for rule and rule short

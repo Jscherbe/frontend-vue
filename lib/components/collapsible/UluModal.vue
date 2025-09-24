@@ -216,14 +216,14 @@
       // Define the internal modifiers object as a computed property (so it can react to changes)
       const internalModifiers = computed(() => ({
         [props.position]: props.position, 
-        "resize": props.allowResize,
-        "no-resize": !props.allowResize,
-        "no-header": !hasHeader.value,
-        "body-fills": props.bodyFills,
-        "no-backdrop": props.noBackdrop,
-        "no-min-height": props.noMinHeight,
-        "non-modal": props.nonModal,
-        "resizer-active": resizerEnabled.value,
+        "resize" : props.allowResize,
+        "no-resize" : !props.allowResize,
+        "no-header" : !hasHeader.value,
+        "body-fills" : props.bodyFills,
+        "no-backdrop" : props.noBackdrop,
+        "no-min-height" : props.noMinHeight,
+        "non-modal" : props.nonModal,
+        "resizer-active" : resizerEnabled.value,
       }));
 
       const { resolvedModifiers } = useModifiers({ 

@@ -1,26 +1,40 @@
 <template>
-  <div class="facets-dropdown-filters">
+  <div class="facets-dropdown-filters" :class="classes.container">
     <div
       class="facets-dropdown-filters__group"
+      :class="classes.group"
       v-for="group in facets"
       :key="group.uid"
     >
-      <label :for="`facet-dropdown-${group.uid}`" class="facets-dropdown-filters__label">
-        {{ group.name }}
+      <label 
+        :for="`facet-dropdown-${ group.uid }`" 
+        class="facets-dropdown-filters__label"
+        :class="classes.label"
+      >
+        <slot name="label">
+          {{ group.name }}
+        </slot>
       </label>
       <select
         :id="`facet-dropdown-${group.uid}`"
         class="facets-dropdown-filters__select"
+        :class="classes.select"
         @change="onFilterChange(group, $event)"
       >
-        <option value="">All {{ group.name }}s</option>
+        <option value="">
+          <slot name="optionAll" :group="group">
+            All {{ group.name }}s
+          </slot>
+        </option>
         <option
-          v-for="option in group.children"
+          v-for="(option, index) in group.children"
           :key="option.uid"
           :value="option.uid"
           :selected="option.selected"
         >
-          {{ option.label }}
+          <slot name="option" :group="group" :option="option" :index="index">
+            {{ option.label }}
+          </slot>
         </option>
       </select>
     </div>
@@ -29,11 +43,24 @@
 
 <script setup>
 const props = defineProps({
+  /**
+   * Facets Array
+   */
   facets: {
     type: Array,
     default: () => []
-  }
+  },
+  /**
+   * Optional classes bindings for all elements { container, group, label, select }
+   */
+  classes: {
+    type: Object,
+    default: () => ({})
+  },
 });
+
+console.log(props);
+
 
 const emit = defineEmits(['facet-change']);
 

@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.3-beta.6
+
+- `UluRule` Add new component that matches frontend rule component
+- `UluFacetsFilterSelects` Add `classes` prop so you can optionally add form-theme classes, etc
+
 ## 0.1.3-beta.5
 
 - `plugins/popover` 
