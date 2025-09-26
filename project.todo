@@ -6,6 +6,15 @@ Build/Deployment:
         * Results in the components using their own instance of settings.js 
         * This can be avoided by building it in vs using modules to manage singleton state 
 Todos:
+  ☐ Popovers
+    ☐ Tooltip (when used in a dialog, and the element is removed from DOM, tooltip persists with no element reference, check directive)
+       * This happened on a <dialog> <list view> <list item that is removed> <ulu button has tooltip and causes item removal>
+  ☐ Card
+    ☐ Proxy click is keeping the active state when an item that was not proxied was clicked (hover state from proxy click stays)?
+  ☐ Forms
+    ☐ Select
+      ☐ Default option should be optional and you should be able to control it's value
+        * Should the user just pass this no value option instead of having it built in like this
   ✔ Facets selects needs method (probably classes) to get form theme @done
     * Maybe we should just use form components in all facets, or should we leave it open ended / disconnected / headless
   ✔ Check modals, page scrolling to top on click, might be a timing issue between dialog show and reactivity updates @done
