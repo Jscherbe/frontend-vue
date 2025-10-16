@@ -27,11 +27,11 @@ defineProps({
   /**
    * The value of the selected radio button in the group (for v-model).
    */
-  modelValue: String,
+  modelValue: [String, Number],
   /**
    * The value of this radio button.
    */
-  value: String,
+  value: [String, Number],
   /**
    * The name of the radio button group.
    */

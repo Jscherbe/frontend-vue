@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3-beta.7
+
+- `UluFormRadio` - Add Number as allowed value for v-model
+
 ## 0.1.3-beta.6
 
 - `UluRule` Add new component that matches frontend rule component
