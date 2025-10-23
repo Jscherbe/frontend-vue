@@ -3407,8 +3407,8 @@ const bh = /* @__PURE__ */ j(Nl, [["render", Dl]]), Wl = { class: "card__body" }
     listStyleType: String
   },
   setup(e) {
-    const s = e, t = S(() => s.ordered || s.forceOrdered ? "ol" : "ul");
-    return (n, l) => (c(), _(F(t.value), {
+    const s = e, t = S(() => s.ordered || s.forceOrdered), n = S(() => t.value ? "ol" : "ul");
+    return (l, o) => (c(), _(F(n.value), {
       class: m([
         {
           "list-ordered": e.ordered,
@@ -3421,19 +3421,19 @@ const bh = /* @__PURE__ */ j(Nl, [["render", Dl]]), Wl = { class: "card__body" }
       style: X({
         listStyleType: e.listStyleType
       }),
-      reversed: e.reversed,
+      reversed: t.value ? e.reversed : null,
       start: e.start
     }, {
       default: k(() => [
-        (c(!0), f(x, null, B(e.items, (o, r) => (c(), f("li", {
-          key: r,
+        (c(!0), f(x, null, B(e.items, (r, a) => (c(), f("li", {
+          key: a,
           class: m(e.classes.listItem)
         }, [
-          g(n.$slots, "default", {
-            item: o,
-            index: r
+          g(l.$slots, "default", {
+            item: r,
+            index: a
           }, () => [
-            C(b(o), 1)
+            C(b(r), 1)
           ])
         ], 2))), 128))
       ]),

@@ -13,7 +13,7 @@
     :style="{ 
       listStyleType: listStyleType
     }"
-    :reversed="reversed"
+    :reversed="isOrdered ? reversed : null"
     :start="start"
   >
     <li 
@@ -79,7 +79,6 @@
     listStyleType: String,
   });
 
-  const listElement = computed(() => {
-    return props.ordered || props.forceOrdered ? "ol" : "ul";
-  });
+  const isOrdered = computed(() => props.ordered || props.forceOrdered);
+  const listElement = computed(() => isOrdered.value ? "ol" : "ul");
 </script>
