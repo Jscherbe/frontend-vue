@@ -3,6 +3,7 @@
 ## 0.1.3-beta.8
 
 - `UluList` - Minor issue, Fix "reversed" boolean attribute being stringified when using `<ul>`
+- Update API documentation for `useBreakpointManager`
 
 ## 0.1.3-beta.7
 
