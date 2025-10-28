@@ -1,4 +1,5 @@
 export { default as UluAccordion } from "./collapsible/UluAccordion.vue";
+export { default as UluAccordionGroup } from "./collapsible/UluAccordionGroup.vue";
 export { default as UluCollapsible } from "./collapsible/UluCollapsible.vue";
 export { default as UluDropdown } from "./collapsible/UluDropdown.vue";
 export { default as UluModal } from "./collapsible/UluModal.vue";
@@ -42,6 +43,7 @@ export { default as UluFormTextarea } from "./forms/UluFormTextarea.vue";
 export { default as UluAdaptiveLayout } from "./layout/UluAdaptiveLayout.vue";
 export { default as UluDataGrid } from "./layout/UluDataGrid.vue";
 export { default as UluTitleRail } from "./layout/UluTitleRail.vue";
+export { default as UluWhenBreakpoint } from "./layout/UluWhenBreakpoint.vue";
 export { default as UluBreadcrumb } from "./navigation/UluBreadcrumb.vue";
 export { default as UluMenu } from "./navigation/UluMenu.vue";
 export { default as UluMenuStack } from "./navigation/UluMenuStack.vue";

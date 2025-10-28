@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3-beta.9
+
+- `UluAccordionGroup`, `UluWhenBreakpoint` - Add missing export for this component to library exports
+
 ## 0.1.3-beta.8
 
 - `UluList` - Minor issue, Fix "reversed" boolean attribute being stringified when using `<ul>`
