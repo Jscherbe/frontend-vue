@@ -105,6 +105,9 @@ Changes:
   // User can override these styles
   // - Think this is better than props/etc 
   //   - Refactored from props to just plain css to be overridden
+  .scroll-anchors__nav {
+    position: relative;
+  }
   .scroll-anchors__rail {
     border-left: 3px solid rgb(220, 220, 220);
     padding-left: 1rem;

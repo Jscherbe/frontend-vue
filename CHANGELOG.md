@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.1.3-beta.10
+
+- `UluScrollAnchorsNavAnimated`- Add position relative to nav container (for default styles) these styles are meant to be overridden if needed (position sticky/etc). This way it works correctly be default.
+- UluScrollAnchors system - Updated component stories/demos so they show the functionality they offer
+
 ## 0.1.3-beta.9
 
 - `UluAccordionGroup`, `UluWhenBreakpoint` - Add missing export for this component to library exports

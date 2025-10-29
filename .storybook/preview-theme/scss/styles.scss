@@ -33,6 +33,15 @@
   @include ulu.component-styles();
 }
 
+// Easier than including inline styles for these stories
+
+.scroll-anchors__nav a.is-active {
+  color: black;
+}
+.scroll-anchors__section.is-active {
+  background-color: rgb(235, 178, 244);
+}
+
 // Include any components that are outside in-ulu container (teleports/etc)
 @include ulu.component-button-styles();
 @include ulu.component-form-theme-styles();
