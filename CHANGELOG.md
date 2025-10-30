@@ -4,6 +4,9 @@
 
 - `UluDataGrid` - Update to allow 'element' and 'hidden' props (documented in story)
 - **UluScrollAnchors System**
+  - `UluScrollAnchorsNavAnimated` 
+    - Add props (width, height, ...) which are added to documentation
+    - `_scroll-anchors-nav-animated` - Add stylesheet for animated nav, the other components are not pre-styled as they are used in a variety of layouts in sites/apps
   - Get rid of symbols for provide/inject and use ulu and system name safe namespace
     - Easier to use/debug and work with, unify with the rest of the library
   -  `UluScrollAnchorsSection`- Added title slot

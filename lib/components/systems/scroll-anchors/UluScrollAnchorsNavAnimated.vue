@@ -70,6 +70,20 @@
     indicatorHeight: {
       type: Number,
       default: null
+    },
+    /**
+     * Vertical alignment of the indicator relative to the link
+     */
+    indicatorAlignment: {
+      type: String,
+      default: 'center' // options: center, top
+    },
+    /**
+     * Pixel offset for the indicator's vertical alignment
+     */
+    indicatorAlignmentOffset: {
+      type: Number,
+      default: 0
     }
   });
 
@@ -93,21 +107,16 @@
     const { offsetTop, offsetHeight } = link;
     const isStatic = props.indicatorHeight != null;
     const width = props.indicatorWidth ?? props.railWidth;
+    const height = isStatic ? props.indicatorHeight : offsetHeight;
 
-    if (isStatic) {
-      return {
-        y: offsetTop + (offsetHeight / 2) - (props.indicatorHeight / 2),
-        height: props.indicatorHeight,
-        width: width
-      };
-    } else {
-      // For bars, match the link's position and height
-      return {
-        y: offsetTop,
-        height: offsetHeight,
-        width: width
-      };
+    let y = offsetTop; // Default to 'top' alignment
+    if (props.indicatorAlignment === 'center') {
+      y = offsetTop + (offsetHeight / 2) - (height / 2);
     }
+
+    y += props.indicatorAlignmentOffset;
+
+    return { y, height, width };
   });
 
   watch(indicatorStyles, (val) => {
