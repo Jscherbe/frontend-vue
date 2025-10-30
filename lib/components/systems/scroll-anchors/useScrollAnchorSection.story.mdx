@@ -1,0 +1,52 @@
+# useScrollAnchorSection
+
+A composable that provides the core logic for a scroll anchor section, allowing components to register themselves with the `UluScrollAnchors` parent and react to their active state.
+
+This composable is intended to be used within a Vue component's `<script setup>` block to manage the lifecycle and state of a scrollable section.
+
+## Usage
+
+```html
+<script setup>
+import { useScrollAnchorSection } from './useScrollAnchorSection';
+
+const props = defineProps({
+  title: {
+    type: String,
+    required: true
+  },
+  anchorId: String,
+});
+
+const { element, titleId, isActive, section } = useScrollAnchorSection(props);
+</script>
+
+<template>
+  <div :class="['my-custom-section', { 'is-active': isActive }]" :ref="element">
+    <h2 :id="titleId">{{ props.title }}</h2>
+    <p>This section is {{ isActive ? 'active' : 'inactive' }}.</p>
+    <!-- More content here -->
+    <slot />
+  </div>
+</template>
+```
+
+## Parameters
+
+The `useScrollAnchorSection` composable accepts a `props` object with the following properties:
+
+- `title` (String, required): The title of the section. Used for generating a default `titleId` and for display in navigation.
+- `anchorId` (String, optional): A custom ID for the section's anchor. If not provided, one will be generated from the `title`.
+
+## Returns
+
+The composable returns an object with the following reactive properties:
+
+- `element`: A ref that should be bound to the root HTML element of your section component. This element is observed by `UluScrollAnchors` to determine the section's visibility.
+- `titleId` (ComputedRef): The unique ID for the section's title, used for anchor links.
+- `isActive` (ComputedRef): A boolean indicating whether the section is currently active (in view).
+- `section` (Reactive): The full reactive section object registered with `UluScrollAnchors`, containing `id`, `title`, `titleId`, `element`, and `active` state.
+
+## Integration with `UluScrollAnchors`
+
+This composable works in conjunction with the `UluScrollAnchors` component. When a component using `useScrollAnchorSection` is mounted within `UluScrollAnchors`, it automatically registers itself. `UluScrollAnchors` then tracks its visibility and updates the `isActive` state.

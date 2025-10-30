@@ -1,0 +1,48 @@
+# useScrollAnchorsController
+
+**Internal Composable:** This composable is for internal use by the `UluScrollAnchors` component. It is not intended for direct use in applications.
+
+`useScrollAnchorsController` contains the core "engine" for the scroll anchors system. It encapsulates the `IntersectionObserver` logic, manages the lifecycle of observed sections, and updates their `active` state.
+
+It is documented here for developers contributing to the ULU library.
+
+## Usage
+
+This composable is used directly inside the main `UluScrollAnchors.vue` component.
+
+```html
+<!-- Simplified UluScrollAnchors.vue -->
+<script setup>
+import { ref, computed, provide } from "vue";
+import { SECTIONS, REGISTER, UNREGISTER } from "./symbols.js";
+import { useScrollAnchorsController } from "./useScrollAnchorsController.js";
+
+const props = defineProps({ /* ... */ });
+const emit = defineEmits(["section-change"]);
+
+const sections = ref([]);
+
+// The controller is initialized with the component's state
+useScrollAnchorsController({ sections, props, emit });
+
+// Provide sections and registration functions to children
+provide(SECTIONS, computed(() => sections.value));
+provide(REGISTER, (section) => sections.value.push(section));
+provide(UNREGISTER, (sectionId) => {
+  const index = sections.value.findIndex(r => r.id === sectionId);
+  if (index > -1) sections.value.splice(index, 1);
+});
+</script>
+```
+
+## Parameters
+
+The `useScrollAnchorsController` composable accepts a single object with the following properties:
+
+- `sections` (Ref): A `ref` to the array of section objects that will be tracked.
+- `props` (Object): The props object from the `UluScrollAnchors` component, specifically `observerOptions` and `firstItemActive`.
+- `emit` (Function): The `emit` function from the `UluScrollAnchors` component, used to emit the `section-change` event.
+
+## Returns
+
+This composable does not return any values. It manages the observer and mutates the `active` state on the items within the `sections` array directly.

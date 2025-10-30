@@ -16,26 +16,55 @@
 -->
 
 <template>
-  <div>
+  <component :is="element" ref="rootElement">
     <slot />
-  </div>
+  </component>
 </template>
 
-<script>
-  import { setPositionClasses } from "@ulu/frontend/js/utils/dom.js";
+<script setup>
+  import { ref, onMounted, onBeforeUnmount, watch } from "vue";
   import { debounce } from "@ulu/utils/performance.js";
-  export default {
-    name: "UluDataGrid",
-    async mounted() {
-      const setClasses = () => setPositionClasses(this.$el);
-      setClasses();
-      this.resizeHandler = debounce(setClasses, 200, false, this);
-      window.addEventListener("resize", this.resizeHandler);
+  import { setPositionClasses } from "@ulu/frontend/js/utils/dom.js";
+
+  const props = defineProps({
+    /**
+     * The element to use on data-grid container
+     */
+    element: {
+      type: String,
+      default: "div"
     },
-    beforeUnmount() {
-      if (this.resizeHandler) {
-        window.removeEventListener("resize", this.resizeHandler);
-      }
+    /**
+     * Tell the component when this grid is actually in a hidden container 
+     * - When value changes the component will properly update position classes
+     */
+    hidden: Boolean // New prop from SSR version
+  });
+
+  const rootElement = ref(null); // Ref for the template root element
+  let setThisPositionClasses = null; // To store the setPositionClasses function
+  let resizeHandler = null; // To store the debounced resize handler
+
+  onMounted(async () => {
+    setThisPositionClasses = () => setPositionClasses(rootElement.value);
+    setThisPositionClasses(); // Initial call
+    resizeHandler = debounce(setThisPositionClasses, 200, false); // `this` context is not needed in setup
+    window.addEventListener("resize", resizeHandler);
+  });
+
+  onBeforeUnmount(() => {
+    if (resizeHandler) {
+      window.removeEventListener("resize", resizeHandler);
+      resizeHandler = null;
+      setThisPositionClasses = null; // Clear the function reference
     }
-  };
+  });
+
+  // Watcher for the hidden prop
+  watch(() => props.hidden, (newVal, oldVal) => {
+    // Only run setClasses if it was hidden and now it's not, and the function exists
+    if (oldVal && !newVal && setThisPositionClasses) {
+      setThisPositionClasses();
+    }
+  });
 </script>

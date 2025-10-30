@@ -1,5 +1,16 @@
 # Change Log
 
+## 0.1.3-beta.11
+
+- `UluDataGrid` - Update to allow 'element' and 'hidden' props (documented in story)
+- **UluScrollAnchors System**
+  -  `UluScrollAnchorsSection`- Added title slot
+  - `useScrollAnchorsController` - New internal composable that extracts the core `IntersectionObserver` logic from `UluScrollAnchors.vue` to improve maintainability. Fixed bug in scroll direction detection that prevented the active state from being cleared when scrolling past the first or last sections.
+  - `useScrollAnchorSections` - New public composable that provides a clean API for accessing section data, intended for building custom navigation.
+  - `useScrollAnchorSection` - New public composable that can be used to register sections manually for building custom sections
+  - `UluScrollAnchorsHeadlessSection` - New headless component for creating a section with a custom structure. Replaces the former `UluScrollAnchorsFlexibleSection`.
+  - `UluScrollAnchorsNav` & `UluScrollAnchorsNavAnimated` - Refactored to use the new `useScrollAnchorSections` composable.
+
 ## 0.1.3-beta.10
 
 - `UluScrollAnchorsNavAnimated`- Add position relative to nav container (for default styles) these styles are meant to be overridden if needed (position sticky/etc). This way it works correctly be default.

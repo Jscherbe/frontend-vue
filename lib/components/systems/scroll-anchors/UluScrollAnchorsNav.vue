@@ -1,3 +1,16 @@
+<script setup>
+  import { useScrollAnchorSections } from "./useScrollAnchorSections.js";
+
+  defineProps({
+    element: {
+      type: String,
+      default: "nav"
+    }
+  });
+
+  const sections = useScrollAnchorSections();
+</script>
+
 <template>
   <component 
     v-if="sections.length" 
@@ -19,19 +32,3 @@
     </ul>
   </component>
 </template>
-
-<script>
-  import { SECTIONS } from "./symbols.js";
-  export default {
-    name: "ScrollAnchorsNav",
-    inject: {
-      sections: { from: SECTIONS }
-    },
-    props: {
-      element: {
-        type: String,
-        default: "nav"
-      }
-    }
-  };
-</script>

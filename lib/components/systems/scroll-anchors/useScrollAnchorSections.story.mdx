@@ -1,0 +1,45 @@
+# useScrollAnchorSections
+
+A composable that provides a reactive list of all registered scroll anchor sections. This is the recommended way to access section data for building custom navigation or other components that need to be aware of the scroll anchor system's state.
+
+This composable must be used within a component that is a descendant of `UluScrollAnchors`.
+
+## Usage
+
+Here is an example of a simple custom navigation component.
+
+```html
+<script setup>
+import { useScrollAnchorSections } from './useScrollAnchorSections';
+
+const sections = useScrollAnchorSections();
+</script>
+
+<template>
+  <nav v-if="sections && sections.length" class="my-custom-nav">
+    <ul>
+      <li v-for="section in sections" :key="section.id">
+        <a :href="`#${section.titleId}`" :class="{ 'is-active': section.active }">
+          {{ section.title }}
+        </a>
+      </li>
+    </ul>
+  </nav>
+</template>
+```
+
+## Parameters
+
+The `useScrollAnchorSections` composable takes no parameters.
+
+## Returns
+
+The composable returns a reactive `ref` which contains an array of section objects. If used outside of an `UluScrollAnchors` context, it will return `undefined` and log a warning.
+
+Each section object in the array has the following properties:
+
+- `id` (Symbol): The unique ID of the section.
+- `title` (String): The title of the section.
+- `titleId` (String): The ID used for the anchor link.
+- `element` (HTMLElement): The root HTML element of the section component.
+- `active` (Boolean): A boolean indicating whether the section is currently active.

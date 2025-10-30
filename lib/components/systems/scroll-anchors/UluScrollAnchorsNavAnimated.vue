@@ -4,6 +4,56 @@ Changes:
   - 0.0.2 | Added transition initial state/class so the indicator 
             doesn't transition at first
 -->
+<script setup>
+  import { ref, computed, watch } from 'vue';
+  import { runAfterFramePaint } from "@ulu/utils/browser/performance.js";
+  import { useScrollAnchorSections } from './useScrollAnchorSections.js';
+
+  defineProps({
+    element: {
+      type: String,
+      default: "nav"
+    },
+  });
+
+  const sections = useScrollAnchorSections();
+
+  const linkRefs = ref({});
+  const indicatorAnimReady = ref(false);
+  const indicator = ref(null);
+
+  const indicatorStyles = computed(() => {
+    if (!sections.value || !sections.value.length) {
+      return false;
+    }
+    const activeIndex = sections.value.findIndex(s => s.active);
+    if (activeIndex === -1) {
+      return false;
+    }
+    const link = linkRefs.value[activeIndex];
+    if (!link) return false; // Link might not be rendered yet
+    const { offsetTop, offsetHeight } = link;
+    return {
+      y: offsetTop,
+      height: offsetHeight,
+    };
+  });
+
+  watch(indicatorStyles, (val) => {
+    if (val && !indicatorAnimReady.value) {
+      runAfterFramePaint(() => {
+        indicatorAnimReady.value = true;
+      });
+    }
+  });
+
+  function addLinkRef(index, el) {
+    if (el) {
+      linkRefs.value[index] = el;
+    }
+  }
+</script>
+
 <template>
   <component 
     v-if="sections.length" 
@@ -30,76 +80,14 @@ Changes:
         'scroll-anchors__indicator--can-transition' : indicatorAnimReady
       }"
       ref="indicator"
-      :style="{ 
+      :style="{
         opacity: indicatorStyles ? '1' : '0',
-        transform: `translateY(${ indicatorStyles.y }px)`,
-        height: `${ indicatorStyles.height }px`,
+        transform: `translateY(${ indicatorStyles ? indicatorStyles.y : 0 }px)`,
+        height: `${ indicatorStyles ? indicatorStyles.height : 0 }px`,
       }"
     ></div>
   </component>
 </template>
-
-<script>
-  import { runAfterFramePaint } from "@ulu/utils/browser/performance.js";
-  import { SECTIONS } from "./symbols.js";
-  export default {
-    name: "ScrollAnchorsNavAnimated",
-    inject: {
-      sections: { from: SECTIONS }
-    },
-    props: {
-      /**
-       * Element to use for container
-       */
-      element: {
-        type: String,
-        default: "nav"
-      },
-    },
-    data() {
-      return {
-        linkRefs: {},
-        indicatorAnimReady: false
-      };
-    },
-    computed: {
-      indicatorStyles() {
-        const { sections, linkRefs } = this;
-        const linkCount = Object.keys(linkRefs).length;
-        // Checking for sections and link refs incase 
-        // we were waiting for the components to mount, etc
-        if (!sections || !linkCount) {
-          return false;
-        }
-        const activeIndex = sections.findIndex(s => s.active);
-        if (activeIndex === -1) {
-          return false;
-        }
-        const link = this.linkRefs[activeIndex];
-        const { offsetTop, offsetHeight } = link;
-        return {
-          y: offsetTop,
-          height: offsetHeight,
-          initial: this.inidica
-        };
-      }
-    },
-    watch: {
-      indicatorStyles(val) {
-        if (val && !this.indicatorAnimReady) {
-          runAfterFramePaint(() => {
-            this.indicatorAnimReady = true;
-          });
-        }
-      }
-    },
-    methods: {
-      addLinkRef(index, el) {
-        this.linkRefs[index] = el;
-      }
-    }
-  };
-</script>
 
 <style lang="scss">
   // User can override these styles
