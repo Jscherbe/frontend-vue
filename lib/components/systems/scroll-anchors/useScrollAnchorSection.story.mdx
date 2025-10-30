@@ -15,7 +15,7 @@ const props = defineProps({
     type: String,
     required: true
   },
-  anchorId: String,
+  customTitleId: String,
 });
 
 const { element, titleId, isActive, section } = useScrollAnchorSection(props);
@@ -36,7 +36,7 @@ const { element, titleId, isActive, section } = useScrollAnchorSection(props);
 The `useScrollAnchorSection` composable accepts a `props` object with the following properties:
 
 - `title` (String, required): The title of the section. Used for generating a default `titleId` and for display in navigation.
-- `anchorId` (String, optional): A custom ID for the section's anchor. If not provided, one will be generated from the `title`.
+- `customTitleId` (String, optional): A custom ID for the section's anchor. If not provided, one will be generated from the `title`.
 
 ## Returns
 

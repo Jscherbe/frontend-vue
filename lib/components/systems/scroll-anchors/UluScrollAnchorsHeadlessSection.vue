@@ -6,7 +6,7 @@
       type: String,
       required: true
     },
-    anchorId: String,
+    customTitleId: String,
   });
 
   const { element, titleId, isActive, section } = useScrollAnchorSection(props);

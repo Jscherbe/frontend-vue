@@ -13,7 +13,7 @@
       type: String,
       default: "h2"
     },
-    anchorId: String,
+    customTitleId: String,
     wrapperClass: {
       type: String,
       default: "scroll-anchors__section"
