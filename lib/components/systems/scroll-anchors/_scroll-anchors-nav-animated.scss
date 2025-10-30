@@ -1,0 +1,66 @@
+////
+/// @group scroll-anchors-nav-animated
+/// For use with UluScrollAnchorsNavAnimated vue component.
+////
+
+@use "sass:map";
+@use "sass:meta";
+
+@use "@ulu/frontend/scss/selector";
+@use "@ulu/frontend/scss/utils";
+
+// Used for function fallback
+$-fallbacks: () !default;
+
+/// Module Settings
+/// @type Map
+$config: (
+  "rail-border-color": #dcdcdc,
+  "rail-padding": 1rem,
+  "indicator-color": #000,
+  "indicator-clip-path": null,
+  "transition-duration": 250ms,
+  "transition-timing-function": ease-in-out
+) !default;
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+@function get($name) {
+  $value: utils.require-map-get($config, $name, "scroll-anchors-nav-animated [config]");
+  @return utils.function-fallback($name, $value, $-fallbacks);
+}
+
+/// Prints component styles
+/// @demo scroll-anchors-nav-animated
+/// @example scss
+///  @include ulu.component-scroll-anchors-nav-animated-styles();
+
+@mixin styles {
+  $prefix: selector.class("scroll-anchors-nav-animated");
+
+  #{ $prefix } {
+    position: relative;
+  }
+  #{ $prefix }__rail {
+    border-left: var(--rail-width, 3px) solid get("rail-border-color");
+    padding-left: get("rail-padding");
+  }
+  #{ $prefix }__indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: get("indicator-color");
+    clip-path: get("indicator-clip-path");
+  }
+  #{ $prefix }__indicator--can-transition {
+    transition-property: height, transform, width;
+    transition-timing-function: get("transition-timing-function");
+    transition-duration: get("transition-duration");
+  }
+}

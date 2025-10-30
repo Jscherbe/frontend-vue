@@ -2,9 +2,10 @@
   <component 
     v-if="sections && sections.length" 
     :is="element"
-    class="scroll-anchors__nav scroll-anchors__nav--animated"
+    class="scroll-anchors__nav scroll-anchors__nav--animated scroll-anchors-nav-animated"
+    :style="{ '--rail-width': `${railWidth}px` }"
   >
-    <ul class="scroll-anchors__rail">
+    <ul class="scroll-anchors-nav-animated__rail">
       <li 
         v-for="(item, index) in sections" :key="index"
         :class="{ 'is-active' : item.active }"
@@ -21,15 +22,16 @@
       </li>
     </ul>
     <div 
-      class="scroll-anchors__indicator"
+      class="scroll-anchors-nav-animated__indicator"
       :class="{
-        'scroll-anchors__indicator--can-transition' : indicatorAnimReady
+        'scroll-anchors-nav-animated__indicator--can-transition' : indicatorAnimReady
       }"
       ref="indicator"
       :style="{
         opacity: indicatorStyles ? '1' : '0',
         transform: `translateY(${ indicatorStyles ? indicatorStyles.y : 0 }px)`,
         height: `${ indicatorStyles ? indicatorStyles.height : 0 }px`,
+        width: `${ indicatorStyles ? indicatorStyles.width : 0 }px`
       }"
     ></div>
   </component>
@@ -40,7 +42,7 @@
   import { runAfterFramePaint } from "@ulu/utils/browser/performance.js";
   import { useScrollAnchorSections } from './useScrollAnchorSections.js';
 
-  defineProps({
+  const props = defineProps({
     /**
      * The HTML element to use for the navigation root
      */
@@ -48,6 +50,27 @@
       type: String,
       default: "nav"
     },
+    /**
+     * The width of the navigation rail
+     */
+    railWidth: {
+      type: Number,
+      default: 3
+    },
+    /**
+     * The width of the indicator, defaults to railWidth
+     */
+    indicatorWidth: {
+      type: Number,
+      default: null
+    },
+    /**
+     * If set, creates a static height, centered indicator
+     */
+    indicatorHeight: {
+      type: Number,
+      default: null
+    }
   });
 
   const sections = useScrollAnchorSections();
@@ -66,11 +89,25 @@
     }
     const link = linkRefs.value[activeIndex];
     if (!link) return false; // Link might not be rendered yet
+
     const { offsetTop, offsetHeight } = link;
-    return {
-      y: offsetTop,
-      height: offsetHeight,
-    };
+    const isStatic = props.indicatorHeight != null;
+    const width = props.indicatorWidth ?? props.railWidth;
+
+    if (isStatic) {
+      return {
+        y: offsetTop + (offsetHeight / 2) - (props.indicatorHeight / 2),
+        height: props.indicatorHeight,
+        width: width
+      };
+    } else {
+      // For bars, match the link's position and height
+      return {
+        y: offsetTop,
+        height: offsetHeight,
+        width: width
+      };
+    }
   });
 
   watch(indicatorStyles, (val) => {
@@ -87,28 +124,3 @@
     }
   }
 </script>
-
-<style lang="scss">
-  // User can override these styles
-  // - Think this is better than props/etc 
-  //   - Refactored from props to just plain css to be overridden
-  .scroll-anchors__nav {
-    position: relative;
-  }
-  .scroll-anchors__rail {
-    border-left: 3px solid rgb(220, 220, 220);
-    padding-left: 1rem;
-  }
-  .scroll-anchors__indicator {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 3px;
-    background-color: black;
-  }
-  .scroll-anchors__indicator--can-transition {
-    transition-property: height, transform;
-    transition-timing-function: ease-in-out;
-    transition-duration: 250ms;
-  }
-</style>
