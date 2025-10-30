@@ -1,19 +1,6 @@
-<script setup>
-  import { useScrollAnchorSections } from "./useScrollAnchorSections.js";
-
-  defineProps({
-    element: {
-      type: String,
-      default: "nav"
-    }
-  });
-
-  const sections = useScrollAnchorSections();
-</script>
-
 <template>
   <component 
-    v-if="sections.length" 
+    v-if="sections && sections.length" 
     :is="element"
     class="scroll-anchors__nav"
   >
@@ -26,9 +13,27 @@
           :class="{ 'is-active' : item.active }"
           :href="`#${ item.titleId }`" 
         >
-          {{ item.title }}
+          <slot :item="item" :index="index">
+            {{ item.title }}
+          </slot>
         </a>
       </li>
     </ul>
   </component>
 </template>
+
+<script setup>
+  import { useScrollAnchorSections } from "./useScrollAnchorSections.js";
+
+  defineProps({
+    /**
+     * The HTML element to use for the navigation root
+     */
+    element: {
+      type: String,
+      default: "nav"
+    }
+  });
+
+  const sections = useScrollAnchorSections();
+</script>

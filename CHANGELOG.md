@@ -4,8 +4,10 @@
 
 - `UluDataGrid` - Update to allow 'element' and 'hidden' props (documented in story)
 - **UluScrollAnchors System**
+  - Get rid of symbols for provide/inject and use ulu and system name safe namespace
+    - Easier to use/debug and work with, unify with the rest of the library
   -  `UluScrollAnchorsSection`- Added title slot
-  - `useScrollAnchorsController` - New internal composable that extracts the core `IntersectionObserver` logic from `UluScrollAnchors.vue` to improve maintainability. Fixed bug in scroll direction detection that prevented the active state from being cleared when scrolling past the first or last sections.
+  - `useScrollAnchorsProvider` - New internal composable that extracts the core `IntersectionObserver` logic from `UluScrollAnchors.vue` to improve maintainability. Fixed bug in scroll direction detection that prevented the active state from being cleared when scrolling past the first or last sections.
   - `useScrollAnchorSections` - New public composable that provides a clean API for accessing section data, intended for building custom navigation.
   - `useScrollAnchorSection` - New public composable that can be used to register sections manually for building custom sections
   - `UluScrollAnchorsHeadlessSection` - New headless component for creating a section with a custom structure. Replaces the former `UluScrollAnchorsFlexibleSection`.

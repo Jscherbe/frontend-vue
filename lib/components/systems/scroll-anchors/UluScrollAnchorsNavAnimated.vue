@@ -1,15 +1,49 @@
-<!-- 
-Version: 0.0.2
-Changes: 
-  - 0.0.2 | Added transition initial state/class so the indicator 
-            doesn't transition at first
--->
+<template>
+  <component 
+    v-if="sections && sections.length" 
+    :is="element"
+    class="scroll-anchors__nav scroll-anchors__nav--animated"
+  >
+    <ul class="scroll-anchors__rail">
+      <li 
+        v-for="(item, index) in sections" :key="index"
+        :class="{ 'is-active' : item.active }"
+      >
+        <a 
+          :class="{ 'is-active' : item.active }"
+          :ref="(el) => addLinkRef(index, el)"
+          :href="`#${ item.titleId }`" 
+        >
+          <slot :item="item" :index="index">
+            {{ item.title }}
+          </slot>
+        </a>
+      </li>
+    </ul>
+    <div 
+      class="scroll-anchors__indicator"
+      :class="{
+        'scroll-anchors__indicator--can-transition' : indicatorAnimReady
+      }"
+      ref="indicator"
+      :style="{
+        opacity: indicatorStyles ? '1' : '0',
+        transform: `translateY(${ indicatorStyles ? indicatorStyles.y : 0 }px)`,
+        height: `${ indicatorStyles ? indicatorStyles.height : 0 }px`,
+      }"
+    ></div>
+  </component>
+</template>
+
 <script setup>
   import { ref, computed, watch } from 'vue';
   import { runAfterFramePaint } from "@ulu/utils/browser/performance.js";
   import { useScrollAnchorSections } from './useScrollAnchorSections.js';
 
   defineProps({
+    /**
+     * The HTML element to use for the navigation root
+     */
     element: {
       type: String,
       default: "nav"
@@ -23,7 +57,7 @@ Changes:
   const indicator = ref(null);
 
   const indicatorStyles = computed(() => {
-    if (!sections.value || !sections.value.length) {
+    if (!sections || !sections.value || !sections.value.length) {
       return false;
     }
     const activeIndex = sections.value.findIndex(s => s.active);
@@ -53,41 +87,6 @@ Changes:
     }
   }
 </script>
-
-<template>
-  <component 
-    v-if="sections.length" 
-    :is="element"
-    class="scroll-anchors__nav scroll-anchors__nav--animated"
-  >
-    <ul class="scroll-anchors__rail">
-      <li 
-        v-for="(item, index) in sections" :key="index"
-        :class="{ 'is-active' : item.active }"
-      >
-        <a 
-          :class="{ 'is-active' : item.active }"
-          :ref="(el) => addLinkRef(index, el)"
-          :href="`#${ item.titleId }`" 
-        >
-          {{ item.title }}
-        </a>
-      </li>
-    </ul>
-    <div 
-      class="scroll-anchors__indicator"
-      :class="{
-        'scroll-anchors__indicator--can-transition' : indicatorAnimReady
-      }"
-      ref="indicator"
-      :style="{
-        opacity: indicatorStyles ? '1' : '0',
-        transform: `translateY(${ indicatorStyles ? indicatorStyles.y : 0 }px)`,
-        height: `${ indicatorStyles ? indicatorStyles.height : 0 }px`,
-      }"
-    ></div>
-  </component>
-</template>
 
 <style lang="scss">
   // User can override these styles

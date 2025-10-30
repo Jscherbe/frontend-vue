@@ -6,16 +6,23 @@
 
 <script setup>
   import { ref, computed, provide } from "vue";
-  import { SECTIONS, REGISTER, UNREGISTER } from "./symbols.js";
-  import { useScrollAnchorsController } from "./useScrollAnchorsController.js";
+  import { useScrollAnchors } from "./useScrollAnchors.js";
 
   const props = defineProps({
+    /**
+     * Make the first item active by default on load
+     */
     firstItemActive: Boolean,
+    /**
+     * IntersectionObserver options
+     * - Defaults: { root: null, threshold: 0, rootMargin: "-25% 0px -55% 0px" }
+     * See: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver
+     */
     observerOptions: {
       type: Object,
       default: () => ({
         root: null,
-        threshhold: [0, 1],
+        threshold: 0,
         rootMargin: "-25% 0px -55% 0px"
       })
     }
@@ -25,15 +32,15 @@
 
   const sections = ref([]);
 
-  useScrollAnchorsController({ sections, props, emit });
+  useScrollAnchors({ sections, props, emit });
 
-  provide(SECTIONS, computed(() => sections.value));
+  provide('uluScrollAnchorsSections', computed(() => sections.value));
 
-  provide(REGISTER, (section) => {
+  provide('uluScrollAnchorsRegister', (section) => {
     sections.value.push(section);
   });
 
-  provide(UNREGISTER, (sectionId) => {
+  provide('uluScrollAnchorsUnregister', (sectionId) => {
     const index = sections.value.findIndex(r => r.id === sectionId);
     if (index > -1) {
       sections.value.splice(index, 1);
