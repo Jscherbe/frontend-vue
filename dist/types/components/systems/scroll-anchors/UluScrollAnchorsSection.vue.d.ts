@@ -1,50 +1,32 @@
-declare const _default: import("vue").DefineComponent<import("vue").ExtractPropTypes<{
-    title: StringConstructor;
-    titleElement: {
-        type: StringConstructor;
-        default: string;
-    };
-    titleClass: {
-        type: StringConstructor;
-        default: string;
-    };
-    anchorId: StringConstructor;
-    wrapperClass: {
-        type: StringConstructor;
-        default: string;
-    };
-    activeClass: {
-        type: StringConstructor;
-        default: string;
-    };
-}>, {}, {
-    titleId: string;
-}, {
-    section(): any;
-}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
-    title: StringConstructor;
-    titleElement: {
-        type: StringConstructor;
-        default: string;
-    };
-    titleClass: {
-        type: StringConstructor;
-        default: string;
-    };
-    anchorId: StringConstructor;
-    wrapperClass: {
-        type: StringConstructor;
-        default: string;
-    };
-    activeClass: {
-        type: StringConstructor;
-        default: string;
-    };
-}>> & Readonly<{}>, {
+declare const _default: __VLS_WithSlots<typeof __VLS_component, __VLS_Slots>;
+export default _default;
+type __VLS_WithSlots<T, S> = T & (new () => {
+    $slots: S;
+});
+declare const __VLS_component: import("vue").DefineComponent<{}, {
+    $props: Partial<typeof props>;
     activeClass: string;
+    element: string;
     titleElement: string;
     titleClass: string;
     wrapperClass: string;
-}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
-export default _default;
+    title?: string | undefined;
+    customTitleId?: string | undefined;
+}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
+type __VLS_Slots = {
+    title?: ((props: {}) => any) | undefined;
+} & {
+    default?: ((props: {
+        section: any;
+    }) => any) | undefined;
+};
+declare const props: {
+    readonly activeClass: string;
+    readonly element: string;
+    readonly titleElement: string;
+    readonly titleClass: string;
+    readonly wrapperClass: string;
+    readonly title?: string | undefined;
+    readonly customTitleId?: string | undefined;
+};
 //# sourceMappingURL=UluScrollAnchorsSection.vue.d.ts.map
