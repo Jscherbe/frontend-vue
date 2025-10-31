@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.3-beta.13
+
+- `_scroll-anchors-nav-animated.scss` 
+  - Make sure all colors pass through color.get incase they are palette entries in main library. 
+  - Adjust specific custom property set by component to ulu prefixed `--ulu-sa-nav-rail-width` which is just used internally and not set by user
+
 ## 0.1.3-beta.12
 
 - `UluDataGrid` - Add correct [data-grid-init] flag after column positions are resolved, for CSS to show row/column rules correctly
@@ -12,7 +18,7 @@
       one when scrolling down, the first one when scrolling up)
   - `UluScrollAnchorsNavAnimated` 
     - Add props (width, height, ...) which are added to documentation
-    - `_scroll-anchors-nav-animated` - Add stylesheet for animated nav, the other components are not pre-styled as they are used in a variety of layouts in sites/apps
+    - `_scroll-anchors-nav-animated.scss` - Add stylesheet for animated nav, the other components are not pre-styled as they are used in a variety of layouts in sites/apps (exported from main library as `component-scroll-anchors-nav-animated` use like `ulu-vue.component-scroll-anchors-nav-animated-set(( "rail-padding" : 30px ))`,  `ulu-vue.component-scroll-anchors-nav-animated-styles()`)
   - Get rid of symbols for provide/inject and use ulu and system name safe namespace
     - Easier to use/debug and work with, unify with the rest of the library
   -  `UluScrollAnchorsSection`- Added title slot

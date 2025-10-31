@@ -3,7 +3,7 @@
     v-if="sections && sections.length" 
     :is="element"
     class="scroll-anchors__nav scroll-anchors__nav--animated scroll-anchors-nav-animated"
-    :style="{ '--rail-width': `${railWidth}px` }"
+    :style="{ '--ulu-sa-nav-rail-width': `${ railWidth }px` }"
   >
     <ul class="scroll-anchors-nav-animated__rail">
       <li 

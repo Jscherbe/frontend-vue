@@ -8,6 +8,7 @@
 
 @use "@ulu/frontend/scss/selector";
 @use "@ulu/frontend/scss/utils";
+@use "@ulu/frontend/scss/color";
 
 // Used for function fallback
 $-fallbacks: () !default;
@@ -48,14 +49,14 @@ $config: (
     position: relative;
   }
   #{ $prefix }__rail {
-    border-left: var(--rail-width, 3px) solid get("rail-border-color");
+    border-left: var(--ulu-sa-nav-rail-width, 3px) solid color.get(get("rail-border-color"));
     padding-left: get("rail-padding");
   }
   #{ $prefix }__indicator {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: get("indicator-color");
+    background-color: color.get(get("indicator-color"));
     clip-path: get("indicator-clip-path");
   }
   #{ $prefix }__indicator--can-transition {
