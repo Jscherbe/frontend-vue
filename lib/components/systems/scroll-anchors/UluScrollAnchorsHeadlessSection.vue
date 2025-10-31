@@ -1,7 +1,11 @@
 <template>
-  <div ref="element" :class="['scroll-anchors__section', { 'is-active': isActive }]">
+  <component 
+    :is="element" 
+    :class="['scroll-anchors__section', { 'is-active': isActive }]"
+    ref="sectionRef" 
+  >
     <slot :isActive="isActive" :titleId="titleId" :section="section" />
-  </div>
+  </component>
 </template>
 
 <script setup>
@@ -19,7 +23,14 @@
      * A custom ID to use for the section anchor, overriding the auto-generated one
      */
     customTitleId: String,
+    /**
+     * Element to use 
+     */
+    element: {
+      type: String,
+      default: "div"
+    }
   });
 
-  const { element, titleId, isActive, section } = useScrollAnchorSection(props);
+  const { sectionRef, titleId, isActive, section } = useScrollAnchorSection(props);
 </script>

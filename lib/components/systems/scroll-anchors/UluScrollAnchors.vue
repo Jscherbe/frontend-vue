@@ -1,5 +1,5 @@
 <template>
-  <div class="scroll-anchors">
+  <div class="scroll-anchors" ref="componentEl">
     <slot/>
   </div>
 </template>
@@ -25,14 +25,19 @@
         threshold: 0,
         rootMargin: "-25% 0px -55% 0px"
       })
-    }
+    },
+    /**
+     * Enable debug logging for the IntersectionObserver
+     */
+    debug: Boolean
   });
 
   const emit = defineEmits(["section-change"]);
 
   const sections = ref([]);
+  const componentEl = ref(null);
 
-  useScrollAnchors({ sections, props, emit });
+  useScrollAnchors({ sections, props, emit, componentElRef: componentEl });
 
   provide('uluScrollAnchorsSections', computed(() => sections.value));
 

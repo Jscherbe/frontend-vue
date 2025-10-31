@@ -18,16 +18,16 @@ const props = defineProps({
   customTitleId: String,
 });
 
-const { element, titleId, isActive, section } = useScrollAnchorSection(props);
+const { sectionRef, titleId, isActive, section } = useScrollAnchorSection(props);
 </script>
 
 <template>
-  <div :class="['my-custom-section', { 'is-active': isActive }]" :ref="element">
-    <h2 :id="titleId">{{ props.title }}</h2>
+  <section :class="['my-custom-section', { 'is-active': isActive }]" :ref="sectionRef">
+    <h2 :id="titleId">{{ title }}</h2>
     <p>This section is {{ isActive ? 'active' : 'inactive' }}.</p>
     <!-- More content here -->
     <slot />
-  </div>
+  </section>
 </template>
 ```
 
@@ -42,7 +42,7 @@ The `useScrollAnchorSection` composable accepts a `props` object with the follow
 
 The composable returns an object with the following reactive properties:
 
-- `element`: A ref that should be bound to the root HTML element of your section component. This element is observed by `UluScrollAnchors` to determine the section's visibility.
+- `sectionRef`: A ref that should be bound to the root HTML element of your section component. This element is observed by `UluScrollAnchors` to determine the section's visibility.
 - `titleId` (ComputedRef): The unique ID for the section's title, used for anchor links.
 - `isActive` (ComputedRef): A boolean indicating whether the section is currently active (in view).
 - `section` (Reactive): The full reactive section object registered with `UluScrollAnchors`, containing `id`, `title`, `titleId`, `element`, and `active` state.
@@ -50,3 +50,4 @@ The composable returns an object with the following reactive properties:
 ## Integration with `UluScrollAnchors`
 
 This composable works in conjunction with the `UluScrollAnchors` component. When a component using `useScrollAnchorSection` is mounted within `UluScrollAnchors`, it automatically registers itself. `UluScrollAnchors` then tracks its visibility and updates the `isActive` state.
+` state.

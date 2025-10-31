@@ -10,30 +10,29 @@ component instead of using the default `UluScrollAnchors`.
 This composable is used to power a custom provider component. You would use it alongside the symbols from `symbols.js` to provide the context to child components.
 
 ```html
-<!-- MyCustomProvider.vue -->
 <script setup>
-import { ref, computed, provide } from "vue";
-import { useScrollAnchors } from './useScrollAnchors.js';
-import { SECTIONS, REGISTER, UNREGISTER } from "./symbols.js";
+  import { ref, computed, provide } from "vue";
+  import { useScrollAnchors } from './useScrollAnchors.js';
+  import { SECTIONS, REGISTER, UNREGISTER } from "./symbols.js";
 
-const props = defineProps({
-  firstItemActive: Boolean,
-  observerOptions: Object
-});
-const emit = defineEmits(['section-change']);
+  const props = defineProps({
+    firstItemActive: Boolean,
+    observerOptions: Object
+  });
+  const emit = defineEmits(['section-change']);
 
-const sections = ref([]);
+  const sections = ref([]);
 
-// Use the composable to handle the core logic
-useScrollAnchors({ sections, props, emit });
+  // Use the composable to handle the core logic
+  useScrollAnchors({ sections, props, emit });
 
-// Provide the state and registration functions to children
-provide(SECTIONS, computed(() => sections.value));
-provide(REGISTER, (section) => sections.value.push(section));
-provide(UNREGISTER, (sectionId) => {
-  const index = sections.value.findIndex(r => r.id === sectionId);
-  if (index > -1) sections.value.splice(index, 1);
-});
+  // Provide the state and registration functions to children
+  provide(SECTIONS, computed(() => sections.value));
+  provide(REGISTER, (section) => sections.value.push(section));
+  provide(UNREGISTER, (sectionId) => {
+    const index = sections.value.findIndex(r => r.id === sectionId);
+    if (index > -1) sections.value.splice(index, 1);
+  });
 </script>
 
 <template>
@@ -49,6 +48,7 @@ The `useScrollAnchors` composable accepts a single object with the following pro
 - `sections` (Ref): A `ref` to the array of section objects that will be tracked.
 - `props` (Object): A props object containing `observerOptions` and `firstItemActive`.
 - `emit` (Function): The `emit` function from the host component, used to emit the `section-change` event.
+- `root` (Ref): A `ref` to the scrollable root element. If not provided, the browser viewport is used.
 
 ## Returns
 

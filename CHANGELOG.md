@@ -4,6 +4,8 @@
 
 - `UluDataGrid` - Update to allow 'element' and 'hidden' props (documented in story)
 - **UluScrollAnchors System**
+  - When multiple sections are intersecting, it will now pick only one to be active based on the scroll direction (the last
+      one when scrolling down, the first one when scrolling up)
   - `UluScrollAnchorsNavAnimated` 
     - Add props (width, height, ...) which are added to documentation
     - `_scroll-anchors-nav-animated` - Add stylesheet for animated nav, the other components are not pre-styled as they are used in a variety of layouts in sites/apps

@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@floating-ui/vue": "^1.1.8",
-    "@ulu/utils": "^0.0.30",
+    "@ulu/utils": "^0.0.32",
     "lodash-es": "^4.17.21"
   },
   "devDependencies": {

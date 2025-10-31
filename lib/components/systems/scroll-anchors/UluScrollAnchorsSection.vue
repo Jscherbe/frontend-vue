@@ -1,12 +1,16 @@
 <template>
-  <div :class="[props.wrapperClass, { [props.activeClass] : props.activeClass && isActive }]" ref="element">
-    <component :is="props.titleElement" :class="props.titleClass" :id="titleId">
+  <component 
+    :is="element" 
+    :class="[wrapperClass, { [activeClass] : activeClass && isActive }]" 
+    ref="sectionRef"
+  >
+    <component :is="titleElement" :class="titleClass" :id="titleId">
       <slot name="title">
-        {{ props.title }}
+        {{ title }}
       </slot>
     </component>
     <slot :section="section"></slot>
-  </div>
+  </component>
 </template>
 
 <script setup>
@@ -48,8 +52,15 @@
     activeClass: {
       type: String,
       default: 'is-active'
+    },
+    /**
+     * The HTML element to use for the section root
+     */
+    element: {
+      type: String,
+      default: 'section'
     }
   });
 
-  const { element, titleId, isActive, section } = useScrollAnchorSection(props);
+  const { sectionRef, titleId, isActive, section } = useScrollAnchorSection(props);
 </script>
