@@ -4161,23 +4161,24 @@ const yh = /* @__PURE__ */ L(ta, [["render", sa]]), ph = {
     // New prop from SSR version
   },
   setup(e) {
-    const n = e, t = O(null);
-    let s = null, l = null;
+    const n = e, t = O(null), s = O(null);
+    let l = null, o = null;
     return Be(async () => {
-      s = () => al(t.value), s(), l = Kt(s, 200, !1), window.addEventListener("resize", l);
+      l = () => al(t.value), l(), s.value = !0, o = Kt(l, 200, !1), window.addEventListener("resize", o);
     }), bt(() => {
-      l && (window.removeEventListener("resize", l), l = null, s = null);
-    }), te(() => n.hidden, (o, a) => {
-      a && !o && s && s();
-    }), (o, a) => (u(), _(j(e.element), {
+      o && (window.removeEventListener("resize", o), o = null, l = null);
+    }), te(() => n.hidden, (a, r) => {
+      r && !a && l && l();
+    }), (a, r) => (u(), _(j(e.element), {
+      "data-grid-init": s.value,
       ref_key: "rootElement",
       ref: t
     }, {
       default: $(() => [
-        g(o.$slots, "default")
+        g(a.$slots, "default")
       ]),
       _: 3
-    }, 512));
+    }, 8, ["data-grid-init"]));
   }
 }, ja = {
   name: "UluTitleRail",

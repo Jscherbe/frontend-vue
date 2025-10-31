@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3-beta.12
+
+- `UluDataGrid` - Add correct [data-grid-init] flag after column positions are resolved, for CSS to show row/column rules correctly
+
 ## 0.1.3-beta.11
 
 - `UluDataGrid` - Update to allow 'element' and 'hidden' props (documented in story)

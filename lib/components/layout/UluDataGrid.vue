@@ -16,7 +16,11 @@
 -->
 
 <template>
-  <component :is="element" ref="rootElement">
+  <component 
+    :is="element" 
+    :data-grid-init="initialized"
+    ref="rootElement" 
+  >
     <slot />
   </component>
 </template>
@@ -42,12 +46,14 @@
   });
 
   const rootElement = ref(null); // Ref for the template root element
+  const initialized = ref(null);
   let setThisPositionClasses = null; // To store the setPositionClasses function
   let resizeHandler = null; // To store the debounced resize handler
 
   onMounted(async () => {
     setThisPositionClasses = () => setPositionClasses(rootElement.value);
     setThisPositionClasses(); // Initial call
+    initialized.value = true;
     resizeHandler = debounce(setThisPositionClasses, 200, false); // `this` context is not needed in setup
     window.addEventListener("resize", resizeHandler);
   });
