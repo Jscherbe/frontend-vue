@@ -6371,7 +6371,7 @@ const cm = {
     return (c, i) => k(t) && k(t).length ? (u(), _(j(e.element), {
       key: 0,
       class: "scroll-anchors__nav scroll-anchors__nav--animated scroll-anchors-nav-animated",
-      style: G({ "--rail-width": `${e.railWidth}px` })
+      style: G({ "--ulu-sa-nav-rail-width": `${e.railWidth}px` })
     }, {
       default: $(() => [
         h("ul", ni, [
