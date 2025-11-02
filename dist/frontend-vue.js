@@ -1,4 +1,4 @@
-import { reactive as lt, inject as Ae, ref as O, computed as w, watch as te, toRef as xs, createElementBlock as f, openBlock as u, normalizeStyle as G, unref as k, normalizeClass as m, createCommentVNode as p, createBlock as _, resolveDynamicComponent as j, normalizeProps as de, mergeProps as le, Fragment as U, createTextVNode as T, toDisplayString as S, Teleport as yt, createVNode as x, resolveDirective as Nn, withDirectives as ze, createElementVNode as h, renderSlot as g, withKeys as Wn, nextTick as Ke, markRaw as Oe, watchEffect as pt, defineAsyncComponent as Bs, toRefs as Es, toValue as ct, resolveComponent as Z, withModifiers as Rs, useSlots as Dn, renderList as R, TransitionGroup as qn, withCtx as $, onMounted as Be, onBeforeUnmount as bt, isRef as Is, hasInjectionContext as js, getCurrentInstance as Ms, onDeactivated as Fs, onActivated as Ps, onUnmounted as _t, guardReactiveProps as ve, h as zs, watchPostEffect as Ls, vModelText as Vs, vShow as zt, provide as Bt, createSlots as Fe } from "vue";
+import { reactive as lt, inject as Oe, ref as O, computed as w, watch as te, toRef as xs, createElementBlock as f, openBlock as u, normalizeStyle as G, unref as k, normalizeClass as m, createCommentVNode as p, createBlock as _, resolveDynamicComponent as j, normalizeProps as de, mergeProps as le, Fragment as U, createTextVNode as T, toDisplayString as S, Teleport as yt, createVNode as x, resolveDirective as Nn, withDirectives as ze, createElementVNode as h, renderSlot as g, withKeys as Wn, nextTick as Ke, markRaw as Ue, watchEffect as pt, defineAsyncComponent as Bs, toRefs as Es, toValue as ct, resolveComponent as Z, withModifiers as Rs, useSlots as Dn, renderList as R, TransitionGroup as qn, withCtx as $, onMounted as Ee, onBeforeUnmount as bt, createSlots as Te, isRef as Is, hasInjectionContext as js, getCurrentInstance as Ms, onDeactivated as Fs, onActivated as Ps, onUnmounted as _t, guardReactiveProps as ve, h as zs, watchPostEffect as Ls, vModelText as Vs, vShow as zt, provide as Bt } from "vue";
 import { useFloating as Hs, autoUpdate as Ns, inline as Ws, offset as Ds, flip as qs, shift as Xs, arrow as Gs } from "@floating-ui/vue";
 import { normalizeClasses as fn } from "@ulu/utils/templating.js";
 import { preventScroll as Ys, wasClickOutside as Ks, isBrowser as Js, getScrollParent as Qs } from "@ulu/utils/browser/dom.js";
@@ -93,7 +93,7 @@ const fl = {
   uluTooltipState: "Popovers"
 }, mn = {};
 function Ce(e) {
-  const n = Ae(e, mn);
+  const n = Oe(e, mn);
   if (n === mn) {
     const t = fl[e] || "", s = t ? ` from the '${t}' plugin` : "", l = t ? "Please install missing plugin." : "";
     throw new Error(`Required inject: '${e}'${s} was not provided. ${l}`);
@@ -389,11 +389,11 @@ const _l = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
         trigger: k(d),
         content: k(v),
         isOpen: k(i)
-      }, je = { isOpen: Se.isOpen };
+      }, Me = { isOpen: Se.isOpen };
       Ke(() => {
         i.value ? (A(), window.setTimeout(() => {
-          Y(), s.directFocus(Se), t("toggle", je);
-        }, 0)) : (J(), s.directFocus(Se), t("toggle", je));
+          Y(), s.directFocus(Se), t("toggle", Me);
+        }, 0)) : (J(), s.directFocus(Se), t("toggle", Me));
       });
     };
     let F;
@@ -405,7 +405,7 @@ const _l = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
       F && (document.removeEventListener("click", F), F = null);
     }, oe = () => I(!1);
     return (re, Se) => {
-      const je = Nn("ulu-tooltip");
+      const Me = Nn("ulu-tooltip");
       return u(), f(U, null, [
         ze((u(), f("button", {
           type: "button",
@@ -429,7 +429,7 @@ const _l = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
             T(S(e.triggerText), 1)
           ])
         ], 10, wl)), [
-          [je, e.tooltip ? e.tooltip : null]
+          [Me, e.tooltip ? e.tooltip : null]
         ]),
         h("span", {
           class: m(["popover", [
@@ -527,7 +527,7 @@ function Gf(e) {
 const St = "uluPopoverOptions", kt = "uluTooltipState", Kn = "ulu-global-tooltip", Lt = (e, n) => {
   if (e === !1 || e === null) return null;
   let t = e;
-  return (typeof t != "object" || Array.isArray(t)) && (t = { content: t }), t.component && (t.component = Oe(t.component)), { ...n, ...t };
+  return (typeof t != "object" || Array.isArray(t)) && (t = { content: t }), t.component && (t.component = Ue(t.component)), { ...n, ...t };
 };
 function Yf(e, n = {}) {
   const t = {
@@ -679,7 +679,7 @@ const q = {
     spaced: Boolean
   },
   setup(e) {
-    const n = Ae("uluCore"), t = O(null), { getIconProps: s, getClassesFromDefinition: l } = Ol();
+    const n = Oe("uluCore"), t = O(null), { getIconProps: s, getClassesFromDefinition: l } = Ol();
     let o;
     const a = e, r = w(() => n.getSetting("fontAwesomeStatic")), c = w(() => n.getSetting("iconComponent")), i = w(() => n.getSetting("iconPropResolver")), d = w(() => {
       const { icon: C } = a;
@@ -698,13 +698,13 @@ const q = {
       if (!r.value && d.value) {
         if (t.value === null)
           if (o)
-            t.value = Oe(o.FontAwesomeIcon);
+            t.value = Ue(o.FontAwesomeIcon);
           else {
             const C = Bs(async () => {
               const B = await import("@fortawesome/vue-fontawesome");
               return o = B, B.FontAwesomeIcon;
             });
-            t.value = Oe(C);
+            t.value = Ue(C);
           }
       } else
         t.value = null;
@@ -1045,7 +1045,7 @@ const Jn = /* @__PURE__ */ L(Ul, [["render", Il]]), Xe = [], jl = O({
 }, Ml = (e) => ({
   open(n, t = null) {
     const s = this.get(n);
-    Ge.active = Oe(s), Ge.activeProps = Object.assign({}, s.props, t);
+    Ge.active = Ue(s), Ge.activeProps = Object.assign({}, s.props, t);
   },
   /**
    * Close the active modal
@@ -1191,7 +1191,7 @@ const Qn = /* @__PURE__ */ L(Pl, [["render", Ll]]), vn = {
     /**
      * Component used to render the toast in the display
      */
-    component: Oe(Qn),
+    component: Ue(Qn),
     /**
      * Duration of toast
      */
@@ -1318,8 +1318,8 @@ function ql(e) {
     await new Promise((d) => {
       document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", () => d()) : d();
     });
-    const a = await import("@ulu/frontend/js/ui/breakpoints.js"), { BreakpointManager: r } = a, c = Oe(new r(n.plugin));
-    t.value = Oe(c);
+    const a = await import("@ulu/frontend/js/ui/breakpoints.js"), { BreakpointManager: r } = a, c = Ue(new r(n.plugin));
+    t.value = Ue(c);
     const i = () => {
       s.value = c.active, l.value = c.resizeDirection;
     };
@@ -1355,14 +1355,14 @@ function Qf(e, n) {
   } = ql(r);
   e.provide("uluBreakpointActive", w(() => i.value)), e.provide("uluBreakpointDirection", w(() => d.value)), e.provide("uluBreakpointManager", w(() => c.value)), e.provide("uluIsMobile", w(() => t.value));
 }
-const Ht = /* @__PURE__ */ new Set(), ne = /* @__PURE__ */ new WeakMap(), Ue = /* @__PURE__ */ new WeakMap(), ie = /* @__PURE__ */ new WeakMap(), Ze = /* @__PURE__ */ new WeakMap(), Rt = /* @__PURE__ */ new WeakMap(), Ye = /* @__PURE__ */ new WeakMap(), Te = /* @__PURE__ */ new WeakMap(), $e = /* @__PURE__ */ new WeakMap(), Me = /* @__PURE__ */ new WeakSet();
+const Ht = /* @__PURE__ */ new Set(), ne = /* @__PURE__ */ new WeakMap(), xe = /* @__PURE__ */ new WeakMap(), ie = /* @__PURE__ */ new WeakMap(), Ze = /* @__PURE__ */ new WeakMap(), Rt = /* @__PURE__ */ new WeakMap(), Ye = /* @__PURE__ */ new WeakMap(), Ae = /* @__PURE__ */ new WeakMap(), $e = /* @__PURE__ */ new WeakMap(), Fe = /* @__PURE__ */ new WeakSet();
 let ae, Jt = 0, Qt = 0;
 const _e = "__aa_tgt", et = "__aa_del", ht = "__aa_new", Zn = (e) => {
   const n = Jl(e);
   n && n.forEach((t) => Ql(t));
 }, Gl = (e) => {
   e.forEach((n) => {
-    n.target === ae && Yl(), ne.has(n.target) && Ee(n.target);
+    n.target === ae && Yl(), ne.has(n.target) && Re(n.target);
   });
 };
 function es(e) {
@@ -1381,7 +1381,7 @@ function Zt(e) {
     a - (t.top + l + t.height),
     t.left - l
   ].map((d) => `${-1 * Math.floor(d)}px`).join(" "), i = new IntersectionObserver(() => {
-    ++s > 1 && Ee(e);
+    ++s > 1 && Re(e);
   }, {
     root: ae,
     threshold: 1,
@@ -1389,7 +1389,7 @@ function Zt(e) {
   });
   i.observe(e), Ze.set(e, i);
 }
-function Ee(e, n = !0) {
+function Re(e, n = !0) {
   clearTimeout($e.get(e));
   const t = $t(e), s = n ? tt(t) ? 500 : t.duration : 0;
   $e.set(e, setTimeout(async () => {
@@ -1402,12 +1402,12 @@ function Ee(e, n = !0) {
 }
 function Yl() {
   clearTimeout($e.get(ae)), $e.set(ae, setTimeout(() => {
-    Ht.forEach((e) => ut(e, (n) => ts(() => Ee(n))));
+    Ht.forEach((e) => ut(e, (n) => ts(() => Re(n))));
   }, 100));
 }
 function Kl(e) {
   setTimeout(() => {
-    Ye.set(e, setInterval(() => ts(Ee.bind(null, e)), 2e3));
+    Ye.set(e, setInterval(() => ts(Re.bind(null, e)), 2e3));
   }, Math.round(2e3 * Math.random()));
 }
 function ts(e) {
@@ -1443,7 +1443,7 @@ function Jl(e) {
           const a = l.removedNodes[o];
           if (et in a)
             return !1;
-          a instanceof Element && (s.add(a), It(l.target, a), Ue.set(a, [
+          a instanceof Element && (s.add(a), It(l.target, a), xe.set(a, [
             l.previousSibling,
             l.nextSibling
           ]));
@@ -1458,7 +1458,7 @@ function It(e, n) {
 function Ql(e) {
   var n, t;
   const s = e.isConnected, l = ne.has(e);
-  s && Ue.has(e) && Ue.delete(e), ((n = ie.get(e)) === null || n === void 0 ? void 0 : n.playState) !== "finished" && ((t = ie.get(e)) === null || t === void 0 || t.cancel()), ht in e ? yn(e) : l && s ? eo(e) : l && !s ? to(e) : yn(e);
+  s && xe.has(e) && xe.delete(e), ((n = ie.get(e)) === null || n === void 0 ? void 0 : n.playState) !== "finished" && ((t = ie.get(e)) === null || t === void 0 || t.cancel()), ht in e ? yn(e) : l && s ? eo(e) : l && !s ? to(e) : yn(e);
 }
 function ge(e) {
   return Number(e.replace(/[^0-9.\-]/g, ""));
@@ -1491,7 +1491,7 @@ function ss(e, n, t) {
   return [s, o, l, a].map(Math.round);
 }
 function $t(e) {
-  return _e in e && Te.has(e[_e]) ? Te.get(e[_e]) : { duration: 250, easing: "ease-in-out" };
+  return _e in e && Ae.has(e[_e]) ? Ae.get(e[_e]) : { duration: 250, easing: "ease-in-out" };
 }
 function ls(e) {
   if (_e in e)
@@ -1499,13 +1499,13 @@ function ls(e) {
 }
 function en(e) {
   const n = ls(e);
-  return n ? Me.has(n) : !1;
+  return n ? Fe.has(n) : !1;
 }
 function ut(e, ...n) {
-  n.forEach((t) => t(e, Te.has(e)));
+  n.forEach((t) => t(e, Ae.has(e)));
   for (let t = 0; t < e.children.length; t++) {
     const s = e.children.item(t);
-    s && n.forEach((l) => l(s, Te.has(s)));
+    s && n.forEach((l) => l(s, Ae.has(s)));
   }
 }
 function tn(e) {
@@ -1543,7 +1543,7 @@ function eo(e) {
     const [o] = tn(l(e, "remain", n, t));
     s = new Animation(o), s.play();
   }
-  ie.set(e, s), ne.set(e, t), s.addEventListener("finish", Ee.bind(null, e, !1), {
+  ie.set(e, s), ne.set(e, t), s.addEventListener("finish", Re.bind(null, e, !1), {
     once: !0
   });
 }
@@ -1572,13 +1572,13 @@ function yn(e) {
     const [l] = tn(t(e, "add", n));
     s = new Animation(l), s.play();
   }
-  ie.set(e, s), s.addEventListener("finish", Ee.bind(null, e, !1), {
+  ie.set(e, s), s.addEventListener("finish", Re.bind(null, e, !1), {
     once: !0
   });
 }
 function pn(e, n) {
   var t;
-  e.remove(), ne.delete(e), Ue.delete(e), ie.delete(e), (t = Ze.get(e)) === null || t === void 0 || t.disconnect(), setTimeout(() => {
+  e.remove(), ne.delete(e), xe.delete(e), ie.delete(e), (t = Ze.get(e)) === null || t === void 0 || t.disconnect(), setTimeout(() => {
     if (et in e && delete e[et], Object.defineProperty(e, ht, { value: !0, configurable: !0 }), n && e instanceof HTMLElement)
       for (const s in n)
         e.style[s] = "";
@@ -1586,9 +1586,9 @@ function pn(e, n) {
 }
 function to(e) {
   var n;
-  if (!Ue.has(e) || !ne.has(e))
+  if (!xe.has(e) || !ne.has(e))
     return;
-  const [t, s] = Ue.get(e);
+  const [t, s] = xe.get(e);
   Object.defineProperty(e, et, { value: !0, configurable: !0 });
   const l = window.scrollX, o = window.scrollY;
   if (s && s.parentNode && s.parentNode instanceof Element ? s.parentNode.insertBefore(e, s) : t && t.parentNode ? t.parentNode.appendChild(e) : (n = ls(e)) === null || n === void 0 || n.appendChild(e), !en(e))
@@ -1660,7 +1660,7 @@ function so(e) {
 }
 function lo(e, n = {}) {
   if (ns && pe && !(window.matchMedia("(prefers-reduced-motion: reduce)").matches && !tt(n) && !n.disrespectUserMotionPreference)) {
-    Me.add(e), getComputedStyle(e).position === "static" && Object.assign(e.style, { position: "relative" }), ut(e, Ee, Kl, (a) => pe?.observe(a)), tt(n) ? Te.set(e, n) : Te.set(e, {
+    Fe.add(e), getComputedStyle(e).position === "static" && Object.assign(e.style, { position: "relative" }), ut(e, Re, Kl, (a) => pe?.observe(a)), tt(n) ? Ae.set(e, n) : Ae.set(e, {
       duration: 250,
       easing: "ease-in-out",
       ...n
@@ -1671,10 +1671,10 @@ function lo(e, n = {}) {
   return Object.freeze({
     parent: e,
     enable: () => {
-      Me.add(e);
+      Fe.add(e);
     },
     disable: () => {
-      Me.delete(e), ut(e, (s) => {
+      Fe.delete(e), ut(e, (s) => {
         const l = ie.get(s);
         try {
           l?.cancel();
@@ -1687,9 +1687,9 @@ function lo(e, n = {}) {
         a && clearInterval(a), Ye.delete(s);
       });
     },
-    isEnabled: () => Me.has(e),
+    isEnabled: () => Fe.has(e),
     destroy: () => {
-      Me.delete(e), Ht.delete(e), Te.delete(e);
+      Fe.delete(e), Ht.delete(e), Ae.delete(e);
       const s = Rt.get(e);
       s?.disconnect(), Rt.delete(e), ut(e, (l) => {
         pe?.unobserve(l);
@@ -1704,7 +1704,7 @@ function lo(e, n = {}) {
         const r = Ye.get(l);
         r && clearInterval(r), Ye.delete(l);
         const c = $e.get(l);
-        c && clearTimeout(c), $e.delete(l), ne.delete(l), Ue.delete(l);
+        c && clearTimeout(c), $e.delete(l), ne.delete(l), xe.delete(l);
       });
     }
   });
@@ -1715,7 +1715,7 @@ function oo(e) {
   function s(l) {
     t && (l ? t.enable() : t.disable());
   }
-  return Be(() => {
+  return Ee(() => {
     pt((l) => {
       let o;
       n.value instanceof HTMLElement ? o = n.value : n.value && "$el" in n.value && n.value.$el instanceof HTMLElement && (o = n.value.$el), o && (t = lo(o, e || {}), l(() => {
@@ -1778,7 +1778,7 @@ const ao = ["id", "aria-controls", "aria-expanded"], ro = ["id", "aria-hidden", 
   emits: ["update:modelValue"],
   setup(e, { emit: n }) {
     const t = e, s = n, l = w(() => typeof t.animate == "object" ? t.animate : {}), [o, a] = oo(l);
-    Be(() => {
+    Ee(() => {
       a(!!t.animate);
     }), te(() => t.animate, (A) => {
       a(!!A);
@@ -1958,17 +1958,42 @@ const ao = ["id", "aria-controls", "aria-expanded"], ro = ["id", "aria-hidden", 
         "onUpdate:modelValue": (c) => s(r, c),
         "trigger-text": a.title,
         classes: a.classes
-      }, {
-        default: $(() => [
+      }, Te({
+        default: $(({ isOpen: c, toggle: i }) => [
           g(l.$slots, "item", {
             item: a,
-            index: r
+            index: r,
+            isOpen: c,
+            toggle: i
           }, () => [
             T(S(a.content), 1)
           ])
         ]),
         _: 2
-      }, 1032, ["model-value", "onUpdate:modelValue", "trigger-text", "classes"]))), 128))
+      }, [
+        l.$slots.trigger ? {
+          name: "trigger",
+          fn: $(({ isOpen: c }) => [
+            g(l.$slots, "trigger", {
+              item: a,
+              index: r,
+              isOpen: c
+            })
+          ]),
+          key: "0"
+        } : void 0,
+        l.$slots.icon ? {
+          name: "icon",
+          fn: $(({ isOpen: c }) => [
+            g(l.$slots, "icon", {
+              item: a,
+              index: r,
+              isOpen: c
+            })
+          ]),
+          key: "1"
+        } : void 0
+      ]), 1032, ["model-value", "onUpdate:modelValue", "trigger-text", "classes"]))), 128))
     ]));
   }
 }, os = {
@@ -2321,7 +2346,7 @@ function Dt(e, n, t) {
 const go = (e, n) => Is(n) ? ct(n) : n, vo = "usehead";
 function yo() {
   if (js()) {
-    const e = Ae(vo);
+    const e = Oe(vo);
     if (!e)
       throw new Error("useHead() was called without provide context, ensure you call it through the setup() function.");
     return e;
@@ -2512,7 +2537,7 @@ const Ao = { class: "layout-flex-baseline" }, Oo = { class: "type-word-break" },
         l.value = r.offsetWidth < r.scrollWidth;
       });
     }, a = t(o);
-    return Be(o), _t(a), (r, c) => (u(), f("div", Ao, [
+    return Ee(o), _t(a), (r, c) => (u(), f("div", Ao, [
       h("div", {
         class: "type-truncate",
         ref_key: "text",
@@ -4163,7 +4188,7 @@ const yh = /* @__PURE__ */ L(ta, [["render", sa]]), ph = {
   setup(e) {
     const n = e, t = O(null), s = O(null);
     let l = null, o = null;
-    return Be(async () => {
+    return Ee(async () => {
       l = () => al(t.value), l(), s.value = !0, o = Kt(l, 200, !1), window.addEventListener("resize", o);
     }), bt(() => {
       o && (window.removeEventListener("resize", o), o = null, l = null);
@@ -5117,7 +5142,7 @@ const Yh = /* @__PURE__ */ L(gr, [["render", vr]]), yr = {
       };
       return n.status && (c[`progress-circle--${n.status}`] = !0), c;
     });
-    return Be(() => {
+    return Ee(() => {
       l();
     }), (c, i) => (u(), f("div", {
       class: m(r.value)
@@ -5283,7 +5308,7 @@ function Qh(e, n = {}) {
     const E = I.value[H.value]?.sort;
     return typeof E != "function" ? re.value : E([...re.value]);
   });
-  function je() {
+  function Me() {
     C.value.forEach((E) => {
       E.children && E.children.forEach((M) => M.selected = !1), E.selectedCount = 0;
     });
@@ -5377,7 +5402,7 @@ function Qh(e, n = {}) {
     sortTypes: I,
     displayItems: Se,
     selectedFacets: oe,
-    clearFilters: je,
+    clearFilters: Me,
     handleFacetChange: xt
   };
 }
@@ -6019,7 +6044,7 @@ const Er = ["onClick"], Zh = {
     }
   },
   setup(e) {
-    const n = O(!1), t = Ae("uluIsMobile"), s = O(null), l = O(null), o = w(() => t.value ? l.value : s.value);
+    const n = O(!1), t = Oe("uluIsMobile"), s = O(null), l = O(null), o = w(() => t.value ? l.value : s.value);
     return (a, r) => (u(), f("div", {
       class: m(["facets-sidebar", { "facets-sidebar--filters-hidden": k(t) }])
     }, [
@@ -6176,7 +6201,7 @@ function ei({ sections: e, props: n, emit: t, componentElRef: s }) {
   function i() {
     l && (l.disconnect(), l = null);
   }
-  Be(() => {
+  Ee(() => {
     if (n.firstItemActive && e.value.length > 0) {
       const d = e.value[0];
       d && (d.active = !0);
@@ -6191,7 +6216,7 @@ function ei({ sections: e, props: n, emit: t, componentElRef: s }) {
   });
 }
 function ds(e) {
-  const n = O(null), t = Ae("uluScrollAnchorsRegister"), s = Ae("uluScrollAnchorsUnregister"), l = (r) => `ulu-sa-${ul(r)}`, o = w(() => e.customTitleId || l(e.title)), a = lt({
+  const n = O(null), t = Oe("uluScrollAnchorsRegister"), s = Oe("uluScrollAnchorsUnregister"), l = (r) => `ulu-sa-${ul(r)}`, o = w(() => e.customTitleId || l(e.title)), a = lt({
     id: Symbol("section-id"),
     title: e.title,
     titleId: o.value,
@@ -6203,7 +6228,7 @@ function ds(e) {
     a.title = r, a.titleId = e.customTitleId || l(r);
   }), te(() => e.customTitleId, (r) => {
     a.titleId = r || l(e.title);
-  }), Be(() => {
+  }), Ee(() => {
     t && n.value && (a.element = n.value, t(a));
   }), _t(() => {
     s && s(a.id);
@@ -6216,7 +6241,7 @@ function ds(e) {
   };
 }
 function fs() {
-  const e = Ae("uluScrollAnchorsSections");
+  const e = Oe("uluScrollAnchorsSections");
   return e || console.warn("useScrollAnchorSections() must be used within an UluScrollAnchors component provider."), e;
 }
 const cm = {
@@ -7218,7 +7243,7 @@ function Di(e, n, t, s, l, o) {
         columnWidth: t.columnWidth,
         classes: t.classes,
         value: o.value
-      }, Fe({ _: 2 }, [
+      }, Te({ _: 2 }, [
         R(e.$slots, (r, c) => ({
           name: c,
           fn: $((i) => [
@@ -7239,7 +7264,7 @@ function Di(e, n, t, s, l, o) {
         classes: t.classes,
         value: o.value,
         foot: ""
-      }, Fe({ _: 2 }, [
+      }, Te({ _: 2 }, [
         R(e.$slots, (r, c) => ({
           name: c,
           fn: $((i) => [
@@ -7345,7 +7370,7 @@ function yc(e) {
   return !!wn && wn in e;
 }
 var pc = Function.prototype, bc = pc.toString;
-function Re(e) {
+function Ie(e) {
   if (e != null) {
     try {
       return bc.call(e);
@@ -7365,16 +7390,16 @@ function Ac(e) {
   if (!Ot(e) || yc(e))
     return !1;
   var n = vs(e) ? Tc : wc;
-  return n.test(Re(e));
+  return n.test(Ie(e));
 }
 function Oc(e, n) {
   return e?.[n];
 }
-function Ie(e, n) {
+function je(e, n) {
   var t = Oc(e, n);
   return Ac(t) ? t : void 0;
 }
-var nt = Ie(ye, "Map"), st = Ie(Object, "create");
+var nt = je(ye, "Map"), st = je(Object, "create");
 function Uc() {
   this.__data__ = st ? st(null) : {}, this.size = 0;
 }
@@ -7401,23 +7426,23 @@ function zc(e, n) {
   var t = this.__data__;
   return this.size += this.has(e) ? 0 : 1, t[e] = st && n === void 0 ? Pc : n, this;
 }
-function xe(e) {
+function Be(e) {
   var n = -1, t = e == null ? 0 : e.length;
   for (this.clear(); ++n < t; ) {
     var s = e[n];
     this.set(s[0], s[1]);
   }
 }
-xe.prototype.clear = Uc;
-xe.prototype.delete = xc;
-xe.prototype.get = Ic;
-xe.prototype.has = Fc;
-xe.prototype.set = zc;
+Be.prototype.clear = Uc;
+Be.prototype.delete = xc;
+Be.prototype.get = Ic;
+Be.prototype.has = Fc;
+Be.prototype.set = zc;
 function Lc() {
   this.size = 0, this.__data__ = {
-    hash: new xe(),
+    hash: new Be(),
     map: new (nt || we)(),
-    string: new xe()
+    string: new Be()
   };
 }
 function Vc(e) {
@@ -7481,7 +7506,7 @@ function Gc(e, n) {
 }
 var Sn = function() {
   try {
-    var e = Ie(Object, "defineProperty");
+    var e = je(Object, "defineProperty");
     return e({}, "", {}), e;
   } catch {
   }
@@ -7614,9 +7639,9 @@ function sd(e, n, t) {
 function ld(e) {
   return sd(e, Xu, ed);
 }
-var qt = Ie(ye, "DataView"), Xt = Ie(ye, "Promise"), Gt = Ie(ye, "Set"), Yt = Ie(ye, "WeakMap"), xn = "[object Map]", od = "[object Object]", Bn = "[object Promise]", En = "[object Set]", Rn = "[object WeakMap]", In = "[object DataView]", ad = Re(qt), rd = Re(nt), id = Re(Xt), cd = Re(Gt), ud = Re(Yt), be = ot;
+var qt = je(ye, "DataView"), Xt = je(ye, "Promise"), Gt = je(ye, "Set"), Yt = je(ye, "WeakMap"), xn = "[object Map]", od = "[object Object]", Bn = "[object Promise]", En = "[object Set]", Rn = "[object WeakMap]", In = "[object DataView]", ad = Ie(qt), rd = Ie(nt), id = Ie(Xt), cd = Ie(Gt), ud = Ie(Yt), be = ot;
 (qt && be(new qt(new ArrayBuffer(1))) != In || nt && be(new nt()) != xn || Xt && be(Xt.resolve()) != Bn || Gt && be(new Gt()) != En || Yt && be(new Yt()) != Rn) && (be = function(e) {
-  var n = ot(e), t = n == od ? e.constructor : void 0, s = t ? Re(t) : "";
+  var n = ot(e), t = n == od ? e.constructor : void 0, s = t ? Ie(t) : "";
   if (s)
     switch (s) {
       case ad:
@@ -8198,7 +8223,7 @@ function Uf(e, n, t, s, l, o) {
             width: l.tableWidth
           }),
           onColumnSorted: o.applySort
-        }, Fe({ _: 2 }, [
+        }, Te({ _: 2 }, [
           R(e.$slots, (r, c) => ({
             name: c,
             fn: $((i) => [
@@ -8224,7 +8249,7 @@ function Uf(e, n, t, s, l, o) {
           pointerEvents: o.headerVisibleX ? "auto" : "none"
         }),
         onColumnSorted: o.applySort
-      }, Fe({ _: 2 }, [
+      }, Te({ _: 2 }, [
         R(e.$slots, (r, c) => ({
           name: c,
           fn: $((i) => [
@@ -8295,7 +8320,7 @@ function Uf(e, n, t, s, l, o) {
         onActualHeaderRemoved: o.headerRemoved,
         onActualHeaderAdded: o.headerAdded,
         onColumnSorted: o.applySort
-      }, Fe({ _: 2 }, [
+      }, Te({ _: 2 }, [
         R(e.$slots, (r, c) => ({
           name: c,
           fn: $((i) => [
@@ -8324,7 +8349,7 @@ function Uf(e, n, t, s, l, o) {
         pointerEvents: o.headerVisibleX ? "auto" : "none"
       }),
       onColumnSorted: o.applySort
-    }, Fe({ _: 2 }, [
+    }, Te({ _: 2 }, [
       R(e.$slots, (r, c) => ({
         name: c,
         fn: $((i) => [

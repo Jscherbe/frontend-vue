@@ -8,9 +8,23 @@ declare const __VLS_component: import("vue").DefineComponent<{}, {
     items: unknown[];
 }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 type __VLS_Slots = {
+    trigger?: ((props: {
+        item: never;
+        index: number;
+        isOpen: boolean | undefined;
+    }) => any) | undefined;
+} & {
+    icon?: ((props: {
+        item: never;
+        index: number;
+        isOpen: boolean | undefined;
+    }) => any) | undefined;
+} & {
     item?: ((props: {
         item: never;
         index: number;
+        isOpen: true;
+        toggle: typeof toggle;
     }) => any) | undefined;
 };
 declare const props: {
