@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3-beta.14
+
+- `UluAccordionGroup` - Add trigger slot for theming trigger in each accordion
+
 ## 0.1.3-beta.13
 
 - `_scroll-anchors-nav-animated.scss` 

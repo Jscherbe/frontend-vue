@@ -8,9 +8,19 @@
       :trigger-text="item.title"
       :classes="item.classes"
     >
-      <slot name="item" :item="item" :index="index">
-        {{ item.content }}
-      </slot>
+      <template #trigger="{ isOpen }" v-if="$slots.trigger">
+        <slot name="trigger" :item="item" :index="index" :isOpen="isOpen"></slot>
+      </template>
+
+      <template #icon="{ isOpen }" v-if="$slots.icon">
+        <slot name="icon" :item="item" :index="index" :isOpen="isOpen"></slot>
+      </template>
+
+      <template #default="{ isOpen, toggle }">
+        <slot name="item" :item="item" :index="index" :isOpen="isOpen" :toggle="toggle">
+          {{ item.content }}
+        </slot>
+      </template>
     </UluAccordion>
   </div>
 </template>
