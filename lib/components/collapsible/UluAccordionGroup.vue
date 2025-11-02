@@ -7,6 +7,9 @@
       @update:modelValue="(newValue) => handleToggle(index, newValue)"
       :trigger-text="item.title"
       :classes="item.classes"
+      :trigger-text-element="triggerTextElement"
+      :modifiers="modifiers"
+      :animate="animate"
     >
       <template #trigger="{ isOpen }" v-if="$slots.trigger">
         <slot name="trigger" :item="item" :index="index" :isOpen="isOpen"></slot>
@@ -37,7 +40,28 @@ const props = defineProps({
   items: {
     type: Array,
     default: () => []
-  }
+  },
+  /**
+   * If using summary text sets the inner element the text is wrapped in, usually a headline or strong
+   */
+  triggerTextElement: {
+    type: String,
+    default: "strong"
+  },
+  /**
+   * Class modifiers (ie. 'transparent', 'secondary', etc)
+   */
+  modifiers: [String, Array],
+  /**
+   * Enable or configure animations.
+   * - `false` (default) to disable all animations.
+   * - `true` to enable animations with default settings.
+   * - An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' }).
+   */
+  animate: {
+    type: [Boolean, Object],
+    default: true
+  },
 });
 
 const internalItems = ref([]);

@@ -1936,6 +1936,27 @@ const ao = ["id", "aria-controls", "aria-expanded"], ro = ["id", "aria-hidden", 
     items: {
       type: Array,
       default: () => []
+    },
+    /**
+     * If using summary text sets the inner element the text is wrapped in, usually a headline or strong
+     */
+    triggerTextElement: {
+      type: String,
+      default: "strong"
+    },
+    /**
+     * Class modifiers (ie. 'transparent', 'secondary', etc)
+     */
+    modifiers: [String, Array],
+    /**
+     * Enable or configure animations.
+     * - `false` (default) to disable all animations.
+     * - `true` to enable animations with default settings.
+     * - An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' }).
+     */
+    animate: {
+      type: [Boolean, Object],
+      default: !0
     }
   },
   setup(e) {
@@ -1957,7 +1978,10 @@ const ao = ["id", "aria-controls", "aria-expanded"], ro = ["id", "aria-hidden", 
         "model-value": a.isOpen,
         "onUpdate:modelValue": (c) => s(r, c),
         "trigger-text": a.title,
-        classes: a.classes
+        classes: a.classes,
+        "trigger-text-element": e.triggerTextElement,
+        modifiers: e.modifiers,
+        animate: e.animate
       }, Te({
         default: $(({ isOpen: c, toggle: i }) => [
           g(l.$slots, "item", {
@@ -1993,7 +2017,7 @@ const ao = ["id", "aria-controls", "aria-expanded"], ro = ["id", "aria-hidden", 
           ]),
           key: "1"
         } : void 0
-      ]), 1032, ["model-value", "onUpdate:modelValue", "trigger-text", "classes"]))), 128))
+      ]), 1032, ["model-value", "onUpdate:modelValue", "trigger-text", "classes", "trigger-text-element", "modifiers", "animate"]))), 128))
     ]));
   }
 }, os = {

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3-beta.15
+
+- `UluAccordionGroup` - Make sure `UluAccordion` props are able to be populated from the group (triggerTextElement, modifiers, animate)
+
 ## 0.1.3-beta.14
 
 - `UluAccordionGroup` - Add trigger slot for theming trigger in each accordion
