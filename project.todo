@@ -6,6 +6,8 @@ Build/Deployment:
         * Results in the components using their own instance of settings.js 
         * This can be avoided by building it in vs using modules to manage singleton state 
 Todos:
+  ☐ UluWhenBreakpoint
+    ☐ This logic is off, in scss the breakpoints min/max are from the same edge in this you need to use the next step up. Probably how breakpoint manager logic is written, will probably need to be fixed there and would be breaking change @important
   ☐ Popovers
     ☐ Tooltip (when used in a dialog, and the element is removed from DOM, tooltip persists with no element reference, check directive)
        * This happened on a <dialog> <list view> <list item that is removed> <ulu button has tooltip and causes item removal>

@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.1.3-beta.16
+
+- **ScrollAnchors System** 
+  - Add state for (`inactive`, and `activeFrom`/`inactiveFrom` which are scroll direction states for animating with CSS)
+  - Add data-attribute to sections to express active/inactive and direction/from [above/below] to match how static js (Scrollpoint) library works. This is used for animating.
+
 ## 0.1.3-beta.15
 
 - `UluAccordionGroup` - Make sure `UluAccordion` props are able to be populated from the group (triggerTextElement, modifiers, animate)

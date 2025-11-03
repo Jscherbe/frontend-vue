@@ -1,7 +1,8 @@
 <template>
-  <component 
-    :is="element" 
-    :class="[wrapperClass, { [activeClass] : activeClass && isActive }]" 
+  <component
+    :is="element"
+    :class="[wrapperClass, { [activeClass]: activeClass && isActive }]"
+    :data-ulu-sa-section-state="sectionState"
     ref="sectionRef"
   >
     <component :is="titleElement" :class="titleClass" :id="titleId">
@@ -14,6 +15,7 @@
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { useScrollAnchorSection } from "./useScrollAnchorSection";
 
   const props = defineProps({
@@ -62,5 +64,14 @@
     }
   });
 
-  const { sectionRef, titleId, isActive, section } = useScrollAnchorSection(props);
+  const { sectionRef, titleId, isActive, inactiveFrom, activeFrom, section } = useScrollAnchorSection(props);
+
+  const sectionState = computed(() => {
+    if (isActive.value) {
+      if (activeFrom.value) return `enter-${activeFrom.value}`;
+    } else {
+      if (inactiveFrom.value) return `exit-${inactiveFrom.value}`;
+    }
+    return null;
+  });
 </script>
