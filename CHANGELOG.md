@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3-beta.17
+
+- **ScrollAnchors System** - Change vocabulary of inactiveFrom and activeFrom (from above/below to agnostic forward/reverse to match scrollpoints library)
+
 ## 0.1.3-beta.16
 
 - **ScrollAnchors System** 
