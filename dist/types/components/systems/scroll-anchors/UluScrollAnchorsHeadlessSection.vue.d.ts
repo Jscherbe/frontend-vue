@@ -14,6 +14,9 @@ type __VLS_Slots = {
         isActive: any;
         titleId: any;
         section: any;
+        inactiveFrom: any;
+        activeFrom: any;
+        sectionState: string | null;
     }) => any) | undefined;
 };
 declare const props: {

@@ -2,7 +2,7 @@
   <component
     :is="element"
     :class="[wrapperClass, { [activeClass]: activeClass && isActive }]"
-    :data-ulu-sa-section-state="sectionState"
+    :data-scrollpoint-state="sectionState"
     ref="sectionRef"
   >
     <component :is="titleElement" :class="titleClass" :id="titleId">

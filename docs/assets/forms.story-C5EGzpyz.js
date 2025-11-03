@@ -1,0 +1,3 @@
+import{I as o}from"./jsx-runtime-DfHDbGG1.js";import{useMDXComponents as e}from"./index-DIzwWG-n.js";import{C as m}from"./blocks-CW7Nbcw3.js";import{Default as i}from"./FullFormDemo.stories-DsVceYtc.js";import{r as c}from"./index-vwjNkSeb.js";import"./iframe-3_VkHyxI.js";import"./preload-helper-BJwshlQW.js";function r(t){const n={code:"code",h1:"h1",p:"p",...e(),...t.components};return o(c.Fragment,{children:[o(n.h1,{id:"forms",children:"Forms"}),`
+`,o(n.p,{children:["This is a demonstration of a full form built with the ",o(n.code,{children:"ulu-form"})," components."]}),`
+`,o(m,{of:i})]})}function l(t={}){const{wrapper:n}={...e(),...t.components};return n?o(n,{...t,children:o(r,{...t})}):r(t)}const C=[];export{C as __namedExportsOrder,l as default};

@@ -5,7 +5,7 @@
       'scroll-anchors__section',
       { 'is-active': isActive }
     ]"
-    :data-ulu-sa-section-state="sectionState"
+    :data-scrollpoint-state="sectionState"
     ref="sectionRef"
   >
     <slot :isActive="isActive" :titleId="titleId" :section="section" :inactiveFrom="inactiveFrom" :activeFrom="activeFrom" :sectionState="sectionState" />

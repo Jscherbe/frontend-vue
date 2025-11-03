@@ -5,6 +5,7 @@
 - **ScrollAnchors System** 
   - Add state for (`inactive`, and `activeFrom`/`inactiveFrom` which are scroll direction states for animating with CSS)
   - Add data-attribute to sections to express active/inactive and direction/from [above/below] to match how static js (Scrollpoint) library works. This is used for animating.
+    - The attribute matches the static version of this library [data-scrollpoint-state] to expose its state for CSS
 
 ## 0.1.3-beta.15
 
