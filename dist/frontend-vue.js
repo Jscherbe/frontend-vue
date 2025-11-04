@@ -4645,7 +4645,7 @@ const zh = /* @__PURE__ */ L(La, [["render", Va]]), Ha = ["aria-labelledby"], Na
     };
   }
 }, Ja = {}, Qa = {
-  class: "site-skip-link hidden-visually-focusable",
+  class: "skip-link hidden-visually-focusable",
   href: "#main-content"
 };
 function Za(e, n) {
