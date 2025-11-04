@@ -58,9 +58,9 @@
   };
 
   const tearDownHandlers = () => {
-    if (uluBreakpointManager) {
+    if (uluBreakpointManager.value) {
       handlers.value.forEach(({ name, direction, handler }) => {
-        uluBreakpointManager.at(name).remove(handler, direction);
+        uluBreakpointManager.value.at(name).remove(handler, direction);
       });
     }
     handlers.value = [];
@@ -77,9 +77,9 @@
   // Watch all the props and update if they change
   // - Using array syntax to avoid "deep" flag
   watch([() => props.max, () => props.min, () => props.only], () => {
-    if (uluBreakpointManager && handlersSetup.value) {
+    if (uluBreakpointManager.value && handlersSetup.value) {
       tearDownHandlers();
-      setupHandlers(uluBreakpointManager);
+      setupHandlers(uluBreakpointManager.value);
     }
   });
 

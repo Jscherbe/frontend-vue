@@ -4343,14 +4343,14 @@ const Fh = /* @__PURE__ */ L(ja, [["render", Ma]]), Mh = {
       };
       d("max"), d("min"), d("only"), o.value = !0;
     }, c = () => {
-      t && l.value.forEach(({ name: i, direction: d, handler: v }) => {
-        t.at(i).remove(v, d);
+      t.value && l.value.forEach(({ name: i, direction: d, handler: v }) => {
+        t.value.at(i).remove(v, d);
       }), l.value = [], s.value = {}, o.value = !1;
     };
     return te(t, (i) => {
       i && !o.value && r(i);
     }, { immediate: !0 }), te([() => n.max, () => n.min, () => n.only], () => {
-      t && o.value && (c(), r(t));
+      t.value && o.value && (c(), r(t.value));
     }), bt(() => {
       c();
     }), (i, d) => a.value ? g(i.$slots, "default", { key: 0 }) : p("", !0);
@@ -6171,7 +6171,7 @@ function ei({ sections: e, props: n, emit: t, componentElRef: s }) {
   }
   function a(d = null, v = "down") {
     e.value.forEach((y) => {
-      y !== d && (y.active && (y.inactiveFrom = v === "down" ? "above" : "below", y.activeFrom = null), y.active = !1);
+      y !== d && (y.active && (y.inactiveFrom = v === "down" ? "forward" : "reverse", y.activeFrom = null), y.active = !1);
     });
   }
   function r() {
@@ -6192,7 +6192,7 @@ function ei({ sections: e, props: n, emit: t, componentElRef: s }) {
         n.debug && console.log("Chosen target entry:", M.target);
         const X = e.value[o(M.target)];
         X && !X.active && (n.debug && console.log("Activating section:", X.title), Ke(() => {
-          a(X, K), X.active = !0, X.inactiveFrom = null, X.activeFrom = K === "down" ? "below" : "above", t("section-change", { section: X, sections: e.value, active: !0 });
+          a(X, K), X.active = !0, X.inactiveFrom = null, X.activeFrom = K === "down" ? "forward" : "reverse", t("section-change", { section: X, sections: e.value, active: !0 });
         }));
       } else {
         n.debug && console.log("No intersecting entries. Checking edge cases.");
