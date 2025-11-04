@@ -1,12 +1,12 @@
 # Change Log
 
-## 0.1.3-beta.18
+## 0.1.3-beta.19
 
 - `UluWhenBreakpoint` - Fix bug in underlying breakpointManager classes remove method, workaround in place until @ulu/frontend fix for underlying broken method is in place
 - `UluDataGrid` - Fix error on unmount setPositionClasses when root element is already removed
 - Update `@ulu/utils` dependency (for new debounce.cancel())
 
-## 0.1.3-beta.17
+## 0.1.3-beta.18
 
 - `UluWhenBreakpoint` - Fix errors/mistakes in accessing manager from reactive wrapper
 
