@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.1.3-beta.20
+
+- `UluSkipLink` - Fix incorrect frontend component class
+
 ## 0.1.3-beta.19
 
 - `UluWhenBreakpoint` - Fix bug in underlying breakpointManager classes remove method, workaround in place until @ulu/frontend fix for underlying broken method is in place
