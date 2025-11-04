@@ -51,7 +51,11 @@
   let resizeHandler = null; // To store the debounced resize handler
 
   onMounted(async () => {
-    setThisPositionClasses = () => setPositionClasses(rootElement.value);
+    setThisPositionClasses = () => {
+      if (rootElement.value) {
+        setPositionClasses(rootElement.value);
+      }
+    };
     setThisPositionClasses(); // Initial call
     initialized.value = true;
     resizeHandler = debounce(setThisPositionClasses, 200, false); // `this` context is not needed in setup
@@ -60,6 +64,7 @@
 
   onBeforeUnmount(() => {
     if (resizeHandler) {
+      resizeHandler.cancel();
       window.removeEventListener("resize", resizeHandler);
       resizeHandler = null;
       setThisPositionClasses = null; // Clear the function reference
