@@ -4,18 +4,25 @@
 ////
 
 @use "sass:map";
+@use "sass:meta";
 // @use "sass:selector" as sassSelector;
 @use "../typography";
 @use "../selector";
 @use "../utils";
 @use "../button";
+@use "../element";
+
+$-fallbacks: (
+  "icon-centered-vertical-offset": meta.get-function("get", false, "element")
+);
 
 /// Module Settings
 /// @type Map
 /// @prop {Dimension} icon-margin [1em] List of other sizes (large by default), each size is a map of (width, font-size) 
 
 $config: (
-  "icon-margin" : 0.5em
+  "icon-margin" : 0.5em,
+  "icon-centered-vertical-offset": 0
 ) !default;
 
 /// Change modules $config
@@ -33,7 +40,8 @@ $config: (
 ///   @include ulu.component-button-get("property");
 
 @function get($name) {
-  @return utils.require-map-get($config, $name, "component-button [config]");
+  $value: utils.require-map-get($config, $name, "component-button [config]");
+  @return utils.function-fallback($name, $value, $-fallbacks);
 }
 
 /// Output button component styles
@@ -55,6 +63,7 @@ $config: (
     @include button.default();
   }
   #{ $prefix }__icon {
+    @include element.icon-vert-translate(get("icon-centered-vertical-offset"));
     &:first-child {
       margin-right: get("icon-margin");
     }
@@ -68,14 +77,15 @@ $config: (
       @include button.size($size);
     }
   }
-
+  
   @each $style, $values in button.$styles {
     #{ $prefix }--#{$style} {
       @include button.style($style);
     }
   }
-
+  
   #{ $icon-selector } {
+    
     display: inline-flex;
     align-items: center;
     justify-content: center;

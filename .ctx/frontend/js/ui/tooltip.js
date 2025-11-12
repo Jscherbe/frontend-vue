@@ -2,8 +2,8 @@
  * @module ui/tooltip
  */
 
-import { ComponentInitializer } from "../utils/system.js";
-import { getName as getEventName } from "../events/index.js";
+import { ComponentInitializer } from "../core/component.js";
+import { getUluEventName } from "../core/events.js";
 import { createFloatingUi } from "../utils/floating-ui.js";
 import { createElementFromHtml } from "@ulu/utils/browser/dom.js";
 import { logError } from "../utils/class-logger.js";
@@ -26,7 +26,7 @@ const attrSelectorArrow = initializer.attributeSelector("arrow");
  */
 export function init() {
   initializer.init({
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     withData: true,
     setup({ element: trigger, data, initialize }) {
       const options = typeof data === "object" ? data : {};
@@ -261,7 +261,7 @@ export class Tooltip {
     }
   }
   createEvent(name, detail) {
-    return new CustomEvent(getEventName("tooltip:" + name), { detail });
+    return new CustomEvent(getUluEventName("tooltip:" + name), { detail });
   }
   createFloatingInstance() {
     this.floatingCleanup = createFloatingUi(this.elements, this.floatingOptions);

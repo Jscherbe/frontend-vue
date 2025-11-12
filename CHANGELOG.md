@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.2.0-beta.1
+
+- Update all @ulu/frontend dependencies (as that library has adjusted exports and other things). Incrementing version to match current minor version of @ulu/frontend
+- Internal fixes related to frontend BreakpointManager 
+
 ## 0.1.3-beta.20
 
 - `UluSkipLink` - Fix incorrect frontend component class

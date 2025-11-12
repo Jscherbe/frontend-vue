@@ -4,17 +4,17 @@
 
 // Pass breakpoints from CSS to stylesheet, use this to attach behaviors on breakpoints
 import { removeArrayElement } from "@ulu/utils/array.js";
-import { getName } from "../events/index.js";
-import { wrapSettingString } from "../settings.js";
+import { isBrowser } from "@ulu/utils/browser/dom.js";
+import { getCoreEventName } from "../core/events.js";
+import { wrapSettingString } from "../core/settings.js";
 import { getCustomProperty } from "../utils/css.js";
 import { log, logError } from "../utils/class-logger.js";
 
 const getDefaultCustomProperty = prefix => getCustomProperty(prefix, "breakpoint");
 
-// Resize Handler to update breakpoints for all instances (Called after resize finished)
-window.addEventListener(getName("pageResized"), () => {
-  BreakpointManager.instances.forEach(i => i.update());
-});
+if (isBrowser()) {
+  initResizeHandler();
+}
 
 /**
  * @class
@@ -110,28 +110,23 @@ export class BreakpointManager {
     const index = this.order.indexOf(name);
     this.active = name;
     this.activeIndex = index;
-    const activeBreakpoint = this.at(this.active);
-    // Get arrays of breakpoints based on the order array
-    const mapBreakpoints = n => this.at(n);
-    // From breakpoint to end (highest)
-    const max = this.order.slice(index).map(mapBreakpoints);
-    const notMax = this.order.slice(0, index).map(mapBreakpoints);
-    // From start up to this breakpoint
-    const min = this.order.slice(0, index + 1).map(mapBreakpoints);
-    const notMin = this.order.slice(index + 1).map(mapBreakpoints);
-    const notOnly = this.order.slice().map(mapBreakpoints);
-    notOnly.splice(index, 1);
-    
-    log(this, 'max:', max.map(b => b.name).join());
-    log(this, 'min:', min.map(b => b.name).join());
-    
-    max.forEach(b => b._setDirection('max', true));
-    min.forEach(b => b._setDirection('min', true));
-    activeBreakpoint._setDirection('only', true);
+    // const activeBreakpoint = this.at(this.active);
 
-    notMax.forEach(b => b._setDirection('max', false));
-    notMin.forEach(b => b._setDirection('min', false));
-    notOnly.forEach(b => b._setDirection('only', false));
+    // For each breakpoint, set its directional status based on the active index.
+    // This ensures the JS methods match the SCSS mixin behavior.
+    this.order.forEach((bpName, bpIndex) => {
+      const bp = this.breakpoints[bpName];
+      const activeIndex = this.activeIndex;
+
+      // at(NAME).min() is active if active breakpoint is >= NAME.
+      bp._setDirection('min', bpIndex <= activeIndex);
+
+      // at(NAME).max() is active if active breakpoint is < NAME.
+      bp._setDirection('max', bpIndex > activeIndex);
+
+      // at(NAME).only() is active if active breakpoint is == NAME.
+      bp._setDirection('only', bpIndex === activeIndex);
+    });
 
     // Set direction (extra info if needed)
     if (this.previousIndex !== null) {
@@ -246,18 +241,16 @@ class Breakpoint {
     this.directions[direction].change(active);
   }
   /**
-   * Attach handler to be executed from the breakpoint and to all breakpoints below.
-   * - If the browser resizes from a breakpoint below this breakpoint, 
-   *   and above the breakpoint name specified, this handler will fire
+   * Attach handler to be executed from the breakpoint and to all breakpoints below (inclusive).
+   * This corresponds to a `max-width` media query in SCSS.
    * @param {Function} handler Handler to be executed
    */    
   max(handler) {
     this.directions.max.add(handler);
   }
   /**
-   * Attach handler to be executed from the breakpoint and to all breakpoints below.
-   * - If the browser resizes from a breakpoint above this breakpoint, 
-   *   and below the breakpoint name specified, this handler will fire
+   * Attach handler to be executed from the breakpoint and to all breakpoints above (inclusive).
+   * This corresponds to a `min-width` media query in SCSS.
    * @param {Function} handler Handler to be executed
    */  
   min(handler) {
@@ -277,11 +270,23 @@ class Breakpoint {
    */      
   remove(handler, direction) {
     const directions = direction ? [ direction ] : ['max', 'min', 'only'];
-    directions.forEach(d => d.remove(handler));
+    directions.forEach(d => {
+      if (this.directions[d]) {
+        this.directions[d].remove(handler);
+      }
+    });
   }
   
   log(...msg) {
     msg.unshift(`Breakpoint (${ this.name }):`);
     this._manager.log.apply(this._manager, msg);
   }
+}
+
+// Resize Handler to update breakpoints for all instances (Called after resize finished)
+// - Only setup in browser environment
+function initResizeHandler() {
+  window.addEventListener(getCoreEventName("pageResized"), () => {
+    BreakpointManager.instances.forEach(i => i.update());
+  });
 }

@@ -3,9 +3,9 @@
  * @description Note this module needs to be initialized before dialogs!
  */
 
-import { ComponentInitializer } from "../utils/system.js";
-import { wrapSettingString } from "../settings.js";
-import { getName } from "../events/index.js";
+import { ComponentInitializer } from "../core/component.js";
+import { wrapSettingString } from "../core/settings.js";
+import { getCoreEventName } from "../core/events.js";
 import { Resizer } from "./resizer.js";
 import { baseAttribute, closeAttribute, defaults as dialogDefaults } from "./dialog.js";
 import { getElement } from "@ulu/utils/browser/dom.js";
@@ -158,7 +158,7 @@ export function setDefaults(options) {
 export function init() {
   initializer.init({
     withData: true,
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     setup({ element, data }) {
       buildModal(element, data);
     }
@@ -228,11 +228,11 @@ export function buildModal(content, options) {
 
   if (config.print) {
     let printClone;
-    document.addEventListener(getName("beforePrint"), () => {
+    document.addEventListener(getCoreEventName("beforePrint"), () => {
       printClone = content.cloneNode(true);
       modal.after(printClone);
     });
-    document.addEventListener(getName("afterPrint"), () => {
+    document.addEventListener(getCoreEventName("afterPrint"), () => {
       printClone.remove();
     });
   }

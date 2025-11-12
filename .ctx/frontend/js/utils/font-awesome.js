@@ -1,9 +1,9 @@
 /**
- * @module settings
+ * @module utils/font-awesome
  * @description Utility module for setting up Font Awesome
  */
 
-import { updateSettings } from "../settings.js";
+import { updateSettings } from "../core/settings.js";
 
 /**
  * Sets icon settings to Font Awesome icons

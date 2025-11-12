@@ -2,7 +2,7 @@
  * @module ui/popover
  */
 
-import { ComponentInitializer } from "../utils/system.js";
+import { ComponentInitializer } from "../core/component.js";
 import { createFloatingUi } from "../utils/floating-ui.js";
 import { Collapsible } from "./collapsible.js";
 
@@ -37,7 +37,7 @@ export function init() {
   initializer.init({
     key: "trigger",
     withData: true,
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     setup({ element, data, initialize }) {
       if (instances.has(element)) return;
       const resolved = resolve(element, data);

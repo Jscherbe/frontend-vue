@@ -102,7 +102,28 @@ $config: (
   "compact-selectable-input-font-size": 0.8em,
   "selectable-input-width" : 3em,
   "selectable-input-top" : 0.73em,
-  "selectable-input-font-size" : null
+  "selectable-input-font-size" : null,
+  // new configs
+  "parent-font-weight" : bold,
+  "parent-separator-enabled": true,
+  "parent-separator-color" : "rule",
+  "parent-rule-style" : "light",
+  "parent-separated-margin" : false,
+
+  "plain-link-padding-y" : 0,
+  "plain-link-margin" : 0.2em,
+  "plain-link-font-weight": null,
+  "plain-link-line-height": null,
+  "plain-link-color": "link",
+  "plain-link-color-hover": "link-hover",
+
+  "multi-column-gap" : 2rem,
+) !default;
+
+$styles: (
+  "test" : (
+    // "link-margin" : 4rem,
+  ),
 ) !default;
 
 
@@ -113,6 +134,14 @@ $config: (
 
 @mixin set($changes) {
   $config: map.merge($config, $changes) !global;
+}
+
+/// Set tag styles 
+/// @param {Map} $changes Map of changes
+/// @param {String} $merge-mode Merge mode see utils.map-merge() [null|"deep"|"overwrite"]
+
+@mixin set-styles($changes, $merge-mode: null) {
+  $styles: utils.map-merge($styles, $changes, $merge-mode) !global;
 }
 
 /// Get a config option
@@ -154,6 +183,9 @@ $config: (
       @include typography.size(get("label-type-size"), $only-font-size: true);
     }
   }
+  #{ $prefix }__item {
+    display: flow-root;
+  }
   #{ $prefix }__item--separator-before {
     border-top: element.get-rule-style(-fallback("link-separated-rule-style", "rule-style"));
     margin-top: -fallback("link-separated-margin", "link-padding-y");
@@ -169,10 +201,25 @@ $config: (
       padding-left: get("nested-indent");
     }
   }
+
+  @if get("parent-separator-enabled") {
+    #{ $prefix }__item--parent {
+      border-bottom: element.get-rule-style(-fallback("parent-rule-style", "rule-style"));
+      margin-bottom: -fallback("parent-separated-margin", "link-padding-y");
+      padding-bottom: -fallback("parent-separated-margin", "link-padding-y");
+      #{ $prefix }__link {
+        font-weight: get("parent-font-weight");
+      }
+    }
+  }
+  
+
   // By default the link hangs outside the container so that 
   // the icons/text align to the text (above/below)
   // - Use the modifier "site-menu--contained" to keep the links within 
   //   the parent container (no optical alignment), should be within something that contains it
+
+  // add __toggle to these styles
   #{ $prefix }__link,
   #{ $prefix }__selectable,
   #{ $prefix }__toggle {
@@ -259,7 +306,7 @@ $config: (
     // padding-right: get("link-padding-x");
     > #{ $prefix }__list > #{ $prefix }__item {
       > #{ $prefix }__link, 
-      >#{ $prefix }__collapsible > #{ $prefix }__toggle {
+      >#{ $prefix }__collapsible {
         margin-left: -(get("link-padding-x"));
         margin-right: -(get("link-padding-x"));
         width: calc(100% + (get("link-padding-x") * 2));
@@ -270,15 +317,39 @@ $config: (
     //   width: auto;
     // }
   }
+
+  // new
+  #{ $prefix }--plain {
+    #{ $prefix }__link,
+    #{ $prefix }__selectable,
+    #{ $prefix }__toggle {
+      // should all of these styles use fallbacks instead of having defaults match the regular link styles? Padding-y is an exception since that needs a different styling.
+      padding: get("plain-link-padding-y") 0;
+      margin: get("plain-link-margin") 0;
+      border-radius: 0;
+      font-weight: get("plain-link-font-weight");
+      line-height: -fallback("plain-link-line-height", "link-line-height");
+      color: color.get(get("plain-link-color"));
+      background-color: transparent;
+      &:hover,
+      &:focus {
+        color: color.get(get("plain-link-color-hover"));
+        background-color: transparent;
+      }
+    }
+  }
+
   #{ $prefix }--compact {
     $compact-y: get("compact-link-padding-y");
     $compact-x: get("compact-link-padding-x");
 
     #{ $prefix }__selectable,
+    #{ $prefix }__toggle,
     #{ $prefix }__link {
       border-radius: 0;
       margin: 0;
     }
+    #{ $prefix }__toggle,
     #{ $prefix }__link {
       padding: $compact-y $compact-x;
     }
@@ -308,4 +379,36 @@ $config: (
       padding-left: get("link-padding-x");
     }
   }
+
+  #{ $prefix }--multi-column {
+    > #{ $prefix }__list {
+      display: grid;
+      grid-auto-flow: column;
+      gap: get("multi-column-gap");
+    }
+  }
+
+  @each $name, $style in $styles {
+    #{ $prefix }--#{ $name } {
+      #{ $prefix }__link,
+      #{ $prefix }__selectable,
+      #{ $prefix }__toggle {
+        padding: map.get($style, "link-padding-y") map.get($style, "link-padding-x");
+        border-radius: map.get($style, "link-border-radius");
+        font-weight: map.get($style, "link-font-weight");
+        line-height: map.get($style, "link-line-height");
+        color: color.get(map.get($style, "link-color"));
+        background-color: color.get(map.get($style, "link-background-color"));
+        @if map.get($style, "link-margin") {
+          margin: map.get($style, "link-margin") 0;
+        }
+        &:hover,
+        &:focus {
+          color: color.get(map.get($style, "link-color-hover"));
+          background-color: color.get(map.get($style, "link-background-color-hover"));
+        }
+      }
+    }
+  }
+
 }

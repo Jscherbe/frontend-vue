@@ -30,8 +30,8 @@
 //                            https://dev.opera.com/articles/css-will-change-property/
 //                              * Will Change use
 
-import { ComponentInitializer } from "../utils/system.js";
-import { wrapSettingString } from "../settings.js";
+import { ComponentInitializer } from "../core/component.js";
+import { wrapSettingString } from "../core/settings.js";
 import maintain from 'ally.js/maintain/_maintain';
 import { hasRequiredProps } from '@ulu/utils/object.js';
 import { trimWhitespace } from "@ulu/utils/string.js";
@@ -77,7 +77,7 @@ const requiredElements = [
 export function init() {
   initializer.init({
     withData: true,
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     setup({ element, data, initialize }) {
       setupSlider(element, data);
       initialize();

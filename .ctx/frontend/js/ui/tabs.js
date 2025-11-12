@@ -9,7 +9,7 @@
 //   setting this up to destroy tab interface when ui layout changes?
 
 import AriaTablist from "aria-tablist";
-import { ComponentInitializer } from "../utils/system.js";
+import { ComponentInitializer } from "../core/component.js";
 
 /**
  * Array of current tab instances (exported if you need to interact with them)
@@ -31,7 +31,7 @@ export const initializer = new ComponentInitializer({
 export function init() {
   const initial = () => {
     initializer.init({
-      events: ["pageModified"],
+      coreEvents: ["pageModified"],
       withData: true,
       setup({ element, data, initialize }) {
         setup(element, data);

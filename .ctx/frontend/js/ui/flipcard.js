@@ -2,7 +2,7 @@
  * @module ui/flipcard
  */
 
-import { ComponentInitializer } from "../utils/system.js";
+import { ComponentInitializer } from "../core/component.js";
 import { trimWhitespace } from "@ulu/utils/string.js";
 import { log, logError } from "../utils/class-logger.js";
 
@@ -20,7 +20,7 @@ export const initializer = new ComponentInitializer({
 export function init() {
   initializer.init({
     withData: true,
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     setup({ element, data, initialize }) {
       const options = Object.assign({}, data);
       const front = element.querySelector(initializer.attributeSelector("front"));

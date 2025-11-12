@@ -9,7 +9,7 @@
  * uses the elements .click(). Uses data-attributes for selection by default.
  */
 
-import { ComponentInitializer } from "../utils/system.js";
+import { ComponentInitializer } from "../core/component.js";
 
 /**
  * Proxy Click Component Initializer
@@ -45,7 +45,7 @@ export function setDefaults(options) {
 export function init() {
   initializer.init({
     withData: true,
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     setup({ element, data, initialize }) {
       setupProxy(element, data);
       initialize();

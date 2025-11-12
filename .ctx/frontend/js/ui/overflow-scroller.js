@@ -10,7 +10,7 @@
  * @todo - Document that user could use something like [https://github.com/LachlanArthur/scroll-snap-api/tree/master/src] to have it go between items
  * 
  */
-import { wrapSettingString } from "../settings.js";
+import { wrapSettingString } from "../core/settings.js";
 import { hasRequiredProps } from '@ulu/utils/object.js';
 import { logError } from "../utils/class-logger.js";
 const requiredElements = [
@@ -35,7 +35,7 @@ export class OverflowScroller {
     if (!hasRequiredProps(requiredElements)) {
       logError(this, 'Missing a required Element');
     }
-    console.log(elements)
+    // console.log(elements)
     this.elements = {
       ...elements,
       ...this.createControls(elements.controls)

@@ -2,7 +2,7 @@
  * @module ui/collapsible
  */
 
-import { getName as getEventName } from "../events/index.js";
+import { getUluEventName } from "../core/events.js";
 import { log, logError } from "../utils/class-logger.js";
 import { ensureId } from "../utils/id.js";
 
@@ -110,7 +110,7 @@ export class Collapsible {
     this.setState(startOpen);
   }
   createEvent(name, detail) {
-    return new CustomEvent(getEventName("collapsible:" + name), { detail });
+    return new CustomEvent(getUluEventName("collapsible:" + name), { detail });
   }
   setState(isOpen, event) {
     const ctx = { 

@@ -2,7 +2,7 @@
  * @module ui/scroll-slider
  */
 
-import { ComponentInitializer } from "../utils/system.js";
+import { ComponentInitializer } from "../core/component.js";
 import { OverflowScroller } from "./overflow-scroller.js";
 import { createPager } from "./overflow-scroller-pager.js";
 
@@ -28,7 +28,7 @@ const defaults = {
 export function init() {
   initializer.init({
     withData: true,
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     setup({ element, data, initialize }) {
       setupSlider(element, data);
       initialize();

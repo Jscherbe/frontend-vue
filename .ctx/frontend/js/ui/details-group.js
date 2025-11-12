@@ -3,7 +3,7 @@
  * @description Manages groups of details (ie. onlyOneOpen at a time)
  */
 
-import { ComponentInitializer } from "../utils/system.js";
+import { ComponentInitializer } from "../core/component.js";
 
 /**
  * Dialog Component Initializer
@@ -26,7 +26,7 @@ const defaults = {
 export function init() {
   initializer.init({
     withData: true,
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     setup({ element, data, initialize }) {
       setupGroup(element, data);
       initialize();

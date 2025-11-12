@@ -63,13 +63,10 @@
         const breakpoint = uluBreakpointManager.value.at(name);
         if (breakpoint) {
           try {
-            // HACK: The breakpoint.remove method is bugged, this is the correct implementation
-            if (breakpoint.directions[direction]) {
-              breakpoint.directions[direction].remove(handler);
-            }
+            breakpoint.remove(handler, direction);
           } catch (error) {
             console.error(error);
-          }
+          }        
         }
       });
     }

@@ -2,7 +2,7 @@
  * @module ui/grid
  */
 
-import { ComponentInitializer } from "../utils/system.js";
+import { ComponentInitializer } from "../core/component.js";
 import { setPositionClasses } from "../utils/dom.js";
 
 /**
@@ -19,7 +19,7 @@ export const initializer = new ComponentInitializer({
  */
 export function init(classes) {
   initializer.init({
-    events: ["pageModified", "pageResized"],
+    coreEvents: ["pageModified", "pageResized"],
     setup({ element, initialize }) {
       setPositionClasses(element, classes);
       initialize();

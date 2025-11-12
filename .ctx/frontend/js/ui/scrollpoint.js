@@ -3,7 +3,7 @@
  * @description Module that uses intersection observer to add scrollpoint like behavior.
  */
 
-import { ComponentInitializer } from "../utils/system.js";
+import { ComponentInitializer } from "../core/component.js";
 import { logError } from "../utils/class-logger.js";
 import { getElement } from "@ulu/utils/browser/dom.js";
 
@@ -32,7 +32,7 @@ export const initializer = new ComponentInitializer({
 export function init() {
   initializer.init({
     withData: true,
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     setup({ element, data, initialize }) {
       const config = Object.assign({}, data);
       (new Scrollpoint(element, config));

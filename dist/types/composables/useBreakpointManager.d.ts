@@ -8,7 +8,7 @@
  * @param {Function} [options.onReady] - A callback function that receives the `BreakpointManager` instance once it's initialized.
  * @param {object} [options.plugin] - Options to pass directly to the underlying `BreakpointManager` library.
  * @returns {{
- *   breakpointManager: import('vue').Ref<import('@ulu/frontend/js/ui/breakpoints.js').BreakpointManager | null>,
+ *   breakpointManager: import('vue').Ref<import('@ulu/frontend').BreakpointManager | null>,
  *   breakpointActive: import('vue').Ref<string | null>,
  *   breakpointDirection: import('vue').Ref<string | null>
  * }} An object containing reactive refs for:
@@ -21,7 +21,7 @@ export function useBreakpointManager(options: {
     onReady?: Function | undefined;
     plugin?: object | undefined;
 }): {
-    breakpointManager: import("vue").Ref<any | null>;
+    breakpointManager: import("vue").Ref<import("@ulu/frontend").BreakpointManager | null>;
     breakpointActive: import("vue").Ref<string | null>;
     breakpointDirection: import("vue").Ref<string | null>;
 };

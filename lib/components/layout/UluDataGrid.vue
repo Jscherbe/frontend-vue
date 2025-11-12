@@ -28,7 +28,7 @@
 <script setup>
   import { ref, onMounted, onBeforeUnmount, watch } from "vue";
   import { debounce } from "@ulu/utils/performance.js";
-  import { setPositionClasses } from "@ulu/frontend/js/utils/dom.js";
+  import { setPositionClasses } from "@ulu/frontend";
 
   const props = defineProps({
     /**

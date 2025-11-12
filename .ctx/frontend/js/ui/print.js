@@ -2,7 +2,7 @@
  * @module ui/print
  */
 
-import { ComponentInitializer } from "../utils/system.js";
+import { ComponentInitializer } from "../core/component.js";
 import { getElement } from "@ulu/utils/browser/dom.js";
 import { printElement } from "@ulu/utils/browser/print.js";
 
@@ -28,7 +28,7 @@ const defaults = {
 export function init() {
   initializer.init({
     withData: true,
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     setup({ element, data, initialize }) {
       setupTrigger(element, data);
       initialize();

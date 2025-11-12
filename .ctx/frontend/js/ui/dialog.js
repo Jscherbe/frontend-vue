@@ -2,8 +2,8 @@
  * @module ui/dialog
  */
 
-import { getName } from "../events/index.js";
-import { ComponentInitializer } from "../utils/system.js";
+import { getUluEventName } from "../core/events.js";
+import { ComponentInitializer } from "../core/component.js";
 import { wasClickOutside, preventScroll as setupPreventScroll } from "@ulu/utils/browser/dom.js";
 import { pauseVideos as pauseYoutubeVideos, prepVideos as prepYoutubeVideos } from "../utils/pause-youtube-video.js";
 
@@ -73,7 +73,7 @@ export function setDefaults(options) {
 export function init() {
   // Initialize all the dialogs
   initializer.init({
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     withData: true,
     setup({ element, initialize, data }) {
       setupDialog(element, data);
@@ -84,7 +84,7 @@ export function init() {
   // Initialize all triggers (things that trigger opening a dialog)
   initializer.init({
     key: "trigger",
-    events: ["pageModified"],
+    coreEvents: ["pageModified"],
     withData: true,
     setup({ element, initialize, data: dialogId }) {
       setupTrigger(element, dialogId);
@@ -137,8 +137,8 @@ export function setupDialog(dialog, userOptions) {
   // is finished which is after the click is complete
   let activeResizePointer;
 
-  dialog.addEventListener(getName("resizer:start"), handleResizeStart);
-  dialog.addEventListener(getName("resizer:end"), handleResizeEnd);
+  dialog.addEventListener(getUluEventName("resizer:start"), handleResizeStart);
+  dialog.addEventListener(getUluEventName("resizer:end"), handleResizeEnd);
   dialog.addEventListener("click", handleClicks);
 
   if (options.documentEnd) {

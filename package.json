@@ -1,6 +1,6 @@
 {
   "name": "@ulu/frontend-vue",
-  "version": "0.1.3-beta.20",
+  "version": "0.2.0-beta.1",
   "description": "A modular and tree-shakeable Vue 3 component library for the Ulu frontend",
   "type": "module",
   "files": [
@@ -30,7 +30,7 @@
     "build": "vite build",
     "types": "vue-tsc",
     "deploy": "rm -rf dist && npm run types && npm run build && npm run docs:build",
-    "update-contexts": "rm -rf .ctx && mkdir -p .ctx/frontend && cp -R node_modules/@ulu/frontend/scss node_modules/@ulu/frontend/js .ctx/frontend/"
+    "update-contexts": "rm -rf .ctx && mkdir -p .ctx/frontend && cp -R node_modules/@ulu/frontend/lib/scss node_modules/@ulu/frontend/lib/js .ctx/frontend/"
   },
   "keywords": [
     "vue",
@@ -52,7 +52,7 @@
   "peerDependencies": {
     "@formkit/auto-animate": "^0.9.0",
     "@headlessui/vue": "^1.7.23",
-    "@ulu/frontend": "^0.1.0-beta.123",
+    "@ulu/frontend": "^0.2.0-beta.3",
     "@unhead/vue": "^2.0.11",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1"
@@ -77,7 +77,7 @@
     "@storybook/addon-essentials": "^9.0.0-alpha.12",
     "@storybook/addon-links": "^9.1.1",
     "@storybook/vue3-vite": "^9.1.1",
-    "@ulu/frontend": "^0.1.0-beta.123",
+    "@ulu/frontend": "^0.2.0-beta.3",
     "@unhead/vue": "^2.0.11",
     "@vitejs/plugin-vue": "^6.0.0",
     "ollama": "^0.5.16",
