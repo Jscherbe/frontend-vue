@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0-beta.2
+
+- `UluCard` | Fix issue resolving ref element when using `titleTo` and `proxyClick` props
+
 ## 0.2.0-beta.1
 
 - Update all @ulu/frontend dependencies (as that library has adjusted exports and other things). Incrementing version to match current minor version of @ulu/frontend

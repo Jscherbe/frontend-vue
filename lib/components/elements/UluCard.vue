@@ -82,6 +82,7 @@
   import { ref, computed, useSlots } from 'vue';
   import { RouterLink } from "vue-router";
   import { useModifiers } from "../../composables/useModifiers.js";
+  import { refToElement } from '../../utils/dom.js';
 
   const props = defineProps({
     /**
@@ -241,7 +242,12 @@
     const { mousedownDurationPrevent } = resolvedProxyOptions.value;
     if (timeStamp - proxyStart.value < mousedownDurationPrevent) {
       if (isTitleProxy.value) {
-        link.value?.click();
+        const linkEl = refToElement(link.value);
+        if (linkEl) {
+          linkEl.click();
+        } else {
+          console.warn("Unable to resolve title link ref");
+        }
       } else if (isEventProxy.value) {
         const proxyTarget = cardRoot.value?.querySelector('[data-ulu-card-proxy-target]');
         if (proxyTarget) {
