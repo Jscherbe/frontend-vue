@@ -1,6 +1,5 @@
 # Change Log
 
-
 ## 0.2.0-beta.3
 
 - Updated how dependencies are configured in package json 
