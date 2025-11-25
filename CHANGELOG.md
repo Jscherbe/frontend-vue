@@ -1,5 +1,10 @@
 # Change Log
 
+
+## 0.2.0-beta.3
+
+- Updated how dependencies are configured in package json 
+
 ## 0.2.0-beta.2
 
 - `UluCard` | Fix issue resolving ref element when using `titleTo` and `proxyClick` props
