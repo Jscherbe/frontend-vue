@@ -1,0 +1,1 @@
+{"version":3,"file":"useWindowResize.d.ts","sourceRoot":"","sources":["../../lib/composables/useWindowResize.js"],"names":[],"mappings":"AAiDA;;;;;;;;;;;;;GAaG;AACH,mCATa;IACR,QAAQ,EAAE,OAAO,KAAK,EAAE,GAAG,CAAC,OAAO,CAAC,CAAC;IACrC,aAAa,EAAE,CAAC,QAAQ,UAAU,aAAa,CAAC;IAChD,WAAW,EAAE,CAAC,QAAQ,UAAU,aAAa,CAAA;CAC9C,CAeH"}

@@ -1,10 +1,10 @@
+import * as e from "./utils/index.js";
 import { default as t } from "./plugins/core/index.js";
 import { default as l } from "./plugins/popovers/index.js";
-import { default as f } from "./plugins/modals/index.js";
-import { default as m } from "./plugins/toast/index.js";
-import { default as d } from "./plugins/breakpoints/index.js";
-import * as e from "./utils/index.js";
-import { default as U } from "./plugins/popovers/useTooltipFollow.js";
+import { default as f } from "./plugins/popovers/useTooltipFollow.js";
+import { default as m } from "./plugins/modals/index.js";
+import { default as d } from "./plugins/toast/index.js";
+import { default as U } from "./plugins/breakpoints/index.js";
 import { default as n } from "./components/collapsible/UluAccordion.vue.js";
 import { default as S } from "./components/collapsible/UluAccordionGroup.vue.js";
 import { default as h } from "./components/collapsible/UluCollapsible.vue.js";
@@ -197,11 +197,11 @@ export {
   $ as UluTag,
   _o as UluTitleRail,
   Ee as UluWhenBreakpoint,
-  d as breakpointsPlugin,
+  U as breakpointsPlugin,
   t as corePlugin,
-  f as modalsPlugin,
+  m as modalsPlugin,
   l as popoversPlugin,
-  m as toastPlugin,
+  d as toastPlugin,
   Yr as useBreakpointManager,
   et as useDocumentTitle,
   br as useFacets,
@@ -213,7 +213,7 @@ export {
   Lr as useScrollAnchorSections,
   kr as useScrollAnchors,
   Go as useTooltip,
-  U as useTooltipFollow,
+  f as useTooltipFollow,
   rt as useUluFloating,
   Jr as useWindowResize,
   e as utils

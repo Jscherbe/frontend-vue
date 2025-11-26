@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.2.0-beta.4
+
+- Updated vite config to bundle library with preserveModules 
+  - Improve tree-shaking
+  - Allow user to be able to see inner library deps when using things like rollup bundle analyzer
+  - Same API for importing modules just different bundle structure under the hood
+
 ## 0.2.0-beta.3
 
 - Updated how dependencies are configured in package json 

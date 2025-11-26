@@ -1,6 +1,6 @@
 {
   "name": "@ulu/frontend-vue",
-  "version": "0.2.0-beta.3",
+  "version": "0.2.0-beta.4",
   "description": "A modular and tree-shakeable Vue 3 component library for the Ulu frontend",
   "type": "module",
   "files": [
@@ -9,21 +9,22 @@
   ],
   "module": "./dist/index.js",
   "sideEffects": [
-    "lib/plugins/*.js",
-    "lib/composables/useWindowResize.js"
+    "dist/composables/useBreakpointManager.js",
+    "dist/composables/useDocumentTitle.js",
+    "dist/composables/useWindowResize.js"
   ],
   "exports": {
     ".": {
       "import": "./dist/index.js",
-      "types": "./dist/types/index.d.ts"
+      "types": "./dist/index.d.ts"
     },
     "./scss": "./lib/_index.scss",
-    "./resolver": {
-      "import": "./lib/resolver.js",
-      "types": "./dist/types/resolver.d.ts"
+    "./*": {
+      "import": "./dist/*.js",
+      "types": "./dist/*.d.ts"
     }
   },
-  "types": "./dist/types/index.d.ts",
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jscherbe/frontend-vue.git"
@@ -32,8 +33,9 @@
     "dev": "storybook dev -p 6006",
     "docs:build": "storybook build -o docs",
     "build": "vite build",
-    "types": "vue-tsc",
-    "deploy": "rm -rf dist && npm run types && npm run build && npm run docs:build",
+    "types_TRASH": "vue-tsc",
+    "deploy_TRASH": "rm -rf dist && npm run types && npm run build && npm run docs:build",
+    "deploy": "npm run build && npm run docs:build",
     "update-contexts": "rm -rf .ctx && mkdir -p .ctx/frontend && cp -R node_modules/@ulu/frontend/lib/scss node_modules/@ulu/frontend/lib/js .ctx/frontend/"
   },
   "keywords": [
@@ -62,16 +64,15 @@
     "@headlessui/vue": "^1.7.23",
     "@portabletext/vue": "^1.0.14",
     "@ulu/frontend": "^0.2.0-beta.4",
+    "@ulu/utils": "^0.0.33",
     "@unhead/vue": "^2.0.11",
     "fuse.js": "^6.6.2",
     "gsap": "^3.13.0",
+    "lodash-es": "^4.17.21",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1",
-    "vue3-dropzone": "^2.2.1",
-    "@ulu/utils": "^0.0.33",
-    "lodash-es": "^4.17.21"
+    "vue3-dropzone": "^2.2.1"
   },
-  "dependencies": {},
   "devDependencies": {
     "@floating-ui/vue": "^1.1.8",
     "@formkit/auto-animate": "^0.9.0",
@@ -98,6 +99,7 @@
     "storybook-addon-vue-mdx": "^2.0.2",
     "typescript": "^5.3.3",
     "vite": "^7.0.0",
+    "vite-plugin-dts": "^4.5.4",
     "vue": "^3.5.17",
     "vue-router": "^4.5.1",
     "vue-tsc": "^3.0.6",
