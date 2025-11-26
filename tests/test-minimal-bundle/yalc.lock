@@ -2,7 +2,7 @@
   "version": "v1",
   "packages": {
     "@ulu/frontend-vue": {
-      "signature": "4c292663948f3e77191678fd99fa3601",
+      "signature": "cecf10d0180d58a8a42b8fb79337ae2d",
       "file": true,
       "replaced": "^0.2.0-beta.3"
     }

@@ -1,1 +1,15 @@
-import{toRefs as m,computed as u,toValue as e}from"vue";import{normalizeClasses as s}from"@ulu/utils/templating.js";function v({props:r,baseClass:i,internal:n={}}){const{modifiers:t}=m(r);return{resolvedModifiers:u(()=>{const o=e(i),f=s(e(t)),l=s(e(n));if(!o)return console.warn("useModifiers: Missing 'baseClass' argument, modifiers will not be applied."),"";const a=new Set([...l,...f]);return Array.from(a).map(d=>`${o}--${d}`)})}}export{v as useModifiers};
+import { toRefs as m, computed as u, toValue as e } from "vue";
+import { normalizeClasses as s } from "@ulu/utils/templating.js";
+function v({ props: r, baseClass: i, internal: n = {} }) {
+  const { modifiers: t } = m(r);
+  return { resolvedModifiers: u(() => {
+    const o = e(i), f = s(e(t)), l = s(e(n));
+    if (!o)
+      return console.warn("useModifiers: Missing 'baseClass' argument, modifiers will not be applied."), "";
+    const a = /* @__PURE__ */ new Set([...l, ...f]);
+    return Array.from(a).map((d) => `${o}--${d}`);
+  }) };
+}
+export {
+  v as useModifiers
+};

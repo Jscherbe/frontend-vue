@@ -1,1 +1,20 @@
-import{renderSlot as n,createBlock as r,openBlock as t}from"vue";import l from"./UluSkeletonText.vue.js";const m={__name:"UluShowSkeleton",props:{when:Boolean},setup(e){return(o,a)=>e.when?(t(),r(l,{key:1,inline:""})):n(o.$slots,"default",{key:0})}};export{m as default};
+import { renderSlot as n, createBlock as r, openBlock as t } from "vue";
+import l from "./UluSkeletonText.vue.js";
+const m = {
+  __name: "UluShowSkeleton",
+  props: {
+    /**
+     * If true will show whatever is passed to slot, else skeleton text
+     */
+    when: Boolean
+  },
+  setup(e) {
+    return (o, a) => e.when ? (t(), r(l, {
+      key: 1,
+      inline: ""
+    })) : n(o.$slots, "default", { key: 0 });
+  }
+};
+export {
+  m as default
+};

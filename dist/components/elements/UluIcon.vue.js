@@ -1,1 +1,55 @@
-import{__vitePreload as k}from"../../_virtual/preload-helper.js";import{inject as A,ref as S,computed as e,watchEffect as h,defineAsyncComponent as B,markRaw as v,createBlock as p,createElementBlock as F,createCommentVNode as D,openBlock as i,resolveDynamicComponent as f,mergeProps as d,normalizeClass as E}from"vue";import{useIcon as R}from"../../composables/useIcon.js";const O={__name:"UluIcon",props:{icon:[String,Array,Object,Boolean],spaced:Boolean},setup(g){const s=A("uluCore"),l=S(null),{getIconProps:_,getClassesFromDefinition:y}=R();let a;const m=g,r=e(()=>s.getSetting("fontAwesomeStatic")),c=e(()=>s.getSetting("iconComponent")),C=e(()=>s.getSetting("iconPropResolver")),o=e(()=>{const{icon:n}=m;if(typeof n=="string"&&n.startsWith("type:"))try{const t=n.substring(5);return s.getIcon(t)}catch(t){return console.warn(t),null}return n}),I=e(()=>!c.value||!o.value?null:C.value(o.value)),P=e(()=>_(o.value)),w=e(()=>y(o.value)),u=e(()=>({"flow-inline":m.spaced}));return h(async()=>{if(!r.value&&o.value){if(l.value===null)if(a)l.value=v(a.FontAwesomeIcon);else{const n=B(async()=>{const t=await k(()=>import("@fortawesome/vue-fontawesome"),[]);return a=t,t.FontAwesomeIcon});l.value=v(n)}}else l.value=null}),(n,t)=>c.value?(i(),p(f(c.value),d({key:0},I.value,{class:u.value}),null,16,["class"])):!r.value&&l.value&&o.value?(i(),p(f(l.value),d({key:1},P.value,{class:u.value}),null,16,["class"])):r.value&&o.value?(i(),F("span",{key:2,class:E([w.value,u.value]),"aria-hidden":"true"},null,2)):D("",!0)}};export{O as default};
+import { inject as S, ref as _, computed as e, watchEffect as h, defineAsyncComponent as A, markRaw as v, createBlock as p, createElementBlock as B, createCommentVNode as F, openBlock as i, resolveDynamicComponent as f, mergeProps as g, normalizeClass as D } from "vue";
+import { useIcon as R } from "../../composables/useIcon.js";
+const x = {
+  __name: "UluIcon",
+  props: {
+    /**
+     * Icon definition can be string (fa classes), or array or object (any prop format FaIcon accepts)
+     * - This will override the 'type' prop if both are provided
+     */
+    icon: [String, Array, Object, Boolean],
+    /**
+     * Whether the icon should use flow inline
+     */
+    spaced: Boolean
+  },
+  setup(y) {
+    const s = S("uluCore"), l = _(null), { getIconProps: C, getClassesFromDefinition: d } = R();
+    let a;
+    const m = y, c = e(() => s.getSetting("fontAwesomeStatic")), r = e(() => s.getSetting("iconComponent")), I = e(() => s.getSetting("iconPropResolver")), n = e(() => {
+      const { icon: o } = m;
+      if (typeof o == "string" && o.startsWith("type:"))
+        try {
+          const t = o.substring(5);
+          return s.getIcon(t);
+        } catch (t) {
+          return console.warn(t), null;
+        }
+      return o;
+    }), w = e(() => !r.value || !n.value ? null : I.value(n.value)), k = e(() => C(n.value)), P = e(() => d(n.value)), u = e(() => ({
+      "flow-inline": m.spaced
+    }));
+    return h(async () => {
+      if (!c.value && n.value) {
+        if (l.value === null)
+          if (a)
+            l.value = v(a.FontAwesomeIcon);
+          else {
+            const o = A(async () => {
+              const t = await import("@fortawesome/vue-fontawesome");
+              return a = t, t.FontAwesomeIcon;
+            });
+            l.value = v(o);
+          }
+      } else
+        l.value = null;
+    }), (o, t) => r.value ? (i(), p(f(r.value), g({ key: 0 }, w.value, { class: u.value }), null, 16, ["class"])) : !c.value && l.value && n.value ? (i(), p(f(l.value), g({ key: 1 }, k.value, { class: u.value }), null, 16, ["class"])) : c.value && n.value ? (i(), B("span", {
+      key: 2,
+      class: D([P.value, u.value]),
+      "aria-hidden": "true"
+    }, null, 2)) : F("", !0);
+  }
+};
+export {
+  x as default
+};

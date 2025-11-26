@@ -1,1 +1,33 @@
-import{ref as u}from"vue";import{debounce as f}from"@ulu/utils/performance.js";const t=u(!1),n={start:[],end:[]};function r(){window.removeEventListener("resize",r),t.value=!0,n.start.forEach(e=>e())}function c(){t.value=!1,n.end.forEach(e=>e()),window.addEventListener("resize",r)}window.addEventListener("resize",r),window.addEventListener("resize",f(c,300));function s(e,i){return e.push(i),()=>{const o=e.findIndex(d=>d===i);o>-1&&e.splice(o)}}function z(){return{resizing:t,onResizeStart(e){return s(n.start,e)},onResizeEnd(e){return s(n.end,e)}}}export{z as useWindowResize};
+import { ref as u } from "vue";
+import { debounce as f } from "@ulu/utils/performance.js";
+const t = u(!1), n = {
+  start: [],
+  end: []
+};
+function r() {
+  window.removeEventListener("resize", r), t.value = !0, n.start.forEach((e) => e());
+}
+function c() {
+  t.value = !1, n.end.forEach((e) => e()), window.addEventListener("resize", r);
+}
+window.addEventListener("resize", r), window.addEventListener("resize", f(c, 300));
+function s(e, i) {
+  return e.push(i), () => {
+    const o = e.findIndex((d) => d === i);
+    o > -1 && e.splice(o);
+  };
+}
+function z() {
+  return {
+    resizing: t,
+    onResizeStart(e) {
+      return s(n.start, e);
+    },
+    onResizeEnd(e) {
+      return s(n.end, e);
+    }
+  };
+}
+export {
+  z as useWindowResize
+};

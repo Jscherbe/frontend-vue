@@ -1,1 +1,94 @@
-import{createElementBlock as o,openBlock as s,Fragment as y,renderList as x,createBlock as m,withCtx as i,createVNode as d,createCommentVNode as b,normalizeClass as C,createTextVNode as f,toDisplayString as u,renderSlot as N}from"vue";import g from"./UluFacetsList.vue.js";import h from"../../collapsible/UluCollapsible.vue.js";const V={class:"facets-filters"},U={__name:"UluFacetsFilterLists",props:{classes:{type:Object,default:()=>({})},maxVisible:{type:Number,default:5},facets:{type:Array,default:()=>[]},compact:Boolean},emits:["facet-change"],setup(t,{emit:p}){const r=p,n=l=>l.multiple?l.children.filter(a=>a.selected).map(a=>a.uid):l.children.find(a=>a.selected)?.uid||"";return(l,a)=>(s(),o("div",V,[(s(!0),o(y,null,x(t.facets,e=>(s(),m(h,{key:e.uid,classes:{container:["facets-filters__group",t.classes.group],containerOpen:["facets-filters__group--open",t.classes.groupOpen],containerClosed:["facets-filters__group--closed",t.classes.groupClosed],trigger:["facets-filters__group-trigger",t.classes.groupTrigger],content:["facets-filters__group-content",t.classes.groupContent]},startOpen:e.open},{trigger:i(({isOpen:c})=>[N(l.$slots,"groupTrigger",{group:e,isOpen:c},()=>[f(u(e.name),1)])]),default:i(()=>[d(g,{children:e.children.slice(0,t.maxVisible),groupUid:e.uid,groupName:e.name,type:e.multiple?"checkbox":"radio",compact:t.compact,"model-value":n(e),onFacetChange:a[0]||(a[0]=c=>r("facet-change",c))},null,8,["children","groupUid","groupName","type","compact","model-value"]),e.children.length>t.maxVisible?(s(),m(h,{key:0,class:C(["facets-filters__more-facets",t.classes.moreFacets])},{trigger:i(({isOpen:c})=>[f(u(c?"View Less":"Show More"),1)]),default:i(()=>[d(g,{children:e.children.slice(t.maxVisible),groupUid:e.uid,groupName:e.name,type:e.multiple?"checkbox":"radio",compact:t.compact,"model-value":n(e),onFacetChange:a[1]||(a[1]=c=>r("facet-change",c))},null,8,["children","groupUid","groupName","type","compact","model-value"])]),_:2},1032,["class"])):b("",!0)]),_:2},1032,["classes","startOpen"]))),128))]))}};export{U as default};
+import { createElementBlock as o, openBlock as s, Fragment as y, renderList as x, createBlock as m, withCtx as i, createVNode as d, createCommentVNode as b, normalizeClass as C, createTextVNode as f, toDisplayString as u, renderSlot as N } from "vue";
+import g from "./UluFacetsList.vue.js";
+import h from "../../collapsible/UluCollapsible.vue.js";
+const V = { class: "facets-filters" }, U = {
+  __name: "UluFacetsFilterLists",
+  props: {
+    /**
+     * An object of classes to apply to the component.
+     */
+    classes: {
+      type: Object,
+      default: () => ({})
+    },
+    /**
+     * The maximum number of facets to show before showing the "More" button.
+     */
+    maxVisible: {
+      type: Number,
+      default: 5
+    },
+    /**
+     * An array of facet groups to display.
+     */
+    facets: {
+      type: Array,
+      default: () => []
+    },
+    /**
+     * Whether to use compact modifier on selectable menu
+     */
+    compact: Boolean
+  },
+  emits: ["facet-change"],
+  setup(t, { emit: p }) {
+    const r = p, n = (l) => l.multiple ? l.children.filter((a) => a.selected).map((a) => a.uid) : l.children.find((a) => a.selected)?.uid || "";
+    return (l, a) => (s(), o("div", V, [
+      (s(!0), o(y, null, x(t.facets, (e) => (s(), m(h, {
+        key: e.uid,
+        classes: {
+          container: ["facets-filters__group", t.classes.group],
+          containerOpen: ["facets-filters__group--open", t.classes.groupOpen],
+          containerClosed: ["facets-filters__group--closed", t.classes.groupClosed],
+          trigger: ["facets-filters__group-trigger", t.classes.groupTrigger],
+          content: ["facets-filters__group-content", t.classes.groupContent]
+        },
+        startOpen: e.open
+      }, {
+        trigger: i(({ isOpen: c }) => [
+          N(l.$slots, "groupTrigger", {
+            group: e,
+            isOpen: c
+          }, () => [
+            f(u(e.name), 1)
+          ])
+        ]),
+        default: i(() => [
+          d(g, {
+            children: e.children.slice(0, t.maxVisible),
+            groupUid: e.uid,
+            groupName: e.name,
+            type: e.multiple ? "checkbox" : "radio",
+            compact: t.compact,
+            "model-value": n(e),
+            onFacetChange: a[0] || (a[0] = (c) => r("facet-change", c))
+          }, null, 8, ["children", "groupUid", "groupName", "type", "compact", "model-value"]),
+          e.children.length > t.maxVisible ? (s(), m(h, {
+            key: 0,
+            class: C(["facets-filters__more-facets", t.classes.moreFacets])
+          }, {
+            trigger: i(({ isOpen: c }) => [
+              f(u(c ? "View Less" : "Show More"), 1)
+            ]),
+            default: i(() => [
+              d(g, {
+                children: e.children.slice(t.maxVisible),
+                groupUid: e.uid,
+                groupName: e.name,
+                type: e.multiple ? "checkbox" : "radio",
+                compact: t.compact,
+                "model-value": n(e),
+                onFacetChange: a[1] || (a[1] = (c) => r("facet-change", c))
+              }, null, 8, ["children", "groupUid", "groupName", "type", "compact", "model-value"])
+            ]),
+            _: 2
+          }, 1032, ["class"])) : b("", !0)
+        ]),
+        _: 2
+      }, 1032, ["classes", "startOpen"]))), 128))
+    ]));
+  }
+};
+export {
+  U as default
+};

@@ -1,1 +1,34 @@
-import{ref as a,inject as m,computed as l,reactive as d,watch as s,onMounted as v,onUnmounted as f}from"vue";import{urlize as I}from"@ulu/utils/string.js";function g(e){const c=a(null),o=m("uluScrollAnchorsRegister"),u=m("uluScrollAnchorsUnregister"),n=i=>`ulu-sa-${I(i)}`,r=l(()=>e.customTitleId||n(e.title)),t=d({id:Symbol("section-id"),title:e.title,titleId:r.value,element:null,active:!1,inactiveFrom:null,activeFrom:null});return s(()=>e.title,i=>{t.title=i,t.titleId=e.customTitleId||n(i)}),s(()=>e.customTitleId,i=>{t.titleId=i||n(e.title)}),v(()=>{o&&c.value&&(t.element=c.value,o(t))}),f(()=>{u&&u(t.id)}),{sectionRef:c,titleId:r,isActive:l(()=>t.active),inactiveFrom:l(()=>t.inactiveFrom),activeFrom:l(()=>t.activeFrom),section:t}}export{g as useScrollAnchorSection};
+import { ref as a, inject as m, computed as l, reactive as d, watch as s, onMounted as v, onUnmounted as f } from "vue";
+import { urlize as I } from "@ulu/utils/string.js";
+function g(e) {
+  const c = a(null), o = m("uluScrollAnchorsRegister"), u = m("uluScrollAnchorsUnregister"), n = (i) => `ulu-sa-${I(i)}`, r = l(() => e.customTitleId || n(e.title)), t = d({
+    id: Symbol("section-id"),
+    title: e.title,
+    titleId: r.value,
+    element: null,
+    // will be set on mount
+    active: !1,
+    inactiveFrom: null,
+    activeFrom: null
+  });
+  return s(() => e.title, (i) => {
+    t.title = i, t.titleId = e.customTitleId || n(i);
+  }), s(() => e.customTitleId, (i) => {
+    t.titleId = i || n(e.title);
+  }), v(() => {
+    o && c.value && (t.element = c.value, o(t));
+  }), f(() => {
+    u && u(t.id);
+  }), {
+    sectionRef: c,
+    // the ref for the user to attach
+    titleId: r,
+    isActive: l(() => t.active),
+    inactiveFrom: l(() => t.inactiveFrom),
+    activeFrom: l(() => t.activeFrom),
+    section: t
+  };
+}
+export {
+  g as useScrollAnchorSection
+};

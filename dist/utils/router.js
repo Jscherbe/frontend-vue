@@ -1,1 +1,127 @@
-function m(t,e){let n=(t?.meta||{}).title;return typeof n=="function"&&(n=n(e||t)),n}function j(t,e){const n=Object.assign({},{qualifier(c,l){return l?b(c):$(c)},sort:p,item:{},includeChildren:!1},e),s=(c,l)=>l?`${l}/${c.path}`:c.path,i=(c,l=null)=>c.filter(u=>n.qualifier(u,l)).map(u=>{const a=u.children?g(u.children):u,f=u.children?u.children.filter(d=>d.path!==""):!1,o=h(a,s(u,l),n.item);return n.includeChildren&&f.length&&(o.children=i(f,o.path)),o}).sort(n.sort);return i(t)}function w(t){function e(r){const n=[];for(const s of r){const i={...s};delete i.children,n.push(i),s.children&&n.push(...e(s.children))}return n}return e(t)}function O(t,e,r){const s=Object.assign({},{includeIndex:!1,item:{},sort:p},r),i=t.find(a=>a.path!=="/"&&e.includes(a.path)),c=(a,f,o)=>{if(a.children){const d=a.children.find(x=>x.path.includes(e));if(d)return c(d,a,o+d.path)}return{route:f,path:o}},{route:l,path:u}=c(i,i,i.path);return l.children?l.children.filter(I(s.includeIndex)).map(a=>h(a,`${u}/${a.path}`,s.item)).sort(s.sort):(console.warn("Unable to build menu for:",e),[])}function g(t){return t.find(e=>e.path==="")}function h(t,e=t.path,r){const s=Object.assign({},{indexMeta:!0,modify:null},r);let i=Object.assign({},t.meta);s.indexMeta&&t.children&&(i=Object.assign({},i,g(t.children)?.meta));const c={...t,meta:i},l={path:e,title:m(c,t)||"Missing Title",weight:i?.weight||0,meta:i};return s.modify&&s.modify(l,t),l}function b(t){return!t.path.includes("/:")}function $(t){const e=t.path.match(/\//g)||[];return b(t)&&e.length===1}function y(t,e){const{target:r}=e,n=r.closest("a");if(n){let s=n.getAttribute("href");s.startsWith("/")&&(t.push(s),e.preventDefault())}}function R(t,e=M(t)){return e?.children}function M(t,e){const r=t.matched.length,n=r-2;return e?r>1?t.matched[0]:null:n<0?null:t.matched[n]}function I(t){return e=>t||e.path!==""}function p(t,e){return t?.weight-e?.weight}function S(t,e){const n=Object.assign({},{parent:null,includeIndex:!1,item:{},sort:p},e),s=n.parent||M(t);return(R(t,s)||[]).filter(I(n.includeIndex)).map(c=>h(c,`${s.path}/${c.path}`,n.item)).sort(n.sort)}function B(t){const{matched:e,path:r}=t;let n;return e.reduce((i,c,l)=>{if(c.meta?.breadcrumb===!1||c.path===n)return i;const u=l===e.length-1,a=m(c,t)||"Missing Title";return i.push({title:a,to:{path:u?r:c.path},current:u}),n=c.path,i},[])}export{B as $createBreadcrumb,S as $createSectionMenu,M as $getParentRoute,R as $getRouteChildren,j as createBaseMenu,h as createMenuItem,O as createSectionMenu,w as flattenMenu,g as getChildIndexRoute,m as getRouteTitle,$ as isStaticBaseRoute,b as isStaticRoute,y as nativeLinkRouter};
+function m(t, e) {
+  let n = (t?.meta || {}).title;
+  return typeof n == "function" && (n = n(e || t)), n;
+}
+function j(t, e) {
+  const n = Object.assign({}, {
+    qualifier(c, l) {
+      return l ? b(c) : $(c);
+    },
+    sort: p,
+    item: {},
+    includeChildren: !1
+  }, e), s = (c, l) => l ? `${l}/${c.path}` : c.path, i = (c, l = null) => c.filter((u) => n.qualifier(u, l)).map((u) => {
+    const a = u.children ? g(u.children) : u, f = u.children ? u.children.filter((d) => d.path !== "") : !1, o = h(a, s(u, l), n.item);
+    return n.includeChildren && f.length && (o.children = i(f, o.path)), o;
+  }).sort(n.sort);
+  return i(t);
+}
+function w(t) {
+  function e(r) {
+    const n = [];
+    for (const s of r) {
+      const i = { ...s };
+      delete i.children, n.push(i), s.children && n.push(...e(s.children));
+    }
+    return n;
+  }
+  return e(t);
+}
+function O(t, e, r) {
+  const s = Object.assign({}, {
+    includeIndex: !1,
+    item: {},
+    sort: p
+  }, r), i = t.find((a) => a.path !== "/" && e.includes(a.path)), c = (a, f, o) => {
+    if (a.children) {
+      const d = a.children.find((x) => x.path.includes(e));
+      if (d)
+        return c(d, a, o + d.path);
+    }
+    return { route: f, path: o };
+  }, { route: l, path: u } = c(i, i, i.path);
+  return l.children ? l.children.filter(I(s.includeIndex)).map((a) => h(a, `${u}/${a.path}`, s.item)).sort(s.sort) : (console.warn("Unable to build menu for:", e), []);
+}
+function g(t) {
+  return t.find((e) => e.path === "");
+}
+function h(t, e = t.path, r) {
+  const s = Object.assign({}, {
+    indexMeta: !0,
+    modify: null
+  }, r);
+  let i = Object.assign({}, t.meta);
+  s.indexMeta && t.children && (i = Object.assign({}, i, g(t.children)?.meta));
+  const c = { ...t, meta: i }, l = {
+    path: e,
+    title: m(c, t) || "Missing Title",
+    weight: i?.weight || 0,
+    meta: i
+  };
+  return s.modify && s.modify(l, t), l;
+}
+function b(t) {
+  return !t.path.includes("/:");
+}
+function $(t) {
+  const e = t.path.match(/\//g) || [];
+  return b(t) && e.length === 1;
+}
+function y(t, e) {
+  const { target: r } = e, n = r.closest("a");
+  if (n) {
+    let s = n.getAttribute("href");
+    s.startsWith("/") && (t.push(s), e.preventDefault());
+  }
+}
+function R(t, e = M(t)) {
+  return e?.children;
+}
+function M(t, e) {
+  const r = t.matched.length, n = r - 2;
+  return e ? r > 1 ? t.matched[0] : null : n < 0 ? null : t.matched[n];
+}
+function I(t) {
+  return (e) => t || e.path !== "";
+}
+function p(t, e) {
+  return t?.weight - e?.weight;
+}
+function S(t, e) {
+  const n = Object.assign({}, {
+    parent: null,
+    includeIndex: !1,
+    item: {},
+    sort: p
+  }, e), s = n.parent || M(t);
+  return (R(t, s) || []).filter(I(n.includeIndex)).map((c) => h(c, `${s.path}/${c.path}`, n.item)).sort(n.sort);
+}
+function B(t) {
+  const { matched: e, path: r } = t;
+  let n;
+  return e.reduce((i, c, l) => {
+    if (c.meta?.breadcrumb === !1 || c.path === n)
+      return i;
+    const u = l === e.length - 1, a = m(c, t) || "Missing Title";
+    return i.push({
+      title: a,
+      to: { path: u ? r : c.path },
+      current: u
+    }), n = c.path, i;
+  }, []);
+}
+export {
+  B as $createBreadcrumb,
+  S as $createSectionMenu,
+  M as $getParentRoute,
+  R as $getRouteChildren,
+  j as createBaseMenu,
+  h as createMenuItem,
+  O as createSectionMenu,
+  w as flattenMenu,
+  g as getChildIndexRoute,
+  m as getRouteTitle,
+  $ as isStaticBaseRoute,
+  b as isStaticRoute,
+  y as nativeLinkRouter
+};

@@ -1,1 +1,118 @@
-import{ref as d,computed as N,watch as w,createBlock as $,createCommentVNode as W,unref as f,openBlock as h,resolveDynamicComponent as b,normalizeStyle as _,withCtx as C,createElementVNode as m,createElementBlock as g,Fragment as H,renderList as B,normalizeClass as v,renderSlot as I,createTextVNode as R,toDisplayString as V}from"vue";import{runAfterFramePaint as z}from"@ulu/utils/browser/performance.js";import{useScrollAnchorSections as D}from"./useScrollAnchorSections.js";const E={class:"scroll-anchors-nav-animated__rail"},F=["href"],P={__name:"UluScrollAnchorsNavAnimated",props:{element:{type:String,default:"nav"},railWidth:{type:Number,default:3},indicatorWidth:{type:Number,default:null},indicatorHeight:{type:Number,default:null},indicatorAlignment:{type:String,default:"center"},indicatorAlignmentOffset:{type:Number,default:0}},setup(o){const i=o,n=D(),p=d({}),c=d(!1),S=d(null),e=N(()=>{if(!n||!n.value||!n.value.length)return!1;const t=n.value.findIndex(x=>x.active);if(t===-1)return!1;const l=p.value[t];if(!l)return!1;const{offsetTop:a,offsetHeight:r}=l,s=i.indicatorHeight!=null,A=i.indicatorWidth??i.railWidth,y=s?i.indicatorHeight:r;let u=a;return i.indicatorAlignment==="center"&&(u=a+r/2-y/2),u+=i.indicatorAlignmentOffset,{y:u,height:y,width:A}});w(e,t=>{t&&!c.value&&z(()=>{c.value=!0})});function k(t,l){l&&(p.value[t]=l)}return(t,l)=>f(n)&&f(n).length?(h(),$(b(o.element),{key:0,class:"scroll-anchors__nav scroll-anchors__nav--animated scroll-anchors-nav-animated",style:_({"--ulu-sa-nav-rail-width":`${o.railWidth}px`})},{default:C(()=>[m("ul",E,[(h(!0),g(H,null,B(f(n),(a,r)=>(h(),g("li",{key:r,class:v({"is-active":a.active})},[m("a",{class:v({"is-active":a.active}),ref_for:!0,ref:s=>k(r,s),href:`#${a.titleId}`},[I(t.$slots,"default",{item:a,index:r},()=>[R(V(a.title),1)])],10,F)],2))),128))]),m("div",{class:v(["scroll-anchors-nav-animated__indicator",{"scroll-anchors-nav-animated__indicator--can-transition":c.value}]),ref_key:"indicator",ref:S,style:_({opacity:e.value?"1":"0",transform:`translateY(${e.value?e.value.y:0}px)`,height:`${e.value?e.value.height:0}px`,width:`${e.value?e.value.width:0}px`})},null,6)]),_:3},8,["style"])):W("",!0)}};export{P as default};
+import { ref as d, computed as N, watch as w, createBlock as $, createCommentVNode as W, unref as f, openBlock as h, resolveDynamicComponent as b, normalizeStyle as _, withCtx as C, createElementVNode as m, createElementBlock as g, Fragment as H, renderList as B, normalizeClass as v, renderSlot as I, createTextVNode as R, toDisplayString as V } from "vue";
+import { runAfterFramePaint as z } from "@ulu/utils/browser/performance.js";
+import { useScrollAnchorSections as D } from "./useScrollAnchorSections.js";
+const E = { class: "scroll-anchors-nav-animated__rail" }, F = ["href"], P = {
+  __name: "UluScrollAnchorsNavAnimated",
+  props: {
+    /**
+     * The HTML element to use for the navigation root
+     */
+    element: {
+      type: String,
+      default: "nav"
+    },
+    /**
+     * The width of the navigation rail
+     */
+    railWidth: {
+      type: Number,
+      default: 3
+    },
+    /**
+     * The width of the indicator, defaults to railWidth
+     */
+    indicatorWidth: {
+      type: Number,
+      default: null
+    },
+    /**
+     * If set, creates a static height, centered indicator
+     */
+    indicatorHeight: {
+      type: Number,
+      default: null
+    },
+    /**
+     * Vertical alignment of the indicator relative to the link
+     */
+    indicatorAlignment: {
+      type: String,
+      default: "center"
+      // options: center, top
+    },
+    /**
+     * Pixel offset for the indicator's vertical alignment
+     */
+    indicatorAlignmentOffset: {
+      type: Number,
+      default: 0
+    }
+  },
+  setup(o) {
+    const i = o, n = D(), p = d({}), c = d(!1), S = d(null), e = N(() => {
+      if (!n || !n.value || !n.value.length)
+        return !1;
+      const t = n.value.findIndex((x) => x.active);
+      if (t === -1)
+        return !1;
+      const l = p.value[t];
+      if (!l) return !1;
+      const { offsetTop: a, offsetHeight: r } = l, s = i.indicatorHeight != null, A = i.indicatorWidth ?? i.railWidth, y = s ? i.indicatorHeight : r;
+      let u = a;
+      return i.indicatorAlignment === "center" && (u = a + r / 2 - y / 2), u += i.indicatorAlignmentOffset, { y: u, height: y, width: A };
+    });
+    w(e, (t) => {
+      t && !c.value && z(() => {
+        c.value = !0;
+      });
+    });
+    function k(t, l) {
+      l && (p.value[t] = l);
+    }
+    return (t, l) => f(n) && f(n).length ? (h(), $(b(o.element), {
+      key: 0,
+      class: "scroll-anchors__nav scroll-anchors__nav--animated scroll-anchors-nav-animated",
+      style: _({ "--ulu-sa-nav-rail-width": `${o.railWidth}px` })
+    }, {
+      default: C(() => [
+        m("ul", E, [
+          (h(!0), g(H, null, B(f(n), (a, r) => (h(), g("li", {
+            key: r,
+            class: v({ "is-active": a.active })
+          }, [
+            m("a", {
+              class: v({ "is-active": a.active }),
+              ref_for: !0,
+              ref: (s) => k(r, s),
+              href: `#${a.titleId}`
+            }, [
+              I(t.$slots, "default", {
+                item: a,
+                index: r
+              }, () => [
+                R(V(a.title), 1)
+              ])
+            ], 10, F)
+          ], 2))), 128))
+        ]),
+        m("div", {
+          class: v(["scroll-anchors-nav-animated__indicator", {
+            "scroll-anchors-nav-animated__indicator--can-transition": c.value
+          }]),
+          ref_key: "indicator",
+          ref: S,
+          style: _({
+            opacity: e.value ? "1" : "0",
+            transform: `translateY(${e.value ? e.value.y : 0}px)`,
+            height: `${e.value ? e.value.height : 0}px`,
+            width: `${e.value ? e.value.width : 0}px`
+          })
+        }, null, 6)
+      ]),
+      _: 3
+    }, 8, ["style"])) : W("", !0);
+  }
+};
+export {
+  P as default
+};

@@ -1,1 +1,54 @@
-import{randomInt as i}from"@ulu/utils/random.js";import{createElementBlock as s,openBlock as c}from"vue";import a from"../../_virtual/_plugin-vue_export-helper.js";const d={name:"UluPlaceholderImage",props:{imageId:String,width:{type:[String,Number],default:"300"},height:{type:[String,Number],default:"400"},alt:String,random:Boolean},computed:{src(){const{imageId:t}=this,{width:r,height:e}=this.size;return`https://picsum.photos/${t?`id/${t}/`:""}${r}/${e}`},size(){const{random:t,width:r,height:e}=this;return t?{width:i(500,1e3),height:i(500,1e3)}:{width:r,height:e}}}},h=["src","alt"];function m(t,r,e,o,l,n){return c(),s("img",{src:n.src,alt:e.alt},null,8,h)}const f=a(d,[["render",m]]);export{f as default};
+import { randomInt as i } from "@ulu/utils/random.js";
+import { createElementBlock as s, openBlock as c } from "vue";
+import a from "../../_virtual/_plugin-vue_export-helper.js";
+const d = {
+  name: "UluPlaceholderImage",
+  props: {
+    imageId: String,
+    /**
+     * Width of the image
+     */
+    width: {
+      type: [String, Number],
+      default: "300"
+    },
+    /**
+     * Height of the image
+     */
+    height: {
+      type: [String, Number],
+      default: "400"
+    },
+    /**
+     * Alt text for placeholder image
+     */
+    alt: String,
+    /**
+     * Random size
+     */
+    random: Boolean
+  },
+  computed: {
+    src() {
+      const { imageId: t } = this, { width: r, height: e } = this.size;
+      return `https://picsum.photos/${t ? `id/${t}/` : ""}${r}/${e}`;
+    },
+    size() {
+      const { random: t, width: r, height: e } = this;
+      return t ? {
+        width: i(500, 1e3),
+        height: i(500, 1e3)
+      } : { width: r, height: e };
+    }
+  }
+}, h = ["src", "alt"];
+function m(t, r, e, o, l, n) {
+  return c(), s("img", {
+    src: n.src,
+    alt: e.alt
+  }, null, 8, h);
+}
+const f = /* @__PURE__ */ a(d, [["render", m]]);
+export {
+  f as default
+};

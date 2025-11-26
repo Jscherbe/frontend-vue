@@ -1,1 +1,30 @@
-import{createBlock as t,createCommentVNode as n,openBlock as o,resolveDynamicComponent as r,withCtx as a,createTextVNode as c,toDisplayString as i}from"vue";import l from"../../_virtual/_plugin-vue_export-helper.js";const m={name:"UluConditionalText",props:{text:[String,Number,Array,Object],element:{type:String,default:"p"}}};function u(d,x,e,f,p,s){return e.text!=null?(o(),t(r(e.element),{key:0},{default:a(()=>[c(i(e.text),1)]),_:1})):n("",!0)}const C=l(m,[["render",u]]);export{C as default};
+import { createBlock as t, createCommentVNode as n, openBlock as o, resolveDynamicComponent as r, withCtx as a, createTextVNode as c, toDisplayString as i } from "vue";
+import l from "../../_virtual/_plugin-vue_export-helper.js";
+const m = {
+  name: "UluConditionalText",
+  props: {
+    /**
+     * Text to print in element
+     */
+    text: [String, Number, Array, Object],
+    /**
+     * Element type to render (ie. h1, h2, p, etc)
+     */
+    element: {
+      type: String,
+      default: "p"
+    }
+  }
+};
+function u(d, x, e, f, p, s) {
+  return e.text != null ? (o(), t(r(e.element), { key: 0 }, {
+    default: a(() => [
+      c(i(e.text), 1)
+    ]),
+    _: 1
+  })) : n("", !0);
+}
+const C = /* @__PURE__ */ l(m, [["render", u]]);
+export {
+  C as default
+};

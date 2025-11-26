@@ -1,1 +1,18 @@
-import{createElementBlock as s,openBlock as o,createElementVNode as t,renderSlot as a}from"vue";/* empty css                          */const r={class:"facets-header-layout"},c={class:"facets-header-layout__header"},_={class:"facets-header-layout__main"},h={__name:"UluFacetsHeaderLayout",setup(d){return(e,l)=>(o(),s("div",r,[t("div",c,[a(e.$slots,"header")]),t("div",_,[a(e.$slots,"main")])]))}};export{h as default};
+import { createElementBlock as s, openBlock as o, createElementVNode as t, renderSlot as a } from "vue";
+/* empty css                           */
+const r = { class: "facets-header-layout" }, c = { class: "facets-header-layout__header" }, _ = { class: "facets-header-layout__main" }, h = {
+  __name: "UluFacetsHeaderLayout",
+  setup(d) {
+    return (e, l) => (o(), s("div", r, [
+      t("div", c, [
+        a(e.$slots, "header")
+      ]),
+      t("div", _, [
+        a(e.$slots, "main")
+      ])
+    ]));
+  }
+};
+export {
+  h as default
+};

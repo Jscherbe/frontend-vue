@@ -1,1 +1,19 @@
-import{createElementBlock as t,openBlock as o,createCommentVNode as n,renderSlot as r,toDisplayString as s}from"vue";const d={class:"form-theme__fieldset"},c={key:0},m={__name:"UluFormFieldset",props:{legend:String},setup(e){return(l,a)=>(o(),t("fieldset",d,[e.legend?(o(),t("legend",c,s(e.legend),1)):n("",!0),r(l.$slots,"default")]))}};export{m as default};
+import { createElementBlock as t, openBlock as o, createCommentVNode as n, renderSlot as r, toDisplayString as s } from "vue";
+const d = { class: "form-theme__fieldset" }, c = { key: 0 }, m = {
+  __name: "UluFormFieldset",
+  props: {
+    /**
+     * The legend for the fieldset.
+     */
+    legend: String
+  },
+  setup(e) {
+    return (l, a) => (o(), t("fieldset", d, [
+      e.legend ? (o(), t("legend", c, s(e.legend), 1)) : n("", !0),
+      r(l.$slots, "default")
+    ]));
+  }
+};
+export {
+  m as default
+};

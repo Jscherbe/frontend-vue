@@ -1,1 +1,81 @@
-import{createElementBlock as n,openBlock as d,normalizeClass as a,Fragment as m,renderList as y,createElementVNode as o,renderSlot as i,createTextVNode as r,toDisplayString as u}from"vue";/* empty css                           */const v=["for"],w=["id","onChange"],S={value:""},$=["value","selected"],F={__name:"UluFacetsFilterSelects",props:{facets:{type:Array,default:()=>[]},classes:{type:Object,default:()=>({})}},emits:["facet-change"],setup(c,{emit:_}){console.log(c);const b=_;function p(l,f){const e=f.target.value;l.children.find(s=>s.selected)?.uid!==e&&l.children.forEach(s=>{const h=s.uid===e;s.selected!==h&&b("facet-change",{groupUid:l.uid,facetUid:s.uid,selected:h})})}return(l,f)=>(d(),n("div",{class:a(["facets-dropdown-filters",c.classes.container])},[(d(!0),n(m,null,y(c.facets,e=>(d(),n("div",{class:a(["facets-dropdown-filters__group",c.classes.group]),key:e.uid},[o("label",{for:`facet-dropdown-${e.uid}`,class:a(["facets-dropdown-filters__label",c.classes.label])},[i(l.$slots,"label",{},()=>[r(u(e.name),1)])],10,v),o("select",{id:`facet-dropdown-${e.uid}`,class:a(["facets-dropdown-filters__select",c.classes.select]),onChange:t=>p(e,t)},[o("option",S,[i(l.$slots,"optionAll",{group:e},()=>[r(" All "+u(e.name)+"s ",1)])]),(d(!0),n(m,null,y(e.children,(t,s)=>(d(),n("option",{key:t.uid,value:t.uid,selected:t.selected},[i(l.$slots,"option",{group:e,option:t,index:s},()=>[r(u(t.label),1)])],8,$))),128))],42,w)],2))),128))],2))}};export{F as default};
+import { createElementBlock as n, openBlock as d, normalizeClass as a, Fragment as m, renderList as y, createElementVNode as o, renderSlot as i, createTextVNode as r, toDisplayString as u } from "vue";
+/* empty css                            */
+const v = ["for"], w = ["id", "onChange"], S = { value: "" }, $ = ["value", "selected"], F = {
+  __name: "UluFacetsFilterSelects",
+  props: {
+    /**
+     * Facets Array
+     */
+    facets: {
+      type: Array,
+      default: () => []
+    },
+    /**
+     * Optional classes bindings for all elements { container, group, label, select }
+     */
+    classes: {
+      type: Object,
+      default: () => ({})
+    }
+  },
+  emits: ["facet-change"],
+  setup(c, { emit: _ }) {
+    console.log(c);
+    const b = _;
+    function p(l, f) {
+      const e = f.target.value;
+      l.children.find((s) => s.selected)?.uid !== e && l.children.forEach((s) => {
+        const h = s.uid === e;
+        s.selected !== h && b("facet-change", {
+          groupUid: l.uid,
+          facetUid: s.uid,
+          selected: h
+        });
+      });
+    }
+    return (l, f) => (d(), n("div", {
+      class: a(["facets-dropdown-filters", c.classes.container])
+    }, [
+      (d(!0), n(m, null, y(c.facets, (e) => (d(), n("div", {
+        class: a(["facets-dropdown-filters__group", c.classes.group]),
+        key: e.uid
+      }, [
+        o("label", {
+          for: `facet-dropdown-${e.uid}`,
+          class: a(["facets-dropdown-filters__label", c.classes.label])
+        }, [
+          i(l.$slots, "label", {}, () => [
+            r(u(e.name), 1)
+          ])
+        ], 10, v),
+        o("select", {
+          id: `facet-dropdown-${e.uid}`,
+          class: a(["facets-dropdown-filters__select", c.classes.select]),
+          onChange: (t) => p(e, t)
+        }, [
+          o("option", S, [
+            i(l.$slots, "optionAll", { group: e }, () => [
+              r(" All " + u(e.name) + "s ", 1)
+            ])
+          ]),
+          (d(!0), n(m, null, y(e.children, (t, s) => (d(), n("option", {
+            key: t.uid,
+            value: t.uid,
+            selected: t.selected
+          }, [
+            i(l.$slots, "option", {
+              group: e,
+              option: t,
+              index: s
+            }, () => [
+              r(u(t.label), 1)
+            ])
+          ], 8, $))), 128))
+        ], 42, w)
+      ], 2))), 128))
+    ], 2));
+  }
+};
+export {
+  F as default
+};

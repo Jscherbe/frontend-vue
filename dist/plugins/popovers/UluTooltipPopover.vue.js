@@ -1,1 +1,58 @@
-import{ref as _,computed as f,toRef as v,createElementBlock as t,openBlock as o,normalizeStyle as a,unref as n,normalizeClass as y,createCommentVNode as d,createBlock as g,resolveDynamicComponent as k,normalizeProps as T,mergeProps as w,Fragment as x,createTextVNode as P,toDisplayString as S}from"vue";import{useUluFloating as h}from"../../composables/useUluFloating.js";import{TOOLTIP_ID as C}from"./index.js";const O=["id","data-placement"],z=["innerHTML"],B={key:1,class:"popover__inner"},j={__name:"UluTooltipPopover",props:{config:Object,trigger:{type:Object,default:null}},setup(s){const r=s,l=_(null),e=f(()=>r.config),{floatingStyles:c,placement:p,arrowStyles:i,contentArrow:m,isFixedStrategy:u}=h(v(r,"trigger"),l,e);return(D,F)=>(o(),t("span",{class:y(["popover popover--tooltip is-active",[{"popover--fixed":n(u)},e.value.class]]),ref_key:"content",ref:l,id:n(C),"data-placement":n(p),style:a(n(c))},[e.value.isHtml?(o(),t("span",{key:0,class:"popover__inner",innerHTML:e.value.content},null,8,z)):(o(),t("span",B,[e.value.component?(o(),g(k(e.value.component),T(w({key:0},e.value.componentProps)),null,16)):(o(),t(x,{key:1},[P(S(e.value.content),1)],64))])),e.value.arrow?(o(),t("span",{key:2,class:"popover__arrow",ref_key:"contentArrow",ref:m,style:a(n(i))},null,4)):d("",!0)],14,O))}};export{j as default};
+import { ref as _, computed as f, toRef as v, createElementBlock as t, openBlock as o, normalizeStyle as a, unref as n, normalizeClass as y, createCommentVNode as d, createBlock as g, resolveDynamicComponent as k, normalizeProps as T, mergeProps as w, Fragment as x, createTextVNode as P, toDisplayString as S } from "vue";
+import { useUluFloating as h } from "../../composables/useUluFloating.js";
+import { TOOLTIP_ID as C } from "./index.js";
+const O = ["id", "data-placement"], z = ["innerHTML"], B = {
+  key: 1,
+  class: "popover__inner"
+}, j = {
+  __name: "UluTooltipPopover",
+  props: {
+    config: Object,
+    trigger: {
+      type: Object,
+      default: null
+    }
+  },
+  setup(s) {
+    const r = s, l = _(null), e = f(() => r.config), {
+      floatingStyles: c,
+      placement: p,
+      arrowStyles: i,
+      contentArrow: m,
+      isFixedStrategy: u
+    } = h(v(r, "trigger"), l, e);
+    return (D, F) => (o(), t("span", {
+      class: y(["popover popover--tooltip is-active", [
+        {
+          "popover--fixed": n(u)
+        },
+        e.value.class
+      ]]),
+      ref_key: "content",
+      ref: l,
+      id: n(C),
+      "data-placement": n(p),
+      style: a(n(c))
+    }, [
+      e.value.isHtml ? (o(), t("span", {
+        key: 0,
+        class: "popover__inner",
+        innerHTML: e.value.content
+      }, null, 8, z)) : (o(), t("span", B, [
+        e.value.component ? (o(), g(k(e.value.component), T(w({ key: 0 }, e.value.componentProps)), null, 16)) : (o(), t(x, { key: 1 }, [
+          P(S(e.value.content), 1)
+        ], 64))
+      ])),
+      e.value.arrow ? (o(), t("span", {
+        key: 2,
+        class: "popover__arrow",
+        ref_key: "contentArrow",
+        ref: m,
+        style: a(n(i))
+      }, null, 4)) : d("", !0)
+    ], 14, O));
+  }
+};
+export {
+  j as default
+};

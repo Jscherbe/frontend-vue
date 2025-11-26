@@ -1,1 +1,57 @@
-import{computed as m,createBlock as v,openBlock as f,resolveDynamicComponent as d,normalizeClass as p,unref as e,withCtx as S,renderSlot as _}from"vue";import{useScrollAnchorSection as h}from"./useScrollAnchorSection.js";const g={__name:"UluScrollAnchorsHeadlessSection",props:{title:{type:String,required:!0},customTitleId:String,element:{type:String,default:"div"}},setup(i){const n=i,{sectionRef:c,titleId:s,isActive:t,inactiveFrom:o,activeFrom:r,section:a}=h(n),l=m(()=>{if(t.value){if(r.value)return`enter-${r.value}`}else if(o.value)return`exit-${o.value}`;return null});return(u,y)=>(f(),v(d(i.element),{class:p(["scroll-anchors__section",{"is-active":e(t)}]),"data-scrollpoint-state":l.value,ref_key:"sectionRef",ref:c},{default:S(()=>[_(u.$slots,"default",{isActive:e(t),titleId:e(s),section:e(a),inactiveFrom:e(o),activeFrom:e(r),sectionState:l.value})]),_:3},8,["class","data-scrollpoint-state"]))}};export{g as default};
+import { computed as m, createBlock as v, openBlock as f, resolveDynamicComponent as d, normalizeClass as p, unref as e, withCtx as S, renderSlot as _ } from "vue";
+import { useScrollAnchorSection as h } from "./useScrollAnchorSection.js";
+const g = {
+  __name: "UluScrollAnchorsHeadlessSection",
+  props: {
+    /**
+     * The title of the section, used for navigation and generating a default ID
+     */
+    title: {
+      type: String,
+      required: !0
+    },
+    /**
+     * A custom ID to use for the section anchor, overriding the auto-generated one
+     */
+    customTitleId: String,
+    /**
+     * Element to use
+     */
+    element: {
+      type: String,
+      default: "div"
+    }
+  },
+  setup(i) {
+    const n = i, { sectionRef: c, titleId: s, isActive: t, inactiveFrom: o, activeFrom: r, section: a } = h(n), l = m(() => {
+      if (t.value) {
+        if (r.value) return `enter-${r.value}`;
+      } else if (o.value) return `exit-${o.value}`;
+      return null;
+    });
+    return (u, y) => (f(), v(d(i.element), {
+      class: p([
+        "scroll-anchors__section",
+        { "is-active": e(t) }
+      ]),
+      "data-scrollpoint-state": l.value,
+      ref_key: "sectionRef",
+      ref: c
+    }, {
+      default: S(() => [
+        _(u.$slots, "default", {
+          isActive: e(t),
+          titleId: e(s),
+          section: e(a),
+          inactiveFrom: e(o),
+          activeFrom: e(r),
+          sectionState: l.value
+        })
+      ]),
+      _: 3
+    }, 8, ["class", "data-scrollpoint-state"]));
+  }
+};
+export {
+  g as default
+};

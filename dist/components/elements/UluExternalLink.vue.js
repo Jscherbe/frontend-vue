@@ -1,1 +1,46 @@
-import{createElementBlock as n,openBlock as r,createElementVNode as a,createVNode as l,renderSlot as i,createTextVNode as o,toDisplayString as c}from"vue";import s from"./UluIcon.vue.js";const f=["href","target"],m={class:"external-link__text"},_={__name:"UluExternalLink",props:{text:String,href:String,target:{type:String,default:"_blank"},icon:String},setup(e){return(t,x)=>(r(),n("a",{class:"external-link",href:e.href,target:e.target},[a("span",m,[i(t.$slots,"default",{},()=>[o(c(e.text),1)])]),l(s,{class:"external-link__icon margin-left-small-x display-inline",icon:e.icon||"type:externalLink"},null,8,["icon"])],8,f))}};export{_ as default};
+import { createElementBlock as n, openBlock as r, createElementVNode as a, createVNode as l, renderSlot as i, createTextVNode as o, toDisplayString as c } from "vue";
+import s from "./UluIcon.vue.js";
+const f = ["href", "target"], m = { class: "external-link__text" }, _ = {
+  __name: "UluExternalLink",
+  props: {
+    /**
+     * Text for link or use slot
+     */
+    text: String,
+    /**
+     * Link href
+     */
+    href: String,
+    /**
+     * Link target
+     */
+    target: {
+      type: String,
+      default: "_blank"
+    },
+    /**
+     * Override default icon
+     */
+    icon: String
+  },
+  setup(e) {
+    return (t, x) => (r(), n("a", {
+      class: "external-link",
+      href: e.href,
+      target: e.target
+    }, [
+      a("span", m, [
+        i(t.$slots, "default", {}, () => [
+          o(c(e.text), 1)
+        ])
+      ]),
+      l(s, {
+        class: "external-link__icon margin-left-small-x display-inline",
+        icon: e.icon || "type:externalLink"
+      }, null, 8, ["icon"])
+    ], 8, f));
+  }
+};
+export {
+  _ as default
+};

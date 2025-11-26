@@ -1,1 +1,14 @@
-import{inject as c}from"vue";import{injectRegistry as s}from"../meta.js";const e={};function l(n){const i=c(n,e);if(i===e){const t=s[n]||"",o=t?` from the '${t}' plugin`:"",r=t?"Please install missing plugin.":"";throw new Error(`Required inject: '${n}'${o} was not provided. ${r}`)}return i}export{l as useRequiredInject};
+import { inject as c } from "vue";
+import { injectRegistry as s } from "../meta.js";
+const e = {};
+function l(n) {
+  const i = c(n, e);
+  if (i === e) {
+    const t = s[n] || "", o = t ? ` from the '${t}' plugin` : "", r = t ? "Please install missing plugin." : "";
+    throw new Error(`Required inject: '${n}'${o} was not provided. ${r}`);
+  }
+  return i;
+}
+export {
+  l as useRequiredInject
+};

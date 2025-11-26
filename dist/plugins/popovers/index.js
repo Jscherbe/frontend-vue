@@ -1,1 +1,81 @@
-import{reactive as L,markRaw as y}from"vue";import A from"./UluTooltipDisplay.vue.js";import _ from"./UluPopover.vue.js";import g from"./defaults.js";const P="uluPopoverOptions",O="uluTooltipState",D="ulu-global-tooltip",T=(s,u)=>{if(s===!1||s===null)return null;let i=s;return(typeof i!="object"||Array.isArray(i))&&(i={content:i}),i.component&&(i.component=y(i.component)),{...u,...i}};function K(s,u={}){const i={plugin:{...g.plugin,...u.plugin||{}},popover:{...g.popover,...u.popover||{}},tooltip:{...g.tooltip,...u.tooltip||{}}};s.provide(P,i);const o=L({visible:!1,trigger:null,config:{}}),h=(e,r)=>{if(e&&!r.teleportTo){const t=e.closest("dialog");t&&(r.teleportTo=t)}o.trigger&&o.trigger!==e&&o.trigger?.removeAttribute&&o.trigger.removeAttribute("aria-describedby"),e?.setAttribute&&e.setAttribute("aria-describedby",D),o.trigger=e,o.config=r,o.visible=!0},f=()=>{o.trigger?.removeAttribute&&o.trigger.removeAttribute("aria-describedby"),o.visible=!1};s.provide(O,{state:o,show:h,hide:f}),s.component("UluTooltipDisplay",A),s.component("UluPopover",_);const v=new WeakMap,b=i.popover,w=i.tooltip,E={...b,...w};s.directive(i.plugin.directiveName,{mounted(e,r){const t=T(r.value,E);if(!t)return;let n=null;const c=()=>{n||(n=setTimeout(()=>{h(e,t)},t.delay))},d=()=>{clearTimeout(n),n=null,f()},{showEvents:p,hideEvents:m}=t;p.forEach(a=>e.addEventListener(a,c)),m.forEach(a=>e.addEventListener(a,d)),v.set(e,{show:c,hide:d,showEvents:p,hideEvents:m})},updated(e,r){const t=v.get(e);t&&(t.showEvents.forEach(l=>e.removeEventListener(l,t.show)),t.hideEvents.forEach(l=>e.removeEventListener(l,t.hide)));const n=T(r.value,E);if(!n){o.trigger===e&&f();return}let c=null;const d=()=>{c||(c=setTimeout(()=>{h(e,n)},n.delay))},p=()=>{clearTimeout(c),c=null,f()},{showEvents:m,hideEvents:a}=n;m.forEach(l=>e.addEventListener(l,d)),a.forEach(l=>e.addEventListener(l,p)),v.set(e,{show:d,hide:p,showEvents:m,hideEvents:a}),o.visible&&o.trigger===e&&h(e,n)},beforeUnmount(e){o.visible&&o.trigger===e&&f();const r=v.get(e);r&&(r.showEvents.forEach(t=>e.removeEventListener(t,r.show)),r.hideEvents.forEach(t=>e.removeEventListener(t,r.hide)),v.delete(e))}})}export{P as POPOVER_OPTIONS_KEY,D as TOOLTIP_ID,O as TOOLTIP_STATE_KEY,K as default,T as resolveTooltipConfig};
+import { reactive as L, markRaw as y } from "vue";
+import A from "./UluTooltipDisplay.vue.js";
+import _ from "./UluPopover.vue.js";
+import g from "./defaults.js";
+const P = "uluPopoverOptions", O = "uluTooltipState", D = "ulu-global-tooltip", T = (s, u) => {
+  if (s === !1 || s === null) return null;
+  let i = s;
+  return (typeof i != "object" || Array.isArray(i)) && (i = { content: i }), i.component && (i.component = y(i.component)), { ...u, ...i };
+};
+function K(s, u = {}) {
+  const i = {
+    plugin: { ...g.plugin, ...u.plugin || {} },
+    popover: { ...g.popover, ...u.popover || {} },
+    tooltip: { ...g.tooltip, ...u.tooltip || {} }
+  };
+  s.provide(P, i);
+  const o = L({
+    visible: !1,
+    trigger: null,
+    config: {}
+  }), h = (e, r) => {
+    if (e && !r.teleportTo) {
+      const t = e.closest("dialog");
+      t && (r.teleportTo = t);
+    }
+    o.trigger && o.trigger !== e && o.trigger?.removeAttribute && o.trigger.removeAttribute("aria-describedby"), e?.setAttribute && e.setAttribute("aria-describedby", D), o.trigger = e, o.config = r, o.visible = !0;
+  }, f = () => {
+    o.trigger?.removeAttribute && o.trigger.removeAttribute("aria-describedby"), o.visible = !1;
+  };
+  s.provide(O, {
+    state: o,
+    show: h,
+    hide: f
+  }), s.component("UluTooltipDisplay", A), s.component("UluPopover", _);
+  const v = /* @__PURE__ */ new WeakMap(), b = i.popover, w = i.tooltip, E = { ...b, ...w };
+  s.directive(i.plugin.directiveName, {
+    mounted(e, r) {
+      const t = T(r.value, E);
+      if (!t) return;
+      let n = null;
+      const c = () => {
+        n || (n = setTimeout(() => {
+          h(e, t);
+        }, t.delay));
+      }, d = () => {
+        clearTimeout(n), n = null, f();
+      }, { showEvents: p, hideEvents: m } = t;
+      p.forEach((a) => e.addEventListener(a, c)), m.forEach((a) => e.addEventListener(a, d)), v.set(e, { show: c, hide: d, showEvents: p, hideEvents: m });
+    },
+    updated(e, r) {
+      const t = v.get(e);
+      t && (t.showEvents.forEach((l) => e.removeEventListener(l, t.show)), t.hideEvents.forEach((l) => e.removeEventListener(l, t.hide)));
+      const n = T(r.value, E);
+      if (!n) {
+        o.trigger === e && f();
+        return;
+      }
+      let c = null;
+      const d = () => {
+        c || (c = setTimeout(() => {
+          h(e, n);
+        }, n.delay));
+      }, p = () => {
+        clearTimeout(c), c = null, f();
+      }, { showEvents: m, hideEvents: a } = n;
+      m.forEach((l) => e.addEventListener(l, d)), a.forEach((l) => e.addEventListener(l, p)), v.set(e, { show: d, hide: p, showEvents: m, hideEvents: a }), o.visible && o.trigger === e && h(e, n);
+    },
+    beforeUnmount(e) {
+      o.visible && o.trigger === e && f();
+      const r = v.get(e);
+      r && (r.showEvents.forEach((t) => e.removeEventListener(t, r.show)), r.hideEvents.forEach((t) => e.removeEventListener(t, r.hide)), v.delete(e));
+    }
+  });
+}
+export {
+  P as POPOVER_OPTIONS_KEY,
+  D as TOOLTIP_ID,
+  O as TOOLTIP_STATE_KEY,
+  K as default,
+  T as resolveTooltipConfig
+};

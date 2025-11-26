@@ -1,1 +1,52 @@
-import{createElementBlock as o,openBlock as a,normalizeClass as l,renderSlot as m}from"vue";const i={__name:"UluFormItem",props:{error:Boolean,warning:Boolean,alignTop:Boolean,text:Boolean,file:Boolean,select:Boolean,textarea:Boolean},setup(e){return(t,n)=>(a(),o("div",{class:l(["form-theme__item",[{"is-danger":e.error,"is-warning":e.warning,"form-theme__item--align-top":e.alignTop,"form-theme__item--text":e.text,"form-theme__item--file":e.file,"form-theme__item--select":e.select,"form-theme__item--textarea":e.textarea}]])},[m(t.$slots,"default")],2))}};export{i as default};
+import { createElementBlock as o, openBlock as a, normalizeClass as l, renderSlot as m } from "vue";
+const i = {
+  __name: "UluFormItem",
+  props: {
+    /**
+     * If true, applies the error state styles.
+     */
+    error: Boolean,
+    /**
+     * If true, applies the warning state styles.
+     */
+    warning: Boolean,
+    /**
+     * If true, aligns the item to the top.
+     */
+    alignTop: Boolean,
+    /**
+     * If true, applies the text item styles.
+     */
+    text: Boolean,
+    /**
+     * If true, applies the file item styles.
+     */
+    file: Boolean,
+    /**
+     * If true, applies the select item styles.
+     */
+    select: Boolean,
+    /**
+     * If true, applies the textarea item styles.
+     */
+    textarea: Boolean
+  },
+  setup(e) {
+    return (t, n) => (a(), o("div", {
+      class: l(["form-theme__item", [{
+        "is-danger": e.error,
+        "is-warning": e.warning,
+        "form-theme__item--align-top": e.alignTop,
+        "form-theme__item--text": e.text,
+        "form-theme__item--file": e.file,
+        "form-theme__item--select": e.select,
+        "form-theme__item--textarea": e.textarea
+      }]])
+    }, [
+      m(t.$slots, "default")
+    ], 2));
+  }
+};
+export {
+  i as default
+};

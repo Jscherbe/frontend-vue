@@ -1,1 +1,61 @@
-import{computed as m,createBlock as p,openBlock as i,withCtx as g,createTextVNode as h,createElementBlock as f,createCommentVNode as U,toDisplayString as a}from"vue";import y from"../../forms/UluSelectableMenu.vue.js";const S={key:0},x={__name:"UluFacetsList",props:{groupUid:String,groupName:String,children:Array,type:{type:String,default:"checkbox"},compact:Boolean,modelValue:[String,Array]},emits:["facet-change"],setup(c,{emit:r}){const t=c,l=r,s=m(()=>t.type==="radio"?[{label:`All ${t.groupName}s`,uid:""},...t.children]:t.children);function u(n){if(t.type==="radio"){const d=n;t.children.forEach(e=>{const o=e.uid===d;e.selected!==o&&l("facet-change",{groupUid:t.groupUid,facetUid:e.uid,selected:o})})}else{const d=new Set(n);t.children.forEach(e=>{const o=d.has(e.uid);e.selected!==o&&l("facet-change",{groupUid:t.groupUid,facetUid:e.uid,selected:o})})}}return(n,d)=>(i(),p(y,{class:"facets-list",legend:c.groupUid,type:c.type,options:s.value,compact:c.compact,"model-value":c.modelValue,"onUpdate:modelValue":u},{default:g(({option:e})=>[h(a(e.label)+" ",1),e.count!==void 0?(i(),f("span",S,"("+a(e.count)+")",1)):U("",!0)]),_:1},8,["legend","type","options","compact","model-value"]))}};export{x as default};
+import { computed as m, createBlock as p, openBlock as i, withCtx as g, createTextVNode as h, createElementBlock as f, createCommentVNode as U, toDisplayString as a } from "vue";
+import y from "../../forms/UluSelectableMenu.vue.js";
+const S = { key: 0 }, x = {
+  __name: "UluFacetsList",
+  props: {
+    groupUid: String,
+    groupName: String,
+    children: Array,
+    type: {
+      type: String,
+      default: "checkbox"
+    },
+    compact: Boolean,
+    modelValue: [String, Array]
+  },
+  emits: ["facet-change"],
+  setup(c, { emit: r }) {
+    const t = c, l = r, s = m(() => t.type === "radio" ? [{ label: `All ${t.groupName}s`, uid: "" }, ...t.children] : t.children);
+    function u(n) {
+      if (t.type === "radio") {
+        const d = n;
+        t.children.forEach((e) => {
+          const o = e.uid === d;
+          e.selected !== o && l("facet-change", {
+            groupUid: t.groupUid,
+            facetUid: e.uid,
+            selected: o
+          });
+        });
+      } else {
+        const d = new Set(n);
+        t.children.forEach((e) => {
+          const o = d.has(e.uid);
+          e.selected !== o && l("facet-change", {
+            groupUid: t.groupUid,
+            facetUid: e.uid,
+            selected: o
+          });
+        });
+      }
+    }
+    return (n, d) => (i(), p(y, {
+      class: "facets-list",
+      legend: c.groupUid,
+      type: c.type,
+      options: s.value,
+      compact: c.compact,
+      "model-value": c.modelValue,
+      "onUpdate:modelValue": u
+    }, {
+      default: g(({ option: e }) => [
+        h(a(e.label) + " ", 1),
+        e.count !== void 0 ? (i(), f("span", S, "(" + a(e.count) + ")", 1)) : U("", !0)
+      ]),
+      _: 1
+    }, 8, ["legend", "type", "options", "compact", "model-value"]));
+  }
+};
+export {
+  x as default
+};

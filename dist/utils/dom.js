@@ -1,1 +1,17 @@
-function r(e){if(e){if(e instanceof HTMLElement)return e;if(typeof e=="object"&&"$el"in e)return e.$el}}let t=0;function o(e="ulu-id"){const n=`${e}-${++t}`;return typeof document<"u"&&document.getElementById(n)?o(e):n}export{o as newId,r as refToElement};
+function r(e) {
+  if (e) {
+    if (e instanceof HTMLElement)
+      return e;
+    if (typeof e == "object" && "$el" in e)
+      return e.$el;
+  }
+}
+let t = 0;
+function o(e = "ulu-id") {
+  const n = `${e}-${++t}`;
+  return typeof document < "u" && document.getElementById(n) ? o(e) : n;
+}
+export {
+  o as newId,
+  r as refToElement
+};

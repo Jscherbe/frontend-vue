@@ -1,1 +1,36 @@
-import{createElementBlock as o,openBlock as a,createElementVNode as e,createVNode as l}from"vue";import s from"../elements/UluIcon.vue.js";const c={class:"form-theme search-form type-small"},i={class:"search-form__field"},n=["placeholder"],m={class:"search-form__submit button button--primary","aria-label":"Submit Search"},h={__name:"UluSearchForm",props:{placeholder:{type:String,default:"Titles, keyword…"}},setup(r){return(p,t)=>(a(),o("div",c,[e("div",i,[t[0]||(t[0]=e("label",{class:"hidden-visually"},"Search",-1)),e("input",{class:"search-form__input",type:"text",id:"example-input",placeholder:r.placeholder},null,8,n)]),e("button",m,[l(s,{icon:"type:search"})])]))}};export{h as default};
+import { createElementBlock as o, openBlock as a, createElementVNode as e, createVNode as l } from "vue";
+import s from "../elements/UluIcon.vue.js";
+const c = { class: "form-theme search-form type-small" }, i = { class: "search-form__field" }, n = ["placeholder"], m = {
+  class: "search-form__submit button button--primary",
+  "aria-label": "Submit Search"
+}, h = {
+  __name: "UluSearchForm",
+  props: {
+    /**
+     * The placeholder text for the search input.
+     */
+    placeholder: {
+      type: String,
+      default: "Titles, keyword…"
+    }
+  },
+  setup(r) {
+    return (p, t) => (a(), o("div", c, [
+      e("div", i, [
+        t[0] || (t[0] = e("label", { class: "hidden-visually" }, "Search", -1)),
+        e("input", {
+          class: "search-form__input",
+          type: "text",
+          id: "example-input",
+          placeholder: r.placeholder
+        }, null, 8, n)
+      ]),
+      e("button", m, [
+        l(s, { icon: "type:search" })
+      ])
+    ]));
+  }
+};
+export {
+  h as default
+};

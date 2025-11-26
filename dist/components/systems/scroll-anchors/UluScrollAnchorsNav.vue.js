@@ -1,1 +1,46 @@
-import{createBlock as u,createCommentVNode as m,unref as r,openBlock as l,resolveDynamicComponent as d,withCtx as f,createElementVNode as o,createElementBlock as a,Fragment as p,renderList as _,normalizeClass as c,renderSlot as h,createTextVNode as v,toDisplayString as S}from"vue";import{useScrollAnchorSections as k}from"./useScrollAnchorSections.js";const y=["href"],x={__name:"UluScrollAnchorsNav",props:{element:{type:String,default:"nav"}},setup(s){const t=k();return(i,g)=>r(t)&&r(t).length?(l(),u(d(s.element),{key:0,class:"scroll-anchors__nav"},{default:f(()=>[o("ul",null,[(l(!0),a(p,null,_(r(t),(e,n)=>(l(),a("li",{key:n,class:c({"is-active":e.active})},[o("a",{class:c({"is-active":e.active}),href:`#${e.titleId}`},[h(i.$slots,"default",{item:e,index:n},()=>[v(S(e.title),1)])],10,y)],2))),128))])]),_:3})):m("",!0)}};export{x as default};
+import { createBlock as u, createCommentVNode as m, unref as r, openBlock as l, resolveDynamicComponent as d, withCtx as f, createElementVNode as o, createElementBlock as a, Fragment as p, renderList as _, normalizeClass as c, renderSlot as h, createTextVNode as v, toDisplayString as S } from "vue";
+import { useScrollAnchorSections as k } from "./useScrollAnchorSections.js";
+const y = ["href"], x = {
+  __name: "UluScrollAnchorsNav",
+  props: {
+    /**
+     * The HTML element to use for the navigation root
+     */
+    element: {
+      type: String,
+      default: "nav"
+    }
+  },
+  setup(s) {
+    const t = k();
+    return (i, g) => r(t) && r(t).length ? (l(), u(d(s.element), {
+      key: 0,
+      class: "scroll-anchors__nav"
+    }, {
+      default: f(() => [
+        o("ul", null, [
+          (l(!0), a(p, null, _(r(t), (e, n) => (l(), a("li", {
+            key: n,
+            class: c({ "is-active": e.active })
+          }, [
+            o("a", {
+              class: c({ "is-active": e.active }),
+              href: `#${e.titleId}`
+            }, [
+              h(i.$slots, "default", {
+                item: e,
+                index: n
+              }, () => [
+                v(S(e.title), 1)
+              ])
+            ], 10, y)
+          ], 2))), 128))
+        ])
+      ]),
+      _: 3
+    })) : m("", !0);
+  }
+};
+export {
+  x as default
+};
