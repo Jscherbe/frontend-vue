@@ -1,0 +1,1 @@
+const e={plugin:{directiveName:"ulu-tooltip"},popover:{inline:!0,delay:500,placement:"bottom",strategy:"absolute",offset:16,arrow:!0},tooltip:{teleportTo:null,class:null,showEvents:["pointerenter","focus"],hideEvents:["pointerleave","blur"],isHtml:!1,trigger:null,content:null,delay:500,onReady:null,component:null,componentProps:{}}};export{e as default};

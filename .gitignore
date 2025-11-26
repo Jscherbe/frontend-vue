@@ -27,6 +27,8 @@ dist-ssr
 *.sln
 *.sw?
 
+.yalc
+
 /.vite/
 .storybook/cache
 debug-storybook.log

@@ -1,0 +1,1 @@
+import{createBlock as e,openBlock as r,unref as a,withCtx as s,renderSlot as o}from"vue";import{TabList as l}from"@headlessui/vue";const f={__name:"UluTabList",setup(_){return(t,c)=>(r(),e(a(l),{class:"tabs__tablist"},{default:s(()=>[o(t.$slots,"default")]),_:3}))}};export{f as default};

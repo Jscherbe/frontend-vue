@@ -1,0 +1,1 @@
+import{createBlock as t,openBlock as o,unref as a,withCtx as l,renderSlot as n,normalizeProps as u,guardReactiveProps as p}from"vue";import{Tab as s}from"@headlessui/vue";const i={__name:"UluTab",setup(c){return(e,_)=>(o(),t(a(s),null,{default:l(r=>[n(e.$slots,"default",u(p(r)))]),_:3}))}};export{i as default};

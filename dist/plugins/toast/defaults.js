@@ -1,0 +1,1 @@
+import{markRaw as o}from"vue";import t from"./UluToast.vue.js";const a={toastOptions:{component:o(t),duration:6e3,actions:[]},pluginOptions:{teleportTo:"body",position:["top","right"]}};export{a as default};

@@ -8,12 +8,17 @@ export default defineConfig({
   ],
   build: {
     emptyOutDir: false,
-    lib: {
-      entry: resolve(__dirname, "lib/index.js"),
-      formats: ["es"],
-      fileName: "frontend-vue",
-    },
     rollupOptions: {
+      input: resolve(__dirname, 'lib/index.js'),
+      preserveEntrySignatures: 'strict',
+      output: {
+        dir: 'dist',
+        format: 'es',
+        preserveModules: true,
+        preserveModulesRoot: 'lib',
+        entryFileNames: '[name].js',
+        assetFileNames: 'assets/[name][extname]'
+      },
       external: [
         "vue", 
         "vue-router",

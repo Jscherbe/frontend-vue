@@ -1,0 +1,1 @@
+import{renderSlot as o,unref as t}from"vue";import{useRequiredInject as r}from"../../composables/useRequiredInject.js";const a={__name:"UluAdaptiveLayout",setup(u){const s=r("uluIsMobile");return(e,l)=>!t(s)||!e.$slots.mobile?o(e.$slots,"default",{key:0}):o(e.$slots,"mobile",{key:1})}};export{a as default};
