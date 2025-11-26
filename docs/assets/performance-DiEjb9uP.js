@@ -1,1 +1,0 @@
-function r(n,l,e,a){let t;const o=function(){const c=this,u=arguments,i=function(){t=null,e||n.apply(c,u)},s=e&&!t;clearTimeout(t),t=setTimeout(i,l),s&&n.apply(c,u)};return o.cancel=function(){clearTimeout(t),t=null},o}export{r as d};
