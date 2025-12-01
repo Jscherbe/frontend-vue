@@ -40,9 +40,9 @@ debug-storybook.log
 # Model contexts for node modules
 .contexts/
 
-# Local AI Context (tracking these as if they are ignored gemini can't autocomplete paths)
-# .ctx
-# GEMINI.md
-
-# Directory for temporary updates written by gemini for gemini in projects and test projects
-gemini-updates/
+# Used to copy libraries from node_modules that are ignored by globs 
+# for code completions / model context
+.ctx/*
+.gemini
+GEMINI.md
+.geminiignore
