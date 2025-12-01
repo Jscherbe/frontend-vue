@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0-beta.5
+
+- `useBreakpointManager` | Fix the async import for @ulu/frontend (BreakpointManager) so that it only imports that specific module (through deep import) not the entire library. To fix issues with tree-shaking.
+
 ## 0.2.0-beta.4
 
 - Updated vite config to bundle library with preserveModules 

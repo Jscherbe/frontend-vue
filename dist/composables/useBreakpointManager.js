@@ -1,6 +1,6 @@
 import { ref as t, markRaw as c } from "vue";
 import { isBrowser as p } from "@ulu/utils/browser/dom.js";
-const m = {
+const d = {
   /**
    * Set an initial value (value in mounted, SSR)
    */
@@ -16,14 +16,14 @@ const m = {
     customProperty: "--breakpoint"
   }
 };
-function w(l) {
-  const e = Object.assign({}, m, l), a = t(null), i = t(e.initialValue), o = t(null);
+function k(l) {
+  const e = Object.assign({}, d, l), a = t(null), i = t(e.initialValue), o = t(null);
   return (async () => {
     if (!p()) return;
     await new Promise((s) => {
       document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", () => s()) : s();
     });
-    const u = await import("@ulu/frontend"), { BreakpointManager: d } = u, n = c(new d(e.plugin));
+    const { BreakpointManager: u } = await import("@ulu/frontend/js/ui/breakpoints.js"), n = c(new u(e.plugin));
     a.value = c(n);
     const r = () => {
       i.value = n.active, o.value = n.resizeDirection;
@@ -32,5 +32,5 @@ function w(l) {
   })(), { breakpointManager: a, breakpointActive: i, breakpointDirection: o };
 }
 export {
-  w as useBreakpointManager
+  k as useBreakpointManager
 };
