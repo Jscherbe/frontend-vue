@@ -31,7 +31,7 @@ const config = {
       <link rel="manifest" href="${ base }assets/favicons/site.webmanifest">
       <link rel="mask-icon" href="${ base }assets/favicons/safari-pinned-tab.svg" color="#8455bd">
       <link rel="shortcut icon" href="${ base }assets/favicons/favicon.ico">
-      <meta name="msapplication-TileColor" content="#603cba">
+      <meta name="msapplication-TileColor" content="#c3bfcfff">
       <meta name="msapplication-config" content="${ base }assets/favicons/browserconfig.xml">
     `;
   },
@@ -40,8 +40,26 @@ const config = {
     // Merge custom configuration into the default config
     return mergeConfig(config, {
       // Add dependencies to pre-optimization
-      base: basePath
+      base: basePath,
+      plugins: [
+        fixStorybookMockerEntryPlugin()
+      ]
     });
   }
 };
 export default config;
+
+// Fixes path for vite-inject-mocker-entry.js which assumes it would be the base/root 
+// which messes things up for deploying to github pages (subdir)
+// See: https://github.com/storybookjs/storybook/issues/32428
+function fixStorybookMockerEntryPlugin() {
+  return {
+    name: 'fix-storybook-mocker-entry',
+    enforce: 'post',
+    transformIndexHtml(html) {
+      // https://github.com/storybookjs/storybook/blob/2657cc33826d1abf76334f94fef4b82b10f1e1c0/code/core/src/core-server/presets/vitePlugins/vite-inject-mocker/plugin.ts#L11
+      const entryPath = '/vite-inject-mocker-entry.js';
+      return html.replace(`"${ entryPath }"`, `".${ entryPath }"`);
+    },
+  };
+}
