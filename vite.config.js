@@ -3,12 +3,18 @@ import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 import dts from "vite-plugin-dts";
+import { visualizer } from "rollup-plugin-visualizer";
 
 export default defineConfig({
   plugins: [
     peerDepsExternal(),
     dts(),
     vue(),
+    visualizer({
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
+    })
   ],
   build: {
     emptyOutDir: true, 
