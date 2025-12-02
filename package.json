@@ -32,9 +32,7 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "docs:build": "storybook build -o docs",
-    "build": "vite build",
-    "types_TRASH": "vue-tsc",
-    "deploy_TRASH": "rm -rf dist && npm run types && npm run build && npm run docs:build",
+    "build": "vite build --config library.vite.config.js",
     "deploy": "npm run build && npm run docs:build",
     "update-contexts": "rm -rf .ctx && mkdir -p .ctx/frontend && cp -R node_modules/@ulu/frontend/lib/scss node_modules/@ulu/frontend/lib/js .ctx/frontend/"
   },
