@@ -1,8 +1,12 @@
 # Change Log
 
+## 0.2.0-beta.8
+
+`utils/router.js > $createBreadcrumb()` | Fix issue with correctly resolving "current" crumb when using nested routes (where path is "") for child.
+
 ## 0.2.0-beta.7
 
-- `UluModal` - Add button classes to classes prop defaults so it matches the udpated @ulu/frontend (modal/modal builder), which was adjusted to use the button classes instead of supplying it's own styles for the button.
+- `UluModal` | Add button classes to classes prop defaults so it matches the udpated @ulu/frontend (modal/modal builder), which was adjusted to use the button classes instead of supplying it's own styles for the button.
 
 ## 0.2.0-beta.6
 

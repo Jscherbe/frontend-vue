@@ -2,63 +2,63 @@ function m(t, e) {
   let n = (t?.meta || {}).title;
   return typeof n == "function" && (n = n(e || t)), n;
 }
-function j(t, e) {
+function w(t, e) {
   const n = Object.assign({}, {
-    qualifier(c, l) {
-      return l ? b(c) : $(c);
+    qualifier(s, c) {
+      return c ? b(s) : $(s);
     },
     sort: p,
     item: {},
     includeChildren: !1
-  }, e), s = (c, l) => l ? `${l}/${c.path}` : c.path, i = (c, l = null) => c.filter((u) => n.qualifier(u, l)).map((u) => {
-    const a = u.children ? g(u.children) : u, f = u.children ? u.children.filter((d) => d.path !== "") : !1, o = h(a, s(u, l), n.item);
-    return n.includeChildren && f.length && (o.children = i(f, o.path)), o;
+  }, e), r = (s, c) => c ? `${c}/${s.path}` : s.path, i = (s, c = null) => s.filter((u) => n.qualifier(u, c)).map((u) => {
+    const o = u.children ? g(u.children) : u, h = u.children ? u.children.filter((d) => d.path !== "") : !1, a = f(o, r(u, c), n.item);
+    return n.includeChildren && h.length && (a.children = i(h, a.path)), a;
   }).sort(n.sort);
   return i(t);
 }
-function w(t) {
-  function e(r) {
+function j(t) {
+  function e(l) {
     const n = [];
-    for (const s of r) {
-      const i = { ...s };
-      delete i.children, n.push(i), s.children && n.push(...e(s.children));
+    for (const r of l) {
+      const i = { ...r };
+      delete i.children, n.push(i), r.children && n.push(...e(r.children));
     }
     return n;
   }
   return e(t);
 }
-function O(t, e, r) {
-  const s = Object.assign({}, {
+function O(t, e, l) {
+  const r = Object.assign({}, {
     includeIndex: !1,
     item: {},
     sort: p
-  }, r), i = t.find((a) => a.path !== "/" && e.includes(a.path)), c = (a, f, o) => {
-    if (a.children) {
-      const d = a.children.find((x) => x.path.includes(e));
+  }, l), i = t.find((o) => o.path !== "/" && e.includes(o.path)), s = (o, h, a) => {
+    if (o.children) {
+      const d = o.children.find((x) => x.path.includes(e));
       if (d)
-        return c(d, a, o + d.path);
+        return s(d, o, a + d.path);
     }
-    return { route: f, path: o };
-  }, { route: l, path: u } = c(i, i, i.path);
-  return l.children ? l.children.filter(I(s.includeIndex)).map((a) => h(a, `${u}/${a.path}`, s.item)).sort(s.sort) : (console.warn("Unable to build menu for:", e), []);
+    return { route: h, path: a };
+  }, { route: c, path: u } = s(i, i, i.path);
+  return c.children ? c.children.filter(I(r.includeIndex)).map((o) => f(o, `${u}/${o.path}`, r.item)).sort(r.sort) : (console.warn("Unable to build menu for:", e), []);
 }
 function g(t) {
   return t.find((e) => e.path === "");
 }
-function h(t, e = t.path, r) {
-  const s = Object.assign({}, {
+function f(t, e = t.path, l) {
+  const r = Object.assign({}, {
     indexMeta: !0,
     modify: null
-  }, r);
+  }, l);
   let i = Object.assign({}, t.meta);
-  s.indexMeta && t.children && (i = Object.assign({}, i, g(t.children)?.meta));
-  const c = { ...t, meta: i }, l = {
+  r.indexMeta && t.children && (i = Object.assign({}, i, g(t.children)?.meta));
+  const s = { ...t, meta: i }, c = {
     path: e,
-    title: m(c, t) || "Missing Title",
+    title: m(s, t) || "Missing Title",
     weight: i?.weight || 0,
     meta: i
   };
-  return s.modify && s.modify(l, t), l;
+  return r.modify && r.modify(c, t), c;
 }
 function b(t) {
   return !t.path.includes("/:");
@@ -68,18 +68,18 @@ function $(t) {
   return b(t) && e.length === 1;
 }
 function y(t, e) {
-  const { target: r } = e, n = r.closest("a");
+  const { target: l } = e, n = l.closest("a");
   if (n) {
-    let s = n.getAttribute("href");
-    s.startsWith("/") && (t.push(s), e.preventDefault());
+    let r = n.getAttribute("href");
+    r.startsWith("/") && (t.push(r), e.preventDefault());
   }
 }
 function R(t, e = M(t)) {
   return e?.children;
 }
 function M(t, e) {
-  const r = t.matched.length, n = r - 2;
-  return e ? r > 1 ? t.matched[0] : null : n < 0 ? null : t.matched[n];
+  const l = t.matched.length, n = l - 2;
+  return e ? l > 1 ? t.matched[0] : null : n < 0 ? null : t.matched[n];
 }
 function I(t) {
   return (e) => t || e.path !== "";
@@ -93,32 +93,34 @@ function S(t, e) {
     includeIndex: !1,
     item: {},
     sort: p
-  }, e), s = n.parent || M(t);
-  return (R(t, s) || []).filter(I(n.includeIndex)).map((c) => h(c, `${s.path}/${c.path}`, n.item)).sort(n.sort);
+  }, e), r = n.parent || M(t);
+  return (R(t, r) || []).filter(I(n.includeIndex)).map((s) => f(s, `${r.path}/${s.path}`, n.item)).sort(n.sort);
 }
 function B(t) {
-  const { matched: e, path: r } = t;
-  let n;
-  return e.reduce((i, c, l) => {
-    if (c.meta?.breadcrumb === !1 || c.path === n)
+  const { matched: e, path: l } = t, n = e.reduce((i, s) => {
+    if (s.meta?.breadcrumb === !1)
       return i;
-    const u = l === e.length - 1, a = m(c, t) || "Missing Title";
-    return i.push({
-      title: a,
-      to: { path: u ? r : c.path },
-      current: u
-    }), n = c.path, i;
+    const c = i[i.length - 1];
+    return c && c.path === s.path || i.push(s), i;
   }, []);
+  return n.map((i, s) => {
+    const c = s === n.length - 1, u = m(i, t);
+    return u || console.warn("Missing route title"), {
+      title: u || "Missing Title",
+      to: { path: c ? l : i.path },
+      current: c
+    };
+  });
 }
 export {
   B as $createBreadcrumb,
   S as $createSectionMenu,
   M as $getParentRoute,
   R as $getRouteChildren,
-  j as createBaseMenu,
-  h as createMenuItem,
+  w as createBaseMenu,
+  f as createMenuItem,
   O as createSectionMenu,
-  w as flattenMenu,
+  j as flattenMenu,
   g as getChildIndexRoute,
   m as getRouteTitle,
   $ as isStaticBaseRoute,
