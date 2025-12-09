@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0-beta.7
+
+- `UluModal` - Add button classes to classes prop defaults so it matches the udpated @ulu/frontend (modal/modal builder), which was adjusted to use the button classes instead of supplying it's own styles for the button.
+
 ## 0.2.0-beta.6
 
 - Update `@ulu/utils` and `@ulu/frontend` peerDependencies

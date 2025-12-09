@@ -31,7 +31,13 @@
             <span class="modal__title-text">{{ title }}</span>
           </slot>
         </h2>
-        <button class="modal__close" aria-label="Close modal" @click="close" autofocus>
+        <button 
+          class="modal__close" 
+          :class="classes.close"
+          aria-label="Close modal" 
+          @click="close" 
+          autofocus
+        >
           <slot name="closeIcon">
             <UluIcon 
               class="modal__close-icon" 
@@ -171,7 +177,9 @@
        */
       classes: {
         type: Object,
-        default: () => ({})
+        default: () => ({
+          close: "button button--icon"
+        })
       },
       /**
        * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])

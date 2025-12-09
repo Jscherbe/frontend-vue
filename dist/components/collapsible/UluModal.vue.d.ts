@@ -93,7 +93,9 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
      */
     classes: {
         type: ObjectConstructor;
-        default: () => {};
+        default: () => {
+            close: string;
+        };
     };
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
@@ -216,7 +218,9 @@ declare const _default: import('vue').DefineComponent<import('vue').ExtractPropT
      */
     classes: {
         type: ObjectConstructor;
-        default: () => {};
+        default: () => {
+            close: string;
+        };
     };
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
