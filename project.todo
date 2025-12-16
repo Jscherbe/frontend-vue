@@ -1,4 +1,5 @@
 Todos:
+  ☐ In docs hide the show source in storybook (since it doesn't work)
   ✔ Test tree shaking in test app with yalc @done
   ✔ Use npm package `yalc` to manage local versions for testing before publishing @useful @done
   ☐ Popovers
