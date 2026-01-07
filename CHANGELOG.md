@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0-beta.9
+
+`UluConditionalWrapper` | Fix warning related to unused properties when using "unwrapped". Added story to documentation for this component.
+
 ## 0.2.0-beta.8
 
 `utils/router.js > $createBreadcrumb()` | Fix issue with correctly resolving "current" crumb when using nested routes (where path is "") for child.
