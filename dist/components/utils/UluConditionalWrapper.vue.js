@@ -1,5 +1,7 @@
-import { createBlock as n, renderSlot as a, openBlock as o, resolveDynamicComponent as l, withCtx as r } from "vue";
-const s = {
+import { createBlock as a, renderSlot as r, openBlock as n, resolveDynamicComponent as o, normalizeProps as s, mergeProps as l, withCtx as i } from "vue";
+const d = /* @__PURE__ */ Object.assign({
+  inheritAttrs: !1
+}, {
   __name: "UluConditionalWrapper",
   props: {
     /**
@@ -21,15 +23,15 @@ const s = {
       default: !1
     }
   },
-  setup(e) {
-    return (t, p) => e.unwrapped ? a(t.$slots, "default", { key: 1 }) : (o(), n(l(e.is), { key: 0 }, {
-      default: r(() => [
-        a(t.$slots, "default")
+  setup(t) {
+    return (e, p) => t.unwrapped ? r(e.$slots, "default", { key: 1 }) : (n(), a(o(t.is), s(l({ key: 0 }, e.$attrs)), {
+      default: i(() => [
+        r(e.$slots, "default")
       ]),
       _: 3
-    }));
+    }, 16));
   }
-};
+});
 export {
-  s as default
+  d as default
 };
