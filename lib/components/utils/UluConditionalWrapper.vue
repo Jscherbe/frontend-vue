@@ -1,5 +1,5 @@
 <template>
-  <component v-if="!unwrapped" :is="is">
+  <component v-if="!unwrapped" :is="is" v-bind="$attrs">
     <slot></slot>
   </component>
   <template v-else>
@@ -8,6 +8,10 @@
 </template>
 
 <script setup>
+  defineOptions({
+    inheritAttrs: false
+  });
+
   defineProps({
     /**
      * The underlying component or HTML tag to render.
