@@ -20,44 +20,61 @@
   </p>
 </template>
 
-<script>
-  export default {
-    name: "RouteAnnouncer",
-    props: {
-      /**
-       * Allow user to bypass this functionality
-       * - Function should return true if the page should be announced
-       * - Function is passed  (to, from, $route) => {}
-       *   - to/from are path strings
-       */
-      validator: {
-        type: Function,
-        default: () => true
-      },
-      /**
-       * Array of paths to exclude
-       * - Can be exact path "/about" 
-       * - Or can be path with wildcard "/about/*" (match all paths under about)
-       */
-      exclude: {
-        type: Array,
-        default: () => []
-      },
-      /**
-       * Function to retrieve routes title
-       */
-      getTitle: {
-        type: Function,
-        default: (route) => route.meta?.title 
-      }
+<script setup>
+  import { ref, computed, watch, nextTick } from 'vue';
+  import { useRoute } from 'vue-router';
+
+  const props = defineProps({
+    /**
+     * Allow user to bypass this functionality
+     * - Function should return true if the page should be announced
+     * - Function is passed  (to, from, $route) => {}
+     *   - to/from are path strings
+     */
+    validator: {
+      type: Function,
+      default: () => true
     },
-    watch: {
-      "$route.path"(to, from) {
-        if (this.$route.hash) {
+    /**
+     * Array of paths to exclude
+     * - Can be exact path "/about" 
+     * - Or can be path with wildcard "/about/*" (match all paths under about)
+     */
+    exclude: {
+      type: Array,
+      default: () => []
+    },
+    /**
+     * Function to retrieve routes title
+     */
+    getTitle: {
+      type: Function,
+      default: (route) => route.meta?.title 
+    }
+  });
+
+  const route = useRoute();
+  const el = ref(null);
+
+  const title = computed(() => {
+    // Check if route exists to prevent crash if not in router context (though required)
+    if (!route) return ""; 
+    const t = props.getTitle(route);
+    if (!t) {
+      console.warn("RouteAnnouncer: No page title!");
+    }
+    return t;
+  });
+
+  if (route) {
+    watch(
+      () => route.path,
+      async (to, from) => {
+        if (route.hash) {
           return;
         }
-        const isValid = this.validator(to, from, this.$route);
-        const isExcluded = this.exclude.some(ex => {
+        const isValid = props.validator(to, from, route);
+        const isExcluded = props.exclude.some(ex => {
           // Allow wildcard at end to exclude entire sections, etc
           if (ex.endsWith("*")) {
             return to.startsWith(ex.slice(0, ex.length - 1));
@@ -66,18 +83,12 @@
           }
         });
         if (isValid && !isExcluded) {
-          this.$refs.el.focus();
+          await nextTick();
+          el.value?.focus();
         }
       }
-    },
-    computed: {
-      title() {
-        const title = this.getTitle(this.$route);
-        if (!title) {
-          console.warn("RouteAnnouncer: No page title!");
-        }
-        return title;
-      }
-    }
-  };
+    );
+  } else {
+    console.error("RouteAnnouncer: No route instance found. Ensure vue-router is installed.");
+  }
 </script>

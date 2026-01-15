@@ -1,7 +1,7 @@
-import { createElementBlock as s, createCommentVNode as l, openBlock as u, toDisplayString as c } from "vue";
-import a from "../../_virtual/_plugin-vue_export-helper.js";
-const d = {
-  name: "RouteAnnouncer",
+import { ref as i, computed as d, watch as f, nextTick as p, createElementBlock as m, createCommentVNode as h, openBlock as y, toDisplayString as v } from "vue";
+import { useRoute as _ } from "vue-router";
+const x = {
+  __name: "UluRouteAnnouncer",
   props: {
     /**
      * Allow user to bypass this functionality
@@ -27,33 +27,32 @@ const d = {
      */
     getTitle: {
       type: Function,
-      default: (t) => t.meta?.title
+      default: (r) => r.meta?.title
     }
   },
-  watch: {
-    "$route.path"(t, r) {
-      if (this.$route.hash)
-        return;
-      const n = this.validator(t, r, this.$route), i = this.exclude.some((e) => e.endsWith("*") ? t.startsWith(e.slice(0, e.length - 1)) : t === e);
-      n && !i && this.$refs.el.focus();
-    }
-  },
-  computed: {
-    title() {
-      const t = this.getTitle(this.$route);
-      return t || console.warn("RouteAnnouncer: No page title!"), t;
-    }
+  setup(r) {
+    const o = r, t = _(), u = i(null), l = d(() => {
+      if (!t) return "";
+      const e = o.getTitle(t);
+      return e || console.warn("RouteAnnouncer: No page title!"), e;
+    });
+    return t ? f(
+      () => t.path,
+      async (e, s) => {
+        if (t.hash)
+          return;
+        const a = o.validator(e, s, t), c = o.exclude.some((n) => n.endsWith("*") ? e.startsWith(n.slice(0, n.length - 1)) : e === n);
+        a && !c && (await p(), u.value?.focus());
+      }
+    ) : console.error("RouteAnnouncer: No route instance found. Ensure vue-router is installed."), (e, s) => l.value ? (y(), m("p", {
+      key: 0,
+      tabindex: "-1",
+      class: "hidden-visually",
+      ref_key: "el",
+      ref: u
+    }, v(l.value), 513)) : h("", !0);
   }
 };
-function f(t, r, n, i, e, o) {
-  return o.title ? (u(), s("p", {
-    key: 0,
-    tabindex: "-1",
-    class: "hidden-visually",
-    ref: "el"
-  }, c(o.title), 513)) : l("", !0);
-}
-const m = /* @__PURE__ */ a(d, [["render", f]]);
 export {
-  m as default
+  x as default
 };

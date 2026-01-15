@@ -56,3 +56,9 @@
 @include ulu-vue.plugin-toast-styles();
 
 @include ulu.helper-styles();
+
+// Need a class to remove hidden-visually sometimes
+
+.hidden-visually--disabled {
+  @include ulu.element-hidden-visually(false);
+}

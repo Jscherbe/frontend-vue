@@ -1,0 +1,1 @@
+import{G as n}from"./iframe-fc0isZdR.js";function r(){const o=n("uluScrollAnchorsSections");return o||console.warn("useScrollAnchorSections() must be used within an UluScrollAnchors component provider."),o}export{r as u};

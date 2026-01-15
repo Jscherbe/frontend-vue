@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0-beta.10
+
+`UluRouteAnnouncer` | Convert to composition API. Create story for this component so it's documented.
+
 ## 0.2.0-beta.9
 
 `UluConditionalWrapper` | Fix warning related to unused properties when using "unwrapped". Added story to documentation for this component.
