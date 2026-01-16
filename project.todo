@@ -1,4 +1,8 @@
 Todos:
+  ☐ For ScrollAnchors system maybe support onUpdated lifecycle hook
+    * Remember in that report site we used this at App.vue level for site navigation where it was sometimes mounted sometimes updated and we had situations where it wasn't mounting. We also had situations where the inner loops that add the sections weren't being mounted in order (v-for) they rendered in order but the sections were registered out of order. Both of these were fixed in the project by putting a key on the ScrollAnchor parent so it re-mounts per route change
+    * For the mount vs update I think that can be simply using the other lifecycle hooks
+    * For the section ordering, we could make it optional (or at least a feature you can disable) and check DOM position and adjust array order
   ✔ Make RouteAnnouncer use route title logic like other route stuff (where it will call function or use string for meta.title) @done
   ☐ In docs hide the show source in storybook (since it doesn't work)
   ✔ Test tree shaking in test app with yalc @done
