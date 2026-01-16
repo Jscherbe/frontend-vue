@@ -1,6 +1,7 @@
-import { ref as i, computed as d, watch as f, nextTick as p, createElementBlock as m, createCommentVNode as h, openBlock as y, toDisplayString as v } from "vue";
+import { ref as s, computed as f, watch as d, nextTick as p, createElementBlock as m, createCommentVNode as h, openBlock as y, toDisplayString as v } from "vue";
 import { useRoute as _ } from "vue-router";
-const x = {
+import { getRouteTitle as g } from "../../utils/router.js";
+const A = {
   __name: "UluRouteAnnouncer",
   props: {
     /**
@@ -27,24 +28,24 @@ const x = {
      */
     getTitle: {
       type: Function,
-      default: (r) => r.meta?.title
+      default: (r) => g(r)
     }
   },
   setup(r) {
-    const o = r, t = _(), u = i(null), l = d(() => {
+    const n = r, t = _(), u = s(null), l = f(() => {
       if (!t) return "";
-      const e = o.getTitle(t);
+      const e = n.getTitle(t);
       return e || console.warn("RouteAnnouncer: No page title!"), e;
     });
-    return t ? f(
+    return t ? d(
       () => t.path,
-      async (e, s) => {
+      async (e, a) => {
         if (t.hash)
           return;
-        const a = o.validator(e, s, t), c = o.exclude.some((n) => n.endsWith("*") ? e.startsWith(n.slice(0, n.length - 1)) : e === n);
-        a && !c && (await p(), u.value?.focus());
+        const c = n.validator(e, a, t), i = n.exclude.some((o) => o.endsWith("*") ? e.startsWith(o.slice(0, o.length - 1)) : e === o);
+        c && !i && (await p(), u.value?.focus());
       }
-    ) : console.error("RouteAnnouncer: No route instance found. Ensure vue-router is installed."), (e, s) => l.value ? (y(), m("p", {
+    ) : console.error("RouteAnnouncer: No route found (install vue-router)."), (e, a) => l.value ? (y(), m("p", {
       key: 0,
       tabindex: "-1",
       class: "hidden-visually",
@@ -54,5 +55,5 @@ const x = {
   }
 };
 export {
-  x as default
+  A as default
 };

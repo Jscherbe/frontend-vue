@@ -1,7 +1,7 @@
 declare const _default: import('vue').DefineComponent<{}, {
     validator: Function;
     exclude: unknown[];
-    getTitle?: Function | undefined;
+    getTitle: Function;
     $props: {
         readonly validator?: Function | undefined;
         readonly exclude?: unknown[] | undefined;

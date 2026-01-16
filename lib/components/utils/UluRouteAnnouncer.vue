@@ -23,6 +23,7 @@
 <script setup>
   import { ref, computed, watch, nextTick } from 'vue';
   import { useRoute } from 'vue-router';
+  import { getRouteTitle } from '../../utils/router.js';
 
   const props = defineProps({
     /**
@@ -49,7 +50,7 @@
      */
     getTitle: {
       type: Function,
-      default: (route) => route.meta?.title 
+      default: (route) => getRouteTitle(route)
     }
   });
 
@@ -89,6 +90,6 @@
       }
     );
   } else {
-    console.error("RouteAnnouncer: No route instance found. Ensure vue-router is installed.");
+    console.error("RouteAnnouncer: No route found (install vue-router).");
   }
 </script>

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0-beta.11
+
+`UluRouteAnnouncer` | Prop `getTitle` now uses router.util.getRouteTitle() so that titles can be either string or a function (that gets passed current route)
+
 ## 0.2.0-beta.10
 
 `UluRouteAnnouncer` | Convert to composition API. Create story for this component so it's documented.
