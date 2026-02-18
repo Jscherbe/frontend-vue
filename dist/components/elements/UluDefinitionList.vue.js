@@ -1,5 +1,5 @@
-import { computed as u, createElementBlock as l, openBlock as n, normalizeClass as a, unref as B, Fragment as b, renderList as y, createElementVNode as o, renderSlot as c, createTextVNode as d, toDisplayString as m } from "vue";
-import { useModifiers as A } from "../../composables/useModifiers.js";
+import { computed as u, createElementBlock as l, createCommentVNode as B, openBlock as n, normalizeClass as a, unref as y, Fragment as b, renderList as g, createElementVNode as o, renderSlot as c, createTextVNode as d, toDisplayString as m } from "vue";
+import { useModifiers as k } from "../../composables/useModifiers.js";
 const F = {
   __name: "UluDefinitionList",
   props: {
@@ -57,15 +57,16 @@ const F = {
       "separated-first": e.separatedFirst,
       "separated-last": e.separatedLast,
       compact: e.compact
-    })), { resolvedModifiers: f } = A({
+    })), { resolvedModifiers: f } = k({
       props: e,
       internal: p,
       baseClass: "definition-list"
     });
-    return (r, L) => (n(), l("dl", {
-      class: a(["definition-list", [B(f), t.classes.list]])
+    return (r, A) => t.items?.length ? (n(), l("dl", {
+      key: 0,
+      class: a(["definition-list", [y(f), t.classes.list]])
     }, [
-      (n(!0), l(b, null, y(t.items, (s, i) => (n(), l("div", {
+      (n(!0), l(b, null, g(t.items, (s, i) => (n(), l("div", {
         key: i,
         class: a(t.classes.item)
       }, [
@@ -90,7 +91,7 @@ const F = {
           ])
         ], 2)
       ], 2))), 128))
-    ], 2));
+    ], 2)) : B("", !0);
   }
 };
 export {

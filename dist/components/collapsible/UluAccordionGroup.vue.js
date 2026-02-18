@@ -1,6 +1,9 @@
-import { ref as f, watch as p, createElementBlock as g, openBlock as o, Fragment as y, renderList as O, createBlock as v, createSlots as h, withCtx as l, renderSlot as m, createTextVNode as k, toDisplayString as $ } from "vue";
-import S from "./UluAccordion.vue.js";
-const B = { class: "accordion-group" }, x = {
+import { ref as f, watch as p, createElementBlock as g, createCommentVNode as y, openBlock as s, Fragment as O, renderList as h, createBlock as k, createSlots as v, withCtx as l, renderSlot as m, createTextVNode as $, toDisplayString as S } from "vue";
+import B from "./UluAccordion.vue.js";
+const E = {
+  key: 0,
+  class: "accordion-group"
+}, x = {
   __name: "UluAccordionGroup",
   props: {
     /**
@@ -33,30 +36,30 @@ const B = { class: "accordion-group" }, x = {
       default: !0
     }
   },
-  setup(i) {
-    const u = i, s = f([]);
+  setup(a) {
+    const u = a, o = f([]);
     p(() => u.items, (e) => {
-      s.value = e.map((a) => ({
-        ...a,
-        isOpen: a.isOpen || !1
+      o.value = e.map((i) => ({
+        ...i,
+        isOpen: i.isOpen || !1
       }));
     }, { immediate: !0, deep: !0 });
-    function c(e, a) {
-      a ? s.value.forEach((t, r) => {
+    function c(e, i) {
+      i ? o.value.forEach((t, r) => {
         t.isOpen = r === e;
-      }) : s.value[e].isOpen = !1;
+      }) : o.value[e].isOpen = !1;
     }
-    return (e, a) => (o(), g("div", B, [
-      (o(!0), g(y, null, O(s.value, (t, r) => (o(), v(S, {
+    return (e, i) => a.items?.length ? (s(), g("div", E, [
+      (s(!0), g(O, null, h(o.value, (t, r) => (s(), k(B, {
         key: r,
         "model-value": t.isOpen,
         "onUpdate:modelValue": (n) => c(r, n),
         "trigger-text": t.title,
         classes: t.classes,
-        "trigger-text-element": i.triggerTextElement,
-        modifiers: i.modifiers,
-        animate: i.animate
-      }, h({
+        "trigger-text-element": a.triggerTextElement,
+        modifiers: a.modifiers,
+        animate: a.animate
+      }, v({
         default: l(({ isOpen: n, toggle: d }) => [
           m(e.$slots, "item", {
             item: t,
@@ -64,7 +67,7 @@ const B = { class: "accordion-group" }, x = {
             isOpen: n,
             toggle: d
           }, () => [
-            k($(t.content), 1)
+            $(S(t.content), 1)
           ])
         ]),
         _: 2
@@ -92,7 +95,7 @@ const B = { class: "accordion-group" }, x = {
           key: "1"
         } : void 0
       ]), 1032, ["model-value", "onUpdate:modelValue", "trigger-text", "classes", "trigger-text-element", "modifiers", "animate"]))), 128))
-    ]));
+    ])) : y("", !0);
   }
 };
 export {

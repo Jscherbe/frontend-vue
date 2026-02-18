@@ -1,6 +1,9 @@
-import { createElementBlock as e, openBlock as r, Fragment as c, renderList as o, createVNode as n, mergeProps as l } from "vue";
-import m from "./UluBadge.vue.js";
-const _ = { class: "badge-stack" }, f = {
+import { createElementBlock as e, createCommentVNode as c, openBlock as t, Fragment as m, renderList as n, createVNode as o, mergeProps as l } from "vue";
+import u from "./UluBadge.vue.js";
+const i = {
+  key: 0,
+  class: "badge-stack"
+}, g = {
   __name: "UluBadgeStack",
   props: {
     /**
@@ -8,17 +11,17 @@ const _ = { class: "badge-stack" }, f = {
      */
     items: Array
   },
-  setup(t) {
-    return (u, i) => (r(), e("ul", _, [
-      (r(!0), e(c, null, o(t.items, (a, s) => (r(), e("li", {
+  setup(r) {
+    return (_, d) => r.items?.length ? (t(), e("ul", i, [
+      (t(!0), e(m, null, n(r.items, (a, s) => (t(), e("li", {
         class: "badge-stack__item",
         key: s
       }, [
-        n(m, l({ ref_for: !0 }, a), null, 16)
+        o(u, l({ ref_for: !0 }, a), null, 16)
       ]))), 128))
-    ]));
+    ])) : c("", !0);
   }
 };
 export {
-  f as default
+  g as default
 };

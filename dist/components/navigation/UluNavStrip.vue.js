@@ -1,7 +1,7 @@
 import n from "./UluMenu.vue.js";
-import { resolveComponent as r, createElementBlock as i, openBlock as o, normalizeClass as s, createVNode as a } from "vue";
-import l from "../../_virtual/_plugin-vue_export-helper.js";
-const c = {
+import { resolveComponent as r, createElementBlock as i, createCommentVNode as o, openBlock as a, normalizeClass as s, createVNode as l } from "vue";
+import c from "../../_virtual/_plugin-vue_export-helper.js";
+const m = {
   name: "UluNavStrip",
   components: {
     UluMenu: n
@@ -25,16 +25,17 @@ const c = {
     rule: Boolean
   }
 };
-function m(p, u, e, _, v, f) {
+function u(_, p, e, v, f, d) {
   const t = r("UluMenu");
-  return o(), i("nav", {
+  return e.items?.length ? (a(), i("nav", {
+    key: 0,
     class: s(["nav-strip", {
       "nav-strip--rule": e.rule,
       "nav-strip--center": e.center,
       "nav-strip--right": e.right
     }])
   }, [
-    a(t, {
+    l(t, {
       items: e.items,
       classes: {
         list: "nav-strip__list",
@@ -43,9 +44,9 @@ function m(p, u, e, _, v, f) {
         linkExactActive: "is-active"
       }
     }, null, 8, ["items"])
-  ], 2);
+  ], 2)) : o("", !0);
 }
-const U = /* @__PURE__ */ l(c, [["render", m]]);
+const U = /* @__PURE__ */ c(m, [["render", u]]);
 export {
   U as default
 };

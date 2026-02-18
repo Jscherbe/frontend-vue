@@ -26,7 +26,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly modifiers?: string | unknown[] | undefined;
         readonly items?: unknown[] | undefined;
     };
-}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDListElement>;
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 type __VLS_TemplateResult = {
     attrs: Partial<{}>;
     slots: {
@@ -40,6 +40,6 @@ type __VLS_TemplateResult = {
         }): any;
     };
     refs: {};
-    rootEl: HTMLDListElement;
+    rootEl: any;
 };
 //# sourceMappingURL=UluDefinitionList.vue.d.ts.map

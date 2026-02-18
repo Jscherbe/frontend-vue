@@ -1,5 +1,5 @@
-import { computed as o, createBlock as u, openBlock as t, resolveDynamicComponent as m, normalizeStyle as y, normalizeClass as n, withCtx as B, createElementBlock as d, Fragment as f, renderList as v, renderSlot as S, createTextVNode as g, toDisplayString as k } from "vue";
-const x = {
+import { computed as n, createBlock as m, createCommentVNode as u, openBlock as t, resolveDynamicComponent as y, normalizeStyle as B, normalizeClass as o, withCtx as f, createElementBlock as d, Fragment as v, renderList as S, renderSlot as g, createTextVNode as k, toDisplayString as C } from "vue";
+const h = {
   __name: "UluList",
   props: {
     /**
@@ -49,9 +49,10 @@ const x = {
     listStyleType: String
   },
   setup(e) {
-    const l = e, r = o(() => l.ordered || l.forceOrdered), c = o(() => r.value ? "ol" : "ul");
-    return (i, O) => (t(), u(m(c.value), {
-      class: n([
+    const l = e, r = n(() => l.ordered || l.forceOrdered), c = n(() => r.value ? "ol" : "ul");
+    return (i, O) => e.items?.length ? (t(), m(y(c.value), {
+      key: 0,
+      class: o([
         {
           "list-ordered": e.ordered,
           "list-unordered": e.unordered,
@@ -60,29 +61,29 @@ const x = {
         },
         e.classes.list
       ]),
-      style: y({
+      style: B({
         listStyleType: e.listStyleType
       }),
       reversed: r.value ? e.reversed : null,
       start: e.start
     }, {
-      default: B(() => [
-        (t(!0), d(f, null, v(e.items, (s, a) => (t(), d("li", {
+      default: f(() => [
+        (t(!0), d(v, null, S(e.items, (s, a) => (t(), d("li", {
           key: a,
-          class: n(e.classes.listItem)
+          class: o(e.classes.listItem)
         }, [
-          S(i.$slots, "default", {
+          g(i.$slots, "default", {
             item: s,
             index: a
           }, () => [
-            g(k(s), 1)
+            k(C(s), 1)
           ])
         ], 2))), 128))
       ]),
       _: 3
-    }, 8, ["class", "style", "reversed", "start"]));
+    }, 8, ["class", "style", "reversed", "start"])) : u("", !0);
   }
 };
 export {
-  x as default
+  h as default
 };

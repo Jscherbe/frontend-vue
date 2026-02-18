@@ -1,7 +1,7 @@
-import { computed as i, createBlock as o, openBlock as r, resolveDynamicComponent as s, normalizeClass as c, unref as m, withCtx as l, createVNode as u } from "vue";
-import k from "./UluMenu.vue.js";
-import { useModifiers as f } from "../../composables/useModifiers.js";
-const C = {
+import { computed as i, createBlock as o, createCommentVNode as r, openBlock as s, resolveDynamicComponent as m, normalizeClass as c, unref as l, withCtx as u, createVNode as k } from "vue";
+import f from "./UluMenu.vue.js";
+import { useModifiers as d } from "../../composables/useModifiers.js";
+const B = {
   __name: "UluMenuStack",
   props: {
     /**
@@ -33,19 +33,20 @@ const C = {
     modifiers: [String, Array]
   },
   setup(e) {
-    const n = e, t = i(() => ({
-      hanging: n.hanging,
-      compact: n.compact
-    })), { resolvedModifiers: a } = f({
-      props: n,
-      internal: t,
+    const t = e, n = i(() => ({
+      hanging: t.hanging,
+      compact: t.compact
+    })), { resolvedModifiers: a } = d({
+      props: t,
+      internal: n,
       baseClass: "menu-stack"
     });
-    return (_, d) => (r(), o(s(e.containerElement), {
-      class: c(["menu-stack", m(a)])
+    return (_, p) => e.items?.length ? (s(), o(m(e.containerElement), {
+      key: 0,
+      class: c(["menu-stack", l(a)])
     }, {
-      default: l(() => [
-        u(k, {
+      default: u(() => [
+        k(f, {
           items: e.items,
           classes: {
             list: "menu-stack__list",
@@ -60,9 +61,9 @@ const C = {
         }, null, 8, ["items", "noChildren"])
       ]),
       _: 1
-    }, 8, ["class"]));
+    }, 8, ["class"])) : r("", !0);
   }
 };
 export {
-  C as default
+  B as default
 };
