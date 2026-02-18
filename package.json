@@ -1,6 +1,6 @@
 {
   "name": "@ulu/frontend-vue",
-  "version": "0.2.0-beta.11",
+  "version": "0.2.0-beta.12",
   "description": "A modular and tree-shakeable Vue 3 component library for the Ulu frontend",
   "type": "module",
   "files": [
@@ -45,7 +45,8 @@
     "design-system",
     "ulu",
     "frontend",
-    "scss"
+    "scss",
+    "theme"
   ],
   "author": "Joseph Scherben <jscherbe@gmail.com>",
   "license": "MIT",

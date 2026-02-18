@@ -1,5 +1,8 @@
 <template>
-  <div class="accordion-group">
+  <div  
+    v-if="items?.length"
+    class="accordion-group"
+  >
     <UluAccordion
       v-for="(item, index) in internalItems"
       :key="index"

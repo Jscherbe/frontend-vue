@@ -1,5 +1,8 @@
 <template>
-  <ul class="badge-stack">
+  <ul 
+    v-if="items?.length"
+    class="badge-stack" 
+  >
     <li
       class="badge-stack__item"
       v-for="(item, index) in items"

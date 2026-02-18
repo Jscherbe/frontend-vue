@@ -1,5 +1,6 @@
 <template>
   <component
+    v-if="items?.length"
     class="menu-stack"
     :is="containerElement" 
     :class="resolvedModifiers"

@@ -1,5 +1,6 @@
 <template>
   <nav 
+    v-if="items?.length"
     class="nav-strip"
     :class="{
       'nav-strip--rule' : rule,

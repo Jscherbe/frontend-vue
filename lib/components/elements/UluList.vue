@@ -1,5 +1,6 @@
 <template>
   <component 
+    v-if="items?.length"
     :is="listElement"
     :class="[
       {

@@ -1,5 +1,8 @@
 <template>
-  <ul v-if="items?.length" :class="classes.list">
+  <ul 
+    v-if="items?.length" 
+    :class="classes.list"
+  >
     <li 
       v-for="(item, index) in items" 
       :key="index" 

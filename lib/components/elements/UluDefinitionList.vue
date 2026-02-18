@@ -1,5 +1,9 @@
 <template>
-  <dl class="definition-list" :class="[resolvedModifiers, classes.list]">
+  <dl 
+    v-if="items?.length"
+    class="definition-list" 
+    :class="[resolvedModifiers, classes.list]"
+  >
     <div 
       v-for="(item, index) in items" 
       :key="index"

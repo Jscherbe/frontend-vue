@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0-beta.12
+
+Add check for items.length (so it doesn't need to be conditional on user side for empty lists/menus/etc) on list like components (`UluDefinitionList`, `UluList`, `UluMenu`, `UluBadgeStack`, `UluMenuStack`, `UluNavStrip`, `UluAccordionGroup`)
+
 ## 0.2.0-beta.11
 
 `UluRouteAnnouncer` | Prop `getTitle` now uses router.util.getRouteTitle() so that titles can be either string or a function (that gets passed current route)
