@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.2.0-beta.13
+
+- `useFacets` | For convenience, we've added the concept of pinned item(s) 
+  - There is a new config property (isPinnedItem(item) return boolean) to identify items you want pinned and the underlying logic for creating the displayed item list will now prepend these items (after sort so they retain user sort order for multiple pinned items)
+  - **Future Note:** when using with `usePagination` it will result in pinned items only on first page. If pinned items are needed on every page, and if we wanted to support that we would need to send list of pinned items (not currently included in useFacets output) so it can be passed to `usePagination` then usePagination would need to handle the pinned items (accounting for the max item count per page vs the number of pinned items). Since this isn't something that is currently needed, and seems like a niche use case, `usePagination` stays with it's simple implementation for now with no knowledge of pinned
+    - We do include new computed property from `useFacets` in the event that you need to do something programmatic with the list of pinned items (advanced pagination like above for example), the new computed is `pinnedItems`
+
 ## 0.2.0-beta.12
 
 Add check for items.length (so it doesn't need to be conditional on user side for empty lists/menus/etc) on list like components (`UluDefinitionList`, `UluList`, `UluMenu`, `UluBadgeStack`, `UluMenuStack`, `UluNavStrip`, `UluAccordionGroup`)
