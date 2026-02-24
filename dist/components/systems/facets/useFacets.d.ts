@@ -14,6 +14,7 @@
  * @param {Object} [options.urlSync] - Optional configuration to sync state with URL.
  * @param {import('vue-router').Router} [options.urlSync.router] - The Vue Router instance.
  * @param {import('vue-router').RouteLocationNormalizedLoaded} [options.urlSync.route] - The current route instance.
+ * @param {Function} [options.isPinned] - A function that receives an item and returns true if it should be pinned to the top of the results.
  */
 export function useFacets(allItems: import('vue').Ref<Array<Object>>, options?: {
     initialFacets?: any[] | undefined;
@@ -29,6 +30,7 @@ export function useFacets(allItems: import('vue').Ref<Array<Object>>, options?: 
         router?: import('vue-router').Router | undefined;
         route?: import('vue-router').RouteLocationNormalizedLoadedGeneric | undefined;
     } | undefined;
+    isPinned?: Function | undefined;
 }): {
     facets: import('vue').Ref<never[], never[]>;
     searchValue: import('vue').Ref<string, string>;
@@ -51,6 +53,7 @@ export function useFacets(allItems: import('vue').Ref<Array<Object>>, options?: 
         } | undefined;
     }>;
     displayItems: import('vue').ComputedRef<any>;
+    pinnedItems: import('vue').ComputedRef<any[] | never[]>;
     selectedFacets: import('vue').ComputedRef<any[]>;
     clearFilters: () => void;
     handleFacetChange: ({ groupUid, facetUid, selected }: {

@@ -1,18 +1,19 @@
-import { ref as T, computed as F, watch as $, watchPostEffect as G } from "vue";
-import H from "fuse.js";
-function K(u) {
+import { ref as T, computed as E, watch as $, watchPostEffect as X } from "vue";
+import Y from "fuse.js";
+const Z = (u) => typeof u == "function";
+function ee(u) {
   const h = /* @__PURE__ */ new Set();
   for (const d of u)
-    for (const c of d)
-      h.add(c);
+    for (const a of d)
+      h.add(a);
   return h;
 }
 function k(u) {
   if (!u || u.length === 0) return /* @__PURE__ */ new Set();
-  const h = u.sort((c, S) => c.size - S.size), d = new Set(h[0]);
-  for (let c = 1; c < h.length; c++) {
+  const h = u.sort((a, S) => a.size - S.size), d = new Set(h[0]);
+  for (let a = 1; a < h.length; a++) {
     for (const S of d)
-      h[c].has(S) || d.delete(S);
+      h[a].has(S) || d.delete(S);
     if (d.size === 0) break;
   }
   return d;
@@ -20,207 +21,218 @@ function k(u) {
 function O(u, h, d) {
   if (!u || u.length === 0)
     return d;
-  const c = u.map((S) => {
-    const z = S.children.map((b) => {
-      const v = `${S.uid}:${b.uid}`;
+  const a = u.map((S) => {
+    const z = S.children.map((V) => {
+      const v = `${S.uid}:${V.uid}`;
       return h.get(v) || /* @__PURE__ */ new Set();
     });
-    return S.match === "all" ? k(z) : K(z);
+    return S.match === "all" ? k(z) : ee(z);
   });
-  return k(c);
+  return k(a);
 }
-function Q(u, h) {
+function te(u, h) {
   return !h || !Array.isArray(h) ? [] : h.map((d) => {
-    const c = /* @__PURE__ */ new Set(), S = d.getValue || ((v) => v[d.uid]);
+    const a = /* @__PURE__ */ new Set(), S = d.getValue || ((v) => v[d.uid]);
     u.forEach((v) => {
-      const E = S(v);
-      Array.isArray(E) ? E.forEach((I) => I && c.add(I)) : E && c.add(E);
+      const F = S(v);
+      Array.isArray(F) ? F.forEach((A) => A && a.add(A)) : F && a.add(F);
     });
-    const z = d.getLabel || ((v) => v), b = [...c].map((v) => ({
+    const z = d.getLabel || ((v) => v), V = [...a].map((v) => ({
       uid: v,
       label: z(v),
       selected: !1
     }));
-    return b.sort((v, E) => String(v.label).localeCompare(String(E.label))), {
+    return V.sort((v, F) => String(v.label).localeCompare(String(F.label))), {
       ...d,
-      children: b
+      children: V
     };
   });
 }
-function ee(u, h = {}) {
+function re(u, h = {}) {
   const {
     initialFacets: d,
-    facetFields: c,
+    facetFields: a,
     initialSearchValue: S = "",
     initialSortType: z = "az",
-    noDefaultSorts: b = !1,
+    noDefaultSorts: V = !1,
     extraSortTypes: v = {},
-    searchOptions: E = {},
-    getSortValue: I = (e) => e.title || e.label || "",
+    searchOptions: F = {},
+    getSortValue: A = (e) => e.title || e.label || "",
     countMode: q = "none",
     // 'none', 'simple', 'intuitive'
-    urlSync: U
-  } = h, B = (e) => e.sort((t, a) => {
-    const n = I(t), s = I(a);
+    urlSync: U,
+    isPinned: B
+  } = h, _ = (e) => e.sort((t, r) => {
+    const n = A(t), s = A(r);
     return n && s ? String(n).localeCompare(String(s)) : n ? -1 : s ? 1 : 0;
-  }), N = {
-    az: { text: "A-Z", sort: B },
-    za: { text: "Z-A", sort: (e) => B(e).reverse() }
+  }), j = {
+    az: { text: "A-Z", sort: _ },
+    za: { text: "Z-A", sort: (e) => _(e).reverse() }
   };
-  function Z(e) {
+  function D(e) {
     return (e || []).map((t) => ({
       ...t,
       open: t.open || !1,
-      children: t.children.map((a) => ({
-        ...a,
-        selected: a.selected || !1
+      children: t.children.map((r) => ({
+        ...r,
+        selected: r.selected || !1
       })),
       selectedCount: 0
     }));
   }
-  const f = T([]), x = T(S), V = T(z), j = F(() => !c || !u.value?.length ? null : Q(u.value, c)), _ = F(() => ({
-    ...b ? {} : N,
+  const f = T([]), x = T(S), I = T(z), G = E(() => !a || !u.value?.length ? null : te(u.value, a)), J = E(() => ({
+    ...V ? {} : j,
     ...v
-  })), M = F(() => {
+  })), M = E(() => {
     const e = /* @__PURE__ */ new Map(), t = y.value;
-    if (!t || !c) return e;
-    const a = new Map(c.map((n) => {
+    if (!t || !a) return e;
+    const r = new Map(a.map((n) => {
       const s = n.getValue || ((o) => o[n.uid]);
       return [n.uid, s];
     }));
     for (let n = 0; n < t.length; n++) {
       const s = t[n];
-      for (const o of c) {
-        const r = a.get(o.uid)(s), i = Array.isArray(r) ? r : r ? [r] : [];
-        for (const m of i) {
+      for (const o of a) {
+        const l = r.get(o.uid)(s), c = Array.isArray(l) ? l : l ? [l] : [];
+        for (const m of c) {
           const p = `${o.uid}:${m}`;
           e.has(p) || e.set(p, /* @__PURE__ */ new Set()), e.get(p).add(n);
         }
       }
     }
     return e;
-  }), D = F(() => ({
+  }), R = E(() => ({
     shouldSort: !0,
     keys: ["title", "label", "description", "author"],
-    ...E
-  })), y = F(() => x.value?.length ? new H(u.value, D.value).search(x.value).map((t) => t.item) : u.value), A = F(() => {
+    ...F
+  })), y = E(() => x.value?.length ? new Y(u.value, R.value).search(x.value).map((t) => t.item) : u.value), b = E(() => {
     const e = [];
     return f.value.forEach((t) => {
-      const a = t.children.filter((n) => n.selected);
-      a.length > 0 && e.push({ ...t, children: a });
+      const r = t.children.filter((n) => n.selected);
+      r.length > 0 && e.push({ ...t, children: r });
     }), e;
-  }), J = F(() => {
-    if (!A.value.length)
+  }), L = E(() => {
+    if (!b.value.length)
       return y.value;
     const e = M.value;
-    if (e.size === 0 && y.value.length > 0 && c?.length > 0)
+    if (e.size === 0 && y.value.length > 0 && a?.length > 0)
       return [];
-    const t = new Set(y.value.map((s, o) => o)), a = O(A.value, e, t), n = [];
-    for (const s of a)
+    const t = new Set(y.value.map((s, o) => o)), r = O(b.value, e, t), n = [];
+    for (const s of r)
       n.push(y.value[s]);
     return n;
-  }), P = F(() => {
-    const e = _.value[V.value]?.sort;
-    return typeof e != "function" ? J.value : e([...J.value]);
-  });
-  function R() {
+  }), N = E(() => {
+    const e = J.value[I.value]?.sort;
+    let t = Z(e) ? e([...L.value]) : [...L.value];
+    if (Z(B)) {
+      const r = [], n = [];
+      return t.forEach((s) => B(s) ? r.push(s) : n.push(s)), { pinned: r, unpinned: n, all: [...r, ...n] };
+    }
+    return { pinned: [], unpinned: t, all: t };
+  }), W = E(() => N.value.all), H = E(() => N.value.pinned);
+  function K() {
     f.value.forEach((e) => {
       e.children && e.children.forEach((t) => t.selected = !1), e.selectedCount = 0;
     });
   }
-  function L({ groupUid: e, facetUid: t, selected: a }) {
+  function P({ groupUid: e, facetUid: t, selected: r }) {
     const n = f.value.find((s) => s.uid === e);
     if (n) {
-      !n.multiple && a && n.children.forEach((o) => {
+      !n.multiple && r && n.children.forEach((o) => {
         o.uid !== t && (o.selected = !1);
       });
       const s = n.children.find((o) => o.uid === t);
-      s && (s.selected = a), n.selectedCount = n.children.filter((o) => o.selected).length;
+      s && (s.selected = r), n.selectedCount = n.children.filter((o) => o.selected).length;
     }
   }
-  if ($(j, (e) => {
-    const t = Z(d || e);
-    t.forEach((a) => {
-      a.selectedCount = a.children.filter((n) => n.selected).length;
+  if ($(G, (e) => {
+    const t = D(d || e);
+    t.forEach((r) => {
+      r.selectedCount = r.children.filter((n) => n.selected).length;
     }), f.value = t;
-  }, { immediate: !0 }), $([A, y], ([e, t], [a, n]) => {
-    if (!(q === "none" || !f.value.length) && !(e === a && t === n)) {
+  }, { immediate: !0 }), $([b, y], ([e, t], [r, n]) => {
+    if (!(q === "none" || !f.value.length) && !(e === r && t === n)) {
       if (q === "simple") {
         const s = M.value;
-        if (s.size === 0 && y.value.length > 0 && c?.length > 0)
+        if (s.size === 0 && y.value.length > 0 && a?.length > 0)
           return;
-        const o = new Set(y.value.map((l, r) => r));
-        f.value.forEach((l) => {
-          const r = e.filter((m) => m.uid !== l.uid), i = O(r, s, o);
-          l.children.forEach((m) => {
-            const p = `${l.uid}:${m.uid}`, g = s.get(p) || /* @__PURE__ */ new Set(), w = k([i, g]);
+        const o = new Set(y.value.map((i, l) => l));
+        f.value.forEach((i) => {
+          const l = e.filter((m) => m.uid !== i.uid), c = O(l, s, o);
+          i.children.forEach((m) => {
+            const p = `${i.uid}:${m.uid}`, g = s.get(p) || /* @__PURE__ */ new Set(), w = k([c, g]);
             m.count = w.size;
           });
         });
       } else if (q === "intuitive") {
         const s = M.value;
-        if (s.size === 0 && y.value.length > 0 && c?.length > 0)
+        if (s.size === 0 && y.value.length > 0 && a?.length > 0)
           return;
-        const o = new Set(y.value.map((r, i) => i)), l = O(e, s, o);
-        f.value.forEach((r) => {
-          r.children.forEach((i) => {
-            const m = `${r.uid}:${i.uid}`, p = s.get(m) || /* @__PURE__ */ new Set();
-            if (i.selected)
-              if (r.multiple) {
-                const g = k([l, p]);
-                i.count = g.size;
+        const o = new Set(y.value.map((l, c) => c)), i = O(e, s, o);
+        f.value.forEach((l) => {
+          l.children.forEach((c) => {
+            const m = `${l.uid}:${c.uid}`, p = s.get(m) || /* @__PURE__ */ new Set();
+            if (c.selected)
+              if (l.multiple) {
+                const g = k([i, p]);
+                c.count = g.size;
               } else
-                i.count = l.size;
+                c.count = i.size;
             else {
               const g = [];
               for (const C of e)
                 g.push({ ...C, children: [...C.children] });
-              let w = g.find((C) => C.uid === r.uid);
-              w || (w = { ...r, children: [] }, g.push(w)), r.multiple ? w.children.push(i) : w.children = [i];
-              const W = O(g, s, o);
-              i.count = W.size;
+              let w = g.find((C) => C.uid === l.uid);
+              w || (w = { ...l, children: [] }, g.push(w)), l.multiple ? w.children.push(c) : w.children = [c];
+              const Q = O(g, s, o);
+              c.count = Q.size;
             }
           });
         });
       }
     }
   }, { deep: !0, immediate: !0 }), U?.router && U?.route) {
-    const { router: e, route: t } = U, a = () => f.value && f.value.length > 0, n = () => {
-      if (!a()) return;
-      const l = { ...t.query };
-      delete l.sort, delete l.search, f.value.forEach((r) => delete l[r.uid]), V.value && V.value !== z && (l.sort = V.value), x.value && (l.search = x.value), A.value.forEach((r) => {
-        r.children.length > 0 && (l[r.uid] = r.children.map((i) => i.uid).join(","));
-      }), JSON.stringify(l) !== JSON.stringify(t.query) && e.push({ query: l });
+    const { router: e, route: t } = U, r = () => f.value && f.value.length > 0, n = () => {
+      if (!r()) return;
+      const i = { ...t.query };
+      delete i.sort, delete i.search, f.value.forEach((l) => delete i[l.uid]), I.value && I.value !== z && (i.sort = I.value), x.value && (i.search = x.value), b.value.forEach((l) => {
+        l.children.length > 0 && (i[l.uid] = l.children.map((c) => c.uid).join(","));
+      }), JSON.stringify(i) !== JSON.stringify(t.query) && e.push({ query: i });
     }, s = () => {
-      const l = t.query;
-      l.sort && (V.value = l.sort), l.search && (x.value = l.search);
-      const r = /* @__PURE__ */ new Map();
-      f.value.forEach((i) => {
-        const m = l[i.uid] ? l[i.uid].split(",") : [];
-        r.set(i.uid, new Set(m));
-      }), f.value.forEach((i) => {
-        const m = r.get(i.uid) || /* @__PURE__ */ new Set();
-        i.children.forEach((p) => {
+      const i = t.query;
+      i.sort && (I.value = i.sort), i.search && (x.value = i.search);
+      const l = /* @__PURE__ */ new Map();
+      f.value.forEach((c) => {
+        const m = i[c.uid] ? i[c.uid].split(",") : [];
+        l.set(c.uid, new Set(m));
+      }), f.value.forEach((c) => {
+        const m = l.get(c.uid) || /* @__PURE__ */ new Set();
+        c.children.forEach((p) => {
           const g = p.selected, w = m.has(p.uid);
-          g !== w && L({ groupUid: i.uid, facetUid: p.uid, selected: w });
+          g !== w && P({ groupUid: c.uid, facetUid: p.uid, selected: w });
         });
       });
-    }, o = G(() => {
+    }, o = X(() => {
       f.value && f.value.length > 0 && (s(), o());
     });
-    $([V, x, A], n, { deep: !0 }), $(() => t.query, s);
+    $(
+      [I, x, b],
+      n,
+      { deep: !0 }
+    ), $(() => t.query, s);
   }
   return {
     facets: f,
     searchValue: x,
-    selectedSort: V,
-    sortTypes: _,
-    displayItems: P,
-    selectedFacets: A,
-    clearFilters: R,
-    handleFacetChange: L
+    selectedSort: I,
+    sortTypes: J,
+    displayItems: W,
+    pinnedItems: H,
+    selectedFacets: b,
+    clearFilters: K,
+    handleFacetChange: P
   };
 }
 export {
-  ee as useFacets
+  re as useFacets
 };
