@@ -1,10 +1,18 @@
 <template>
-  <TabGroup v-slot="slotProps" :defaultIndex="defaultIndex" :vertical="vertical">
+  <TabGroup 
+    v-slot="slotProps" 
+    :defaultIndex="defaultIndex" 
+    :vertical="vertical"
+  >
     <div 
+      v-bind="$attrs"
       class="tabs" 
-      :class="{
-       'tabs--vertical' : vertical 
-      }"
+      :class="[
+        resolvedModifiers,
+        {
+         'tabs--vertical' : vertical 
+        }
+      ]"
     >
       <slot v-bind="slotProps"/>
     </div>
@@ -13,12 +21,13 @@
 
 <script setup>
   import { TabGroup } from "@headlessui/vue";
+  import { useModifiers } from "../../composables/useModifiers.js";
 
   defineOptions({ 
     inheritAttrs: false 
   });
 
-  defineProps({ 
+  const props = defineProps({ 
     /**
      * Active tab index by default
      */
@@ -26,6 +35,12 @@
     /**
      * Whether or not to use vertical layout
      */
-    vertical: Boolean
+    vertical: Boolean,
+    /**
+     * Class modifiers (ie. 'transparent', 'secondary', etc)
+     */
+    modifiers: [String, Array]
   });
+
+  const { resolvedModifiers } = useModifiers({ props, baseClass: "tabs" });
 </script>

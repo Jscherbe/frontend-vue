@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0-beta.14
+
+- `UluTabs` | Make this component inherit attributes correctly (since it has inner wrapper from headless ui). Also add modifiers system for modifier prop like other components
+
 ## 0.2.0-beta.13
 
 - `useFacets` | For convenience, we've added the concept of pinned item(s) 
