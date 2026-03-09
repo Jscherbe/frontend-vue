@@ -5,9 +5,11 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     vertical: boolean;
+    modifiers?: string | unknown[] | undefined;
     defaultIndex?: number | undefined;
     $props: {
         readonly vertical?: boolean | undefined;
+        readonly modifiers?: string | unknown[] | undefined;
         readonly defaultIndex?: number | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;

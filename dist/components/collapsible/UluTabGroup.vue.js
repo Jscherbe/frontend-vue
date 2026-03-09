@@ -1,6 +1,7 @@
-import { createBlock as r, openBlock as l, unref as o, withCtx as n, createElementVNode as c, normalizeClass as i, renderSlot as s, normalizeProps as u, guardReactiveProps as d } from "vue";
-import { TabGroup as f } from "@headlessui/vue";
-const b = /* @__PURE__ */ Object.assign({
+import { createBlock as l, openBlock as i, unref as t, withCtx as n, createElementVNode as d, mergeProps as c, renderSlot as u, normalizeProps as f, guardReactiveProps as m } from "vue";
+import { TabGroup as p } from "@headlessui/vue";
+import { useModifiers as v } from "../../composables/useModifiers.js";
+const h = /* @__PURE__ */ Object.assign({
   inheritAttrs: !1
 }, {
   __name: "UluTabGroup",
@@ -12,26 +13,34 @@ const b = /* @__PURE__ */ Object.assign({
     /**
      * Whether or not to use vertical layout
      */
-    vertical: Boolean
+    vertical: Boolean,
+    /**
+     * Class modifiers (ie. 'transparent', 'secondary', etc)
+     */
+    modifiers: [String, Array]
   },
   setup(e) {
-    return (t, m) => (l(), r(o(f), {
+    const a = e, { resolvedModifiers: s } = v({ props: a, baseClass: "tabs" });
+    return (r, b) => (i(), l(t(p), {
       defaultIndex: e.defaultIndex,
       vertical: e.vertical
     }, {
-      default: n((a) => [
-        c("div", {
-          class: i(["tabs", {
-            "tabs--vertical": e.vertical
-          }])
-        }, [
-          s(t.$slots, "default", u(d(a)))
-        ], 2)
+      default: n((o) => [
+        d("div", c(r.$attrs, {
+          class: ["tabs", [
+            t(s),
+            {
+              "tabs--vertical": e.vertical
+            }
+          ]]
+        }), [
+          u(r.$slots, "default", f(m(o)))
+        ], 16)
       ]),
       _: 3
     }, 8, ["defaultIndex", "vertical"]));
   }
 });
 export {
-  b as default
+  h as default
 };
