@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0-beta.15
+
+- `UluButton` | Allow 'target' prop to add attribute to router-link when using to (was only href (link) before)
+
 ## 0.2.0-beta.14
 
 - `UluTabs` | Make this component inherit attributes correctly (since it has inner wrapper from headless ui). Also add modifiers system for modifier prop like other components

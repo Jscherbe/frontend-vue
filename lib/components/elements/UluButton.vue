@@ -146,13 +146,12 @@
       attrs() {
         const { to, href, download, target } = this;
         const attrs = to ? { to } : href ? { href } : {};
-        if (href) {
-          if (target) {
-            attrs.target = target;
-          }
-          if (download) {
-            attrs.download = typeof download === "string" ? download : true;
-          }
+        // Both router links and regular links
+        if (target) {
+          attrs.target = target;
+        }
+        if (href && download) {
+          attrs.download = typeof download === "string" ? download : true;
         }
         return attrs;
       }
