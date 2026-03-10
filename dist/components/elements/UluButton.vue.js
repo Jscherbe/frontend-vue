@@ -101,7 +101,7 @@ const O = {
     },
     attrs() {
       const { to: e, href: n, download: t, target: o } = this, r = e ? { to: e } : n ? { href: n } : {};
-      return n && (o && (r.target = o), t && (r.download = typeof t == "string" ? t : !0)), r;
+      return o && (r.target = o), n && t && (r.download = typeof t == "string" ? t : !0), r;
     }
   }
 }, v = { key: 1 };
