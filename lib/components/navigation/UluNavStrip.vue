@@ -16,7 +16,11 @@
         link: 'nav-strip__link',
         linkExactActive: 'is-active'
       }"
-    />
+    >
+      <template v-for="(_, name) in $slots" #[name]="slotData">
+        <slot :name="name" v-bind="slotData" />
+      </template>
+    </UluMenu>
   </nav>
 </template>
 

@@ -43,12 +43,17 @@
           <UluTag v-if="item.tag" v-bind="item.tag"/>
         </slot>
       </component>
+      <slot name="item" :item="item" :index="index" />
       <!-- Component calls itself recursively for children if allowed (noChildren) -->
       <UluMenu v-if="!noChildren && item?.children?.length"
         :iconOnly="iconOnly"
         :classes="classes"
         :items="item.children"
-      />
+      >
+        <template v-for="(_, name) in $slots" #[name]="slotData">
+          <slot :name="name" v-bind="slotData" />
+        </template>
+      </UluMenu>
     </li>
   </ul>
 </template>

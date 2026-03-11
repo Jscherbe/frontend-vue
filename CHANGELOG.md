@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.2.0-beta.16
+
+- `UluMenu` | Add new slot for "item" for adding things to the `<li>` (custom submenus, etc), while default slot (pre-existing) will be the inner `<a>` or `<button>` or `<router-link>`
+- `UluMenuStack`, `UluDropdown`, `UluNavStrip` | All use `UluMenu` under the hood, in order to keep the API consistent these all correctly forward the user slots to UserMenu incase you need to modify the link or item
+
 ## 0.2.0-beta.15
 
 - `UluButton` | Allow 'target' prop to add attribute to router-link when using to (was only href (link) before)
@@ -201,7 +206,7 @@ Add check for items.length (so it doesn't need to be conditional on user side fo
   - Remove `options.plugins.global` for whether or not to install the components globally and directive, it will just always install these
   - Update tooltip directive to use new internal api for sharing state and configuration
   - Update tooltip to allow for reactive values and component as a value if needed
-    - Keep the pre-exisiting API for the directive but allow for reactivity API (ie. ref/etc)
+    - Keep the pre-existing API for the directive but allow for reactivity API (ie. ref/etc)
   - Add composable `useTooltip` for any manual tooltip needs
   - Tooltip (show/hide) set `aria-describedby` attribute to link tooltip to element for accessibility
   - Tooltip composable for following type tooltip (for mouse cursor) is now exported as `useTooltipFollow` (wasn't exported publicly before but was originally called useFollow)
