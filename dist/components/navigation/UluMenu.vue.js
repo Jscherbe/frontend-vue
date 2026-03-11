@@ -1,12 +1,12 @@
-import C from "../elements/UluIcon.vue.js";
-import g from "../elements/UluTag.vue.js";
-import { resolveComponent as r, resolveDirective as U, createElementBlock as i, createCommentVNode as t, openBlock as n, normalizeClass as a, Fragment as v, renderList as x, withDirectives as B, createBlock as o, resolveDynamicComponent as I, mergeProps as f, withCtx as O, renderSlot as A, createElementVNode as T, toDisplayString as b } from "vue";
-import D from "../../_virtual/_plugin-vue_export-helper.js";
-const M = {
+import I from "../elements/UluIcon.vue.js";
+import O from "../elements/UluTag.vue.js";
+import { resolveComponent as i, resolveDirective as A, createElementBlock as u, createCommentVNode as c, openBlock as n, normalizeClass as a, Fragment as S, renderList as h, withDirectives as T, renderSlot as f, createBlock as o, resolveDynamicComponent as b, mergeProps as k, withCtx as m, createElementVNode as x, toDisplayString as D, createSlots as M } from "vue";
+import E from "../../_virtual/_plugin-vue_export-helper.js";
+const w = {
   name: "UluMenu",
   components: {
-    UluIcon: C,
-    UluTag: g
+    UluIcon: I,
+    UluTag: O
   },
   emits: [
     /**
@@ -46,74 +46,85 @@ const M = {
     noChildren: Boolean
   },
   methods: {
-    handleItemClick(s, c) {
-      c.click && c.click(s), this.$emit("item-click", { item: c, event: s });
+    handleItemClick(s, t) {
+      t.click && t.click(s), this.$emit("item-click", { item: t, event: s });
     }
   }
 };
-function S(s, c, e, E, w, k) {
-  const _ = r("UluIcon"), d = r("UluTag"), h = r("UluMenu", !0), y = U("ulu-tooltip");
-  return e.items?.length ? (n(), i("ul", {
+function N(s, t, l, V, j, y) {
+  const C = i("UluIcon"), g = i("UluTag"), U = i("UluMenu", !0), v = A("ulu-tooltip");
+  return l.items?.length ? (n(), u("ul", {
     key: 0,
-    class: a(e.classes.list)
+    class: a(l.classes.list)
   }, [
-    (n(!0), i(v, null, x(e.items, (l, u) => (n(), i("li", {
-      key: u,
+    (n(!0), u(S, null, h(l.items, (e, r) => (n(), u("li", {
+      key: r,
       class: a([
-        e.classes.item,
-        l?.classes?.item,
-        l.separatorBefore ? e.classes.itemSeparatorBefore : "",
-        l.separatorAfter ? e.classes.itemSeparatorAfter : ""
+        l.classes.item,
+        e?.classes?.item,
+        e.separatorBefore ? l.classes.itemSeparatorBefore : "",
+        e.separatorAfter ? l.classes.itemSeparatorAfter : ""
       ])
     }, [
-      B((n(), o(I(l.to || l.path ? "router-link" : l.click ? "button" : "a"), f({ ref_for: !0 }, {
-        ...l.to || l.path ? {
-          to: l.to || l.path,
-          activeClass: e.classes.linkActive || null,
-          exactActiveClass: e.classes.linkExactActive || null
+      T((n(), o(b(e.to || e.path ? "router-link" : e.click ? "button" : "a"), k({ ref_for: !0 }, {
+        ...e.to || e.path ? {
+          to: e.to || e.path,
+          activeClass: l.classes.linkActive || null,
+          exactActiveClass: l.classes.linkExactActive || null
         } : {},
-        ...l.href ? { href: l.href || "#" } : {}
+        ...e.href ? { href: e.href || "#" } : {}
       }, {
-        onClick: (m) => {
-          k.handleItemClick(m, l);
+        onClick: (_) => {
+          y.handleItemClick(_, e);
         },
-        class: [e.classes.link, l?.classes?.link],
-        "aria-label": e.iconOnly ? l.title : null,
-        id: l.id
+        class: [l.classes.link, e?.classes?.link],
+        "aria-label": l.iconOnly ? e.title : null,
+        id: e.id
       }), {
-        default: O(() => [
-          A(s.$slots, "default", {
-            item: l,
-            index: u
+        default: m(() => [
+          f(s.$slots, "default", {
+            item: e,
+            index: r
           }, () => [
-            l.icon ? (n(), o(_, {
+            e.icon ? (n(), o(C, {
               key: 0,
-              icon: l.icon,
-              class: a([e.classes.linkIcon, l?.classes?.linkIcon])
-            }, null, 8, ["icon", "class"])) : t("", !0),
-            T("span", {
-              class: a([e.classes.linkText, l?.classes?.linkText])
-            }, b(l.title), 3),
-            l.tag ? (n(), o(d, f({
+              icon: e.icon,
+              class: a([l.classes.linkIcon, e?.classes?.linkIcon])
+            }, null, 8, ["icon", "class"])) : c("", !0),
+            x("span", {
+              class: a([l.classes.linkText, e?.classes?.linkText])
+            }, D(e.title), 3),
+            e.tag ? (n(), o(g, k({
               key: 1,
               ref_for: !0
-            }, l.tag), null, 16)) : t("", !0)
+            }, e.tag), null, 16)) : c("", !0)
           ])
         ]),
         _: 2
       }, 1040, ["onClick", "class", "aria-label", "id"])), [
-        [y, e.iconOnly ? l.title : l.tooltip || null]
+        [v, l.iconOnly ? e.title : e.tooltip || null]
       ]),
-      !e.noChildren && l?.children?.length ? (n(), o(h, {
+      f(s.$slots, "item", {
+        item: e,
+        index: r
+      }),
+      !l.noChildren && e?.children?.length ? (n(), o(U, {
         key: 0,
-        iconOnly: e.iconOnly,
-        classes: e.classes,
-        items: l.children
-      }, null, 8, ["iconOnly", "classes", "items"])) : t("", !0)
+        iconOnly: l.iconOnly,
+        classes: l.classes,
+        items: e.children
+      }, M({ _: 2 }, [
+        h(s.$slots, (_, d) => ({
+          name: d,
+          fn: m((B) => [
+            f(s.$slots, d, k({ ref_for: !0 }, B))
+          ])
+        }))
+      ]), 1032, ["iconOnly", "classes", "items"])) : c("", !0)
     ], 2))), 128))
-  ], 2)) : t("", !0);
+  ], 2)) : c("", !0);
 }
-const F = /* @__PURE__ */ D(M, [["render", S]]);
+const p = /* @__PURE__ */ E(w, [["render", N]]);
 export {
-  F as default
+  p as default
 };

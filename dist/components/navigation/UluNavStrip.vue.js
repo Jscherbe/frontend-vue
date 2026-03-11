@@ -1,10 +1,10 @@
-import n from "./UluMenu.vue.js";
-import { resolveComponent as r, createElementBlock as i, createCommentVNode as o, openBlock as a, normalizeClass as s, createVNode as l } from "vue";
-import c from "../../_virtual/_plugin-vue_export-helper.js";
-const m = {
+import o from "./UluMenu.vue.js";
+import { resolveComponent as s, createElementBlock as a, createCommentVNode as l, openBlock as c, normalizeClass as m, createVNode as u, createSlots as p, renderList as _, withCtx as v, renderSlot as d, normalizeProps as f, guardReactiveProps as h } from "vue";
+import k from "../../_virtual/_plugin-vue_export-helper.js";
+const g = {
   name: "UluNavStrip",
   components: {
-    UluMenu: n
+    UluMenu: o
   },
   props: {
     /**
@@ -25,17 +25,17 @@ const m = {
     rule: Boolean
   }
 };
-function u(_, p, e, v, f, d) {
-  const t = r("UluMenu");
-  return e.items?.length ? (a(), i("nav", {
+function B(t, U, e, C, N, S) {
+  const n = s("UluMenu");
+  return e.items?.length ? (c(), a("nav", {
     key: 0,
-    class: s(["nav-strip", {
+    class: m(["nav-strip", {
       "nav-strip--rule": e.rule,
       "nav-strip--center": e.center,
       "nav-strip--right": e.right
     }])
   }, [
-    l(t, {
+    u(n, {
       items: e.items,
       classes: {
         list: "nav-strip__list",
@@ -43,10 +43,17 @@ function u(_, p, e, v, f, d) {
         link: "nav-strip__link",
         linkExactActive: "is-active"
       }
-    }, null, 8, ["items"])
-  ], 2)) : o("", !0);
+    }, p({ _: 2 }, [
+      _(t.$slots, (x, r) => ({
+        name: r,
+        fn: v((i) => [
+          d(t.$slots, r, f(h(i)))
+        ])
+      }))
+    ]), 1032, ["items"])
+  ], 2)) : l("", !0);
 }
-const U = /* @__PURE__ */ c(m, [["render", u]]);
+const A = /* @__PURE__ */ k(g, [["render", B]]);
 export {
-  U as default
+  A as default
 };

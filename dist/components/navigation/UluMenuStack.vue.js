@@ -1,7 +1,7 @@
-import { computed as i, createBlock as o, createCommentVNode as r, openBlock as s, resolveDynamicComponent as m, normalizeClass as c, unref as l, withCtx as u, createVNode as k } from "vue";
-import f from "./UluMenu.vue.js";
-import { useModifiers as d } from "../../composables/useModifiers.js";
-const B = {
+import { computed as m, createBlock as l, createCommentVNode as c, openBlock as u, resolveDynamicComponent as k, normalizeClass as d, unref as f, withCtx as a, createVNode as p, createSlots as _, renderList as g, renderSlot as h, normalizeProps as C, guardReactiveProps as S } from "vue";
+import B from "./UluMenu.vue.js";
+import { useModifiers as y } from "../../composables/useModifiers.js";
+const z = {
   __name: "UluMenuStack",
   props: {
     /**
@@ -33,20 +33,20 @@ const B = {
     modifiers: [String, Array]
   },
   setup(e) {
-    const t = e, n = i(() => ({
+    const t = e, o = m(() => ({
       hanging: t.hanging,
       compact: t.compact
-    })), { resolvedModifiers: a } = d({
+    })), { resolvedModifiers: i } = y({
       props: t,
-      internal: n,
+      internal: o,
       baseClass: "menu-stack"
     });
-    return (_, p) => e.items?.length ? (s(), o(m(e.containerElement), {
+    return (n, M) => e.items?.length ? (u(), l(k(e.containerElement), {
       key: 0,
-      class: c(["menu-stack", l(a)])
+      class: d(["menu-stack", f(i)])
     }, {
-      default: u(() => [
-        k(f, {
+      default: a(() => [
+        p(B, {
           items: e.items,
           classes: {
             list: "menu-stack__list",
@@ -58,12 +58,19 @@ const B = {
             itemSeparatorAfter: "menu-stack__item--separator-after"
           },
           noChildren: e.noChildren
-        }, null, 8, ["items", "noChildren"])
+        }, _({ _: 2 }, [
+          g(n.$slots, (v, r) => ({
+            name: r,
+            fn: a((s) => [
+              h(n.$slots, r, C(S(s)))
+            ])
+          }))
+        ]), 1032, ["items", "noChildren"])
       ]),
-      _: 1
-    }, 8, ["class"])) : r("", !0);
+      _: 3
+    }, 8, ["class"])) : c("", !0);
   }
 };
 export {
-  B as default
+  z as default
 };

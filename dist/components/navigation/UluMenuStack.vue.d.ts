@@ -1,4 +1,9 @@
-declare const _default: import('vue').DefineComponent<{}, {
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & (new () => {
+    $slots: S;
+});
+declare const __VLS_component: import('vue').DefineComponent<{}, {
     noChildren: boolean;
     containerElement: string;
     hanging: boolean;
@@ -14,5 +19,10 @@ declare const _default: import('vue').DefineComponent<{}, {
         readonly items?: unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;
+type __VLS_TemplateResult = {
+    attrs: Partial<{}>;
+    slots: Partial<Record<number, (_: any) => any>>;
+    refs: {};
+    rootEl: any;
+};
 //# sourceMappingURL=UluMenuStack.vue.d.ts.map

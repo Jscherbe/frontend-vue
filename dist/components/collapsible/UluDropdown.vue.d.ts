@@ -15,7 +15,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 type __VLS_TemplateResult = {
     attrs: Partial<{}>;
-    slots: {
+    slots: Partial<Record<number, (_: any) => any>> & {
         trigger?(_: {
             isOpen: boolean;
         }): any;
