@@ -16,22 +16,16 @@
   </Teleport>
 </template>
 
-<script>
+<script setup>
+  import { computed } from "vue";
   import { store } from "./store.js";
-  export default {
-    name: 'UluTooltipDisplay',
-    data() {
-      const { toasts, pluginOptions } = store;
-      return { toasts, pluginOptions };
-    },
-    computed: {
-      classes() {
-        const { position } = this.pluginOptions;
-        const positionClasses = position.map(p => `toast-container--${ p }`);
-        return positionClasses;
-      }
-    }
-  }
+  
+  const { toasts, pluginOptions } = store;
+
+  const classes = computed(() => {
+    const { position } = pluginOptions;
+    return position.map(p => `toast-container--${ p }`);
+  });
 </script>
 
 <style lang="css">

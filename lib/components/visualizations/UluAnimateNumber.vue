@@ -2,37 +2,30 @@
   <span><slot :currentValue="currentValue">{{ currentValue }}</slot></span>
 </template>
 
-<script>
+<script setup>
+  import { ref, watch, reactive } from "vue";
   import gsap from "gsap";
 
-  /**
-   * Animates a number from a previous value to a new value.
-   * @slot default - The default slot for customizing the display of the number.
-   * @binding {number} currentValue - The current animated value.
-   */
-  export default {
-    name: 'AnimateNumber',
-    props: {
-      /**
-       * The target number to animate to.
-       */
-      value: Number
-    },
-    watch: {
-      value() {
-        gsap.to(this, {
-          tweenValue: this.value,
-          onUpdate: () => {
-            this.currentValue = Math.ceil(this.tweenValue);
-          },
-        });
+  const props = defineProps({
+    /**
+     * The target number to animate to.
+     */
+    value: Number
+  });
+
+  const currentValue = ref(props.value);
+  
+  // Need an object for GSAP to animate its properties
+  const animationState = reactive({
+    tweenValue: props.value
+  });
+
+  watch(() => props.value, (newValue) => {
+    gsap.to(animationState, {
+      tweenValue: newValue,
+      onUpdate: () => {
+        currentValue.value = Math.ceil(animationState.tweenValue);
       },
-    },
-    data() {
-      return {
-        currentValue: this.value,
-        tweenValue: this.value,
-      };
-    },
-  }
+    });
+  });
 </script>

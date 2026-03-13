@@ -8,18 +8,15 @@
   </component>
 </template>
 
-<script>
-  export default {
-    name: "PlaceholderText",
-    props: {
-      amount: {
-        type: Number,
-        default: 1
-      },
-      element: {
-        type: String,
-        default: "p"
-      }
+<script setup>
+  defineProps({
+    amount: {
+      type: Number,
+      default: 1
     },
-  };
+    element: {
+      type: String,
+      default: "p"
+    }
+  });
 </script>

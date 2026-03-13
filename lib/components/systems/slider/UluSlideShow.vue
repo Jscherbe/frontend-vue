@@ -96,241 +96,243 @@
   </div>
 </template>
 
-<script>
+<script setup>
+  import { ref, computed, watch, onMounted, onBeforeUnmount, nextTick } from "vue";
   import UluIcon from "../../elements/UluIcon.vue";
-  export default {
-    name: 'SlideShow',
-    emits: ['slide-change'],
-    components: {
-      UluIcon
-    },
-    props: {
-      /**
-       * Should slides be focusable by tab key
-       */
-      slideFocusable: Boolean,
-      /**
-       * Setting for element.focus() when navigating to() a specific slide
-       */
-      focusOptions: {
-        type: Object,
-        default: () => ({
-          preventScroll: true,
-          focusVisible: false
-        })
-      },
-      /**
-       * Array of slide items (data)
-       * - Use slot (#slide) to template
-       */
-      items: Array,
-      /**
-       * Slideshow without a nav
-       */
-      noNav: Boolean,
-      /**
-       * Allow user to change the scroll behavior when a slide is navigated to()
-       */
-      scrollBehaviorNav: {
-        type: String,
-        default: "instant"
-      },
-      /**
-       * Allow user to change the scroll behavior when a slide is navigated via next/prev
-       */
-      scrollBehaviorControl: {
-        type: String,
-        default: "smooth"
-      },
-      /**
-       * Observe 
-       */
-      observerOptions: {
-        type: Object,
-        default: () => ({
-          threshhold: 0,
-          rootMargin: "-50% 0px"
-        })
-      },
-      /**
-       * The intial slide index to use for active slide (zero based)
-       */
-      initialActive: {
-        type: Number,
-        default: 0
-      },
-      /**
-       * Allow user to control scroll amount (element.scrollTo) for prev/next controls
-       * - For future scroll implementations (like ulu scroll-slider for cards, etc)
-       * - Function is passed (direction, DomRefs)
-       * - Number is passed directly
-       */
-      scrollAmount: [Number, Function],
-    },
-    data() {
-      return {
-        slides: this.createSlides()
-      };
-    },
-    computed: {
-      canScrollRight() {
-        const { slides } = this;
-        return !slides[slides.length - 1].active;
-      },
-      canScrollLeft() {
-        const { slides } = this;
-        return !slides[0].active;
-      }
-    },
-    watch: {
-      'items.length'() {
-        this.slides = this.createSlides();
-        this.$nextTick(() => {
-          this.observeSlides();
-        });
-      }
-    },
-    methods: {
-      /**
-       * Creates the internal array of slides based on user's passed items
-       */
-      createSlides() {
-        return this.items.map(item => ({
-          element: null,
-          active: false,
-          item
-        }));
-      },
-      /**
-       * Find the corresponding slide data by slide element
-       */
-      getSlideByElement(el) {
-        return this.slides.find(({ element }) => el === element);
-      },
-      /**
-       * Provides scroll measurements
-       */
-      getScrollData() {
-        const { scrollLeft, offsetWidth, scrollWidth } = this.$refs.track;
-        return { scrollLeft, offsetWidth, scrollWidth };
-      },
-      /**
-       * Determines the amount to scroll the track
-       */
-      resolveAmount(dir) {
-        const isNext = dir === "next";
-        const { scrollAmount: amount } = this;
-        const { scrollLeft, offsetWidth } = this.getScrollData();
 
-        if (typeof amount === "function") {
-          // Function can be setup by user (ie. scrolling by visible items for example)
-          return amount(dir, this.$refs);
-        } else if (typeof amount === "number") {
-          return isNext ? scrollLeft + amount : scrollLeft - amount;
-        } else {
-          // No amount set (default 100% scrollable area shift)
-          return isNext ? scrollLeft + offsetWidth : scrollLeft - offsetWidth;
-        }
-      },
-      /**
-       * Scroll the track to a specified point 
-       */
-      scrollTo(left, behavior) {
-        this.$refs.track.scrollTo({ left, top: 0, behavior });
-      },
-      /**
-       * Scroll to specific index
-       * @param {Number} index Slide index
-       */
-      to(index) {
-        const slide = this.slides[index];
-        const { track } = this.$refs;
-        if (slide) {
-          let amount = slide.element.offsetLeft;
-          const end = () => {
-            slide.element.focus(this.focusOptions);
-            track.removeEventListener('scrollend', end);
+  const emit = defineEmits(['slide-change']);
+
+  const props = defineProps({
+    /**
+     * Should slides be focusable by tab key
+     */
+    slideFocusable: Boolean,
+    /**
+     * Setting for element.focus() when navigating to() a specific slide
+     */
+    focusOptions: {
+      type: Object,
+      default: () => ({
+        preventScroll: true,
+        focusVisible: false
+      })
+    },
+    /**
+     * Array of slide items (data)
+     * - Use slot (#slide) to template
+     */
+    items: Array,
+    /**
+     * Slideshow without a nav
+     */
+    noNav: Boolean,
+    /**
+     * Allow user to change the scroll behavior when a slide is navigated to()
+     */
+    scrollBehaviorNav: {
+      type: String,
+      default: "instant"
+    },
+    /**
+     * Allow user to change the scroll behavior when a slide is navigated via next/prev
+     */
+    scrollBehaviorControl: {
+      type: String,
+      default: "smooth"
+    },
+    /**
+     * Observe 
+     */
+    observerOptions: {
+      type: Object,
+      default: () => ({
+        threshhold: 0,
+        rootMargin: "-50% 0px"
+      })
+    },
+    /**
+     * The intial slide index to use for active slide (zero based)
+     */
+    initialActive: {
+      type: Number,
+      default: 0
+    },
+    /**
+     * Allow user to control scroll amount (element.scrollTo) for prev/next controls
+     * - For future scroll implementations (like ulu scroll-slider for cards, etc)
+     * - Function is passed (direction, DomRefs)
+     * - Number is passed directly
+     */
+    scrollAmount: [Number, Function],
+  });
+
+  const context = ref(null);
+  const crop = ref(null);
+  const track = ref(null);
+  const nav = ref(null);
+
+  /**
+   * Creates the internal array of slides based on user's passed items
+   */
+  const createSlides = () => {
+    return props.items.map(item => ({
+      element: null,
+      active: false,
+      item
+    }));
+  };
+
+  const slides = ref(createSlides());
+  let observer = null;
+
+  const canScrollRight = computed(() => {
+    return !slides.value[slides.value.length - 1].active;
+  });
+
+  const canScrollLeft = computed(() => {
+    return !slides.value[0].active;
+  });
+
+  watch(() => props.items?.length, () => {
+    slides.value = createSlides();
+    nextTick(() => {
+      observeSlides();
+    });
+  });
+
+  /**
+   * Find the corresponding slide data by slide element
+   */
+  const getSlideByElement = (el) => {
+    return slides.value.find(({ element }) => el === element);
+  };
+
+  /**
+   * Provides scroll measurements
+   */
+  const getScrollData = () => {
+    if (!track.value) return { scrollLeft: 0, offsetWidth: 0, scrollWidth: 0 };
+    const { scrollLeft, offsetWidth, scrollWidth } = track.value;
+    return { scrollLeft, offsetWidth, scrollWidth };
+  };
+
+  /**
+   * Determines the amount to scroll the track
+   */
+  const resolveAmount = (dir) => {
+    const isNext = dir === "next";
+    const amount = props.scrollAmount;
+    const { scrollLeft, offsetWidth } = getScrollData();
+
+    if (typeof amount === "function") {
+      // Function can be setup by user (ie. scrolling by visible items for example)
+      return amount(dir, { context, crop, track, nav });
+    } else if (typeof amount === "number") {
+      return isNext ? scrollLeft + amount : scrollLeft - amount;
+    } else {
+      // No amount set (default 100% scrollable area shift)
+      return isNext ? scrollLeft + offsetWidth : scrollLeft - offsetWidth;
+    }
+  };
+
+  /**
+   * Scroll the track to a specified point 
+   */
+  const scrollTo = (left, behavior) => {
+    if (track.value) {
+      track.value.scrollTo({ left, top: 0, behavior });
+    }
+  };
+
+  /**
+   * Scroll to specific index
+   * @param {Number} index Slide index
+   */
+  const to = (index) => {
+    const slide = slides.value[index];
+    if (slide && track.value) {
+      let amount = slide.element.offsetLeft;
+      const end = () => {
+        slide.element.focus(props.focusOptions);
+        track.value.removeEventListener('scrollend', end);
+      }
+      track.value.addEventListener('scrollend', end);
+      scrollTo(amount, props.scrollBehaviorNav);
+    }
+  };
+
+  /**
+   * Goto to next slide
+   */
+  const next = () => {
+    const amount = resolveAmount("next");
+    scrollTo(amount, props.scrollBehaviorControl);
+  };
+
+  /**
+   * Goto to previous slide
+   */
+  const previous = () => {
+    const amount = resolveAmount("previous");
+    scrollTo(amount, props.scrollBehaviorControl);
+  };
+
+  /**
+   * Sets up a new observer to watch the slides visibility (within track)
+   */
+  const createObserver = () => {
+    // Observer callback, basically just sets active state for a given slide
+    // - isIntersecting will change when the element enters and leaves
+    const onObserve = (entries) => {
+      entries.forEach((entry) => {
+        nextTick(() => {
+          const slide = getSlideByElement(entry.target);
+          if (slide) {
+            slide.active = entry.isIntersecting;
+            emit('slide-change', { slide, track: track.value, nav: nav.value });
           }
-          track.addEventListener('scrollend', end);
-          this.scrollTo(amount, this.scrollBehaviorNav);
+        });
+      });
+    };
+    // Add non-reactive prop for removal and changes to targets
+    if (track.value) {
+      observer = new IntersectionObserver(onObserve, {
+        root: track.value,
+        ...props.observerOptions
+      });
+    }
+  };
+
+  /**
+   * Add all slide elements as targets in observer
+   */
+  const observeSlides = () => {
+    if (observer) {
+      observer.disconnect();
+      slides.value.forEach(({ element }) => {
+        if (element) {
+          observer.observe(element);
         }
-      },
-      /**
-       * Goto to next slide
-       */
-      next() {
-        const amount = this.resolveAmount("next");
-        this.scrollTo(amount, this.scrollBehaviorControl);
-      },
-      /**
-       * Goto to previous slide
-       */
-      previous() {
-        const amount = this.resolveAmount("previous");
-        this.scrollTo(amount, this.scrollBehaviorControl);
-      },
-      /**
-       * Sets up a new observer to watch the slides visibility (within track)
-       */
-      createObserver() {
-        const { observerOptions } = this;
-        const { track, nav } = this.$refs;
-        // Observer callback, basically just sets active state for a given slide
-        // - isIntersecting will change when the element enters and leaves
-        const onObserve = (entries) => {
-          entries.forEach((entry) => {
-            
-            this.$nextTick(() => {
-              const slide = this.getSlideByElement(entry.target);
-              slide.active = entry.isIntersecting;
-              this.$emit('slide-change', { slide, track, nav });
-            });
-          });
-        };
-        // Add non-reactive prop for removal and changes to targets
-        this.observer = new IntersectionObserver(onObserve, {
-          root: track,
-          ...observerOptions
-        });
-      },
-      /**
-       * Add all slide elements as targets in observer
-       */
-      observeSlides() {
-        const { observer, slides } = this;
-        observer.disconnect();
-        slides.forEach(({ element }) => {
-          if (element) {
-            observer.observe(element);
-          }
-        });
-      },
-      /**
-       * Remove observer and it's internal DOM references (GC)
-       */
-      destroyObserver() {
-        this.observer.disconnect();
-        this.observer = null;
-      },
-    },
-    mounted() {
-      this.createObserver();
-      this.observeSlides();
-    },
-    beforeUnmount() {
-      this.destroyObserver();
-    },
-  }
+      });
+    }
+  };
+
+  /**
+   * Remove observer and it's internal DOM references (GC)
+   */
+  const destroyObserver = () => {
+    if (observer) {
+      observer.disconnect();
+      observer = null;
+    }
+  };
+
+  onMounted(() => {
+    createObserver();
+    observeSlides();
+  });
+
+  onBeforeUnmount(() => {
+    destroyObserver();
+  });
 </script>
-
-<!-- 
-  Old Notes: 
-  - How to get around access the elements of the children in slots
-    - Component element is not available
-    - Hacks
-      - Add hidden element and use nextSibling (stack overflow suggestion)
-        - Don't like this. We could always traverse dom from the parent track ref anyways
-          but I'm trying to avoid that
-    - Ideas
-    - Watch the slot components and use 
--->

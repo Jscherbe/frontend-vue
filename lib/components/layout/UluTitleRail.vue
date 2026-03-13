@@ -1,9 +1,7 @@
 <template>
   <div 
-    class="rail rail--title-rail"
-    :class="{
-      'rail--rule' : rule
-    }"
+    class="rail"
+    :class="resolvedModifiers"
   >
     <div class="rail__item rail__item--title" :class="classes.itemTitle">
       <component 
@@ -28,51 +26,60 @@
   </div>
 </template>
 
-<script>
+<script setup>
+  import { computed } from "vue";
   import UluIcon from "../elements/UluIcon.vue";
+  import { useModifiers } from "../../composables/useModifiers.js";
 
-  export default {
-    name: "UluTitleRail",
-    components: {
-      UluIcon
+  const props = defineProps({
+    /**
+     * Icon to display next to the title.
+     */
+    icon: String,
+    /**
+     * The alignment of the icon with the title.
+     */
+    iconAlign: {
+      type: String,
+      default: "baseline"
     },
-    props: {
-      /**
-       * Icon to display next to the title.
-       */
-      icon: String,
-      /**
-       * The alignment of the icon with the title.
-       */
-      iconAlign: {
-        type: String,
-        default: "baseline"
-      },
-      /**
-       * Classes for the different elements in the component.
-       */
-      classes: {
-        type: Object,
-        default: () => ({
-          title: "h2",
-          icon: "margin-right-small"
-        })
-      },
-      /**
-       * The title to display.
-       */
-      title: String,
-      /**
-       * The HTML element to use for the title.
-       */
-      titleElement: {
-        type: String,
-        default: "h2"
-      },
-      /**
-       * If true, a rule will be displayed under the title.
-       */
-      rule: Boolean
-    }
-  }
+    /**
+     * Classes for the different elements in the component.
+     */
+    classes: {
+      type: Object,
+      default: () => ({
+        title: "h2",
+        icon: "margin-right-small"
+      })
+    },
+    /**
+     * The title to display.
+     */
+    title: String,
+    /**
+     * The HTML element to use for the title.
+     */
+    titleElement: {
+      type: String,
+      default: "h2"
+    },
+    /**
+     * If true, a rule will be displayed under the title.
+     */
+    rule: Boolean,
+    /**
+     * Modifiers (to add any modifier classes based on base class)
+     */
+    modifiers: [String, Array]
+  });
+
+  const { resolvedModifiers } = useModifiers({ 
+    props, 
+    baseClass: "rail",
+    internal: computed(() => ({
+      "title-rail": true,
+      "rule": props.rule,
+    }))
+  });
 </script>

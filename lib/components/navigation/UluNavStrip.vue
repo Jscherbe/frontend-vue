@@ -2,11 +2,7 @@
   <nav 
     v-if="items?.length"
     class="nav-strip"
-    :class="{
-      'nav-strip--rule' : rule,
-      'nav-strip--center' : center,
-      'nav-strip--right' : right
-    }"
+    :class="resolvedModifiers"
   >
     <UluMenu 
       :items="items" 
@@ -24,30 +20,41 @@
   </nav>
 </template>
 
-<script>
+<script setup>
+  import { computed } from "vue";
   import UluMenu from "./UluMenu.vue";
-  export default {
-    name: "UluNavStrip",
-    components: {
-      UluMenu
-    },
-    props: {
-      /**
-       * Array of items for list (uses UluMenu, see structure there)
-       */
-      items: Array,
-      /**
-       * Center aligned
-       */
-      center: Boolean,
-      /**
-       * Right aligned
-       */
-      right: Boolean,
-      /**
-       * Rule nav strip style
-       */
-      rule: Boolean
-    },
-  };
+  import { useModifiers } from "../../composables/useModifiers.js";
+
+  const props = defineProps({
+    /**
+     * Array of items for list (uses UluMenu, see structure there)
+     */
+    items: Array,
+    /**
+     * Center aligned
+     */
+    center: Boolean,
+    /**
+     * Right aligned
+     */
+    right: Boolean,
+    /**
+     * Rule nav strip style
+     */
+    rule: Boolean,
+    /**
+     * Modifiers (to add any modifier classes based on base class)
+     */
+    modifiers: [String, Array]
+  });
+
+  const { resolvedModifiers } = useModifiers({
+    props,
+    baseClass: "nav-strip",
+    internal: computed(() => ({
+      "center": props.center,
+      "right": props.right,
+      "rule": props.rule
+    }))
+  });
 </script>

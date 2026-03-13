@@ -1,6 +1,16 @@
 Todos:
-  ☐ Update with frontend updates
-    ☐ This will be the new minor version
+  ☐ Before deploying next
+    ☐ Thoroughly test since they were refactored
+     ☐ Modals plugin
+     ☐ Toast plugin
+     ✔ Generally test other components that we adjusted @done
+  ☐ Test and setup stories for slideshow component
+    * This has been refactored to composition API but is untested (need story)
+  ☐ May want to consolidate the <a> vs <router-link> vs <button> logic to a util
+    * Used in UluButton UluButtonVerbose and probably other places
+    * Would be good to have it one place and less code that does the same thing DRY
+  ✔ Update with frontend updates @done
+    ✔ This will be the new minor version @done
   ✔ Add modifiers to tabs @done
   ☐ May want an UluApp component that just includes the common things we setup 
     * Like Route Announcer and Skip Link, maybe setting up page title head stuff, anything that will simplify things

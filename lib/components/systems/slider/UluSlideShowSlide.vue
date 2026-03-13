@@ -8,18 +8,11 @@
   </li>
 </template>
 
-<script>
-  export default {
-    name: 'SlideShowSlide',
-    props: {
-      /**
-       * Provided by grandparent, not user
-       */
-      active: Boolean,
-      someClassTest: String
-    },
-    mounted() {
-      console.log('slide mounted');
-    }
-  }
+<script setup>
+  defineProps({
+    /**
+     * Provided by grandparent, not user
+     */
+    active: Boolean
+  });
 </script>

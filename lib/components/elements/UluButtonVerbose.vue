@@ -2,13 +2,7 @@
   <component
     :is="element"
     class="button-verbose"
-    :class="[
-      {
-        'button-verbose--inline': inline,
-        'button-verbose--full-width': fullWidth,
-      },
-      resolvedModifiers
-    ]"
+    :class="resolvedModifiers"
     v-bind="attrs"
   >
     <component 
@@ -34,86 +28,85 @@
   </component>
 </template>
 
-<script>
+<script setup>
+  import { computed } from "vue";
   import { RouterLink } from "vue-router";
   import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
 
-  export default {
-    name: "UluButtonVerbose",
-    components: {
-      UluIcon
+  const props = defineProps({
+    /**
+     * The title of the button. Can also be passed via slot.
+     */
+    title: String,
+    /**
+     * Optional element to use for title
+     */
+    titleElement: {
+      type: String,
+      default: "strong"
     },
-    props: {
-      /**
-       * The title of the button. Can also be passed via slot.
-       */
-      title: String,
-      /**
-       * Optional element to use for title
-       */
-      titleElement: {
-        type: String,
-        default: "strong"
-      },
-      /**
-       * The body text of the button. Can also be passed via slot.
-       */
-      body: String,
-      /**
-       * Icon prop, if used will set the icon for the button, will use UluIcon (which uses font-awesome icons conditionally)
-       */
-      icon: [String, Array],
-      /**
-       * If set will use router-link for button component and pass to prop
-       */
-      to: [String, Object],
-      /**
-       * Sets the button to a link with this href
-       */
-      href: String,
-      /**
-       * Set a value for target attribute when button is a link
-       */
-      target: String,
-      /**
-       * Sets the download attribute on the link (passing string [filename] will populate the download attribute, true will just include it as boolean attribute)
-       */
-      download: [Boolean, String],
-      /**
-       * Preset to set inline style
-       */
-      inline: Boolean,
-      /**
-       * Preset to set full-width style
-       */
-      fullWidth: Boolean,
-      /**
-       * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
-       */
-      modifiers: [String, Array]
-    },
-    setup(props) {
-      const { resolvedModifiers } = useModifiers({ props, baseClass: "button-verbose" });
-      return { resolvedModifiers };
-    },
-    computed: {
-      element() {
-        return this.to ? RouterLink : this.href ? "a" : "button";
-      },
-      attrs() {
-        const { to, href, download, target } = this;
-        const attrs = to ? { to } : href ? { href } : {};
-        if (href) {
-          if (target) {
-            attrs.target = target;
-          }
-          if (download) {
-            attrs.download = typeof download === "string" ? download : true;
-          }
-        }
-        return attrs;
+    /**
+     * The body text of the button. Can also be passed via slot.
+     */
+    body: String,
+    /**
+     * Icon prop, if used will set the icon for the button, will use UluIcon (which uses font-awesome icons conditionally)
+     */
+    icon: [String, Array],
+    /**
+     * If set will use router-link for button component and pass to prop
+     */
+    to: [String, Object],
+    /**
+     * Sets the button to a link with this href
+     */
+    href: String,
+    /**
+     * Set a value for target attribute when button is a link
+     */
+    target: String,
+    /**
+     * Sets the download attribute on the link (passing string [filename] will populate the download attribute, true will just include it as boolean attribute)
+     */
+    download: [Boolean, String],
+    /**
+     * Preset to set inline style
+     */
+    inline: Boolean,
+    /**
+     * Preset to set full-width style
+     */
+    fullWidth: Boolean,
+    /**
+     * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
+     */
+    modifiers: [String, Array]
+  });
+
+  const { resolvedModifiers } = useModifiers({ 
+    props, 
+    baseClass: "button-verbose",
+    internal: computed(() => ({
+      "inline": props.inline,
+      "full-width": props.fullWidth,
+    }))
+  });
+
+  const element = computed(() => {
+    return props.to ? RouterLink : props.href ? "a" : "button";
+  });
+
+  const attrs = computed(() => {
+    const attrsObj = props.to ? { to: props.to } : props.href ? { href: props.href } : {};
+    if (props.target) {
+      attrsObj.target = props.target;
+    }
+    if (props.href) {
+      if (props.download) {
+        attrsObj.download = typeof props.download === "string" ? props.download : true;
       }
     }
-  };
+    return attrsObj;
+  });
 </script>

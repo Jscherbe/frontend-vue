@@ -34,45 +34,40 @@
   </nav>
 </template>
 
-<script>
+<script setup>
   import UluIcon from '../elements/UluIcon.vue';
+  
   /**
    * Breadcrumb trail component
    * - Is now agnostic of router, pass precomputed breadcrumb trail via items prop
    */
-  export default {
-    name: 'UluBreadcrumb',
-    components: {
-      UluIcon
+  const props = defineProps({
+    /**
+     * Array of breadcrumb items.
+     * Each item is an object: { title: String, to: [String, Object], current: Boolean }
+     */
+    items: {
+      type: Array,
+      default: () => []
     },
-    props: {
-      /**
-       * Array of breadcrumb items.
-       * Each item is an object: { title: String, to: [String, Object], current: Boolean }
-       */
-      items: {
-        type: Array,
-        default: () => []
-      },
-      /**
-       * Icon to use as a separator.
-       */
-      separatorIcon: String,
-      /**
-       * Classes object to be applied to elements.
-       * Keys: nav, list, item, link, icon
-       */
-      classes: {
-        type: Object,
-        default: () => ({
-          nav: "breadcrumb",
-          list: "breadcrumb__list",
-          item: "breadcrumb__item",
-          link: "breadcrumb__link",
-          current: "breadcrumb__current",
-          separator: "breadcrumb__separator"
-        })
-      }
+    /**
+     * Icon to use as a separator.
+     */
+    separatorIcon: String,
+    /**
+     * Classes object to be applied to elements.
+     * Keys: nav, list, item, link, icon
+     */
+    classes: {
+      type: Object,
+      default: () => ({
+        nav: "breadcrumb",
+        list: "breadcrumb__list",
+        item: "breadcrumb__item",
+        link: "breadcrumb__link",
+        current: "breadcrumb__current",
+        separator: "breadcrumb__separator"
+      })
     }
-  }
+  });
 </script>

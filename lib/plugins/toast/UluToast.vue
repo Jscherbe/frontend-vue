@@ -48,40 +48,34 @@
   </div>
 </template>
 
-<script>
+<script setup>
+  import { nextTick } from "vue";
   import UluIcon from "../../components/elements/UluIcon.vue";
-  export default {
-    name: 'UluToast',
-    components: {
-      UluIcon
-    },
-    props: {
-      /**
-       * Toast configuration
-       */
-      toast: Object,
-      /**
-       * Icons for each element { icon, header, content, date, actions, action, closeButton, title, body, closeButton }
-       */
-      classes: {
-        type: Object,
-        default: () => ({
-          content: "type-small",
-          date: "type-small-x",
-          actions: "type-small-x",
-          action: "button button--small button--outline",
-          closeButton: "button button--icon button--transparent"
-        })
-      }
-    },
-    methods: {
-      handleAction(event, action) {
-        const { toast } = this;
-        this.toast.close();
-        this.$nextTick(() => {
-          action(event, toast, action);
-        });
-      }
+
+  const props = defineProps({
+    /**
+     * Toast configuration
+     */
+    toast: Object,
+    /**
+     * Icons for each element { icon, header, content, date, actions, action, closeButton, title, body, closeButton }
+     */
+    classes: {
+      type: Object,
+      default: () => ({
+        content: "type-small",
+        date: "type-small-x",
+        actions: "type-small-x",
+        action: "button button--small button--outline",
+        closeButton: "button button--icon button--transparent"
+      })
     }
-  }
+  });
+
+  const handleAction = (event, action) => {
+    props.toast.close();
+    nextTick(() => {
+      action(event, props.toast, action);
+    });
+  };
 </script>

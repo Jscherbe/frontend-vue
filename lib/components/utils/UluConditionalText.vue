@@ -5,24 +5,21 @@
   </component>
 </template>
 
-<script>
+<script setup>
   /**
    * Print out text if set (has value)
    */
-  export default {
-    name: "UluConditionalText",
-    props: {
-      /**
-       * Text to print in element
-       */
-      text: [String, Number, Array, Object],
-      /**
-       * Element type to render (ie. h1, h2, p, etc)
-       */
-      element: {
-        type: String,
-        default: "p"
-      }
+  defineProps({
+    /**
+     * Text to print in element
+     */
+    text: [String, Number, Array, Object],
+    /**
+     * Element type to render (ie. h1, h2, p, etc)
+     */
+    element: {
+      type: String,
+      default: "p"
     }
-  }
+  });
 </script>

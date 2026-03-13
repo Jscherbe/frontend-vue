@@ -4,8 +4,5 @@
   </span>
 </template>
 
-<script>
-  export default {
-    name: 'CustomToast',
-  }
+<script setup>
 </script>
