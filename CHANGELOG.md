@@ -1,5 +1,16 @@
 # Change Log
 
+## 0.3.0
+
+- Matching current ulu frontend minor version
+- `UluModal` 
+  - Add the new fullscreenMobile modifier as a prop/option
+  - Implement the new fallback for lack of toggle event in Safari (observeDialogToggle from frontend)
+- `UluDefinitionList`
+  - Allow item.description to be an array to cover multiple `<dd>` elements
+  - Note this will work for pre-existing setups (instead of array.join default array to string you would get <dd>, <dd>, ...) but 
+    - **Important Breaking:** If you were using a slot and altering your output based on an array value you will incorrectly get multiple <dd>
+
 ## 0.2.0-beta.16
 
 - `UluMenu` | Add new slot for "item" for adding things to the `<li>` (custom submenus, etc), while default slot (pre-existing) will be the inner `<a>` or `<button>` or `<router-link>`

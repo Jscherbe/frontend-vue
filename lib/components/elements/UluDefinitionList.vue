@@ -15,9 +15,19 @@
         </slot>
       </dt>
       
-      <dd :class="classes.description">
-        <slot name="description" :item="item" :index="index">
-          {{ item.description }}
+      <dd 
+        v-for="(desc, descIndex) in getDescriptions(item)"
+        :key="descIndex"
+        :class="classes.description"
+      >
+        <slot 
+          name="description" 
+          :item="item" 
+          :description="desc" 
+          :index="index"
+          :descriptionIndex="descIndex"
+        >
+          {{ desc }}
         </slot>
       </dd>
     </div>
@@ -30,7 +40,7 @@
 
   const props = defineProps({
     /**
-     * Array of term, and description (props in object)
+     * Array of objects with term, and description (string or array of strings)
      * - Can use slots also
      */
     items: Array,
@@ -90,4 +100,11 @@
     internal: internalModifiers,
     baseClass: "definition-list"
   });
+
+  const getDescriptions = (item) => {
+    if (Array.isArray(item.description)) {
+      return item.description;
+    }
+    return [item.description];
+  };
 </script>

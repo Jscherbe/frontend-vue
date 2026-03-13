@@ -14,7 +14,6 @@
       @cancel.prevent="close"  
       @close="handleDialogCloseEvent"
       @click="handleClick"
-      @toggle="handleToggle"
     >
       <header 
         v-if="hasHeader" 
@@ -73,7 +72,7 @@
   import UluIcon from "../elements/UluIcon.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
   import { wasClickOutside, preventScroll as setupPreventScroll } from "@ulu/utils/browser/dom.js";
-  import { Resizer } from "@ulu/frontend";
+  import { Resizer, observeDialogToggle } from "@ulu/frontend";
   import { newId } from "../../utils/dom.js";
 
   export default {
@@ -184,7 +183,11 @@
       /**
        * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
        */
-      modifiers: [String, Array]
+      modifiers: [String, Array],
+      /**
+       * If true, modal is forced to fullscreen on mobile viewports
+       */
+      fullscreenMobile: Boolean
     },
     data() {
       return {
@@ -232,6 +235,7 @@
         "no-min-height" : props.noMinHeight,
         "non-modal" : props.nonModal,
         "resizer-active" : resizerEnabled.value,
+        "fullscreen-mobile" : props.fullscreenMobile,
       }));
 
       const { resolvedModifiers } = useModifiers({ 
@@ -316,25 +320,29 @@
           }
         }
       },
-      setupPreventScroll() {
-        const { body } = document;
-        this.bodyOverflowValue = body.style.overflow;
-        this.bodyPaddingRightValue = body.style.paddingRight;
+      setupToggleObserver() {
+        if (!this.nonModal && this.preventScroll) {
+          const { container } = this.$refs;
+          this.toggleObserver = observeDialogToggle(container, (isOpen) => {
+            const { preventScrollShift: preventShift } = this;
+            if (isOpen) {
+              this.restoreScroll = setupPreventScroll({ preventShift });
+            } else {
+              this.destroyPreventScroll();
+            }
+          });
+        }
+      },
+      destroyToggleObserver() {
+        if (this.toggleObserver) {
+          this.toggleObserver.destroy();
+          this.toggleObserver = null;
+        }
       },
       destroyPreventScroll() {
         if (this.restoreScroll) {
           this.restoreScroll();
-        }
-      },
-      handleToggle(event) {
-        if (!this.nonModal && this.preventScroll) {
-          const { preventScrollShift: preventShift } = this;
-          const isOpen = event.newState === "open";
-          if (isOpen) {
-            this.restoreScroll = setupPreventScroll({ preventShift });
-          } else {
-            this.destroyPreventScroll();
-          }
+          this.restoreScroll = null;
         }
       },
       setupResizer() {
@@ -371,9 +379,7 @@
       }
     },
     mounted() {
-      if (this.preventScroll) {
-        this.setupPreventScroll();
-      }
+      this.setupToggleObserver();
       this.setupResizer();
     },
     beforeUnmount() {
@@ -381,6 +387,7 @@
       if (container && container.open) {
         container.close();
       }
+      this.destroyToggleObserver();
       this.destroyPreventScroll();
       this.destroyResizer();
     }
