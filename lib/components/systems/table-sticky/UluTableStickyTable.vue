@@ -1,3 +1,4 @@
+
 <template>
   <table 
     :class="resolveClasses(classes.table, { isActual })"
@@ -132,106 +133,104 @@
   </table>
 </template>
 
-<script>
+<script setup>
   import UluTableStickyRows from "./UluTableStickyRows.vue";
-  export default {
-    name: "UluTableStickyTable",
-    components: {
-      UluTableStickyRows,
+
+  const emit = defineEmits([
+    "column-sorted", 
+    "actual-header-removed", 
+    "actual-header-added"
+  ]);
+
+  const props = defineProps({
+    resolveClasses: Function,
+    classes: {
+      type: Object,
+      default: () => ({})
     },
-    props: {
-      resolveClasses: Function,
-      classes: {
-        type: Object,
-        default: () => ({})
-      },
-      caption: String,
-      idPrefix: String,
-      headerRows: {
-        type: Array,
-        required: true
-      },
-      rows: Array,
-      footerRows: Array,
-      rowColumns: Array,
-      /**
-       * Is the actual table not a clone for sticky headers
-       */
-      isActual: {
-        type: Boolean
-      },
-      columnWidth: {
-        type: String
-      },
-      /**
-       * Optional user overridden value getter (for rows)
-       * @param {Object} row The current row
-       * @param {Object} column The current column in the row
-       */
-      getRowValue: {
-        type: Function,
-        default: ({ row, column }) => row[column.key]
-      },
-      /**
-       * Optional user overridden value getter (for rows)
-       * @param {Object} row The current row
-       * @param {Object} column The current column in the row
-       */
-      getColumnTitle: {
-        type: Function,
-        default: ({ column }) => column.title
-      },
+    caption: String,
+    idPrefix: String,
+    headerRows: {
+      type: Array,
+      required: true
     },
-    data() {
-      return {
-        headerRefs: {}
-      };
+    rows: Array,
+    footerRows: Array,
+    rowColumns: Array,
+    /**
+     * Is the actual table not a clone for sticky headers
+     */
+    isActual: {
+      type: Boolean
     },
-    methods: {
-      handleSortFocus(column, isFocused) {
-        if (this.isActual) {
-          column.sortFocused = isFocused;
-        }
-      },
-      addHeaderRef(column, el) {
-        const { headerRefs, isActual } = this;
-        if (!isActual || !el) return;
-        const { id } = column;
-        const old = headerRefs[id];
-        if (old) {
-          this.$emit("actual-header-removed", old);
-        }
-        this.$emit("actual-header-added", el);
-        headerRefs[id] = el;
-      },
-      /**
-       * False is no longer not printed
-       */
-      optionalAttr(val) {
-        return val ? val : null;
-      },
-      value({ row, column, rowIndex }) {
-        const value = column.value;
-        // Column has value function, pass to user
-        if (value) {
-          return value({ row: row.data, column, rowIndex });
-        } else {
-          // added .value to work with data. Should refactor depending on what we need
-          return this.getRowValue({ row: row.data, column, rowIndex });
-        }
-      },
-      getCellHeaders(column, rowIndex) {
-        const headers = column.headers.join(" ");
-        const rowHeaders = column.getRowHeaders(rowIndex);
-        const s = rowHeaders.length ? " " : "";
-        return `${ headers }${ s }${ rowHeaders }`;
-      },
-      getHeaderHeaders(column) {
-        const headersArray = column.headers.filter(id => id !== column.id);
-        if (headersArray.length) {
-          return headersArray.join(" ");
-        }
-      }
+    columnWidth: {
+      type: String
+    },
+    /**
+     * Optional user overridden value getter (for rows)
+     * @param {Object} row The current row
+     * @param {Object} column The current column in the row
+     */
+    getRowValue: {
+      type: Function,
+      default: ({ row, column }) => row[column.key]
+    },
+    /**
+     * Optional user overridden value getter (for rows)
+     * @param {Object} row The current row
+     * @param {Object} column The current column in the row
+     */
+    getColumnTitle: {
+      type: Function,
+      default: ({ column }) => column.title
+    },
+  });
+
+  const headerRefs = {};
+
+  const handleSortFocus = (column, isFocused) => {
+    if (props.isActual) {
+      column.sortFocused = isFocused;
+    }
+  };
+
+  const addHeaderRef = (column, el) => {
+    if (!props.isActual || !el) return;
+    const { id } = column;
+    const old = headerRefs[id];
+    if (old) {
+      emit("actual-header-removed", old);
+    }
+    emit("actual-header-added", el);
+    headerRefs[id] = el;
+  };
+
+  const optionalAttr = (val) => {
+    return val ? val : null;
+  };
+
+  const value = ({ row, column, rowIndex }) => {
+    const valueFn = column.value;
+    // Column has value function, pass to user
+    if (valueFn) {
+      return valueFn({ row: row.data, column, rowIndex });
+    } else {
+      // added .value to work with data. Should refactor depending on what we need
+      return props.getRowValue({ row: row.data, column, rowIndex });
+    }
+  };
+
+  const getCellHeaders = (column, rowIndex) => {
+    const headers = column.headers.join(" ");
+    const rowHeaders = column.getRowHeaders(rowIndex);
+    const s = rowHeaders.length ? " " : "";
+    return `${ headers }${ s }${ rowHeaders }`;
+  };
+
+  const getHeaderHeaders = (column) => {
+    const headersArray = column.headers.filter(id => id !== column.id);
+    if (headersArray.length) {
+      return headersArray.join(" ");
     }
   };
 </script>

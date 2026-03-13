@@ -1,3 +1,4 @@
+
 <template>
   <tr
     v-for="(row, rowIndex) in rows"
@@ -31,15 +32,6 @@
           :isActual="isActual"
         />
       </template>
-      <!--  
-      <component 
-        v-else-if="column.component" 
-        :is="column.component"
-        :row="row.data" 
-        :column="column"
-        :rowIndex="rowIndex"
-        :index="index"
-      /> -->
       <div 
         v-else-if="column.html" 
         v-html="value({ row, column, rowIndex, isActual, foot })"
@@ -51,23 +43,20 @@
   </tr>
 </template>
 
-<script>
-  export default {
-    name: "UluTableStickyRows",
-    props: {
-      rows: Array,
-      rowColumns: Array,
-      columnWidth: String,
-      optionalAttr: Function,
-      resolveClasses: Function,
-      getCellHeaders: Function,
-      value: Function,
-      isActual: Boolean,
-      classes: Object,
-      foot: {
-        type: Boolean,
-        default: false
-      }
+<script setup>
+  const props = defineProps({
+    rows: Array,
+    rowColumns: Array,
+    columnWidth: String,
+    optionalAttr: Function,
+    resolveClasses: Function,
+    getCellHeaders: Function,
+    value: Function,
+    isActual: Boolean,
+    classes: Object,
+    foot: {
+      type: Boolean,
+      default: false
     }
-  };
+  });
 </script>

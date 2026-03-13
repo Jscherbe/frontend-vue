@@ -5,6 +5,7 @@
 - Matching current ulu frontend minor version
 - Updating remaining options API components to composition API (eg. script setup)
   - Note this shouldn't break anything unless you were manually grabbing properties from a component (to grab element refs, methods, etc) which options API would expose and composition API does not. This is not how components were meant to be used, if a component does need that it would expose (ie. defineExpose) those intentionally. So that shouldn't be needed as components that do need that sort of behavior have dedicated methods for advanced usage like that (ie. provide/inject, composition API middleman, v-model [modal, etc]). 
+  - Note major components that were refactored but not completely tested (UluModal, UluTableSticky)
 - `UluModal` 
   - Add the new fullscreenMobile modifier as a prop/option
   - Implement the new fallback for lack of toggle event in Safari (observeDialogToggle from frontend)
