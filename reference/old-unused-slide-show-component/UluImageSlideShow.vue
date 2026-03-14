@@ -15,9 +15,9 @@
       <img :src="item.src" :alt="item.alt">
       <!-- Adding this in here for now, not generic meant for selection in compare ui -->
       <div class="slideshow__image-actions">
-        <AppButton v-if="selectButton" class="type-small" icon="plus" small iconBefore>
+        <UluButton v-if="selectButton" class="type-small" icon="fas fa-plus" small iconBefore>
           Select
-        </AppButton>
+        </UluButton>
       </div>
     </template>
     <template #nav="{ index }">
@@ -28,6 +28,7 @@
 
 <script setup>
   import UluSlideShow from "./UluSlideShow.vue";
+  import UluButton from "../../elements/UluButton.vue";
 
   const props = defineProps({
     images: Array,

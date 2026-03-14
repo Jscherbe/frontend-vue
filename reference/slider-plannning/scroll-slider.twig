@@ -1,0 +1,109 @@
+{#
+/**
+ * =============================================================================
+ * Scroll Slider
+ * =============================================================================
+ *
+ * Version: 2.0.1
+ *
+ * Example: {% import ctx.inf_theme_path ~ '/templates/_macros/core/scroll-slider.twig' as scrollSliderMacros %}
+ *
+ * Changes:
+ *   - 2.0.1:
+ *     - Change names to remove scrollSlider since it's in it's own file
+ *     - Moved to its own file, used to be part of slider.twig
+ *     - Add "class" to scrollSliderSection to adjust container class used
+ *     - Change scrollSliderSection modifier to sliderOptions, and pass object of options instead (forwarding)
+ *     - Make scrollSlider modifier plural and array "modifier" to match others
+ *   - 2.0.0: Setup for new universal macro API
+ */
+#}
+
+{% macro scrollSlider(ctx, options = {}) %}
+  {% set defaults = {
+    attributes: options.attributes ? options.attributes : create_attribute(),
+    modifiers: ["default"],
+    class: null,
+    slotSlides: [],
+    slideClass: null,
+    addEmptyEnds: false,
+    pluginOptions: {}
+  } %}
+  {% set options = defaults|merge(options) %}
+  {% set modifiers = options.modifiers|map(m => "scroll-slider--#{ m }")|join(" ") %}
+  {% set attributes = options.attributes.addClass([
+    "scroll-slider",
+    options.class,
+    modifiers
+  ]) %}
+  {% set attributes = attributes.setAttribute("data-ulu-scroll-slider", options.pluginOptions|json_encode) %}
+
+  {% set emptySlide %}
+    <li
+      class="scroll-slider__slide scroll-slider__slide--empty"
+      role="presentation"
+      data-ulu-scroll-slider-slide
+    >
+      &nbsp;
+    </li>
+  {% endset %}
+
+  {% if options.slotSlides|length %}
+    <div {{ attributes }}>
+      <div class="scroll-slider__control-context" data-ulu-scroll-slider-control-context>
+        <div class="scroll-slider__track-crop" data-ulu-scroll-slider-track-container>
+          <ul class="scroll-slider__track" data-ulu-scroll-slider-track>
+            {% if options.addEmptyEnds %}
+              {{ emptySlide }}
+            {% endif %}
+            {% for slide in options.slotSlides %}
+              <li class="scroll-slider__slide {{ options.slideClass }}" data-ulu-scroll-slider-slide>
+                {{ slide }}
+              </li>
+            {% endfor %}
+            {% if options.addEmptyEnds %}
+              {{ emptySlide }}
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endmacro %}
+
+{% macro section(ctx, options = {}) %}
+  {% from _self import scrollSlider %}
+  {% set defaults = {
+    attributes: options.attributes ? options.attributes : create_attribute(),
+    class: "container-fill",
+    title: null,
+    titleClass: "h2 h2--no-rule no-margin-bottom",
+    titleElement: "h2",
+    slotSlides: [],
+    sliderOptions: {}
+  } %}
+  {% set options = defaults|merge(options) %}
+
+  {% if options.slotSlides|length %}
+    {% set titleId = ctwig_uniqid("slider-title") %}
+    {% set attributes = options.attributes.addClass([
+      "scroll-slider-section",
+      options.class
+    ]) %}
+    {% set attributes = attributes.setAttribute("data-ulu-scroll-slider-init", "") %}
+    {% set attributes = attributes.setAttribute("aria-labelledby", titleId) %}
+    <section {{ attributes }}>
+      <div class="scroll-slider-section__title container-fit">
+        <{{ options.titleElement }} class="{{ options.titleClass }}" id="{{ titleId }}">
+          {{ options.title }}
+        </{{ options.titleElement }}>
+      </div>
+      <div class="scroll-slider-section__slides">
+        {{ scrollSlider(ctx, options.sliderOptions|merge({
+          slotSlides: options.slotSlides,
+          addEmptyEnds: true
+        })) }}
+      </div>
+    </section>
+  {% endif %}
+{% endmacro %}

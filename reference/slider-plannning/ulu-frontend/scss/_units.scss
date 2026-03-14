@@ -1,0 +1,49 @@
+////
+/// @group units
+/// Manages common spacing values (used by utility classes like margin/padding)
+////
+
+@use "sass:meta";
+@use "sass:map";
+@use "utils";
+
+/// Module Settings
+/// @type Map
+/// @prop {Number} default [1rem] Base unit of measure
+/// @prop {Number} large [1rem * 2]
+/// @prop {Number} large-x [1rem * 3]
+/// @prop {Number} large-xx [1rem * 4]
+/// @prop {Number} small [1rem * 0.75]
+/// @prop {Number} small-x [1rem * 0.5]
+
+$config: (
+  "default":  1rem,
+  "large":    1rem * 2,
+  "large-x":  1rem * 3,
+  "large-xx": 1rem * 4,
+  "small":    1rem * 0.75,
+  "small-x":  1rem * 0.5,
+) !default;
+
+/// Update the units config
+/// @param {Map} $changes A map to merge into the color palette
+/// @param {String} $merge-mode Merge mode see utils.map-merge() [null|"deep"|"overwrite"]
+/// @example scss Setting the error and type color
+///   @include ulu.units-set((
+///     "default" : 1.5em
+///   ));
+
+@mixin set($changes, $merge-mode: null) {
+  $config: utils.map-merge($config, $changes, $merge-mode) !global;
+}
+
+/// Get a unit by name (preset) or number (multiplier of base)
+/// @param {Number|String} $value if a number is passed it is used as a multiplier of the base, if a string is passed it is used to lookup a value from unit presets @see $config
+/// @return {Number}
+
+@function get($value: 1) {
+  @if (meta.type-of($value) == string) {
+    @return utils.require-map-get($config, $value, 'unit [config]');
+  }
+  @return get("default") * $value;
+}

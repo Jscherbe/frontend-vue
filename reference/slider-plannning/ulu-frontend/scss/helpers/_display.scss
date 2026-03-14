@@ -1,0 +1,71 @@
+////
+/// @group display
+/// Output display related helper stylesheet 
+////
+
+@use "sass:map";
+
+@use "../utils";
+@use "../layout";
+@use "../element";
+@use "../breakpoint";
+@use "../selector";
+
+/// Print utilities helper styles
+/// - Such as hidden, display-block, hidden-visually, and display helpers that for all breakpoints
+/// @example scss
+///  @include ulu.helper-display-styles();
+
+@mixin styles {
+
+  @include utils.file-header('helpers', 'display');
+
+  $prefix-hidden-visually: selector.class("hidden-visually");
+  $prefix-display: selector.class("display");
+  $prefix-hidden: selector.class("hidden");
+
+  #{ $prefix-hidden-visually } {
+    @include element.hidden-visually();
+  }
+  #{ $prefix-hidden-visually }-focusable {
+    &:not(:active):not(:focus) {
+      @include element.hidden-visually();
+    }
+  }
+  #{ $prefix-display }-block {
+    display: block;
+  }
+  #{ $prefix-display }-flex {
+    display: flex;
+  }
+  #{ $prefix-display }-inline-flex {
+    display: inline-flex;
+  }
+  #{ $prefix-display }-inline {
+    display: inline;
+  }
+  #{ $prefix-display }-inline-all * {
+    display: inline;
+  }
+  #{ $prefix-display }-inline-block {
+    display: inline-block;
+  }
+  #{ $prefix-hidden },
+  #{ $prefix-display }-none {
+    display: none !important;
+  }
+
+  // Display none per breakpoint
+  @each $name in map.keys(breakpoint.$sizes) {
+    @include breakpoint.min($name) {
+      #{ $prefix-hidden }-min-#{ $name } {
+        display: none !important;
+      }
+    }
+    @include breakpoint.max($name) {
+      #{ $prefix-hidden }-max-#{ $name } {
+        display: none !important;
+      }
+    }
+  }
+}

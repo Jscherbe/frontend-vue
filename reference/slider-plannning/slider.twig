@@ -1,0 +1,135 @@
+{#
+/**
+ * =============================================================================
+ * Slider
+ * =============================================================================
+ *
+ * Version: 2.0.1
+ *
+ * Example: {% import ctx.inf_theme_path ~ '/templates/_macros/core/slider.twig' as sliderMacros %}
+ *
+ * Changes:
+ *   - 2.0.1:
+ *     - Change sectionLayout() macro to section()
+ *     - Simplify sectionLayout base class from "slider-section-layout" to "slider-section"
+ *     - Moved scroll slider related macros to scroll-slider.twig
+ *     - Add "class" to slider
+ *     - Refactored modifiers to map syntax and attributes (all macros)
+ *     - Fixed typo in "slider-section-layout-modifier" to "slider-section-layout--modifier"
+ *   - 2.0.0: Setup for new universal macro API
+ */
+#}
+
+{#
+  * @param {Object} options Configuration object
+  * @param {Object} options.attributes Attributes (ie class, id, etc.) Needs to be build using the create_attribute() method.
+  * @param {Array} options.modifiers For each item, adds as modifer with the prefix "slider--"
+  * @param {String} title Slider Title
+  * @param {String} titleClass Class that goes on the slider's title (title is required)
+  * @param {String} titleElement Element for the title
+  * @param {Array<Markup>} slotSlides Array of slides markup/HTML
+  * @param {Object} Options for the slider. Refer to ulu's ui/slider.js
+#}
+
+{# @Daniel need to test modifiers #}
+
+{% macro slider(ctx, options = {}) %}
+  {% set defaults = {
+    attributes: options.attributes ? options.attributes : create_attribute(),
+    modifiers: ["default"],
+    class: null,
+    title: null,
+    titleClass: "hidden-visually",
+    titleElement: "h2",
+    slotSlides: [],
+    slideClass: null,
+    pluginOptions: {}
+  } %}
+  {% set options = defaults|merge(options) %}
+  {% set attributes = options.attributes %}
+  {% set modifiers = options.modifiers|map(m => "slider--#{ m }")|join(" ") %}
+  {% set attributes = attributes.addClass([
+    "slider",
+    modifiers,
+    options.class
+  ]) %}
+
+  {% if options.slotSlides|length %}
+    {% set markup %}
+      <div
+        {{ attributes }}
+        data-ulu-slider="{{ options.pluginOptions|json_encode }}"
+      >
+        <div class="slider__control-context" data-ulu-slider-control-context>
+          <div class="slider__track-crop" data-ulu-slider-track-container>
+            <ul class="slider__track" data-ulu-slider-track>
+              {% for slide in options.slotSlides %}
+                <li class="slider__slide {{ options.slideClass }}" data-ulu-slider-slide>
+                  {{ slide }}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    {% endset %}
+    {#
+      We define the region if the user passes a title (which is hidden)
+      - else user needs to define the region and title so we just output the functional inner markup
+    #}
+    {% if options.title %}
+      {% set titleId = ctwig_uniqid("slider-title") %}
+      <section class="slider-region" aria-labelledby="{{ titleId }}">
+        <{{ options.titleElement }} class="{{ options.titleClass }}" id="{{ titleId }}">
+          {{ options.title }}
+        </{{ options.titleElement }}>
+        {{ markup }}
+      </section>
+    {% else %}
+      {{ markup }}
+    {% endif %}
+  {% endif %}
+{% endmacro %}
+
+{% macro section(ctx, options = {}) %}
+  {% from _self import slider %}
+  {% set defaults = {
+    attributes: options.attributes ? options.attributes : create_attribute(),
+    modifiers: ["in-content"],
+    title: null,
+    titleClass: "h2",
+    titleElement: "h2",
+    slotSlides: [],
+    classes: [],
+  } %}
+{% set options = defaults|merge(options) %}
+
+  {% set attributes = options.attributes %}
+  {% set modifiers = options.modifiers|map(m => "slider-section--#{ m }")|join(" ") %}
+  {% set attributes = attributes.addClass([
+    "slider-section",
+    modifiers,
+    options.classes
+  ]) %}
+
+  {% if options.slotSlides|length %}
+    {% set titleId = ctwig_uniqid("slider-title") %}
+    <section {{ attributes }} aria-labelledby="{{ titleId }}">
+      <div class="slider-section__title container-small no-padding-bottom">
+        <{{ options.titleElement }} class="{{ options.titleClass }}" id="{{ titleId }}">
+          {{ options.title }}
+        </{{ options.titleElement }}>
+      </div>
+      <div class="slider-section__slides container no-padding-top">
+        {{ slider(ctx, {
+          slotSlides: options.slotSlides,
+          modifier: options.modifier,
+          pluginOptions: {
+            transitionFade: false
+          }
+        })}}
+      </div>
+    </section>
+  {% endif %}
+{% endmacro %}
+

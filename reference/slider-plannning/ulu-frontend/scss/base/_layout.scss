@@ -1,0 +1,105 @@
+////
+/// @group layout
+/// Output base layout styles (containers, flex layout utilities, etc)
+////
+
+@use "sass:map";
+@use "../layout";
+@use "../selector";
+@use "../utils";
+
+/// Module Settings
+/// @type Map
+/// @prop {Boolean} containers [true] Enables container styling.
+/// @prop {Boolean} container-nested-no-padding [false] Toggles whether nested receive horizontal padding or not. 
+/// @prop {Boolean} layout-flex [true] Enables layout-flex styling.
+
+$config: (
+  "containers" : true,
+  "container-nested-no-padding" : false,
+  "layout-flex" : true,
+) !default;
+
+/// Change modules $config
+/// @param {Map} $changes Map of changes
+/// @example scss - General example
+///   @include ulu.base-layout-set(( "property" : value ));
+
+@mixin set($changes) {
+  $config: map.merge($config, $changes) !global;
+}
+
+/// Get a config option
+/// @param {Map} $name Name of property
+/// @example scss - General example
+///   @include ulu.base-layout-get("property");
+
+@function get($name) {
+  @return utils.require-map-get($config, $name, "base layout [config]");
+}
+
+/// Output Layout Styles 
+
+@mixin styles {
+  @include utils.file-header('base', 'layout');
+
+  @if (get("containers")) {
+    @each $name, $values in layout.$containers {
+      $class: selector.class($name);
+      #{ $class } {
+        @include layout.container-styles($name);
+      }
+    }
+  }
+  @if (get("container-nested-no-padding")) {
+    $prefix: selector.class("container", $name-only: true);
+    [class|="#{ $prefix }"] {
+      [class|="#{ $prefix }"] {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+
+  @if (get("layout-flex")) {
+    $prefix: selector.class("layout-flex");
+
+    #{ $prefix } {
+      display: flex;
+    }
+    #{ $prefix }-justified {
+      display: flex;
+      justify-content: space-between;
+    }
+    #{ $prefix }-center {
+      display: flex;
+      align-items: center;
+    }
+    #{ $prefix }-center-all {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #{ $prefix }-justify-end {
+      display: flex;
+      justify-content: flex-end;
+    }
+    #{ $prefix }-baseline {
+      display: flex;
+      align-items: baseline;
+    }
+    #{ $prefix }-end {
+      display: flex;
+      align-items: flex-end;
+    }
+    #{ $prefix }-column {
+      display: flex;
+      flex-direction: column;
+    }
+    #{ $prefix }-column-center {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+}
