@@ -13,6 +13,17 @@
   - Allow item.description to be an array to cover multiple `<dd>` elements
   - Note this will work for pre-existing setups (instead of array.join default array to string you would get <dd>, <dd>, ...) but 
     - **Important Breaking:** If you were using a slot and altering your output based on an array value you will incorrectly get multiple <dd>
+- Add `UluImage` so that image API across components is unified (through this components props)
+  - So components displaying images will use this as they're API (the props)
+  - Also simply works for simple images and all attributes are inherited to the inner img element if sources are given (to support picture elements in same API)
+- **Remove UluSlideShow**
+  - Wasn't ever setup fully, added sliders below instead
+- Add `UluScrollSlider` to match frontend components
+- Add `UluOverflowScroller` to match frontend components
+- Add `UluSlider` to match frontend components (accessible, carousel pattern)
+- Add `UluImageSlider`
+  - This components uses UluSlider and replace functionality UluImageSlideShow had
+- Add `UluCaptionedFigure` to match frontend component
 
 ## 0.2.0-beta.16
 

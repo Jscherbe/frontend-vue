@@ -1,5 +1,6 @@
 Todos:
-  ☐ Test and setup stories for slideshow component @in-progress
+  ☐ Test UluImage and UluCaptionedFigure
+  ☐ Test and setup stories for slideshow components (all of them) @in-progress
     * This has been refactored to composition API but is untested (need story)
   ☐ May want to consolidate the <a> vs <router-link> vs <button> logic to a util
     * Used in UluButton UluButtonVerbose and probably other places

@@ -1,0 +1,77 @@
+# Breakpoints Plugin
+
+## Purpose
+
+The Breakpoints Plugin provides app-wide, reactive breakpoint information to your Vue components. It is a lightweight wrapper around the `useBreakpointManager` composable, ensuring that resize events and active breakpoint states are tracked centrally and distributed efficiently via Vue's `provide`/`inject` system.
+
+By installing this plugin, any component in your application can instantly know the current breakpoint, whether the device is considered "mobile," and the direction the window was just resized.
+
+## Installation
+
+Register the `breakpointsPlugin` on your Vue app instance.
+
+```javascript
+// src/main.js
+import { createApp } from 'vue';
+import App from './App.vue';
+import { breakpointsPlugin } from '@ulu/frontend-vue';
+
+const app = createApp(App);
+
+// Register the breakpoints plugin
+app.use(breakpointsPlugin, {
+  // Optional: Change which breakpoint triggers the 'isMobile' flag (default is 'small')
+  breakpointMobile: 'small',
+  
+  // Optional: Pass options directly to the underlying useBreakpointManager
+  managerOptions: {
+    // onReady(manager) { ... }
+  }
+});
+
+app.mount('#app');
+```
+
+## Provided Injections
+
+The plugin does not attach methods to the Vue instance. Instead, it provides reactive `computed` refs that you can inject into any component.
+
+- **`uluIsMobile`**: `ComputedRef<Boolean>` - True if the current active breakpoint is less than or equal to the configured `breakpointMobile` (defaults to `'small'`).
+- **`uluBreakpointActive`**: `ComputedRef<String>` - The name of the currently active breakpoint (e.g., `'small'`, `'medium'`, `'large'`).
+- **`uluBreakpointDirection`**: `ComputedRef<Number>` - Indicates the resize direction (`1` for growing larger, `-1` for shrinking smaller, `0` for initialization).
+- **`uluBreakpointManager`**: `ComputedRef<Object>` - The underlying vanilla JS BreakpointManager instance, allowing advanced programmatic subscriptions if needed.
+
+## Example Usage
+
+**Composition API (`<script setup>`)**
+```vue
+<script setup>
+  import { inject } from 'vue';
+
+  const isMobile = inject('uluIsMobile');
+  const currentBreakpoint = inject('uluBreakpointActive');
+</script>
+
+<template>
+  <div>
+    <p v-if="isMobile">You are on a mobile device!</p>
+    <p>Current Breakpoint: {{ currentBreakpoint }}</p>
+  </div>
+</template>
+```
+
+**Options API**
+```vue
+<script>
+export default {
+  inject: ['uluIsMobile', 'uluBreakpointActive'],
+  mounted() {
+    console.log('Is mobile?', this.uluIsMobile);
+  }
+}
+</script>
+```
+
+## Why use the Plugin vs the Composable?
+
+While you can import and use `useBreakpointManager()` directly in individual components, registering the Breakpoints Plugin ensures that the vanilla JS `BreakpointManager` is only instantiated once. This centralizes the resize event listeners, significantly improving performance across large applications with many responsive components.

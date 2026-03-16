@@ -7,6 +7,7 @@
         <button 
           :class="[`${namespace}__control-button`, `${namespace}__control-button--previous`, ...buttonClasses]"
           aria-label="Scroll Left"
+          :aria-controls="trackId"
           @click="scrollLeft"
           :disabled="!canScrollLeft"
         >
@@ -20,6 +21,7 @@
         <button 
           :class="[`${namespace}__control-button`, `${namespace}__control-button--next`, ...buttonClasses]"
           aria-label="Scroll Right"
+          :aria-controls="trackId"
           @click="scrollRight"
           :disabled="!canScrollRight"
         >
@@ -34,101 +36,105 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
-import UluIcon from './UluIcon.vue';
+  import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue';
+  import UluIcon from './UluIcon.vue';
 
-const props = defineProps({
-  /**
-   * The HTML element to use as the root wrapper.
-   */
-  element: { type: String, default: 'div' },
-  /**
-   * Show previous/next controls.
-   */
-  controls: { type: Boolean, default: true },
-  /**
-   * Scroll amount (in pixels) for the next/prev buttons.
-   * If 'auto', it scrolls by the visible width of the track.
-   */
-  scrollAmount: { type: [Number, String], default: 'auto' },
-  /**
-   * Scroll behavior ('smooth' or 'auto').
-   */
-  scrollBehavior: { type: String, default: 'smooth' },
-  /**
-   * CSS class namespace for controls.
-   */
-  namespace: { type: String, default: 'OverflowScroller' },
-  /**
-   * Additional class to apply to the controls container.
-   */
-  controlsClass: { type: String, default: '' },
-  /**
-   * Button classes to apply.
-   */
-  buttonClasses: { type: Array, default: () => ['button', 'button--icon'] },
-  /**
-   * Icon definition for previous button.
-   */
-  iconClassPrevious: { type: String, default: 'type:previous' },
-  /**
-   * Icon definition for next button.
-   */
-  iconClassNext: { type: String, default: 'type:next' },
-  /**
-   * Offset threshold to consider "at start" (disables previous button).
-   */
-  offsetStart: { type: Number, default: 10 },
-  /**
-   * Offset threshold to consider "at end" (disables next button).
-   */
-  offsetEnd: { type: Number, default: 10 }
-});
-
-const trackRef = ref(null);
-const canScrollLeft = ref(false);
-const canScrollRight = ref(false);
-
-const setTrackRef = (el) => {
-  trackRef.value = el;
-};
-
-const checkScrollability = () => {
-  if (!trackRef.value) return;
-  const { scrollLeft, scrollWidth, clientWidth } = trackRef.value;
-  canScrollLeft.value = scrollLeft > props.offsetStart;
-  canScrollRight.value = Math.ceil(scrollLeft + clientWidth) < (scrollWidth - props.offsetEnd);
-};
-
-const onScroll = () => {
-  checkScrollability();
-};
-
-const scrollByAmount = (direction) => {
-  if (!trackRef.value) return;
-  const { clientWidth } = trackRef.value;
-  let amount = props.scrollAmount;
-  if (amount === 'auto') {
-    amount = clientWidth;
-  }
-  
-  trackRef.value.scrollBy({
-    left: direction === 'right' ? amount : -amount,
-    behavior: props.scrollBehavior
+  const props = defineProps({
+    /**
+     * The HTML element to use as the root wrapper.
+     */
+    element: { type: String, default: 'div' },
+    /**
+     * Show previous/next controls.
+     */
+    controls: { type: Boolean, default: true },
+    /**
+     * The ID of the track element, used for aria-controls.
+     */
+    trackId: { type: String, default: null },
+    /**
+     * Scroll amount (in pixels) for the next/prev buttons.
+     * If 'auto', it scrolls by the visible width of the track.
+     */
+    scrollAmount: { type: [Number, String], default: 'auto' },
+    /**
+     * Scroll behavior ('smooth' or 'auto').
+     */
+    scrollBehavior: { type: String, default: 'smooth' },
+    /**
+     * CSS class namespace for controls.
+     */
+    namespace: { type: String, default: 'OverflowScroller' },
+    /**
+     * Additional class to apply to the controls container.
+     */
+    controlsClass: { type: String, default: '' },
+    /**
+     * Button classes to apply.
+     */
+    buttonClasses: { type: Array, default: () => ['button', 'button--icon'] },
+    /**
+     * Icon definition for previous button.
+     */
+    iconClassPrevious: { type: String, default: 'type:previous' },
+    /**
+     * Icon definition for next button.
+     */
+    iconClassNext: { type: String, default: 'type:next' },
+    /**
+     * Offset threshold to consider "at start" (disables previous button).
+     */
+    offsetStart: { type: Number, default: 10 },
+    /**
+     * Offset threshold to consider "at end" (disables next button).
+     */
+    offsetEnd: { type: Number, default: 10 }
   });
-};
 
-const scrollLeft = () => scrollByAmount('left');
-const scrollRight = () => scrollByAmount('right');
+  const trackRef = ref(null);
+  const canScrollLeft = ref(false);
+  const canScrollRight = ref(false);
 
-onMounted(() => {
-  nextTick(() => {
+  const setTrackRef = (el) => {
+    trackRef.value = el;
+  };
+
+  const checkScrollability = () => {
+    if (!trackRef.value) return;
+    const { scrollLeft, scrollWidth, clientWidth } = trackRef.value;
+    canScrollLeft.value = scrollLeft > props.offsetStart;
+    canScrollRight.value = Math.ceil(scrollLeft + clientWidth) < (scrollWidth - props.offsetEnd);
+  };
+
+  const onScroll = () => {
     checkScrollability();
-  });
-  window.addEventListener('resize', checkScrollability);
-});
+  };
 
-onBeforeUnmount(() => {
-  window.removeEventListener('resize', checkScrollability);
-});
+  const scrollByAmount = (direction) => {
+    if (!trackRef.value) return;
+    const { clientWidth } = trackRef.value;
+    let amount = props.scrollAmount;
+    if (amount === 'auto') {
+      amount = clientWidth;
+    }
+    
+    trackRef.value.scrollBy({
+      left: direction === 'right' ? amount : -amount,
+      behavior: props.scrollBehavior
+    });
+  };
+
+  const scrollLeft = () => scrollByAmount('left');
+  const scrollRight = () => scrollByAmount('right');
+
+  onMounted(() => {
+    nextTick(() => {
+      checkScrollability();
+    });
+    window.addEventListener('resize', checkScrollability);
+  });
+
+  onBeforeUnmount(() => {
+    window.removeEventListener('resize', checkScrollability);
+  });
 </script>

@@ -149,6 +149,8 @@ export class Slider {
     this.swipeListener = null;
     this.swipeImageListener = null;
     this.transitioning = false;
+    this.instanceId = Slider.instances.length;
+    this.trackId = `ulu-slider-${this.instanceId}-track`;
 
     if (!hasRequiredProps(requiredElements)) {
       logError(this, 'Missing a required Element');
@@ -156,10 +158,16 @@ export class Slider {
     if (!elements.slides.length) {
       logError(this, "Missing slides");
     }
+    
+    elements.track.id = this.trackId;
+    
     this.slides = [ ...elements.slides ].map((element, index) => {
+      const slideId = `ulu-slider-${this.instanceId}-slide-${index}`;
+      element.id = slideId;
       return {
         element,
         index,
+        id: slideId,
         number: index + 1
       }
     });
@@ -419,10 +427,16 @@ export class Slider {
 
     track.setAttribute("style", trackCss);
     trackContainer.setAttribute("style", trackContainerStyles);
+    
+    // Polite by default unless we add autoplay logic later
+    track.setAttribute("aria-live", "polite");
 
     this.slides.forEach(slide => {
       slide.element.setAttribute("style", slideCss);
       slide.element.setAttribute('tabindex', '-1');
+      slide.element.setAttribute('role', 'group');
+      slide.element.setAttribute('aria-roledescription', 'slide');
+      slide.element.setAttribute('aria-label', `Slide ${slide.number} of ${this.slides.length}`);
     });
     
     container.classList.add(this.getClass());
@@ -512,6 +526,7 @@ export class Slider {
     button.classList.add(...this.options.buttonClasses);
     button.setAttribute("data-slider-control", action);
     button.setAttribute("type", "button");
+    button.setAttribute("aria-controls", this.trackId);
     button.innerHTML = this.getControlContent(action);
     return button;
   }
@@ -564,6 +579,7 @@ export class Slider {
     const button = document.createElement("button");
     button.classList.add(this.getClass("nav-button"));
     button.setAttribute("type", "button");
+    button.setAttribute("aria-controls", slide.id);
     button.innerHTML = this.getNavContent(slide);
     slide.navButton = button; // Add reference to slide object
     button.addEventListener("click", this.goto.bind(this, index));
