@@ -59,6 +59,14 @@ const ne = ["aria-labelledby", "aria-describedby"], ie = ["id"], re = { class: "
       default: "center"
     },
     /**
+     * Use fullscreen layout
+     */
+    fullscreen: Boolean,
+    /**
+     * If true, modal is forced to fullscreen on mobile viewports
+     */
+    fullscreenMobile: Boolean,
+    /**
      * If `true`, the modal body will fill the available space. 
      */
     bodyFills: Boolean,
@@ -109,11 +117,7 @@ const ne = ["aria-labelledby", "aria-describedby"], ie = ["id"], re = { class: "
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array],
-    /**
-     * If true, modal is forced to fullscreen on mobile viewports
-     */
-    fullscreenMobile: Boolean
+    modifiers: [String, Array]
   },
   emits: ["update:modelValue", "close", "open"],
   setup(t, { emit: H }) {
@@ -132,6 +136,7 @@ const ne = ["aria-labelledby", "aria-describedby"], ie = ["id"], re = { class: "
       "no-min-height": e.noMinHeight,
       "non-modal": e.nonModal,
       "resizer-active": f.value,
+      fullscreen: e.fullscreen,
       "fullscreen-mobile": e.fullscreenMobile
     })), { resolvedModifiers: F } = x({
       props: e,

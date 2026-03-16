@@ -14,10 +14,11 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     nonModal: boolean;
     allowResize: boolean;
     position: string;
+    fullscreen: boolean;
+    fullscreenMobile: boolean;
     bodyFills: boolean;
     noBackdrop: boolean;
     noMinHeight: boolean;
-    fullscreenMobile: boolean;
     labelledby?: string | undefined;
     describedby?: string | undefined;
     title?: string | undefined;
@@ -35,10 +36,11 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly nonModal?: boolean | undefined;
         readonly allowResize?: boolean | undefined;
         readonly position?: string | undefined;
+        readonly fullscreen?: boolean | undefined;
+        readonly fullscreenMobile?: boolean | undefined;
         readonly bodyFills?: boolean | undefined;
         readonly noBackdrop?: boolean | undefined;
         readonly noMinHeight?: boolean | undefined;
-        readonly fullscreenMobile?: boolean | undefined;
         readonly labelledby?: string | undefined;
         readonly describedby?: string | undefined;
         readonly title?: string | undefined;

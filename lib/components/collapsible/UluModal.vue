@@ -129,6 +129,14 @@
       default: "center"
     },
     /**
+     * Use fullscreen layout
+     */
+    fullscreen: Boolean,
+    /**
+     * If true, modal is forced to fullscreen on mobile viewports
+     */
+    fullscreenMobile: Boolean,
+    /**
      * If `true`, the modal body will fill the available space. 
      */
     bodyFills: Boolean,
@@ -180,10 +188,6 @@
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
     modifiers: [String, Array],
-    /**
-     * If true, modal is forced to fullscreen on mobile viewports
-     */
-    fullscreenMobile: Boolean
   });
 
   const slots = useSlots();
@@ -224,6 +228,7 @@
     "no-min-height": props.noMinHeight,
     "non-modal": props.nonModal,
     "resizer-active": resizerEnabled.value,
+    "fullscreen": props.fullscreen,
     "fullscreen-mobile": props.fullscreenMobile,
   }));
 

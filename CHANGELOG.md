@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.3.1
+
+- `UluModal` | Add fullscreen prop
+
 ## 0.3.0
 
 - Matching current ulu frontend minor version
