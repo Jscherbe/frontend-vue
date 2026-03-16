@@ -21,8 +21,9 @@
 - Add `UluScrollSlider` to match frontend components
 - Add `UluOverflowScroller` to match frontend components
 - Add `UluSlider` to match frontend components (accessible, carousel pattern)
-- Add `UluImageSlider`
+- Start `UluImageSlider`
   - This components uses UluSlider and replace functionality UluImageSlideShow had
+  - Not finished yet needs to have a stylesheet in main library and traditional CSS stuff setup then we can finish the theme parts (vue stuff is all strated)
 - Add `UluCaptionedFigure` to match frontend component
 - Add `UluAction` to be the unified API for how router-link/button/a are resolved (eg. to/href/click)
   - This replaces repetitive duplicated code that resolves this throughout (UluButton, UluMenu, ...)

@@ -1,4 +1,8 @@
 ☐ Todos
+  ☐ Finish UluImageSlider  @less-important @easy-to-complete 
+    * Moved to: reference/slider-plannning/image-slider/UluImageSlider.vue
+    * Needs the frontend stylesheet setup first
+    * Once this is finished we can delete the planning reference assets
   ✔ Test everything refactored to UluAction (UluMenu, UluButton) @done
   ☐ Test UluImage and UluCaptionedFigure
   ☐ Test and setup stories for slideshow components (all of them) @in-progress

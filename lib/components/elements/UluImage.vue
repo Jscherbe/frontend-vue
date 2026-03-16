@@ -23,34 +23,34 @@
 </template>
 
 <script setup>
-defineOptions({
-  inheritAttrs: false
-});
+  defineOptions({
+    inheritAttrs: false
+  });
 
-defineProps({
-  src: {
-    type: String,
-    required: true
-  },
-  alt: {
-    type: String,
-    default: ''
-  },
-  /**
-   * Array of source objects for <picture> tag.
-   * Example: [{ srcset: '/small.jpg', media: '(max-width: 600px)' }]
-   */
-  sources: {
-    type: Array,
-    default: () => []
-  },
-  /**
-   * Granular class targeting for internal elements.
-   * Example: { picture: 'my-picture-class', img: 'my-img-class' }
-   */
-  classes: {
-    type: Object,
-    default: () => ({})
-  }
-});
+  defineProps({
+    src: {
+      type: String,
+      required: true
+    },
+    alt: {
+      type: String,
+      default: ''
+    },
+    /**
+     * Array of source objects for <picture> tag.
+     * Example: [{ srcset: '/small.jpg', media: '(max-width: 600px)' }]
+     */
+    sources: {
+      type: Array,
+      default: () => []
+    },
+    /**
+     * Granular class targeting for internal elements.
+     * Example: { picture: 'my-picture-class', img: 'my-img-class' }
+     */
+    classes: {
+      type: Object,
+      default: () => ({})
+    }
+  });
 </script>

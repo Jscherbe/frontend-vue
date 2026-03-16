@@ -1,7 +1,6 @@
 import UluImageSlider from './UluImageSlider.vue';
 
 export default {
-  title: 'Elements/UluImageSlider',
   component: UluImageSlider,
   tags: ['autodocs'],
   argTypes: {
