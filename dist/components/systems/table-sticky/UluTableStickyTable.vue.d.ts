@@ -1,151 +1,65 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-    resolveClasses: FunctionConstructor;
-    classes: {
-        type: ObjectConstructor;
-        default: () => {};
-    };
-    caption: StringConstructor;
-    idPrefix: StringConstructor;
-    headerRows: {
-        type: ArrayConstructor;
-        required: true;
-    };
-    rows: ArrayConstructor;
-    footerRows: ArrayConstructor;
-    rowColumns: ArrayConstructor;
-    /**
-     * Is the actual table not a clone for sticky headers
-     */
-    isActual: {
-        type: BooleanConstructor;
-    };
-    columnWidth: {
-        type: StringConstructor;
-    };
-    /**
-     * Optional user overridden value getter (for rows)
-     * @param {Object} row The current row
-     * @param {Object} column The current column in the row
-     */
-    getRowValue: {
-        type: FunctionConstructor;
-        default: ({ row, column }: {
-            row: any;
-            column: any;
-        }) => any;
-    };
-    /**
-     * Optional user overridden value getter (for rows)
-     * @param {Object} row The current row
-     * @param {Object} column The current column in the row
-     */
-    getColumnTitle: {
-        type: FunctionConstructor;
-        default: ({ column }: {
-            column: any;
-        }) => any;
-    };
-}>, {}, {
-    headerRefs: {};
-}, {}, {
-    handleSortFocus(column: any, isFocused: any): void;
-    addHeaderRef(column: any, el: any): void;
-    /**
-     * False is no longer not printed
-     */
-    optionalAttr(val: any): any;
-    value({ row, column, rowIndex }: {
-        row: any;
-        column: any;
-        rowIndex: any;
-    }): any;
-    getCellHeaders(column: any, rowIndex: any): string;
-    getHeaderHeaders(column: any): any;
-}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-    resolveClasses: FunctionConstructor;
-    classes: {
-        type: ObjectConstructor;
-        default: () => {};
-    };
-    caption: StringConstructor;
-    idPrefix: StringConstructor;
-    headerRows: {
-        type: ArrayConstructor;
-        required: true;
-    };
-    rows: ArrayConstructor;
-    footerRows: ArrayConstructor;
-    rowColumns: ArrayConstructor;
-    /**
-     * Is the actual table not a clone for sticky headers
-     */
-    isActual: {
-        type: BooleanConstructor;
-    };
-    columnWidth: {
-        type: StringConstructor;
-    };
-    /**
-     * Optional user overridden value getter (for rows)
-     * @param {Object} row The current row
-     * @param {Object} column The current column in the row
-     */
-    getRowValue: {
-        type: FunctionConstructor;
-        default: ({ row, column }: {
-            row: any;
-            column: any;
-        }) => any;
-    };
-    /**
-     * Optional user overridden value getter (for rows)
-     * @param {Object} row The current row
-     * @param {Object} column The current column in the row
-     */
-    getColumnTitle: {
-        type: FunctionConstructor;
-        default: ({ column }: {
-            column: any;
-        }) => any;
-    };
-}>> & Readonly<{}>, {
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & (new () => {
+    $slots: S;
+});
+declare const __VLS_component: import('vue').DefineComponent<{}, {
+    $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
     classes: Record<string, any>;
     isActual: boolean;
-    getRowValue: Function;
-    getColumnTitle: Function;
-}, {}, {
-    UluTableStickyRows: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-        rows: ArrayConstructor;
-        rowColumns: ArrayConstructor;
-        columnWidth: StringConstructor;
-        optionalAttr: FunctionConstructor;
-        resolveClasses: FunctionConstructor;
-        getCellHeaders: FunctionConstructor;
-        value: FunctionConstructor;
-        isActual: BooleanConstructor;
-        classes: ObjectConstructor;
-        foot: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-    }>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-        rows: ArrayConstructor;
-        rowColumns: ArrayConstructor;
-        columnWidth: StringConstructor;
-        optionalAttr: FunctionConstructor;
-        resolveClasses: FunctionConstructor;
-        getCellHeaders: FunctionConstructor;
-        value: FunctionConstructor;
-        isActual: BooleanConstructor;
-        classes: ObjectConstructor;
-        foot: {
-            type: BooleanConstructor;
-            default: boolean;
-        };
-    }>> & Readonly<{}>, {
+    headerRows: unknown[];
+    caption?: string | undefined;
+    rows?: unknown[] | undefined;
+    rowColumns?: unknown[] | undefined;
+    columnWidth?: string | undefined;
+    resolveClasses?: Function | undefined;
+    idPrefix?: string | undefined;
+    footerRows?: unknown[] | undefined;
+    getRowValue?: Function | undefined;
+    getColumnTitle?: Function | undefined;
+    $props: {
+        readonly classes?: Record<string, any> | undefined;
+        readonly isActual?: boolean | undefined;
+        readonly headerRows?: unknown[] | undefined;
+        readonly caption?: string | undefined;
+        readonly rows?: unknown[] | undefined;
+        readonly rowColumns?: unknown[] | undefined;
+        readonly columnWidth?: string | undefined;
+        readonly resolveClasses?: Function | undefined;
+        readonly idPrefix?: string | undefined;
+        readonly footerRows?: unknown[] | undefined;
+        readonly getRowValue?: Function | undefined;
+        readonly getColumnTitle?: Function | undefined;
+    };
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLTableElement>;
+type __VLS_TemplateResult = {
+    attrs: Partial<{}>;
+    slots: Partial<Record<any, (_: {
         isActual: boolean;
+        column: any;
+        index: number;
+    }) => any>> & Partial<Record<any, (_: {
+        isActual: boolean;
+        column: any;
+        index: number;
+    }) => any>> & Partial<Record<number, (_: {
+        row: any;
+        column: unknown;
+        rowIndex: number;
+        index: number;
         foot: boolean;
-    }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;
+        isActual: boolean;
+    }) => any>> & Partial<Record<number, (_: {
+        row: any;
+        column: unknown;
+        rowIndex: number;
+        index: number;
+        foot: boolean;
+        isActual: boolean;
+    }) => any>> & {
+        sortIcon?(_: {}): any;
+    };
+    refs: {};
+    rootEl: HTMLTableElement;
+};
 //# sourceMappingURL=UluTableStickyTable.vue.d.ts.map

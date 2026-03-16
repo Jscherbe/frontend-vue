@@ -1,16 +1,11 @@
-import { resolveComponent as v, createBlock as b, openBlock as d, Teleport as S, createElementVNode as c, withModifiers as R, normalizeStyle as _, normalizeClass as r, createElementBlock as z, createCommentVNode as u, renderSlot as h, toDisplayString as I, createVNode as g, useSlots as k, computed as f } from "vue";
+import { useSlots as q, ref as p, computed as a, watch as B, nextTick as M, onMounted as G, onBeforeUnmount as J, createBlock as O, openBlock as c, Teleport as K, createElementVNode as d, withModifiers as Q, normalizeStyle as Z, normalizeClass as i, unref as T, createElementBlock as w, createCommentVNode as h, renderSlot as u, toDisplayString as _, createVNode as L } from "vue";
 import C from "../elements/UluIcon.vue.js";
-import { useModifiers as w } from "../../composables/useModifiers.js";
-import { preventScroll as E, wasClickOutside as B } from "@ulu/utils/browser/dom.js";
-import { Resizer as M } from "@ulu/frontend";
-import { newId as V } from "../../utils/dom.js";
-import T from "../../_virtual/_plugin-vue_export-helper.js";
-const p = {
-  name: "UluModal",
-  components: {
-    UluIcon: C
-  },
-  emits: ["update:modelValue", "close", "open"],
+import { useModifiers as x } from "../../composables/useModifiers.js";
+import { preventScroll as ee, wasClickOutside as le } from "@ulu/utils/browser/dom.js";
+import { Resizer as oe, observeDialogToggle as te } from "@ulu/frontend";
+import { newId as se } from "../../utils/dom.js";
+const ne = ["aria-labelledby", "aria-describedby"], ie = ["id"], re = { class: "modal__title-text" }, ve = {
+  __name: "UluModal",
   props: {
     /**
      * Controls the visibility of the modal (for v-model).
@@ -114,205 +109,158 @@ const p = {
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array],
+    /**
+     * If true, modal is forced to fullscreen on mobile viewports
+     */
+    fullscreenMobile: Boolean
   },
-  data() {
-    return {
-      containerWidth: null,
-      titleId: V("ulu-modal-title"),
-      bodyOverflowValue: null,
-      bodyPaddingRightValue: null,
-      isResizing: !1
-    };
-  },
-  setup(e) {
-    const l = k(), t = f(() => e.title || l.title), o = f(() => {
-      const { allowResize: i, position: m } = e;
-      if (!i || !m) return;
-      const y = ["left", "right", "center"];
-      return y.includes(m) ? !0 : (console.warn(`Passed invalid position for resize (${m}), use ${y.join(", ")}`), !1);
-    }), n = f(() => e.position === "center" ? "type:resizeBoth" : "type:resizeHorizontal"), s = f(() => ({
+  emits: ["update:modelValue", "close", "open"],
+  setup(t, { emit: H }) {
+    const r = H, e = t, j = q(), D = p(null), I = se("ulu-modal-title"), g = p(!1), o = p(null), R = p(null), E = a(() => e.title || j.title), f = a(() => {
+      const { allowResize: l, position: s } = e;
+      if (!l || !s) return !1;
+      const $ = ["left", "right", "center"];
+      return $.includes(s) ? !0 : (console.warn(`Passed invalid position for resize (${s}), use ${$.join(", ")}`), !1);
+    }), N = a(() => e.position === "center" ? "type:resizeBoth" : "type:resizeHorizontal"), P = a(() => ({
       [e.position]: e.position,
       resize: e.allowResize,
       "no-resize": !e.allowResize,
-      "no-header": !t.value,
+      "no-header": !E.value,
       "body-fills": e.bodyFills,
       "no-backdrop": e.noBackdrop,
       "no-min-height": e.noMinHeight,
       "non-modal": e.nonModal,
-      "resizer-active": o.value
-    })), { resolvedModifiers: a } = w({
+      "resizer-active": f.value,
+      "fullscreen-mobile": e.fullscreenMobile
+    })), { resolvedModifiers: F } = x({
       props: e,
       baseClass: "modal",
-      internal: s
-    });
-    return {
-      resolvedModifiers: a,
-      hasHeader: t,
-      resizerEnabled: o,
-      resizerIconType: n
+      internal: P
+    }), U = a(() => e.labelledby ? e.labelledby : I), n = () => {
+      r("update:modelValue", !1), r("close");
+    }, X = () => {
+      e.modelValue && (r("update:modelValue", !1), r("close"));
+    }, A = (l) => {
+      if (e.clickOutsideCloses && !g.value) {
+        const { target: s } = l;
+        s === o.value && le(o.value, l) && n();
+      }
     };
-  },
-  computed: {
-    resolvedLabelledby() {
-      const { labelledby: e, titleId: l } = this;
-      return e || l;
-    }
-  },
-  watch: {
-    modelValue: {
-      // So that it runs on mount (if modelValue is initially true)
-      immediate: !0,
-      handler(e) {
-        this.$nextTick(() => {
-          const { container: l } = this.$refs;
-          e ? (l[this.nonModal ? "show" : "showModal"](), this.$emit("open")) : l.close();
-        });
-      }
-    },
-    resizerEnabled: {
-      immediate: !1,
-      // Don't run on initial mount, as setupResizer is called in mounted
-      handler(e) {
-        e ? this.$nextTick(() => {
-          this.setupResizer();
-        }) : this.destroyResizer();
-      }
-    },
-    position(e, l) {
-      e !== l && (this.destroyResizer(), this.$nextTick(() => {
-        this.setupResizer();
+    let m = null, v = null, b = null, y = null, z = null;
+    const W = () => {
+      !e.nonModal && e.preventScroll && (m = te(o.value, (l) => {
+        l ? v = ee({ preventShift: e.preventScrollShift }) : V();
       }));
-    }
-  },
-  methods: {
-    close() {
-      this.$emit("update:modelValue", !1), this.$emit("close");
-    },
-    handleDialogCloseEvent() {
-      this.modelValue && (this.$emit("update:modelValue", !1), this.$emit("close"));
-    },
-    handleClick(e) {
-      if (this.clickOutsideCloses && !this.isResizing) {
-        const { target: l } = e, { container: t } = this.$refs;
-        l === t && B(t, e) && this.close();
-      }
-    },
-    setupPreventScroll() {
-      const { body: e } = document;
-      this.bodyOverflowValue = e.style.overflow, this.bodyPaddingRightValue = e.style.paddingRight;
-    },
-    destroyPreventScroll() {
-      this.restoreScroll && this.restoreScroll();
-    },
-    handleToggle(e) {
-      if (!this.nonModal && this.preventScroll) {
-        const { preventScrollShift: l } = this;
-        e.newState === "open" ? this.restoreScroll = E({ preventShift: l }) : this.destroyPreventScroll();
-      }
-    },
-    setupResizer() {
-      const { position: e, resizerEnabled: l } = this;
-      if (l) {
-        const { container: t, resizer: o } = this.$refs, n = e === "center" ? { fromX: "right", fromY: "bottom", multiplier: 2 } : { fromX: e === "right" ? "left" : "right" };
-        this.resizerInstance = new M(t, o, n), this.handleResizerStart = () => {
-          this.isResizing = !0;
-        }, this.handleResizerEnd = () => {
+    }, Y = () => {
+      m && (m.destroy(), m = null);
+    }, V = () => {
+      v && (v(), v = null);
+    }, S = () => {
+      if (f.value) {
+        const l = e.position === "center" ? { fromX: "right", fromY: "bottom", multiplier: 2 } : { fromX: e.position === "right" ? "left" : "right" };
+        b = new oe(o.value, R.value, l), y = () => {
+          g.value = !0;
+        }, z = () => {
           setTimeout(() => {
-            this.isResizing = !1;
+            g.value = !1;
           }, 0);
-        }, t.addEventListener("ulu:resizer:start", this.handleResizerStart), t.addEventListener("ulu:resizer:end", this.handleResizerEnd);
+        }, o.value.addEventListener("ulu:resizer:start", y), o.value.addEventListener("ulu:resizer:end", z);
       }
-    },
-    destroyResizer() {
-      const { container: e } = this.$refs;
-      this.resizerInstance && (this.resizerInstance.destroy(), this.resizerInstance = null), this.handleResizerStart && e.removeEventListener("ulu:resizer:start", this.handleResizerStart), this.handleResizerEnd && e.removeEventListener("ulu:resizer:end", this.handleResizerEnd);
-    }
-  },
-  mounted() {
-    this.preventScroll && this.setupPreventScroll(), this.setupResizer();
-  },
-  beforeUnmount() {
-    const { container: e } = this.$refs;
-    e && e.open && e.close(), this.destroyPreventScroll(), this.destroyResizer();
-  }
-}, O = ["aria-labelledby", "aria-describedby"], P = ["id"], L = { class: "modal__title-text" }, U = {
-  key: 2,
-  class: "modal__resizer",
-  ref: "resizer",
-  type: "button"
-};
-function H(e, l, t, o, n, s) {
-  const a = v("UluIcon");
-  return d(), b(S, {
-    to: t.teleport === !1 ? null : t.teleport,
-    disabled: t.teleport === !1
-  }, [
-    c("dialog", {
-      class: r(["modal", [o.resolvedModifiers, t.classes.container]]),
-      "aria-labelledby": s.resolvedLabelledby,
-      "aria-describedby": t.describedby,
-      ref: "container",
-      style: _({ width: n.containerWidth }),
-      onCancel: l[1] || (l[1] = R((...i) => s.close && s.close(...i), ["prevent"])),
-      onClose: l[2] || (l[2] = (...i) => s.handleDialogCloseEvent && s.handleDialogCloseEvent(...i)),
-      onClick: l[3] || (l[3] = (...i) => s.handleClick && s.handleClick(...i)),
-      onToggle: l[4] || (l[4] = (...i) => s.handleToggle && s.handleToggle(...i))
+    }, k = () => {
+      b && (b.destroy(), b = null), y && o.value && o.value.removeEventListener("ulu:resizer:start", y), z && o.value && o.value.removeEventListener("ulu:resizer:end", z);
+    };
+    return B(() => e.modelValue, (l) => {
+      M(() => {
+        o.value && (l ? (o.value[e.nonModal ? "show" : "showModal"](), r("open")) : o.value.close());
+      });
+    }, { immediate: !0 }), B(f, (l) => {
+      l ? M(() => {
+        S();
+      }) : k();
+    }, { immediate: !1 }), B(() => e.position, (l, s) => {
+      l !== s && (k(), M(() => {
+        S();
+      }));
+    }), G(() => {
+      W(), S();
+    }), J(() => {
+      o.value && o.value.open && o.value.close(), Y(), V(), k();
+    }), (l, s) => (c(), O(K, {
+      to: t.teleport === !1 ? null : t.teleport,
+      disabled: t.teleport === !1
     }, [
-      o.hasHeader ? (d(), z("header", {
-        key: 0,
-        class: r(["modal__header", t.classes.header])
+      d("dialog", {
+        class: i(["modal", [T(F), t.classes.container]]),
+        "aria-labelledby": U.value,
+        "aria-describedby": t.describedby,
+        ref_key: "container",
+        ref: o,
+        style: Z({ width: D.value }),
+        onCancel: Q(n, ["prevent"]),
+        onClose: X,
+        onClick: A
       }, [
-        c("h2", {
-          class: r(["modal__title", t.classes.title]),
-          id: n.titleId
+        E.value ? (c(), w("header", {
+          key: 0,
+          class: i(["modal__header", t.classes.header])
         }, [
-          h(e.$slots, "title", { close: s.close }, () => [
-            t.titleIcon ? (d(), b(a, {
-              key: 0,
-              class: "modal__title-icon",
-              icon: t.titleIcon
-            }, null, 8, ["icon"])) : u("", !0),
-            c("span", L, I(t.title), 1)
-          ])
-        ], 10, P),
-        c("button", {
-          class: r(["modal__close", t.classes.close]),
-          "aria-label": "Close modal",
-          onClick: l[0] || (l[0] = (...i) => s.close && s.close(...i)),
-          autofocus: ""
+          d("h2", {
+            class: i(["modal__title", t.classes.title]),
+            id: T(I)
+          }, [
+            u(l.$slots, "title", { close: n }, () => [
+              t.titleIcon ? (c(), O(C, {
+                key: 0,
+                class: "modal__title-icon",
+                icon: t.titleIcon
+              }, null, 8, ["icon"])) : h("", !0),
+              d("span", re, _(t.title), 1)
+            ])
+          ], 10, ie),
+          d("button", {
+            class: i(["modal__close", t.classes.close]),
+            "aria-label": "Close modal",
+            onClick: n,
+            autofocus: ""
+          }, [
+            u(l.$slots, "closeIcon", {}, () => [
+              L(C, {
+                class: "modal__close-icon",
+                icon: t.closeIcon || "type:close"
+              }, null, 8, ["icon"])
+            ])
+          ], 2)
+        ], 2)) : h("", !0),
+        d("div", {
+          class: i(["modal__body", t.classes.body])
         }, [
-          h(e.$slots, "closeIcon", {}, () => [
-            g(a, {
-              class: "modal__close-icon",
-              icon: t.closeIcon || "type:close"
+          u(l.$slots, "default", { close: n })
+        ], 2),
+        l.$slots.footer ? (c(), w("div", {
+          key: 1,
+          class: i(["site-modal__footer", t.classes.footer])
+        }, [
+          u(l.$slots, "footer", { close: n })
+        ], 2)) : h("", !0),
+        f.value ? (c(), w("button", {
+          key: 2,
+          class: "modal__resizer",
+          ref_key: "resizer",
+          ref: R,
+          type: "button"
+        }, [
+          u(l.$slots, "resizerIcon", {}, () => [
+            L(C, {
+              class: "modal__resizer-icon",
+              icon: t.resizerIcon || N.value
             }, null, 8, ["icon"])
           ])
-        ], 2)
-      ], 2)) : u("", !0),
-      c("div", {
-        class: r(["modal__body", t.classes.body])
-      }, [
-        h(e.$slots, "default", { close: s.close })
-      ], 2),
-      e.$slots.footer ? (d(), z("div", {
-        key: 1,
-        class: r(["site-modal__footer", t.classes.footer])
-      }, [
-        h(e.$slots, "footer", { close: s.close })
-      ], 2)) : u("", !0),
-      o.resizerEnabled ? (d(), z("button", U, [
-        h(e.$slots, "resizerIcon", {}, () => [
-          g(a, {
-            class: "modal__resizer-icon",
-            icon: t.resizerIcon || o.resizerIconType
-          }, null, 8, ["icon"])
-        ])
-      ], 512)) : u("", !0)
-    ], 46, O)
-  ], 8, ["to", "disabled"]);
-}
-const A = /* @__PURE__ */ T(p, [["render", H]]);
+        ], 512)) : h("", !0)
+      ], 46, ne)
+    ], 8, ["to", "disabled"]));
+  }
+};
 export {
-  A as default
+  ve as default
 };

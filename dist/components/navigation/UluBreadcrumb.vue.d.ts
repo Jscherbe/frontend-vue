@@ -1,71 +1,30 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-    /**
-     * Array of breadcrumb items.
-     * Each item is an object: { title: String, to: [String, Object], current: Boolean }
-     */
-    items: {
-        type: ArrayConstructor;
-        default: () => never[];
-    };
-    /**
-     * Icon to use as a separator.
-     */
-    separatorIcon: StringConstructor;
-    /**
-     * Classes object to be applied to elements.
-     * Keys: nav, list, item, link, icon
-     */
-    classes: {
-        type: ObjectConstructor;
-        default: () => {
-            nav: string;
-            list: string;
-            item: string;
-            link: string;
-            current: string;
-            separator: string;
-        };
-    };
-}>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-    /**
-     * Array of breadcrumb items.
-     * Each item is an object: { title: String, to: [String, Object], current: Boolean }
-     */
-    items: {
-        type: ArrayConstructor;
-        default: () => never[];
-    };
-    /**
-     * Icon to use as a separator.
-     */
-    separatorIcon: StringConstructor;
-    /**
-     * Classes object to be applied to elements.
-     * Keys: nav, list, item, link, icon
-     */
-    classes: {
-        type: ObjectConstructor;
-        default: () => {
-            nav: string;
-            list: string;
-            item: string;
-            link: string;
-            current: string;
-            separator: string;
-        };
-    };
-}>> & Readonly<{}>, {
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & (new () => {
+    $slots: S;
+});
+declare const __VLS_component: import('vue').DefineComponent<{}, {
     classes: Record<string, any>;
     items: unknown[];
-}, {}, {
-    UluIcon: import('vue').DefineComponent<{}, {
-        spaced: boolean;
-        icon?: string | boolean | Record<string, any> | unknown[] | undefined;
-        $props: {
-            readonly spaced?: boolean | undefined;
-            readonly icon?: string | boolean | Record<string, any> | unknown[] | undefined;
-        };
-    }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;
+    separatorIcon?: string | undefined;
+    $props: {
+        readonly classes?: Record<string, any> | undefined;
+        readonly items?: unknown[] | undefined;
+        readonly separatorIcon?: string | undefined;
+    };
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
+type __VLS_TemplateResult = {
+    attrs: Partial<{}>;
+    slots: {
+        default?(_: {
+            item: unknown;
+        }): any;
+        default?(_: {
+            item: unknown;
+        }): any;
+        separator?(_: {}): any;
+    };
+    refs: {};
+    rootEl: any;
+};
 //# sourceMappingURL=UluBreadcrumb.vue.d.ts.map

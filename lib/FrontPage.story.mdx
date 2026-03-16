@@ -6,9 +6,9 @@ import * as CardStories from './components/elements/UluCard.stories.js';
 
 <Meta title="Overview/Introduction" />
 
-# ULU Frontend Vue
+# Ulu Frontend Vue
 
-Welcome to the living style guide for the ULU Vue component library. This library provides a comprehensive set of accessible, reusable, and composable Vue 3 components, composables, and plugins to build modern web applications.
+Welcome to the living style guide for the Ulu Vue component library. This library provides a comprehensive set of accessible, reusable, and composable Vue 3 components, composables, and plugins to build modern web applications.
 
 This documentation provides interactive examples and detailed API documentation for each part of the library.
 
@@ -16,7 +16,7 @@ This documentation provides interactive examples and detailed API documentation 
 
 ## Core Concepts
 
-The ULU ecosystem is built on two main packages:
+The Ulu ecosystem is built on two main packages:
 
 - **`@ulu/frontend`**: The framework-agnostic core. It contains the foundational SCSS for styling, vanilla JavaScript utilities, and base components. It knows nothing about Vue. 
 - **`@ulu/frontend-vue`** (This Library): The Vue 3 implementation. It provides wrapper components, composables, and plugins that build upon and integrate seamlessly with the `@ulu/frontend` core.
@@ -68,7 +68,7 @@ const app = createApp(App);
 
 app.use(router);
 
-// Register ULU plugins
+// Register Ulu plugins
 app.use(corePlugin, {
   // Optional: override default icons
   iconsByType: {
@@ -97,7 +97,7 @@ Finally, you need to add the display components for plugins like `toast` and `mo
   <!-- Your App Layout -->
   <router-view />
 
-  <!-- ULU Plugin Display Components -->
+  <!-- Ulu Plugin Display Components -->
   <UluToastDisplay />
   <UluModalsDisplay />
   <UluTooltipDisplay />

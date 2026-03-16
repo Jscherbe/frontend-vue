@@ -8,44 +8,49 @@ export const store: {
         position: string[];
     };
     toastOptions: {
-        component: import('vue').Raw<import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-            toast: ObjectConstructor;
-            classes: {
-                type: ObjectConstructor;
-                default: () => {
-                    content: string;
-                    date: string;
-                    actions: string;
-                    action: string;
-                    closeButton: string;
-                };
-            };
-        }>, {}, {}, {}, {
-            handleAction(event: any, action: any): void;
-        }, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-            toast: ObjectConstructor;
-            classes: {
-                type: ObjectConstructor;
-                default: () => {
-                    content: string;
-                    date: string;
-                    actions: string;
-                    action: string;
-                    closeButton: string;
-                };
-            };
-        }>> & Readonly<{}>, {
-            classes: Record<string, any>;
-        }, {}, {
-            UluIcon: import('vue').DefineComponent<{}, {
-                spaced: boolean;
-                icon?: string | boolean | Record<string, any> | unknown[] | undefined;
+        component: import('vue').Raw<{
+            new (...args: any[]): import('vue').CreateComponentPublicInstanceWithMixins<Readonly<{}> & Readonly<{}>, {
+                classes: Record<string, any>;
+                toast?: Record<string, any> | undefined;
                 $props: {
-                    readonly spaced?: boolean | undefined;
-                    readonly icon?: string | boolean | Record<string, any> | unknown[] | undefined;
+                    readonly classes?: Record<string, any> | undefined;
+                    readonly toast?: Record<string, any> | undefined;
                 };
-            }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-        }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>>;
+            }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, import('vue').PublicProps, {}, true, {}, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, {}, HTMLDivElement, import('vue').ComponentProvideOptions, {
+                P: {};
+                B: {};
+                D: {};
+                C: {};
+                M: {};
+                Defaults: {};
+            }, Readonly<{}> & Readonly<{}>, {
+                classes: Record<string, any>;
+                toast?: Record<string, any> | undefined;
+                $props: {
+                    readonly classes?: Record<string, any> | undefined;
+                    readonly toast?: Record<string, any> | undefined;
+                };
+            }, {}, {}, {}, {}>;
+            __isFragment?: never;
+            __isTeleport?: never;
+            __isSuspense?: never;
+        } & import('vue').ComponentOptionsBase<Readonly<{}> & Readonly<{}>, {
+            classes: Record<string, any>;
+            toast?: Record<string, any> | undefined;
+            $props: {
+                readonly classes?: Record<string, any> | undefined;
+                readonly toast?: Record<string, any> | undefined;
+            };
+        }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, {}, {}, string, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, import('vue').ComponentProvideOptions> & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps & (new () => {
+            $slots: {
+                icon?(_: {
+                    toast: Record<string, any> | undefined;
+                }): any;
+                content?(_: {
+                    toast: Record<string, any> | undefined;
+                }): any;
+            };
+        })>;
         duration: number;
         actions: never[];
     };

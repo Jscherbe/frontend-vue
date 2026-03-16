@@ -1,91 +1,33 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-    /**
-     * Icon to display next to the title.
-     */
-    icon: StringConstructor;
-    /**
-     * The alignment of the icon with the title.
-     */
-    iconAlign: {
-        type: StringConstructor;
-        default: string;
-    };
-    /**
-     * Classes for the different elements in the component.
-     */
-    classes: {
-        type: ObjectConstructor;
-        default: () => {
-            title: string;
-            icon: string;
-        };
-    };
-    /**
-     * The title to display.
-     */
-    title: StringConstructor;
-    /**
-     * The HTML element to use for the title.
-     */
-    titleElement: {
-        type: StringConstructor;
-        default: string;
-    };
-    /**
-     * If true, a rule will be displayed under the title.
-     */
-    rule: BooleanConstructor;
-}>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-    /**
-     * Icon to display next to the title.
-     */
-    icon: StringConstructor;
-    /**
-     * The alignment of the icon with the title.
-     */
-    iconAlign: {
-        type: StringConstructor;
-        default: string;
-    };
-    /**
-     * Classes for the different elements in the component.
-     */
-    classes: {
-        type: ObjectConstructor;
-        default: () => {
-            title: string;
-            icon: string;
-        };
-    };
-    /**
-     * The title to display.
-     */
-    title: StringConstructor;
-    /**
-     * The HTML element to use for the title.
-     */
-    titleElement: {
-        type: StringConstructor;
-        default: string;
-    };
-    /**
-     * If true, a rule will be displayed under the title.
-     */
-    rule: BooleanConstructor;
-}>> & Readonly<{}>, {
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & (new () => {
+    $slots: S;
+});
+declare const __VLS_component: import('vue').DefineComponent<{}, {
     classes: Record<string, any>;
     titleElement: string;
-    rule: boolean;
     iconAlign: string;
-}, {}, {
-    UluIcon: import('vue').DefineComponent<{}, {
-        spaced: boolean;
-        icon?: string | boolean | Record<string, any> | unknown[] | undefined;
-        $props: {
-            readonly spaced?: boolean | undefined;
-            readonly icon?: string | boolean | Record<string, any> | unknown[] | undefined;
-        };
-    }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;
+    rule: boolean;
+    icon?: string | undefined;
+    title?: string | undefined;
+    modifiers?: string | unknown[] | undefined;
+    $props: {
+        readonly classes?: Record<string, any> | undefined;
+        readonly titleElement?: string | undefined;
+        readonly iconAlign?: string | undefined;
+        readonly rule?: boolean | undefined;
+        readonly icon?: string | undefined;
+        readonly title?: string | undefined;
+        readonly modifiers?: string | unknown[] | undefined;
+    };
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
+type __VLS_TemplateResult = {
+    attrs: Partial<{}>;
+    slots: {
+        default?(_: {}): any;
+        end?(_: {}): any;
+    };
+    refs: {};
+    rootEl: HTMLDivElement;
+};
 //# sourceMappingURL=UluTitleRail.vue.d.ts.map

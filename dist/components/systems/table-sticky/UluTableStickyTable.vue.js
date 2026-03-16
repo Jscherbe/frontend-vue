@@ -1,11 +1,13 @@
-import F from "./UluTableStickyRows.vue.js";
-import { resolveComponent as W, createElementBlock as i, openBlock as r, normalizeClass as f, createCommentVNode as C, createElementVNode as _, toDisplayString as k, Fragment as h, renderList as g, normalizeStyle as b, createBlock as B, resolveDynamicComponent as V, withCtx as v, renderSlot as A, createTextVNode as w, createVNode as T, createSlots as m, normalizeProps as R, guardReactiveProps as S } from "vue";
-import L from "../../../_virtual/_plugin-vue_export-helper.js";
-const U = {
-  name: "UluTableStickyTable",
-  components: {
-    UluTableStickyRows: F
-  },
+import { createElementBlock as o, openBlock as r, normalizeClass as A, createCommentVNode as C, createElementVNode as w, toDisplayString as k, Fragment as c, renderList as y, normalizeStyle as F, createBlock as j, resolveDynamicComponent as z, withCtx as v, renderSlot as u, createTextVNode as $, createVNode as S, createSlots as W, normalizeProps as B, guardReactiveProps as V } from "vue";
+import L from "./UluTableStickyRows.vue.js";
+const P = ["aria-hidden"], D = {
+  key: 0,
+  class: "table-sticky__caption"
+}, E = ["id"], q = ["id", "rowspan", "colspan", "data-child-columns", "aria-sort", "scope", "headers"], O = ["innerHTML"], U = {
+  class: "table-sticky__sort-icon",
+  "aria-hidden": "true"
+}, G = { class: "table-sticky__sort-icon-inner" }, J = ["innerHTML"], K = { key: 1 }, Q = { key: 2 }, Z = {
+  __name: "UluTableStickyTable",
   props: {
     resolveClasses: Function,
     classes: {
@@ -37,7 +39,7 @@ const U = {
      */
     getRowValue: {
       type: Function,
-      default: ({ row: s, column: a }) => s[a.key]
+      default: ({ row: e, column: f }) => e[f.key]
     },
     /**
      * Optional user overridden value getter (for rows)
@@ -46,181 +48,160 @@ const U = {
      */
     getColumnTitle: {
       type: Function,
-      default: ({ column: s }) => s.title
+      default: ({ column: e }) => e.title
     }
   },
-  data() {
-    return {
-      headerRefs: {}
-    };
-  },
-  methods: {
-    handleSortFocus(s, a) {
-      this.isActual && (s.sortFocused = a);
-    },
-    addHeaderRef(s, a) {
-      const { headerRefs: e, isActual: n } = this;
-      if (!n || !a) return;
-      const { id: u } = s, l = e[u];
-      l && this.$emit("actual-header-removed", l), this.$emit("actual-header-added", a), e[u] = a;
-    },
-    /**
-     * False is no longer not printed
-     */
-    optionalAttr(s) {
-      return s || null;
-    },
-    value({ row: s, column: a, rowIndex: e }) {
-      const n = a.value;
-      return n ? n({ row: s.data, column: a, rowIndex: e }) : this.getRowValue({ row: s.data, column: a, rowIndex: e });
-    },
-    getCellHeaders(s, a) {
-      const e = s.headers.join(" "), n = s.getRowHeaders(a), u = n.length ? " " : "";
-      return `${e}${u}${n}`;
-    },
-    getHeaderHeaders(s) {
-      const a = s.headers.filter((e) => e !== s.id);
+  emits: [
+    "column-sorted",
+    "actual-header-removed",
+    "actual-header-added"
+  ],
+  setup(e, { emit: f }) {
+    const H = f, g = e, b = {}, m = (s, a) => {
+      g.isActual && (s.sortFocused = a);
+    }, M = (s, a) => {
+      if (!g.isActual || !a) return;
+      const { id: i } = s, l = b[i];
+      l && H("actual-header-removed", l), H("actual-header-added", a), b[i] = a;
+    }, d = (s) => s || null, T = ({ row: s, column: a, rowIndex: i }) => {
+      const l = a.value;
+      return l ? l({ row: s.data, column: a, rowIndex: i }) : g.getRowValue({ row: s.data, column: a, rowIndex: i });
+    }, R = (s, a) => {
+      const i = s.headers.join(" "), l = s.getRowHeaders(a), t = l.length ? " " : "";
+      return `${i}${t}${l}`;
+    }, N = (s) => {
+      const a = s.headers.filter((i) => i !== s.id);
       if (a.length)
         return a.join(" ");
-    }
-  }
-}, M = ["aria-hidden"], N = {
-  key: 0,
-  class: "table-sticky__caption"
-}, j = ["id"], z = ["id", "rowspan", "colspan", "data-child-columns", "aria-sort", "scope", "headers"], P = ["innerHTML"], D = {
-  class: "table-sticky__sort-icon",
-  "aria-hidden": "true"
-}, E = { class: "table-sticky__sort-icon-inner" }, q = ["innerHTML"], O = { key: 1 }, G = { key: 2 };
-function J(s, a, e, n, u, l) {
-  const H = W("UluTableStickyRows");
-  return r(), i("table", {
-    class: f(e.resolveClasses(e.classes.table, { isActual: e.isActual })),
-    "aria-hidden": e.isActual ? "false" : "true"
-  }, [
-    e.caption ? (r(), i("caption", N, k(e.caption), 1)) : C("", !0),
-    _("thead", null, [
-      (r(!0), i(h, null, g(e.headerRows, (c, o) => (r(), i("tr", {
-        key: `hr-${o}`,
-        id: l.optionalAttr(e.isActual && c.id),
-        class: f(e.resolveClasses(e.classes.rowHeader, { row: c, rowIndex: o, isActual: e.isActual })),
-        style: b({
-          height: c.height
-        })
-      }, [
-        (r(!0), i(h, null, g(c.columns, (t, d) => (r(), i("th", {
-          key: `hc-${d}`,
-          id: l.optionalAttr(e.isActual && t.id),
-          rowspan: t.rowspan,
-          colspan: t.colspan,
-          "data-child-columns": t.columns && t.columns.length,
-          class: f([
-            {
-              "sort-active": t.sortApplied,
-              "sort-ascending": t.sortApplied && t.sortAscending,
-              "sort-descending": t.sortApplied && !t.sortAscending
-            },
-            e.resolveClasses(t.classHeader, { column: t, index: d, isActual: e.isActual })
-          ]),
-          style: b({
-            width: t.width
-          }),
-          "aria-sort": t.sort ? t.sortAscending ? "ascending" : "descending" : null,
-          scope: l.optionalAttr(e.isActual && (t.colspan > 1 ? "colgroup" : "col")),
-          headers: l.optionalAttr(e.isActual && l.getHeaderHeaders(t, o)),
-          ref_for: !0,
-          ref: (y) => l.addHeaderRef(t, y)
+    };
+    return (s, a) => (r(), o("table", {
+      class: A(e.resolveClasses(e.classes.table, { isActual: e.isActual })),
+      "aria-hidden": e.isActual ? "false" : "true"
+    }, [
+      e.caption ? (r(), o("caption", D, k(e.caption), 1)) : C("", !0),
+      w("thead", null, [
+        (r(!0), o(c, null, y(e.headerRows, (i, l) => (r(), o("tr", {
+          key: `hr-${l}`,
+          id: d(e.isActual && i.id),
+          class: A(e.resolveClasses(e.classes.rowHeader, { row: i, rowIndex: l, isActual: e.isActual })),
+          style: F({
+            height: i.height
+          })
         }, [
-          t.sortable ? (r(), B(V(e.isActual ? "button" : "div"), {
-            key: 0,
-            class: f(["table-sticky__sort-button", {
-              "table-sticky__sort-button--focused": t.sortFocused
-            }]),
-            onClick: (y) => s.$emit("column-sorted", t),
-            onFocus: (y) => l.handleSortFocus(t, !0),
-            onBlur: (y) => l.handleSortFocus(t, !1),
-            "aria-pressed": t.sortApplied ? "true" : "false"
-          }, {
-            default: v(() => [
-              s.$slots[t.slotHeader] ? A(s.$slots, t.slotHeader, {
+          (r(!0), o(c, null, y(i.columns, (t, n) => (r(), o("th", {
+            key: `hc-${n}`,
+            id: d(e.isActual && t.id),
+            rowspan: t.rowspan,
+            colspan: t.colspan,
+            "data-child-columns": t.columns && t.columns.length,
+            class: A([
+              {
+                "sort-active": t.sortApplied,
+                "sort-ascending": t.sortApplied && t.sortAscending,
+                "sort-descending": t.sortApplied && !t.sortAscending
+              },
+              e.resolveClasses(t.classHeader, { column: t, index: n, isActual: e.isActual })
+            ]),
+            style: F({
+              width: t.width
+            }),
+            "aria-sort": t.sort ? t.sortAscending ? "ascending" : "descending" : null,
+            scope: d(e.isActual && (t.colspan > 1 ? "colgroup" : "col")),
+            headers: d(e.isActual && N(t)),
+            ref_for: !0,
+            ref: (h) => M(t, h)
+          }, [
+            t.sortable ? (r(), j(z(e.isActual ? "button" : "div"), {
+              key: 0,
+              class: A(["table-sticky__sort-button", {
+                "table-sticky__sort-button--focused": t.sortFocused
+              }]),
+              onClick: (h) => s.$emit("column-sorted", t),
+              onFocus: (h) => m(t, !0),
+              onBlur: (h) => m(t, !1),
+              "aria-pressed": t.sortApplied ? "true" : "false"
+            }, {
+              default: v(() => [
+                s.$slots[t.slotHeader] ? u(s.$slots, t.slotHeader, {
+                  key: 0,
+                  isActual: e.isActual,
+                  column: t,
+                  index: n
+                }) : t.htmlTitle ? (r(), o("div", {
+                  key: 1,
+                  innerHTML: e.getColumnTitle({ column: t, index: n, isActual: e.isActual })
+                }, null, 8, O)) : (r(), o(c, { key: 2 }, [
+                  $(k(e.getColumnTitle({ column: t, index: n, isActual: e.isActual })), 1)
+                ], 64)),
+                w("span", U, [
+                  w("span", G, [
+                    u(s.$slots, "sortIcon", {}, () => [
+                      a[0] || (a[0] = $("▼", -1))
+                    ])
+                  ])
+                ])
+              ]),
+              _: 2
+            }, 1064, ["class", "onClick", "onFocus", "onBlur", "aria-pressed"])) : (r(), o(c, { key: 1 }, [
+              s.$slots[t.slotHeader] ? u(s.$slots, t.slotHeader, {
                 key: 0,
                 isActual: e.isActual,
                 column: t,
-                index: d
-              }) : t.htmlTitle ? (r(), i("div", {
+                index: n
+              }) : t.htmlTitle ? (r(), o("div", {
                 key: 1,
-                innerHTML: e.getColumnTitle({ column: t, index: d, isActual: e.isActual })
-              }, null, 8, P)) : (r(), i(h, { key: 2 }, [
-                w(k(e.getColumnTitle({ column: t, index: d, isActual: e.isActual })), 1)
-              ], 64)),
-              _("span", D, [
-                _("span", E, [
-                  A(s.$slots, "sortIcon", {}, () => [
-                    a[0] || (a[0] = w("▼", -1))
-                  ])
-                ])
-              ])
-            ]),
-            _: 2
-          }, 1064, ["class", "onClick", "onFocus", "onBlur", "aria-pressed"])) : (r(), i(h, { key: 1 }, [
-            s.$slots[t.slotHeader] ? A(s.$slots, t.slotHeader, {
-              key: 0,
-              isActual: e.isActual,
-              column: t,
-              index: d
-            }) : t.htmlTitle ? (r(), i("div", {
-              key: 1,
-              innerHTML: e.getColumnTitle({ column: t, index: d, isActual: e.isActual })
-            }, null, 8, q)) : (r(), i(h, { key: 2 }, [
-              w(k(e.getColumnTitle({ column: t, index: d, isActual: e.isActual })), 1)
+                innerHTML: e.getColumnTitle({ column: t, index: n, isActual: e.isActual })
+              }, null, 8, J)) : (r(), o(c, { key: 2 }, [
+                $(k(e.getColumnTitle({ column: t, index: n, isActual: e.isActual })), 1)
+              ], 64))
             ], 64))
-          ], 64))
-        ], 14, z))), 128))
-      ], 14, j))), 128))
-    ]),
-    e.rows ? (r(), i("tbody", O, [
-      T(H, {
-        rows: e.rows,
-        rowColumns: e.rowColumns,
-        optionalAttr: l.optionalAttr,
-        resolveClasses: e.resolveClasses,
-        getCellHeaders: l.getCellHeaders,
-        isActual: e.isActual,
-        columnWidth: e.columnWidth,
-        classes: e.classes,
-        value: l.value
-      }, m({ _: 2 }, [
-        g(s.$slots, (c, o) => ({
-          name: o,
-          fn: v((t) => [
-            A(s.$slots, o, R(S(t)))
-          ])
-        }))
-      ]), 1032, ["rows", "rowColumns", "optionalAttr", "resolveClasses", "getCellHeaders", "isActual", "columnWidth", "classes", "value"])
-    ])) : C("", !0),
-    e.footerRows ? (r(), i("tfoot", G, [
-      T(H, {
-        rows: e.footerRows,
-        rowColumns: e.rowColumns,
-        optionalAttr: l.optionalAttr,
-        resolveClasses: e.resolveClasses,
-        getCellHeaders: l.getCellHeaders,
-        isActual: e.isActual,
-        columnWidth: e.columnWidth,
-        classes: e.classes,
-        value: l.value,
-        foot: ""
-      }, m({ _: 2 }, [
-        g(s.$slots, (c, o) => ({
-          name: o,
-          fn: v((t) => [
-            A(s.$slots, o, R(S(t)))
-          ])
-        }))
-      ]), 1032, ["rows", "rowColumns", "optionalAttr", "resolveClasses", "getCellHeaders", "isActual", "columnWidth", "classes", "value"])
-    ])) : C("", !0)
-  ], 10, M);
-}
-const Y = /* @__PURE__ */ L(U, [["render", J]]);
+          ], 14, q))), 128))
+        ], 14, E))), 128))
+      ]),
+      e.rows ? (r(), o("tbody", K, [
+        S(L, {
+          rows: e.rows,
+          rowColumns: e.rowColumns,
+          optionalAttr: d,
+          resolveClasses: e.resolveClasses,
+          getCellHeaders: R,
+          isActual: e.isActual,
+          columnWidth: e.columnWidth,
+          classes: e.classes,
+          value: T
+        }, W({ _: 2 }, [
+          y(s.$slots, (i, l) => ({
+            name: l,
+            fn: v((t) => [
+              u(s.$slots, l, B(V(t)))
+            ])
+          }))
+        ]), 1032, ["rows", "rowColumns", "resolveClasses", "isActual", "columnWidth", "classes"])
+      ])) : C("", !0),
+      e.footerRows ? (r(), o("tfoot", Q, [
+        S(L, {
+          rows: e.footerRows,
+          rowColumns: e.rowColumns,
+          optionalAttr: d,
+          resolveClasses: e.resolveClasses,
+          getCellHeaders: R,
+          isActual: e.isActual,
+          columnWidth: e.columnWidth,
+          classes: e.classes,
+          value: T,
+          foot: ""
+        }, W({ _: 2 }, [
+          y(s.$slots, (i, l) => ({
+            name: l,
+            fn: v((t) => [
+              u(s.$slots, l, B(V(t)))
+            ])
+          }))
+        ]), 1032, ["rows", "rowColumns", "resolveClasses", "isActual", "columnWidth", "classes"])
+      ])) : C("", !0)
+    ], 10, P));
+  }
+};
 export {
-  Y as default
+  Z as default
 };

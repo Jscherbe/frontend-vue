@@ -1,11 +1,8 @@
-import o from "./UluMenu.vue.js";
-import { resolveComponent as s, createElementBlock as a, createCommentVNode as l, openBlock as c, normalizeClass as m, createVNode as u, createSlots as p, renderList as _, withCtx as v, renderSlot as d, normalizeProps as f, guardReactiveProps as h } from "vue";
-import k from "../../_virtual/_plugin-vue_export-helper.js";
-const g = {
-  name: "UluNavStrip",
-  components: {
-    UluMenu: o
-  },
+import { computed as o, createElementBlock as a, createCommentVNode as l, openBlock as m, normalizeClass as c, unref as p, createVNode as u, createSlots as d, renderList as f, withCtx as v, renderSlot as _, normalizeProps as g, guardReactiveProps as h } from "vue";
+import k from "./UluMenu.vue.js";
+import { useModifiers as B } from "../../composables/useModifiers.js";
+const $ = {
+  __name: "UluNavStrip",
   props: {
     /**
      * Array of items for list (uses UluMenu, see structure there)
@@ -22,38 +19,45 @@ const g = {
     /**
      * Rule nav strip style
      */
-    rule: Boolean
+    rule: Boolean,
+    /**
+     * Modifiers (to add any modifier classes based on base class)
+     */
+    modifiers: [String, Array]
+  },
+  setup(t) {
+    const e = t, { resolvedModifiers: i } = B({
+      props: e,
+      baseClass: "nav-strip",
+      internal: o(() => ({
+        center: e.center,
+        right: e.right,
+        rule: e.rule
+      }))
+    });
+    return (r, C) => t.items?.length ? (m(), a("nav", {
+      key: 0,
+      class: c(["nav-strip", p(i)])
+    }, [
+      u(k, {
+        items: t.items,
+        classes: {
+          list: "nav-strip__list",
+          item: "nav-strip__item",
+          link: "nav-strip__link",
+          linkExactActive: "is-active"
+        }
+      }, d({ _: 2 }, [
+        f(r.$slots, (S, s) => ({
+          name: s,
+          fn: v((n) => [
+            _(r.$slots, s, g(h(n)))
+          ])
+        }))
+      ]), 1032, ["items"])
+    ], 2)) : l("", !0);
   }
 };
-function B(t, U, e, C, N, S) {
-  const n = s("UluMenu");
-  return e.items?.length ? (c(), a("nav", {
-    key: 0,
-    class: m(["nav-strip", {
-      "nav-strip--rule": e.rule,
-      "nav-strip--center": e.center,
-      "nav-strip--right": e.right
-    }])
-  }, [
-    u(n, {
-      items: e.items,
-      classes: {
-        list: "nav-strip__list",
-        item: "nav-strip__item",
-        link: "nav-strip__link",
-        linkExactActive: "is-active"
-      }
-    }, p({ _: 2 }, [
-      _(t.$slots, (x, r) => ({
-        name: r,
-        fn: v((i) => [
-          d(t.$slots, r, f(h(i)))
-        ])
-      }))
-    ]), 1032, ["items"])
-  ], 2)) : l("", !0);
-}
-const A = /* @__PURE__ */ k(g, [["render", B]]);
 export {
-  A as default
+  $ as default
 };

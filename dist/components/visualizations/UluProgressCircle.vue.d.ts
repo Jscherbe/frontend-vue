@@ -4,9 +4,9 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
     $slots: S;
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
-    small: boolean;
     duration: number;
     easing: string;
+    small: boolean;
     label: string;
     formatValue: Function;
     percentage: number;
@@ -17,9 +17,9 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     pieStyle: boolean;
     noMask: boolean;
     $props: {
-        readonly small?: boolean | undefined;
         readonly duration?: number | undefined;
         readonly easing?: string | undefined;
+        readonly small?: boolean | undefined;
         readonly label?: string | undefined;
         readonly formatValue?: Function | undefined;
         readonly percentage?: number | undefined;

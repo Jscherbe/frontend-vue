@@ -1,52 +1,27 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-    /**
-     * Toast configuration
-     */
-    toast: ObjectConstructor;
-    /**
-     * Icons for each element { icon, header, content, date, actions, action, closeButton, title, body, closeButton }
-     */
-    classes: {
-        type: ObjectConstructor;
-        default: () => {
-            content: string;
-            date: string;
-            actions: string;
-            action: string;
-            closeButton: string;
-        };
-    };
-}>, {}, {}, {}, {
-    handleAction(event: any, action: any): void;
-}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-    /**
-     * Toast configuration
-     */
-    toast: ObjectConstructor;
-    /**
-     * Icons for each element { icon, header, content, date, actions, action, closeButton, title, body, closeButton }
-     */
-    classes: {
-        type: ObjectConstructor;
-        default: () => {
-            content: string;
-            date: string;
-            actions: string;
-            action: string;
-            closeButton: string;
-        };
-    };
-}>> & Readonly<{}>, {
-    classes: Record<string, any>;
-}, {}, {
-    UluIcon: import('vue').DefineComponent<{}, {
-        spaced: boolean;
-        icon?: string | boolean | Record<string, any> | unknown[] | undefined;
-        $props: {
-            readonly spaced?: boolean | undefined;
-            readonly icon?: string | boolean | Record<string, any> | unknown[] | undefined;
-        };
-    }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
 export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & (new () => {
+    $slots: S;
+});
+declare const __VLS_component: import('vue').DefineComponent<{}, {
+    classes: Record<string, any>;
+    toast?: Record<string, any> | undefined;
+    $props: {
+        readonly classes?: Record<string, any> | undefined;
+        readonly toast?: Record<string, any> | undefined;
+    };
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
+type __VLS_TemplateResult = {
+    attrs: Partial<{}>;
+    slots: {
+        icon?(_: {
+            toast: Record<string, any> | undefined;
+        }): any;
+        content?(_: {
+            toast: Record<string, any> | undefined;
+        }): any;
+    };
+    refs: {};
+    rootEl: HTMLDivElement;
+};
 //# sourceMappingURL=UluToast.vue.d.ts.map

@@ -1,14 +1,11 @@
-import { resolveComponent as m, createElementBlock as i, openBlock as s, normalizeClass as r, createElementVNode as o, createVNode as u, createCommentVNode as f, renderSlot as n, toDisplayString as c, createTextVNode as p, computed as _ } from "vue";
-import g from "./UluButton.vue.js";
-import y from "./UluIcon.vue.js";
-import { useModifiers as v } from "../../composables/useModifiers.js";
-import S from "../../_virtual/_plugin-vue_export-helper.js";
-const U = {
-  name: "UluAlert",
-  components: {
-    UluButton: g,
-    UluIcon: y
-  },
+import { computed as d, createElementBlock as s, openBlock as n, normalizeClass as r, unref as m, createElementVNode as t, createVNode as u, createCommentVNode as p, renderSlot as i, toDisplayString as a, createTextVNode as f } from "vue";
+import g from "./UluIcon.vue.js";
+import { useModifiers as y } from "../../composables/useModifiers.js";
+const v = { class: "layout-flex" }, S = { class: "type-small" }, $ = {
+  key: 0,
+  class: "margin-left-auto align-self-center"
+}, B = {
+  __name: "UluAlert",
   props: {
     /**
      * Alert Title
@@ -39,49 +36,41 @@ const U = {
     modifiers: [String, Array]
   },
   setup(e) {
-    const { resolvedModifiers: l } = v({
-      props: e,
+    const o = e, { resolvedModifiers: c } = y({
+      props: o,
       baseClass: "callout",
-      internal: _(() => ({
-        [e.type]: e.type,
-        compact: e.compact
+      internal: d(() => ({
+        [o.type]: o.type,
+        compact: o.compact
       }))
     });
-    return { resolvedModifiers: l };
-  }
-}, h = { class: "layout-flex" }, $ = { class: "type-small" }, B = {
-  key: 0,
-  class: "margin-left-auto align-self-center"
-};
-function C(e, l, t, a, N, V) {
-  const d = m("UluIcon");
-  return s(), i("div", {
-    class: r(["callout", a.resolvedModifiers])
-  }, [
-    o("div", h, [
-      u(d, {
-        class: r(["type-large margin-right-small", `color-${t.type}`]),
-        icon: t.icon || `type:${t.type}`
-      }, null, 8, ["class", "icon"]),
-      o("div", $, [
-        o("div", null, [
-          n(e.$slots, "title", {}, () => [
-            o("strong", null, c(t.title), 1)
+    return (l, h) => (n(), s("div", {
+      class: r(["callout", m(c)])
+    }, [
+      t("div", v, [
+        u(g, {
+          class: r(["type-large margin-right-small", `color-${e.type}`]),
+          icon: e.icon || `type:${e.type}`
+        }, null, 8, ["class", "icon"]),
+        t("div", S, [
+          t("div", null, [
+            i(l.$slots, "title", {}, () => [
+              t("strong", null, a(e.title), 1)
+            ])
+          ]),
+          t("div", null, [
+            i(l.$slots, "description", {}, () => [
+              f(a(e.description), 1)
+            ])
           ])
         ]),
-        o("div", null, [
-          n(e.$slots, "description", {}, () => [
-            p(c(t.description), 1)
-          ])
-        ])
-      ]),
-      e.$slots.action ? (s(), i("div", B, [
-        n(e.$slots, "action")
-      ])) : f("", !0)
-    ])
-  ], 2);
-}
-const b = /* @__PURE__ */ S(U, [["render", C]]);
+        l.$slots.action ? (n(), s("div", $, [
+          i(l.$slots, "action")
+        ])) : p("", !0)
+      ])
+    ], 2));
+  }
+};
 export {
-  b as default
+  B as default
 };

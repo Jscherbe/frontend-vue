@@ -1,142 +1,34 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-    /**
-     * Items Array of Objects for each link
-     * [{
-     *   title: String (title of link)
-     *   icon: Icon definition passed to UluIcon
-     *   tag: Tag appearing after link text (count/etc), pass props you want bound to tag
-     *   tooltip: Add tooltip to menu item (pass options for tooltip), unless iconOnly than the title is presented in the tooltip
-     *   href: Will result in <a>
-     *   click: Will be called on click and result in <button>
-     *   to: Will result in <a> and use vue-router router-link component
-     * }]
-     */
-    items: ArrayConstructor;
-    /**
-     * Classes object to add class bindings to the different elements
-     * - { list, item, link, linkActive, linkExactActive, linkIcon, linkText }
-     */
-    classes: {
-        type: ObjectConstructor;
-        default: () => {};
-    };
-    /**
-     * Use icon only version of menu
-     */
-    iconOnly: BooleanConstructor;
-    /**
-     * Do not print menu items children recursively
-     */
-    noChildren: BooleanConstructor;
-}>, {}, {}, {}, {
-    handleItemClick(event: any, item: any): void;
-}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, "item-click"[], "item-click", import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-    /**
-     * Items Array of Objects for each link
-     * [{
-     *   title: String (title of link)
-     *   icon: Icon definition passed to UluIcon
-     *   tag: Tag appearing after link text (count/etc), pass props you want bound to tag
-     *   tooltip: Add tooltip to menu item (pass options for tooltip), unless iconOnly than the title is presented in the tooltip
-     *   href: Will result in <a>
-     *   click: Will be called on click and result in <button>
-     *   to: Will result in <a> and use vue-router router-link component
-     * }]
-     */
-    items: ArrayConstructor;
-    /**
-     * Classes object to add class bindings to the different elements
-     * - { list, item, link, linkActive, linkExactActive, linkIcon, linkText }
-     */
-    classes: {
-        type: ObjectConstructor;
-        default: () => {};
-    };
-    /**
-     * Use icon only version of menu
-     */
-    iconOnly: BooleanConstructor;
-    /**
-     * Do not print menu items children recursively
-     */
-    noChildren: BooleanConstructor;
-}>> & Readonly<{
-    "onItem-click"?: ((...args: any[]) => any) | undefined;
-}>, {
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & (new () => {
+    $slots: S;
+});
+declare const __VLS_component: import('vue').DefineComponent<{}, {
+    $emit: (event: "item-click", ...args: any[]) => void;
     classes: Record<string, any>;
     iconOnly: boolean;
     noChildren: boolean;
-}, {}, {
-    UluIcon: import('vue').DefineComponent<{}, {
-        spaced: boolean;
-        icon?: string | boolean | Record<string, any> | unknown[] | undefined;
-        $props: {
-            readonly spaced?: boolean | undefined;
-            readonly icon?: string | boolean | Record<string, any> | unknown[] | undefined;
-        };
-    }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-    UluTag: {
-        new (...args: any[]): import('vue').CreateComponentPublicInstanceWithMixins<Readonly<{}> & Readonly<{}>, {
-            counter: boolean;
-            type?: string | undefined;
-            size?: string | undefined;
-            icon?: string | unknown[] | undefined;
-            modifiers?: string | unknown[] | undefined;
-            text?: string | number | undefined;
-            $props: {
-                readonly counter?: boolean | undefined;
-                readonly type?: string | undefined;
-                readonly size?: string | undefined;
-                readonly icon?: string | unknown[] | undefined;
-                readonly modifiers?: string | unknown[] | undefined;
-                readonly text?: string | number | undefined;
-            };
-        }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, import('vue').PublicProps, {}, true, {}, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, {}, HTMLSpanElement, import('vue').ComponentProvideOptions, {
-            P: {};
-            B: {};
-            D: {};
-            C: {};
-            M: {};
-            Defaults: {};
-        }, Readonly<{}> & Readonly<{}>, {
-            counter: boolean;
-            type?: string | undefined;
-            size?: string | undefined;
-            icon?: string | unknown[] | undefined;
-            modifiers?: string | unknown[] | undefined;
-            text?: string | number | undefined;
-            $props: {
-                readonly counter?: boolean | undefined;
-                readonly type?: string | undefined;
-                readonly size?: string | undefined;
-                readonly icon?: string | unknown[] | undefined;
-                readonly modifiers?: string | unknown[] | undefined;
-                readonly text?: string | number | undefined;
-            };
-        }, {}, {}, {}, {}>;
-        __isFragment?: never;
-        __isTeleport?: never;
-        __isSuspense?: never;
-    } & import('vue').ComponentOptionsBase<Readonly<{}> & Readonly<{}>, {
-        counter: boolean;
-        type?: string | undefined;
-        size?: string | undefined;
-        icon?: string | unknown[] | undefined;
-        modifiers?: string | unknown[] | undefined;
-        text?: string | number | undefined;
-        $props: {
-            readonly counter?: boolean | undefined;
-            readonly type?: string | undefined;
-            readonly size?: string | undefined;
-            readonly icon?: string | unknown[] | undefined;
-            readonly modifiers?: string | unknown[] | undefined;
-            readonly text?: string | number | undefined;
-        };
-    }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, {}, {}, string, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, import('vue').ComponentProvideOptions> & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps & (new () => {
-        $slots: {
-            default?(_: {}): any;
-        };
-    });
-}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;
+    items?: unknown[] | undefined;
+    $props: {
+        readonly classes?: Record<string, any> | undefined;
+        readonly iconOnly?: boolean | undefined;
+        readonly noChildren?: boolean | undefined;
+        readonly items?: unknown[] | undefined;
+    };
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
+type __VLS_TemplateResult = {
+    attrs: Partial<{}>;
+    slots: Partial<Record<number, (_: any) => any>> & {
+        default?(_: {
+            item: unknown;
+            index: number;
+        }): any;
+        item?(_: {
+            item: unknown;
+            index: number;
+        }): any;
+    };
+    refs: {};
+    rootEl: any;
+};
 //# sourceMappingURL=UluMenu.vue.d.ts.map

@@ -1,10 +1,10 @@
-import { computed as u, createElementBlock as l, createCommentVNode as B, openBlock as n, normalizeClass as a, unref as y, Fragment as b, renderList as g, createElementVNode as o, renderSlot as c, createTextVNode as d, toDisplayString as m } from "vue";
-import { useModifiers as k } from "../../composables/useModifiers.js";
-const F = {
+import { computed as b, createElementBlock as r, createCommentVNode as g, openBlock as a, normalizeClass as n, unref as k, Fragment as d, renderList as m, createElementVNode as L, renderSlot as p, createTextVNode as u, toDisplayString as f } from "vue";
+import { useModifiers as C } from "../../composables/useModifiers.js";
+const N = {
   __name: "UluDefinitionList",
   props: {
     /**
-     * Array of term, and description (props in object)
+     * Array of objects with term, and description (string or array of strings)
      * - Can use slots also
      */
     items: Array,
@@ -49,7 +49,7 @@ const F = {
     compact: Boolean
   },
   setup(t) {
-    const e = t, p = u(() => ({
+    const e = t, y = b(() => ({
       inline: e.inline,
       "inline-all": e.inlineAll,
       table: e.table,
@@ -57,43 +57,46 @@ const F = {
       "separated-first": e.separatedFirst,
       "separated-last": e.separatedLast,
       compact: e.compact
-    })), { resolvedModifiers: f } = k({
+    })), { resolvedModifiers: B } = C({
       props: e,
-      internal: p,
+      internal: y,
       baseClass: "definition-list"
-    });
-    return (r, A) => t.items?.length ? (n(), l("dl", {
+    }), A = (s) => Array.isArray(s.description) ? s.description : [s.description];
+    return (s, D) => t.items?.length ? (a(), r("dl", {
       key: 0,
-      class: a(["definition-list", [y(f), t.classes.list]])
+      class: n(["definition-list", [k(B), t.classes.list]])
     }, [
-      (n(!0), l(b, null, g(t.items, (s, i) => (n(), l("div", {
-        key: i,
-        class: a(t.classes.item)
+      (a(!0), r(d, null, m(t.items, (i, l) => (a(), r("div", {
+        key: l,
+        class: n(t.classes.item)
       }, [
-        o("dt", {
-          class: a(t.classes.term)
+        L("dt", {
+          class: n(t.classes.term)
         }, [
-          c(r.$slots, "term", {
-            item: s,
-            index: i
+          p(s.$slots, "term", {
+            item: i,
+            index: l
           }, () => [
-            d(m(s.term), 1)
+            u(f(i.term), 1)
           ])
         ], 2),
-        o("dd", {
-          class: a(t.classes.description)
+        (a(!0), r(d, null, m(A(i), (o, c) => (a(), r("dd", {
+          key: c,
+          class: n(t.classes.description)
         }, [
-          c(r.$slots, "description", {
-            item: s,
-            index: i
+          p(s.$slots, "description", {
+            item: i,
+            description: o,
+            index: l,
+            descriptionIndex: c
           }, () => [
-            d(m(s.description), 1)
+            u(f(o), 1)
           ])
-        ], 2)
+        ], 2))), 128))
       ], 2))), 128))
-    ], 2)) : B("", !0);
+    ], 2)) : g("", !0);
   }
 };
 export {
-  F as default
+  N as default
 };

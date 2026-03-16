@@ -5,12 +5,12 @@ const r = {
   modals: [],
   modalOptions: {}
 };
-function f(o, i) {
-  const l = Object.assign({}, r, i), s = d((t) => Object.assign({}, l.modalOptions, t));
-  o.component("UluModalsDisplay", n), o.component("UluModal", e), l.modals.forEach((t) => {
-    s.add(t);
-  }), a.options = l, o.config.globalProperties.$uluModals = s, o.provide("uluModals", s), o.config.globalProperties.$uluModalsState = a;
+function p(o, i) {
+  const s = Object.assign({}, r, i), l = d((t) => Object.assign({}, s.modalOptions, t));
+  o.component("UluModalsDisplay", n), o.component("UluModal", e), s.modals.forEach((t) => {
+    l.add(t);
+  }), a.options = s, o.config.globalProperties.$uluModals = l, o.provide("uluModals", l), o.config.globalProperties.$uluModalsState = a;
 }
 export {
-  f as default
+  p as default
 };

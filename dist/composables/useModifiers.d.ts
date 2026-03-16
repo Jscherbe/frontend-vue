@@ -16,37 +16,32 @@
  * <div :class="[resolvedModifiers, 'other-class']"></div>
  * </template>
  *
- * <script>
+ * <script setup>
  * import { computed, ref } from 'vue';
  * import { useModifiers } from './composables/useModifiers.js'; // Adjust path
  *
- * export default {
- *   props: {
- *     variant: String, // e.g., 'primary', 'secondary'
- *     isActive: Boolean,
- *     modifiers: [String, Array, Object] // User-passed modifiers
- *   },
- *   setup(props) {
- *     const isHovered = ref(false);
+ * const props = defineProps({
+ *   variant: String, // e.g., 'primary', 'secondary'
+ *   isActive: Boolean,
+ *   modifiers: [String, Array, Object] // User-passed modifiers
+ * });
  *
- *     // Define component-internal modifiers based on props or local state
- *     const internalModifiers = computed(() => ({
- *       [props.variant]: !!props.variant, // Add 'primary' or 'secondary' if prop exists
- *       'active': props.isActive, // Add 'active' if isActive prop is true
- *       'hovered': isHovered.value, // Add 'hovered' if local state is true
- *       'default': !props.variant && !props.isActive // Add 'default' if no variant/active
- *     }));
+ * const isHovered = ref(false);
  *
- *     // Use the composable to get the combined modifier classes
- *     const { resolvedModifiers } = useModifiers({
- *       props: props, // Pass component props for 'modifiers' prop
- *       baseClass: 'button', // The BEM block name
- *       internal: internalModifiers // The computed internal modifiers
- *     });
+ * // Define component-internal modifiers based on props or local state
+ * const internalModifiers = computed(() => ({
+ *   [props.variant]: !!props.variant, // Add 'primary' or 'secondary' if prop exists
+ *   'active': props.isActive, // Add 'active' if isActive prop is true
+ *   'hovered': isHovered.value, // Add 'hovered' if local state is true
+ *   'default': !props.variant && !props.isActive // Add 'default' if no variant/active
+ * }));
  *
- *     return { resolvedModifiers, isHovered };
- *   }
- * };
+ * // Use the composable to get the combined modifier classes
+ * const { resolvedModifiers } = useModifiers({
+ *   props: props, // Pass component props for 'modifiers' prop
+ *   baseClass: 'button', // The BEM block name
+ *   internal: internalModifiers // The computed internal modifiers
+ * });
  * </script>
  *
  * // Resulting class examples for 'my-component':

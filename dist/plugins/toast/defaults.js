@@ -1,6 +1,6 @@
 import { markRaw as o } from "vue";
 import t from "./UluToast.vue.js";
-const a = {
+const p = {
   toastOptions: {
     /**
      * Component used to render the toast in the display
@@ -25,5 +25,5 @@ const a = {
   }
 };
 export {
-  a as default
+  p as default
 };

@@ -1,8 +1,7 @@
-import { randomInt as i } from "@ulu/utils/random.js";
-import { createElementBlock as s, openBlock as c } from "vue";
-import a from "../../_virtual/_plugin-vue_export-helper.js";
-const d = {
-  name: "UluPlaceholderImage",
+import { computed as n, createElementBlock as d, openBlock as h } from "vue";
+import { randomInt as o } from "@ulu/utils/random.js";
+const s = ["src", "alt"], g = {
+  __name: "UluPlaceholderImage",
   props: {
     imageId: String,
     /**
@@ -28,27 +27,20 @@ const d = {
      */
     random: Boolean
   },
-  computed: {
-    src() {
-      const { imageId: t } = this, { width: r, height: e } = this.size;
-      return `https://picsum.photos/${t ? `id/${t}/` : ""}${r}/${e}`;
-    },
-    size() {
-      const { random: t, width: r, height: e } = this;
-      return t ? {
-        width: i(500, 1e3),
-        height: i(500, 1e3)
-      } : { width: r, height: e };
-    }
+  setup(e) {
+    const t = e, a = n(() => t.random ? {
+      width: o(500, 1e3),
+      height: o(500, 1e3)
+    } : { width: t.width, height: t.height }), c = n(() => {
+      const { width: r, height: i } = a.value;
+      return `https://picsum.photos/${t.imageId ? `id/${t.imageId}/` : ""}${r}/${i}`;
+    });
+    return (r, i) => (h(), d("img", {
+      src: c.value,
+      alt: e.alt
+    }, null, 8, s));
   }
-}, h = ["src", "alt"];
-function m(t, r, e, o, l, n) {
-  return c(), s("img", {
-    src: n.src,
-    alt: e.alt
-  }, null, 8, h);
-}
-const f = /* @__PURE__ */ a(d, [["render", m]]);
+};
 export {
-  f as default
+  g as default
 };

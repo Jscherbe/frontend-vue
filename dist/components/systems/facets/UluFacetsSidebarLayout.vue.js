@@ -1,6 +1,6 @@
-import { ref as r, inject as h, computed as y, createElementBlock as g, openBlock as i, normalizeClass as m, unref as l, createElementVNode as e, withDirectives as _, createBlock as v, createCommentVNode as p, renderSlot as n, toDisplayString as T, vShow as k, withCtx as B, Teleport as S } from "vue";
+import { ref as i, inject as h, computed as y, createElementBlock as g, openBlock as r, normalizeClass as m, unref as l, createElementVNode as e, withDirectives as _, createBlock as v, createCommentVNode as p, renderSlot as n, toDisplayString as T, vShow as k, withCtx as B, Teleport as S } from "vue";
 import w from "../../collapsible/UluModal.vue.js";
-const V = { class: "facets-sidebar__header" }, C = { class: "facets-sidebar__mobile-controls" }, F = { class: "facets-sidebar__body" }, M = { class: "facets-sidebar__main" }, j = {
+const V = { class: "facets-sidebar__header" }, $ = { class: "facets-sidebar__mobile-controls" }, C = { class: "facets-sidebar__body" }, F = { class: "facets-sidebar__main" }, x = {
   __name: "UluFacetsSidebarLayout",
   props: {
     mobileButtonText: {
@@ -20,14 +20,14 @@ const V = { class: "facets-sidebar__header" }, C = { class: "facets-sidebar__mob
     }
   },
   setup(d) {
-    const o = r(!1), t = h("uluIsMobile"), u = r(null), c = r(null), b = y(() => t.value ? c.value : u.value);
-    return (a, s) => (i(), g("div", {
+    const o = i(!1), t = h("uluIsMobile"), u = i(null), c = i(null), b = y(() => t.value ? c.value : u.value);
+    return (a, s) => (r(), g("div", {
       class: m(["facets-sidebar", { "facets-sidebar--filters-hidden": l(t) }])
     }, [
       e("div", V, [
         n(a.$slots, "header")
       ]),
-      _(e("div", C, [
+      _(e("div", $, [
         e("button", {
           class: m(d.classes.mobileButton),
           onClick: s[0] || (s[0] = (f) => o.value = !0)
@@ -35,7 +35,7 @@ const V = { class: "facets-sidebar__header" }, C = { class: "facets-sidebar__mob
       ], 512), [
         [k, l(t)]
       ]),
-      e("div", F, [
+      e("div", C, [
         _(e("div", {
           class: "facets-sidebar__sidebar",
           ref_key: "desktopTarget",
@@ -43,11 +43,11 @@ const V = { class: "facets-sidebar__header" }, C = { class: "facets-sidebar__mob
         }, null, 512), [
           [k, !l(t)]
         ]),
-        e("div", M, [
+        e("div", F, [
           n(a.$slots, "main")
         ])
       ]),
-      l(t) ? (i(), v(w, {
+      l(t) ? (r(), v(w, {
         key: 0,
         modelValue: o.value,
         "onUpdate:modelValue": s[1] || (s[1] = (f) => o.value = f),
@@ -64,7 +64,7 @@ const V = { class: "facets-sidebar__header" }, C = { class: "facets-sidebar__mob
         ]),
         _: 1
       }, 8, ["modelValue"])) : p("", !0),
-      b.value ? (i(), v(S, {
+      b.value ? (r(), v(S, {
         key: 1,
         to: b.value
       }, [
@@ -74,5 +74,5 @@ const V = { class: "facets-sidebar__header" }, C = { class: "facets-sidebar__mob
   }
 };
 export {
-  j as default
+  x as default
 };

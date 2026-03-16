@@ -1,24 +1,10 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-    amount: {
-        type: NumberConstructor;
-        default: number;
-    };
-    element: {
-        type: StringConstructor;
-        default: string;
-    };
-}>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-    amount: {
-        type: NumberConstructor;
-        default: number;
-    };
-    element: {
-        type: StringConstructor;
-        default: string;
-    };
-}>> & Readonly<{}>, {
+declare const _default: import('vue').DefineComponent<{}, {
     element: string;
     amount: number;
-}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
+    $props: {
+        readonly element?: string | undefined;
+        readonly amount?: number | undefined;
+    };
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 export default _default;
 //# sourceMappingURL=UluPlaceholderText.vue.d.ts.map

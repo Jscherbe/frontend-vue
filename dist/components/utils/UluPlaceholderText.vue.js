@@ -1,7 +1,6 @@
-import { createElementBlock as u, openBlock as i, Fragment as s, renderList as a, createBlock as r, resolveDynamicComponent as c, withCtx as l, createTextVNode as o } from "vue";
-import m from "../../_virtual/_plugin-vue_export-helper.js";
-const d = {
-  name: "PlaceholderText",
+import { createElementBlock as n, openBlock as u, Fragment as s, renderList as a, createBlock as r, resolveDynamicComponent as l, withCtx as c, createTextVNode as m } from "vue";
+const p = {
+  __name: "UluPlaceholderText",
   props: {
     amount: {
       type: Number,
@@ -11,17 +10,16 @@ const d = {
       type: String,
       default: "p"
     }
+  },
+  setup(e) {
+    return (o, t) => (u(!0), n(s, null, a(parseInt(e.amount), (i) => (u(), r(l(e.element), { key: i }, {
+      default: c(() => [...t[0] || (t[0] = [
+        m(" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper erat tincidunt tellus vestibulum dictum. Fusce vel augue commodo, egestas diam sed, accumsan leo. Maecenas congue nec nisl et ullamcorper. Maecenas tincidunt, tortor et viverra eleifend, enim leo vestibulum ipsum, quis placerat mi nisi nec ex. Vivamus a justo volutpat, scelerisque elit eget, lacinia ex. Phasellus dapibus sollicitudin tortor, vitae suscipit nunc condimentum ut. Cras suscipit feugiat nibh nec consectetur. Phasellus vitae quam blandit, cursus metus ut, placerat mi. Sed tempor lacus non est interdum imperdiet nec quis metus. Praesent vel eleifend diam. Donec tincidunt eget purus sed posuere. ", -1)
+      ])]),
+      _: 2
+    }, 1024))), 128));
   }
 };
-function p(f, e, t, v, g, x) {
-  return i(!0), u(s, null, a(parseInt(t.amount), (n) => (i(), r(c(t.element), { key: n }, {
-    default: l(() => [...e[0] || (e[0] = [
-      o(" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper erat tincidunt tellus vestibulum dictum. Fusce vel augue commodo, egestas diam sed, accumsan leo. Maecenas congue nec nisl et ullamcorper. Maecenas tincidunt, tortor et viverra eleifend, enim leo vestibulum ipsum, quis placerat mi nisi nec ex. Vivamus a justo volutpat, scelerisque elit eget, lacinia ex. Phasellus dapibus sollicitudin tortor, vitae suscipit nunc condimentum ut. Cras suscipit feugiat nibh nec consectetur. Phasellus vitae quam blandit, cursus metus ut, placerat mi. Sed tempor lacus non est interdum imperdiet nec quis metus. Praesent vel eleifend diam. Donec tincidunt eget purus sed posuere. ", -1)
-    ])]),
-    _: 2
-  }, 1024))), 128);
-}
-const h = /* @__PURE__ */ m(d, [["render", p]]);
 export {
-  h as default
+  p as default
 };

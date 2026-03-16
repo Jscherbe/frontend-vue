@@ -1,13 +1,9 @@
-import { RouterLink as m } from "vue-router";
-import f from "./UluIcon.vue.js";
-import { useModifiers as d } from "../../composables/useModifiers.js";
-import { resolveComponent as b, createBlock as i, openBlock as l, resolveDynamicComponent as g, mergeProps as y, withCtx as B, renderSlot as s, createCommentVNode as c, createElementBlock as _, createTextVNode as h, toDisplayString as S } from "vue";
-import k from "../../_virtual/_plugin-vue_export-helper.js";
-const O = {
-  name: "UluButton",
-  components: {
-    UluIcon: f
-  },
+import { computed as i, createBlock as a, openBlock as t, normalizeClass as d, unref as m, withCtx as f, renderSlot as l, createCommentVNode as r, createElementBlock as g, createTextVNode as y, toDisplayString as B } from "vue";
+import b from "../utils/UluAction.vue.js";
+import c from "./UluIcon.vue.js";
+import { useModifiers as S } from "../../composables/useModifiers.js";
+const h = { key: 1 }, z = {
+  __name: "UluButton",
   props: {
     /**
      * Icon prop, if used will set the icon for the button, will use UluIcon (which uses font-awesome icons conditionally)
@@ -84,68 +80,59 @@ const O = {
     modifiers: [String, Array]
   },
   setup(e) {
-    const { resolvedModifiers: n } = d({ props: e, baseClass: "button" });
-    return { resolvedModifiers: n };
-  },
-  computed: {
-    resolvedAriaLabel() {
-      const e = this.alt || this.iconOnly && this.text;
-      return e || null;
-    },
-    classes() {
-      const e = [], { size: n } = this;
-      return n && e.push(`button--${n}`), e;
-    },
-    element() {
-      return this.to ? m : this.href ? "a" : "button";
-    },
-    attrs() {
-      const { to: e, href: n, download: t, target: o } = this, r = e ? { to: e } : n ? { href: n } : {};
-      return o && (r.target = o), n && t && (r.download = typeof t == "string" ? t : !0), r;
-    }
+    const n = e, { resolvedModifiers: s } = S({
+      props: n,
+      baseClass: "button",
+      internal: i(() => ({
+        transparent: n.transparent,
+        primary: n.primary,
+        secondary: n.secondary,
+        outline: n.outline,
+        small: n.small,
+        large: n.large,
+        icon: n.iconOnly,
+        [n.size]: n.size
+      }))
+    }), u = i(() => {
+      const o = n.alt || n.iconOnly && n.text;
+      return o || null;
+    });
+    return (o, O) => (t(), a(b, {
+      to: e.to,
+      href: e.href,
+      target: e.target,
+      download: e.download,
+      class: d(["button", [
+        {
+          "no-margin": e.noMargin
+        },
+        m(s)
+      ]]),
+      "aria-label": u.value
+    }, {
+      default: f(() => [
+        l(o.$slots, "before"),
+        e.icon && (e.iconBefore || e.iconOnly) ? (t(), a(c, {
+          key: 0,
+          icon: e.icon,
+          class: "button__icon"
+        }, null, 8, ["icon"])) : r("", !0),
+        (o.$slots.default || e.text) && !e.iconOnly ? (t(), g("span", h, [
+          l(o.$slots, "default", {}, () => [
+            y(B(e.text), 1)
+          ])
+        ])) : r("", !0),
+        e.icon && !e.iconBefore && !e.iconOnly ? (t(), a(c, {
+          key: 2,
+          icon: e.icon,
+          class: "button__icon"
+        }, null, 8, ["icon"])) : r("", !0),
+        l(o.$slots, "after")
+      ]),
+      _: 3
+    }, 8, ["to", "href", "target", "download", "class", "aria-label"]));
   }
-}, v = { key: 1 };
-function x(e, n, t, o, r, a) {
-  const u = b("UluIcon");
-  return l(), i(g(a.element), y({
-    class: ["button", [
-      {
-        "button--transparent": t.transparent,
-        "button--primary": t.primary,
-        "button--secondary": t.secondary,
-        "button--outline": t.outline,
-        "button--small": t.small,
-        "button--large": t.large,
-        "button--icon": t.iconOnly,
-        "no-margin": t.noMargin
-      },
-      a.classes,
-      o.resolvedModifiers
-    ]]
-  }, a.attrs, { "aria-label": a.resolvedAriaLabel }), {
-    default: B(() => [
-      s(e.$slots, "before"),
-      t.icon && (t.iconBefore || t.iconOnly) ? (l(), i(u, {
-        key: 0,
-        icon: t.icon,
-        class: "button__icon"
-      }, null, 8, ["icon"])) : c("", !0),
-      (e.$slots.default || t.text) && !t.iconOnly ? (l(), _("span", v, [
-        s(e.$slots, "default", {}, () => [
-          h(S(t.text), 1)
-        ])
-      ])) : c("", !0),
-      t.icon && !t.iconBefore && !t.iconOnly ? (l(), i(u, {
-        key: 2,
-        icon: t.icon,
-        class: "button__icon"
-      }, null, 8, ["icon"])) : c("", !0),
-      s(e.$slots, "after")
-    ]),
-    _: 3
-  }, 16, ["class", "aria-label"]);
-}
-const I = /* @__PURE__ */ k(O, [["render", x]]);
+};
 export {
-  I as default
+  z as default
 };

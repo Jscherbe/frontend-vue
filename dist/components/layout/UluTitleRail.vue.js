@@ -1,11 +1,11 @@
-import r from "../elements/UluIcon.vue.js";
-import { resolveComponent as m, createElementBlock as n, openBlock as t, normalizeClass as l, createElementVNode as u, createCommentVNode as a, createBlock as o, resolveDynamicComponent as d, normalizeStyle as _, withCtx as f, renderSlot as s, createTextVNode as y, toDisplayString as g } from "vue";
-import h from "../../_virtual/_plugin-vue_export-helper.js";
-const S = {
-  name: "UluTitleRail",
-  components: {
-    UluIcon: r
-  },
+import { computed as m, createElementBlock as s, openBlock as t, normalizeClass as l, unref as d, createElementVNode as u, createCommentVNode as n, createBlock as r, resolveDynamicComponent as f, normalizeStyle as y, withCtx as g, renderSlot as o, createTextVNode as S, toDisplayString as h } from "vue";
+import k from "../elements/UluIcon.vue.js";
+import { useModifiers as v } from "../../composables/useModifiers.js";
+const C = {
+  key: 0,
+  class: "rail__item rail__item--pull"
+}, x = {
+  __name: "UluTitleRail",
   props: {
     /**
      * Icon to display next to the title.
@@ -42,45 +42,50 @@ const S = {
     /**
      * If true, a rule will be displayed under the title.
      */
-    rule: Boolean
-  }
-}, k = {
-  key: 0,
-  class: "rail__item rail__item--pull"
-};
-function v(i, C, e, U, p, x) {
-  const c = m("UluIcon");
-  return t(), n("div", {
-    class: l(["rail rail--title-rail", {
-      "rail--rule": e.rule
-    }])
-  }, [
-    u("div", {
-      class: l(["rail__item rail__item--title", e.classes.itemTitle])
+    rule: Boolean,
+    /**
+     * Modifiers (to add any modifier classes based on base class)
+     */
+    modifiers: [String, Array]
+  },
+  setup(e) {
+    const a = e, { resolvedModifiers: c } = v({
+      props: a,
+      baseClass: "rail",
+      internal: m(() => ({
+        "title-rail": !0,
+        rule: a.rule
+      }))
+    });
+    return (i, B) => (t(), s("div", {
+      class: l(["rail", d(c)])
     }, [
-      (t(), o(d(e.titleElement), {
-        class: l(["layout-flex type-max-width-small no-margin", e.classes.title]),
-        style: _({ alignItems: e.iconAlign })
-      }, {
-        default: f(() => [
-          e.icon ? (t(), o(c, {
-            key: 0,
-            class: l(e.classes.icon),
-            icon: e.icon
-          }, null, 8, ["class", "icon"])) : a("", !0),
-          s(i.$slots, "default", {}, () => [
-            y(g(e.title), 1)
-          ])
-        ]),
-        _: 3
-      }, 8, ["class", "style"]))
-    ], 2),
-    i.$slots.end ? (t(), n("div", k, [
-      s(i.$slots, "end")
-    ])) : a("", !0)
-  ], 2);
-}
-const T = /* @__PURE__ */ h(S, [["render", v]]);
+      u("div", {
+        class: l(["rail__item rail__item--title", e.classes.itemTitle])
+      }, [
+        (t(), r(f(e.titleElement), {
+          class: l(["layout-flex type-max-width-small no-margin", e.classes.title]),
+          style: y({ alignItems: e.iconAlign })
+        }, {
+          default: g(() => [
+            e.icon ? (t(), r(k, {
+              key: 0,
+              class: l(e.classes.icon),
+              icon: e.icon
+            }, null, 8, ["class", "icon"])) : n("", !0),
+            o(i.$slots, "default", {}, () => [
+              S(h(e.title), 1)
+            ])
+          ]),
+          _: 3
+        }, 8, ["class", "style"]))
+      ], 2),
+      i.$slots.end ? (t(), s("div", C, [
+        o(i.$slots, "end")
+      ])) : n("", !0)
+    ], 2));
+  }
+};
 export {
-  T as default
+  x as default
 };

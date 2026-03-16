@@ -5,15 +5,15 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     $emit: (event: "file-change", ...args: any[]) => void;
-    label: string;
     required: boolean;
+    label: string;
     labelHidden: boolean;
     noClasses: boolean;
     multiple: boolean;
     inputAttrs?: Record<string, any> | undefined;
     $props: {
-        readonly label?: string | undefined;
         readonly required?: boolean | undefined;
+        readonly label?: string | undefined;
         readonly labelHidden?: boolean | undefined;
         readonly noClasses?: boolean | undefined;
         readonly multiple?: boolean | undefined;

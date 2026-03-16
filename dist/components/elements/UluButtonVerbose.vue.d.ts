@@ -1,126 +1,41 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-    /**
-     * The title of the button. Can also be passed via slot.
-     */
-    title: StringConstructor;
-    /**
-     * Optional element to use for title
-     */
-    titleElement: {
-        type: StringConstructor;
-        default: string;
-    };
-    /**
-     * The body text of the button. Can also be passed via slot.
-     */
-    body: StringConstructor;
-    /**
-     * Icon prop, if used will set the icon for the button, will use UluIcon (which uses font-awesome icons conditionally)
-     */
-    icon: (StringConstructor | ArrayConstructor)[];
-    /**
-     * If set will use router-link for button component and pass to prop
-     */
-    to: (ObjectConstructor | StringConstructor)[];
-    /**
-     * Sets the button to a link with this href
-     */
-    href: StringConstructor;
-    /**
-     * Set a value for target attribute when button is a link
-     */
-    target: StringConstructor;
-    /**
-     * Sets the download attribute on the link (passing string [filename] will populate the download attribute, true will just include it as boolean attribute)
-     */
-    download: (BooleanConstructor | StringConstructor)[];
-    /**
-     * Preset to set inline style
-     */
-    inline: BooleanConstructor;
-    /**
-     * Preset to set full-width style
-     */
-    fullWidth: BooleanConstructor;
-    /**
-     * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
-     */
-    modifiers: (StringConstructor | ArrayConstructor)[];
-}>, {
-    resolvedModifiers: any;
-}, {}, {
-    element(): "button" | import('vue-router')._RouterLinkI | "a";
-    attrs(): {
-        to: string | Record<string, any>;
-        href?: undefined;
-    } | {
-        href: string;
-        to?: undefined;
-    } | {
-        to?: undefined;
-        href?: undefined;
-    };
-}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-    /**
-     * The title of the button. Can also be passed via slot.
-     */
-    title: StringConstructor;
-    /**
-     * Optional element to use for title
-     */
-    titleElement: {
-        type: StringConstructor;
-        default: string;
-    };
-    /**
-     * The body text of the button. Can also be passed via slot.
-     */
-    body: StringConstructor;
-    /**
-     * Icon prop, if used will set the icon for the button, will use UluIcon (which uses font-awesome icons conditionally)
-     */
-    icon: (StringConstructor | ArrayConstructor)[];
-    /**
-     * If set will use router-link for button component and pass to prop
-     */
-    to: (ObjectConstructor | StringConstructor)[];
-    /**
-     * Sets the button to a link with this href
-     */
-    href: StringConstructor;
-    /**
-     * Set a value for target attribute when button is a link
-     */
-    target: StringConstructor;
-    /**
-     * Sets the download attribute on the link (passing string [filename] will populate the download attribute, true will just include it as boolean attribute)
-     */
-    download: (BooleanConstructor | StringConstructor)[];
-    /**
-     * Preset to set inline style
-     */
-    inline: BooleanConstructor;
-    /**
-     * Preset to set full-width style
-     */
-    fullWidth: BooleanConstructor;
-    /**
-     * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
-     */
-    modifiers: (StringConstructor | ArrayConstructor)[];
-}>> & Readonly<{}>, {
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & (new () => {
+    $slots: S;
+});
+declare const __VLS_component: import('vue').DefineComponent<{}, {
+    titleElement: string;
     inline: boolean;
     fullWidth: boolean;
-    titleElement: string;
-}, {}, {
-    UluIcon: import('vue').DefineComponent<{}, {
-        spaced: boolean;
-        icon?: string | boolean | Record<string, any> | unknown[] | undefined;
-        $props: {
-            readonly spaced?: boolean | undefined;
-            readonly icon?: string | boolean | Record<string, any> | unknown[] | undefined;
-        };
-    }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;
+    icon?: string | unknown[] | undefined;
+    body?: string | undefined;
+    title?: string | undefined;
+    modifiers?: string | unknown[] | undefined;
+    to?: string | Record<string, any> | undefined;
+    target?: string | undefined;
+    href?: string | undefined;
+    download?: string | boolean | undefined;
+    $props: {
+        readonly titleElement?: string | undefined;
+        readonly inline?: boolean | undefined;
+        readonly fullWidth?: boolean | undefined;
+        readonly icon?: string | unknown[] | undefined;
+        readonly body?: string | undefined;
+        readonly title?: string | undefined;
+        readonly modifiers?: string | unknown[] | undefined;
+        readonly to?: string | Record<string, any> | undefined;
+        readonly target?: string | undefined;
+        readonly href?: string | undefined;
+        readonly download?: string | boolean | undefined;
+    };
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
+type __VLS_TemplateResult = {
+    attrs: Partial<{}>;
+    slots: {
+        title?(_: {}): any;
+        default?(_: {}): any;
+    };
+    refs: {};
+    rootEl: any;
+};
 //# sourceMappingURL=UluButtonVerbose.vue.d.ts.map

@@ -1,39 +1,31 @@
-import r from "gsap";
-import { createElementBlock as a, openBlock as u, renderSlot as n, createTextVNode as l, toDisplayString as o } from "vue";
-import s from "../../_virtual/_plugin-vue_export-helper.js";
-const c = {
-  name: "AnimateNumber",
+import { ref as n, reactive as u, watch as o, createElementBlock as c, openBlock as s, renderSlot as p, createTextVNode as m, toDisplayString as i } from "vue";
+import v from "gsap";
+const _ = {
+  __name: "UluAnimateNumber",
   props: {
     /**
      * The target number to animate to.
      */
     value: Number
   },
-  watch: {
-    value() {
-      r.to(this, {
-        tweenValue: this.value,
+  setup(r) {
+    const e = r, t = n(e.value), l = u({
+      tweenValue: e.value
+    });
+    return o(() => e.value, (a) => {
+      v.to(l, {
+        tweenValue: a,
         onUpdate: () => {
-          this.currentValue = Math.ceil(this.tweenValue);
+          t.value = Math.ceil(l.tweenValue);
         }
       });
-    }
-  },
-  data() {
-    return {
-      currentValue: this.value,
-      tweenValue: this.value
-    };
+    }), (a, f) => (s(), c("span", null, [
+      p(a.$slots, "default", { currentValue: t.value }, () => [
+        m(i(t.value), 1)
+      ])
+    ]));
   }
 };
-function i(t, p, m, f, e, h) {
-  return u(), a("span", null, [
-    n(t.$slots, "default", { currentValue: e.currentValue }, () => [
-      l(o(e.currentValue), 1)
-    ])
-  ]);
-}
-const v = /* @__PURE__ */ s(c, [["render", i]]);
 export {
-  v as default
+  _ as default
 };

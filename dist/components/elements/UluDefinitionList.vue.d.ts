@@ -36,7 +36,9 @@ type __VLS_TemplateResult = {
         }): any;
         description?(_: {
             item: unknown;
+            description: any;
             index: number;
+            descriptionIndex: number;
         }): any;
     };
     refs: {};

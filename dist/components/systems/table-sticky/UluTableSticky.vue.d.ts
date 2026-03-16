@@ -1,455 +1,527 @@
-declare const _default: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-    /**
-     * By default you cannot have interactive items in the cloned sticky header and first column (if set)
-     * this disables that feature. It was set up that way for accessibility
-     */
-    allowClickClones: BooleanConstructor;
-    /**
-     * Allows user to pass classes object to add custom classes to parts of the component
-     */
-    classes: {
-        type: ObjectConstructor;
-        default: () => {};
-    };
-    /**
-     * Allow user to pass components
-     * - Passed the same values as if using a slot
-     * -
-     */
-    controlsComponent: ObjectConstructor;
-    /**
-     * Allows user to pass callback to get the row's value
-     */
-    getRowValue: FunctionConstructor;
-    getColumnTitle: FunctionConstructor;
-    /**
-     * Hidden caption for accessibility
-     */
-    caption: {
-        type: StringConstructor;
-        required: true;
-    };
-    /**
-     * Array of column configurations to convert to list output
-     *
-     * @property {Object} column A column config
-     * @property {String|Boolean} column.title The title to output for the column if set to a falsey value nothing will print
-     * @property {Array} column.columns Array of child columns
-     * @property {String} column.key The key that should be usec to grab column's value from rows
-     * @property {Function} column.value A function that returns the column's value used instead of key passed (row, column)
-     * @property {String} column.slot Register custom slot name to use as a template for this column. Passing a slot with this name will link them. The slot are passed the ({row, column}). Note this will disable output of the column's value
-     * @property {String} column.component Pass a component to use for this columns values (<td>)
-     * @property {String} column.componentHeader Pass a component to use for this columns header (<th>)
-     * @property {String} column.slotHeader Register custom slot name to use in the header
-     * @property {String} column.classHeader Custom class(s) to be set to column <th>
-     * @property {String} column.class Custom class(s) to be set to column's value <td>
-     * @property {String} column.html Use v-html output for value
-     * @property {String} column.rowHeader When this column is printed in the <tbody> it should be a header for the row. Note supports multiple row headers from left to right only. No rowspan support for rowHeaders.
-     */
-    columns: {
-        type: ArrayConstructor;
-        validator: (a: any) => any;
-        required: true;
-    };
-    /**
-     * Whether the first column of the table should be sticky
-     * - Requires that the table's first column header is nested
-     */
-    firstColumnSticky: BooleanConstructor;
-    /**
-     * Prefixed used for id generation
-     */
-    idPrefix: {
-        type: StringConstructor;
-        default: string;
-    };
-    /**
-     * Array of tables rows (tbody)
-     * - Each row is an object who's value will matched to columns
-     */
-    rows: {
-        type: ArrayConstructor;
-        validator: (a: any) => any;
-    };
-    /**
-     * Array of rows for footer (tfoot)
-     */
-    footerRows: {
-        type: ArrayConstructor;
-        validator: (a: any) => any;
-    };
-    /**
-     * Enables the visibility of the scroll controls
-     * - Scroll controls shift the tables x-axis when the table has overflow-x
-     * - Can be templated manually using slot named "controlsButtons", slot needs to create layout and call methods
-     *   + scope = { scrollLeft, scrollRight, canScrollLeft, canScrollRight }
-     * - Scroll controls are transformed with the header (move down as the user scrolls)
-     */
-    scrollControls: BooleanConstructor;
-    /**
-     * Scrollable context DOM Element, if the sticky element is within another
-     * scrolling parent use this to change the scroll activation handler to use a custom
-     * scrollable parent element
-     *
-     */
-    scrollContext: {
-        default: () => (Window & typeof globalThis) | null;
-    };
-    /**
-     * Amount to scroll when user uses scroll controls (pixels)
-     */
-    scrollControlAmount: {
-        type: NumberConstructor;
-        default: number;
-    };
-}>, {}, {
-    currentColumns: any;
-    currentRows: any;
-    currentFooterRows: any;
-    headerRows: any;
-    sizesCalculated: boolean;
-    tableWidth: string;
-    resizeHandler: any;
-    resizing: boolean;
-    overflownX: boolean;
-    canScrollLeft: boolean;
-    canScrollRight: boolean;
-    displayY: null;
-    sizesPainted: boolean;
-    columnResizeObserver: ResizeObserver | null;
-}, {
-    controlsShown(): boolean;
-    headerVisibleX(): boolean;
-    headerOpacityX(): "1" | "0";
-    /**
-     * Used to output the body rows. This is an array of only the deepest child columns
-     * parent column information can be accessed by reference
-     */
-    rowColumns(): any[];
-    headerHeight(): any;
-    /**
-     * Reduce the array of column header rows to the first row, first column
-     */
-    headerRowsFirst(): any[];
-    /**
-     * Reduce the rowColumn array to only the first column
-     */
-    rowColumnsFirst(): any[];
-    firstColumnSize(): {
-        width: any;
-        height: any;
-    };
-}, {
-    resetSorts(except: any): void;
-    applySort(column: any): void;
-    onColumnResize(): void;
-    headerAdded(el: any): void;
-    headerRemoved(el: any): void;
-    /**
-     * Allow classes options to be strings or functions
-     */
-    resolveClasses(passed: any, args?: null): any;
-    /**
-     * Handles horizontal scroll
-     * - Shifts the first column as the user scrolls
-     */
-    syncScrollLeft(): void;
-    /**
-     * Checks and sets state if the table is overflow horizontally
-     */
-    checkOverflowX(): void;
-    /**
-     * Checks whether if the tables scroll position is at the start or end and updates state
-     */
-    checkScrollability(): void;
-    /**
-     * Creates column array for internal use
-     * - Avoid mutating user's prop
-     * - Current columns being used in the display
-     * - This internal copy has internal properties/structural info (like ID)
-     * - This is the copy of the users columns to avoid mutating their object
-     * - Can be used in the future for adding/removing or enabling/disabling
-     */
-    createColumns(): any;
-    /**
-     * Conversion of the columns (which are nested hierarchy) to a flat list of columns
-     * sorted by the way they need to be displayed in rows
-     * - Used for nested headers
-     * - Transform nested data into row arrays
-     */
-    createHeaderRows(currentColumns: any): {
-        height: string;
-        boxHeight: null;
-        columns: never[];
-        id: string;
-    }[];
-    /**
-     * Creates row array for internal use
-     * - Avoid mutating user's prop
-     */
-    createRows(forFooter: any): {
-        height: null;
-        boxHeight: null;
-        data: unknown;
-        id: string;
-    }[];
-    onResize(): void;
-    /**
-     * Method to update the table (sizes, etc) when data has changed
-     */
-    refresh(): void;
-    onScrollX(): void;
-    idCreator(type: any): () => string;
-    /**
-     * Recursive function used as a reducer to return the deepest nested columns
-     */
-    maxColumnChildren(d: any, c: any): any;
-    /**
-     * Method to attach handlers needed after creation
-     */
-    attachHandlers(): void;
-    removeHandlers(): void;
-    removeTableSizes(): void;
-    scrollLeft(): void;
-    scrollRight(): void;
-    /**
-     * Cleanup function for when component is not in use
-     */
-    setTableSizes(): void;
-    tableReady(): void;
-}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-    /**
-     * By default you cannot have interactive items in the cloned sticky header and first column (if set)
-     * this disables that feature. It was set up that way for accessibility
-     */
-    allowClickClones: BooleanConstructor;
-    /**
-     * Allows user to pass classes object to add custom classes to parts of the component
-     */
-    classes: {
-        type: ObjectConstructor;
-        default: () => {};
-    };
-    /**
-     * Allow user to pass components
-     * - Passed the same values as if using a slot
-     * -
-     */
-    controlsComponent: ObjectConstructor;
-    /**
-     * Allows user to pass callback to get the row's value
-     */
-    getRowValue: FunctionConstructor;
-    getColumnTitle: FunctionConstructor;
-    /**
-     * Hidden caption for accessibility
-     */
-    caption: {
-        type: StringConstructor;
-        required: true;
-    };
-    /**
-     * Array of column configurations to convert to list output
-     *
-     * @property {Object} column A column config
-     * @property {String|Boolean} column.title The title to output for the column if set to a falsey value nothing will print
-     * @property {Array} column.columns Array of child columns
-     * @property {String} column.key The key that should be usec to grab column's value from rows
-     * @property {Function} column.value A function that returns the column's value used instead of key passed (row, column)
-     * @property {String} column.slot Register custom slot name to use as a template for this column. Passing a slot with this name will link them. The slot are passed the ({row, column}). Note this will disable output of the column's value
-     * @property {String} column.component Pass a component to use for this columns values (<td>)
-     * @property {String} column.componentHeader Pass a component to use for this columns header (<th>)
-     * @property {String} column.slotHeader Register custom slot name to use in the header
-     * @property {String} column.classHeader Custom class(s) to be set to column <th>
-     * @property {String} column.class Custom class(s) to be set to column's value <td>
-     * @property {String} column.html Use v-html output for value
-     * @property {String} column.rowHeader When this column is printed in the <tbody> it should be a header for the row. Note supports multiple row headers from left to right only. No rowspan support for rowHeaders.
-     */
-    columns: {
-        type: ArrayConstructor;
-        validator: (a: any) => any;
-        required: true;
-    };
-    /**
-     * Whether the first column of the table should be sticky
-     * - Requires that the table's first column header is nested
-     */
-    firstColumnSticky: BooleanConstructor;
-    /**
-     * Prefixed used for id generation
-     */
-    idPrefix: {
-        type: StringConstructor;
-        default: string;
-    };
-    /**
-     * Array of tables rows (tbody)
-     * - Each row is an object who's value will matched to columns
-     */
-    rows: {
-        type: ArrayConstructor;
-        validator: (a: any) => any;
-    };
-    /**
-     * Array of rows for footer (tfoot)
-     */
-    footerRows: {
-        type: ArrayConstructor;
-        validator: (a: any) => any;
-    };
-    /**
-     * Enables the visibility of the scroll controls
-     * - Scroll controls shift the tables x-axis when the table has overflow-x
-     * - Can be templated manually using slot named "controlsButtons", slot needs to create layout and call methods
-     *   + scope = { scrollLeft, scrollRight, canScrollLeft, canScrollRight }
-     * - Scroll controls are transformed with the header (move down as the user scrolls)
-     */
-    scrollControls: BooleanConstructor;
-    /**
-     * Scrollable context DOM Element, if the sticky element is within another
-     * scrolling parent use this to change the scroll activation handler to use a custom
-     * scrollable parent element
-     *
-     */
-    scrollContext: {
-        default: () => (Window & typeof globalThis) | null;
-    };
-    /**
-     * Amount to scroll when user uses scroll controls (pixels)
-     */
-    scrollControlAmount: {
-        type: NumberConstructor;
-        default: number;
-    };
-}>> & Readonly<{}>, {
+import { nextTick } from 'vue';
+declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
+export default _default;
+type __VLS_WithTemplateSlots<T, S> = T & (new () => {
+    $slots: S;
+});
+declare const __VLS_component: import('vue').DefineComponent<{}, {
+    $emit: (event: "column-sort", ...args: any[]) => void;
     classes: Record<string, any>;
+    caption: string;
     idPrefix: string;
     allowClickClones: boolean;
+    columns: unknown[];
     firstColumnSticky: boolean;
     scrollControls: boolean;
     scrollContext: Window & typeof globalThis;
     scrollControlAmount: number;
-}, {}, {
-    UluTableStickyTable: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-        resolveClasses: FunctionConstructor;
-        classes: {
-            type: ObjectConstructor;
-            default: () => {};
+    rows?: unknown[] | undefined;
+    footerRows?: unknown[] | undefined;
+    getRowValue?: Function | undefined;
+    getColumnTitle?: Function | undefined;
+    controlsComponent?: Record<string, any> | undefined;
+    $props: {
+        readonly classes?: Record<string, any> | undefined;
+        readonly caption?: string | undefined;
+        readonly idPrefix?: string | undefined;
+        readonly allowClickClones?: boolean | undefined;
+        readonly columns?: unknown[] | undefined;
+        readonly firstColumnSticky?: boolean | undefined;
+        readonly scrollControls?: boolean | undefined;
+        readonly scrollContext?: (Window & typeof globalThis) | undefined;
+        readonly scrollControlAmount?: number | undefined;
+        readonly rows?: unknown[] | undefined;
+        readonly footerRows?: unknown[] | undefined;
+        readonly getRowValue?: Function | undefined;
+        readonly getColumnTitle?: Function | undefined;
+        readonly controlsComponent?: Record<string, any> | undefined;
+    };
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {
+    header: ({
+        $: import('vue').ComponentInternalInstance;
+        $data: {};
+        $props: Partial<{}> & Omit<{} & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps, never>;
+        $attrs: {
+            [x: string]: unknown;
         };
-        caption: StringConstructor;
-        idPrefix: StringConstructor;
-        headerRows: {
-            type: ArrayConstructor;
-            required: true;
+        $refs: {
+            [x: string]: unknown;
         };
-        rows: ArrayConstructor;
-        footerRows: ArrayConstructor;
-        rowColumns: ArrayConstructor;
-        isActual: {
-            type: BooleanConstructor;
+        $slots: Readonly<{
+            [name: string]: import('vue').Slot<any> | undefined;
+        }>;
+        $root: import('vue').ComponentPublicInstance | null;
+        $parent: import('vue').ComponentPublicInstance | null;
+        $host: Element | null;
+        $emit: (event: string, ...args: any[]) => void;
+        $el: HTMLTableElement;
+        $options: import('vue').ComponentOptionsBase<Readonly<{}> & Readonly<{}>, {
+            $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
+            classes: Record<string, any>;
+            isActual: boolean;
+            headerRows: unknown[];
+            caption?: string | undefined;
+            rows?: unknown[] | undefined;
+            rowColumns?: unknown[] | undefined;
+            columnWidth?: string | undefined;
+            resolveClasses?: Function | undefined;
+            idPrefix?: string | undefined;
+            footerRows?: unknown[] | undefined;
+            getRowValue?: Function | undefined;
+            getColumnTitle?: Function | undefined;
+            $props: {
+                readonly classes?: Record<string, any> | undefined;
+                readonly isActual?: boolean | undefined;
+                readonly headerRows?: unknown[] | undefined;
+                readonly caption?: string | undefined;
+                readonly rows?: unknown[] | undefined;
+                readonly rowColumns?: unknown[] | undefined;
+                readonly columnWidth?: string | undefined;
+                readonly resolveClasses?: Function | undefined;
+                readonly idPrefix?: string | undefined;
+                readonly footerRows?: unknown[] | undefined;
+                readonly getRowValue?: Function | undefined;
+                readonly getColumnTitle?: Function | undefined;
+            };
+        }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, {}, {}, string, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, import('vue').ComponentProvideOptions> & {
+            beforeCreate?: (() => void) | (() => void)[];
+            created?: (() => void) | (() => void)[];
+            beforeMount?: (() => void) | (() => void)[];
+            mounted?: (() => void) | (() => void)[];
+            beforeUpdate?: (() => void) | (() => void)[];
+            updated?: (() => void) | (() => void)[];
+            activated?: (() => void) | (() => void)[];
+            deactivated?: (() => void) | (() => void)[];
+            beforeDestroy?: (() => void) | (() => void)[];
+            beforeUnmount?: (() => void) | (() => void)[];
+            destroyed?: (() => void) | (() => void)[];
+            unmounted?: (() => void) | (() => void)[];
+            renderTracked?: ((e: import('vue').DebuggerEvent) => void) | ((e: import('vue').DebuggerEvent) => void)[];
+            renderTriggered?: ((e: import('vue').DebuggerEvent) => void) | ((e: import('vue').DebuggerEvent) => void)[];
+            errorCaptured?: ((err: unknown, instance: import('vue').ComponentPublicInstance | null, info: string) => boolean | void) | ((err: unknown, instance: import('vue').ComponentPublicInstance | null, info: string) => boolean | void)[];
         };
-        columnWidth: {
-            type: StringConstructor;
-        };
-        getRowValue: {
-            type: FunctionConstructor;
-            default: ({ row, column }: {
-                row: any;
-                column: any;
-            }) => any;
-        };
-        getColumnTitle: {
-            type: FunctionConstructor;
-            default: ({ column }: {
-                column: any;
-            }) => any;
-        };
-    }>, {}, {
-        headerRefs: {};
-    }, {}, {
-        handleSortFocus(column: any, isFocused: any): void;
-        addHeaderRef(column: any, el: any): void;
-        optionalAttr(val: any): any;
-        value({ row, column, rowIndex }: {
-            row: any;
-            column: any;
-            rowIndex: any;
-        }): any;
-        getCellHeaders(column: any, rowIndex: any): string;
-        getHeaderHeaders(column: any): any;
-    }, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-        resolveClasses: FunctionConstructor;
-        classes: {
-            type: ObjectConstructor;
-            default: () => {};
-        };
-        caption: StringConstructor;
-        idPrefix: StringConstructor;
-        headerRows: {
-            type: ArrayConstructor;
-            required: true;
-        };
-        rows: ArrayConstructor;
-        footerRows: ArrayConstructor;
-        rowColumns: ArrayConstructor;
-        isActual: {
-            type: BooleanConstructor;
-        };
-        columnWidth: {
-            type: StringConstructor;
-        };
-        getRowValue: {
-            type: FunctionConstructor;
-            default: ({ row, column }: {
-                row: any;
-                column: any;
-            }) => any;
-        };
-        getColumnTitle: {
-            type: FunctionConstructor;
-            default: ({ column }: {
-                column: any;
-            }) => any;
-        };
-    }>> & Readonly<{}>, {
+        $forceUpdate: () => void;
+        $nextTick: typeof nextTick;
+        $watch<T extends string | ((...args: any) => any)>(source: T, cb: T extends (...args: any) => infer R ? (...args: [R, R, import('@vue/reactivity').OnCleanup]) => any : (...args: [any, any, import('@vue/reactivity').OnCleanup]) => any, options?: import('vue').WatchOptions): import('vue').WatchStopHandle;
+    } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "caption" | "rows" | "rowColumns" | "columnWidth" | "resolveClasses" | "isActual" | "idPrefix" | "headerRows" | "footerRows" | "getRowValue" | "getColumnTitle"> & import('vue').ShallowUnwrapRef<{
+        $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
         classes: Record<string, any>;
         isActual: boolean;
-        getRowValue: Function;
-        getColumnTitle: Function;
-    }, {}, {
-        UluTableStickyRows: import('vue').DefineComponent<import('vue').ExtractPropTypes<{
-            rows: ArrayConstructor;
-            rowColumns: ArrayConstructor;
-            columnWidth: StringConstructor;
-            optionalAttr: FunctionConstructor;
-            resolveClasses: FunctionConstructor;
-            getCellHeaders: FunctionConstructor;
-            value: FunctionConstructor;
-            isActual: BooleanConstructor;
-            classes: ObjectConstructor;
-            foot: {
-                type: BooleanConstructor;
-                default: boolean;
-            };
-        }>, {}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<import('vue').ExtractPropTypes<{
-            rows: ArrayConstructor;
-            rowColumns: ArrayConstructor;
-            columnWidth: StringConstructor;
-            optionalAttr: FunctionConstructor;
-            resolveClasses: FunctionConstructor;
-            getCellHeaders: FunctionConstructor;
-            value: FunctionConstructor;
-            isActual: BooleanConstructor;
-            classes: ObjectConstructor;
-            foot: {
-                type: BooleanConstructor;
-                default: boolean;
-            };
-        }>> & Readonly<{}>, {
+        headerRows: unknown[];
+        caption?: string | undefined;
+        rows?: unknown[] | undefined;
+        rowColumns?: unknown[] | undefined;
+        columnWidth?: string | undefined;
+        resolveClasses?: Function | undefined;
+        idPrefix?: string | undefined;
+        footerRows?: unknown[] | undefined;
+        getRowValue?: Function | undefined;
+        getColumnTitle?: Function | undefined;
+        $props: {
+            readonly classes?: Record<string, any> | undefined;
+            readonly isActual?: boolean | undefined;
+            readonly headerRows?: unknown[] | undefined;
+            readonly caption?: string | undefined;
+            readonly rows?: unknown[] | undefined;
+            readonly rowColumns?: unknown[] | undefined;
+            readonly columnWidth?: string | undefined;
+            readonly resolveClasses?: Function | undefined;
+            readonly idPrefix?: string | undefined;
+            readonly footerRows?: unknown[] | undefined;
+            readonly getRowValue?: Function | undefined;
+            readonly getColumnTitle?: Function | undefined;
+        };
+    }> & {} & import('vue').ComponentCustomProperties & {} & {
+        $slots: Partial<Record<any, (_: {
             isActual: boolean;
+            column: any;
+            index: number;
+        }) => any>> & Partial<Record<any, (_: {
+            isActual: boolean;
+            column: any;
+            index: number;
+        }) => any>> & Partial<Record<number, (_: {
+            row: any;
+            column: unknown;
+            rowIndex: number;
+            index: number;
             foot: boolean;
-        }, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-    }, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-export default _default;
+            isActual: boolean;
+        }) => any>> & Partial<Record<number, (_: {
+            row: any;
+            column: unknown;
+            rowIndex: number;
+            index: number;
+            foot: boolean;
+            isActual: boolean;
+        }) => any>> & {
+            sortIcon?(_: {}): any;
+        };
+    }) | null;
+    display: HTMLDivElement;
+    table: ({
+        $: import('vue').ComponentInternalInstance;
+        $data: {};
+        $props: Partial<{}> & Omit<{} & import('vue').VNodeProps & import('vue').AllowedComponentProps & import('vue').ComponentCustomProps, never>;
+        $attrs: {
+            [x: string]: unknown;
+        };
+        $refs: {
+            [x: string]: unknown;
+        };
+        $slots: Readonly<{
+            [name: string]: import('vue').Slot<any> | undefined;
+        }>;
+        $root: import('vue').ComponentPublicInstance | null;
+        $parent: import('vue').ComponentPublicInstance | null;
+        $host: Element | null;
+        $emit: (event: string, ...args: any[]) => void;
+        $el: HTMLTableElement;
+        $options: import('vue').ComponentOptionsBase<Readonly<{}> & Readonly<{}>, {
+            $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
+            classes: Record<string, any>;
+            isActual: boolean;
+            headerRows: unknown[];
+            caption?: string | undefined;
+            rows?: unknown[] | undefined;
+            rowColumns?: unknown[] | undefined;
+            columnWidth?: string | undefined;
+            resolveClasses?: Function | undefined;
+            idPrefix?: string | undefined;
+            footerRows?: unknown[] | undefined;
+            getRowValue?: Function | undefined;
+            getColumnTitle?: Function | undefined;
+            $props: {
+                readonly classes?: Record<string, any> | undefined;
+                readonly isActual?: boolean | undefined;
+                readonly headerRows?: unknown[] | undefined;
+                readonly caption?: string | undefined;
+                readonly rows?: unknown[] | undefined;
+                readonly rowColumns?: unknown[] | undefined;
+                readonly columnWidth?: string | undefined;
+                readonly resolveClasses?: Function | undefined;
+                readonly idPrefix?: string | undefined;
+                readonly footerRows?: unknown[] | undefined;
+                readonly getRowValue?: Function | undefined;
+                readonly getColumnTitle?: Function | undefined;
+            };
+        }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, {}, {}, string, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, import('vue').ComponentProvideOptions> & {
+            beforeCreate?: (() => void) | (() => void)[];
+            created?: (() => void) | (() => void)[];
+            beforeMount?: (() => void) | (() => void)[];
+            mounted?: (() => void) | (() => void)[];
+            beforeUpdate?: (() => void) | (() => void)[];
+            updated?: (() => void) | (() => void)[];
+            activated?: (() => void) | (() => void)[];
+            deactivated?: (() => void) | (() => void)[];
+            beforeDestroy?: (() => void) | (() => void)[];
+            beforeUnmount?: (() => void) | (() => void)[];
+            destroyed?: (() => void) | (() => void)[];
+            unmounted?: (() => void) | (() => void)[];
+            renderTracked?: ((e: import('vue').DebuggerEvent) => void) | ((e: import('vue').DebuggerEvent) => void)[];
+            renderTriggered?: ((e: import('vue').DebuggerEvent) => void) | ((e: import('vue').DebuggerEvent) => void)[];
+            errorCaptured?: ((err: unknown, instance: import('vue').ComponentPublicInstance | null, info: string) => boolean | void) | ((err: unknown, instance: import('vue').ComponentPublicInstance | null, info: string) => boolean | void)[];
+        };
+        $forceUpdate: () => void;
+        $nextTick: typeof nextTick;
+        $watch<T extends string | ((...args: any) => any)>(source: T, cb: T extends (...args: any) => infer R ? (...args: [R, R, import('@vue/reactivity').OnCleanup]) => any : (...args: [any, any, import('@vue/reactivity').OnCleanup]) => any, options?: import('vue').WatchOptions): import('vue').WatchStopHandle;
+    } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "caption" | "rows" | "rowColumns" | "columnWidth" | "resolveClasses" | "isActual" | "idPrefix" | "headerRows" | "footerRows" | "getRowValue" | "getColumnTitle"> & import('vue').ShallowUnwrapRef<{
+        $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
+        classes: Record<string, any>;
+        isActual: boolean;
+        headerRows: unknown[];
+        caption?: string | undefined;
+        rows?: unknown[] | undefined;
+        rowColumns?: unknown[] | undefined;
+        columnWidth?: string | undefined;
+        resolveClasses?: Function | undefined;
+        idPrefix?: string | undefined;
+        footerRows?: unknown[] | undefined;
+        getRowValue?: Function | undefined;
+        getColumnTitle?: Function | undefined;
+        $props: {
+            readonly classes?: Record<string, any> | undefined;
+            readonly isActual?: boolean | undefined;
+            readonly headerRows?: unknown[] | undefined;
+            readonly caption?: string | undefined;
+            readonly rows?: unknown[] | undefined;
+            readonly rowColumns?: unknown[] | undefined;
+            readonly columnWidth?: string | undefined;
+            readonly resolveClasses?: Function | undefined;
+            readonly idPrefix?: string | undefined;
+            readonly footerRows?: unknown[] | undefined;
+            readonly getRowValue?: Function | undefined;
+            readonly getColumnTitle?: Function | undefined;
+        };
+    }> & {} & import('vue').ComponentCustomProperties & {} & {
+        $slots: Partial<Record<any, (_: {
+            isActual: boolean;
+            column: any;
+            index: number;
+        }) => any>> & Partial<Record<any, (_: {
+            isActual: boolean;
+            column: any;
+            index: number;
+        }) => any>> & Partial<Record<number, (_: {
+            row: any;
+            column: unknown;
+            rowIndex: number;
+            index: number;
+            foot: boolean;
+            isActual: boolean;
+        }) => any>> & Partial<Record<number, (_: {
+            row: any;
+            column: unknown;
+            rowIndex: number;
+            index: number;
+            foot: boolean;
+            isActual: boolean;
+        }) => any>> & {
+            sortIcon?(_: {}): any;
+        };
+    }) | null;
+}, HTMLDivElement>;
+type __VLS_TemplateResult = {
+    attrs: Partial<{}>;
+    slots: Partial<Record<number, (_: {
+        row: any;
+        column: unknown;
+        rowIndex: number;
+        index: number;
+        foot: boolean;
+        isActual: boolean;
+    }) => any>> & Partial<Record<number, (_: {
+        row: any;
+        column: unknown;
+        rowIndex: number;
+        index: number;
+        foot: boolean;
+        isActual: boolean;
+    }) => any>> & Partial<Record<number, (_: {
+        row: any;
+        column: unknown;
+        rowIndex: number;
+        index: number;
+        foot: boolean;
+        isActual: boolean;
+    }) => any>> & Partial<Record<number, (_: {
+        row: any;
+        column: unknown;
+        rowIndex: number;
+        index: number;
+        foot: boolean;
+        isActual: boolean;
+    }) => any>> & {
+        controls?(_: {
+            scrollLeft: () => void;
+            scrollRight: () => void;
+            canScrollLeft: boolean;
+            canScrollRight: boolean;
+        }): any;
+        controlLeft?(_: {}): any;
+        controlRight?(_: {}): any;
+    };
+    refs: {
+        header: ({
+            $: ComponentInternalInstance;
+            $data: {};
+            $props: Partial<{}> & Omit<{} & VNodeProps & AllowedComponentProps & ComponentCustomProps, never>;
+            $attrs: Data;
+            $refs: Data;
+            $slots: Readonly<InternalSlots>;
+            $root: ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string, {}, {}, {}, string, ComponentProvideOptions>, {}, {}, "", {}, any> | null;
+            $parent: ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string, {}, {}, {}, string, ComponentProvideOptions>, {}, {}, "", {}, any> | null;
+            $host: Element | null;
+            $emit: (event: string, ...args: any[]) => void;
+            $el: HTMLTableElement;
+            $options: ComponentOptionsBase<ToResolvedProps<{}, {}>, {
+                $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
+                classes: Record<string, any>;
+                isActual: boolean;
+                headerRows: unknown[];
+                caption?: string | undefined;
+                rows?: unknown[] | undefined;
+                rowColumns?: unknown[] | undefined;
+                columnWidth?: string | undefined;
+                resolveClasses?: Function | undefined;
+                idPrefix?: string | undefined;
+                footerRows?: unknown[] | undefined;
+                getRowValue?: Function | undefined;
+                getColumnTitle?: Function | undefined;
+                $props: {
+                    readonly classes?: Record<string, any> | undefined;
+                    readonly isActual?: boolean | undefined;
+                    readonly headerRows?: unknown[] | undefined;
+                    readonly caption?: string | undefined;
+                    readonly rows?: unknown[] | undefined;
+                    readonly rowColumns?: unknown[] | undefined;
+                    readonly columnWidth?: string | undefined;
+                    readonly resolveClasses?: Function | undefined;
+                    readonly idPrefix?: string | undefined;
+                    readonly footerRows?: unknown[] | undefined;
+                    readonly getRowValue?: Function | undefined;
+                    readonly getColumnTitle?: Function | undefined;
+                };
+            }, {}, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, {}, {}, string, {}, GlobalComponents, GlobalDirectives, string, ComponentProvideOptions> & MergedComponentOptionsOverride;
+            $forceUpdate: () => void;
+            $nextTick: typeof nextTick;
+            $watch<T extends string | ((...args: any) => any)>(source: T, cb: T extends (...args: any) => infer R ? (args_0: R, args_1: R, args_2: OnCleanup) => any : (args_0: any, args_1: any, args_2: OnCleanup) => any, options?: WatchOptions<boolean> | undefined): WatchStopHandle;
+        } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "caption" | "rows" | "rowColumns" | "columnWidth" | "resolveClasses" | "isActual" | "idPrefix" | "headerRows" | "footerRows" | "getRowValue" | "getColumnTitle"> & ShallowUnwrapRef<{
+            $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
+            classes: Record<string, any>;
+            isActual: boolean;
+            headerRows: unknown[];
+            caption?: string | undefined;
+            rows?: unknown[] | undefined;
+            rowColumns?: unknown[] | undefined;
+            columnWidth?: string | undefined;
+            resolveClasses?: Function | undefined;
+            idPrefix?: string | undefined;
+            footerRows?: unknown[] | undefined;
+            getRowValue?: Function | undefined;
+            getColumnTitle?: Function | undefined;
+            $props: {
+                readonly classes?: Record<string, any> | undefined;
+                readonly isActual?: boolean | undefined;
+                readonly headerRows?: unknown[] | undefined;
+                readonly caption?: string | undefined;
+                readonly rows?: unknown[] | undefined;
+                readonly rowColumns?: unknown[] | undefined;
+                readonly columnWidth?: string | undefined;
+                readonly resolveClasses?: Function | undefined;
+                readonly idPrefix?: string | undefined;
+                readonly footerRows?: unknown[] | undefined;
+                readonly getRowValue?: Function | undefined;
+                readonly getColumnTitle?: Function | undefined;
+            };
+        }> & ExtractComputedReturns<{}> & ComponentCustomProperties & {} & {
+            $slots: Partial<Record<any, (_: {
+                isActual: boolean;
+                column: any;
+                index: number;
+            }) => any>> & Partial<Record<any, (_: {
+                isActual: boolean;
+                column: any;
+                index: number;
+            }) => any>> & Partial<Record<number, (_: {
+                row: any;
+                column: unknown;
+                rowIndex: number;
+                index: number;
+                foot: boolean;
+                isActual: boolean;
+            }) => any>> & Partial<Record<number, (_: {
+                row: any;
+                column: unknown;
+                rowIndex: number;
+                index: number;
+                foot: boolean;
+                isActual: boolean;
+            }) => any>> & {
+                sortIcon?(_: {}): any;
+            };
+        }) | null;
+        display: HTMLDivElement;
+        table: ({
+            $: ComponentInternalInstance;
+            $data: {};
+            $props: Partial<{}> & Omit<{} & VNodeProps & AllowedComponentProps & ComponentCustomProps, never>;
+            $attrs: Data;
+            $refs: Data;
+            $slots: Readonly<InternalSlots>;
+            $root: ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string, {}, {}, {}, string, ComponentProvideOptions>, {}, {}, "", {}, any> | null;
+            $parent: ComponentPublicInstance<{}, {}, {}, {}, {}, {}, {}, {}, false, ComponentOptionsBase<any, any, any, any, any, any, any, any, any, {}, {}, string, {}, {}, {}, string, ComponentProvideOptions>, {}, {}, "", {}, any> | null;
+            $host: Element | null;
+            $emit: (event: string, ...args: any[]) => void;
+            $el: HTMLTableElement;
+            $options: ComponentOptionsBase<ToResolvedProps<{}, {}>, {
+                $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
+                classes: Record<string, any>;
+                isActual: boolean;
+                headerRows: unknown[];
+                caption?: string | undefined;
+                rows?: unknown[] | undefined;
+                rowColumns?: unknown[] | undefined;
+                columnWidth?: string | undefined;
+                resolveClasses?: Function | undefined;
+                idPrefix?: string | undefined;
+                footerRows?: unknown[] | undefined;
+                getRowValue?: Function | undefined;
+                getColumnTitle?: Function | undefined;
+                $props: {
+                    readonly classes?: Record<string, any> | undefined;
+                    readonly isActual?: boolean | undefined;
+                    readonly headerRows?: unknown[] | undefined;
+                    readonly caption?: string | undefined;
+                    readonly rows?: unknown[] | undefined;
+                    readonly rowColumns?: unknown[] | undefined;
+                    readonly columnWidth?: string | undefined;
+                    readonly resolveClasses?: Function | undefined;
+                    readonly idPrefix?: string | undefined;
+                    readonly footerRows?: unknown[] | undefined;
+                    readonly getRowValue?: Function | undefined;
+                    readonly getColumnTitle?: Function | undefined;
+                };
+            }, {}, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, {}, {}, string, {}, GlobalComponents, GlobalDirectives, string, ComponentProvideOptions> & MergedComponentOptionsOverride;
+            $forceUpdate: () => void;
+            $nextTick: typeof nextTick;
+            $watch<T extends string | ((...args: any) => any)>(source: T, cb: T extends (...args: any) => infer R ? (args_0: R, args_1: R, args_2: OnCleanup) => any : (args_0: any, args_1: any, args_2: OnCleanup) => any, options?: WatchOptions<boolean> | undefined): WatchStopHandle;
+        } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "caption" | "rows" | "rowColumns" | "columnWidth" | "resolveClasses" | "isActual" | "idPrefix" | "headerRows" | "footerRows" | "getRowValue" | "getColumnTitle"> & ShallowUnwrapRef<{
+            $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
+            classes: Record<string, any>;
+            isActual: boolean;
+            headerRows: unknown[];
+            caption?: string | undefined;
+            rows?: unknown[] | undefined;
+            rowColumns?: unknown[] | undefined;
+            columnWidth?: string | undefined;
+            resolveClasses?: Function | undefined;
+            idPrefix?: string | undefined;
+            footerRows?: unknown[] | undefined;
+            getRowValue?: Function | undefined;
+            getColumnTitle?: Function | undefined;
+            $props: {
+                readonly classes?: Record<string, any> | undefined;
+                readonly isActual?: boolean | undefined;
+                readonly headerRows?: unknown[] | undefined;
+                readonly caption?: string | undefined;
+                readonly rows?: unknown[] | undefined;
+                readonly rowColumns?: unknown[] | undefined;
+                readonly columnWidth?: string | undefined;
+                readonly resolveClasses?: Function | undefined;
+                readonly idPrefix?: string | undefined;
+                readonly footerRows?: unknown[] | undefined;
+                readonly getRowValue?: Function | undefined;
+                readonly getColumnTitle?: Function | undefined;
+            };
+        }> & ExtractComputedReturns<{}> & ComponentCustomProperties & {} & {
+            $slots: Partial<Record<any, (_: {
+                isActual: boolean;
+                column: any;
+                index: number;
+            }) => any>> & Partial<Record<any, (_: {
+                isActual: boolean;
+                column: any;
+                index: number;
+            }) => any>> & Partial<Record<number, (_: {
+                row: any;
+                column: unknown;
+                rowIndex: number;
+                index: number;
+                foot: boolean;
+                isActual: boolean;
+            }) => any>> & Partial<Record<number, (_: {
+                row: any;
+                column: unknown;
+                rowIndex: number;
+                index: number;
+                foot: boolean;
+                isActual: boolean;
+            }) => any>> & {
+                sortIcon?(_: {}): any;
+            };
+        }) | null;
+    };
+    rootEl: HTMLDivElement;
+};
 //# sourceMappingURL=UluTableSticky.vue.d.ts.map

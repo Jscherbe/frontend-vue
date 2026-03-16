@@ -16,9 +16,9 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     overlay: boolean;
     title?: string | undefined;
     modifiers?: string | unknown[] | undefined;
+    to?: string | Record<string, any> | undefined;
     target?: string | undefined;
     href?: string | undefined;
-    to?: string | Record<string, any> | undefined;
     titleTo?: string | Record<string, any> | undefined;
     titleHref?: string | undefined;
     titleTarget?: string | undefined;
@@ -36,9 +36,9 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly overlay?: boolean | undefined;
         readonly title?: string | undefined;
         readonly modifiers?: string | unknown[] | undefined;
+        readonly to?: string | Record<string, any> | undefined;
         readonly target?: string | undefined;
         readonly href?: string | undefined;
-        readonly to?: string | Record<string, any> | undefined;
         readonly titleTo?: string | Record<string, any> | undefined;
         readonly titleHref?: string | undefined;
         readonly titleTarget?: string | undefined;
