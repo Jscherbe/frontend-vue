@@ -1,9 +1,11 @@
 <template>
-  <component
-    :is="element"
+  <UluAction
+    :to="to"
+    :href="href"
+    :target="target"
+    :download="download"
     class="button-verbose"
     :class="resolvedModifiers"
-    v-bind="attrs"
   >
     <component 
       v-if="$slots.title || title" 
@@ -25,12 +27,12 @@
       class="button-verbose__icon"
       aria-hidden="true"
     />
-  </component>
+  </UluAction>
 </template>
 
 <script setup>
   import { computed } from "vue";
-  import { RouterLink } from "vue-router";
+  import UluAction from "../utils/UluAction.vue";
   import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
 
@@ -91,22 +93,5 @@
       "inline": props.inline,
       "full-width": props.fullWidth,
     }))
-  });
-
-  const element = computed(() => {
-    return props.to ? RouterLink : props.href ? "a" : "button";
-  });
-
-  const attrs = computed(() => {
-    const attrsObj = props.to ? { to: props.to } : props.href ? { href: props.href } : {};
-    if (props.target) {
-      attrsObj.target = props.target;
-    }
-    if (props.href) {
-      if (props.download) {
-        attrsObj.download = typeof props.download === "string" ? props.download : true;
-      }
-    }
-    return attrsObj;
   });
 </script>

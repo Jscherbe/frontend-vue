@@ -1,6 +1,9 @@
 <template>
-  <component 
-    :is="element" 
+  <UluAction 
+    :to="to"
+    :href="href"
+    :target="target"
+    :download="download"
     class="button" 
     :class="[
       {
@@ -8,7 +11,6 @@
       },
       resolvedModifiers
     ]"
-    v-bind="attrs"
     :aria-label="resolvedAriaLabel"
   >
     <slot name="before"/>
@@ -28,12 +30,12 @@
       class="button__icon"
     />
     <slot name="after"/>
-  </component>
+  </UluAction>
 </template>
 
 <script setup>
   import { computed } from "vue";
-  import { RouterLink } from "vue-router";
+  import UluAction from "../utils/UluAction.vue";
   import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
 
@@ -131,21 +133,5 @@
   const resolvedAriaLabel = computed(() => {
     const label = props.alt || (props.iconOnly && props.text);
     return label ? label : null;
-  });
-
-  const element = computed(() => {
-    return props.to ? RouterLink : props.href ? "a" : "button";
-  });
-
-  const attrs = computed(() => {
-    const attrsObj = props.to ? { to: props.to } : props.href ? { href: props.href } : {};
-    
-    if (props.target) {
-      attrsObj.target = props.target;
-    }
-    if (props.href && props.download) {
-      attrsObj.download = typeof props.download === "string" ? props.download : true;
-    }
-    return attrsObj;
   });
 </script>

@@ -1,4 +1,5 @@
-Todos:
+☐ Todos
+  ✔ Test everything refactored to UluAction (UluMenu, UluButton) @done
   ☐ Test UluImage and UluCaptionedFigure
   ☐ Test and setup stories for slideshow components (all of them) @in-progress
     * This has been refactored to composition API but is untested (need story)

@@ -13,20 +13,10 @@
         item.separatorAfter ? classes.itemSeparatorAfter : ''
       ]"
     >
-      <!-- 
-        Note: The ternary spread method below is conditionally adding certain 
-        props/handlers for each of the different element types.  
-      -->
-      <component
-        :is="item.to || item.path ? 'router-link' : item.click ? 'button' : 'a'"
-        v-bind="{
-          ...(item.to || item.path ? {
-            to: item.to || item.path,
-            activeClass: classes.linkActive || null,
-            exactActiveClass: classes.linkExactActive || null
-          } : {}),
-          ...(item.href ? { 'href' : item.href || '#' } : {}),
-        }"
+      <UluAction
+        v-bind="item"
+        :activeClass="classes.linkActive"
+        :exactActiveClass="classes.linkExactActive"
         @click="(event) => { handleItemClick(event, item) }"
         :class="[classes.link, item?.classes?.link]"
         :aria-label="iconOnly ? item.title : null"
@@ -42,7 +32,7 @@
           <span :class="[classes.linkText, item?.classes?.linkText]">{{ item.title }}</span>
           <UluTag v-if="item.tag" v-bind="item.tag"/>
         </slot>
-      </component>
+      </UluAction>
       <slot name="item" :item="item" :index="index" />
       <!-- Component calls itself recursively for children if allowed (noChildren) -->
       <UluMenu v-if="!noChildren && item?.children?.length"
@@ -59,6 +49,7 @@
 </template>
 
 <script setup>
+  import UluAction from "../utils/UluAction.vue";
   import UluIcon from "../elements/UluIcon.vue";
   import UluTag from "../elements/UluTag.vue";
 
