@@ -13,6 +13,8 @@
   ✔ Update with frontend updates @done
     ✔ This will be the new minor version @done
   ✔ Add modifiers to tabs @done
+  ☐ Double check router utils that work on active route location object
+    * These are the dynamic route objects returned from the router (not the static route definitions that we use normally, ie $ section menu)
   ☐ May want an UluApp component that just includes the common things we setup 
     * Like Route Announcer and Skip Link, maybe setting up page title head stuff, anything that will simplify things
   ☐ For ScrollAnchors system maybe support onUpdated lifecycle hook
