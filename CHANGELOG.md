@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.3.2
+
+- `UluProgressBar`
+  - Add modifiers system (prop), 
+  - Add rounded prop and modifier
+
 ## 0.3.1
 
 - `UluModal` | Add fullscreen prop
