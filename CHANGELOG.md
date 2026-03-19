@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.4.0
+
+- `UluList`
+  - **Breaking: (if using classes prop)** Correct non-standard classes object key "listItem" to "item" to match other components
+- **Versioning Change:** This package will no longer try to sync versions with @ulu/frontend but will keep the ideal version updated in 'peerDependencies'
+
 ## 0.3.2
 
 - `UluProgressBar`

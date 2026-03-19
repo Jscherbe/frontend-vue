@@ -13,6 +13,8 @@
   ✔ Update with frontend updates @done
     ✔ This will be the new minor version @done
   ✔ Add modifiers to tabs @done
+  ✘ Should we allow passing $attrs in arrays for menus/list/etc? @cancelled
+    * Bad, this would cause major issues if we refactor in the future which is the purpose of a library like this, the classes API should be enough to cover styling needs. For anything more, it's a unique component or should be using a slot. If there is some reason in the future we should keep this in mind (as it kind of breaks the encapsulation idea of these components)
   ☐ Double check router utils that work on active route location object
     * These are the dynamic route objects returned from the router (not the static route definitions that we use normally, ie $ section menu)
   ☐ May want an UluApp component that just includes the common things we setup 

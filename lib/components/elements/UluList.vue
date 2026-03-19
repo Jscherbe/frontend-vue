@@ -20,7 +20,10 @@
     <li 
       v-for="(item, index) in items" 
       :key="index"
-      :class="classes.listItem"
+      :class="[
+        classes.item,
+        item?.classes?.item
+      ]"
     >
       <slot :item="item" :index="index">
         {{ item }}
@@ -35,10 +38,11 @@
   const props = defineProps({
     /**
      * Array of list items, output as is or use slot to template the item
+     * - Note item can add classes by defining { classes: { item } }
      */
     items: Array,
     /**
-     * Classes object (keys are list and listItem to be applied to <ul> and <li>)
+     * Classes object (keys are { list, item } to be applied to <ul> and <li>)
      * - Any valid class binding for each
      */
     classes: {

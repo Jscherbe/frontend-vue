@@ -1,13 +1,14 @@
-import { computed as n, createBlock as m, createCommentVNode as u, openBlock as t, resolveDynamicComponent as y, normalizeStyle as B, normalizeClass as o, withCtx as f, createElementBlock as d, Fragment as v, renderList as S, renderSlot as g, createTextVNode as k, toDisplayString as C } from "vue";
+import { computed as n, createBlock as m, createCommentVNode as u, openBlock as l, resolveDynamicComponent as y, normalizeStyle as B, normalizeClass as o, withCtx as f, createElementBlock as d, Fragment as v, renderList as S, renderSlot as g, createTextVNode as k, toDisplayString as C } from "vue";
 const h = {
   __name: "UluList",
   props: {
     /**
      * Array of list items, output as is or use slot to template the item
+     * - Note item can add classes by defining { classes: { item } }
      */
     items: Array,
     /**
-     * Classes object (keys are list and listItem to be applied to <ul> and <li>)
+     * Classes object (keys are { list, item } to be applied to <ul> and <li>)
      * - Any valid class binding for each
      */
     classes: {
@@ -49,8 +50,8 @@ const h = {
     listStyleType: String
   },
   setup(e) {
-    const l = e, r = n(() => l.ordered || l.forceOrdered), c = n(() => r.value ? "ol" : "ul");
-    return (i, O) => e.items?.length ? (t(), m(y(c.value), {
+    const r = e, s = n(() => r.ordered || r.forceOrdered), c = n(() => s.value ? "ol" : "ul");
+    return (i, O) => e.items?.length ? (l(), m(y(c.value), {
       key: 0,
       class: o([
         {
@@ -64,19 +65,22 @@ const h = {
       style: B({
         listStyleType: e.listStyleType
       }),
-      reversed: r.value ? e.reversed : null,
+      reversed: s.value ? e.reversed : null,
       start: e.start
     }, {
       default: f(() => [
-        (t(!0), d(v, null, S(e.items, (s, a) => (t(), d("li", {
+        (l(!0), d(v, null, S(e.items, (t, a) => (l(), d("li", {
           key: a,
-          class: o(e.classes.listItem)
+          class: o([
+            e.classes.item,
+            t?.classes?.item
+          ])
         }, [
           g(i.$slots, "default", {
-            item: s,
+            item: t,
             index: a
           }, () => [
-            k(C(s), 1)
+            k(C(t), 1)
           ])
         ], 2))), 128))
       ]),

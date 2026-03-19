@@ -1,6 +1,6 @@
 {
   "name": "@ulu/frontend-vue",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "description": "A modular, tree-shakeable Vue 3 component library for the Ulu Frontend theming system, plus general utilities for Vue development",
   "type": "module",
   "files": [
@@ -65,7 +65,7 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@headlessui/vue": "^1.7.23",
     "@portabletext/vue": "^1.0.14",
-    "@ulu/frontend": "^0.3.0",
+    "@ulu/frontend": "^0.3.6",
     "@ulu/utils": "^0.0.34",
     "@unhead/vue": "^2.0.11",
     "fuse.js": "^6.6.2",
