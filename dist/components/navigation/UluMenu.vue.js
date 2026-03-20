@@ -1,7 +1,7 @@
-import { resolveComponent as O, resolveDirective as $, createElementBlock as r, createCommentVNode as n, openBlock as t, normalizeClass as a, Fragment as S, renderList as d, withDirectives as x, renderSlot as u, createBlock as i, mergeProps as f, withCtx as y, createElementVNode as b, toDisplayString as D, createSlots as E } from "vue";
-import I from "../utils/UluAction.vue.js";
-import M from "../elements/UluIcon.vue.js";
-import U from "../elements/UluTag.vue.js";
+import { resolveComponent as O, resolveDirective as $, createElementBlock as i, createCommentVNode as c, openBlock as t, normalizeClass as a, Fragment as w, renderList as k, withDirectives as S, renderSlot as u, createBlock as o, withCtx as h, createElementVNode as x, toDisplayString as b, mergeProps as m, createSlots as D } from "vue";
+import E from "../utils/UluAction.vue.js";
+import I from "../elements/UluIcon.vue.js";
+import M from "../elements/UluTag.vue.js";
 const j = {
   __name: "UluMenu",
   props: {
@@ -41,18 +41,18 @@ const j = {
      */
     "item-click"
   ],
-  setup(l, { emit: C }) {
-    const h = C, v = (s, c) => {
-      c.click && c.click(s), h("item-click", { item: c, event: s });
+  setup(l, { emit: y }) {
+    const C = y, g = (s, n) => {
+      n.click && n.click(s), C("item-click", { item: n, event: s });
     };
-    return (s, c) => {
-      const g = O("UluMenu", !0), A = $("ulu-tooltip");
-      return l.items?.length ? (t(), r("ul", {
+    return (s, n) => {
+      const v = O("UluMenu", !0), A = $("ulu-tooltip");
+      return l.items?.length ? (t(), i("ul", {
         key: 0,
         class: a(l.classes.list)
       }, [
-        (t(!0), r(S, null, d(l.items, (e, o) => (t(), r("li", {
-          key: o,
+        (t(!0), i(w, null, k(l.items, (e, r) => (t(), i("li", {
+          key: r,
           class: a([
             l.classes.item,
             e?.classes?.item,
@@ -60,58 +60,64 @@ const j = {
             e.separatorAfter ? l.classes.itemSeparatorAfter : ""
           ])
         }, [
-          x((t(), i(I, f({ ref_for: !0 }, e, {
+          S((t(), o(E, {
+            to: e.to,
+            path: e.path,
+            href: e.href,
+            target: e.target,
+            download: e.download,
+            element: e.element,
             activeClass: l.classes.linkActive,
             exactActiveClass: l.classes.linkExactActive,
-            onClick: (k) => {
-              v(k, e);
+            onClick: (f) => {
+              g(f, e);
             },
-            class: [l.classes.link, e?.classes?.link],
+            class: a([l.classes.link, e?.classes?.link]),
             "aria-label": l.iconOnly ? e.title : null,
             id: e.id
-          }), {
-            default: y(() => [
+          }, {
+            default: h(() => [
               u(s.$slots, "default", {
                 item: e,
-                index: o
+                index: r
               }, () => [
-                e.icon ? (t(), i(M, {
+                e.icon ? (t(), o(I, {
                   key: 0,
                   icon: e.icon,
                   class: a([l.classes.linkIcon, e?.classes?.linkIcon])
-                }, null, 8, ["icon", "class"])) : n("", !0),
-                b("span", {
+                }, null, 8, ["icon", "class"])) : c("", !0),
+                x("span", {
                   class: a([l.classes.linkText, e?.classes?.linkText])
-                }, D(e.title), 3),
-                e.tag ? (t(), i(U, f({
+                }, b(e.title), 3),
+                e.tag ? (t(), o(M, m({
                   key: 1,
                   ref_for: !0
-                }, e.tag), null, 16)) : n("", !0)
+                }, e.tag), null, 16)) : c("", !0)
               ])
             ]),
             _: 2
-          }, 1040, ["activeClass", "exactActiveClass", "onClick", "class", "aria-label", "id"])), [
+          }, 1032, ["to", "path", "href", "target", "download", "element", "activeClass", "exactActiveClass", "onClick", "class", "aria-label", "id"])), [
             [A, l.iconOnly ? e.title : e.tooltip || null]
           ]),
           u(s.$slots, "item", {
             item: e,
-            index: o
+            index: r
           }),
-          !l.noChildren && e?.children?.length ? (t(), i(g, {
+          !l.noChildren && e?.children?.length ? (t(), o(v, {
             key: 0,
             iconOnly: l.iconOnly,
             classes: l.classes,
             items: e.children
-          }, E({ _: 2 }, [
-            d(s.$slots, (k, m) => ({
-              name: m,
-              fn: y((B) => [
-                u(s.$slots, m, f({ ref_for: !0 }, B))
+          }, D({ _: 2 }, [
+            k(s.$slots, (f, d) => ({
+              name: d,
+              fn: h((B) => [
+                u(s.$slots, d, m({ ref_for: !0 }, B))
               ])
             }))
-          ]), 1032, ["iconOnly", "classes", "items"])) : n("", !0)
+          ]), 1032, ["iconOnly", "classes", "items"])) : c("", !0)
         ], 2))), 128))
-      ], 2)) : n("", !0);
+      ], 2)) : c("", !0);
     };
   }
 };

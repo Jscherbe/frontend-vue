@@ -14,7 +14,12 @@
       ]"
     >
       <UluAction
-        v-bind="item"
+        :to="item.to"
+        :path="item.path"
+        :href="item.href"
+        :target="item.target"
+        :download="item.download"
+        :element="item.element"
         :activeClass="classes.linkActive"
         :exactActiveClass="classes.linkExactActive"
         @click="(event) => { handleItemClick(event, item) }"

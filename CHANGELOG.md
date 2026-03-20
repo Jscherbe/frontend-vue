@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.4.1
+
+- `UluMenu` | Fix incorrect v-bind on UluAction which causes incorrect fallthrough attributes on element (now passing the specific props UluAction needs like other components using it)
+
 ## 0.4.0
 
 - `UluList`
