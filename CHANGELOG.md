@@ -1,5 +1,15 @@
 # Change Log
 
+## 0.5.0
+
+- Update peer dep @ulu/frontend to 0.4.0 and update components below to match changes
+- `UluProgressBar`
+  - Added new semantic style props: `danger`, `warning`, `success` to replace legacy status options.
+- `UluProgressCircle`
+  - **Breaking:** Remove `status` prop in favor of unified modifier system (using `useModifiers`).
+  - Added new `modifiers` prop to pass arbitrary modifiers.
+  - Added new semantic style props: `danger`, `warning`, `success` to replace legacy status options.
+
 ## 0.4.1
 
 - `UluMenu` | Fix incorrect v-bind on UluAction which causes incorrect fallthrough attributes on element (now passing the specific props UluAction needs like other components using it)

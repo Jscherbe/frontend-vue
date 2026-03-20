@@ -6,29 +6,35 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     duration: number;
     easing: string;
+    danger: boolean;
     small: boolean;
     label: string;
+    warning: boolean;
+    success: boolean;
     formatValue: Function;
     percentage: number;
     noValue: boolean;
     outside: boolean;
     outsideBelow: boolean;
-    status: string;
     pieStyle: boolean;
     noMask: boolean;
+    modifiers?: string | unknown[] | undefined;
     $props: {
         readonly duration?: number | undefined;
         readonly easing?: string | undefined;
+        readonly danger?: boolean | undefined;
         readonly small?: boolean | undefined;
         readonly label?: string | undefined;
+        readonly warning?: boolean | undefined;
+        readonly success?: boolean | undefined;
         readonly formatValue?: Function | undefined;
         readonly percentage?: number | undefined;
         readonly noValue?: boolean | undefined;
         readonly outside?: boolean | undefined;
         readonly outsideBelow?: boolean | undefined;
-        readonly status?: string | undefined;
         readonly pieStyle?: boolean | undefined;
         readonly noMask?: boolean | undefined;
+        readonly modifiers?: string | unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {
     pie: SVGCircleElement;

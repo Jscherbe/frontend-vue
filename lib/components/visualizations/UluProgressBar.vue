@@ -116,13 +116,17 @@
     */
     small: Boolean,
     /**
-    * Applies the 'positive' style (e.g., green).
+    * Applies the 'success' style.
     */
-    positive: Boolean,
+    success: Boolean,
     /**
-    * Applies the 'negative' style (e.g., red).
+    * Applies the 'warning' style.
     */
-    negative: Boolean,
+    warning: Boolean,
+    /**
+    * Applies the 'danger' style.
+    */
+    danger: Boolean,
     /**
     * Applies styles for use as a thin loader.
     */
@@ -174,8 +178,9 @@
     baseClass: "progress-bar",
     internal: computed(() => ({
       'small': props.small,
-      'positive': props.positive,
-      'negative': props.negative,
+      'success': props.success,
+      'warning': props.warning,
+      'danger': props.danger,
       'loader': props.loader,
       'rounded': props.rounded,
       'indeterminate': props.indeterminate,

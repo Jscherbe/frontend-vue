@@ -1,14 +1,15 @@
-import { ref as h, watch as k, computed as i, onMounted as B, createElementBlock as o, openBlock as c, normalizeClass as V, createElementVNode as a, createCommentVNode as p, toDisplayString as u, normalizeStyle as w, renderSlot as y, createTextVNode as f } from "vue";
-const S = { class: "hidden-visually" }, _ = { class: "progress-circle__chart" }, x = {
+import { ref as B, watch as h, computed as i, onMounted as k, createElementBlock as o, openBlock as n, normalizeClass as w, unref as V, createElementVNode as l, createCommentVNode as f, toDisplayString as u, normalizeStyle as S, renderSlot as y, createTextVNode as v } from "vue";
+import { useModifiers as _ } from "../../composables/useModifiers.js";
+const b = { class: "hidden-visually" }, x = { class: "progress-circle__chart" }, M = {
   class: "progress-circle__chart-svg",
   viewBox: "0 0 32 32"
-}, $ = {
+}, N = {
   key: 0,
   class: "progress-circle__chart-value"
-}, b = {
+}, $ = {
   key: 0,
   class: "progress-circle__value type-small-x"
-}, C = {
+}, z = {
   __name: "UluProgressCircle",
   props: {
     /**
@@ -31,7 +32,7 @@ const S = { class: "hidden-visually" }, _ = { class: "progress-circle__chart" },
      */
     formatValue: {
       type: Function,
-      default: (s) => `${s}%`
+      default: (a) => `${a}%`
     },
     /**
      * Hides the percentage value display.
@@ -50,12 +51,17 @@ const S = { class: "hidden-visually" }, _ = { class: "progress-circle__chart" },
      */
     outsideBelow: Boolean,
     /**
-     * Sets the status color of the progress circle (e.g., 'low', 'incomplete', 'complete').
+     * Applies the 'danger' style.
      */
-    status: {
-      type: String,
-      default: ""
-    },
+    danger: Boolean,
+    /**
+     * Applies the 'warning' style.
+     */
+    warning: Boolean,
+    /**
+     * Applies the 'success' style.
+     */
+    success: Boolean,
     /**
      * Renders the component as a solid pie chart instead of a donut.
      */
@@ -79,71 +85,78 @@ const S = { class: "hidden-visually" }, _ = { class: "progress-circle__chart" },
       type: String,
       default: "ease-in"
       // Matches SCSS animation-timing
-    }
+    },
+    /**
+     * Modifiers (to add any modifier classes based on base class)
+     */
+    modifiers: [String, Array]
   },
-  setup(s) {
-    const e = s, l = h(null), d = (r) => r === 100 ? 101 : r, g = (r = 0) => {
-      if (!l.value || !l.value.animate) return;
-      const t = { strokeDasharray: [`${r} 100`, m.value] };
-      l.value.animate(t, { duration: e.duration, easing: e.easing, fill: "forwards" });
+  setup(a) {
+    const e = a, t = B(null), d = (s) => s === 100 ? 101 : s, g = (s = 0) => {
+      if (!t.value || !t.value.animate) return;
+      const r = { strokeDasharray: [`${s} 100`, m.value] };
+      t.value.animate(r, { duration: e.duration, easing: e.easing, fill: "forwards" });
     };
-    k(() => e.percentage, (r, t) => {
-      r !== t && g(d(t));
+    h(() => e.percentage, (s, r) => {
+      s !== r && g(d(r));
     });
-    const m = i(() => `${d(e.percentage)} 100`), n = i(() => e.outside || e.outsideBelow || e.small), v = i(() => {
-      const r = {
-        "progress-circle": !0,
-        "progress-circle--small": e.small,
-        "progress-circle--pie": e.pieStyle,
-        "progress-circle--outside": n.value,
-        "progress-circle--outside-below": e.outsideBelow,
-        "progress-circle--no-mask": e.noMask
-      };
-      return e.status && (r[`progress-circle--${e.status}`] = !0), r;
+    const m = i(() => `${d(e.percentage)} 100`), c = i(() => e.outside || e.outsideBelow || e.small), { resolvedModifiers: p } = _({
+      props: e,
+      baseClass: "progress-circle",
+      internal: i(() => ({
+        small: e.small,
+        pie: e.pieStyle,
+        outside: c.value,
+        "outside-below": e.outsideBelow,
+        "no-mask": e.noMask,
+        danger: e.danger,
+        warning: e.warning,
+        success: e.success
+      }))
     });
-    return B(() => {
+    return k(() => {
       g();
-    }), (r, t) => (c(), o("div", {
-      class: V(v.value)
+    }), (s, r) => (n(), o("div", {
+      class: w(["progress-circle", V(p)])
     }, [
-      a("strong", S, u(s.label), 1),
-      a("div", _, [
-        (c(), o("svg", x, [
-          t[0] || (t[0] = a("circle", {
+      l("strong", b, u(a.label), 1),
+      l("div", x, [
+        (n(), o("svg", M, [
+          r[0] || (r[0] = l("circle", {
             class: "progress-circle__chart-track",
             r: "16",
             cx: "16",
             cy: "16"
           }, null, -1)),
-          a("circle", {
+          l("circle", {
             class: "progress-circle__chart-pie",
             ref_key: "pie",
-            ref: l,
+            ref: t,
             r: "16",
             cx: "16",
             cy: "16",
-            style: w({ strokeDasharray: m.value })
+            style: S({ strokeDasharray: m.value })
           }, null, 4),
-          t[1] || (t[1] = a("circle", {
+          r[1] || (r[1] = l("circle", {
             class: "progress-circle__chart-mask",
             cx: "16",
             cy: "16"
           }, null, -1))
         ])),
-        !n.value && !s.noValue ? (c(), o("strong", $, [
-          y(r.$slots, "value", { value: s.percentage }, () => [
-            f(u(s.formatValue(s.percentage)), 1)
+        !c.value && !a.noValue ? (n(), o("strong", N, [
+          y(s.$slots, "value", { value: a.percentage }, () => [
+            v(u(a.formatValue(a.percentage)), 1)
           ])
-        ])) : p("", !0)
+        ])) : f("", !0)
       ]),
-      n.value && !s.noValue ? (c(), o("strong", b, [
-        y(r.$slots, "value", { value: s.percentage }, () => [
-          f(u(s.formatValue(s.percentage)), 1)
+      c.value && !a.noValue ? (n(), o("strong", $, [
+        y(s.$slots, "value", { value: a.percentage }, () => [
+          v(u(a.formatValue(a.percentage)), 1)
         ])
-      ])) : p("", !0)
+      ])) : f("", !0)
     ], 2));
   }
 };
 export {
-  C as default
+  z as default
 };

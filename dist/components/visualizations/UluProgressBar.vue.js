@@ -1,21 +1,21 @@
-import { computed as m, createElementBlock as n, openBlock as s, normalizeClass as v, unref as B, createCommentVNode as r, createElementVNode as o, createBlock as h, resolveDynamicComponent as k, withCtx as V, renderSlot as i, createTextVNode as d, toDisplayString as u, normalizeStyle as b } from "vue";
+import { computed as m, createElementBlock as o, openBlock as s, normalizeClass as b, unref as B, createCommentVNode as r, createElementVNode as n, createBlock as h, resolveDynamicComponent as k, withCtx as V, renderSlot as i, createTextVNode as d, toDisplayString as u, normalizeStyle as v } from "vue";
 import { useModifiers as $ } from "../../composables/useModifiers.js";
-const C = {
+const w = {
   key: 0,
   class: "progress-bar__header"
-}, H = {
+}, C = {
   key: 1,
   class: "progress-bar__value progress-bar__value--amount"
-}, N = {
+}, H = {
   key: 2,
   class: "progress-bar__icon"
-}, S = { class: "progress-bar__track" }, A = {
+}, N = { class: "progress-bar__track" }, S = {
   key: 1,
   class: "progress-bar__values"
-}, D = { class: "progress-bar__value progress-bar__value--amount" }, E = {
+}, A = { class: "progress-bar__value progress-bar__value--amount" }, D = {
   key: 0,
   class: "progress-bar__value progress-bar__value--deficit"
-}, I = { class: "progress-bar__value progress-bar__value--total" }, M = {
+}, E = { class: "progress-bar__value progress-bar__value--total" }, M = {
   __name: "UluProgressBar",
   props: {
     /**
@@ -66,13 +66,17 @@ const C = {
     */
     small: Boolean,
     /**
-    * Applies the 'positive' style (e.g., green).
+    * Applies the 'success' style.
     */
-    positive: Boolean,
+    success: Boolean,
     /**
-    * Applies the 'negative' style (e.g., red).
+    * Applies the 'warning' style.
     */
-    negative: Boolean,
+    warning: Boolean,
+    /**
+    * Applies the 'danger' style.
+    */
+    danger: Boolean,
     /**
     * Applies styles for use as a thin loader.
     */
@@ -107,28 +111,29 @@ const C = {
     modifiers: [String, Array]
   },
   setup(e) {
-    const a = e, c = (t, l) => `${l === 0 ? 0 : t / l * 100}%`, f = m(() => a.indeterminate ? null : c(a.amount, a.total)), g = m(() => c(a.deficit, a.total)), { resolvedModifiers: y } = $({
+    const a = e, c = (t, l) => `${l === 0 ? 0 : t / l * 100}%`, g = m(() => a.indeterminate ? null : c(a.amount, a.total)), f = m(() => c(a.deficit, a.total)), { resolvedModifiers: y } = $({
       props: a,
       baseClass: "progress-bar",
       internal: m(() => ({
         small: a.small,
-        positive: a.positive,
-        negative: a.negative,
+        success: a.success,
+        warning: a.warning,
+        danger: a.danger,
         loader: a.loader,
         rounded: a.rounded,
         indeterminate: a.indeterminate
       }))
     });
-    return (t, l) => (s(), n("div", {
-      class: v(["progress-bar", [
+    return (t, l) => (s(), o("div", {
+      class: b(["progress-bar", [
         B(y),
         { "type-small": e.small }
       ]])
     }, [
-      e.label || t.$slots.label || t.$slots.icon || e.amountInHeader ? (s(), n("div", C, [
+      e.label || t.$slots.label || t.$slots.icon || e.amountInHeader ? (s(), o("div", w, [
         e.label ? (s(), h(k(e.labelElement), {
           key: 0,
-          class: v(["progress-bar__label", [e.classes.label, { "hidden-visually": e.labelHidden }]])
+          class: b(["progress-bar__label", [e.classes.label, { "hidden-visually": e.labelHidden }]])
         }, {
           default: V(() => [
             i(t.$slots, "label", {}, () => [
@@ -137,42 +142,42 @@ const C = {
           ]),
           _: 3
         }, 8, ["class"])) : r("", !0),
-        e.amountInHeader ? (s(), n("div", H, [
-          l[0] || (l[0] = o("strong", { class: "hidden-visually" }, "Amount:", -1)),
+        e.amountInHeader ? (s(), o("div", C, [
+          l[0] || (l[0] = n("strong", { class: "hidden-visually" }, "Amount:", -1)),
           i(t.$slots, "valueAmount", { value: e.amount }, () => [
             d(u(e.formatValue(e.amount, "amount")), 1)
           ])
         ])) : r("", !0),
-        t.$slots.icon ? (s(), n("div", N, [
+        t.$slots.icon ? (s(), o("div", H, [
           i(t.$slots, "icon")
         ])) : r("", !0)
       ])) : r("", !0),
-      o("div", S, [
-        o("div", {
+      n("div", N, [
+        n("div", {
           class: "progress-bar__bar",
-          style: b({ width: f.value })
+          style: v({ width: g.value })
         }, null, 4),
-        e.deficit > 0 ? (s(), n("div", {
+        e.deficit > 0 ? (s(), o("div", {
           key: 0,
           class: "progress-bar__bar--deficit",
-          style: b({ width: g.value })
+          style: v({ width: f.value })
         }, null, 4)) : r("", !0)
       ]),
-      !e.noValues && !e.amountInHeader && !e.loader && !e.indeterminate ? (s(), n("div", A, [
-        o("div", D, [
-          l[1] || (l[1] = o("strong", { class: "hidden-visually" }, "Amount:", -1)),
+      !e.noValues && !e.amountInHeader && !e.loader && !e.indeterminate ? (s(), o("div", S, [
+        n("div", A, [
+          l[1] || (l[1] = n("strong", { class: "hidden-visually" }, "Amount:", -1)),
           i(t.$slots, "valueAmount", { value: e.amount }, () => [
             d(u(e.formatValue(e.amount, "amount")), 1)
           ])
         ]),
-        e.deficit > 0 ? (s(), n("div", E, [
-          l[2] || (l[2] = o("strong", { class: "hidden-visually" }, "Deficit: ", -1)),
+        e.deficit > 0 ? (s(), o("div", D, [
+          l[2] || (l[2] = n("strong", { class: "hidden-visually" }, "Deficit: ", -1)),
           i(t.$slots, "valueDeficit", { value: e.deficit }, () => [
             d("-" + u(e.formatValue(e.deficit, "deficit")), 1)
           ])
         ])) : r("", !0),
-        o("div", I, [
-          l[3] || (l[3] = o("strong", { class: "hidden-visually" }, "Total:", -1)),
+        n("div", E, [
+          l[3] || (l[3] = n("strong", { class: "hidden-visually" }, "Total:", -1)),
           i(t.$slots, "valueTotal", { value: e.total }, () => [
             d(u(e.formatValue(e.total, "total")), 1)
           ])

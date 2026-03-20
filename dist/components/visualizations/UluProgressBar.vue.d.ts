@@ -5,14 +5,15 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     classes: Record<string, any>;
+    danger: boolean;
     small: boolean;
     labelHidden: boolean;
+    warning: boolean;
     amount: number;
     labelElement: string;
     total: number;
     deficit: number;
-    positive: boolean;
-    negative: boolean;
+    success: boolean;
     loader: boolean;
     rounded: boolean;
     indeterminate: boolean;
@@ -23,14 +24,15 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     formatValue?: Function | undefined;
     $props: {
         readonly classes?: Record<string, any> | undefined;
+        readonly danger?: boolean | undefined;
         readonly small?: boolean | undefined;
         readonly labelHidden?: boolean | undefined;
+        readonly warning?: boolean | undefined;
         readonly amount?: number | undefined;
         readonly labelElement?: string | undefined;
         readonly total?: number | undefined;
         readonly deficit?: number | undefined;
-        readonly positive?: boolean | undefined;
-        readonly negative?: boolean | undefined;
+        readonly success?: boolean | undefined;
         readonly loader?: boolean | undefined;
         readonly rounded?: boolean | undefined;
         readonly indeterminate?: boolean | undefined;
