@@ -1,5 +1,5 @@
 <template>
-  <TabPanels v-slot="slotProps">
+  <TabPanels as="template" v-slot="slotProps">
     <slot v-bind="slotProps"/>
   </TabPanels>
 </template>

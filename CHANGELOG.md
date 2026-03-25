@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.5.1
+
+- `UluTabsGroup`
+  - Remove unneeded div around tabpanels to match @ulu/frontend tabs component structure 
+    - This is breaking the ">" direct child selection needed
+
 ## 0.5.0
 
 - Update peer dep @ulu/frontend to 0.4.0 and update components below to match changes
