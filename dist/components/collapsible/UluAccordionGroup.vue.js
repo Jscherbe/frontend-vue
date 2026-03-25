@@ -1,9 +1,6 @@
-import { ref as f, watch as p, createElementBlock as g, createCommentVNode as y, openBlock as s, Fragment as O, renderList as h, createBlock as k, createSlots as v, withCtx as l, renderSlot as m, createTextVNode as $, toDisplayString as S } from "vue";
-import B from "./UluAccordion.vue.js";
-const E = {
-  key: 0,
-  class: "accordion-group"
-}, x = {
+import { ref as m, provide as f, createElementBlock as c, openBlock as l, renderSlot as s, Fragment as p, renderList as y, createBlock as k, createSlots as $, withCtx as a, createTextVNode as v, toDisplayString as A } from "vue";
+import O from "./UluAccordion.vue.js";
+const S = { class: "accordion-group" }, B = {
   __name: "UluAccordionGroup",
   props: {
     /**
@@ -36,48 +33,42 @@ const E = {
       default: !0
     }
   },
-  setup(a) {
-    const u = a, o = f([]);
-    p(() => u.items, (e) => {
-      o.value = e.map((i) => ({
-        ...i,
-        isOpen: i.isOpen || !1
-      }));
-    }, { immediate: !0, deep: !0 });
-    function c(e, i) {
-      i ? o.value.forEach((t, r) => {
-        t.isOpen = r === e;
-      }) : o.value[e].isOpen = !1;
+  setup(r) {
+    const i = m(null);
+    function u(e, g) {
+      g ? i.value = e : i.value === e && (i.value = null);
     }
-    return (e, i) => a.items?.length ? (s(), g("div", E, [
-      (s(!0), g(O, null, h(o.value, (t, r) => (s(), k(B, {
-        key: r,
-        "model-value": t.isOpen,
-        "onUpdate:modelValue": (n) => c(r, n),
+    return f("uluAccordionGroup", {
+      activeAccordionId: i,
+      toggle: u
+    }), (e, g) => (l(), c("div", S, [
+      r.items?.length ? (l(!0), c(p, { key: 0 }, y(r.items, (t, o) => (l(), k(O, {
+        key: o,
+        "start-open": t.isOpen,
         "trigger-text": t.title,
         classes: t.classes,
-        "trigger-text-element": a.triggerTextElement,
-        modifiers: a.modifiers,
-        animate: a.animate
-      }, v({
-        default: l(({ isOpen: n, toggle: d }) => [
-          m(e.$slots, "item", {
+        "trigger-text-element": r.triggerTextElement,
+        modifiers: r.modifiers,
+        animate: r.animate
+      }, $({
+        default: a(({ isOpen: n, toggle: d }) => [
+          s(e.$slots, "item", {
             item: t,
-            index: r,
+            index: o,
             isOpen: n,
             toggle: d
           }, () => [
-            $(S(t.content), 1)
+            v(A(t.content), 1)
           ])
         ]),
         _: 2
       }, [
         e.$slots.trigger ? {
           name: "trigger",
-          fn: l(({ isOpen: n }) => [
-            m(e.$slots, "trigger", {
+          fn: a(({ isOpen: n }) => [
+            s(e.$slots, "trigger", {
               item: t,
-              index: r,
+              index: o,
               isOpen: n
             })
           ]),
@@ -85,19 +76,19 @@ const E = {
         } : void 0,
         e.$slots.icon ? {
           name: "icon",
-          fn: l(({ isOpen: n }) => [
-            m(e.$slots, "icon", {
+          fn: a(({ isOpen: n }) => [
+            s(e.$slots, "icon", {
               item: t,
-              index: r,
+              index: o,
               isOpen: n
             })
           ]),
           key: "1"
         } : void 0
-      ]), 1032, ["model-value", "onUpdate:modelValue", "trigger-text", "classes", "trigger-text-element", "modifiers", "animate"]))), 128))
-    ])) : y("", !0);
+      ]), 1032, ["start-open", "trigger-text", "classes", "trigger-text-element", "modifiers", "animate"]))), 128)) : s(e.$slots, "default", { key: 1 })
+    ]));
   }
 };
 export {
-  x as default
+  B as default
 };

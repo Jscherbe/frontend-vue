@@ -1,8 +1,9 @@
-import { computed as u, createBlock as l, openBlock as s, withCtx as n, renderSlot as o, resolveDynamicComponent as g, createTextVNode as f, toDisplayString as p, createElementVNode as y, normalizeClass as x, createVNode as V } from "vue";
-import v from "../elements/UluIcon.vue.js";
-import O from "./UluCollapsible.vue.js";
-import { useModifiers as T } from "../../composables/useModifiers.js";
-const E = {
+import { computed as c, inject as x, onMounted as V, createBlock as s, openBlock as d, unref as O, withCtx as i, renderSlot as l, resolveDynamicComponent as T, createTextVNode as B, toDisplayString as C, createElementVNode as M, normalizeClass as S, createVNode as $ } from "vue";
+import A from "../elements/UluIcon.vue.js";
+import b from "./UluCollapsible.vue.js";
+import { useModifiers as h } from "../../composables/useModifiers.js";
+import { newId as j } from "../../utils/dom.js";
+const G = {
   __name: "UluAccordion",
   props: {
     /**
@@ -57,49 +58,57 @@ const E = {
     modifiers: [String, Array]
   },
   emits: ["update:modelValue"],
-  setup(e, { emit: $ }) {
-    const r = e, { resolvedModifiers: c } = T({ props: r, baseClass: "accordion" }), d = u(() => {
-      const t = { ...r.classes };
-      return t.container = [t.container, c.value], t;
+  setup(t, { emit: u }) {
+    const r = t, m = u, { resolvedModifiers: g } = h({ props: r, baseClass: "accordion" }), p = c(() => {
+      const e = { ...r.classes };
+      return e.container = [e.container, g.value], e;
+    }), o = x("uluAccordionGroup", null), a = j("ulu-accordion");
+    V(() => {
+      o && r.startOpen && o.toggle(a, !0);
     });
-    return (t, i) => (s(), l(O, {
-      "model-value": e.modelValue,
-      "start-open": e.startOpen,
-      "trigger-text": e.triggerText,
-      classes: d.value,
-      animate: e.animate,
-      "onUpdate:modelValue": i[0] || (i[0] = (a) => t.$emit("update:modelValue", a))
+    const f = c(() => o ? o.activeAccordionId.value === a : r.modelValue);
+    function y(e) {
+      o && o.toggle(a, e), m("update:modelValue", e);
+    }
+    return (e, E) => (d(), s(b, {
+      id: O(a),
+      "model-value": f.value,
+      "start-open": t.startOpen,
+      "trigger-text": t.triggerText,
+      classes: p.value,
+      animate: t.animate,
+      "onUpdate:modelValue": y
     }, {
-      trigger: n(({ isOpen: a }) => [
-        o(t.$slots, "trigger", { isOpen: a }, () => [
-          (s(), l(g(e.triggerTextElement), null, {
-            default: n(() => [
-              f(p(e.triggerText), 1)
+      trigger: i(({ isOpen: n }) => [
+        l(e.$slots, "trigger", { isOpen: n }, () => [
+          (d(), s(T(t.triggerTextElement), null, {
+            default: i(() => [
+              B(C(t.triggerText), 1)
             ]),
             _: 1
           }))
         ]),
-        o(t.$slots, "icon", { isOpen: a }, () => [
-          y("span", {
-            class: x(["accordion__icon", e.classes.icon])
+        l(e.$slots, "icon", { isOpen: n }, () => [
+          M("span", {
+            class: S(["accordion__icon", t.classes.icon])
           }, [
-            V(v, {
-              icon: a ? "type:collapse" : "type:expand",
+            $(A, {
+              icon: n ? "type:collapse" : "type:expand",
               style: { display: "inline" }
             }, null, 8, ["icon"])
           ], 2)
         ])
       ]),
-      default: n(({ isOpen: a, toggle: m }) => [
-        o(t.$slots, "default", {
-          isOpen: a,
-          toggle: m
+      default: i(({ isOpen: n, toggle: v }) => [
+        l(e.$slots, "default", {
+          isOpen: n,
+          toggle: v
         })
       ]),
       _: 3
-    }, 8, ["model-value", "start-open", "trigger-text", "classes", "animate"]));
+    }, 8, ["id", "model-value", "start-open", "trigger-text", "classes", "animate"]));
   }
 };
 export {
-  E as default
+  G as default
 };

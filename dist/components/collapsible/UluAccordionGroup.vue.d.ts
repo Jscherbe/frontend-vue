@@ -14,28 +14,29 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly items?: unknown[] | undefined;
         readonly modifiers?: string | unknown[] | undefined;
     };
-}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
 type __VLS_TemplateResult = {
     attrs: Partial<{}>;
     slots: {
         trigger?(_: {
-            item: never;
+            item: unknown;
             index: number;
             isOpen: boolean | undefined;
         }): any;
         icon?(_: {
-            item: never;
+            item: unknown;
             index: number;
             isOpen: boolean | undefined;
         }): any;
         item?(_: {
-            item: never;
+            item: unknown;
             index: number;
             isOpen: true;
             toggle: typeof toggle;
         }): any;
+        default?(_: {}): any;
     };
     refs: {};
-    rootEl: any;
+    rootEl: HTMLDivElement;
 };
 //# sourceMappingURL=UluAccordionGroup.vue.d.ts.map
