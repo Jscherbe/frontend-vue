@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.5.2
+
+- `UluAccordionGroup`
+  - Updated to allow composing UluAccordion within UluAccordionGroup instead of passing array of items to UluAccordionGroup. So it now supports both data driven accordion creation and the ability to compose yourself (in-case you have complex markup where using slots on data driven isn't ideal)
+  - `UluAccordion` | Minor updates to make it work with UluAccordionGroup (note above)
+
 ## 0.5.1
 
 - `UluTabsGroup`

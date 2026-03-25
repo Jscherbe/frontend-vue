@@ -1,11 +1,12 @@
 <template>
   <UluCollapsible
-    :model-value="modelValue"
+    :id="id"
+    :model-value="resolvedModelValue"
     :start-open="startOpen"
     :trigger-text="triggerText"
     :classes="mergedClasses"
     :animate="animate"
-    @update:model-value="$emit('update:modelValue', $event)"
+    @update:model-value="handleUpdateModelValue"
   >
     <template #trigger="{ isOpen }">
       <slot name="trigger" :isOpen="isOpen">
@@ -30,10 +31,11 @@
 </template>
 
 <script setup>
-  import { computed } from 'vue';
+  import { computed, inject, onMounted } from 'vue';
   import UluIcon from "../elements/UluIcon.vue";
   import UluCollapsible from "./UluCollapsible.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
+  import { newId } from "../../utils/dom.js";
 
   const props = defineProps({
     /**
@@ -97,4 +99,27 @@
     merged.container = [merged.container, resolvedModifiers.value];
     return merged;
   });
+
+  const accordionGroup = inject('uluAccordionGroup', null);
+  const id = newId('ulu-accordion');
+
+  onMounted(() => {
+    if (accordionGroup && props.startOpen) {
+      accordionGroup.toggle(id, true);
+    }
+  });
+
+  const resolvedModelValue = computed(() => {
+    if (accordionGroup) {
+      return accordionGroup.activeAccordionId.value === id;
+    }
+    return props.modelValue;
+  });
+
+  function handleUpdateModelValue(newValue) {
+    if (accordionGroup) {
+      accordionGroup.toggle(id, newValue);
+    }
+    emit('update:modelValue', newValue);
+  }
 </script>

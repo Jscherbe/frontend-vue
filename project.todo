@@ -1,4 +1,8 @@
-☐ Todos
+Todos:
+  ☐ Need to see if we can make github pages cache less persistent (like 1 day) @priority-low
+    * Pages entire storybook app is cached even with hashed files/etc so users who previously visited will render the old version of app 
+    ☐ May need github workflow for this?
+    ☐ Also could just host somewhere else that's easier to manage cache headers/etc
   ☐ Finish UluImageSlider  @less-important @easy-to-complete 
     * Moved to: reference/slider-plannning/image-slider/UluImageSlider.vue
     * Needs the frontend stylesheet setup first
