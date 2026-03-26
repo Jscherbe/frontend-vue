@@ -1,6 +1,6 @@
 <template>
   <component 
-    v-if="items?.length"
+    v-if="items !== undefined ? items.length : $slots.default"
     :is="listElement"
     :class="[
       {
@@ -17,23 +17,26 @@
     :reversed="isOrdered ? reversed : null"
     :start="start"
   >
-    <li 
-      v-for="(item, index) in items" 
-      :key="index"
-      :class="[
-        classes.item,
-        item?.classes?.item
-      ]"
-    >
-      <slot :item="item" :index="index">
-        {{ item }}
-      </slot>
-    </li>
+    <template v-if="items !== undefined">
+      <li 
+        v-for="(item, index) in items" 
+        :key="index"
+        :class="[
+          classes.item,
+          item?.classes?.item
+        ]"
+      >
+        <slot :item="item" :index="index">
+          {{ item }}
+        </slot>
+      </li>
+    </template>
+    <slot v-else></slot>
   </component>
 </template>
 
 <script setup>
-  import { computed } from "vue";
+  import { computed, provide } from "vue";
 
   const props = defineProps({
     /**
@@ -83,6 +86,8 @@
      */
     listStyleType: String,
   });
+
+  provide("uluListClasses", computed(() => props.classes));
 
   const isOrdered = computed(() => props.ordered || props.forceOrdered);
   const listElement = computed(() => isOrdered.value ? "ol" : "ul");

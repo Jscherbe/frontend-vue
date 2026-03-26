@@ -5,18 +5,18 @@
     v-if="items.length"
   >
     <ol :class="classes.list">
-      <li v-for="(item, index) in items" :key="index" :class="classes.item">
+      <li v-for="(item, index) in items" :key="index" :class="[classes.item, item?.classes?.item]">
         <router-link
           v-if="!item.current"
           :to="item.to"
-          :class="classes.link"
+          :class="[classes.link, item?.classes?.link]"
           :aria-current="item.current ? 'page' : null"
         >
           <slot :item="item">
             {{ item.title }}
           </slot>
         </router-link>
-        <span v-else :class="item.current">
+        <span v-else :class="[classes.current, item?.classes?.current]">
           <slot :item="item">
             {{ item.title }}
           </slot>
@@ -24,7 +24,7 @@
         <template v-if="index < items.length - 1">
           <slot name="separator">
             <UluIcon
-              :class="classes.separator"
+              :class="[classes.separator, item?.classes?.separator]"
               :icon="separatorIcon || 'type:pathSeparator'"
             />
           </slot>
@@ -56,7 +56,7 @@
     separatorIcon: String,
     /**
      * Classes object to be applied to elements.
-     * Keys: nav, list, item, link, icon
+     * Keys: nav, list, item, link, current, separator
      */
     classes: {
       type: Object,

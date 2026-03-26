@@ -1,5 +1,17 @@
 # Change Log
 
+## 0.5.3
+
+- Component "Dual-Pattern" Updates: Several components have been updated to support a "compositional" API (using a default slot for manual HTML construction) alongside their standard "data-driven" API (passing an array to an `items` prop).
+  - `UluList`
+    - Now supports manual composition using a default slot if the `items` prop is omitted.
+    - Added new `UluListItem` component to ensure the `classes.item` from the list is correctly applied when manually composing.
+  - `UluDefinitionList`
+    - Added support for manual composition.
+    - Added new `UluDefinitionListItem` component to assist with correct semantic markup (`<dt>` and `<dd>`) and class injection when manually composing.
+  - `UluBreadcrumb`
+    - Added support for adding classes to specific items via the items prop configuration (e.g. `classes: { current: '...' }` or item-specific `item.classes = { item: '...', link: '...' }`).
+
 ## 0.5.2
 
 - `UluAccordionGroup`

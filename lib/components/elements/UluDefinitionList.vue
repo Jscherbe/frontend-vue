@@ -1,41 +1,44 @@
 <template>
   <dl 
-    v-if="items?.length"
+    v-if="items !== undefined ? items.length : $slots.default"
     class="definition-list" 
     :class="[resolvedModifiers, classes.list]"
   >
-    <div 
-      v-for="(item, index) in items" 
-      :key="index"
-      :class="classes.item"
-    >
-      <dt :class="classes.term">
-        <slot name="term" :item="item" :index="index">
-          {{ item.term }}
-        </slot>
-      </dt>
-      
-      <dd 
-        v-for="(desc, descIndex) in getDescriptions(item)"
-        :key="descIndex"
-        :class="classes.description"
+    <template v-if="items !== undefined">
+      <div 
+        v-for="(item, index) in items" 
+        :key="index"
+        :class="classes.item"
       >
-        <slot 
-          name="description" 
-          :item="item" 
-          :description="desc" 
-          :index="index"
-          :descriptionIndex="descIndex"
+        <dt :class="classes.term">
+          <slot name="term" :item="item" :index="index">
+            {{ item.term }}
+          </slot>
+        </dt>
+        
+        <dd 
+          v-for="(desc, descIndex) in getDescriptions(item)"
+          :key="descIndex"
+          :class="classes.description"
         >
-          {{ desc }}
-        </slot>
-      </dd>
-    </div>
+          <slot 
+            name="description" 
+            :item="item" 
+            :description="desc" 
+            :index="index"
+            :descriptionIndex="descIndex"
+          >
+            {{ desc }}
+          </slot>
+        </dd>
+      </div>
+    </template>
+    <slot v-else></slot>
   </dl>
 </template>
 
 <script setup>
-  import { computed } from 'vue';
+  import { computed, provide } from 'vue';
   import { useModifiers } from "../../composables/useModifiers.js";
 
   const props = defineProps({
@@ -84,6 +87,8 @@
      */
     compact: Boolean,
   });
+
+  provide("uluDefinitionListClasses", computed(() => props.classes));
 
   const internalModifiers = computed(() => ({
     "inline" : props.inline,
