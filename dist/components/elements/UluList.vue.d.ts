@@ -34,6 +34,7 @@ type __VLS_TemplateResult = {
             item: unknown;
             index: number;
         }): any;
+        default?(_: {}): any;
     };
     refs: {};
     rootEl: any;

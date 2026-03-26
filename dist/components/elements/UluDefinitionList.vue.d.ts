@@ -40,6 +40,7 @@ type __VLS_TemplateResult = {
             index: number;
             descriptionIndex: number;
         }): any;
+        default?(_: {}): any;
     };
     refs: {};
     rootEl: any;

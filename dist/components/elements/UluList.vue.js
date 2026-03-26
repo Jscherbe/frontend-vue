@@ -1,5 +1,5 @@
-import { computed as n, createBlock as m, createCommentVNode as u, openBlock as l, resolveDynamicComponent as y, normalizeStyle as B, normalizeClass as o, withCtx as f, createElementBlock as d, Fragment as v, renderList as S, renderSlot as g, createTextVNode as k, toDisplayString as C } from "vue";
-const h = {
+import { provide as m, computed as r, createBlock as y, createCommentVNode as f, openBlock as a, resolveDynamicComponent as v, normalizeStyle as B, normalizeClass as o, withCtx as S, createElementBlock as i, renderSlot as c, Fragment as k, renderList as g, createTextVNode as C, toDisplayString as O } from "vue";
+const L = {
   __name: "UluList",
   props: {
     /**
@@ -50,8 +50,10 @@ const h = {
     listStyleType: String
   },
   setup(e) {
-    const r = e, s = n(() => r.ordered || r.forceOrdered), c = n(() => s.value ? "ol" : "ul");
-    return (i, O) => e.items?.length ? (l(), m(y(c.value), {
+    const t = e;
+    m("uluListClasses", r(() => t.classes));
+    const n = r(() => t.ordered || t.forceOrdered), u = r(() => n.value ? "ol" : "ul");
+    return (l, T) => (e.items !== void 0 ? e.items.length : l.$slots.default) ? (a(), y(v(u.value), {
       key: 0,
       class: o([
         {
@@ -65,29 +67,29 @@ const h = {
       style: B({
         listStyleType: e.listStyleType
       }),
-      reversed: s.value ? e.reversed : null,
+      reversed: n.value ? e.reversed : null,
       start: e.start
     }, {
-      default: f(() => [
-        (l(!0), d(v, null, S(e.items, (t, a) => (l(), d("li", {
-          key: a,
+      default: S(() => [
+        e.items !== void 0 ? (a(!0), i(k, { key: 0 }, g(e.items, (s, d) => (a(), i("li", {
+          key: d,
           class: o([
             e.classes.item,
-            t?.classes?.item
+            s?.classes?.item
           ])
         }, [
-          g(i.$slots, "default", {
-            item: t,
-            index: a
+          c(l.$slots, "default", {
+            item: s,
+            index: d
           }, () => [
-            k(C(t), 1)
+            C(O(s), 1)
           ])
-        ], 2))), 128))
+        ], 2))), 128)) : c(l.$slots, "default", { key: 1 })
       ]),
       _: 3
-    }, 8, ["class", "style", "reversed", "start"])) : u("", !0);
+    }, 8, ["class", "style", "reversed", "start"])) : f("", !0);
   }
 };
 export {
-  h as default
+  L as default
 };
