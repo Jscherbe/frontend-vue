@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.5.4
+
+- Add `useTableData()` composable that unifies how tabular column structures are handled for data-driven table components props (eg. columns, rows)
+- Add `UluTable, UluDataTable` components
+  - UluTable is just a simple table component (no classes/etc) can be used to create any type of valid table structure (including nested columns) identical to the API for UluTableSticky which now both use new useTableData composable
+
 ## 0.5.3
 
 - Component "Dual-Pattern" Updates: Several components have been updated to support a "compositional" API (using a default slot for manual HTML construction) alongside their standard "data-driven" API (passing an array to an `items` prop).

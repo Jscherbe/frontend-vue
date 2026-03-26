@@ -31,7 +31,7 @@
         </slot>
       </li>
     </template>
-    <slot v-else></slot>
+    <slot v-else />
   </component>
 </template>
 

@@ -181,7 +181,7 @@
   import UluTableStickyTable from "./UluTableStickyTable.vue";
   import { debounce } from "@ulu/utils/performance.js";
   import { runAfterFramePaint } from "@ulu/utils/browser/performance.js";
-  import { useTableData } from "../../../composables/useTableData.js";
+  import cloneDeep from "lodash-es/cloneDeep.js";
 
   const SSR = import.meta.env.SSR;
   const getWindowWidth = () => SSR ? 0 : window.innerWidth;
@@ -300,28 +300,117 @@
   const display = ref(null);
   const table = ref(null);
 
-  /**
-   * Method to update the table (sizes, etc) when data has changed
-   */
-  const refresh = () => {
-    if (SSR) return;
-    removeTableSizes();
-    nextTick(() => {
-      setTableSizes();
-      checkOverflowX();
-      checkScrollability();
-      syncScrollLeft();
-    });
+  const idCreator = (type) => {
+    let id = 0;
+    return () => `${ props.idPrefix }-${ type }-${ ++id }`;
   };
 
-  const {
-    currentColumns,
-    currentRows,
-    currentFooterRows,
-    headerRows,
-    rowColumns
-  } = useTableData(props, refresh);
+  /**
+   * Creates column array for internal use
+   * - Avoid mutating user's prop 
+   * - Current columns being used in the display
+   * - This internal copy has internal properties/structural info (like ID)
+   * - This is the copy of the users columns to avoid mutating their object
+   * - Can be used in the future for adding/removing or enabling/disabling
+   */
+  const createColumns = () => {
+    const newId = idCreator("c");
+    const columns = cloneDeep(props.columns);
+    const prep = (column, parent) => {
+      column.id = newId();
+      column.parent = parent;
+      column.width = "auto";
+      column.boxWidth = null;
+      column.sortApplied = false;
+      column.sortAscending = false;
+      column.sortFocused = false;
+      let headers = [];
+      // Add the column's headers for output to attribute
+      if (parent) {
+        if (parent.headers && parent.headers.length) {
+          headers = [ ...parent.headers ];
+        } else {
+          headers.push(parent.id);
+        }
+      }
+      headers.push(column.id);
+      column.headers = headers;
+      // Call the function on this column's children
+      if (column.columns) {
+        column.columns.forEach(c => prep(c, column));
+      // Make sure column has a required properties
+      } else if (!column.key && !column.value && !column.slot) {
+        console.warn("UluTableSticky: Missing 'key', 'value' or 'slot' in column configuration for", column);
+      }
+    };
+    columns.forEach(c => prep(c, null));
+    return columns;
+  };
 
+  /**
+   * Recursive function used as a reducer to return the deepest nested columns
+   */
+  const maxColumnChildren = (d, c) => {
+    const m = c.columns ? c.columns.reduce(maxColumnChildren, 1) + 1 : 1;
+    return d > m ? d : m;
+  };
+
+  /**
+   * Conversion of the columns (which are nested hierarchy) to a flat list of columns 
+   * sorted by the way they need to be displayed in rows 
+   * - Used for nested headers
+   * - Transform nested data into row arrays
+   */
+  const createHeaderRows = (currentColumnsData) => {
+    // Create empty row array, each array will hold it's columns
+    const newId = idCreator("hr");
+    const count = currentColumnsData.reduce(maxColumnChildren, 1);
+    const height = "auto";
+    const rows = new Array(count).fill(null).map(() => ({ 
+      height, 
+      boxHeight: null,
+      columns: [],
+      id: newId()
+    }));
+    
+    /**
+     * Function that adds columns to the rows array's based 
+     * on their depth, called recursively.
+     */
+    function setInRows(depth, column) {
+      const columns = column.columns;
+      // Go to inward to the deepest child
+      if (columns) columns.forEach(c => setInRows(1 + depth, c));
+      // Now that the deepest children have been calculated and pushed we have
+      // all the information we need to determine the parent's colspan by reducing
+      // the parents children's colspans and children would include their children
+      column.rowspan = columns ? 1 : count - depth;
+      column.colspan = columns ? columns.reduce((a, c) => a + c.colspan, 0) : 1;
+      rows[depth].columns.push(column);
+    }
+    currentColumnsData.forEach(c => setInRows(0, c));
+    return rows;
+  };
+
+  /**
+   * Creates row array for internal use
+   * - Avoid mutating user's prop
+   */
+  const createRows = (forFooter) => {
+    const newId = idCreator(forFooter ? "fr" : "br");
+    const currentRows = forFooter ? props.footerRows : props.rows;
+    return currentRows ? currentRows.map(row => ({
+      height: null,
+      boxHeight: null,
+      data: row,
+      id: newId()
+    })) : [];
+  };
+
+  const currentColumns = ref(createColumns());
+  const currentRows = ref(createRows());
+  const currentFooterRows = ref(createRows(true));
+  const headerRows = ref(createHeaderRows(currentColumns.value));
   const sizesCalculated = ref(false);
   const tableWidth = ref("auto");
   const resizing = ref(false);
@@ -339,19 +428,49 @@
   const headerVisibleX = computed(() => sizesCalculated.value && overflownX.value);
   const headerOpacityX = computed(() => headerVisibleX.value ? "1" : "0");
 
+  /**
+   * Used to output the body rows. This is an array of only the deepest child columns
+   * parent column information can be accessed by reference
+   */
+  const rowColumns = computed(() => {
+    const columns = currentColumns.value;
+    const rc = [];
+    const add = c => {
+      if (c.columns) c.columns.forEach(add);
+      else rc.push(c);
+    };
+    // Create array of actual 
+    columns.forEach(add);
+    
+    // Iterate over all columns checking for rowHeader
+    // - If a column has row header create an id function passed current row's index
+    // - Store callbacks in an array to call on each rows cells
+    let rowHeaders = [];
+    rc.forEach((c, columnIndex) => {
+      // Creating copy of array here so it doesn't include it's own ID and also 
+      // so there can be headers of headers going from left to right only
+      const thisRowsHeader = rowHeaders.slice();
+      c.getRowHeaders = rowIndex => thisRowsHeader.map(cb => cb(rowIndex)).join(" ");
+      // Now we add this columns row header function
+      // Which will be included in all columns after this iteration
+      if (c.rowHeader) {
+        c.getRowHeaderId = rowIndex => `${ props.idPrefix }-rh-${ rowIndex }-${ columnIndex }`;
+        rowHeaders.push(c.getRowHeaderId);
+      }
+    });
+    return rc;
+  });
+
   const headerHeight = computed(() => {
     // Offset height would be the combination of all the rows height's
-    return headerRows.value ? headerRows.value.reduce((a, r) => a + r.boxHeight, 0) : 0;
+    return headerRows.value.reduce((a, r) => a + r.boxHeight, 0);
   });
 
   /**
    * Reduce the array of column header rows to the first row, first column
    */
   const headerRowsFirst = computed(() => {
-    if (!headerRows.value?.length) return [];
     const firstRow = headerRows.value[0];
-    if (!firstRow?.columns?.length) return [];
-
     const firstColumn = Object.assign({}, firstRow.columns[0], { rowspan: 1, colspan: 1 });
     const columns = [ firstColumn ];
     return [{ 
@@ -366,14 +485,10 @@
    * Reduce the rowColumn array to only the first column
    */
   const rowColumnsFirst = computed(() => {
-    if (!rowColumns.value || !rowColumns.value.length) return [];
     return [ rowColumns.value[0] ];
   });
 
   const firstColumnSize = computed(() => {
-    if (!headerRowsFirst.value?.length || !headerRows.value?.[0]?.columns?.length) {
-      return { width: "auto", height: "auto" };
-    }
     const height = headerRowsFirst.value[0].height;
     const width = headerRows.value[0].columns[0].width;
     return { width, height };
@@ -482,6 +597,20 @@
   };
 
   const resizeHandler = debounce(onResize, 500, true);
+
+  /**
+   * Method to update the table (sizes, etc) when data has changed
+   */
+  const refresh = () => {
+    if (SSR) return;
+    removeTableSizes();
+    nextTick(() => {
+      setTableSizes();
+      checkOverflowX();
+      checkScrollability();
+      syncScrollLeft();
+    });
+  };
 
   const onScrollX = () => {
     checkScrollability();
@@ -633,6 +762,22 @@
   //     id = window.requestAnimationFrame(() => handler(event));
   //   };
   // };
+
+  watch(() => props.columns, () => {
+    currentColumns.value = createColumns();
+    headerRows.value = createHeaderRows(currentColumns.value);
+    refresh();
+  }, { deep: true });
+
+  watch(() => props.rows, () => {
+    currentRows.value = createRows();
+    refresh();
+  }, { deep: true });
+
+  watch(() => props.footerRows, () => {
+    currentFooterRows.value = createRows(true);
+    refresh();
+  }, { deep: true });
 
   onMounted(() => {
     if (!SSR) {

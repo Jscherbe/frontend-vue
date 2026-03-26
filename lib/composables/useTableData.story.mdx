@@ -1,0 +1,72 @@
+# useTableData
+
+A composable for managing and normalizing table data structures. It is used internally by `UluTable` and `UluTableSticky` to handle complex nested column logic, identifier creation, and accessibility attributes. 
+
+While primarily an internal utility, you can use it to build highly custom table implementations that adhere to the standard `columns` and `rows` data API used by the ULU library.
+
+## Usage
+
+```html
+  <script setup>
+  import { useTableData } from '@ulu/frontend-vue';
+
+  const props = defineProps({
+    columns: Array,
+    rows: Array,
+    footerRows: Array,
+    idPrefix: { type: String, default: 'my-custom-table' }
+  });
+
+  const handleDataChange = () => {
+    console.log('Table data has been updated!');
+  };
+
+  const { 
+    currentColumns, 
+    currentRows, 
+    currentFooterRows, 
+    headerRows, 
+    rowColumns 
+  } = useTableData(props, handleDataChange);
+</script>
+
+<template>
+  <table>
+    <thead>
+      <tr v-for="(row, rowIndex) in headerRows" :key="rowIndex">
+        <th 
+          v-for="(column, colIndex) in row.columns" 
+          :key="colIndex"
+          :id="column.id"
+          :rowspan="column.rowspan"
+          :colspan="column.colspan"
+        >
+          {{ column.title }}
+        </th>
+      </tr>
+    </thead>
+    <!-- Custom body rendering using rowColumns and currentRows -->
+  </table>
+</template>
+```
+
+## Parameters
+
+The composable accepts two parameters:
+
+1.  **`props` (Object)**: An object (usually your component's props) containing the following optional properties:
+    *   `columns` (Array): The raw column configuration array. Supports nested columns for complex headers.
+    *   `rows` (Array): The raw data rows.
+    *   `footerRows` (Array): Raw data rows intended for the table footer.
+    *   `idPrefix` (String): A prefix used when generating unique IDs for table headers and cells.
+2.  **`onChange` (Function)**: An optional callback function that is triggered whenever the `columns`, `rows`, or `footerRows` deeply change. Useful for triggering layout recalculations (like in `UluTableSticky`).
+
+## Returns
+
+The composable returns an object containing reactive references:
+
+*   **`currentColumns` (Ref Array)**: A deeply cloned and normalized version of the `columns` prop. Each column has unique IDs and parent references attached.
+*   **`headerRows` (Ref Array)**: An array of row arrays, calculated based on the maximum depth of nested columns. Used to render the `<thead>` with correct `colspan` and `rowspan` values.
+*   **`rowColumns` (ComputedRef Array)**: A flat array representing only the deepest "leaf" columns. Used to iterate over data cells in the `<tbody>`. Includes utility methods for generating `headers` attributes.
+*   **`currentRows` (Ref Array)**: Normalized rows containing unique IDs and wrapped `data`.
+*   **`currentFooterRows` (Ref Array)**: Normalized footer rows containing unique IDs and wrapped `data`.

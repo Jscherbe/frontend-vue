@@ -33,7 +33,7 @@
         </dd>
       </div>
     </template>
-    <slot v-else></slot>
+    <slot v-else />
   </dl>
 </template>
 
