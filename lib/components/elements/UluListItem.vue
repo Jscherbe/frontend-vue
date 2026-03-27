@@ -1,19 +1,24 @@
 <template>
-  <li :class="[listClasses.item, classes]">
+  <component :is="resolvedElement" :class="[listClasses.item, classes]">
     <slot></slot>
-  </li>
+  </component>
 </template>
 
 <script setup>
   import { computed, inject } from "vue";
 
-  defineProps({
+  const props = defineProps({
     /**
      * Optional class binding to append to the injected parent classes
      */
-    classes: [String, Array, Object]
+    classes: [String, Array, Object],
+    /**
+     * The HTML element to render the item as
+     */
+    element: String
   });
 
-  const injectedClasses = inject("uluListClasses", { value: {} });
-  const listClasses = computed(() => injectedClasses.value || {});
+  const injectedContext = inject("uluListContext", { value: {} });
+  const listClasses = computed(() => injectedContext.value?.classes || {});
+  const resolvedElement = computed(() => props.element || injectedContext.value?.itemElement || "li");
 </script>

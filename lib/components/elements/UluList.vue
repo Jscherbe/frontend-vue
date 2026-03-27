@@ -1,7 +1,7 @@
 <template>
   <component 
     v-if="items !== undefined ? items.length : $slots.default"
-    :is="listElement"
+    :is="resolvedElement"
     :class="[
       {
         'list-ordered' : ordered,
@@ -18,7 +18,8 @@
     :start="start"
   >
     <template v-if="items !== undefined">
-      <li 
+      <component 
+        :is="itemElement"
         v-for="(item, index) in items" 
         :key="index"
         :class="[
@@ -29,7 +30,7 @@
         <slot :item="item" :index="index">
           {{ item }}
         </slot>
-      </li>
+      </component>
     </template>
     <slot v-else />
   </component>
@@ -45,7 +46,7 @@
      */
     items: Array,
     /**
-     * Classes object (keys are { list, item } to be applied to <ul> and <li>)
+     * Classes object (keys are { list, item } to be applied to list and item elements)
      * - Any valid class binding for each
      */
     classes: {
@@ -85,10 +86,24 @@
      * Define list style type (ie. disc, decimal, etc)
      */
     listStyleType: String,
+    /**
+     * Element to render the list as (overrides ul/ol)
+     */
+    element: String,
+    /**
+     * Element to render items as when using items array
+     */
+    itemElement: {
+      type: String,
+      default: "li"
+    }
   });
 
-  provide("uluListClasses", computed(() => props.classes));
+  provide("uluListContext", computed(() => ({
+    classes: props.classes,
+    itemElement: props.itemElement
+  })));
 
   const isOrdered = computed(() => props.ordered || props.forceOrdered);
-  const listElement = computed(() => isOrdered.value ? "ol" : "ul");
+  const resolvedElement = computed(() => props.element || (isOrdered.value ? "ol" : "ul"));
 </script>

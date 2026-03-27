@@ -5,6 +5,12 @@
 - Add `useTableData()` composable that unifies how tabular column structures are handled for data-driven table components props (eg. columns, rows)
 - Add `UluTable, UluDataTable` components
   - UluTable is just a simple table component (no classes/etc) can be used to create any type of valid table structure (including nested columns) identical to the API for UluTableSticky which now both use new useTableData composable
+- `UluList` 
+  - Internally change injection key from "uluListClasses" to "uluListContext" to support other props that need to be passed down 
+  - Update `UluListItem` to reflect this and add new "element" prop for when list item is used not as semantic list
+- Add `UluCounterList` component
+  - Match @ulu/frontend counter-list component 
+  - Which can accept `UluListItem` component as children or be data-driven
 
 ## 0.5.3
 

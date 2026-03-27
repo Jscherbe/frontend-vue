@@ -1,0 +1,42 @@
+<h2 class="h2">Default Counter List</h2>
+
+<ol class="counter-list">
+  <li>Some text</li>
+  <li>Some more text</li>
+  <li>Some text</li>
+  <li>Some text</li>
+</ol>
+
+<h2 class="h2">Alphabetical Counter List</h2>
+
+<ol class="counter-list counter-list--alphabetical">
+  <li>Some text</li>
+  <li>Some text</li>
+  <li>Some more text</li>
+  <li>Some text</li>
+</ol>
+
+<h2 class="h2">Default Counter List built as divs</h2>
+
+<div class="counter-list">
+  <div class="counter-list__item">Some text</div>
+  <div class="counter-list__item">Some more text</div>
+  <div class="counter-list__item">Some text</div>
+  <div class="counter-list__item">Some text</div>
+</div>
+
+<h2 class="h2">Testing no counter reset</h2>
+
+Not recommending this but there are edge scenarios where this could be useful
+
+<div class="counter-list">
+  <div class="counter-list__item">Some text</div>
+  <div class="counter-list__item">Some text</div>
+</div>
+
+Some text
+
+<div class="counter-list counter-list--no-reset" style="counter-reset: none;">
+  <div class="counter-list__item">Some text</div>
+  <div class="counter-list__item">Some text</div>
+</div>
