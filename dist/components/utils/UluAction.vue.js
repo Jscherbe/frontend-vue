@@ -44,7 +44,7 @@ const h = {
   setup(o) {
     const t = o, n = r(() => t.element ? t.element : t.to || t.path ? d : t.href ? "a" : "button"), a = r(() => {
       const e = {};
-      return t.to || t.path ? (e.to = t.to || t.path, t.activeClass && (e.activeClass = t.activeClass), t.exactActiveClass && (e.exactActiveClass = t.exactActiveClass)) : t.href ? (e.href = t.href, t.target && (e.target = t.target), t.download && (e.download = typeof t.download == "string" ? t.download : !0)) : (!t.element || t.element === "button") && (e.type = "button"), e;
+      return t.to || t.path ? (e.to = t.to || t.path, t.activeClass && (e.activeClass = t.activeClass), t.exactActiveClass && (e.exactActiveClass = t.exactActiveClass)) : t.href ? (e.href = t.href, t.target && (e.target = t.target), t.download && (e.download = typeof t.download == "string" ? t.download : "")) : (!t.element || t.element === "button") && (e.type = "button"), e;
     });
     return (e, m) => (s(), i(l(n.value), c(f(a.value)), {
       default: u(() => [
