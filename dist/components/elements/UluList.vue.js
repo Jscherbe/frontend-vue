@@ -1,5 +1,5 @@
-import { provide as m, computed as r, createBlock as y, createCommentVNode as f, openBlock as a, resolveDynamicComponent as v, normalizeStyle as B, normalizeClass as o, withCtx as S, createElementBlock as i, renderSlot as c, Fragment as k, renderList as g, createTextVNode as C, toDisplayString as O } from "vue";
-const L = {
+import { provide as f, computed as r, createBlock as i, createCommentVNode as v, openBlock as n, resolveDynamicComponent as o, normalizeStyle as S, normalizeClass as c, withCtx as m, createElementBlock as B, renderSlot as u, Fragment as g, renderList as k, createTextVNode as E, toDisplayString as C } from "vue";
+const h = {
   __name: "UluList",
   props: {
     /**
@@ -8,7 +8,7 @@ const L = {
      */
     items: Array,
     /**
-     * Classes object (keys are { list, item } to be applied to <ul> and <li>)
+     * Classes object (keys are { list, item } to be applied to list and item elements)
      * - Any valid class binding for each
      */
     classes: {
@@ -47,15 +47,29 @@ const L = {
     /**
      * Define list style type (ie. disc, decimal, etc)
      */
-    listStyleType: String
+    listStyleType: String,
+    /**
+     * Element to render the list as (overrides ul/ol)
+     */
+    element: String,
+    /**
+     * Element to render items as when using items array
+     */
+    itemElement: {
+      type: String,
+      default: "li"
+    }
   },
   setup(e) {
     const t = e;
-    m("uluListClasses", r(() => t.classes));
-    const n = r(() => t.ordered || t.forceOrdered), u = r(() => n.value ? "ol" : "ul");
-    return (l, T) => (e.items !== void 0 ? e.items.length : l.$slots.default) ? (a(), y(v(u.value), {
+    f("uluListContext", r(() => ({
+      classes: t.classes,
+      itemElement: t.itemElement
+    })));
+    const a = r(() => t.ordered || t.forceOrdered), y = r(() => t.element || (a.value ? "ol" : "ul"));
+    return (l, O) => (e.items !== void 0 ? e.items.length : l.$slots.default) ? (n(), i(o(y.value), {
       key: 0,
-      class: o([
+      class: c([
         {
           "list-ordered": e.ordered,
           "list-unordered": e.unordered,
@@ -64,32 +78,35 @@ const L = {
         },
         e.classes.list
       ]),
-      style: B({
+      style: S({
         listStyleType: e.listStyleType
       }),
-      reversed: n.value ? e.reversed : null,
+      reversed: a.value ? e.reversed : null,
       start: e.start
     }, {
-      default: S(() => [
-        e.items !== void 0 ? (a(!0), i(k, { key: 0 }, g(e.items, (s, d) => (a(), i("li", {
+      default: m(() => [
+        e.items !== void 0 ? (n(!0), B(g, { key: 0 }, k(e.items, (s, d) => (n(), i(o(e.itemElement), {
           key: d,
-          class: o([
+          class: c([
             e.classes.item,
             s?.classes?.item
           ])
-        }, [
-          c(l.$slots, "default", {
-            item: s,
-            index: d
-          }, () => [
-            C(O(s), 1)
-          ])
-        ], 2))), 128)) : c(l.$slots, "default", { key: 1 })
+        }, {
+          default: m(() => [
+            u(l.$slots, "default", {
+              item: s,
+              index: d
+            }, () => [
+              E(C(s), 1)
+            ])
+          ]),
+          _: 2
+        }, 1032, ["class"]))), 128)) : u(l.$slots, "default", { key: 1 })
       ]),
       _: 3
-    }, 8, ["class", "style", "reversed", "start"])) : f("", !0);
+    }, 8, ["class", "style", "reversed", "start"])) : v("", !0);
   }
 };
 export {
-  L as default
+  h as default
 };

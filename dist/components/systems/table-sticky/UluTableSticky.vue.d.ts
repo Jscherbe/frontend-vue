@@ -7,10 +7,10 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     $emit: (event: "column-sort", ...args: any[]) => void;
     classes: Record<string, any>;
-    caption: string;
-    idPrefix: string;
-    allowClickClones: boolean;
     columns: unknown[];
+    idPrefix: string;
+    caption: string;
+    allowClickClones: boolean;
     firstColumnSticky: boolean;
     scrollControls: boolean;
     scrollContext: Window & typeof globalThis;
@@ -22,10 +22,10 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     controlsComponent?: Record<string, any> | undefined;
     $props: {
         readonly classes?: Record<string, any> | undefined;
-        readonly caption?: string | undefined;
-        readonly idPrefix?: string | undefined;
-        readonly allowClickClones?: boolean | undefined;
         readonly columns?: unknown[] | undefined;
+        readonly idPrefix?: string | undefined;
+        readonly caption?: string | undefined;
+        readonly allowClickClones?: boolean | undefined;
         readonly firstColumnSticky?: boolean | undefined;
         readonly scrollControls?: boolean | undefined;
         readonly scrollContext?: (Window & typeof globalThis) | undefined;
@@ -58,30 +58,30 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         $options: import('vue').ComponentOptionsBase<Readonly<{}> & Readonly<{}>, {
             $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
             classes: Record<string, any>;
-            isActual: boolean;
             headerRows: unknown[];
-            caption?: string | undefined;
+            isActual: boolean;
             rows?: unknown[] | undefined;
-            rowColumns?: unknown[] | undefined;
-            columnWidth?: string | undefined;
-            resolveClasses?: Function | undefined;
-            idPrefix?: string | undefined;
             footerRows?: unknown[] | undefined;
+            idPrefix?: string | undefined;
+            caption?: string | undefined;
             getRowValue?: Function | undefined;
             getColumnTitle?: Function | undefined;
+            rowColumns?: unknown[] | undefined;
+            resolveClasses?: Function | undefined;
+            columnWidth?: string | undefined;
             $props: {
                 readonly classes?: Record<string, any> | undefined;
-                readonly isActual?: boolean | undefined;
                 readonly headerRows?: unknown[] | undefined;
-                readonly caption?: string | undefined;
+                readonly isActual?: boolean | undefined;
                 readonly rows?: unknown[] | undefined;
-                readonly rowColumns?: unknown[] | undefined;
-                readonly columnWidth?: string | undefined;
-                readonly resolveClasses?: Function | undefined;
-                readonly idPrefix?: string | undefined;
                 readonly footerRows?: unknown[] | undefined;
+                readonly idPrefix?: string | undefined;
+                readonly caption?: string | undefined;
                 readonly getRowValue?: Function | undefined;
                 readonly getColumnTitle?: Function | undefined;
+                readonly rowColumns?: unknown[] | undefined;
+                readonly resolveClasses?: Function | undefined;
+                readonly columnWidth?: string | undefined;
             };
         }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, {}, {}, string, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, import('vue').ComponentProvideOptions> & {
             beforeCreate?: (() => void) | (() => void)[];
@@ -103,33 +103,33 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         $forceUpdate: () => void;
         $nextTick: typeof nextTick;
         $watch<T extends string | ((...args: any) => any)>(source: T, cb: T extends (...args: any) => infer R ? (...args: [R, R, import('@vue/reactivity').OnCleanup]) => any : (...args: [any, any, import('@vue/reactivity').OnCleanup]) => any, options?: import('vue').WatchOptions): import('vue').WatchStopHandle;
-    } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "caption" | "rows" | "rowColumns" | "columnWidth" | "resolveClasses" | "isActual" | "idPrefix" | "headerRows" | "footerRows" | "getRowValue" | "getColumnTitle"> & import('vue').ShallowUnwrapRef<{
+    } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "rows" | "footerRows" | "idPrefix" | "caption" | "getRowValue" | "getColumnTitle" | "headerRows" | "rowColumns" | "resolveClasses" | "columnWidth" | "isActual"> & import('vue').ShallowUnwrapRef<{
         $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
         classes: Record<string, any>;
-        isActual: boolean;
         headerRows: unknown[];
-        caption?: string | undefined;
+        isActual: boolean;
         rows?: unknown[] | undefined;
-        rowColumns?: unknown[] | undefined;
-        columnWidth?: string | undefined;
-        resolveClasses?: Function | undefined;
-        idPrefix?: string | undefined;
         footerRows?: unknown[] | undefined;
+        idPrefix?: string | undefined;
+        caption?: string | undefined;
         getRowValue?: Function | undefined;
         getColumnTitle?: Function | undefined;
+        rowColumns?: unknown[] | undefined;
+        resolveClasses?: Function | undefined;
+        columnWidth?: string | undefined;
         $props: {
             readonly classes?: Record<string, any> | undefined;
-            readonly isActual?: boolean | undefined;
             readonly headerRows?: unknown[] | undefined;
-            readonly caption?: string | undefined;
+            readonly isActual?: boolean | undefined;
             readonly rows?: unknown[] | undefined;
-            readonly rowColumns?: unknown[] | undefined;
-            readonly columnWidth?: string | undefined;
-            readonly resolveClasses?: Function | undefined;
-            readonly idPrefix?: string | undefined;
             readonly footerRows?: unknown[] | undefined;
+            readonly idPrefix?: string | undefined;
+            readonly caption?: string | undefined;
             readonly getRowValue?: Function | undefined;
             readonly getColumnTitle?: Function | undefined;
+            readonly rowColumns?: unknown[] | undefined;
+            readonly resolveClasses?: Function | undefined;
+            readonly columnWidth?: string | undefined;
         };
     }> & {} & import('vue').ComponentCustomProperties & {} & {
         $slots: Partial<Record<any, (_: {
@@ -180,30 +180,30 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         $options: import('vue').ComponentOptionsBase<Readonly<{}> & Readonly<{}>, {
             $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
             classes: Record<string, any>;
-            isActual: boolean;
             headerRows: unknown[];
-            caption?: string | undefined;
+            isActual: boolean;
             rows?: unknown[] | undefined;
-            rowColumns?: unknown[] | undefined;
-            columnWidth?: string | undefined;
-            resolveClasses?: Function | undefined;
-            idPrefix?: string | undefined;
             footerRows?: unknown[] | undefined;
+            idPrefix?: string | undefined;
+            caption?: string | undefined;
             getRowValue?: Function | undefined;
             getColumnTitle?: Function | undefined;
+            rowColumns?: unknown[] | undefined;
+            resolveClasses?: Function | undefined;
+            columnWidth?: string | undefined;
             $props: {
                 readonly classes?: Record<string, any> | undefined;
-                readonly isActual?: boolean | undefined;
                 readonly headerRows?: unknown[] | undefined;
-                readonly caption?: string | undefined;
+                readonly isActual?: boolean | undefined;
                 readonly rows?: unknown[] | undefined;
-                readonly rowColumns?: unknown[] | undefined;
-                readonly columnWidth?: string | undefined;
-                readonly resolveClasses?: Function | undefined;
-                readonly idPrefix?: string | undefined;
                 readonly footerRows?: unknown[] | undefined;
+                readonly idPrefix?: string | undefined;
+                readonly caption?: string | undefined;
                 readonly getRowValue?: Function | undefined;
                 readonly getColumnTitle?: Function | undefined;
+                readonly rowColumns?: unknown[] | undefined;
+                readonly resolveClasses?: Function | undefined;
+                readonly columnWidth?: string | undefined;
             };
         }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, {}, {}, string, {}, import('vue').GlobalComponents, import('vue').GlobalDirectives, string, import('vue').ComponentProvideOptions> & {
             beforeCreate?: (() => void) | (() => void)[];
@@ -225,33 +225,33 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         $forceUpdate: () => void;
         $nextTick: typeof nextTick;
         $watch<T extends string | ((...args: any) => any)>(source: T, cb: T extends (...args: any) => infer R ? (...args: [R, R, import('@vue/reactivity').OnCleanup]) => any : (...args: [any, any, import('@vue/reactivity').OnCleanup]) => any, options?: import('vue').WatchOptions): import('vue').WatchStopHandle;
-    } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "caption" | "rows" | "rowColumns" | "columnWidth" | "resolveClasses" | "isActual" | "idPrefix" | "headerRows" | "footerRows" | "getRowValue" | "getColumnTitle"> & import('vue').ShallowUnwrapRef<{
+    } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "rows" | "footerRows" | "idPrefix" | "caption" | "getRowValue" | "getColumnTitle" | "headerRows" | "rowColumns" | "resolveClasses" | "columnWidth" | "isActual"> & import('vue').ShallowUnwrapRef<{
         $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
         classes: Record<string, any>;
-        isActual: boolean;
         headerRows: unknown[];
-        caption?: string | undefined;
+        isActual: boolean;
         rows?: unknown[] | undefined;
-        rowColumns?: unknown[] | undefined;
-        columnWidth?: string | undefined;
-        resolveClasses?: Function | undefined;
-        idPrefix?: string | undefined;
         footerRows?: unknown[] | undefined;
+        idPrefix?: string | undefined;
+        caption?: string | undefined;
         getRowValue?: Function | undefined;
         getColumnTitle?: Function | undefined;
+        rowColumns?: unknown[] | undefined;
+        resolveClasses?: Function | undefined;
+        columnWidth?: string | undefined;
         $props: {
             readonly classes?: Record<string, any> | undefined;
-            readonly isActual?: boolean | undefined;
             readonly headerRows?: unknown[] | undefined;
-            readonly caption?: string | undefined;
+            readonly isActual?: boolean | undefined;
             readonly rows?: unknown[] | undefined;
-            readonly rowColumns?: unknown[] | undefined;
-            readonly columnWidth?: string | undefined;
-            readonly resolveClasses?: Function | undefined;
-            readonly idPrefix?: string | undefined;
             readonly footerRows?: unknown[] | undefined;
+            readonly idPrefix?: string | undefined;
+            readonly caption?: string | undefined;
             readonly getRowValue?: Function | undefined;
             readonly getColumnTitle?: Function | undefined;
+            readonly rowColumns?: unknown[] | undefined;
+            readonly resolveClasses?: Function | undefined;
+            readonly columnWidth?: string | undefined;
         };
     }> & {} & import('vue').ComponentCustomProperties & {} & {
         $slots: Partial<Record<any, (_: {
@@ -337,62 +337,62 @@ type __VLS_TemplateResult = {
             $options: ComponentOptionsBase<ToResolvedProps<{}, {}>, {
                 $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
                 classes: Record<string, any>;
-                isActual: boolean;
                 headerRows: unknown[];
-                caption?: string | undefined;
+                isActual: boolean;
                 rows?: unknown[] | undefined;
-                rowColumns?: unknown[] | undefined;
-                columnWidth?: string | undefined;
-                resolveClasses?: Function | undefined;
-                idPrefix?: string | undefined;
                 footerRows?: unknown[] | undefined;
+                idPrefix?: string | undefined;
+                caption?: string | undefined;
                 getRowValue?: Function | undefined;
                 getColumnTitle?: Function | undefined;
+                rowColumns?: unknown[] | undefined;
+                resolveClasses?: Function | undefined;
+                columnWidth?: string | undefined;
                 $props: {
                     readonly classes?: Record<string, any> | undefined;
-                    readonly isActual?: boolean | undefined;
                     readonly headerRows?: unknown[] | undefined;
-                    readonly caption?: string | undefined;
+                    readonly isActual?: boolean | undefined;
                     readonly rows?: unknown[] | undefined;
-                    readonly rowColumns?: unknown[] | undefined;
-                    readonly columnWidth?: string | undefined;
-                    readonly resolveClasses?: Function | undefined;
-                    readonly idPrefix?: string | undefined;
                     readonly footerRows?: unknown[] | undefined;
+                    readonly idPrefix?: string | undefined;
+                    readonly caption?: string | undefined;
                     readonly getRowValue?: Function | undefined;
                     readonly getColumnTitle?: Function | undefined;
+                    readonly rowColumns?: unknown[] | undefined;
+                    readonly resolveClasses?: Function | undefined;
+                    readonly columnWidth?: string | undefined;
                 };
             }, {}, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, {}, {}, string, {}, GlobalComponents, GlobalDirectives, string, ComponentProvideOptions> & MergedComponentOptionsOverride;
             $forceUpdate: () => void;
             $nextTick: typeof nextTick;
             $watch<T extends string | ((...args: any) => any)>(source: T, cb: T extends (...args: any) => infer R ? (args_0: R, args_1: R, args_2: OnCleanup) => any : (args_0: any, args_1: any, args_2: OnCleanup) => any, options?: WatchOptions<boolean> | undefined): WatchStopHandle;
-        } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "caption" | "rows" | "rowColumns" | "columnWidth" | "resolveClasses" | "isActual" | "idPrefix" | "headerRows" | "footerRows" | "getRowValue" | "getColumnTitle"> & ShallowUnwrapRef<{
+        } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "rows" | "footerRows" | "idPrefix" | "caption" | "getRowValue" | "getColumnTitle" | "headerRows" | "rowColumns" | "resolveClasses" | "columnWidth" | "isActual"> & ShallowUnwrapRef<{
             $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
             classes: Record<string, any>;
-            isActual: boolean;
             headerRows: unknown[];
-            caption?: string | undefined;
+            isActual: boolean;
             rows?: unknown[] | undefined;
-            rowColumns?: unknown[] | undefined;
-            columnWidth?: string | undefined;
-            resolveClasses?: Function | undefined;
-            idPrefix?: string | undefined;
             footerRows?: unknown[] | undefined;
+            idPrefix?: string | undefined;
+            caption?: string | undefined;
             getRowValue?: Function | undefined;
             getColumnTitle?: Function | undefined;
+            rowColumns?: unknown[] | undefined;
+            resolveClasses?: Function | undefined;
+            columnWidth?: string | undefined;
             $props: {
                 readonly classes?: Record<string, any> | undefined;
-                readonly isActual?: boolean | undefined;
                 readonly headerRows?: unknown[] | undefined;
-                readonly caption?: string | undefined;
+                readonly isActual?: boolean | undefined;
                 readonly rows?: unknown[] | undefined;
-                readonly rowColumns?: unknown[] | undefined;
-                readonly columnWidth?: string | undefined;
-                readonly resolveClasses?: Function | undefined;
-                readonly idPrefix?: string | undefined;
                 readonly footerRows?: unknown[] | undefined;
+                readonly idPrefix?: string | undefined;
+                readonly caption?: string | undefined;
                 readonly getRowValue?: Function | undefined;
                 readonly getColumnTitle?: Function | undefined;
+                readonly rowColumns?: unknown[] | undefined;
+                readonly resolveClasses?: Function | undefined;
+                readonly columnWidth?: string | undefined;
             };
         }> & ExtractComputedReturns<{}> & ComponentCustomProperties & {} & {
             $slots: Partial<Record<any, (_: {
@@ -437,62 +437,62 @@ type __VLS_TemplateResult = {
             $options: ComponentOptionsBase<ToResolvedProps<{}, {}>, {
                 $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
                 classes: Record<string, any>;
-                isActual: boolean;
                 headerRows: unknown[];
-                caption?: string | undefined;
+                isActual: boolean;
                 rows?: unknown[] | undefined;
-                rowColumns?: unknown[] | undefined;
-                columnWidth?: string | undefined;
-                resolveClasses?: Function | undefined;
-                idPrefix?: string | undefined;
                 footerRows?: unknown[] | undefined;
+                idPrefix?: string | undefined;
+                caption?: string | undefined;
                 getRowValue?: Function | undefined;
                 getColumnTitle?: Function | undefined;
+                rowColumns?: unknown[] | undefined;
+                resolveClasses?: Function | undefined;
+                columnWidth?: string | undefined;
                 $props: {
                     readonly classes?: Record<string, any> | undefined;
-                    readonly isActual?: boolean | undefined;
                     readonly headerRows?: unknown[] | undefined;
-                    readonly caption?: string | undefined;
+                    readonly isActual?: boolean | undefined;
                     readonly rows?: unknown[] | undefined;
-                    readonly rowColumns?: unknown[] | undefined;
-                    readonly columnWidth?: string | undefined;
-                    readonly resolveClasses?: Function | undefined;
-                    readonly idPrefix?: string | undefined;
                     readonly footerRows?: unknown[] | undefined;
+                    readonly idPrefix?: string | undefined;
+                    readonly caption?: string | undefined;
                     readonly getRowValue?: Function | undefined;
                     readonly getColumnTitle?: Function | undefined;
+                    readonly rowColumns?: unknown[] | undefined;
+                    readonly resolveClasses?: Function | undefined;
+                    readonly columnWidth?: string | undefined;
                 };
             }, {}, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, {}, {}, string, {}, GlobalComponents, GlobalDirectives, string, ComponentProvideOptions> & MergedComponentOptionsOverride;
             $forceUpdate: () => void;
             $nextTick: typeof nextTick;
             $watch<T extends string | ((...args: any) => any)>(source: T, cb: T extends (...args: any) => infer R ? (args_0: R, args_1: R, args_2: OnCleanup) => any : (args_0: any, args_1: any, args_2: OnCleanup) => any, options?: WatchOptions<boolean> | undefined): WatchStopHandle;
-        } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "caption" | "rows" | "rowColumns" | "columnWidth" | "resolveClasses" | "isActual" | "idPrefix" | "headerRows" | "footerRows" | "getRowValue" | "getColumnTitle"> & ShallowUnwrapRef<{
+        } & Readonly<{}> & Omit<Readonly<{}> & Readonly<{}>, "$props" | "$emit" | "classes" | "rows" | "footerRows" | "idPrefix" | "caption" | "getRowValue" | "getColumnTitle" | "headerRows" | "rowColumns" | "resolveClasses" | "columnWidth" | "isActual"> & ShallowUnwrapRef<{
             $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
             classes: Record<string, any>;
-            isActual: boolean;
             headerRows: unknown[];
-            caption?: string | undefined;
+            isActual: boolean;
             rows?: unknown[] | undefined;
-            rowColumns?: unknown[] | undefined;
-            columnWidth?: string | undefined;
-            resolveClasses?: Function | undefined;
-            idPrefix?: string | undefined;
             footerRows?: unknown[] | undefined;
+            idPrefix?: string | undefined;
+            caption?: string | undefined;
             getRowValue?: Function | undefined;
             getColumnTitle?: Function | undefined;
+            rowColumns?: unknown[] | undefined;
+            resolveClasses?: Function | undefined;
+            columnWidth?: string | undefined;
             $props: {
                 readonly classes?: Record<string, any> | undefined;
-                readonly isActual?: boolean | undefined;
                 readonly headerRows?: unknown[] | undefined;
-                readonly caption?: string | undefined;
+                readonly isActual?: boolean | undefined;
                 readonly rows?: unknown[] | undefined;
-                readonly rowColumns?: unknown[] | undefined;
-                readonly columnWidth?: string | undefined;
-                readonly resolveClasses?: Function | undefined;
-                readonly idPrefix?: string | undefined;
                 readonly footerRows?: unknown[] | undefined;
+                readonly idPrefix?: string | undefined;
+                readonly caption?: string | undefined;
                 readonly getRowValue?: Function | undefined;
                 readonly getColumnTitle?: Function | undefined;
+                readonly rowColumns?: unknown[] | undefined;
+                readonly resolveClasses?: Function | undefined;
+                readonly columnWidth?: string | undefined;
             };
         }> & ExtractComputedReturns<{}> & ComponentCustomProperties & {} & {
             $slots: Partial<Record<any, (_: {

@@ -6,9 +6,9 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     classes: Record<string, any>;
     compact: boolean;
+    table: boolean;
     inline: boolean;
     inlineAll: boolean;
-    table: boolean;
     separated: boolean;
     separatedFirst: boolean;
     separatedLast: boolean;
@@ -17,9 +17,9 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     $props: {
         readonly classes?: Record<string, any> | undefined;
         readonly compact?: boolean | undefined;
+        readonly table?: boolean | undefined;
         readonly inline?: boolean | undefined;
         readonly inlineAll?: boolean | undefined;
-        readonly table?: boolean | undefined;
         readonly separated?: boolean | undefined;
         readonly separatedFirst?: boolean | undefined;
         readonly separatedLast?: boolean | undefined;

@@ -1,13 +1,13 @@
-import { ref as i, computed as v, nextTick as ve, watch as Z, onMounted as Pe, onBeforeUnmount as We, createElementBlock as me, openBlock as E, normalizeClass as T, createElementVNode as m, createBlock as ee, createCommentVNode as we, createVNode as ye, normalizeStyle as te, createSlots as P, renderList as W, withCtx as z, renderSlot as b, normalizeProps as V, guardReactiveProps as B, withDirectives as ze, resolveDynamicComponent as Ve, createTextVNode as be, vShow as Be } from "vue";
-import { isArrayOfObjects as oe } from "../../../utils/props.js";
-import _ from "./UluTableStickyTable.vue.js";
-import { debounce as _e } from "@ulu/utils/performance.js";
-import { runAfterFramePaint as Oe } from "@ulu/utils/browser/performance.js";
-import Xe from "lodash-es/cloneDeep.js";
-const Ie = { class: "table-sticky__sticky-wrap table-sticky__sticky-wrap--header" }, Fe = { class: "table-sticky__header-wrap" }, je = { class: "table-sticky__sticky-wrap table-sticky__sticky-wrap--first-column-header" }, Ne = { class: "table-sticky__sticky-wrap table-sticky__sticky-wrap--controls" }, Me = {
+import { ref as c, computed as v, onMounted as Re, onBeforeUnmount as Se, createElementBlock as se, openBlock as C, normalizeClass as p, createElementVNode as d, createBlock as U, createCommentVNode as ne, createVNode as ae, normalizeStyle as I, unref as h, createSlots as $, renderList as T, withCtx as A, renderSlot as m, normalizeProps as z, guardReactiveProps as W, withDirectives as xe, resolveDynamicComponent as Ee, createTextVNode as re, vShow as Le, nextTick as ie } from "vue";
+import { isArrayOfObjects as Y } from "../../../utils/props.js";
+import P from "./UluTableStickyTable.vue.js";
+import { debounce as pe } from "@ulu/utils/performance.js";
+import { runAfterFramePaint as $e } from "@ulu/utils/browser/performance.js";
+import { useTableData as Te } from "../../../composables/useTableData.js";
+const Ae = { class: "table-sticky__sticky-wrap table-sticky__sticky-wrap--header" }, ze = { class: "table-sticky__header-wrap" }, We = { class: "table-sticky__sticky-wrap table-sticky__sticky-wrap--first-column-header" }, Pe = { class: "table-sticky__sticky-wrap table-sticky__sticky-wrap--controls" }, He = {
   key: 2,
   class: "table-sticky__controls-inner"
-}, De = ["disabled"], Ue = ["disabled"], tt = {
+}, Ve = ["disabled"], Be = ["disabled"], qe = {
   __name: "UluTableSticky",
   props: {
     /**
@@ -59,7 +59,7 @@ const Ie = { class: "table-sticky__sticky-wrap table-sticky__sticky-wrap--header
      */
     columns: {
       type: Array,
-      validator: oe,
+      validator: Y,
       required: !0
     },
     /**
@@ -80,14 +80,14 @@ const Ie = { class: "table-sticky__sticky-wrap table-sticky__sticky-wrap--header
      */
     rows: {
       type: Array,
-      validator: oe
+      validator: Y
     },
     /**
      * Array of rows for footer (tfoot)
      */
     footerRows: {
       type: Array,
-      validator: oe
+      validator: Y
     },
     /**
      * Enables the visibility of the scroll controls
@@ -114,329 +114,291 @@ const Ie = { class: "table-sticky__sticky-wrap table-sticky__sticky-wrap--header
     }
   },
   emits: ["column-sort"],
-  setup(n, { emit: ge }) {
-    const le = () => window.innerWidth;
-    let se = le();
-    const r = n, Ce = ge, O = i(null), a = i(null), $ = i(null), X = (e) => {
-      let o = 0;
-      return () => `${r.idPrefix}-${e}-${++o}`;
-    }, ne = () => {
-      const e = X("c"), o = Xe(r.columns), s = (t, l) => {
-        t.id = e(), t.parent = l, t.width = "auto", t.boxWidth = null, t.sortApplied = !1, t.sortAscending = !1, t.sortFocused = !1;
-        let c = [];
-        l && (l.headers && l.headers.length ? c = [...l.headers] : c.push(l.id)), c.push(t.id), t.headers = c, t.columns ? t.columns.forEach((u) => s(u, t)) : !t.key && !t.value && !t.slot && console.warn("UluTableSticky: Missing 'key', 'value' or 'slot' in column configuration for", t);
-      };
-      return o.forEach((t) => s(t, null)), o;
-    }, re = (e, o) => {
-      const s = o.columns ? o.columns.reduce(re, 1) + 1 : 1;
-      return e > s ? e : s;
-    }, ae = (e) => {
-      const o = X("hr"), s = e.reduce(re, 1), t = "auto", l = new Array(s).fill(null).map(() => ({
-        height: t,
-        boxHeight: null,
-        columns: [],
-        id: o()
-      }));
-      function c(u, h) {
-        const y = h.columns;
-        y && y.forEach((Q) => c(1 + u, Q)), h.rowspan = y ? 1 : s - u, h.colspan = y ? y.reduce((Q, Te) => Q + Te.colspan, 0) : 1, l[u].columns.push(h);
-      }
-      return e.forEach((u) => c(0, u)), l;
-    }, L = (e) => {
-      const o = X(e ? "fr" : "br"), s = e ? r.footerRows : r.rows;
-      return s ? s.map((t) => ({
-        height: null,
-        boxHeight: null,
-        data: t,
-        id: o()
-      })) : [];
-    }, g = i(ne()), C = i(L()), k = i(L(!0)), d = i(ae(g.value)), R = i(!1), I = i("auto"), F = i(!1), S = i(!1), p = i(!1), x = i(!1), j = i(!1);
-    let f = null;
-    f = new ResizeObserver(() => xe());
-    const ke = v(() => r.scrollControls && S.value), N = v(() => R.value && S.value), ie = v(() => N.value ? "1" : "0"), ce = v(() => {
-      const e = g.value, o = [], s = (l) => {
-        l.columns ? l.columns.forEach(s) : o.push(l);
-      };
-      e.forEach(s);
-      let t = [];
-      return o.forEach((l, c) => {
-        const u = t.slice();
-        l.getRowHeaders = (h) => u.map((y) => y(h)).join(" "), l.rowHeader && (l.getRowHeaderId = (h) => `${r.idPrefix}-rh-${h}-${c}`, t.push(l.getRowHeaderId));
-      }), o;
-    }), ue = v(() => d.value.reduce((e, o) => e + o.boxHeight, 0)), M = v(() => {
-      const e = d.value[0], s = [Object.assign({}, e.columns[0], { rowspan: 1, colspan: 1 })];
+  setup(o, { emit: ce }) {
+    const G = () => window.innerWidth;
+    let J = G();
+    const r = o, ue = ce, H = c(null), a = c(null), k = c(null), K = () => {
+      le(), ie(() => {
+        q(), F(), N(), X();
+      });
+    }, {
+      currentColumns: de,
+      currentRows: R,
+      currentFooterRows: S,
+      headerRows: i,
+      rowColumns: x
+    } = Te(r, K), y = c(!1), V = c("auto"), B = c(!1), b = c(!1), w = c(!1), g = c(!1), _ = c(!1);
+    let u = null;
+    u = new ResizeObserver(() => ye());
+    const fe = v(() => r.scrollControls && b.value), O = v(() => y.value && b.value), Q = v(() => O.value ? "1" : "0"), Z = v(() => i.value ? i.value.reduce((e, l) => e + l.boxHeight, 0) : 0), E = v(() => {
+      if (!i.value?.length) return [];
+      const e = i.value[0];
+      if (!e?.columns?.length) return [];
+      const n = [Object.assign({}, e.columns[0], { rowspan: 1, colspan: 1 })];
       return [{
         ...e,
-        columns: s,
-        boxHeight: ue.value,
-        height: `${ue.value}px`
+        columns: n,
+        boxHeight: Z.value,
+        height: `${Z.value}px`
       }];
-    }), Re = v(() => [ce.value[0]]), Se = v(() => {
-      const e = M.value[0].height;
-      return { width: d.value[0].columns[0].width, height: e };
-    }), pe = (e) => {
-      const o = (s) => {
-        s.forEach((t) => {
-          e.key !== t.key && (t.sortApplied = !1, t.sortAscending = !1), t.columns && o(t.columns);
+    }), ve = v(() => !x.value || !x.value.length ? [] : [x.value[0]]), he = v(() => {
+      if (!E.value?.length || !i.value?.[0]?.columns?.length)
+        return { width: "auto", height: "auto" };
+      const e = E.value[0].height;
+      return { width: i.value[0].columns[0].width, height: e };
+    }), me = (e) => {
+      const l = (n) => {
+        n.forEach((t) => {
+          e.key !== t.key && (t.sortApplied = !1, t.sortAscending = !1), t.columns && l(t.columns);
         });
       };
-      o(g.value);
-    }, A = (e) => {
-      pe(e), e.sortApplied ? e.sortAscending = !e.sortAscending : e.sortApplied = !0, Ce("column-sort", e);
-    }, xe = () => {
-      j.value && H();
-    }, Ee = (e) => {
-      f && f.observe(e);
-    }, $e = (e) => {
-      f && f.unobserve(e);
-    }, w = (e, o = null) => {
+      l(de.value);
+    }, L = (e) => {
+      me(e), e.sortApplied ? e.sortAscending = !e.sortAscending : e.sortApplied = !0, ue("column-sort", e);
+    }, ye = () => {
+      _.value && K();
+    }, be = (e) => {
+      u && u.observe(e);
+    }, we = (e) => {
+      u && u.unobserve(e);
+    }, f = (e, l = null) => {
       if (!(typeof e > "u"))
-        return typeof e == "function" ? e(o) : e;
-    }, D = () => {
-      if (a.value && O.value) {
+        return typeof e == "function" ? e(l) : e;
+    }, X = () => {
+      if (a.value && H.value) {
         const e = a.value.scrollLeft;
-        O.value.$el.style.transform = `translateX(-${e}px)`;
+        H.value.$el.style.transform = `translateX(-${e}px)`;
       }
-    }, U = () => {
-      a.value && (S.value = a.value.scrollWidth > a.value.clientWidth);
-    }, q = () => {
-      if (!S.value || !a.value) return;
+    }, F = () => {
+      a.value && (b.value = a.value.scrollWidth > a.value.clientWidth);
+    }, N = () => {
+      if (!b.value || !a.value) return;
       const e = a.value;
-      p.value = e.scrollLeft > 0, x.value = e.clientWidth + e.scrollLeft < e.scrollWidth;
-    }, de = _e(() => {
-      const e = le();
-      se !== e && (se = e, F.value ? (F.value = !1, K(), U(), D()) : (F.value = !0, he()));
-    }, 500, !0), H = () => {
-      he(), ve(() => {
-        K(), U(), q(), D();
-      });
-    }, fe = () => {
-      q(), D();
-    }, Y = () => {
-    }, Le = () => {
-      a.value && a.value.addEventListener("scroll", fe), r.scrollContext && r.scrollContext.addEventListener("touchmove", Y), window.addEventListener("resize", de);
-    }, Ae = () => {
-      a.value && a.value.removeEventListener("scroll", fe), r.scrollContext && (r.scrollContext.removeEventListener("scroll", Y), r.scrollContext.removeEventListener("touchmove", Y)), window.removeEventListener("resize", de);
-    }, he = () => {
-      j.value = !1, R.value = !1;
-      const e = (o) => {
-        o.boxHeight = null, o.height = "auto";
+      w.value = e.scrollLeft > 0, g.value = e.clientWidth + e.scrollLeft < e.scrollWidth;
+    }, ee = pe(() => {
+      const e = G();
+      J !== e && (J = e, B.value ? (B.value = !1, q(), F(), X()) : (B.value = !0, le()));
+    }, 500, !0), te = () => {
+      N(), X();
+    }, j = () => {
+    }, ge = () => {
+      a.value && a.value.addEventListener("scroll", te), r.scrollContext && r.scrollContext.addEventListener("touchmove", j), window.addEventListener("resize", ee);
+    }, Ce = () => {
+      a.value && a.value.removeEventListener("scroll", te), r.scrollContext && (r.scrollContext.removeEventListener("scroll", j), r.scrollContext.removeEventListener("touchmove", j)), window.removeEventListener("resize", ee);
+    }, le = () => {
+      _.value = !1, y.value = !1;
+      const e = (l) => {
+        l.boxHeight = null, l.height = "auto";
       };
-      I.value = "auto", d.value.forEach((o) => {
-        e(o), o.columns.forEach((s) => {
-          s.boxWidth = null, s.width = "auto";
+      V.value = "auto", i.value.forEach((l) => {
+        e(l), l.columns.forEach((n) => {
+          n.boxWidth = null, n.width = "auto";
         });
-      }), r.firstColumnSticky && (C.value.forEach((o) => e(o)), k.value.forEach((o) => e(o)));
-    }, G = () => {
+      }), r.firstColumnSticky && (R.value.forEach((l) => e(l)), S.value.forEach((l) => e(l)));
+    }, D = () => {
       const e = a.value;
       if (!e) return;
-      const o = e.scrollLeft, s = r.scrollControlAmount, t = o - s;
+      const l = e.scrollLeft, n = r.scrollControlAmount, t = l - n;
       e.scroll({
         left: t < 0 ? 0 : t,
         behavior: "smooth"
       });
-    }, J = () => {
+    }, M = () => {
       const e = a.value;
       if (!e) return;
-      const o = e.scrollWidth, s = e.scrollLeft, t = r.scrollControlAmount, l = s + t;
+      const l = e.scrollWidth, n = e.scrollLeft, t = r.scrollControlAmount, s = n + t;
       e.scroll({
-        left: l > o ? o : l,
+        left: s > l ? l : s,
         behavior: "smooth"
       });
-    }, K = () => {
-      const e = (t, l) => Math.ceil(t.getBoundingClientRect()[l]);
-      $.value && $.value.$el && (I.value = `${e($.value.$el, "width")}px`);
-      const o = (t) => document.getElementById(t.id), s = (t) => {
-        const l = o(t);
-        l && (t.boxHeight = e(l, "height"), t.height = `${t.boxHeight}px`);
+    }, q = () => {
+      const e = (t, s) => Math.ceil(t.getBoundingClientRect()[s]);
+      k.value && k.value.$el && (V.value = `${e(k.value.$el, "width")}px`);
+      const l = (t) => document.getElementById(t.id), n = (t) => {
+        const s = l(t);
+        s && (t.boxHeight = e(s, "height"), t.height = `${t.boxHeight}px`);
       };
-      d.value.forEach((t) => {
-        s(t), t.columns.forEach((l) => {
-          const c = o(l);
-          c && (l.boxWidth = e(c, "width"), l.width = `${l.boxWidth}px`);
+      i.value.forEach((t) => {
+        n(t), t.columns.forEach((s) => {
+          const oe = l(s);
+          oe && (s.boxWidth = e(oe, "width"), s.width = `${s.boxWidth}px`);
         });
-      }), r.firstColumnSticky && (C.value.forEach((t) => s(t)), k.value.forEach((t) => s(t))), ve(() => {
-        R.value = !0, Oe(() => {
-          j.value = !0;
+      }), r.firstColumnSticky && (R.value.forEach((t) => n(t)), S.value.forEach((t) => n(t))), ie(() => {
+        y.value = !0, $e(() => {
+          _.value = !0;
         });
       });
-    }, He = () => {
-      K();
+    }, ke = () => {
+      q();
     };
-    return Z(() => r.columns, () => {
-      g.value = ne(), d.value = ae(g.value), H();
-    }, { deep: !0 }), Z(() => r.rows, () => {
-      C.value = L(), H();
-    }, { deep: !0 }), Z(() => r.footerRows, () => {
-      k.value = L(!0), H();
-    }, { deep: !0 }), Pe(() => {
-      Le(), U(), q();
-    }), We(() => {
-      Ae(), f && (f.disconnect(), f = null);
-    }), (e, o) => (E(), me("div", {
-      class: T(["table-sticky", {
-        "table-sticky--overflown-x": S.value,
-        "table-sticky--can-scroll-right": x.value,
-        "table-sticky--can-scroll-left": p.value
+    return Re(() => {
+      ge(), F(), N();
+    }), Se(() => {
+      Ce(), u && (u.disconnect(), u = null);
+    }), (e, l) => (C(), se("div", {
+      class: p(["table-sticky", {
+        "table-sticky--overflown-x": b.value,
+        "table-sticky--can-scroll-right": g.value,
+        "table-sticky--can-scroll-left": w.value
       }])
     }, [
-      m("div", Ie, [
-        m("div", Fe, [
-          ye(_, {
+      d("div", Ae, [
+        d("div", ze, [
+          ae(P, {
             ref_key: "header",
-            ref: O,
+            ref: H,
             class: "table-sticky__table table-sticky__table--header",
-            classes: n.classes,
-            caption: n.caption,
-            resolveClasses: w,
-            getColumnTitle: n.getColumnTitle,
-            idPrefix: n.idPrefix,
-            headerRows: d.value,
-            style: te({
-              opacity: R.value ? "1" : "0",
-              pointerEvents: R.value ? "auto" : "none",
-              width: I.value
+            classes: o.classes,
+            caption: o.caption,
+            resolveClasses: f,
+            getColumnTitle: o.getColumnTitle,
+            idPrefix: o.idPrefix,
+            headerRows: h(i),
+            style: I({
+              opacity: y.value ? "1" : "0",
+              pointerEvents: y.value ? "auto" : "none",
+              width: V.value
             }),
-            onColumnSorted: A
-          }, P({ _: 2 }, [
-            W(e.$slots, (s, t) => ({
+            onColumnSorted: L
+          }, $({ _: 2 }, [
+            T(e.$slots, (n, t) => ({
               name: t,
-              fn: z((l) => [
-                b(e.$slots, t, V(B(l)))
+              fn: A((s) => [
+                m(e.$slots, t, z(W(s)))
               ])
             }))
           ]), 1032, ["classes", "caption", "getColumnTitle", "idPrefix", "headerRows", "style"])
         ])
       ]),
-      m("div", je, [
-        n.firstColumnSticky ? (E(), ee(_, {
+      d("div", We, [
+        o.firstColumnSticky ? (C(), U(P, {
           key: 0,
           class: "table-sticky__table table-sticky__table--first-column-header",
-          classes: n.classes,
-          caption: n.caption,
-          resolveClasses: w,
-          getColumnTitle: n.getColumnTitle,
-          idPrefix: n.idPrefix,
-          headerRows: M.value,
-          style: te({
-            opacity: ie.value,
-            pointerEvents: N.value ? "auto" : "none"
+          classes: o.classes,
+          caption: o.caption,
+          resolveClasses: f,
+          getColumnTitle: o.getColumnTitle,
+          idPrefix: o.idPrefix,
+          headerRows: E.value,
+          style: I({
+            opacity: Q.value,
+            pointerEvents: O.value ? "auto" : "none"
           }),
-          onColumnSorted: A
-        }, P({ _: 2 }, [
-          W(e.$slots, (s, t) => ({
+          onColumnSorted: L
+        }, $({ _: 2 }, [
+          T(e.$slots, (n, t) => ({
             name: t,
-            fn: z((l) => [
-              b(e.$slots, t, V(B(l)))
+            fn: A((s) => [
+              m(e.$slots, t, z(W(s)))
             ])
           }))
-        ]), 1032, ["classes", "caption", "getColumnTitle", "idPrefix", "headerRows", "style"])) : we("", !0)
+        ]), 1032, ["classes", "caption", "getColumnTitle", "idPrefix", "headerRows", "style"])) : ne("", !0)
       ]),
-      m("div", Ne, [
-        ze(m("div", {
-          class: T(["table-sticky__controls", w(n.classes.controls)])
+      d("div", Pe, [
+        xe(d("div", {
+          class: p(["table-sticky__controls", f(o.classes.controls)])
         }, [
-          e.$slots.controls ? b(e.$slots, "controls", {
+          e.$slots.controls ? m(e.$slots, "controls", {
             key: 0,
-            scrollLeft: G,
-            scrollRight: J,
-            canScrollLeft: p.value,
-            canScrollRight: x.value
-          }) : n.controlsComponent ? (E(), ee(Ve(n.controlsComponent), {
+            scrollLeft: D,
+            scrollRight: M,
+            canScrollLeft: w.value,
+            canScrollRight: g.value
+          }) : o.controlsComponent ? (C(), U(Ee(o.controlsComponent), {
             key: 1,
-            scrollLeft: G,
-            scrollRight: J,
-            canScrollLeft: p.value,
-            canScrollRight: x.value
-          }, null, 8, ["canScrollLeft", "canScrollRight"])) : (E(), me("div", Me, [
-            m("button", {
-              class: T(["table-sticky__control table-sticky__control--left", w(n.classes.controlButton)]),
+            scrollLeft: D,
+            scrollRight: M,
+            canScrollLeft: w.value,
+            canScrollRight: g.value
+          }, null, 8, ["canScrollLeft", "canScrollRight"])) : (C(), se("div", He, [
+            d("button", {
+              class: p(["table-sticky__control table-sticky__control--left", f(o.classes.controlButton)]),
               "aria-label": "Scroll Left",
-              onClick: G,
-              disabled: !p.value
+              onClick: D,
+              disabled: !w.value
             }, [
-              b(e.$slots, "controlLeft", {}, () => [
-                o[0] || (o[0] = be(" ← ", -1))
+              m(e.$slots, "controlLeft", {}, () => [
+                l[0] || (l[0] = re(" ← ", -1))
               ])
-            ], 10, De),
-            m("button", {
-              class: T(["table-sticky__control table-sticky__control--right", w(n.classes.controlButton)]),
+            ], 10, Ve),
+            d("button", {
+              class: p(["table-sticky__control table-sticky__control--right", f(o.classes.controlButton)]),
               "aria-label": "Scroll Right",
-              onClick: J,
-              disabled: !x.value
+              onClick: M,
+              disabled: !g.value
             }, [
-              b(e.$slots, "controlRight", {}, () => [
-                o[1] || (o[1] = be(" → ", -1))
+              m(e.$slots, "controlRight", {}, () => [
+                l[1] || (l[1] = re(" → ", -1))
               ])
-            ], 10, Ue)
+            ], 10, Be)
           ]))
         ], 2), [
-          [Be, ke.value]
+          [Le, fe.value]
         ])
       ]),
-      m("div", {
+      d("div", {
         ref_key: "display",
         ref: a,
         class: "table-sticky__display"
       }, [
-        ye(_, {
+        ae(P, {
           ref_key: "table",
-          ref: $,
+          ref: k,
           class: "table-sticky__table table-sticky__table--actual",
-          classes: n.classes,
-          resolveClasses: w,
+          classes: o.classes,
+          resolveClasses: f,
           isActual: "",
-          headerRows: d.value,
-          rows: C.value,
-          footerRows: k.value,
-          rowColumns: ce.value,
-          caption: n.caption,
-          idPrefix: n.idPrefix,
-          getRowValue: n.getRowValue,
-          getColumnTitle: n.getColumnTitle,
-          onVnodeMounted: He,
-          onActualHeaderRemoved: $e,
-          onActualHeaderAdded: Ee,
-          onColumnSorted: A
-        }, P({ _: 2 }, [
-          W(e.$slots, (s, t) => ({
+          headerRows: h(i),
+          rows: h(R),
+          footerRows: h(S),
+          rowColumns: h(x),
+          caption: o.caption,
+          idPrefix: o.idPrefix,
+          getRowValue: o.getRowValue,
+          getColumnTitle: o.getColumnTitle,
+          onVnodeMounted: ke,
+          onActualHeaderRemoved: we,
+          onActualHeaderAdded: be,
+          onColumnSorted: L
+        }, $({ _: 2 }, [
+          T(e.$slots, (n, t) => ({
             name: t,
-            fn: z((l) => [
-              b(e.$slots, t, V(B(l)))
+            fn: A((s) => [
+              m(e.$slots, t, z(W(s)))
             ])
           }))
         ]), 1032, ["classes", "headerRows", "rows", "footerRows", "rowColumns", "caption", "idPrefix", "getRowValue", "getColumnTitle"])
       ], 512),
-      n.firstColumnSticky ? (E(), ee(_, {
+      o.firstColumnSticky ? (C(), U(P, {
         key: 0,
         class: "table-sticky__table table-sticky__table--first-column",
-        classes: n.classes,
-        resolveClasses: w,
-        caption: n.caption,
-        headerRows: M.value,
-        columnWidth: Se.value.width,
-        rows: C.value,
-        footerRows: k.value,
-        rowColumns: Re.value,
-        idPrefix: n.idPrefix,
-        getRowValue: n.getRowValue,
-        getColumnTitle: n.getColumnTitle,
-        style: te({
-          opacity: ie.value,
-          pointerEvents: N.value ? "auto" : "none"
+        classes: o.classes,
+        resolveClasses: f,
+        caption: o.caption,
+        headerRows: E.value,
+        columnWidth: he.value.width,
+        rows: h(R),
+        footerRows: h(S),
+        rowColumns: ve.value,
+        idPrefix: o.idPrefix,
+        getRowValue: o.getRowValue,
+        getColumnTitle: o.getColumnTitle,
+        style: I({
+          opacity: Q.value,
+          pointerEvents: O.value ? "auto" : "none"
         }),
-        onColumnSorted: A
-      }, P({ _: 2 }, [
-        W(e.$slots, (s, t) => ({
+        onColumnSorted: L
+      }, $({ _: 2 }, [
+        T(e.$slots, (n, t) => ({
           name: t,
-          fn: z((l) => [
-            b(e.$slots, t, V(B(l)))
+          fn: A((s) => [
+            m(e.$slots, t, z(W(s)))
           ])
         }))
-      ]), 1032, ["classes", "caption", "headerRows", "columnWidth", "rows", "footerRows", "rowColumns", "idPrefix", "getRowValue", "getColumnTitle", "style"])) : we("", !0)
+      ]), 1032, ["classes", "caption", "headerRows", "columnWidth", "rows", "footerRows", "rowColumns", "idPrefix", "getRowValue", "getColumnTitle", "style"])) : ne("", !0)
     ], 2));
   }
 };
 export {
-  tt as default
+  qe as default
 };

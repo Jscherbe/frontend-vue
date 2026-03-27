@@ -6,4 +6,5 @@ export { useBreakpointManager } from './useBreakpointManager.js';
 export { usePagination } from './usePagination.js';
 export { useDocumentTitle } from './useDocumentTitle.js';
 export { useUluFloating } from './useUluFloating.js';
+export { useTableData } from './useTableData.js';
 //# sourceMappingURL=index.d.ts.map

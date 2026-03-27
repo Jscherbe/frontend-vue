@@ -1,0 +1,68 @@
+import { ref as f, computed as E, watch as m } from "vue";
+function A(u, h = () => {
+}) {
+  const w = (o) => {
+    let s = 0;
+    return () => `${u.idPrefix || "table"}-${o}-${++s}`;
+  }, R = () => {
+    if (!u.columns) return [];
+    const o = w("c"), s = (t, n) => {
+      const e = { ...t };
+      e.id = o(), e.parent = n, e.width = "auto", e.boxWidth = null, e.sortApplied = !1, e.sortAscending = !1, e.sortFocused = !1;
+      let r = [];
+      return n && (n.headers && n.headers.length ? r = [...n.headers] : r.push(n.id)), r.push(e.id), e.headers = r, e.columns ? e.columns = e.columns.map((c) => s(c, e)) : !e.key && !e.value && !e.slot && console.warn("useTableData: Missing 'key', 'value' or 'slot' in column configuration for", e), e;
+    };
+    return u.columns.map((t) => s(t, null));
+  }, g = (o, s) => {
+    const t = s.columns ? s.columns.reduce(g, 1) + 1 : 1;
+    return o > t ? o : t;
+  }, v = (o) => {
+    if (!o || o.length === 0) return [];
+    const s = w("hr"), t = o.reduce(g, 1), n = new Array(t).fill(null).map(() => ({
+      height: "auto",
+      boxHeight: null,
+      columns: [],
+      id: s()
+    }));
+    function e(r, c) {
+      const l = c.columns;
+      l && l.forEach((i) => e(1 + r, i)), c.rowspan = l ? 1 : t - r, c.colspan = l ? l.reduce((i, $) => i + $.colspan, 0) : 1, n[r].columns.push(c);
+    }
+    return o.forEach((r) => e(0, r)), n;
+  }, d = (o, s = !1) => {
+    if (!o) return [];
+    const t = w(s ? "fr" : "br");
+    return o.map((n) => ({
+      height: null,
+      boxHeight: null,
+      data: n,
+      id: t()
+    }));
+  }, a = f(R()), H = f(d(u.rows)), b = f(d(u.footerRows, !0)), x = f(v(a.value)), I = E(() => {
+    const o = a.value, s = [], t = (e) => {
+      e.columns ? e.columns.forEach(t) : s.push(e);
+    };
+    o.forEach(t);
+    let n = [];
+    return s.forEach((e, r) => {
+      const c = n.slice();
+      e.getRowHeaders = (l) => c.map((i) => i(l)).join(" "), e.rowHeader && (e.getRowHeaderId = (l) => `${u.idPrefix || "table"}-rh-${l}-${r}`, n.push(e.getRowHeaderId));
+    }), s;
+  });
+  return m(() => u.columns, () => {
+    a.value = R(), x.value = v(a.value), h();
+  }, { deep: !0 }), m(() => u.rows, () => {
+    H.value = d(u.rows), h();
+  }, { deep: !0 }), m(() => u.footerRows, () => {
+    b.value = d(u.footerRows, !0), h();
+  }, { deep: !0 }), {
+    currentColumns: a,
+    currentRows: H,
+    currentFooterRows: b,
+    headerRows: x,
+    rowColumns: I
+  };
+}
+export {
+  A as useTableData
+};

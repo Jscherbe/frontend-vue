@@ -6,30 +6,30 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     $emit: (event: "column-sorted" | "actual-header-removed" | "actual-header-added", ...args: any[]) => void;
     classes: Record<string, any>;
-    isActual: boolean;
     headerRows: unknown[];
-    caption?: string | undefined;
+    isActual: boolean;
     rows?: unknown[] | undefined;
-    rowColumns?: unknown[] | undefined;
-    columnWidth?: string | undefined;
-    resolveClasses?: Function | undefined;
-    idPrefix?: string | undefined;
     footerRows?: unknown[] | undefined;
+    idPrefix?: string | undefined;
+    caption?: string | undefined;
     getRowValue?: Function | undefined;
     getColumnTitle?: Function | undefined;
+    rowColumns?: unknown[] | undefined;
+    resolveClasses?: Function | undefined;
+    columnWidth?: string | undefined;
     $props: {
         readonly classes?: Record<string, any> | undefined;
-        readonly isActual?: boolean | undefined;
         readonly headerRows?: unknown[] | undefined;
-        readonly caption?: string | undefined;
+        readonly isActual?: boolean | undefined;
         readonly rows?: unknown[] | undefined;
-        readonly rowColumns?: unknown[] | undefined;
-        readonly columnWidth?: string | undefined;
-        readonly resolveClasses?: Function | undefined;
-        readonly idPrefix?: string | undefined;
         readonly footerRows?: unknown[] | undefined;
+        readonly idPrefix?: string | undefined;
+        readonly caption?: string | undefined;
         readonly getRowValue?: Function | undefined;
         readonly getColumnTitle?: Function | undefined;
+        readonly rowColumns?: unknown[] | undefined;
+        readonly resolveClasses?: Function | undefined;
+        readonly columnWidth?: string | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLTableElement>;
 type __VLS_TemplateResult = {

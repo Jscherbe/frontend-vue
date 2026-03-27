@@ -11,8 +11,10 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     lines: boolean;
     forceOrdered: boolean;
     reversed: boolean;
+    itemElement: string;
     start?: string | undefined;
     items?: unknown[] | undefined;
+    element?: string | undefined;
     listStyleType?: string | undefined;
     $props: {
         readonly classes?: Record<string, any> | undefined;
@@ -22,8 +24,10 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly lines?: boolean | undefined;
         readonly forceOrdered?: boolean | undefined;
         readonly reversed?: boolean | undefined;
+        readonly itemElement?: string | undefined;
         readonly start?: string | undefined;
         readonly items?: unknown[] | undefined;
+        readonly element?: string | undefined;
         readonly listStyleType?: string | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;

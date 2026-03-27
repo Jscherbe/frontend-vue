@@ -10,10 +10,10 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     value?: Function | undefined;
     rows?: unknown[] | undefined;
     rowColumns?: unknown[] | undefined;
-    columnWidth?: string | undefined;
-    optionalAttr?: Function | undefined;
     resolveClasses?: Function | undefined;
     getCellHeaders?: Function | undefined;
+    columnWidth?: string | undefined;
+    optionalAttr?: Function | undefined;
     $props: {
         readonly isActual?: boolean | undefined;
         readonly foot?: boolean | undefined;
@@ -21,10 +21,10 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly value?: Function | undefined;
         readonly rows?: unknown[] | undefined;
         readonly rowColumns?: unknown[] | undefined;
-        readonly columnWidth?: string | undefined;
-        readonly optionalAttr?: Function | undefined;
         readonly resolveClasses?: Function | undefined;
         readonly getCellHeaders?: Function | undefined;
+        readonly columnWidth?: string | undefined;
+        readonly optionalAttr?: Function | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 type __VLS_TemplateResult = {
