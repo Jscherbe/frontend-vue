@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.5.5
+
+- `UluAction` (used by UluButton, etc)
+  - Fix download prop when passed as boolean (should just have boolean prop instead was outputting download="true") and not string (filename)
+  - Setup stories to test/confirm changes
+
 ## 0.5.4
 
 - Update peer dep @ulu/frontend to latest version

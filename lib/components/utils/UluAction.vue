@@ -69,7 +69,7 @@
       attrs.href = props.href;
       if (props.target) attrs.target = props.target;
       if (props.download) {
-        attrs.download = typeof props.download === "string" ? props.download : true;
+        attrs.download = typeof props.download === "string" ? props.download : "";
       }
     } else if (!props.element || props.element === "button") {
       // It's a button, ensure it doesn't accidentally submit forms unless requested
