@@ -20,6 +20,7 @@ export default defineConfig({
       entry: [
         resolve(__dirname, 'lib/index.js'),
         resolve(__dirname, 'lib/resolver.js'),
+        resolve(__dirname, 'lib/vite.js'),
       ],
       formats: ["es"]
     },

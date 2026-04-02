@@ -23,6 +23,7 @@ export { default as UluDefinitionListItem } from './elements/UluDefinitionListIt
 export { default as UluExternalLink } from './elements/UluExternalLink.vue';
 export { default as UluIcon } from './elements/UluIcon.vue';
 export { default as UluImage } from './elements/UluImage.vue';
+export { default as UluImageSource } from './elements/UluImageSource.vue';
 export { default as UluList } from './elements/UluList.vue';
 export { default as UluListItem } from './elements/UluListItem.vue';
 export { default as UluCounterList } from './elements/UluCounterList.vue';
