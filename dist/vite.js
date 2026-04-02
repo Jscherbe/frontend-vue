@@ -1,7 +1,8 @@
-const s = {
+const r = {
   UluImage: ["src"],
-  UluImageSource: ["srcset"]
+  UluImageSource: ["srcset"],
+  UluCard: ["imageSrc"]
 };
 export {
-  s as uluTransformAssetUrls
+  r as uluTransformAssetUrls
 };

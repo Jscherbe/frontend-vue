@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.5.9
+
+- Update "uluTransformAssetUrls" in vite module to include "imageSrc" for UluCard
+  - So that vite automatically resolves paths in this prop. You need to include "uluTransformAssetUrls" in your vite config for this to work
+
 ## 0.5.8
 
 - `UluCard` | Going to keep props `imageSrc` and `imageAlt` as they are useful for simple composition over defining slots or `image` property (object passed to UluImage)
