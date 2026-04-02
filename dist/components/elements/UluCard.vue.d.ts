@@ -22,6 +22,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     titleTo?: string | Record<string, any> | undefined;
     titleHref?: string | undefined;
     titleTarget?: string | undefined;
+    image?: string | Record<string, any> | undefined;
     imageSrc?: string | undefined;
     imageAlt?: string | undefined;
     $props: {
@@ -42,6 +43,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly titleTo?: string | Record<string, any> | undefined;
         readonly titleHref?: string | undefined;
         readonly titleTarget?: string | undefined;
+        readonly image?: string | Record<string, any> | undefined;
         readonly imageSrc?: string | undefined;
         readonly imageAlt?: string | undefined;
     };

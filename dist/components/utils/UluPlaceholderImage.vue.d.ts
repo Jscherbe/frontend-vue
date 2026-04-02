@@ -11,6 +11,6 @@ declare const _default: import('vue').DefineComponent<{}, {
         readonly alt?: string | undefined;
         readonly imageId?: string | undefined;
     };
-}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLImageElement>;
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 export default _default;
 //# sourceMappingURL=UluPlaceholderImage.vue.d.ts.map

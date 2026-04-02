@@ -1,6 +1,7 @@
-import { computed as n, createElementBlock as d, openBlock as h } from "vue";
-import { randomInt as o } from "@ulu/utils/random.js";
-const s = ["src", "alt"], g = {
+import { computed as o, createBlock as m, openBlock as d } from "vue";
+import { randomInt as n } from "@ulu/utils/random.js";
+import h from "../elements/UluImage.vue.js";
+const g = {
   __name: "UluPlaceholderImage",
   props: {
     imageId: String,
@@ -28,17 +29,17 @@ const s = ["src", "alt"], g = {
     random: Boolean
   },
   setup(e) {
-    const t = e, a = n(() => t.random ? {
-      width: o(500, 1e3),
-      height: o(500, 1e3)
-    } : { width: t.width, height: t.height }), c = n(() => {
+    const t = e, a = o(() => t.random ? {
+      width: n(500, 1e3),
+      height: n(500, 1e3)
+    } : { width: t.width, height: t.height }), c = o(() => {
       const { width: r, height: i } = a.value;
       return `https://picsum.photos/${t.imageId ? `id/${t.imageId}/` : ""}${r}/${i}`;
     });
-    return (r, i) => (h(), d("img", {
+    return (r, i) => (d(), m(h, {
       src: c.value,
       alt: e.alt
-    }, null, 8, s));
+    }, null, 8, ["src", "alt"]));
   }
 };
 export {
