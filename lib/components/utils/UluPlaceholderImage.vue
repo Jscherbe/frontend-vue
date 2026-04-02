@@ -1,10 +1,11 @@
 <template>
-  <img :src="src" :alt="alt">
+  <UluImage :src="src" :alt="alt" />
 </template>
 
 <script setup>
   import { computed } from 'vue';
   import { randomInt } from "@ulu/utils/random.js";
+  import UluImage from "../elements/UluImage.vue";
 
   const props = defineProps({
     imageId: String,

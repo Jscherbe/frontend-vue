@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.5.7
+
+- `UluCard` (**Deprecated Props**)
+  - Replaced `imageSrc` and `imageAlt` with a unified `image` prop. The `image` prop accepts a simple string (for src) or an object (to pass complex `UluImage` props like `src`, `alt`, `sources`, and `classes`). `imageSrc` and `imageAlt` still work but will trigger deprecation warnings in the console during development.
+- `UluPlaceholderImage`
+  - Now uses `UluImage` internally to ensure consistent image rendering across the library.
+
 ## 0.5.6
 
 - `UluImageSource` (new component for composing sources within UluImage for DEX)

@@ -61,7 +61,7 @@
       </div>
     </div>
     <div 
-      v-if="$slots.image || imageSrc" 
+      v-if="$slots.image || resolvedImage" 
       class="card__image"
       :class="[
         { 'card__image--icon' : imageIcon },
@@ -69,7 +69,7 @@
       ]"
     >
       <slot name="image">
-        <img :src="imageSrc" :alt="imageAlt">
+        <UluImage v-bind="resolvedImage" />
       </slot>
     </div>
     <div class="card__footer" v-if="$slots.footer">
@@ -83,6 +83,8 @@
   import { RouterLink } from "vue-router";
   import { useModifiers } from "../../composables/useModifiers.js";
   import { refToElement } from '../../utils/dom.js';
+  import { warnDeprecatedProp } from '../../utils/props.js';
+  import UluImage from './UluImage.vue';
 
   const props = defineProps({
     /**
@@ -156,11 +158,17 @@
       default: () => ({})
     },
     /**
-     * Source of image
+     * Unified image prop configuration passed to UluImage. Can be a string (src) or an object matching UluImage props.
+     */
+    image: [String, Object],
+    /**
+     * This is deprecated and will be removed in future version use "image" prop or image slot
+     * @deprecated Use `image` instead.
      */
     imageSrc: String,
     /**
-     * Alt text for image
+     * This is deprecated and will be removed in future version use "image" prop or image slot
+     * @deprecated Use `image` (as an object with `alt`) instead.
      */
     imageAlt: String,
     /**
@@ -196,6 +204,26 @@
   if ((props.titleTo || props.titleHref) && (props.to || props.href)) {
     console.warn("UluCard: 'titleTo'/'titleHref' should not be used with 'to'/'href'.");
   }
+
+  // Deprecation Warnings
+  // - Note these should be removed in the next minor or maybe major release
+  warnDeprecatedProp('UluCard', props, 'imageSrc', 'image');
+  warnDeprecatedProp('UluCard', props, 'imageAlt', 'image');
+
+  const resolvedImage = computed(() => {
+    if (props.image) {
+      if (typeof props.image === 'string') {
+        return { src: props.image };
+      }
+      return props.image;
+    } else if (props.imageSrc) {
+      return {
+        src: props.imageSrc,
+        alt: props.imageAlt || ''
+      };
+    }
+    return null;
+  });
 
   // --- Template refs
   const cardRoot = ref(null);
