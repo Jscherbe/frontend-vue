@@ -190,3 +190,31 @@ export default defineConfig({
   // ...
 });
 ```
+
+### Vite Asset URLs
+
+When using components like `UluImage` and `UluImageSource`, you may want to pass relative asset paths directly as props (e.g. `<UluImage src="./assets/img.png" />`) instead of manually importing them in your setup script. 
+
+To enable Vite to automatically resolve these paths, you can add our custom transform rules to the Vue plugin in your `vite.config.js`:
+
+```js
+// vite.config.js
+
+import { defineConfig } from "vite";
+import vue from "@vitejs/plugin-vue";
+import { uluTransformAssetUrls } from "@ulu/frontend-vue/vite.js";
+
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        transformAssetUrls: {
+          ...uluTransformAssetUrls
+        }
+      }
+    }),
+    // ...
+  ],
+  // ...
+});
+```

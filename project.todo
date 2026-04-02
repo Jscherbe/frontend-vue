@@ -1,4 +1,5 @@
 Todos:
+  ☐ Should probably go through and replace components that accept image props to use new UluImage under the hood so it's unified/DRY/less code to maintain (ie. card, etc)
   ✔ Should we have UluListItem for static non-data-driven stuff @done
     * What about other items like this could scale or be expected for <dl> or menu components
   ☐ Need to see if we can make github pages cache less persistent (like 1 day) @priority-low

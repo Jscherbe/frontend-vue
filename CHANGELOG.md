@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.5.6
+
+- `UluImageSource` (new component for composing sources within UluImage for DEX)
+  - The new component is designed to be passed through slot on `<UluImage>` so you don't need to import the image (in `<script>`) just to pass it. This works alongside the new `uluTransformAssetUrls` utility to allow writing image paths directly on UluImage "src" and UluImageSource "srcset" props.
+- `vite.js` (new module)
+  - A new module (`@ulu/frontend-vue/vite.js`) specifically for Vite integrations. Currently it provides the `uluTransformAssetUrls` export to be used in the Vue Vite plugin (`vite.config.js`) to automatically resolve relative asset URLs for UluImage and UluImageSource components. See documentation for details.
+
 ## 0.5.5
 
 - `UluAction` (used by UluButton, etc)

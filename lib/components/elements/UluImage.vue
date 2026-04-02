@@ -1,6 +1,7 @@
 <template>
-  <picture v-if="sources?.length" :class="classes?.picture">
-    <source 
+  <picture v-if="sources?.length || $slots.default" :class="classes?.picture">
+    <slot />
+    <UluImageSource 
       v-for="(source, index) in sources" 
       :key="index"
       v-bind="source" 
@@ -23,6 +24,8 @@
 </template>
 
 <script setup>
+  import UluImageSource from './UluImageSource.vue';
+
   defineOptions({
     inheritAttrs: false
   });
