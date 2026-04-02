@@ -83,7 +83,6 @@
   import { RouterLink } from "vue-router";
   import { useModifiers } from "../../composables/useModifiers.js";
   import { refToElement } from '../../utils/dom.js';
-  import { warnDeprecatedProp } from '../../utils/props.js';
   import UluImage from './UluImage.vue';
 
   const props = defineProps({
@@ -158,17 +157,17 @@
       default: () => ({})
     },
     /**
-     * Unified image prop configuration passed to UluImage. Can be a string (src) or an object matching UluImage props.
+     * Advanced configuration for the underlying `<UluImage>` component.
+     * Accepts a full configuration object (e.g., for lazy loading, srcset, etc.).
      */
-    image: [String, Object],
+    image: Object,
     /**
-     * This is deprecated and will be removed in future version use "image" prop or image slot
-     * @deprecated Use `image` instead.
+     * Convenience prop for quickly setting the image source. 
+     * For advanced image configurations, use the `image` prop or `#image` slot instead.
      */
     imageSrc: String,
     /**
-     * This is deprecated and will be removed in future version use "image" prop or image slot
-     * @deprecated Use `image` (as an object with `alt`) instead.
+     * The alt text for the image when using the `imageSrc` convenience prop.
      */
     imageAlt: String,
     /**
@@ -205,16 +204,8 @@
     console.warn("UluCard: 'titleTo'/'titleHref' should not be used with 'to'/'href'.");
   }
 
-  // Deprecation Warnings
-  // - Note these should be removed in the next minor or maybe major release
-  warnDeprecatedProp('UluCard', props, 'imageSrc', 'image');
-  warnDeprecatedProp('UluCard', props, 'imageAlt', 'image');
-
   const resolvedImage = computed(() => {
     if (props.image) {
-      if (typeof props.image === 'string') {
-        return { src: props.image };
-      }
       return props.image;
     } else if (props.imageSrc) {
       return {

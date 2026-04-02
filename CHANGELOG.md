@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.5.8
+
+- `UluCard` | Going to keep props `imageSrc` and `imageAlt` as they are useful for simple composition over defining slots or `image` property (object passed to UluImage)
+  - Remove the ability for `image` prop from previous update (0.5.7) to be string (explicitly object that aligns with `UluImage` props)
+
 ## 0.5.7
 
 - `UluCard` (**Deprecated Props**)
