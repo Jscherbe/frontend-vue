@@ -1,16 +1,15 @@
-import { useSlots as R, computed as r, ref as f, createBlock as k, openBlock as a, resolveDynamicComponent as z, normalizeStyle as V, normalizeClass as h, unref as n, withCtx as S, createElementVNode as $, createElementBlock as m, createCommentVNode as g, renderSlot as i, createTextVNode as C, toDisplayString as x, createVNode as I, normalizeProps as q, guardReactiveProps as L } from "vue";
+import { useSlots as V, computed as o, ref as f, createBlock as k, openBlock as a, resolveDynamicComponent as P, normalizeStyle as p, normalizeClass as h, unref as n, withCtx as S, createElementVNode as $, createElementBlock as m, createCommentVNode as y, renderSlot as i, createTextVNode as C, toDisplayString as x, createVNode as A, normalizeProps as I, guardReactiveProps as q } from "vue";
 import { RouterLink as B } from "vue-router";
-import { useModifiers as F } from "../../composables/useModifiers.js";
-import { refToElement as G } from "../../utils/dom.js";
-import { warnDeprecatedProp as O } from "../../utils/props.js";
-import J from "./UluImage.vue.js";
-const K = { class: "card__body" }, Q = { class: "card__main" }, W = ["href", "target"], X = {
+import { useModifiers as L } from "../../composables/useModifiers.js";
+import { refToElement as F } from "../../utils/dom.js";
+import G from "./UluImage.vue.js";
+const J = { class: "card__body" }, K = { class: "card__main" }, Q = ["href", "target"], W = {
   key: 0,
   class: "card__aside"
-}, Y = {
+}, X = {
   key: 1,
   class: "card__footer"
-}, oe = {
+}, le = {
   __name: "UluCard",
   props: {
     /**
@@ -84,17 +83,17 @@ const K = { class: "card__body" }, Q = { class: "card__main" }, W = ["href", "ta
       default: () => ({})
     },
     /**
-     * Unified image prop configuration passed to UluImage. Can be a string (src) or an object matching UluImage props.
+     * Advanced configuration for the underlying `<UluImage>` component.
+     * Accepts a full configuration object (e.g., for lazy loading, srcset, etc.).
      */
-    image: [String, Object],
+    image: Object,
     /**
-     * This is deprecated and will be removed in future version use "image" prop or image slot
-     * @deprecated Use `image` instead.
+     * Convenience prop for quickly setting the image source. 
+     * For advanced image configurations, use the `image` prop or `#image` slot instead.
      */
     imageSrc: String,
     /**
-     * This is deprecated and will be removed in future version use "image" prop or image slot
-     * @deprecated Use `image` (as an object with `alt`) instead.
+     * The alt text for the image when using the `imageSrc` convenience prop.
      */
     imageAlt: String,
     /**
@@ -120,37 +119,37 @@ const K = { class: "card__body" }, Q = { class: "card__main" }, W = ["href", "ta
     modifiers: [Array, String]
   },
   emits: ["proxy-click"],
-  setup(t, { emit: p }) {
-    const e = t, H = p, s = R();
-    e.proxyClick && (e.to || e.href) && console.warn("UluCard: 'proxyClick' is ignored when 'to' or 'href' are present."), (e.titleTo || e.titleHref) && (e.to || e.href) && console.warn("UluCard: 'titleTo'/'titleHref' should not be used with 'to'/'href'."), O("UluCard", e, "imageSrc", "image"), O("UluCard", e, "imageAlt", "image");
-    const b = r(() => e.image ? typeof e.image == "string" ? { src: e.image } : e.image : e.imageSrc ? {
+  setup(t, { emit: O }) {
+    const e = t, H = O, s = V();
+    e.proxyClick && (e.to || e.href) && console.warn("UluCard: 'proxyClick' is ignored when 'to' or 'href' are present."), (e.titleTo || e.titleHref) && (e.to || e.href) && console.warn("UluCard: 'titleTo'/'titleHref' should not be used with 'to'/'href'.");
+    const b = o(() => e.image ? e.image : e.imageSrc ? {
       src: e.imageSrc,
       alt: e.imageAlt || ""
-    } : null), T = f(null), y = f(null), { resolvedModifiers: M } = F({ props: e, baseClass: "card" }), w = f(null), c = f(!1), u = r(() => e.proxyClick && !e.to && !e.href), E = r(() => u.value && (e.titleTo || e.titleHref)), U = r(() => u.value && !E.value), v = r(() => u.value || null), P = r(() => ({
+    } : null), T = f(null), v = f(null), { resolvedModifiers: M } = L({ props: e, baseClass: "card" }), E = f(null), c = f(!1), u = o(() => e.proxyClick && !e.to && !e.href), w = o(() => u.value && (e.titleTo || e.titleHref)), j = o(() => u.value && !w.value), g = o(() => u.value || null), z = o(() => ({
       selectorPrevent: "input, select, textarea, button, a, [tabindex='-1']",
       mousedownDurationPrevent: 250,
       ...e.proxyClickOptions
-    })), j = r(() => u.value ? "pointer" : null), D = r(() => e.to ? B : e.href ? "a" : e.cardElement);
-    function A({ target: l, timeStamp: d }) {
-      if (!v.value) return;
-      const { selectorPrevent: o } = P.value;
-      c.value = !1, l.closest(o) || (c.value = !0, w.value = d);
+    })), D = o(() => u.value ? "pointer" : null), N = o(() => e.to ? B : e.href ? "a" : e.cardElement);
+    function R({ target: l, timeStamp: d }) {
+      if (!g.value) return;
+      const { selectorPrevent: r } = z.value;
+      c.value = !1, l.closest(r) || (c.value = !0, E.value = d);
     }
-    function N({ timeStamp: l }) {
-      if (!v.value || !c.value) return;
-      const { mousedownDurationPrevent: d } = P.value;
-      if (l - w.value < d) {
-        if (E.value) {
-          const o = G(y.value);
-          o ? o.click() : console.warn("Unable to resolve title link ref");
-        } else if (U.value) {
-          const o = T.value?.querySelector("[data-ulu-card-proxy-target]");
-          o ? o.click() : H("proxy-click");
+    function U({ timeStamp: l }) {
+      if (!g.value || !c.value) return;
+      const { mousedownDurationPrevent: d } = z.value;
+      if (l - E.value < d) {
+        if (w.value) {
+          const r = F(v.value);
+          r ? r.click() : console.warn("Unable to resolve title link ref");
+        } else if (j.value) {
+          const r = T.value?.querySelector("[data-ulu-card-proxy-target]");
+          r ? r.click() : H("proxy-click");
         }
       }
       c.value = !1;
     }
-    return (l, d) => (a(), k(z(D.value), {
+    return (l, d) => (a(), k(P(N.value), {
       ref_key: "cardRoot",
       ref: T,
       class: h(["card", [
@@ -161,18 +160,18 @@ const K = { class: "card__body" }, Q = { class: "card__main" }, W = ["href", "ta
         },
         n(M)
       ]]),
-      onMousedown: A,
-      onMouseup: N,
-      style: V({ cursor: j.value }),
+      onMousedown: R,
+      onMouseup: U,
+      style: p({ cursor: D.value }),
       target: t.target,
       to: t.to,
       href: t.href,
-      "data-ulu-proxy-click-init": v.value
+      "data-ulu-proxy-click-init": g.value
     }, {
       default: S(() => [
-        $("div", K, [
-          $("div", Q, [
-            t.title || n(s).title ? (a(), k(z(t.titleElement), {
+        $("div", J, [
+          $("div", K, [
+            t.title || n(s).title ? (a(), k(P(t.titleElement), {
               key: 0,
               class: h(["card__title", t.classes.title])
             }, {
@@ -182,7 +181,7 @@ const K = { class: "card__body" }, Q = { class: "card__main" }, W = ["href", "ta
                   class: "card__title-link",
                   to: t.titleTo,
                   ref_key: "link",
-                  ref: y
+                  ref: v
                 }, {
                   default: S(() => [
                     i(l.$slots, "title", {}, () => [
@@ -196,22 +195,22 @@ const K = { class: "card__body" }, Q = { class: "card__main" }, W = ["href", "ta
                   href: t.titleHref,
                   target: t.titleTarget,
                   ref_key: "link",
-                  ref: y
+                  ref: v
                 }, [
                   i(l.$slots, "title", {}, () => [
                     C(x(t.title), 1)
                   ])
-                ], 8, W)) : i(l.$slots, "title", { key: 2 }, () => [
+                ], 8, Q)) : i(l.$slots, "title", { key: 2 }, () => [
                   C(x(t.title), 1)
                 ])
               ]),
               _: 3
-            }, 8, ["class"])) : g("", !0),
+            }, 8, ["class"])) : y("", !0),
             i(l.$slots, "body")
           ]),
-          n(s).aside ? (a(), m("div", X, [
+          n(s).aside ? (a(), m("div", W, [
             i(l.$slots, "aside")
-          ])) : g("", !0)
+          ])) : y("", !0)
         ]),
         n(s).image || b.value ? (a(), m("div", {
           key: 0,
@@ -221,17 +220,17 @@ const K = { class: "card__body" }, Q = { class: "card__main" }, W = ["href", "ta
           ]])
         }, [
           i(l.$slots, "image", {}, () => [
-            I(J, q(L(b.value)), null, 16)
+            A(G, I(q(b.value)), null, 16)
           ])
-        ], 2)) : g("", !0),
-        n(s).footer ? (a(), m("div", Y, [
+        ], 2)) : y("", !0),
+        n(s).footer ? (a(), m("div", X, [
           i(l.$slots, "footer")
-        ])) : g("", !0)
+        ])) : y("", !0)
       ]),
       _: 3
     }, 40, ["class", "style", "target", "to", "href", "data-ulu-proxy-click-init"]));
   }
 };
 export {
-  oe as default
+  le as default
 };
