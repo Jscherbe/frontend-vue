@@ -197,6 +197,8 @@ When using components like `UluImage` and `UluImageSource`, you may want to pass
 
 To enable Vite to automatically resolve these paths, you can add our custom transform rules to the Vue plugin in your `vite.config.js`:
 
+*Note: this includes the defaults (img, source, video, ...) in addition to the Ulu specific components, since configuring this clears the defaults (it's not merged).*
+
 ```js
 // vite.config.js
 
@@ -209,6 +211,7 @@ export default defineConfig({
     vue({
       template: {
         transformAssetUrls: {
+          // 
           ...uluTransformAssetUrls
         }
       }
