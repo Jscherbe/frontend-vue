@@ -1,5 +1,10 @@
 # Change Log
 
+
+## 0.5.10
+
+- Update "uluTransformAssetUrl" to include the default tags vue looks for (img, video, source, ...), as when you adjust this in vite.config.js it overwrites the defaults. So it seems like the best pattern to use is to include the defaults along with the ulu specific components.
+
 ## 0.5.9
 
 - Update "uluTransformAssetUrls" in vite module to include "imageSrc" for UluCard
