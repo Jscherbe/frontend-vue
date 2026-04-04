@@ -1,4 +1,4 @@
-import { ref as n, provide as r, computed as a, createElementBlock as m, openBlock as d, renderSlot as f } from "vue";
+import { ref as s, provide as n, computed as p, createElementBlock as f, openBlock as m, renderSlot as d } from "vue";
 import { useScrollAnchors as h } from "./useScrollAnchors.js";
 const A = {
   __name: "UluScrollAnchors",
@@ -8,17 +8,27 @@ const A = {
      */
     firstItemActive: Boolean,
     /**
-     * IntersectionObserver options
-     * - Defaults: { root: null, threshold: 0, rootMargin: "-25% 0px -55% 0px" }
+     * Custom IntersectionObserver options to completely override internal defaults.
+     * Defaults: { root: null, threshold: 0, rootMargin: "-25% 0px -55% 0px" }
      * See: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver
+     * @type {Object|null}
      */
     observerOptions: {
       type: Object,
-      default: () => ({
-        root: null,
-        threshold: 0,
-        rootMargin: "-25% 0px -55% 0px"
-      })
+      default: null
+    },
+    /**
+     * Creates a strict 1% horizontal observation line to trigger active states.
+     * - Accepts a number representing the percentage down from the top of the screen (e.g., 20 for 20%).
+     * - If you pass true it will default to 20%
+     * - Optional not enabled by default
+     * - You can control this yourself with observerOptions
+     * @type {Number|Boolean}
+     * @default false
+     */
+    snapOffset: {
+      type: [Number, Boolean],
+      default: !1
     },
     /**
      * Enable debug logging for the IntersectionObserver
@@ -26,19 +36,19 @@ const A = {
     debug: Boolean
   },
   emits: ["section-change"],
-  setup(c, { emit: s }) {
-    const u = c, i = s, e = n([]), t = n(null);
-    return h({ sections: e, props: u, emit: i, componentElRef: t }), r("uluScrollAnchorsSections", a(() => e.value)), r("uluScrollAnchorsRegister", (o) => {
+  setup(r, { emit: c }) {
+    const u = r, a = c, e = s([]), t = s(null);
+    return h({ sections: e, props: u, emit: a, componentElRef: t }), n("uluScrollAnchorsSections", p(() => e.value)), n("uluScrollAnchorsRegister", (o) => {
       e.value.push(o);
-    }), r("uluScrollAnchorsUnregister", (o) => {
-      const l = e.value.findIndex((p) => p.id === o);
+    }), n("uluScrollAnchorsUnregister", (o) => {
+      const l = e.value.findIndex((i) => i.id === o);
       l > -1 && e.value.splice(l, 1);
-    }), (o, l) => (d(), m("div", {
+    }), (o, l) => (m(), f("div", {
       class: "scroll-anchors",
       ref_key: "componentEl",
       ref: t
     }, [
-      f(o.$slots, "default")
+      d(o.$slots, "default")
     ], 512));
   }
 };

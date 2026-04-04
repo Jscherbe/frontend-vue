@@ -5,13 +5,8 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     $emit: (event: "section-change", ...args: any[]) => void;
-    observerOptions: Record<string, any>;
-    firstItemActive: boolean;
-    debug: boolean;
     $props: {
-        readonly observerOptions?: Record<string, any> | undefined;
-        readonly firstItemActive?: boolean | undefined;
-        readonly debug?: boolean | undefined;
+        readonly [x: string]: any;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {
     componentEl: HTMLDivElement;
