@@ -14,17 +14,27 @@
      */
     firstItemActive: Boolean,
     /**
-     * IntersectionObserver options
-     * - Defaults: { root: null, threshold: 0, rootMargin: "-25% 0px -55% 0px" }
+     * Custom IntersectionObserver options to completely override internal defaults.
+     * Defaults: { root: null, threshold: 0, rootMargin: "-25% 0px -55% 0px" }
      * See: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver
+     * @type {Object|null}
      */
     observerOptions: {
       type: Object,
-      default: () => ({
-        root: null,
-        threshold: 0,
-        rootMargin: "-25% 0px -55% 0px"
-      })
+      default: null
+    },
+    /**
+     * Creates a strict 1% horizontal observation line to trigger active states.
+     * - Accepts a number representing the percentage down from the top of the screen (e.g., 20 for 20%).
+     * - If you pass true it will default to 20%
+     * - Optional not enabled by default
+     * - You can control this yourself with observerOptions
+     * @type {Number|Boolean}
+     * @default false
+     */
+    snapOffset: {
+      type: [Number, Boolean],
+      default: false
     },
     /**
      * Enable debug logging for the IntersectionObserver

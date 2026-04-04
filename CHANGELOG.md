@@ -1,5 +1,19 @@
 # Change Log
 
+## 0.5.11
+
+- `components/systems/scroll-anchors/UluScrollAnchors.vue`
+  - Adjusted observer configuration props to provide both sensible defaults and precise control over section highlighting.
+    - By default, it retains the legacy behavior (a 20% tall "reading zone"), which remains the best option if sections also trigger general scroll animations/transitions.
+  - Added `snapOffset` prop for strict navigation snapping.
+    - Accepts a Number (0 to 100) to create a precise 1% "tripwire" line at that percentage down the viewport (e.g., :snap-offset="20").
+    - Prevents multiple sections from overlapping in the active state and eliminates skipped sections during reverse scrolling.
+  - Enhanced `observerOptions` prop to act as a complete escape hatch.
+    - Passing a custom configuration object here will now completely override both the default reading zone and any snapOffset values.
+  - `useScrollAnchors`
+    - Updates to support the above changes to the system (resolves this new prop to the final observerOptions)
+    - Add watcher for `observerOptions` or `snapOffset`
+  - Add story to demonstrate/test the new `snapOffset` prop
 
 ## 0.5.10
 
