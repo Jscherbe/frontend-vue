@@ -1,23 +1,24 @@
-import { ref as u } from "vue";
-import { debounce as f } from "@ulu/utils/performance.js";
-const t = u(!1), n = {
+import { ref as f } from "vue";
+import { debounce as u } from "@ulu/utils/performance.js";
+import { isBrowser as c } from "@ulu/utils/browser/dom.js";
+const t = f(!1), n = {
   start: [],
   end: []
 };
 function r() {
   window.removeEventListener("resize", r), t.value = !0, n.start.forEach((e) => e());
 }
-function c() {
+function a() {
   t.value = !1, n.end.forEach((e) => e()), window.addEventListener("resize", r);
 }
-window.addEventListener("resize", r), window.addEventListener("resize", f(c, 300));
+c() && (window.addEventListener("resize", r), window.addEventListener("resize", u(a, 300)));
 function s(e, i) {
   return e.push(i), () => {
     const o = e.findIndex((d) => d === i);
     o > -1 && e.splice(o);
   };
 }
-function z() {
+function m() {
   return {
     resizing: t,
     onResizeStart(e) {
@@ -29,5 +30,5 @@ function z() {
   };
 }
 export {
-  z as useWindowResize
+  m as useWindowResize
 };

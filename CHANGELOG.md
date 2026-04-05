@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.5.12
+
+- `composable/useWindowResize.js`
+  - Use isBrowser() util instead of import.meta.env.SSR flag which isn't working correctly with vite-ssg
+- Update @ulu/frontend peerDependencies to latest 0.4.9 (changes there are also related to SSR fixes)
+
 ## 0.5.11
 
 - `components/systems/scroll-anchors/UluScrollAnchors.vue`
