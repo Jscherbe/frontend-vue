@@ -48,6 +48,8 @@
       <div 
         class="modal__body" 
         :class="classes.body" 
+        :style="iframeState.bodyStyle"
+        ref="body"
       >
         <slot :close="close"/>
       </div>
@@ -72,7 +74,7 @@
   import UluIcon from "../elements/UluIcon.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
   import { wasClickOutside, preventScroll as setupPreventScroll } from "@ulu/utils/browser/dom.js";
-  import { Resizer, observeDialogToggle } from "@ulu/frontend";
+  import { Resizer, observeDialogToggle, getSoleIframeLayout } from "@ulu/frontend";
   import { newId } from "../../utils/dom.js";
 
   const emit = defineEmits(["update:modelValue", "close", "open"]);
@@ -188,6 +190,10 @@
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
     modifiers: [String, Array],
+    /**
+     * Opt-in convenience behavior. If the modal body's sole content is an iframe, it automatically applies layout fixes.
+     */
+    autoIframe: Boolean,
   });
 
   const slots = useSlots();
@@ -198,6 +204,13 @@
 
   const container = ref(null);
   const resizer = ref(null);
+  const body = ref(null);
+
+  const iframeState = ref({
+    isStaticSize: false,
+    isFill: false,
+    bodyStyle: {}
+  });
 
   const hasHeader = computed(() => props.title || slots.title);
 
@@ -230,6 +243,8 @@
     "resizer-active": resizerEnabled.value,
     "fullscreen": props.fullscreen,
     "fullscreen-mobile": props.fullscreenMobile,
+    "frame-ratio": iframeState.value.isStaticSize,
+    "frame-fill": iframeState.value.isFill,
   }));
 
   const { resolvedModifiers } = useModifiers({ 
@@ -329,10 +344,26 @@
     nextTick(() => {
       if (container.value) {
         if (newValue) {
+          if (props.autoIframe && body.value) {
+            const layout = getSoleIframeLayout(body.value);
+            if (layout) {
+              layout.iframe.classList.add("modal__frame-content");
+              if (layout.isStaticSize) {
+                iframeState.value.isStaticSize = true;
+                iframeState.value.isFill = false;
+                iframeState.value.bodyStyle = { aspectRatio: layout.aspectRatio };
+              } else {
+                iframeState.value.isFill = true;
+                iframeState.value.isStaticSize = false;
+                iframeState.value.bodyStyle = layout.fillHeight ? { minHeight: layout.fillHeight } : {};
+              }
+            }
+          }
           container.value[props.nonModal ? "show" : "showModal"]();
           emit("open");
         } else {
           container.value.close();
+          iframeState.value = { isStaticSize: false, isFill: false, bodyStyle: {} };
         }
       }
     });

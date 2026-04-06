@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.5.13
+
+- `UluModal`
+  - Add autoIframe to match @ulu/frontend modal builder's convenience option for automatic iframe layout
+
 ## 0.5.12
 
 - `composable/useWindowResize.js`
