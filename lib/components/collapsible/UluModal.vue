@@ -195,9 +195,9 @@
      */
     autoIframe: Boolean,
     /**
-     * Opt-in behavior to pause playing videos (YouTube and native <video>) when the modal closes.
+     * Opt-out behavior to prevent pausing videos (YouTube and native <video>) when the modal closes.
      */
-    pauseVideos: Boolean,
+    noPauseVideos: Boolean,
   });
 
   const slots = useSlots();
@@ -363,13 +363,13 @@
               }
             }
           }
-          if (props.pauseVideos) {
+          if (!props.noPauseVideos) {
             youtubePrepVideos(container.value);
           }
           container.value[props.nonModal ? "show" : "showModal"]();
           emit("open");
         } else {
-          if (props.pauseVideos) {
+          if (!props.noPauseVideos) {
             youtubePauseVideos(container.value);
             const nativeVideos = container.value.querySelectorAll("video");
             nativeVideos.forEach(video => video.pause());

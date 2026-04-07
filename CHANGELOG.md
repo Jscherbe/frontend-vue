@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.5.14
+
+- `UluModal`
+  - Adjust "pauseVideos" to "noPauseVideos" so that it's enabled by default to match the frontend dialog modules default behavior. Prop renamed so it can be used as boolean prop without passing false
+
 ## 0.5.13
 
 - `UluModal`
