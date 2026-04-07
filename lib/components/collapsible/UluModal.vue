@@ -74,7 +74,7 @@
   import UluIcon from "../elements/UluIcon.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
   import { wasClickOutside, preventScroll as setupPreventScroll } from "@ulu/utils/browser/dom.js";
-  import { Resizer, observeDialogToggle, getSoleIframeLayout } from "@ulu/frontend";
+  import { Resizer, observeDialogToggle, getSoleIframeLayout, youtubePauseVideos, youtubePrepVideos } from "@ulu/frontend";
   import { newId } from "../../utils/dom.js";
 
   const emit = defineEmits(["update:modelValue", "close", "open"]);
@@ -194,6 +194,10 @@
      * Opt-in convenience behavior. If the modal body's sole content is an iframe, it automatically applies layout fixes.
      */
     autoIframe: Boolean,
+    /**
+     * Opt-in behavior to pause playing videos (YouTube and native <video>) when the modal closes.
+     */
+    pauseVideos: Boolean,
   });
 
   const slots = useSlots();
@@ -359,9 +363,17 @@
               }
             }
           }
+          if (props.pauseVideos) {
+            youtubePrepVideos(container.value);
+          }
           container.value[props.nonModal ? "show" : "showModal"]();
           emit("open");
         } else {
+          if (props.pauseVideos) {
+            youtubePauseVideos(container.value);
+            const nativeVideos = container.value.querySelectorAll("video");
+            nativeVideos.forEach(video => video.pause());
+          }
           container.value.close();
           iframeState.value = { isStaticSize: false, isFill: false, bodyStyle: {} };
         }

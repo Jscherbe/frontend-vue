@@ -1,5 +1,6 @@
 Todos:
-  ☐ Modal need automatic pause video script @important
+  ✔ Modal need automatic pause video script @important @done
+    ✔ Also go back to auto iframe and check the option name iframeAuto vs autoIframe (match the frontend) @done
   ✔ Should probably go through and replace components that accept image props to use new UluImage under the hood so it's unified/DRY/less code to maintain (ie. card, etc) @done
   ✔ Should we have UluListItem for static non-data-driven stuff @done
     * What about other items like this could scale or be expected for <dl> or menu components

@@ -3,7 +3,9 @@
 ## 0.5.13
 
 - `UluModal`
-  - Add autoIframe to match @ulu/frontend modal builder's convenience option for automatic iframe layout
+  - Add "autoIframe" to match @ulu/frontend modal-builder's convenience option for automatic iframe layout
+  - Add "pauseVideos" to match @ulu/frontend dialog's convenience option for automaticatically pausing videos (only youtube and native videos currently)
+  - Update @ulu/frontend peerDependencies to latest 0.4.10 (this version includes fixes for pauseVideo instead of stopVideo)
 
 ## 0.5.12
 
@@ -466,7 +468,7 @@ Add check for items.length (so it doesn't need to be conditional on user side fo
 - `UluAccordion` 
   - Change slot props for open state from 'open' to 'isOpen'
   - Animate is enabled by default
-- `UluPopover` - Remove unnessaray `toggle` slot prop
+- `UluPopover` - Remove unnecessary `toggle` slot prop
 
 ## 0.1.1-beta.10
 
