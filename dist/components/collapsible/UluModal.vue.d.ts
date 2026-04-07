@@ -20,7 +20,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     noBackdrop: boolean;
     noMinHeight: boolean;
     autoIframe: boolean;
-    pauseVideos: boolean;
+    noPauseVideos: boolean;
     labelledby?: string | undefined;
     describedby?: string | undefined;
     title?: string | undefined;
@@ -44,7 +44,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly noBackdrop?: boolean | undefined;
         readonly noMinHeight?: boolean | undefined;
         readonly autoIframe?: boolean | undefined;
-        readonly pauseVideos?: boolean | undefined;
+        readonly noPauseVideos?: boolean | undefined;
         readonly labelledby?: string | undefined;
         readonly describedby?: string | undefined;
         readonly title?: string | undefined;

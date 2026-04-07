@@ -1,10 +1,10 @@
-import { useSlots as J, ref as n, computed as u, watch as M, nextTick as w, onMounted as K, onBeforeUnmount as Q, createBlock as H, openBlock as d, Teleport as Z, createElementVNode as f, withModifiers as x, normalizeStyle as L, normalizeClass as r, unref as T, createElementBlock as C, createCommentVNode as g, renderSlot as m, toDisplayString as ee, createVNode as P } from "vue";
+import { useSlots as J, ref as n, computed as u, watch as M, nextTick as w, onMounted as K, onBeforeUnmount as Q, createBlock as F, openBlock as d, Teleport as Z, createElementVNode as f, withModifiers as x, normalizeStyle as H, normalizeClass as r, unref as L, createElementBlock as C, createCommentVNode as g, renderSlot as m, toDisplayString as ee, createVNode as T } from "vue";
 import R from "../elements/UluIcon.vue.js";
 import { useModifiers as le } from "../../composables/useModifiers.js";
 import { preventScroll as oe, wasClickOutside as te } from "@ulu/utils/browser/dom.js";
 import { getSoleIframeLayout as se, youtubePrepVideos as ie, youtubePauseVideos as ae, Resizer as ne, observeDialogToggle as re } from "@ulu/frontend";
 import { newId as ce } from "../../utils/dom.js";
-const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "modal__title-text" }, ze = {
+const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "modal__title-text" }, pe = {
   __name: "UluModal",
   props: {
     /**
@@ -123,9 +123,9 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
      */
     autoIframe: Boolean,
     /**
-     * Opt-in behavior to pause playing videos (YouTube and native <video>) when the modal closes.
+     * Opt-out behavior to prevent pausing videos (YouTube and native <video>) when the modal closes.
      */
-    pauseVideos: Boolean
+    noPauseVideos: Boolean
   },
   emits: ["update:modelValue", "close", "open"],
   setup(t, { emit: j }) {
@@ -166,28 +166,28 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
         s === o.value && te(o.value, l) && a();
       }
     };
-    let y = null, b = null, S = null, p = null, z = null;
+    let y = null, b = null, S = null, z = null, p = null;
     const Y = () => {
       !e.nonModal && e.preventScroll && (y = re(o.value, (l) => {
-        l ? b = oe({ preventShift: e.preventScrollShift }) : F();
+        l ? b = oe({ preventShift: e.preventScrollShift }) : P();
       }));
     }, G = () => {
       y && (y.destroy(), y = null);
-    }, F = () => {
+    }, P = () => {
       b && (b(), b = null);
     }, I = () => {
       if (v.value) {
         const l = e.position === "center" ? { fromX: "right", fromY: "bottom", multiplier: 2 } : { fromX: e.position === "right" ? "left" : "right" };
-        S = new ne(o.value, $.value, l), p = () => {
+        S = new ne(o.value, $.value, l), z = () => {
           B.value = !0;
-        }, z = () => {
+        }, p = () => {
           setTimeout(() => {
             B.value = !1;
           }, 0);
-        }, o.value.addEventListener("ulu:resizer:start", p), o.value.addEventListener("ulu:resizer:end", z);
+        }, o.value.addEventListener("ulu:resizer:start", z), o.value.addEventListener("ulu:resizer:end", p);
       }
     }, V = () => {
-      S && (S.destroy(), S = null), p && o.value && o.value.removeEventListener("ulu:resizer:start", p), z && o.value && o.value.removeEventListener("ulu:resizer:end", z);
+      S && (S.destroy(), S = null), z && o.value && o.value.removeEventListener("ulu:resizer:start", z), p && o.value && o.value.removeEventListener("ulu:resizer:end", p);
     };
     return M(() => e.modelValue, (l) => {
       w(() => {
@@ -197,9 +197,9 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
               const s = se(k.value);
               s && (s.iframe.classList.add("modal__frame-content"), s.isStaticSize ? (i.value.isStaticSize = !0, i.value.isFill = !1, i.value.bodyStyle = { aspectRatio: s.aspectRatio }) : (i.value.isFill = !0, i.value.isStaticSize = !1, i.value.bodyStyle = s.fillHeight ? { minHeight: s.fillHeight } : {}));
             }
-            e.pauseVideos && ie(o.value), o.value[e.nonModal ? "show" : "showModal"](), c("open");
+            e.noPauseVideos || ie(o.value), o.value[e.nonModal ? "show" : "showModal"](), c("open");
           } else
-            e.pauseVideos && (ae(o.value), o.value.querySelectorAll("video").forEach((h) => h.pause())), o.value.close(), i.value = { isStaticSize: !1, isFill: !1, bodyStyle: {} };
+            e.noPauseVideos || (ae(o.value), o.value.querySelectorAll("video").forEach((h) => h.pause())), o.value.close(), i.value = { isStaticSize: !1, isFill: !1, bodyStyle: {} };
       });
     }, { immediate: !0 }), M(v, (l) => {
       l ? w(() => {
@@ -212,18 +212,18 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
     }), K(() => {
       Y(), I();
     }), Q(() => {
-      o.value && o.value.open && o.value.close(), G(), F(), V();
-    }), (l, s) => (d(), H(Z, {
+      o.value && o.value.open && o.value.close(), G(), P(), V();
+    }), (l, s) => (d(), F(Z, {
       to: t.teleport === !1 ? null : t.teleport,
       disabled: t.teleport === !1
     }, [
       f("dialog", {
-        class: r(["modal", [T(U), t.classes.container]]),
+        class: r(["modal", [L(U), t.classes.container]]),
         "aria-labelledby": X.value,
         "aria-describedby": t.describedby,
         ref_key: "container",
         ref: o,
-        style: L({ width: N.value }),
+        style: H({ width: N.value }),
         onCancel: x(a, ["prevent"]),
         onClose: q,
         onClick: W
@@ -234,10 +234,10 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
         }, [
           f("h2", {
             class: r(["modal__title", t.classes.title]),
-            id: T(E)
+            id: L(E)
           }, [
             m(l.$slots, "title", { close: a }, () => [
-              t.titleIcon ? (d(), H(R, {
+              t.titleIcon ? (d(), F(R, {
                 key: 0,
                 class: "modal__title-icon",
                 icon: t.titleIcon
@@ -252,7 +252,7 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
             autofocus: ""
           }, [
             m(l.$slots, "closeIcon", {}, () => [
-              P(R, {
+              T(R, {
                 class: "modal__close-icon",
                 icon: t.closeIcon || "type:close"
               }, null, 8, ["icon"])
@@ -261,7 +261,7 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
         ], 2)) : g("", !0),
         f("div", {
           class: r(["modal__body", t.classes.body]),
-          style: L(i.value.bodyStyle),
+          style: H(i.value.bodyStyle),
           ref_key: "body",
           ref: k
         }, [
@@ -281,7 +281,7 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
           type: "button"
         }, [
           m(l.$slots, "resizerIcon", {}, () => [
-            P(R, {
+            T(R, {
               class: "modal__resizer-icon",
               icon: t.resizerIcon || _.value
             }, null, 8, ["icon"])
@@ -292,5 +292,5 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
   }
 };
 export {
-  ze as default
+  pe as default
 };
