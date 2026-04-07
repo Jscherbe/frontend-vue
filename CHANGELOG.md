@@ -5,7 +5,7 @@
 - `UluModal`
   - Add "autoIframe" to match @ulu/frontend modal-builder's convenience option for automatic iframe layout
   - Add "pauseVideos" to match @ulu/frontend dialog's convenience option for automaticatically pausing videos (only youtube and native videos currently)
-  - Update @ulu/frontend peerDependencies to latest 0.4.10 (this version includes fixes for pauseVideo instead of stopVideo)
+  - Update @ulu/frontend peerDependencies to latest 0.4.11 (this version includes fixes for pauseVideo instead of stopVideo, and adjustments to prepVideo [to not re-prep])
 
 ## 0.5.12
 

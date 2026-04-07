@@ -19,6 +19,8 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     bodyFills: boolean;
     noBackdrop: boolean;
     noMinHeight: boolean;
+    autoIframe: boolean;
+    pauseVideos: boolean;
     labelledby?: string | undefined;
     describedby?: string | undefined;
     title?: string | undefined;
@@ -41,6 +43,8 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly bodyFills?: boolean | undefined;
         readonly noBackdrop?: boolean | undefined;
         readonly noMinHeight?: boolean | undefined;
+        readonly autoIframe?: boolean | undefined;
+        readonly pauseVideos?: boolean | undefined;
         readonly labelledby?: string | undefined;
         readonly describedby?: string | undefined;
         readonly title?: string | undefined;

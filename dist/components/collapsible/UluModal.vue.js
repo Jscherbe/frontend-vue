@@ -1,10 +1,10 @@
-import { useSlots as q, ref as p, computed as a, watch as B, nextTick as M, onMounted as G, onBeforeUnmount as J, createBlock as O, openBlock as c, Teleport as K, createElementVNode as d, withModifiers as Q, normalizeStyle as Z, normalizeClass as i, unref as T, createElementBlock as w, createCommentVNode as h, renderSlot as u, toDisplayString as _, createVNode as L } from "vue";
-import C from "../elements/UluIcon.vue.js";
-import { useModifiers as x } from "../../composables/useModifiers.js";
-import { preventScroll as ee, wasClickOutside as le } from "@ulu/utils/browser/dom.js";
-import { Resizer as oe, observeDialogToggle as te } from "@ulu/frontend";
-import { newId as se } from "../../utils/dom.js";
-const ne = ["aria-labelledby", "aria-describedby"], ie = ["id"], re = { class: "modal__title-text" }, ve = {
+import { useSlots as J, ref as n, computed as u, watch as M, nextTick as w, onMounted as K, onBeforeUnmount as Q, createBlock as H, openBlock as d, Teleport as Z, createElementVNode as f, withModifiers as x, normalizeStyle as L, normalizeClass as r, unref as T, createElementBlock as C, createCommentVNode as g, renderSlot as m, toDisplayString as ee, createVNode as P } from "vue";
+import R from "../elements/UluIcon.vue.js";
+import { useModifiers as le } from "../../composables/useModifiers.js";
+import { preventScroll as oe, wasClickOutside as te } from "@ulu/utils/browser/dom.js";
+import { getSoleIframeLayout as se, youtubePrepVideos as ie, youtubePauseVideos as ae, Resizer as ne, observeDialogToggle as re } from "@ulu/frontend";
+import { newId as ce } from "../../utils/dom.js";
+const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "modal__title-text" }, ze = {
   __name: "UluModal",
   props: {
     /**
@@ -117,155 +117,180 @@ const ne = ["aria-labelledby", "aria-describedby"], ie = ["id"], re = { class: "
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array],
+    /**
+     * Opt-in convenience behavior. If the modal body's sole content is an iframe, it automatically applies layout fixes.
+     */
+    autoIframe: Boolean,
+    /**
+     * Opt-in behavior to pause playing videos (YouTube and native <video>) when the modal closes.
+     */
+    pauseVideos: Boolean
   },
   emits: ["update:modelValue", "close", "open"],
-  setup(t, { emit: H }) {
-    const r = H, e = t, j = q(), D = p(null), I = se("ulu-modal-title"), g = p(!1), o = p(null), R = p(null), E = a(() => e.title || j.title), f = a(() => {
+  setup(t, { emit: j }) {
+    const c = j, e = t, D = J(), N = n(null), E = ce("ulu-modal-title"), B = n(!1), o = n(null), $ = n(null), k = n(null), i = n({
+      isStaticSize: !1,
+      isFill: !1,
+      bodyStyle: {}
+    }), O = u(() => e.title || D.title), v = u(() => {
       const { allowResize: l, position: s } = e;
       if (!l || !s) return !1;
-      const $ = ["left", "right", "center"];
-      return $.includes(s) ? !0 : (console.warn(`Passed invalid position for resize (${s}), use ${$.join(", ")}`), !1);
-    }), N = a(() => e.position === "center" ? "type:resizeBoth" : "type:resizeHorizontal"), P = a(() => ({
+      const h = ["left", "right", "center"];
+      return h.includes(s) ? !0 : (console.warn(`Passed invalid position for resize (${s}), use ${h.join(", ")}`), !1);
+    }), _ = u(() => e.position === "center" ? "type:resizeBoth" : "type:resizeHorizontal"), A = u(() => ({
       [e.position]: e.position,
       resize: e.allowResize,
       "no-resize": !e.allowResize,
-      "no-header": !E.value,
+      "no-header": !O.value,
       "body-fills": e.bodyFills,
       "no-backdrop": e.noBackdrop,
       "no-min-height": e.noMinHeight,
       "non-modal": e.nonModal,
-      "resizer-active": f.value,
+      "resizer-active": v.value,
       fullscreen: e.fullscreen,
-      "fullscreen-mobile": e.fullscreenMobile
-    })), { resolvedModifiers: F } = x({
+      "fullscreen-mobile": e.fullscreenMobile,
+      "frame-ratio": i.value.isStaticSize,
+      "frame-fill": i.value.isFill
+    })), { resolvedModifiers: U } = le({
       props: e,
       baseClass: "modal",
-      internal: P
-    }), U = a(() => e.labelledby ? e.labelledby : I), n = () => {
-      r("update:modelValue", !1), r("close");
-    }, X = () => {
-      e.modelValue && (r("update:modelValue", !1), r("close"));
-    }, A = (l) => {
-      if (e.clickOutsideCloses && !g.value) {
+      internal: A
+    }), X = u(() => e.labelledby ? e.labelledby : E), a = () => {
+      c("update:modelValue", !1), c("close");
+    }, q = () => {
+      e.modelValue && (c("update:modelValue", !1), c("close"));
+    }, W = (l) => {
+      if (e.clickOutsideCloses && !B.value) {
         const { target: s } = l;
-        s === o.value && le(o.value, l) && n();
+        s === o.value && te(o.value, l) && a();
       }
     };
-    let m = null, v = null, b = null, y = null, z = null;
-    const W = () => {
-      !e.nonModal && e.preventScroll && (m = te(o.value, (l) => {
-        l ? v = ee({ preventShift: e.preventScrollShift }) : V();
+    let y = null, b = null, S = null, p = null, z = null;
+    const Y = () => {
+      !e.nonModal && e.preventScroll && (y = re(o.value, (l) => {
+        l ? b = oe({ preventShift: e.preventScrollShift }) : F();
       }));
-    }, Y = () => {
-      m && (m.destroy(), m = null);
-    }, V = () => {
-      v && (v(), v = null);
-    }, S = () => {
-      if (f.value) {
+    }, G = () => {
+      y && (y.destroy(), y = null);
+    }, F = () => {
+      b && (b(), b = null);
+    }, I = () => {
+      if (v.value) {
         const l = e.position === "center" ? { fromX: "right", fromY: "bottom", multiplier: 2 } : { fromX: e.position === "right" ? "left" : "right" };
-        b = new oe(o.value, R.value, l), y = () => {
-          g.value = !0;
+        S = new ne(o.value, $.value, l), p = () => {
+          B.value = !0;
         }, z = () => {
           setTimeout(() => {
-            g.value = !1;
+            B.value = !1;
           }, 0);
-        }, o.value.addEventListener("ulu:resizer:start", y), o.value.addEventListener("ulu:resizer:end", z);
+        }, o.value.addEventListener("ulu:resizer:start", p), o.value.addEventListener("ulu:resizer:end", z);
       }
-    }, k = () => {
-      b && (b.destroy(), b = null), y && o.value && o.value.removeEventListener("ulu:resizer:start", y), z && o.value && o.value.removeEventListener("ulu:resizer:end", z);
+    }, V = () => {
+      S && (S.destroy(), S = null), p && o.value && o.value.removeEventListener("ulu:resizer:start", p), z && o.value && o.value.removeEventListener("ulu:resizer:end", z);
     };
-    return B(() => e.modelValue, (l) => {
-      M(() => {
-        o.value && (l ? (o.value[e.nonModal ? "show" : "showModal"](), r("open")) : o.value.close());
+    return M(() => e.modelValue, (l) => {
+      w(() => {
+        if (o.value)
+          if (l) {
+            if (e.autoIframe && k.value) {
+              const s = se(k.value);
+              s && (s.iframe.classList.add("modal__frame-content"), s.isStaticSize ? (i.value.isStaticSize = !0, i.value.isFill = !1, i.value.bodyStyle = { aspectRatio: s.aspectRatio }) : (i.value.isFill = !0, i.value.isStaticSize = !1, i.value.bodyStyle = s.fillHeight ? { minHeight: s.fillHeight } : {}));
+            }
+            e.pauseVideos && ie(o.value), o.value[e.nonModal ? "show" : "showModal"](), c("open");
+          } else
+            e.pauseVideos && (ae(o.value), o.value.querySelectorAll("video").forEach((h) => h.pause())), o.value.close(), i.value = { isStaticSize: !1, isFill: !1, bodyStyle: {} };
       });
-    }, { immediate: !0 }), B(f, (l) => {
-      l ? M(() => {
-        S();
-      }) : k();
-    }, { immediate: !1 }), B(() => e.position, (l, s) => {
-      l !== s && (k(), M(() => {
-        S();
+    }, { immediate: !0 }), M(v, (l) => {
+      l ? w(() => {
+        I();
+      }) : V();
+    }, { immediate: !1 }), M(() => e.position, (l, s) => {
+      l !== s && (V(), w(() => {
+        I();
       }));
-    }), G(() => {
-      W(), S();
-    }), J(() => {
-      o.value && o.value.open && o.value.close(), Y(), V(), k();
-    }), (l, s) => (c(), O(K, {
+    }), K(() => {
+      Y(), I();
+    }), Q(() => {
+      o.value && o.value.open && o.value.close(), G(), F(), V();
+    }), (l, s) => (d(), H(Z, {
       to: t.teleport === !1 ? null : t.teleport,
       disabled: t.teleport === !1
     }, [
-      d("dialog", {
-        class: i(["modal", [T(F), t.classes.container]]),
-        "aria-labelledby": U.value,
+      f("dialog", {
+        class: r(["modal", [T(U), t.classes.container]]),
+        "aria-labelledby": X.value,
         "aria-describedby": t.describedby,
         ref_key: "container",
         ref: o,
-        style: Z({ width: D.value }),
-        onCancel: Q(n, ["prevent"]),
-        onClose: X,
-        onClick: A
+        style: L({ width: N.value }),
+        onCancel: x(a, ["prevent"]),
+        onClose: q,
+        onClick: W
       }, [
-        E.value ? (c(), w("header", {
+        O.value ? (d(), C("header", {
           key: 0,
-          class: i(["modal__header", t.classes.header])
+          class: r(["modal__header", t.classes.header])
         }, [
-          d("h2", {
-            class: i(["modal__title", t.classes.title]),
-            id: T(I)
+          f("h2", {
+            class: r(["modal__title", t.classes.title]),
+            id: T(E)
           }, [
-            u(l.$slots, "title", { close: n }, () => [
-              t.titleIcon ? (c(), O(C, {
+            m(l.$slots, "title", { close: a }, () => [
+              t.titleIcon ? (d(), H(R, {
                 key: 0,
                 class: "modal__title-icon",
                 icon: t.titleIcon
-              }, null, 8, ["icon"])) : h("", !0),
-              d("span", re, _(t.title), 1)
+              }, null, 8, ["icon"])) : g("", !0),
+              f("span", fe, ee(t.title), 1)
             ])
-          ], 10, ie),
-          d("button", {
-            class: i(["modal__close", t.classes.close]),
+          ], 10, de),
+          f("button", {
+            class: r(["modal__close", t.classes.close]),
             "aria-label": "Close modal",
-            onClick: n,
+            onClick: a,
             autofocus: ""
           }, [
-            u(l.$slots, "closeIcon", {}, () => [
-              L(C, {
+            m(l.$slots, "closeIcon", {}, () => [
+              P(R, {
                 class: "modal__close-icon",
                 icon: t.closeIcon || "type:close"
               }, null, 8, ["icon"])
             ])
           ], 2)
-        ], 2)) : h("", !0),
-        d("div", {
-          class: i(["modal__body", t.classes.body])
+        ], 2)) : g("", !0),
+        f("div", {
+          class: r(["modal__body", t.classes.body]),
+          style: L(i.value.bodyStyle),
+          ref_key: "body",
+          ref: k
         }, [
-          u(l.$slots, "default", { close: n })
-        ], 2),
-        l.$slots.footer ? (c(), w("div", {
+          m(l.$slots, "default", { close: a })
+        ], 6),
+        l.$slots.footer ? (d(), C("div", {
           key: 1,
-          class: i(["site-modal__footer", t.classes.footer])
+          class: r(["site-modal__footer", t.classes.footer])
         }, [
-          u(l.$slots, "footer", { close: n })
-        ], 2)) : h("", !0),
-        f.value ? (c(), w("button", {
+          m(l.$slots, "footer", { close: a })
+        ], 2)) : g("", !0),
+        v.value ? (d(), C("button", {
           key: 2,
           class: "modal__resizer",
           ref_key: "resizer",
-          ref: R,
+          ref: $,
           type: "button"
         }, [
-          u(l.$slots, "resizerIcon", {}, () => [
-            L(C, {
+          m(l.$slots, "resizerIcon", {}, () => [
+            P(R, {
               class: "modal__resizer-icon",
-              icon: t.resizerIcon || N.value
+              icon: t.resizerIcon || _.value
             }, null, 8, ["icon"])
           ])
-        ], 512)) : h("", !0)
-      ], 46, ne)
+        ], 512)) : g("", !0)
+      ], 46, ue)
     ], 8, ["to", "disabled"]));
   }
 };
 export {
-  ve as default
+  ze as default
 };
