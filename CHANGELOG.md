@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.5.15
+
+- Update peer dependency @ulu/frontend to latest "0.5.0"
+
 ## 0.5.14
 
 - `UluModal`
