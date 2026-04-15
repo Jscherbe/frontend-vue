@@ -5,7 +5,7 @@
     class="scroll-anchors__nav scroll-anchors__nav--animated scroll-anchors-nav-animated"
     :style="{ '--ulu-sa-nav-rail-width': `${ railWidth }px` }"
   >
-    <ul class="scroll-anchors-nav-animated__rail">
+    <ul class="scroll-anchors-nav-animated__rail" ref="listRef" :style="railStyles">
       <li 
         v-for="(item, index) in sections" :key="index"
         :class="{ 'is-active' : item.active }"
@@ -26,7 +26,6 @@
       :class="{
         'scroll-anchors-nav-animated__indicator--can-transition' : indicatorAnimReady
       }"
-      ref="indicator"
       :style="{
         opacity: indicatorStyles ? '1' : '0',
         transform: `translateY(${ indicatorStyles ? indicatorStyles.y : 0 }px)`,
@@ -38,9 +37,9 @@
 </template>
 
 <script setup>
-  import { ref, computed, watch } from 'vue';
+  import { ref, computed, watch, onMounted, onBeforeUnmount } from "vue";
   import { runAfterFramePaint } from "@ulu/utils/browser/performance.js";
-  import { useScrollAnchorSections } from './useScrollAnchorSections.js';
+  import { useScrollAnchorSections } from "./useScrollAnchorSections.js";
 
   const props = defineProps({
     /**
@@ -56,6 +55,27 @@
     railWidth: {
       type: Number,
       default: 3
+    },
+    /**
+     * Trims the rail to span exactly from the center of the first indicator to the center of the last indicator.
+     */
+    trimRailToCenters: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Pixel offset for the start (top) of the dynamic rail.
+     */
+    railStartOffset: {
+      type: Number,
+      default: 0
+    },
+    /**
+     * Pixel offset for the end (bottom) of the dynamic rail.
+     */
+    railEndOffset: {
+      type: Number,
+      default: 0
     },
     /**
      * The width of the indicator, defaults to railWidth
@@ -76,7 +96,7 @@
      */
     indicatorAlignment: {
       type: String,
-      default: 'center' // options: center, top
+      default: "center" // options: center, top
     },
     /**
      * Pixel offset for the indicator's vertical alignment
@@ -87,22 +107,42 @@
     }
   });
 
+  // State from the scroll anchor system
   const sections = useScrollAnchorSections();
 
+  // Template refs for the list and individual links
+  const listRef = ref(null);
   const linkRefs = ref({});
-  const indicatorAnimReady = ref(false);
-  const indicator = ref(null);
 
-  const indicatorStyles = computed(() => {
-    if (!sections || !sections.value || !sections.value.length) {
-      return false;
+  // Flag to enable CSS transitions only after initial placement
+  const indicatorAnimReady = ref(false);
+
+  // Resize observer to recalculate metrics on layout shifts
+  const resizeTrigger = ref(0);
+  let resizeObserver = null;
+
+  onMounted(() => {
+    if (listRef.value) {
+      resizeObserver = new ResizeObserver(() => {
+        resizeTrigger.value++;
+      });
+      resizeObserver.observe(listRef.value);
     }
-    const activeIndex = sections.value.findIndex(s => s.active);
-    if (activeIndex === -1) {
-      return false;
+  });
+
+  onBeforeUnmount(() => {
+    if (resizeObserver) {
+      resizeObserver.disconnect();
+      resizeObserver = null;
     }
-    const link = linkRefs.value[activeIndex];
-    if (!link) return false; // Link might not be rendered yet
+  });
+
+  /**
+   * Helper to calculate the target position/size of the indicator for a specific item
+   */
+  function getIndicatorMetrics(index) {
+    const link = linkRefs.value[index];
+    if (!link) return null;
 
     const { offsetTop, offsetHeight } = link;
     const isStatic = props.indicatorHeight != null;
@@ -110,15 +150,54 @@
     const height = isStatic ? props.indicatorHeight : offsetHeight;
 
     let y = offsetTop; // Default to 'top' alignment
-    if (props.indicatorAlignment === 'center') {
+    if (props.indicatorAlignment === "center") {
       y = offsetTop + (offsetHeight / 2) - (height / 2);
     }
 
     y += props.indicatorAlignmentOffset;
 
     return { y, height, width };
+  }
+
+  // Active indicator styles
+  const indicatorStyles = computed(() => {
+    resizeTrigger.value; // Re-evaluate on resize
+    if (!sections || !sections.value || !sections.value.length) {
+      return false;
+    }
+    const activeIndex = sections.value.findIndex(s => s.active);
+    if (activeIndex === -1) {
+      return false;
+    }
+    return getIndicatorMetrics(activeIndex) || false;
   });
 
+  // Background rail styles (trimmed to start/end of indicators)
+  const railStyles = computed(() => {
+    resizeTrigger.value; // Re-evaluate on resize
+    if (!props.trimRailToCenters) return {};
+    if (!sections || !sections.value || sections.value.length < 1) return {};
+
+    const firstMetrics = getIndicatorMetrics(0);
+    const lastMetrics = getIndicatorMetrics(sections.value.length - 1);
+
+    if (!firstMetrics || !lastMetrics) return {};
+
+    let top = firstMetrics.y + (firstMetrics.height / 2);
+    let bottom = lastMetrics.y + (lastMetrics.height / 2);
+
+    top += props.railStartOffset;
+    bottom += props.railEndOffset;
+
+    const height = Math.max(0, bottom - top);
+
+    return {
+      "--ulu-sa-nav-rail-top": `${top}px`,
+      "--ulu-sa-nav-rail-height": `${height}px`
+    };
+  });
+
+  // Allow transition after initial styles are applied
   watch(indicatorStyles, (val) => {
     if (val && !indicatorAnimReady.value) {
       runAfterFramePaint(() => {
@@ -127,6 +206,7 @@
     }
   });
 
+  // Helper to store link template refs
   function addLinkRef(index, el) {
     if (el) {
       linkRefs.value[index] = el;

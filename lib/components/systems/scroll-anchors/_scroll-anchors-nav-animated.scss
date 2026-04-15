@@ -49,8 +49,18 @@ $config: (
     position: relative;
   }
   #{ $prefix }__rail {
-    border-left: var(--ulu-sa-nav-rail-width, 3px) solid color.get(get("rail-border-color"));
     padding-left: get("rail-padding");
+
+    &::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: var(--ulu-sa-nav-rail-top, 0);
+      height: var(--ulu-sa-nav-rail-height, 100%);
+      width: var(--ulu-sa-nav-rail-width, 3px);
+      background-color: color.get(get("rail-border-color"));
+      z-index: 0;
+    }
   }
   #{ $prefix }__indicator {
     position: absolute;
@@ -58,6 +68,7 @@ $config: (
     left: 0;
     background-color: color.get(get("indicator-color"));
     clip-path: get("indicator-clip-path");
+    z-index: 1;
   }
   #{ $prefix }__indicator--can-transition {
     transition-property: height, transform, width;

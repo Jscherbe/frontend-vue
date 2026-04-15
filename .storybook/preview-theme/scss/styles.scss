@@ -25,6 +25,11 @@
   )
 ));
 
+@include ulu-vue.component-scroll-anchors-nav-animated-set((
+  // Test triangle
+  // "indicator-clip-path": polygon(0 0, 100% 50%, 0 100%),
+));
+
 @include ulu.base-styles();
 
 // Components interfere with syntax highlighting
@@ -70,3 +75,10 @@
 .ulu-demo-color-2 { color: #16a34a; }
 .ulu-demo-border-1 { border: 1px solid #cbd5e1; }
 .ulu-demo-padding-1 { padding: 1rem; }
+
+//
+.ulu-demo-scroll-anchor-indicator-triangle {
+  .scroll-anchors-nav-animated__indicator {
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+  }
+}

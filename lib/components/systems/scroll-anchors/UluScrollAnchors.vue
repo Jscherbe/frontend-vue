@@ -39,7 +39,15 @@
     /**
      * Enable debug logging for the IntersectionObserver
      */
-    debug: Boolean
+    debug: Boolean,
+    /**
+     * If true, the last section will deactivate when scrolling past its bounding box.
+     * By default, the last section remains active until the user scrolls back up.
+     */
+    deactivateLastItem: {
+      type: Boolean,
+      default: false
+    }
   });
 
   const emit = defineEmits(["section-change"]);

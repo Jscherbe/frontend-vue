@@ -1,5 +1,21 @@
 # Change Log
 
+## 0.5.16
+
+- Scroll Anchors Improvements
+  - `useScrollAnchors`
+    - Fix edge issue: If you scroll really fast since this relies on IntersectionObserver it can not fire leaving an item active that isn't active
+      - Considered debounced fallback called in intersection observer or scroll/etc but this would be unreliable or bloated code (recreating IntersectionObserver margins, making sure to account for different roots other than viewport)
+      - Instead going to force the browser to run the IntersectionObserver by removing the current observer in a debounced callback on the root element's scroll event and creating it again after the debounce delay (since observers run 1 time initially) this will catch edge cases where the IntersectionObserver didn't fire 
+      - Also fix issue with observer no items intersection (all above the reading zone) to deactivate any active sections
+    - Allow deactivateLastItem
+  - `UluScrollAnchors`
+    - Added `deactivateLastItem` prop (defaults to `false`). The default behavior has been updated so the last anchor item remains active even when scrolling past its bounding box (e.g. into a footer). Set this prop to `true` to revert to the old behavior where it deactivates.
+  - `UluScrollAnchorsNavAnimated`
+    - Changed the indicator rail to use a `::before` pseudo element so it naturally layers underneath the indicator shape.
+    - Added `trimRailToCenters` prop (defaults to `true`). This dynamically sizes the rail to span exactly from the center of the first indicator to the center of the last indicator, preventing the line from overhanging on custom indicator shapes.
+    - Added `railStartOffset` and `railEndOffset` props to allow pixel-perfect optical alignment of the rail (e.g. to align with a specific font's cap-height).
+
 ## 0.5.15
 
 - Update peer dependency @ulu/frontend to latest "0.5.0"
