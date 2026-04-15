@@ -2,7 +2,7 @@
 
 ## 0.5.16
 
-- Scroll Anchors Improvements
+- Scroll Anchors Updates/Enhancements
   - `useScrollAnchors`
     - Fix edge issue: If you scroll really fast since this relies on IntersectionObserver it can not fire leaving an item active that isn't active
       - Considered debounced fallback called in intersection observer or scroll/etc but this would be unreliable or bloated code (recreating IntersectionObserver margins, making sure to account for different roots other than viewport)

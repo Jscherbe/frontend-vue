@@ -57,11 +57,10 @@
       default: 3
     },
     /**
-     * Trims the rail to span exactly from the center of the first indicator to the center of the last indicator.
+     * Dynamically trims the rail to span exactly from the center of the first indicator to the center of the last indicator. Disabled by default
      */
     trimRailToCenters: {
-      type: Boolean,
-      default: true
+      type: Boolean
     },
     /**
      * Pixel offset for the start (top) of the dynamic rail.
