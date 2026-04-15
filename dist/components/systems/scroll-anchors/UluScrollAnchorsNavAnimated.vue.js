@@ -1,7 +1,7 @@
-import { ref as d, computed as N, watch as w, createBlock as $, createCommentVNode as W, unref as f, openBlock as h, resolveDynamicComponent as b, normalizeStyle as _, withCtx as C, createElementVNode as m, createElementBlock as g, Fragment as H, renderList as B, normalizeClass as v, renderSlot as I, createTextVNode as R, toDisplayString as V } from "vue";
-import { runAfterFramePaint as z } from "@ulu/utils/browser/performance.js";
-import { useScrollAnchorSections as D } from "./useScrollAnchorSections.js";
-const E = { class: "scroll-anchors-nav-animated__rail" }, F = ["href"], P = {
+import { ref as c, onMounted as $, onBeforeUnmount as w, computed as N, watch as C, createBlock as z, createCommentVNode as B, unref as p, openBlock as y, resolveDynamicComponent as M, normalizeStyle as g, withCtx as T, createElementVNode as _, createElementBlock as k, Fragment as W, renderList as E, normalizeClass as S, renderSlot as H, createTextVNode as I, toDisplayString as V } from "vue";
+import { runAfterFramePaint as D } from "@ulu/utils/browser/performance.js";
+import { useScrollAnchorSections as F } from "./useScrollAnchorSections.js";
+const L = ["href"], j = {
   __name: "UluScrollAnchorsNavAnimated",
   props: {
     /**
@@ -17,6 +17,26 @@ const E = { class: "scroll-anchors-nav-animated__rail" }, F = ["href"], P = {
     railWidth: {
       type: Number,
       default: 3
+    },
+    /**
+     * Dynamically trims the rail to span exactly from the center of the first indicator to the center of the last indicator. Disabled by default
+     */
+    trimRailToCenters: {
+      type: Boolean
+    },
+    /**
+     * Pixel offset for the start (top) of the dynamic rail.
+     */
+    railStartOffset: {
+      type: Number,
+      default: 0
+    },
+    /**
+     * Pixel offset for the end (bottom) of the dynamic rail.
+     */
+    railEndOffset: {
+      type: Number,
+      default: 0
     },
     /**
      * The width of the indicator, defaults to railWidth
@@ -48,71 +68,96 @@ const E = { class: "scroll-anchors-nav-animated__rail" }, F = ["href"], P = {
       default: 0
     }
   },
-  setup(o) {
-    const i = o, n = D(), p = d({}), c = d(!1), S = d(null), e = N(() => {
-      if (!n || !n.value || !n.value.length)
-        return !1;
-      const t = n.value.findIndex((x) => x.active);
-      if (t === -1)
-        return !1;
-      const l = p.value[t];
-      if (!l) return !1;
-      const { offsetTop: a, offsetHeight: r } = l, s = i.indicatorHeight != null, A = i.indicatorWidth ?? i.railWidth, y = s ? i.indicatorHeight : r;
-      let u = a;
-      return i.indicatorAlignment === "center" && (u = a + r / 2 - y / 2), u += i.indicatorAlignmentOffset, { y: u, height: y, width: A };
+  setup(u) {
+    const l = u, a = F(), f = c(null), x = c({}), d = c(!1), h = c(0);
+    let s = null;
+    $(() => {
+      f.value && (s = new ResizeObserver(() => {
+        h.value++;
+      }), s.observe(f.value));
+    }), w(() => {
+      s && (s.disconnect(), s = null);
     });
-    w(e, (t) => {
-      t && !c.value && z(() => {
-        c.value = !0;
+    function v(e) {
+      const t = x.value[e];
+      if (!t) return null;
+      const { offsetTop: n, offsetHeight: r } = t, o = l.indicatorHeight != null, R = l.indicatorWidth ?? l.railWidth, b = o ? l.indicatorHeight : r;
+      let m = n;
+      return l.indicatorAlignment === "center" && (m = n + r / 2 - b / 2), m += l.indicatorAlignmentOffset, { y: m, height: b, width: R };
+    }
+    const i = N(() => {
+      if (h.value, !a || !a.value || !a.value.length)
+        return !1;
+      const e = a.value.findIndex((t) => t.active);
+      return e === -1 ? !1 : v(e) || !1;
+    }), A = N(() => {
+      if (h.value, !l.trimRailToCenters) return {};
+      if (!a || !a.value || a.value.length < 1) return {};
+      const e = v(0), t = v(a.value.length - 1);
+      if (!e || !t) return {};
+      let n = e.y + e.height / 2, r = t.y + t.height / 2;
+      n += l.railStartOffset, r += l.railEndOffset;
+      const o = Math.max(0, r - n);
+      return {
+        "--ulu-sa-nav-rail-top": `${n}px`,
+        "--ulu-sa-nav-rail-height": `${o}px`
+      };
+    });
+    C(i, (e) => {
+      e && !d.value && D(() => {
+        d.value = !0;
       });
     });
-    function k(t, l) {
-      l && (p.value[t] = l);
+    function O(e, t) {
+      t && (x.value[e] = t);
     }
-    return (t, l) => f(n) && f(n).length ? (h(), $(b(o.element), {
+    return (e, t) => p(a) && p(a).length ? (y(), z(M(u.element), {
       key: 0,
       class: "scroll-anchors__nav scroll-anchors__nav--animated scroll-anchors-nav-animated",
-      style: _({ "--ulu-sa-nav-rail-width": `${o.railWidth}px` })
+      style: g({ "--ulu-sa-nav-rail-width": `${u.railWidth}px` })
     }, {
-      default: C(() => [
-        m("ul", E, [
-          (h(!0), g(H, null, B(f(n), (a, r) => (h(), g("li", {
+      default: T(() => [
+        _("ul", {
+          class: "scroll-anchors-nav-animated__rail",
+          ref_key: "listRef",
+          ref: f,
+          style: g(A.value)
+        }, [
+          (y(!0), k(W, null, E(p(a), (n, r) => (y(), k("li", {
             key: r,
-            class: v({ "is-active": a.active })
+            class: S({ "is-active": n.active })
           }, [
-            m("a", {
-              class: v({ "is-active": a.active }),
+            _("a", {
+              class: S({ "is-active": n.active }),
               ref_for: !0,
-              ref: (s) => k(r, s),
-              href: `#${a.titleId}`
+              ref: (o) => O(r, o),
+              href: `#${n.titleId}`
             }, [
-              I(t.$slots, "default", {
-                item: a,
+              H(e.$slots, "default", {
+                item: n,
                 index: r
               }, () => [
-                R(V(a.title), 1)
+                I(V(n.title), 1)
               ])
-            ], 10, F)
+            ], 10, L)
           ], 2))), 128))
-        ]),
-        m("div", {
-          class: v(["scroll-anchors-nav-animated__indicator", {
-            "scroll-anchors-nav-animated__indicator--can-transition": c.value
+        ], 4),
+        _("div", {
+          class: S(["scroll-anchors-nav-animated__indicator", {
+            "scroll-anchors-nav-animated__indicator--can-transition": d.value
           }]),
-          ref_key: "indicator",
-          ref: S,
-          style: _({
-            opacity: e.value ? "1" : "0",
-            transform: `translateY(${e.value ? e.value.y : 0}px)`,
-            height: `${e.value ? e.value.height : 0}px`,
-            width: `${e.value ? e.value.width : 0}px`
+          style: g({
+            opacity: i.value ? "1" : "0",
+            transform: `translateY(${i.value ? i.value.y : 0}px)`,
+            height: `${i.value ? i.value.height : 0}px`,
+            width: `${i.value ? i.value.width : 0}px`
           })
         }, null, 6)
       ]),
       _: 3
-    }, 8, ["style"])) : W("", !0);
+    }, 8, ["style"])) : B("", !0);
   }
 };
 export {
-  P as default
+  j as default
 };

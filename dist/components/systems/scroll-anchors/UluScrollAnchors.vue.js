@@ -1,4 +1,4 @@
-import { ref as s, provide as n, computed as p, createElementBlock as f, openBlock as m, renderSlot as d } from "vue";
+import { ref as s, provide as l, computed as p, createElementBlock as f, openBlock as m, renderSlot as d } from "vue";
 import { useScrollAnchors as h } from "./useScrollAnchors.js";
 const A = {
   __name: "UluScrollAnchors",
@@ -33,20 +33,28 @@ const A = {
     /**
      * Enable debug logging for the IntersectionObserver
      */
-    debug: Boolean
+    debug: Boolean,
+    /**
+     * If true, the last section will deactivate when scrolling past its bounding box.
+     * By default, the last section remains active until the user scrolls back up.
+     */
+    deactivateLastItem: {
+      type: Boolean,
+      default: !1
+    }
   },
   emits: ["section-change"],
-  setup(r, { emit: c }) {
-    const u = r, a = c, e = s([]), t = s(null);
-    return h({ sections: e, props: u, emit: a, componentElRef: t }), n("uluScrollAnchorsSections", p(() => e.value)), n("uluScrollAnchorsRegister", (o) => {
+  setup(c, { emit: r }) {
+    const a = c, u = r, e = s([]), n = s(null);
+    return h({ sections: e, props: a, emit: u, componentElRef: n }), l("uluScrollAnchorsSections", p(() => e.value)), l("uluScrollAnchorsRegister", (o) => {
       e.value.push(o);
-    }), n("uluScrollAnchorsUnregister", (o) => {
-      const l = e.value.findIndex((i) => i.id === o);
-      l > -1 && e.value.splice(l, 1);
-    }), (o, l) => (m(), f("div", {
+    }), l("uluScrollAnchorsUnregister", (o) => {
+      const t = e.value.findIndex((i) => i.id === o);
+      t > -1 && e.value.splice(t, 1);
+    }), (o, t) => (m(), f("div", {
       class: "scroll-anchors",
       ref_key: "componentEl",
-      ref: t
+      ref: n
     }, [
       d(o.$slots, "default")
     ], 512));

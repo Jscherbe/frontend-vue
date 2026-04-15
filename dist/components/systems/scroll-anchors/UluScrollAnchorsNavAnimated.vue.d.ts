@@ -6,6 +6,9 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     element: string;
     railWidth: number;
+    trimRailToCenters: boolean;
+    railStartOffset: number;
+    railEndOffset: number;
     indicatorWidth: number;
     indicatorHeight: number;
     indicatorAlignment: string;
@@ -13,13 +16,16 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     $props: {
         readonly element?: string | undefined;
         readonly railWidth?: number | undefined;
+        readonly trimRailToCenters?: boolean | undefined;
+        readonly railStartOffset?: number | undefined;
+        readonly railEndOffset?: number | undefined;
         readonly indicatorWidth?: number | undefined;
         readonly indicatorHeight?: number | undefined;
         readonly indicatorAlignment?: string | undefined;
         readonly indicatorAlignmentOffset?: number | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {
-    indicator: HTMLDivElement;
+    listRef: HTMLUListElement;
 }, any>;
 type __VLS_TemplateResult = {
     attrs: Partial<{}>;
@@ -30,7 +36,7 @@ type __VLS_TemplateResult = {
         }): any;
     };
     refs: {
-        indicator: HTMLDivElement;
+        listRef: HTMLUListElement;
     };
     rootEl: any;
 };

@@ -1,95 +1,138 @@
-import { onMounted as T, onUnmounted as Y, watch as F, nextTick as O } from "vue";
-import { getScrollParent as C } from "@ulu/utils/browser/dom.js";
-function D({ sections: i, props: e, emit: h, componentElRef: I }) {
-  let r = null;
-  function v(t) {
-    return i.value.findIndex(({ element: l }) => t === l);
+import { onMounted as P, onUnmounted as U, watch as Y, nextTick as L } from "vue";
+import { getScrollParent as M } from "@ulu/utils/browser/dom.js";
+import { debounce as j } from "@ulu/utils/performance.js";
+function J({ sections: r, props: t, emit: T, componentElRef: m }) {
+  let a = null, O = 0, k = "down", d = null, x = !0;
+  function g(e) {
+    return r.value.findIndex(({ element: n }) => e === n);
   }
-  function w(t = null, l = "down") {
-    i.value.forEach((c) => {
-      c !== t && (c.active && (c.inactiveFrom = l === "down" ? "forward" : "reverse", c.activeFrom = null), c.active = !1);
+  function B(e, n, s = "down") {
+    if (!e) return;
+    const v = s === "down" ? "forward" : "reverse";
+    n ? (e.active = !0, e.inactiveFrom = null, e.activeFrom = v) : (e.active && (e.inactiveFrom = v, e.activeFrom = null), e.active = !1);
+  }
+  function $(e = null, n = "down") {
+    r.value.forEach((s) => {
+      s !== e && B(s, !1, n);
     });
   }
-  function A() {
-    let t = 0, l = !0;
-    const c = (a) => {
-      const { root: S } = r, d = S ? S.scrollTop : document.documentElement.scrollTop || window.scrollY;
-      if (e.debug && (console.group("useScrollAnchors: onObserve"), console.log("Observer:", r), console.log("Last/Current Y:", `${t}/${d}`), console.log("Entries:", a.map((n) => ({ el: n.target, is: n.isIntersecting })))), l && e.firstItemActive) {
-        e.debug && console.log("Initial observation, respecting `firstItemActive`."), l = !1, t = d, e.debug && console.groupEnd();
-        return;
-      }
-      l = !1;
-      const s = d > t ? "down" : "up";
-      t = d, e.debug && console.log(`Scroll direction: ${s}`);
-      const f = a.filter((n) => n.isIntersecting);
-      if (e.debug && console.log("Intersecting entries:", f.map((n) => n.target)), f.length > 0) {
-        f.sort((u, m) => v(u.target) - v(m.target));
-        const n = s === "down" ? f[f.length - 1] : f[0];
-        e.debug && console.log("Chosen target entry:", n.target);
-        const o = i.value[v(n.target)];
-        o && !o.active && (e.debug && console.log("Activating section:", o.title), O(() => {
-          w(o, s), o.active = !0, o.inactiveFrom = null, o.activeFrom = s === "down" ? "forward" : "reverse", h("section-change", { section: o, sections: i.value, active: !0 });
-        }));
+  function h(e, n) {
+    e && !e.active && (t.debug && console.log("Activate:", e.title), L(() => {
+      $(e, n), B(e, !0, n), T("section-change", { section: e, sections: r.value, active: !0 });
+    }));
+  }
+  function I(e, n) {
+    const s = r.value.find((v) => v.active);
+    s && (t.debug && n && console.log(n, s.title), L(() => {
+      $(null, e), T("section-change", { section: s, sections: r.value, active: !1 });
+    }));
+  }
+  function y() {
+    let e = null;
+    return t.observerOptions && t.observerOptions.root !== void 0 ? e = t.observerOptions.root : m.value && (e = M(m.value), e === document.scrollingElement && (e = null)), e || window;
+  }
+  const A = j(() => {
+    t.debug && console.log("New Observer (debounced/check)"), a && (a.disconnect(), a = null), E(), w();
+  }, 100);
+  function C() {
+    D(), d = y(), d && d.addEventListener("scroll", A, { passive: !0 });
+  }
+  function D() {
+    d && (d.removeEventListener("scroll", A), d = null);
+  }
+  function E() {
+    x = !0;
+    const e = (u) => {
+      const { root: R } = a, S = R ? R.scrollTop : document.documentElement.scrollTop || window.scrollY;
+      let i = k;
+      S > O ? i = "down" : S < O && (i = "up"), t.debug && (console.groupCollapsed(`Scroll: ${O} -> ${S} (${i})`), console.table(u.map((o) => ({
+        el: o.target.id || o.target.tagName,
+        int: o.isIntersecting,
+        ratio: o.intersectionRatio.toFixed(2)
+      })))), O = S, k = i;
+      const b = u.filter((o) => o.isIntersecting);
+      if (b.length > 0) {
+        b.sort((c, f) => g(c.target) - g(f.target));
+        const o = i === "down" ? b[b.length - 1] : b[0];
+        t.debug && console.log("Target:", o.target.id || o.target.tagName);
+        const l = r.value[g(o.target)];
+        h(l, i);
+      } else if (x) {
+        t.debug && console.log("Fallback: bounds");
+        let o = -1;
+        if (u.forEach((l) => {
+          const c = l.rootBounds ? l.rootBounds.top : 0;
+          if (l.boundingClientRect.top <= c + 1) {
+            const f = g(l.target);
+            f > o && (o = f);
+          }
+        }), o > -1) {
+          const l = o === r.value.length - 1, c = r.value[o];
+          if (l && t.deactivateLastItem) {
+            const f = u.find((H) => H.target === c.element), F = f.rootBounds ? f.rootBounds.bottom : window.innerHeight;
+            f && f.boundingClientRect.bottom < F ? I(i, "Deactivate (last):") : h(c, i);
+          } else
+            h(c, i);
+        } else if (t.debug && console.log("Fallback: top"), !t.firstItemActive)
+          I(i, "Deactivate (top):");
+        else {
+          const l = r.value[0];
+          h(l, i);
+        }
       } else {
-        e.debug && console.log("No intersecting entries. Checking edge cases.");
-        const n = i.value.find((o) => o.active);
-        if (n) {
-          const o = a.find((u) => u.target === n.element);
-          if (o && !o.isIntersecting) {
-            const u = v(o.target), m = u === 0, y = u === i.value.length - 1;
-            (m && s === "up" && !e.firstItemActive || y && s === "down") && (e.debug && console.log("Deactivating section at edge:", n.title), O(() => {
-              w(null, s), h("section-change", { section: n, sections: i.value, active: !1 });
-            }));
+        t.debug && console.log("Check edges");
+        const o = r.value.find((l) => l.active);
+        if (o) {
+          const l = u.find((c) => c.target === o.element);
+          if (l && !l.isIntersecting) {
+            const c = g(l.target), f = c === 0, F = c === r.value.length - 1;
+            (f && i === "up" && !t.firstItemActive || F && i === "down" && t.deactivateLastItem) && I(i, "Deactivate (edge):");
           }
         }
       }
-      e.debug && console.groupEnd();
+      x = !1, t.debug && console.groupEnd();
     };
-    let g = null;
-    e.observerOptions && e.observerOptions.root !== void 0 ? g = e.observerOptions.root : I.value && (g = C(I.value), g === document.scrollingElement && (g = null));
-    let E = {
+    let n = null;
+    t.observerOptions && t.observerOptions.root !== void 0 ? n = t.observerOptions.root : m.value && (n = M(m.value), n === document.scrollingElement && (n = null));
+    let s = {
       rootMargin: "-25% 0px -55% 0px",
       threshold: 0
     };
-    if (e.snapOffset !== !1 && e.snapOffset !== void 0) {
-      const a = e.snapOffset === !0 ? 20 : Number(e.snapOffset);
-      E.rootMargin = `-${a}% 0px -${99 - a}% 0px`;
+    if (t.snapOffset !== !1 && t.snapOffset !== void 0) {
+      const u = t.snapOffset === !0 ? 20 : Number(t.snapOffset);
+      s.rootMargin = `-${u}% 0px -${99 - u}% 0px`;
     }
-    const $ = {
-      ...E,
-      ...e.observerOptions || {},
-      root: g
+    const v = {
+      ...s,
+      ...t.observerOptions || {},
+      root: n
     };
-    r = new IntersectionObserver(c, $);
+    a = new IntersectionObserver(e, v);
   }
-  function b() {
-    r && (r.disconnect(), i.value.forEach(({ element: t }) => {
-      t && r.observe(t);
+  function w() {
+    a && (a.disconnect(), r.value.forEach(({ element: e }) => {
+      e && a.observe(e);
     }));
   }
-  function x() {
-    r && (r.disconnect(), r = null);
+  function N() {
+    a && (a.disconnect(), a = null);
   }
-  T(() => {
-    if (e.firstItemActive && i.value.length > 0) {
-      const t = i.value[0];
-      t && (t.active = !0);
-    }
-    A(), b();
-  }), Y(() => {
-    x();
-  }), F(() => i.value.length, () => {
-    O(() => {
-      b();
+  P(() => {
+    E(), w(), C();
+  }), U(() => {
+    N(), D(), A.cancel();
+  }), Y(() => r.value.length, () => {
+    L(() => {
+      w();
     });
-  }), F(
-    () => [e.snapOffset, e.observerOptions],
+  }), Y(
+    () => [t.snapOffset, t.observerOptions],
     () => {
-      x(), A(), b();
+      N(), E(), w(), C();
     },
     { deep: !0 }
   );
 }
 export {
-  D as useScrollAnchors
+  J as useScrollAnchors
 };

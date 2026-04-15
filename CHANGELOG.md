@@ -14,7 +14,8 @@
   - `UluScrollAnchorsNavAnimated`
     - Changed the indicator rail to use a `::before` pseudo element so it naturally layers underneath the indicator shape.
     - Added `trimRailToCenters` prop (defaults to `true`). This dynamically sizes the rail to span exactly from the center of the first indicator to the center of the last indicator, preventing the line from overhanging on custom indicator shapes.
-    - Added `railStartOffset` and `railEndOffset` props to allow pixel-perfect optical alignment of the rail (e.g. to align with a specific font's cap-height).
+    - Added `railStartOffset` and `railEndOffset` props to allow adjustment for optical alignment of the rail (e.g. to align with a specific font's cap-height).
+    - Refine debug logs
 
 ## 0.5.15
 
