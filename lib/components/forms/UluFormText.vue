@@ -1,42 +1,43 @@
 <template>
-  <label :class="{ 'hidden-visually' : labelHidden }" :for="id">
-    <slot name="label">
-      {{ label }}<UluFormRequiredChar v-if="required" />
-    </slot>
-  </label>
   <input 
     type="text" 
+    v-bind="fieldAttrs"
     :value="modelValue"
     @input="$emit('update:modelValue', $event.target.value)" 
-    :id="id"
-    :required="required"
   >
 </template>
 
 <script setup>
+  import { inject, computed } from "vue";
   import { newId } from "../../utils/dom.js";
-  import UluFormRequiredChar from "./UluFormRequiredChar.vue";
+  import { checkDeprecatedProps } from "../../utils/props.js";
 
-  defineProps({
-    /**
-     * The label for the text input.
-     */
-    label: String,
+  const props = defineProps({
     /**
      * The value of the text input (for v-model).
      */
-    modelValue: String,
+    modelValue: [String, Number],
     /**
-     * If true, the label will be visually hidden.
+     * @deprecated Use <UluFormItem label="..."> instead.
+     */
+    label: String,
+    /**
+     * @deprecated Use <UluFormItem labelHidden> instead.
      */
     labelHidden: Boolean,
     /**
-     * If true, the field will be required.
+     * @deprecated Use <UluFormItem required> instead.
      */
     required: Boolean
   });
 
-  defineEmits(['update:modelValue']);
+  defineEmits(["update:modelValue"]);
 
-  const id = newId();
+  checkDeprecatedProps(props, ["label", "labelHidden", "required"], (name) => {
+    console.warn(`[@ulu/frontend-vue] UluFormText: The "${ name }" prop is deprecated. Please move it to the parent <UluFormItem>.`);
+  });
+
+  const injectedAttrs = inject("uluFormFieldAttrs", null);
+  const fallbackId = newId();
+  const fieldAttrs = computed(() => injectedAttrs ? injectedAttrs.value : { id: fallbackId });
 </script>

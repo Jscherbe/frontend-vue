@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.6.0
+
+- Forms Updates **Breaking Changes**
+  - `UluFormSelect`
+  - `UluFormText`
+  - `UluFormTextarea`
+
 ## 0.5.16
 
 - Scroll Anchors Updates/Enhancements

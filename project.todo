@@ -1,4 +1,15 @@
 Todos:
+  ☐ Refactor form components to single root
+    ☐ Fix indenting in form components @in-progress
+    ☐ Description should be before label
+    ☐ Think about validation
+    ☐ Should UluFormItem allow user to pass a specific ID for form element
+    ☐ Is the deprecated props needed or should we just remove it since we're in 0.x.x stage and breaking changes are expected?
+    ☐ Check all components using UluForm components
+    ☐ Setup stories that show all form capabilities
+    ☐ Need to figure out how to setup form item so it knows it's children
+      * Radio/checkbox need labelAfter
+      * Select needs a modifier
   ✔ Modal need automatic pause video script @important @done
     ✔ Also go back to auto iframe and check the option name iframeAuto vs autoIframe (match the frontend) @done
   ✔ Should probably go through and replace components that accept image props to use new UluImage under the hood so it's unified/DRY/less code to maintain (ie. card, etc) @done

@@ -1,48 +1,44 @@
 <template>
   <input
     type="radio"
-    :id="id"
-    :name="name"
+    v-bind="fieldAttrs"
     :value="value"
     :checked="modelValue === value"
     @change="$emit('update:modelValue', value)"
-    :required="required"
   >
-  <label :for="id">
-    <slot>
-      {{ label }}<UluFormRequiredChar v-if="required" />
-    </slot>
-  </label>
 </template>
 
 <script setup>
+import { inject, computed } from "vue";
 import { newId } from "../../utils/dom.js";
-import UluFormRequiredChar from "./UluFormRequiredChar.vue";
+import { checkDeprecatedProps } from "../../utils/props.js";
 
-defineProps({
-  /**
-   * The label for the radio button.
-   */
-  label: String,
+const props = defineProps({
   /**
    * The value of the selected radio button in the group (for v-model).
    */
-  modelValue: [String, Number],
+  modelValue: [String, Number, Boolean],
   /**
    * The value of this radio button.
    */
-  value: [String, Number],
+  value: [String, Number, Boolean],
   /**
-   * The name of the radio button group.
+   * @deprecated Use <UluFormItem label="..."> instead.
    */
-  name: String,
+  label: String,
   /**
-   * If true, the field will be required.
+   * @deprecated Use <UluFormItem required> instead.
    */
   required: Boolean
 });
 
-defineEmits(['update:modelValue']);
+defineEmits(["update:modelValue"]);
 
-const id = newId();
+checkDeprecatedProps(props, ["label", "required"], (name) => {
+  console.warn(`[@ulu/frontend-vue] UluFormRadio: The "${ name }" prop is deprecated. Please move it to the parent <UluFormItem>.`);
+});
+
+const injectedAttrs = inject("uluFormFieldAttrs", null);
+const fallbackId = newId();
+const fieldAttrs = computed(() => injectedAttrs ? injectedAttrs.value : { id: fallbackId });
 </script>
