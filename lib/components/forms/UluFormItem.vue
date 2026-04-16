@@ -1,18 +1,17 @@
 <template>
   <div 
     class="form-theme__item"
-    :class="[{
-      'is-danger': hasError,
-      'is-warning': hasWarning,
-      'form-theme__item--align-top': alignTop,
-      'form-theme__item--text': text,
-      'form-theme__item--file': file,
-      'form-theme__item--select': select,
-      'form-theme__item--textarea': textarea
-    }]"
+    :class="[
+      typeClass,
+      {
+        'is-danger': hasError,
+        'is-warning': hasWarning,
+        'form-theme__item--align-top': alignTop
+      }
+    ]"
   >
     <UluFormItemLabel 
-      v-if="!labelAfter && hasLabel" 
+      v-if="!isLabelAfter && hasLabel" 
       :id="internalId" 
       :labelHidden="labelHidden" 
       :required="required"
@@ -23,7 +22,7 @@
     <slot />
 
     <UluFormItemLabel 
-      v-if="labelAfter && hasLabel" 
+      v-if="isLabelAfter && hasLabel" 
       :id="internalId" 
       :labelHidden="labelHidden" 
       :required="required"
@@ -64,6 +63,17 @@ import UluFormItemLabel from "./UluFormItemLabel.vue";
 
 const props = defineProps({
   /**
+   * The type of form field this item contains (e.g., 'text', 'select', 'textarea', 'checkbox', 'radio', 'file').
+   * This determines the layout and BEM styling of the item.
+   */
+  type: {
+    type: String,
+    required: true,
+    validator: (value) => [
+      'text', 'textarea', 'select', 'checkbox', 'radio', 'file', 'color', 'date', 'range', 'tel', 'password', 'email', 'number', 'search', 'url', 'time', 'month', 'week', 'datetime-local'
+    ].includes(value)
+  },
+  /**
    * The ID to use for the form field. If not provided, a unique ID is generated.
    */
   fieldId: String,
@@ -102,27 +112,7 @@ const props = defineProps({
   /**
    * If true, aligns the item to the top.
    */
-  alignTop: Boolean,
-  /**
-   * If true, applies the text item styles.
-   */
-  text: Boolean,
-  /**
-   * If true, applies the file item styles.
-   */
-  file: Boolean,
-  /**
-   * If true, applies the select item styles.
-   */
-  select: Boolean,
-  /**
-   * If true, applies the textarea item styles.
-   */
-  textarea: Boolean,
-  /**
-   * If true, renders the label after the slot. Useful for checkboxes and radios.
-   */
-  labelAfter: Boolean
+  alignTop: Boolean
 });
 
 const slots = useSlots();
@@ -135,6 +125,38 @@ const warningId = computed(() => `${internalId.value}-warn`);
 const hasLabel = computed(() => !!props.label || !!slots.label);
 const hasError = computed(() => props.error || !!props.errorMessage || !!slots.errorMessage);
 const hasWarning = computed(() => props.warning || !!props.warningMessage || !!slots.warningMessage);
+
+const isLabelAfter = computed(() => ['checkbox', 'radio'].includes(props.type));
+
+const typeClass = computed(() => {
+  // Map specific types to their corresponding BEM classes
+  const bemTypeMap = {
+    text: 'text',
+    password: 'text',
+    email: 'text',
+    tel: 'text',
+    number: 'text',
+    search: 'text',
+    url: 'text',
+    textarea: 'textarea',
+    select: 'select',
+    file: 'file',
+    color: 'select', // Based on reference SCSS
+    date: 'select', // Based on reference SCSS
+    time: 'select',
+    month: 'select',
+    week: 'select',
+    'datetime-local': 'select',
+    range: 'select', // Based on reference SCSS
+    // Checkbox and radio don't get a specific modifier class in the SCSS, 
+    // they just use the base .form-theme__item
+    checkbox: '',
+    radio: ''
+  };
+  
+  const mappedType = bemTypeMap[props.type];
+  return mappedType ? `form-theme__item--${mappedType}` : '';
+});
 
 const fieldAttrs = computed(() => {
   const attrs = {

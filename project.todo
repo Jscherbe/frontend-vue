@@ -6,6 +6,7 @@ Todos:
     ☐ Should UluFormItem allow user to pass a specific ID for form element
     ☐ Is the deprecated props needed or should we just remove it since we're in 0.x.x stage and breaking changes are expected?
     ☐ Check all components using UluForm components
+      ☐ Facets, Selectable Menus, etc
     ☐ Setup stories that show all form capabilities
     ☐ Need to figure out how to setup form item so it knows it's children
       * Radio/checkbox need labelAfter
