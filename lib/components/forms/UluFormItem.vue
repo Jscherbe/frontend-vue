@@ -2,33 +2,32 @@
   <div 
     class="form-theme__item"
     :class="[
-      typeClass,
+      resolvedModifiers,
       {
         'is-danger': hasError,
-        'is-warning': hasWarning,
-        'form-theme__item--align-top': alignTop
+        'is-warning': hasWarning
       }
     ]"
   >
-    <UluFormItemLabel 
+    <UluFormLabel 
       v-if="!isLabelAfter && hasLabel" 
       :id="internalId" 
       :labelHidden="labelHidden" 
       :required="required"
     >
       <slot name="label">{{ label }}</slot>
-    </UluFormItemLabel>
+    </UluFormLabel>
 
     <slot />
 
-    <UluFormItemLabel 
+    <UluFormLabel 
       v-if="isLabelAfter && hasLabel" 
       :id="internalId" 
       :labelHidden="labelHidden" 
       :required="required"
     >
       <slot name="label">{{ label }}</slot>
-    </UluFormItemLabel>
+    </UluFormLabel>
 
     <UluFormMessage 
       v-if="description || $slots.description" 
@@ -58,21 +57,16 @@
 <script setup>
 import { provide, computed, useSlots } from "vue";
 import { newId } from "../../utils/dom.js";
+import { useModifiers } from "../../composables/useModifiers.js";
 import UluFormMessage from "./UluFormMessage.vue";
-import UluFormItemLabel from "./UluFormItemLabel.vue";
+import UluFormLabel from "./UluFormLabel.vue";
 
 const props = defineProps({
   /**
-   * The type of form field this item contains (e.g., 'text', 'select', 'textarea', 'checkbox', 'radio', 'file').
-   * This determines the layout and BEM styling of the item.
+   * The layout variant for this form item (e.g., 'text', 'select', 'textarea', 'checkbox', 'radio', 'file').
+   * This determines the layout and BEM styling of the item container.
    */
-  type: {
-    type: String,
-    required: true,
-    validator: (value) => [
-      'text', 'textarea', 'select', 'checkbox', 'radio', 'file', 'color', 'date', 'range', 'tel', 'password', 'email', 'number', 'search', 'url', 'time', 'month', 'week', 'datetime-local'
-    ].includes(value)
-  },
+  layout: String,
   /**
    * The ID to use for the form field. If not provided, a unique ID is generated.
    */
@@ -112,51 +106,34 @@ const props = defineProps({
   /**
    * If true, aligns the item to the top.
    */
-  alignTop: Boolean
+  alignTop: Boolean,
+  /**
+   * Additional BEM modifiers for the form item.
+   */
+  modifiers: [String, Array]
 });
 
 const slots = useSlots();
 
+const { resolvedModifiers } = useModifiers({
+  props,
+  baseClass: "form-theme__item",
+  internal: computed(() => ({
+    [props.layout]: props.layout,
+    "align-top": props.alignTop
+  }))
+});
+
 const internalId = computed(() => props.fieldId || newId());
-const descriptionId = computed(() => `${internalId.value}-desc`);
-const errorId = computed(() => `${internalId.value}-error`);
-const warningId = computed(() => `${internalId.value}-warn`);
+const descriptionId = computed(() => `${ internalId.value }-desc`);
+const errorId = computed(() => `${ internalId.value }-error`);
+const warningId = computed(() => `${ internalId.value }-warn`);
 
 const hasLabel = computed(() => !!props.label || !!slots.label);
 const hasError = computed(() => props.error || !!props.errorMessage || !!slots.errorMessage);
 const hasWarning = computed(() => props.warning || !!props.warningMessage || !!slots.warningMessage);
 
-const isLabelAfter = computed(() => ['checkbox', 'radio'].includes(props.type));
-
-const typeClass = computed(() => {
-  // Map specific types to their corresponding BEM classes
-  const bemTypeMap = {
-    text: 'text',
-    password: 'text',
-    email: 'text',
-    tel: 'text',
-    number: 'text',
-    search: 'text',
-    url: 'text',
-    textarea: 'textarea',
-    select: 'select',
-    file: 'file',
-    color: 'select', // Based on reference SCSS
-    date: 'select', // Based on reference SCSS
-    time: 'select',
-    month: 'select',
-    week: 'select',
-    'datetime-local': 'select',
-    range: 'select', // Based on reference SCSS
-    // Checkbox and radio don't get a specific modifier class in the SCSS, 
-    // they just use the base .form-theme__item
-    checkbox: '',
-    radio: ''
-  };
-  
-  const mappedType = bemTypeMap[props.type];
-  return mappedType ? `form-theme__item--${mappedType}` : '';
-});
+const isLabelAfter = computed(() => ["checkbox", "radio"].includes(props.layout));
 
 const fieldAttrs = computed(() => {
   const attrs = {

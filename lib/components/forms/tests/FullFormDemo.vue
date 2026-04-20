@@ -1,22 +1,22 @@
 <template>
   <UluForm class="type-max-width-small" fullWidth>
     <UluFormFieldset legend="Personal Information">
-      <UluFormItem type="text" label="First Name">
+      <UluFormItem layout="text" label="First Name">
         <UluFormText modelValue="John" />
       </UluFormItem>
-      <UluFormItem type="text" error label="Last Name" errorMessage="This field is required.">
+      <UluFormItem layout="text" error label="Last Name" errorMessage="This field is required.">
         <UluFormText modelValue="Doe" />
       </UluFormItem>
-      <UluFormItem type="text" warning label="Email" warningMessage="Please enter a valid email.">
+      <UluFormItem layout="text" warning label="Email" warningMessage="Please enter a valid email.">
         <UluFormText modelValue="john.doe@" />
       </UluFormItem>
     </UluFormFieldset>
 
-    <UluFormItem type="textarea" label="Your Message">
+    <UluFormItem layout="textarea" label="Your Message">
       <UluFormTextarea modelValue="This is a message." />
     </UluFormItem>
 
-    <UluFormItem type="select" label="Select an option">
+    <UluFormItem layout="select" label="Select an option">
       <UluFormSelect
         :options="[
           { value: 'option1', text: 'Option 1' },
@@ -29,20 +29,20 @@
 
     <UluFormFieldset legend="Options">
       <UluFormItemsInline>
-        <UluFormItem type="checkbox" label="Option 1">
+        <UluFormItem layout="checkbox" label="Option 1">
           <UluFormCheckbox :modelValue="true" />
         </UluFormItem>
-        <UluFormItem type="checkbox" label="Option 2">
+        <UluFormItem layout="checkbox" label="Option 2">
           <UluFormCheckbox :modelValue="false" />
         </UluFormItem>
       </UluFormItemsInline>
     </UluFormFieldset>
 
     <UluFormFieldset legend="Radio Options">
-        <UluFormItem type="radio" label="Radio 1">
+        <UluFormItem layout="radio" label="Radio 1">
           <UluFormRadio name="radio-group" value="radio1" v-model="radioValue" />
         </UluFormItem>
-        <UluFormItem type="radio" label="Radio 2">
+        <UluFormItem layout="radio" label="Radio 2">
           <UluFormRadio name="radio-group" value="radio2" v-model="radioValue" />
         </UluFormItem>
     </UluFormFieldset>
