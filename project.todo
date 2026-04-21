@@ -5,6 +5,7 @@ Todos:
     ☐ Think about validation
     ☐ Should UluFormItem allow user to pass a specific ID for form element
     ☐ Is the deprecated props needed or should we just remove it since we're in 0.x.x stage and breaking changes are expected?
+      * I think we should remove the old prop checks, or should we keep them? Thinking of just bumping up the version from 0.5.x to 0.6.x and pointing out there has been a breaking change. Versus keeping this code bloated with safety features like that, it's likely only me using it at the moment
     ☐ Check all components using UluForm components
       ☐ Facets, Selectable Menus, etc
     ☐ Setup stories that show all form capabilities
