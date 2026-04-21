@@ -1,36 +1,30 @@
 <template>
-  <label 
-    :class="{ 'hidden-visually' : labelHidden }" 
-    :for="id"
-  >
-    <slot name="label">
-      {{ label }}<UluFormRequiredChar v-if="required" />
-    </slot>
-  </label>
   <input 
     type="file" 
-    @change="onChangeFile" 
+    v-bind="fieldAttrs"
     :multiple="multiple"
-    :id="id"
-    v-bind="inputAttrs"
-    :required="required"
+    @change="onChangeFile" 
   />
 </template>
 
 <script setup>
-  import { newId } from "../../utils/dom.js";
-  import UluFormRequiredChar from "./UluFormRequiredChar.vue";
+  import { inject, computed } from "vue";
+  import { checkDeprecatedProps } from "../../utils/props.js";
 
-  defineProps({
+  const props = defineProps({
     /**
-     * The label for the file input.
+     * If true, allows multiple file selection.
+     */
+    multiple: Boolean,
+    /**
+     * @deprecated Use <UluFormItem label="..."> instead.
      */
     label: {
       type: String,
       default: "Select File"
     },
     /**
-     * If true, the label will be visually hidden.
+     * @deprecated Use <UluFormItem labelHidden> instead.
      */
     labelHidden: Boolean,
     /**
@@ -38,22 +32,25 @@
      */
     noClasses: Boolean,
     /**
-     * If true, allows multiple file selection.
-     */
-    multiple: Boolean,
-    /**
-     * Additional attributes to bind to the input element.
-     */
-    inputAttrs: Object,
-    /**
-     * If true, the field will be required.
+     * @deprecated Use <UluFormItem required> instead.
      */
     required: Boolean
   });
 
   const emit = defineEmits(["file-change"]);
 
-  const id = newId();
+  checkDeprecatedProps(props, ["label", "labelHidden", "required"], (name) => {
+    console.warn(`[@ulu/frontend-vue] UluFormFile: The "${ name }" prop is deprecated. Please move it to the parent <UluFormItem>.`);
+  });
+
+  const injectedAttrs = inject("uluFormFieldAttrs", null);
+  const fieldAttrs = computed(() => {
+    const attrs = injectedAttrs ? { ...injectedAttrs.value } : {};
+    if (props.required) {
+      attrs.required = true;
+    }
+    return attrs;
+  });
 
   const onChangeFile = (event) => {
     emit("file-change", event.target.files);

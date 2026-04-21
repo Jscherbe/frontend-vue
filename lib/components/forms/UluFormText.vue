@@ -9,7 +9,6 @@
 
 <script setup>
   import { inject, computed } from "vue";
-  import { newId } from "../../utils/dom.js";
   import { checkDeprecatedProps } from "../../utils/props.js";
 
   const props = defineProps({
@@ -38,6 +37,5 @@
   });
 
   const injectedAttrs = inject("uluFormFieldAttrs", null);
-  const fallbackId = newId();
-  const fieldAttrs = computed(() => injectedAttrs ? injectedAttrs.value : { id: fallbackId });
+  const fieldAttrs = computed(() => injectedAttrs ? injectedAttrs.value : {});
 </script>

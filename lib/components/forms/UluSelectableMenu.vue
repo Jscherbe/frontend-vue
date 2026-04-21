@@ -32,75 +32,75 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+  import { computed } from 'vue';
 
-const props = defineProps({
-  /**
-   * The legend for the menu.
-   */
-  legend: String,
-  /**
-   * An array of options for the menu.
-   */
-  options: Array,
-  /**
-   * Use compact modifier on menu stack
-   */
-  compact: Boolean,
-  /**
-   * The type of input to use ('checkbox' or 'radio').
-   */
-  type: {
-    type: String,
-    default: 'checkbox',
-  },
-  /**
-   * The value of the menu (for v-model).
-   */
-  modelValue: [String, Array],
-  /**
-   * If true, the input elements will be visually hidden.
-   */
-  hideInputs: Boolean
-});
+  const props = defineProps({
+    /**
+     * The legend for the menu.
+     */
+    legend: String,
+    /**
+     * An array of options for the menu.
+     */
+    options: Array,
+    /**
+     * Use compact modifier on menu stack
+     */
+    compact: Boolean,
+    /**
+     * The type of input to use ('checkbox' or 'radio').
+     */
+    type: {
+      type: String,
+      default: 'checkbox',
+    },
+    /**
+     * The value of the menu (for v-model).
+     */
+    modelValue: [String, Array],
+    /**
+     * If true, the input elements will be visually hidden.
+     */
+    hideInputs: Boolean
+  });
 
-const emit = defineEmits(['update:modelValue']);
+  const emit = defineEmits(['update:modelValue']);
 
-const name = computed(() => props.legend ? props.legend.toLowerCase().replace(/\s+/g, '-') : `menu-${ Math.random().toString(36).substring(7) }`);
-const legendId = computed(() => name.value ? `${name.value}-legend` : null);
-const groupRole = computed(() => props.type === 'radio' ? 'radiogroup' : 'group');
+  const name = computed(() => props.legend ? props.legend.toLowerCase().replace(/\s+/g, '-') : `menu-${ Math.random().toString(36).substring(7) }`);
+  const legendId = computed(() => name.value ? `${name.value}-legend` : null);
+  const groupRole = computed(() => props.type === 'radio' ? 'radiogroup' : 'group');
 
-const getId = (option) => `${name.value}-${option.uid}`;
+  const getId = (option) => `${name.value}-${option.uid}`;
 
-const isChecked = (option) => {
-  if (props.type === 'radio') {
-    return props.modelValue === option.uid;
-  }
-  if (Array.isArray(props.modelValue)) {
-    return props.modelValue.includes(option.uid);
-  }
-  if (props.type === 'checkbox') {
-    return option.checked || false;
-  }
-  return false;
-};
-
-const handleChange = (option, event) => {
-  if (props.type === 'radio') {
-    emit('update:modelValue', option.uid);
-  } else {
-    if (Array.isArray(props.modelValue)) {
-      const newValue = [...props.modelValue];
-      const index = newValue.indexOf(option.uid);
-      if (index > -1) {
-        newValue.splice(index, 1);
-      } else {
-        newValue.push(option.uid);
-      }
-      emit('update:modelValue', newValue);
-    } else {
-      option.checked = event.target.checked;
+  const isChecked = (option) => {
+    if (props.type === 'radio') {
+      return props.modelValue === option.uid;
     }
-  }
-};
+    if (Array.isArray(props.modelValue)) {
+      return props.modelValue.includes(option.uid);
+    }
+    if (props.type === 'checkbox') {
+      return option.checked || false;
+    }
+    return false;
+  };
+
+  const handleChange = (option, event) => {
+    if (props.type === 'radio') {
+      emit('update:modelValue', option.uid);
+    } else {
+      if (Array.isArray(props.modelValue)) {
+        const newValue = [...props.modelValue];
+        const index = newValue.indexOf(option.uid);
+        if (index > -1) {
+          newValue.splice(index, 1);
+        } else {
+          newValue.push(option.uid);
+        }
+        emit('update:modelValue', newValue);
+      } else {
+        option.checked = event.target.checked;
+      }
+    }
+  };
 </script>

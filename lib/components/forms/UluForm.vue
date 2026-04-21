@@ -14,29 +14,29 @@
 </template>
 
 <script setup>
-defineProps({
-  /**
-   * The HTML element to use for the form.
-   */
-  element: {
-    type: String,
-    default: 'form'
-  },
-  /**
-   * If true, applies the full-width styles to text inputs.
-   */
-  fullWidth: Boolean,
-  /**
-   * If true, applies the full-width styles to select inputs.
-   */
-  fullWidthSelect: Boolean,
-  /**
-   * If true, hides all labels in the form.
-   */
-  hideLabels: Boolean,
-  /**
-   * If true, right-aligns the form actions.
-   */
-  actionsRight: Boolean
-});
+  defineProps({
+    /**
+     * The HTML element to use for the form.
+     */
+    element: {
+      type: String,
+      default: 'form'
+    },
+    /**
+     * If true, applies the full-width styles to text inputs.
+     */
+    fullWidth: Boolean,
+    /**
+     * If true, applies the full-width styles to select inputs.
+     */
+    fullWidthSelect: Boolean,
+    /**
+     * If true, hides all labels in the form.
+     */
+    hideLabels: Boolean,
+    /**
+     * If true, right-aligns the form actions.
+     */
+    actionsRight: Boolean
+  });
 </script>

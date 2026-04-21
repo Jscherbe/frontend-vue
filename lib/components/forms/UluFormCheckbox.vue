@@ -8,32 +8,30 @@
 </template>
 
 <script setup>
-import { inject, computed } from "vue";
-import { newId } from "../../utils/dom.js";
-import { checkDeprecatedProps } from "../../utils/props.js";
+  import { inject, computed } from "vue";
+  import { checkDeprecatedProps } from "../../utils/props.js";
 
-const props = defineProps({
-  /**
-   * The value of the checkbox (for v-model).
-   */
-  modelValue: Boolean,
-  /**
-   * @deprecated Use <UluFormItem label="..."> instead.
-   */
-  label: String,
-  /**
-   * @deprecated Use <UluFormItem required> instead.
-   */
-  required: Boolean
-});
+  const props = defineProps({
+    /**
+     * The value of the checkbox (for v-model).
+     */
+    modelValue: Boolean,
+    /**
+     * @deprecated Use <UluFormItem label="..."> instead.
+     */
+    label: String,
+    /**
+     * @deprecated Use <UluFormItem required> instead.
+     */
+    required: Boolean
+  });
 
-defineEmits(["update:modelValue"]);
+  defineEmits(["update:modelValue"]);
 
-checkDeprecatedProps(props, ["label", "required"], (name) => {
-  console.warn(`[@ulu/frontend-vue] UluFormCheckbox: The "${ name }" prop is deprecated. Please move it to the parent <UluFormItem>.`);
-});
+  checkDeprecatedProps(props, ["label", "required"], (name) => {
+    console.warn(`[@ulu/frontend-vue] UluFormCheckbox: The "${ name }" prop is deprecated. Please move it to the parent <UluFormItem>.`);
+  });
 
-const injectedAttrs = inject("uluFormFieldAttrs", null);
-const fallbackId = newId();
-const fieldAttrs = computed(() => injectedAttrs ? injectedAttrs.value : { id: fallbackId });
+  const injectedAttrs = inject("uluFormFieldAttrs", null);
+  const fieldAttrs = computed(() => injectedAttrs ? injectedAttrs.value : {});
 </script>

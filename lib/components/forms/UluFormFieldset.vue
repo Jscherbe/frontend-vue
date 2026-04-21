@@ -6,10 +6,10 @@
 </template>
 
 <script setup>
-defineProps({
-  /**
-   * The legend for the fieldset.
-   */
-  legend: String
-});
+  defineProps({
+    /**
+     * The legend for the fieldset.
+     */
+    legend: String
+  });
 </script>
