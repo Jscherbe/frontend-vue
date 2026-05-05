@@ -26,7 +26,10 @@
   const { getIconProps, getClassesFromDefinition } = useIcon();
 
   const AsyncFontAwesomeIcon = defineAsyncComponent(() => 
-    import("@fortawesome/vue-fontawesome").then(m => m.FontAwesomeIcon)
+    import("@fortawesome/vue-fontawesome").then(m => {
+      console.log("[UluIcon] FontAwesome Module resolved:", m);
+      return m.FontAwesomeIcon;
+    })
   );
 
   const props = defineProps({

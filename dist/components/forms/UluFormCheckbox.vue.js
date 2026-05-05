@@ -8,10 +8,12 @@ const s = ["checked"], f = {
      */
     modelValue: Boolean,
     /**
+     * Deprecated: Use `<UluFormItem label="...">` instead.
      * @deprecated Use <UluFormItem label="..."> instead.
      */
     label: String,
     /**
+     * Deprecated Use `<UluFormItem required>` instead.
      * @deprecated Use <UluFormItem required> instead.
      */
     required: Boolean

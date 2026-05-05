@@ -17,6 +17,7 @@
      */
     multiple: Boolean,
     /**
+     * Deprecated: Use `<UluFormItem label="...">` instead.
      * @deprecated Use <UluFormItem label="..."> instead.
      */
     label: {
@@ -24,14 +25,12 @@
       default: "Select File"
     },
     /**
+     * Deprecated: Use `<UluFormItem labelHidden>` instead.
      * @deprecated Use <UluFormItem labelHidden> instead.
      */
     labelHidden: Boolean,
     /**
-     * If true, default classes will not be applied.
-     */
-    noClasses: Boolean,
-    /**
+     * Deprecated: Use <UluFormItem required> instead.
      * @deprecated Use <UluFormItem required> instead.
      */
     required: Boolean
