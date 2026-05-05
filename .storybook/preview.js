@@ -1,4 +1,7 @@
 import { setup } from "@storybook/vue3"; 
+import { markRaw } from "vue";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import { useIcon } from '../lib/composables/useIcon.js';
 import { createMemoryHistory, createRouter } from "vue-router";
 import { 
   corePlugin, 
@@ -12,6 +15,8 @@ import modals from "../lib/plugins/modals/tests/test-modals.js";
 
 import "./preview-theme/scss/styles.scss";
 import "./preview-theme/icons.js";
+
+const { getIconProps } = useIcon();
 
 /** @type { import('@storybook/vue3-vite').Preview } */
 const preview = {
@@ -57,7 +62,10 @@ const router = createRouter({
 setup((app) => { 
   app
     .use(router)
-    .use(corePlugin)
+    .use(corePlugin, {
+      iconComponent: markRaw(FontAwesomeIcon),
+      iconPropResolver: getIconProps
+    })
     .use(popoversPlugin)
     .use(toastPlugin)
     .use(modalsPlugin, { modals })
@@ -83,4 +91,5 @@ export const decorators = [
     `,
   }),
 ];
+
 

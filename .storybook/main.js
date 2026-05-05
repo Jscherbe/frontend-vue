@@ -43,21 +43,7 @@ const config = {
       base: basePath,
       plugins: [
         fixStorybookMockerEntryPlugin()
-      ],
-      build: {
-        rollupOptions: {
-          output: {
-            manualChunks: {
-              // To prevent issues with library.add (singleton issue)
-              fontawesome: [
-                '@fortawesome/fontawesome-svg-core', 
-                '@fortawesome/vue-fontawesome',
-                '@fortawesome/free-solid-svg-icons'
-              ]
-            }
-          }
-        }
-      }
+      ]
     });
   }
 };

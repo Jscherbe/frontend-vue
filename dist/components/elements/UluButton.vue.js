@@ -36,7 +36,8 @@ const k = { key: 1 }, C = {
      */
     download: [Boolean, String],
     /**
-     * @deprecated Use `ariaLabel` instead. For icon only buttons or buttons that need an explicit label
+     * **Deprecated!** Use `ariaLabel` instead. 
+     * @deprecated Use `ariaLabel` instead.
      */
     alt: String,
     /**
