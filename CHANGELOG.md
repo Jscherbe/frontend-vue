@@ -2,10 +2,16 @@
 
 ## 0.6.0
 
-- Forms Updates **Breaking Changes**
-  - `UluFormSelect`
-  - `UluFormText`
-  - `UluFormTextarea`
+- **Forms Updates (Breaking Changes)**
+   - Form input components are no longer multi-root. Inputs and labels have been separated (UluFormLabel is now its own component).
+     - This allows native Vue attribute fallthrough to work predictably directly on the inputs (e.g., placeholder, disabled, type).
+   - `UluFormItem` has been refactored as a smart wrapper for all form fields:
+     - Added `layout` to map directly to form-theme BEM modifiers (e.g., layout="text" creates form-theme__item--text)
+       without conflicting with native HTML input types.
+     - It now automatically manages associated labels, descriptions (help text), and error/warning message states.
+     - It automatically generates and links unique IDs for inputs, labels, and aria-describedby accessibility attributes (these can still be overridden).
+   - `UluSearchForm` was rewritten to use the new .input-group layout and now supports v-model and emits a @submit event.
+- `UluButton` and `UluAction` add "type" prop for buttons (in case you want type other than button ie. submit)
 
 ## 0.5.16
 

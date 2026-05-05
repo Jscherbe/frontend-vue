@@ -4,6 +4,7 @@
     :href="href"
     :target="target"
     :download="download"
+    :type="type"
     class="button" 
     :class="[
       {
@@ -38,6 +39,7 @@
   import UluAction from "../utils/UluAction.vue";
   import UluIcon from "./UluIcon.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
+  import { checkDeprecatedProps } from "../../utils/props.js";
 
   const props = defineProps({
     /**
@@ -70,9 +72,13 @@
      */
     download: [Boolean, String],
     /**
-     * For icon only buttons or buttons that need an explicit label
+     * @deprecated Use `ariaLabel` instead. For icon only buttons or buttons that need an explicit label
      */
     alt: String,
+    /**
+     * For icon only buttons or buttons that need an explicit aria-label
+     */
+    ariaLabel: String,
     /**
      * If not using slot this sets the buttons text via prop
      */
@@ -112,7 +118,15 @@
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array],
+    /**
+     * Button type (e.g. 'submit', 'reset', 'button').
+     */
+    type: String
+  });
+
+  checkDeprecatedProps(props, ["alt"], (name) => {
+    console.warn(`[@ulu/frontend-vue] UluButton: The "${ name }" prop is deprecated. Please use "ariaLabel" instead.`);
   });
 
   const { resolvedModifiers } = useModifiers({ 
@@ -131,7 +145,7 @@
   });
 
   const resolvedAriaLabel = computed(() => {
-    const label = props.alt || (props.iconOnly && props.text);
+    const label = props.ariaLabel || props.alt || (props.iconOnly && props.text);
     return label ? label : null;
   });
 </script>

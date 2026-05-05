@@ -1,4 +1,5 @@
 import { setup } from "@storybook/vue3"; 
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { createMemoryHistory, createRouter } from "vue-router";
 import { 
   corePlugin, 
@@ -61,7 +62,7 @@ setup((app) => {
     .use(popoversPlugin)
     .use(toastPlugin)
     .use(modalsPlugin, { modals })
-    .use(breakpointsPlugin)
+    .use(breakpointsPlugin);
 });
 
 // Export a global decorator to wrap all stories with a router-view

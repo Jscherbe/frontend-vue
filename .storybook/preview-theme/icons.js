@@ -85,6 +85,7 @@ import {
   // faNoteSticky,
   // faExpand,
   // faMaximize,
+  faSearch,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -160,6 +161,7 @@ library.add(
   // faNoteSticky,
   // faExpand,
   // faMaximize,
+  faSearch,
   // faFacebookF,
   // faInstagram
 );

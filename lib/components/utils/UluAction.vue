@@ -48,7 +48,11 @@
      * Allows passing 'click' as a prop to signify this is an action (used in UluMenu data objects).
      * Note: The actual @click listener should be attached via fallthrough attrs, this is just for logic routing.
      */
-    click: Function
+    click: Function,
+    /**
+     * Button type (e.g. 'submit', 'reset', 'button'). Defaults to 'button' to prevent accidental form submissions.
+     */
+    type: String
   });
 
   const resolvedElement = computed(() => {
@@ -73,7 +77,7 @@
       }
     } else if (!props.element || props.element === "button") {
       // It's a button, ensure it doesn't accidentally submit forms unless requested
-      attrs.type = "button";
+      attrs.type = props.type || "button";
     }
     
     return attrs;
