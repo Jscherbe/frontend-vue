@@ -19,19 +19,14 @@
 </template>
 
 <script setup>
-  import { defineAsyncComponent, computed, inject, watchEffect, onMounted } from "vue";
+  import { defineAsyncComponent, computed, inject } from "vue";
   import { useIcon } from "../../composables/useIcon.js";
 
   const uluCore = inject('uluCore');
   const { getIconProps, getClassesFromDefinition } = useIcon();
 
   const AsyncFontAwesomeIcon = defineAsyncComponent(() => 
-    import("@fortawesome/vue-fontawesome").then(m => {
-      console.log("[UluIcon] Async component loaded successfully:", m);
-      return m.FontAwesomeIcon;
-    }).catch(err => {
-      console.error("[UluIcon] Failed to load async component:", err);
-    })
+    import("@fortawesome/vue-fontawesome").then(m => m.FontAwesomeIcon)
   );
 
   const props = defineProps({
@@ -96,20 +91,5 @@
       return AsyncFontAwesomeIcon;
     }
     return null;
-  });
-
-  onMounted(() => {
-    console.log("[UluIcon] mounted with props:", props);
-    console.log("[UluIcon] customIconComponent:", customIconComponent.value);
-    console.log("[UluIcon] resolvedDefinition:", resolvedDefinition.value);
-    console.log("[UluIcon] iconProps:", iconProps.value);
-    console.log("[UluIcon] customIconProps:", customIconProps.value);
-
-    // Debugging the FA library singleton
-    import("@fortawesome/fontawesome-svg-core").then(core => {
-      console.log("[UluIcon] FA Library Definitions in this chunk:", core.library.definitions);
-    }).catch(err => {
-      console.error("[UluIcon] Could not load fontawesome-svg-core for debugging", err);
-    });
   });
 </script>

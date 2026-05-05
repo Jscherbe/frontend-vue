@@ -1,6 +1,6 @@
-import { inject as A, defineAsyncComponent as P, computed as e, onMounted as k, createBlock as v, createElementBlock as w, createCommentVNode as F, openBlock as a, resolveDynamicComponent as g, mergeProps as I, normalizeClass as S } from "vue";
-import { useIcon as _ } from "../../composables/useIcon.js";
-const D = {
+import { inject as P, defineAsyncComponent as S, computed as e, createBlock as p, createElementBlock as _, createCommentVNode as h, openBlock as a, resolveDynamicComponent as m, mergeProps as v, normalizeClass as w } from "vue";
+import { useIcon as B } from "../../composables/useIcon.js";
+const b = {
   __name: "UluIcon",
   props: {
     /**
@@ -12,37 +12,29 @@ const D = {
      */
     spaced: Boolean
   },
-  setup(d) {
-    const t = A("uluCore"), { getIconProps: f, getClassesFromDefinition: y } = _(), C = P(
-      () => import("@fortawesome/vue-fontawesome").then((o) => (console.log("[UluIcon] Async component loaded successfully:", o), o.FontAwesomeIcon)).catch((o) => {
-        console.error("[UluIcon] Failed to load async component:", o);
-      })
-    ), s = d, r = e(() => t.getSetting("fontAwesomeStatic")), c = e(() => t.getSetting("iconComponent")), h = e(() => t.getSetting("iconPropResolver")), n = e(() => {
-      const { icon: o } = s;
-      if (typeof o == "string" && o.startsWith("type:"))
+  setup(f) {
+    const t = P("uluCore"), { getIconProps: g, getClassesFromDefinition: C } = B(), y = S(
+      () => import("@fortawesome/vue-fontawesome").then((n) => n.FontAwesomeIcon)
+    ), u = f, r = e(() => t.getSetting("fontAwesomeStatic")), c = e(() => t.getSetting("iconComponent")), I = e(() => t.getSetting("iconPropResolver")), o = e(() => {
+      const { icon: n } = u;
+      if (typeof n == "string" && n.startsWith("type:"))
         try {
-          const l = o.substring(5);
-          return t.getIcon(l);
-        } catch (l) {
-          return console.warn(l), null;
+          const s = n.substring(5);
+          return t.getIcon(s);
+        } catch (s) {
+          return console.warn(s), null;
         }
-      return o;
-    }), i = e(() => !c.value || !n.value ? null : h.value(n.value)), p = e(() => f(n.value)), U = e(() => y(n.value)), u = e(() => ({
-      "flow-inline": s.spaced
-    })), m = e(() => !r.value && n.value ? C : null);
-    return k(() => {
-      console.log("[UluIcon] mounted with props:", s), console.log("[UluIcon] customIconComponent:", c.value), console.log("[UluIcon] resolvedDefinition:", n.value), console.log("[UluIcon] iconProps:", p.value), console.log("[UluIcon] customIconProps:", i.value), import("@fortawesome/fontawesome-svg-core").then((o) => {
-        console.log("[UluIcon] FA Library Definitions in this chunk:", o.library.definitions);
-      }).catch((o) => {
-        console.error("[UluIcon] Could not load fontawesome-svg-core for debugging", o);
-      });
-    }), (o, l) => c.value ? (a(), v(g(c.value), I({ key: 0 }, i.value, { class: u.value }), null, 16, ["class"])) : !r.value && m.value ? (a(), v(g(m.value), I({ key: 1 }, p.value, { class: u.value }), null, 16, ["class"])) : r.value && n.value ? (a(), w("span", {
+      return n;
+    }), d = e(() => !c.value || !o.value ? null : I.value(o.value)), k = e(() => g(o.value)), A = e(() => C(o.value)), l = e(() => ({
+      "flow-inline": u.spaced
+    })), i = e(() => !r.value && o.value ? y : null);
+    return (n, s) => c.value ? (a(), p(m(c.value), v({ key: 0 }, d.value, { class: l.value }), null, 16, ["class"])) : !r.value && i.value ? (a(), p(m(i.value), v({ key: 1 }, k.value, { class: l.value }), null, 16, ["class"])) : r.value && o.value ? (a(), _("span", {
       key: 2,
-      class: S([U.value, u.value]),
+      class: w([A.value, l.value]),
       "aria-hidden": "true"
-    }, null, 2)) : F("", !0);
+    }, null, 2)) : h("", !0);
   }
 };
 export {
-  D as default
+  b as default
 };

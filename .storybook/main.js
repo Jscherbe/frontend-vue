@@ -41,6 +41,13 @@ const config = {
     return mergeConfig(config, {
       // Add dependencies to pre-optimization
       base: basePath,
+      resolve: {
+        dedupe: [
+          '@fortawesome/fontawesome-svg-core',
+          '@fortawesome/free-solid-svg-icons',
+          '@fortawesome/vue-fontawesome'
+        ]
+      },
       plugins: [
         fixStorybookMockerEntryPlugin()
       ]
