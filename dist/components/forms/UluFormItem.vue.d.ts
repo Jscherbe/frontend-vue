@@ -5,9 +5,9 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     required: boolean;
-    labelHidden: boolean;
     warning: boolean;
     error: boolean;
+    labelHidden: boolean;
     alignTop: boolean;
     modifiers?: string | unknown[] | undefined;
     description?: string | undefined;
@@ -18,9 +18,9 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     warningMessage?: string | undefined;
     $props: {
         readonly required?: boolean | undefined;
-        readonly labelHidden?: boolean | undefined;
         readonly warning?: boolean | undefined;
         readonly error?: boolean | undefined;
+        readonly labelHidden?: boolean | undefined;
         readonly alignTop?: boolean | undefined;
         readonly modifiers?: string | unknown[] | undefined;
         readonly description?: string | undefined;

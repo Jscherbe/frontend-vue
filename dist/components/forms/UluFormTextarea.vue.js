@@ -1,37 +1,21 @@
-import { inject as u, computed as n, createElementBlock as d, openBlock as m, mergeProps as p } from "vue";
-import { checkDeprecatedProps as s } from "../../utils/props.js";
-const i = ["value"], b = {
+import { inject as a, computed as n, createElementBlock as m, openBlock as s, mergeProps as d } from "vue";
+const p = ["value"], c = {
   __name: "UluFormTextarea",
   props: {
     /**
      * The value of the textarea (for v-model).
      */
-    modelValue: [String, Number],
-    /**
-     * @deprecated Use <UluFormItem label="..."> instead.
-     */
-    label: String,
-    /**
-     * @deprecated Use <UluFormItem labelHidden> instead.
-     */
-    labelHidden: Boolean,
-    /**
-     * @deprecated Use <UluFormItem required> instead.
-     */
-    required: Boolean
+    modelValue: [String, Number]
   },
   emits: ["update:modelValue"],
-  setup(t) {
-    s(t, ["label", "labelHidden", "required"], (e) => {
-      console.warn(`[@ulu/frontend-vue] UluFormTextarea: The "${e}" prop is deprecated. Please move it to the parent <UluFormItem>.`);
-    });
-    const l = u("uluFormFieldAttrs", null), o = n(() => l ? l.value : {});
-    return (e, r) => (m(), d("textarea", p(o.value, {
-      value: t.modelValue,
-      onInput: r[0] || (r[0] = (a) => e.$emit("update:modelValue", a.target.value))
-    }), null, 16, i));
+  setup(l) {
+    const e = a("uluFormFieldAttrs", null), u = n(() => e ? e.value : {});
+    return (o, t) => (s(), m("textarea", d(u.value, {
+      value: l.modelValue,
+      onInput: t[0] || (t[0] = (r) => o.$emit("update:modelValue", r.target.value))
+    }), null, 16, p));
   }
 };
 export {
-  b as default
+  c as default
 };

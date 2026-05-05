@@ -1,10 +1,9 @@
-import { inject as i, computed as c, createElementBlock as l, openBlock as o, mergeProps as m, createCommentVNode as p, toDisplayString as u, Fragment as v, renderList as f } from "vue";
-import { checkDeprecatedProps as h } from "../../utils/props.js";
-const g = ["value"], b = {
+import { inject as i, computed as c, createElementBlock as l, openBlock as o, mergeProps as m, createCommentVNode as p, toDisplayString as n, Fragment as v, renderList as f } from "vue";
+const g = ["value"], y = {
   key: 0,
   disabled: "",
   value: ""
-}, y = ["value"], A = {
+}, h = ["value"], V = {
   __name: "UluFormSelect",
   props: {
     /**
@@ -21,38 +20,23 @@ const g = ["value"], b = {
     placeholder: {
       type: [String, Boolean],
       default: "Please select one"
-    },
-    /**
-     * @deprecated Use <UluFormItem label="..."> instead.
-     */
-    label: String,
-    /**
-     * @deprecated Use <UluFormItem labelHidden> instead.
-     */
-    labelHidden: Boolean,
-    /**
-     * @deprecated Use <UluFormItem required> instead.
-     */
-    required: Boolean
+    }
   },
   emits: ["update:modelValue"],
   setup(e) {
-    h(e, ["label", "labelHidden", "required"], (r) => {
-      console.warn(`[@ulu/frontend-vue] UluFormSelect: The "${r}" prop is deprecated. Please move it to the parent <UluFormItem>.`);
-    });
-    const a = i("uluFormFieldAttrs", null), d = c(() => a ? a.value : {});
-    return (r, n) => (o(), l("select", m(d.value, {
+    const a = i("uluFormFieldAttrs", null), u = c(() => a ? a.value : {});
+    return (s, r) => (o(), l("select", m(u.value, {
       value: e.modelValue,
-      onInput: n[0] || (n[0] = (t) => r.$emit("update:modelValue", t.target.value))
+      onInput: r[0] || (r[0] = (t) => s.$emit("update:modelValue", t.target.value))
     }), [
-      e.placeholder !== !1 ? (o(), l("option", b, u(e.placeholder || "Please select one"), 1)) : p("", !0),
-      (o(!0), l(v, null, f(e.options, (t, s) => (o(), l("option", {
-        key: s,
+      e.placeholder !== !1 ? (o(), l("option", y, n(e.placeholder || "Please select one"), 1)) : p("", !0),
+      (o(!0), l(v, null, f(e.options, (t, d) => (o(), l("option", {
+        key: d,
         value: t.value
-      }, u(t.text), 9, y))), 128))
+      }, n(t.text), 9, h))), 128))
     ], 16, g));
   }
 };
 export {
-  A as default
+  V as default
 };

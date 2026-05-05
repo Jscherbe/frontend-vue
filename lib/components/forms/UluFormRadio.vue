@@ -10,7 +10,6 @@
 
 <script setup>
   import { inject, computed } from "vue";
-  import { checkDeprecatedProps } from "../../utils/props.js";
 
   const props = defineProps({
     /**
@@ -20,22 +19,10 @@
     /**
      * The value of this radio button.
      */
-    value: [String, Number, Boolean],
-    /**
-     * @deprecated Use <UluFormItem label="..."> instead.
-     */
-    label: String,
-    /**
-     * @deprecated Use <UluFormItem required> instead.
-     */
-    required: Boolean
+    value: [String, Number, Boolean]
   });
 
   defineEmits(["update:modelValue"]);
-
-  checkDeprecatedProps(props, ["label", "required"], (name) => {
-    console.warn(`[@ulu/frontend-vue] UluFormRadio: The "${ name }" prop is deprecated. Please move it to the parent <UluFormItem>.`);
-  });
 
   const injectedAttrs = inject("uluFormFieldAttrs", null);
   const fieldAttrs = computed(() => injectedAttrs ? injectedAttrs.value : {});

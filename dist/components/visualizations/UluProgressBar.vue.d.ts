@@ -7,8 +7,8 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     classes: Record<string, any>;
     danger: boolean;
     small: boolean;
-    labelHidden: boolean;
     warning: boolean;
+    labelHidden: boolean;
     amount: number;
     labelElement: string;
     total: number;
@@ -26,8 +26,8 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly classes?: Record<string, any> | undefined;
         readonly danger?: boolean | undefined;
         readonly small?: boolean | undefined;
-        readonly labelHidden?: boolean | undefined;
         readonly warning?: boolean | undefined;
+        readonly labelHidden?: boolean | undefined;
         readonly amount?: number | undefined;
         readonly labelElement?: string | undefined;
         readonly total?: number | undefined;
