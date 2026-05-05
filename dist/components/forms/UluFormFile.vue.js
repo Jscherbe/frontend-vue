@@ -1,18 +1,21 @@
-import { createElementBlock as s, openBlock as n, Fragment as c, createElementVNode as i, unref as o, normalizeClass as d, renderSlot as u, createTextVNode as f, createBlock as g, createCommentVNode as p, toDisplayString as h, mergeProps as b } from "vue";
-import { newId as B } from "../../utils/dom.js";
-import q from "./UluFormRequiredChar.vue.js";
-const y = ["for"], C = ["multiple", "id", "required"], V = {
+import { inject as u, computed as s, createElementBlock as c, openBlock as m, mergeProps as p } from "vue";
+import { checkDeprecatedProps as d } from "../../utils/props.js";
+const f = ["multiple"], B = {
   __name: "UluFormFile",
   props: {
     /**
-     * The label for the file input.
+     * If true, allows multiple file selection.
+     */
+    multiple: Boolean,
+    /**
+     * @deprecated Use <UluFormItem label="..."> instead.
      */
     label: {
       type: String,
       default: "Select File"
     },
     /**
-     * If true, the label will be visually hidden.
+     * @deprecated Use <UluFormItem labelHidden> instead.
      */
     labelHidden: Boolean,
     /**
@@ -20,42 +23,28 @@ const y = ["for"], C = ["multiple", "id", "required"], V = {
      */
     noClasses: Boolean,
     /**
-     * If true, allows multiple file selection.
-     */
-    multiple: Boolean,
-    /**
-     * Additional attributes to bind to the input element.
-     */
-    inputAttrs: Object,
-    /**
-     * If true, the field will be required.
+     * @deprecated Use <UluFormItem required> instead.
      */
     required: Boolean
   },
   emits: ["file-change"],
-  setup(e, { emit: r }) {
-    const a = r, t = B(), m = (l) => {
-      a("file-change", l.target.files);
+  setup(t, { emit: r }) {
+    const l = t, n = r;
+    d(l, ["label", "labelHidden", "required"], (e) => {
+      console.warn(`[@ulu/frontend-vue] UluFormFile: The "${e}" prop is deprecated. Please move it to the parent <UluFormItem>.`);
+    });
+    const o = u("uluFormFieldAttrs", null), i = s(() => {
+      const e = o ? { ...o.value } : {};
+      return l.required && (e.required = !0), e;
+    }), a = (e) => {
+      n("file-change", e.target.files);
     };
-    return (l, F) => (n(), s(c, null, [
-      i("label", {
-        class: d({ "hidden-visually": e.labelHidden }),
-        for: o(t)
-      }, [
-        u(l.$slots, "label", {}, () => [
-          f(h(e.label), 1),
-          e.required ? (n(), g(q, { key: 0 })) : p("", !0)
-        ])
-      ], 10, y),
-      i("input", b({
-        type: "file",
-        onChange: m,
-        multiple: e.multiple,
-        id: o(t)
-      }, e.inputAttrs, { required: e.required }), null, 16, C)
-    ], 64));
+    return (e, h) => (m(), c("input", p({ type: "file" }, i.value, {
+      multiple: t.multiple,
+      onChange: a
+    }), null, 16, f));
   }
 };
 export {
-  V as default
+  B as default
 };

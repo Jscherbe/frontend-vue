@@ -12,6 +12,7 @@
      - It automatically generates and links unique IDs for inputs, labels, and aria-describedby accessibility attributes (these can still be overridden).
    - `UluSearchForm` was rewritten to use the new .input-group layout and now supports v-model and emits a @submit event.
 - `UluButton` and `UluAction` add "type" prop for buttons (in case you want type other than button ie. submit)
+- `UluIcon` simplify the async loading of Font Awesome component (only loaded if set to use it) to avoid any bundler mistakes
 
 ## 0.5.16
 

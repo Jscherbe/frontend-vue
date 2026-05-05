@@ -1,8 +1,9 @@
-import { computed as i, createBlock as a, openBlock as t, normalizeClass as d, unref as m, withCtx as f, renderSlot as l, createCommentVNode as r, createElementBlock as g, createTextVNode as y, toDisplayString as B } from "vue";
+import { computed as i, createBlock as a, openBlock as o, normalizeClass as d, unref as m, withCtx as f, renderSlot as l, createCommentVNode as r, createElementBlock as g, createTextVNode as y, toDisplayString as B } from "vue";
 import b from "../utils/UluAction.vue.js";
 import c from "./UluIcon.vue.js";
 import { useModifiers as S } from "../../composables/useModifiers.js";
-const h = { key: 1 }, z = {
+import { checkDeprecatedProps as h } from "../../utils/props.js";
+const k = { key: 1 }, C = {
   __name: "UluButton",
   props: {
     /**
@@ -35,9 +36,13 @@ const h = { key: 1 }, z = {
      */
     download: [Boolean, String],
     /**
-     * For icon only buttons or buttons that need an explicit label
+     * @deprecated Use `ariaLabel` instead. For icon only buttons or buttons that need an explicit label
      */
     alt: String,
+    /**
+     * For icon only buttons or buttons that need an explicit aria-label
+     */
+    ariaLabel: String,
     /**
      * If not using slot this sets the buttons text via prop
      */
@@ -77,10 +82,18 @@ const h = { key: 1 }, z = {
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array],
+    /**
+     * Button type (e.g. 'submit', 'reset', 'button').
+     */
+    type: String
   },
   setup(e) {
-    const n = e, { resolvedModifiers: s } = S({
+    const n = e;
+    h(n, ["alt"], (t) => {
+      console.warn(`[@ulu/frontend-vue] UluButton: The "${t}" prop is deprecated. Please use "ariaLabel" instead.`);
+    });
+    const { resolvedModifiers: s } = S({
       props: n,
       baseClass: "button",
       internal: i(() => ({
@@ -94,14 +107,15 @@ const h = { key: 1 }, z = {
         [n.size]: n.size
       }))
     }), u = i(() => {
-      const o = n.alt || n.iconOnly && n.text;
-      return o || null;
+      const t = n.ariaLabel || n.alt || n.iconOnly && n.text;
+      return t || null;
     });
-    return (o, O) => (t(), a(b, {
+    return (t, O) => (o(), a(b, {
       to: e.to,
       href: e.href,
       target: e.target,
       download: e.download,
+      type: e.type,
       class: d(["button", [
         {
           "no-margin": e.noMargin
@@ -111,28 +125,28 @@ const h = { key: 1 }, z = {
       "aria-label": u.value
     }, {
       default: f(() => [
-        l(o.$slots, "before"),
-        e.icon && (e.iconBefore || e.iconOnly) ? (t(), a(c, {
+        l(t.$slots, "before"),
+        e.icon && (e.iconBefore || e.iconOnly) ? (o(), a(c, {
           key: 0,
           icon: e.icon,
           class: "button__icon"
         }, null, 8, ["icon"])) : r("", !0),
-        (o.$slots.default || e.text) && !e.iconOnly ? (t(), g("span", h, [
-          l(o.$slots, "default", {}, () => [
+        (t.$slots.default || e.text) && !e.iconOnly ? (o(), g("span", k, [
+          l(t.$slots, "default", {}, () => [
             y(B(e.text), 1)
           ])
         ])) : r("", !0),
-        e.icon && !e.iconBefore && !e.iconOnly ? (t(), a(c, {
+        e.icon && !e.iconBefore && !e.iconOnly ? (o(), a(c, {
           key: 2,
           icon: e.icon,
           class: "button__icon"
         }, null, 8, ["icon"])) : r("", !0),
-        l(o.$slots, "after")
+        l(t.$slots, "after")
       ]),
       _: 3
-    }, 8, ["to", "href", "target", "download", "class", "aria-label"]));
+    }, 8, ["to", "href", "target", "download", "type", "class", "aria-label"]));
   }
 };
 export {
-  z as default
+  C as default
 };

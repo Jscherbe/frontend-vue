@@ -2,7 +2,7 @@ import { reactive as c } from "vue";
 const o = {
   fontAwesomeStatic: !1,
   iconComponent: null,
-  iconPropResolver: (a) => ({ icon: a }),
+  iconPropResolver: (n) => ({ icon: n }),
   iconsByType: {
     danger: "fas fa-triangle-exclamation",
     warning: "fas fa-circle-exclamation",
@@ -22,12 +22,13 @@ const o = {
     file: "fas fa-file",
     previous: "fas fa-chevron-left",
     next: "fas fa-chevron-right",
-    dropdownExpand: "fas fa-caret-down"
+    dropdownExpand: "fas fa-caret-down",
+    search: "fas fa-search"
   }
 };
-function p(a, f = {}) {
-  const t = c({ ...o }), { iconsByType: i, ...r } = f || {};
-  r && Object.assign(t, r);
+function p(n, f = {}) {
+  const t = c({ ...o }), { iconsByType: r, ...i } = f || {};
+  i && Object.assign(t, i);
   const s = {
     // Methods to interact with settings
     getSettings() {
@@ -46,25 +47,25 @@ function p(a, f = {}) {
       }
       return t[e];
     },
-    updateSetting(e, n) {
+    updateSetting(e, a) {
       if (typeof e != "string")
         throw new Error("Expected key to be string");
-      t[e] = n;
+      t[e] = a;
     },
     getIcon(e) {
-      const n = t.iconsByType;
-      if (!n[e])
+      const a = t.iconsByType;
+      if (!a[e])
         throw new Error(`Icon type "${e}" not found!`);
-      return n[e];
+      return a[e];
     },
-    setIcon(e, n) {
-      t.iconsByType[e] = n;
+    setIcon(e, a) {
+      t.iconsByType[e] = a;
     }
   };
-  if (i)
-    for (const [e, n] of Object.entries(i))
-      s.setIcon(e, n);
-  a.provide("uluCore", s), a.config.globalProperties.$uluCore = s;
+  if (r)
+    for (const [e, a] of Object.entries(r))
+      s.setIcon(e, a);
+  n.provide("uluCore", s), n.config.globalProperties.$uluCore = s;
 }
 export {
   p as default

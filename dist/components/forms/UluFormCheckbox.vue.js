@@ -1,42 +1,33 @@
-import { createElementBlock as u, openBlock as l, Fragment as i, createElementVNode as d, unref as n, renderSlot as m, createTextVNode as c, createBlock as s, createCommentVNode as f, toDisplayString as k } from "vue";
-import { newId as h } from "../../utils/dom.js";
-import p from "./UluFormRequiredChar.vue.js";
-const V = ["id", "checked", "required"], b = ["for"], x = {
+import { inject as u, computed as c, createElementBlock as a, openBlock as d, mergeProps as m } from "vue";
+import { checkDeprecatedProps as p } from "../../utils/props.js";
+const s = ["checked"], f = {
   __name: "UluFormCheckbox",
   props: {
-    /**
-     * The label for the checkbox.
-     */
-    label: String,
     /**
      * The value of the checkbox (for v-model).
      */
     modelValue: Boolean,
     /**
-     * If true, the field will be required.
+     * @deprecated Use <UluFormItem label="..."> instead.
+     */
+    label: String,
+    /**
+     * @deprecated Use <UluFormItem required> instead.
      */
     required: Boolean
   },
   emits: ["update:modelValue"],
-  setup(e) {
-    const t = h();
-    return (o, r) => (l(), u(i, null, [
-      d("input", {
-        type: "checkbox",
-        id: n(t),
-        checked: e.modelValue,
-        onChange: r[0] || (r[0] = (a) => o.$emit("update:modelValue", a.target.checked)),
-        required: e.required
-      }, null, 40, V),
-      d("label", { for: n(t) }, [
-        m(o.$slots, "default", {}, () => [
-          c(k(e.label), 1),
-          e.required ? (l(), s(p, { key: 0 })) : f("", !0)
-        ])
-      ], 8, b)
-    ], 64));
+  setup(o) {
+    p(o, ["label", "required"], (e) => {
+      console.warn(`[@ulu/frontend-vue] UluFormCheckbox: The "${e}" prop is deprecated. Please move it to the parent <UluFormItem>.`);
+    });
+    const t = u("uluFormFieldAttrs", null), l = c(() => t ? t.value : {});
+    return (e, r) => (d(), a("input", m({ type: "checkbox" }, l.value, {
+      checked: o.modelValue,
+      onChange: r[0] || (r[0] = (n) => e.$emit("update:modelValue", n.target.checked))
+    }), null, 16, s));
   }
 };
 export {
-  x as default
+  f as default
 };

@@ -1,49 +1,37 @@
-import { createElementBlock as i, openBlock as o, Fragment as u, createElementVNode as a, unref as n, normalizeClass as m, renderSlot as s, createTextVNode as c, createBlock as f, createCommentVNode as V, toDisplayString as b } from "vue";
-import { newId as p } from "../../utils/dom.js";
-import g from "./UluFormRequiredChar.vue.js";
-const q = ["for"], B = ["value", "id", "required"], S = {
+import { inject as n, computed as a, createElementBlock as d, openBlock as m, mergeProps as p } from "vue";
+import { checkDeprecatedProps as s } from "../../utils/props.js";
+const i = ["value"], b = {
   __name: "UluFormText",
   props: {
     /**
-     * The label for the text input.
+     * The value of the text input (for v-model).
+     */
+    modelValue: [String, Number],
+    /**
+     * @deprecated Use <UluFormItem label="..."> instead.
      */
     label: String,
     /**
-     * The value of the text input (for v-model).
-     */
-    modelValue: String,
-    /**
-     * If true, the label will be visually hidden.
+     * @deprecated Use <UluFormItem labelHidden> instead.
      */
     labelHidden: Boolean,
     /**
-     * If true, the field will be required.
+     * @deprecated Use <UluFormItem required> instead.
      */
     required: Boolean
   },
   emits: ["update:modelValue"],
-  setup(e) {
-    const l = p();
-    return (t, r) => (o(), i(u, null, [
-      a("label", {
-        class: m({ "hidden-visually": e.labelHidden }),
-        for: n(l)
-      }, [
-        s(t.$slots, "label", {}, () => [
-          c(b(e.label), 1),
-          e.required ? (o(), f(g, { key: 0 })) : V("", !0)
-        ])
-      ], 10, q),
-      a("input", {
-        type: "text",
-        value: e.modelValue,
-        onInput: r[0] || (r[0] = (d) => t.$emit("update:modelValue", d.target.value)),
-        id: n(l),
-        required: e.required
-      }, null, 40, B)
-    ], 64));
+  setup(t) {
+    s(t, ["label", "labelHidden", "required"], (e) => {
+      console.warn(`[@ulu/frontend-vue] UluFormText: The "${e}" prop is deprecated. Please move it to the parent <UluFormItem>.`);
+    });
+    const l = n("uluFormFieldAttrs", null), r = a(() => l ? l.value : {});
+    return (e, o) => (m(), d("input", p({ type: "text" }, r.value, {
+      value: t.modelValue,
+      onInput: o[0] || (o[0] = (u) => e.$emit("update:modelValue", u.target.value))
+    }), null, 16, i));
   }
 };
 export {
-  S as default
+  b as default
 };

@@ -1,6 +1,12 @@
-function t(e) {
+function f(e) {
   return e.every((r) => typeof r == "object");
 }
+function o(e, r, t) {
+  r.forEach((c) => {
+    e[c] !== void 0 && t(c);
+  });
+}
 export {
-  t as isArrayOfObjects
+  o as checkDeprecatedProps,
+  f as isArrayOfObjects
 };

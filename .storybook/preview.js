@@ -1,5 +1,4 @@
 import { setup } from "@storybook/vue3"; 
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { createMemoryHistory, createRouter } from "vue-router";
 import { 
   corePlugin, 

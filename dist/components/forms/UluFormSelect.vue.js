@@ -1,61 +1,58 @@
-import { createElementBlock as r, openBlock as o, Fragment as i, createElementVNode as a, unref as u, normalizeClass as c, renderSlot as f, createTextVNode as v, createBlock as b, createCommentVNode as V, toDisplayString as s, renderList as g } from "vue";
-import { newId as k } from "../../utils/dom.js";
-import p from "./UluFormRequiredChar.vue.js";
-const q = ["for"], y = ["id", "value", "required"], B = ["value"], x = {
+import { inject as i, computed as c, createElementBlock as l, openBlock as o, mergeProps as m, createCommentVNode as p, toDisplayString as u, Fragment as v, renderList as f } from "vue";
+import { checkDeprecatedProps as h } from "../../utils/props.js";
+const g = ["value"], b = {
+  key: 0,
+  disabled: "",
+  value: ""
+}, y = ["value"], A = {
   __name: "UluFormSelect",
   props: {
     /**
-     * The label for the select input.
-     */
-    label: String,
-    /**
      * The value of the select input (for v-model).
      */
-    modelValue: String,
+    modelValue: [String, Number, Array],
     /**
      * An array of options for the select input. Each option should be an object with `value` and `text` properties.
      */
     options: Array,
     /**
-     * If true, the label will be visually hidden.
+     * The text for the default disabled option. Pass false to hide it.
+     */
+    placeholder: {
+      type: [String, Boolean],
+      default: "Please select one"
+    },
+    /**
+     * @deprecated Use <UluFormItem label="..."> instead.
+     */
+    label: String,
+    /**
+     * @deprecated Use <UluFormItem labelHidden> instead.
      */
     labelHidden: Boolean,
     /**
-     * If true, the field will be required.
+     * @deprecated Use <UluFormItem required> instead.
      */
     required: Boolean
   },
   emits: ["update:modelValue"],
   setup(e) {
-    const n = k();
-    return (d, l) => (o(), r(i, null, [
-      a("label", {
-        class: c({ "hidden-visually": e.labelHidden }),
-        for: u(n)
-      }, [
-        f(d.$slots, "label", {}, () => [
-          v(s(e.label), 1),
-          e.required ? (o(), b(p, { key: 0 })) : V("", !0)
-        ])
-      ], 10, q),
-      a("select", {
-        id: u(n),
-        value: e.modelValue,
-        onInput: l[0] || (l[0] = (t) => d.$emit("update:modelValue", t.target.value)),
-        required: e.required
-      }, [
-        l[1] || (l[1] = a("option", {
-          disabled: "",
-          value: ""
-        }, "Please select one", -1)),
-        (o(!0), r(i, null, g(e.options, (t, m) => (o(), r("option", {
-          key: m,
-          value: t.value
-        }, s(t.text), 9, B))), 128))
-      ], 40, y)
-    ], 64));
+    h(e, ["label", "labelHidden", "required"], (r) => {
+      console.warn(`[@ulu/frontend-vue] UluFormSelect: The "${r}" prop is deprecated. Please move it to the parent <UluFormItem>.`);
+    });
+    const a = i("uluFormFieldAttrs", null), d = c(() => a ? a.value : {});
+    return (r, n) => (o(), l("select", m(d.value, {
+      value: e.modelValue,
+      onInput: n[0] || (n[0] = (t) => r.$emit("update:modelValue", t.target.value))
+    }), [
+      e.placeholder !== !1 ? (o(), l("option", b, u(e.placeholder || "Please select one"), 1)) : p("", !0),
+      (o(!0), l(v, null, f(e.options, (t, s) => (o(), l("option", {
+        key: s,
+        value: t.value
+      }, u(t.text), 9, y))), 128))
+    ], 16, g));
   }
 };
 export {
-  x as default
+  A as default
 };

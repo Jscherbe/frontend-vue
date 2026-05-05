@@ -6,7 +6,7 @@
     :class="commonClasses"
   />
   <component
-    v-else-if="!useStaticFa && faIconComponent && resolvedDefinition"
+    v-else-if="!useStaticFa && faIconComponent"
     :is="faIconComponent"
     v-bind="iconProps"
     :class="commonClasses"
@@ -19,14 +19,15 @@
 </template>
 
 <script setup>
-  import { ref, defineAsyncComponent, markRaw, watchEffect, computed, inject } from "vue";
+  import { defineAsyncComponent, computed, inject } from "vue";
   import { useIcon } from "../../composables/useIcon.js";
 
   const uluCore = inject('uluCore');
-  const faIconComponent = ref(null);
   const { getIconProps, getClassesFromDefinition } = useIcon();
 
-  let FaModule;
+  const AsyncFontAwesomeIcon = defineAsyncComponent(() => 
+    import("@fortawesome/vue-fontawesome").then(m => m.FontAwesomeIcon)
+  );
 
   const props = defineProps({
     /**
@@ -86,28 +87,10 @@
     'flow-inline': props.spaced
   }));
 
-  // Watch for changes to prop
-  // - Use watchEffect because we are watching reactive object property access (props)
-  // - Load FA if needed (so it's not included if it's unneeded)
-  // - Replace the empty component after load or if value changes
-  watchEffect(async () => {
-    // Only attempt to load the component if we are NOT using the static version
+  const faIconComponent = computed(() => {
     if (!useStaticFa.value && resolvedDefinition.value) {
-      if (faIconComponent.value === null) {
-        if (FaModule) {
-          faIconComponent.value = markRaw(FaModule.FontAwesomeIcon);
-        } else {
-          const componentPromise = defineAsyncComponent(async () => {
-            const module = await import("@fortawesome/vue-fontawesome");
-            FaModule = module;
-            return module.FontAwesomeIcon;
-          });
-          faIconComponent.value = markRaw(componentPromise);
-        }
-      }
-    } else {
-      // If using static FA or no definition, ensure component is null
-      faIconComponent.value = null;
+      return AsyncFontAwesomeIcon;
     }
+    return null;
   });
 </script>

@@ -1,6 +1,6 @@
-import { inject as S, ref as _, computed as e, watchEffect as h, defineAsyncComponent as A, markRaw as v, createBlock as p, createElementBlock as B, createCommentVNode as F, openBlock as i, resolveDynamicComponent as f, mergeProps as g, normalizeClass as D } from "vue";
-import { useIcon as R } from "../../composables/useIcon.js";
-const x = {
+import { inject as P, defineAsyncComponent as S, computed as e, createBlock as p, createElementBlock as _, createCommentVNode as h, openBlock as a, resolveDynamicComponent as m, mergeProps as v, normalizeClass as w } from "vue";
+import { useIcon as B } from "../../composables/useIcon.js";
+const b = {
   __name: "UluIcon",
   props: {
     /**
@@ -13,43 +13,29 @@ const x = {
      */
     spaced: Boolean
   },
-  setup(y) {
-    const s = S("uluCore"), l = _(null), { getIconProps: C, getClassesFromDefinition: d } = R();
-    let a;
-    const m = y, c = e(() => s.getSetting("fontAwesomeStatic")), r = e(() => s.getSetting("iconComponent")), I = e(() => s.getSetting("iconPropResolver")), n = e(() => {
-      const { icon: o } = m;
-      if (typeof o == "string" && o.startsWith("type:"))
+  setup(f) {
+    const t = P("uluCore"), { getIconProps: g, getClassesFromDefinition: C } = B(), y = S(
+      () => import("@fortawesome/vue-fontawesome").then((n) => n.FontAwesomeIcon)
+    ), u = f, r = e(() => t.getSetting("fontAwesomeStatic")), c = e(() => t.getSetting("iconComponent")), I = e(() => t.getSetting("iconPropResolver")), o = e(() => {
+      const { icon: n } = u;
+      if (typeof n == "string" && n.startsWith("type:"))
         try {
-          const t = o.substring(5);
-          return s.getIcon(t);
-        } catch (t) {
-          return console.warn(t), null;
+          const s = n.substring(5);
+          return t.getIcon(s);
+        } catch (s) {
+          return console.warn(s), null;
         }
-      return o;
-    }), w = e(() => !r.value || !n.value ? null : I.value(n.value)), k = e(() => C(n.value)), P = e(() => d(n.value)), u = e(() => ({
-      "flow-inline": m.spaced
-    }));
-    return h(async () => {
-      if (!c.value && n.value) {
-        if (l.value === null)
-          if (a)
-            l.value = v(a.FontAwesomeIcon);
-          else {
-            const o = A(async () => {
-              const t = await import("@fortawesome/vue-fontawesome");
-              return a = t, t.FontAwesomeIcon;
-            });
-            l.value = v(o);
-          }
-      } else
-        l.value = null;
-    }), (o, t) => r.value ? (i(), p(f(r.value), g({ key: 0 }, w.value, { class: u.value }), null, 16, ["class"])) : !c.value && l.value && n.value ? (i(), p(f(l.value), g({ key: 1 }, k.value, { class: u.value }), null, 16, ["class"])) : c.value && n.value ? (i(), B("span", {
+      return n;
+    }), d = e(() => !c.value || !o.value ? null : I.value(o.value)), k = e(() => g(o.value)), A = e(() => C(o.value)), l = e(() => ({
+      "flow-inline": u.spaced
+    })), i = e(() => !r.value && o.value ? y : null);
+    return (n, s) => c.value ? (a(), p(m(c.value), v({ key: 0 }, d.value, { class: l.value }), null, 16, ["class"])) : !r.value && i.value ? (a(), p(m(i.value), v({ key: 1 }, k.value, { class: l.value }), null, 16, ["class"])) : r.value && o.value ? (a(), _("span", {
       key: 2,
-      class: D([P.value, u.value]),
+      class: w([A.value, l.value]),
       "aria-hidden": "true"
-    }, null, 2)) : F("", !0);
+    }, null, 2)) : h("", !0);
   }
 };
 export {
-  x as default
+  b as default
 };

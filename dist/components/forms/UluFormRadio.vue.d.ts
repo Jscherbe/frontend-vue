@@ -1,29 +1,15 @@
-declare const _default: __VLS_WithTemplateSlots<typeof __VLS_component, __VLS_TemplateResult["slots"]>;
-export default _default;
-type __VLS_WithTemplateSlots<T, S> = T & (new () => {
-    $slots: S;
-});
-declare const __VLS_component: import('vue').DefineComponent<{}, {
+declare const _default: import('vue').DefineComponent<{}, {
     $emit: (event: "update:modelValue", ...args: any[]) => void;
     required: boolean;
-    modelValue?: string | number | undefined;
-    value?: string | number | undefined;
+    modelValue?: string | number | boolean | undefined;
+    value?: string | number | boolean | undefined;
     label?: string | undefined;
-    name?: string | undefined;
     $props: {
         readonly required?: boolean | undefined;
-        readonly modelValue?: string | number | undefined;
-        readonly value?: string | number | undefined;
+        readonly modelValue?: string | number | boolean | undefined;
+        readonly value?: string | number | boolean | undefined;
         readonly label?: string | undefined;
-        readonly name?: string | undefined;
     };
-}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
-type __VLS_TemplateResult = {
-    attrs: Partial<{}>;
-    slots: {
-        default?(_: {}): any;
-    };
-    refs: {};
-    rootEl: any;
-};
+}, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLInputElement>;
+export default _default;
 //# sourceMappingURL=UluFormRadio.vue.d.ts.map

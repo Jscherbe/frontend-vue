@@ -13,6 +13,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     outline: boolean;
     transparent: boolean;
     noMargin: boolean;
+    type?: string | undefined;
     size?: string | undefined;
     icon?: string | unknown[] | undefined;
     modifiers?: string | unknown[] | undefined;
@@ -22,6 +23,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     download?: string | boolean | undefined;
     text?: string | undefined;
     alt?: string | undefined;
+    ariaLabel?: string | undefined;
     $props: {
         readonly iconOnly?: boolean | undefined;
         readonly iconBefore?: boolean | undefined;
@@ -32,6 +34,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly outline?: boolean | undefined;
         readonly transparent?: boolean | undefined;
         readonly noMargin?: boolean | undefined;
+        readonly type?: string | undefined;
         readonly size?: string | undefined;
         readonly icon?: string | unknown[] | undefined;
         readonly modifiers?: string | unknown[] | undefined;
@@ -41,6 +44,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly download?: string | boolean | undefined;
         readonly text?: string | undefined;
         readonly alt?: string | undefined;
+        readonly ariaLabel?: string | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 type __VLS_TemplateResult = {
