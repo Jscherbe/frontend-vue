@@ -104,5 +104,12 @@
     console.log("[UluIcon] resolvedDefinition:", resolvedDefinition.value);
     console.log("[UluIcon] iconProps:", iconProps.value);
     console.log("[UluIcon] customIconProps:", customIconProps.value);
+
+    // Debugging the FA library singleton
+    import("@fortawesome/fontawesome-svg-core").then(core => {
+      console.log("[UluIcon] FA Library Definitions in this chunk:", core.library.definitions);
+    }).catch(err => {
+      console.error("[UluIcon] Could not load fontawesome-svg-core for debugging", err);
+    });
   });
 </script>
