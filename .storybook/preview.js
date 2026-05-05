@@ -14,7 +14,7 @@ import {
 import modals from "../lib/plugins/modals/tests/test-modals.js";
 
 import "./preview-theme/scss/styles.scss";
-import "./preview-theme/icons.js";
+import { initIconLibrary } from "./preview-theme/icons.js";
 
 const { getIconProps } = useIcon();
 
@@ -60,6 +60,9 @@ const router = createRouter({
 
 // Register it in the application like normal app
 setup((app) => { 
+  // Needed to avoid side-effects tree-shaking for FA library setup
+  initIconLibrary();
+  
   app
     .use(router)
     .use(corePlugin, {

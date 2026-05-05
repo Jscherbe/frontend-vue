@@ -4,6 +4,8 @@
 
 - **Forms** remove deprecated prop warnings and remove deprecated props (ie. label, required, etc that were on the fields and are now on UluFormItem)
   - Keeping them is more confusing in storybook docs
+- **Docs Storybook Site** 
+  - Fixed missing UluIcons, which were not rendering because the FA module was being tree-shaken out 
 
 ## 0.6.0
 
