@@ -59,9 +59,6 @@ const props = defineProps({
   },
 });
 
-console.log(props);
-
-
 const emit = defineEmits(['facet-change']);
 
 function onFilterChange(group, event) {
@@ -84,15 +81,15 @@ function onFilterChange(group, event) {
 </script>
 
 <style lang="scss">
-.facets-dropdown-filters {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-  flex-wrap: wrap;
-}
-.facets-dropdown-filters__group {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
+  .facets-dropdown-filters {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .facets-dropdown-filters__group {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
 </style>

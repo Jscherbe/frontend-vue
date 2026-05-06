@@ -1,6 +1,6 @@
-import { createElementBlock as n, openBlock as d, normalizeClass as a, Fragment as m, renderList as y, createElementVNode as o, renderSlot as i, createTextVNode as r, toDisplayString as u } from "vue";
+import { createElementBlock as d, openBlock as n, normalizeClass as a, Fragment as m, renderList as _, createElementVNode as i, renderSlot as r, createTextVNode as o, toDisplayString as u } from "vue";
 /* empty css                            */
-const v = ["for"], w = ["id", "onChange"], S = { value: "" }, $ = ["value", "selected"], F = {
+const w = ["for"], S = ["id", "onChange"], $ = { value: "" }, k = ["value", "selected"], F = {
   __name: "UluFacetsFilterSelects",
   props: {
     /**
@@ -19,10 +19,9 @@ const v = ["for"], w = ["id", "onChange"], S = { value: "" }, $ = ["value", "sel
     }
   },
   emits: ["facet-change"],
-  setup(c, { emit: _ }) {
-    console.log(c);
-    const b = _;
-    function p(l, f) {
+  setup(c, { emit: y }) {
+    const b = y;
+    function v(l, f) {
       const e = f.target.value;
       l.children.find((s) => s.selected)?.uid !== e && l.children.forEach((s) => {
         const h = s.uid === e;
@@ -33,45 +32,45 @@ const v = ["for"], w = ["id", "onChange"], S = { value: "" }, $ = ["value", "sel
         });
       });
     }
-    return (l, f) => (d(), n("div", {
+    return (l, f) => (n(), d("div", {
       class: a(["facets-dropdown-filters", c.classes.container])
     }, [
-      (d(!0), n(m, null, y(c.facets, (e) => (d(), n("div", {
+      (n(!0), d(m, null, _(c.facets, (e) => (n(), d("div", {
         class: a(["facets-dropdown-filters__group", c.classes.group]),
         key: e.uid
       }, [
-        o("label", {
+        i("label", {
           for: `facet-dropdown-${e.uid}`,
           class: a(["facets-dropdown-filters__label", c.classes.label])
         }, [
-          i(l.$slots, "label", {}, () => [
-            r(u(e.name), 1)
+          r(l.$slots, "label", {}, () => [
+            o(u(e.name), 1)
           ])
-        ], 10, v),
-        o("select", {
+        ], 10, w),
+        i("select", {
           id: `facet-dropdown-${e.uid}`,
           class: a(["facets-dropdown-filters__select", c.classes.select]),
-          onChange: (t) => p(e, t)
+          onChange: (t) => v(e, t)
         }, [
-          o("option", S, [
-            i(l.$slots, "optionAll", { group: e }, () => [
-              r(" All " + u(e.name) + "s ", 1)
+          i("option", $, [
+            r(l.$slots, "optionAll", { group: e }, () => [
+              o(" All " + u(e.name) + "s ", 1)
             ])
           ]),
-          (d(!0), n(m, null, y(e.children, (t, s) => (d(), n("option", {
+          (n(!0), d(m, null, _(e.children, (t, s) => (n(), d("option", {
             key: t.uid,
             value: t.uid,
             selected: t.selected
           }, [
-            i(l.$slots, "option", {
+            r(l.$slots, "option", {
               group: e,
               option: t,
               index: s
             }, () => [
-              r(u(t.label), 1)
+              o(u(t.label), 1)
             ])
-          ], 8, $))), 128))
-        ], 42, w)
+          ], 8, k))), 128))
+        ], 42, S)
       ], 2))), 128))
     ], 2));
   }
