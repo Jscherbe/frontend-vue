@@ -1,4 +1,7 @@
 Todos:
+  ☐ Should add slot descriptions with vue-docgen-api syntax 
+    * <!-- @slot description after -->
+    * <!-- @binding description of any props/data bound to slot -->
   ☐ Refactor form components to single root
     ☐ Fix indenting in form components @in-progress
     ☐ Description should be before label
