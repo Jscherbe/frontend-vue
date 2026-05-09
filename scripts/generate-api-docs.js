@@ -6,7 +6,9 @@ import * as acorn from 'acorn';
 import * as walk from 'acorn-walk';
 import jsx from 'acorn-jsx';
 
-// Extend acorn with JSX support just in case stories have JSX snippets
+import { processJSDoc } from './parsers/jsdoc/index.js';
+import { processSassDoc } from './parsers/sassdoc/index.js';
+
 const Parser = acorn.Parser.extend(jsx());
 
 const OUTPUT_FILE = 'mcp-data.json'; 
@@ -28,7 +30,6 @@ async function processVueComponents() {
       
       if (!componentName) continue;
 
-      // Configuration
       const properties = (parsed.props || []).map(p => ({
         name: p.name,
         type: p.type?.name || 'unknown',
@@ -53,7 +54,6 @@ async function processVueComponents() {
         slots
       };
 
-      // Reference
       data.reference[componentName] = {
         raw_ast_dump: parsed
       };
@@ -75,7 +75,6 @@ async function processStorybookFiles() {
         sourceType: 'module'
       });
 
-      // Find component name from default export
       let componentName = null;
       walk.simple(ast, {
         ExportDefaultDeclaration(node) {
@@ -88,7 +87,6 @@ async function processStorybookFiles() {
         }
       });
       
-      // If no component explicitly defined, try to guess from filename
       if (!componentName) {
         componentName = path.basename(file, '.stories.js');
       }
@@ -97,7 +95,6 @@ async function processStorybookFiles() {
         data.snippets[componentName] = [];
       }
 
-      // Find story args
       walk.simple(ast, {
         AssignmentExpression(node) {
           if (
@@ -112,18 +109,16 @@ async function processStorybookFiles() {
                const args = {};
                argsNode.properties.forEach(prop => {
                  if (prop.key && prop.key.name) {
-                   // Handle literals
                    if (prop.value.type === 'Literal') {
                      args[prop.key.name] = prop.value.value;
                    } else {
-                     args[prop.key.name] = '{...}'; // Placeholder for complex objects
+                     args[prop.key.name] = '{...}';
                    }
                  }
                });
 
-               // Generate HTML snippet
                let propsString = Object.entries(args).map(([k, v]) => {
-                  if (k === 'text' || k === 'content' || k === 'children') return ''; // Usually slots
+                  if (k === 'text' || k === 'content' || k === 'children') return '';
                   if (typeof v === 'boolean' && v) return k;
                   if (typeof v === 'boolean' && !v) return `:${k}="false"`;
                   if (typeof v === 'string') return `${k}="${v}"`;
@@ -143,10 +138,7 @@ async function processStorybookFiles() {
         }
       });
 
-    } catch (e) {
-       // Silently ignore or log if acorn fails on some complex files, but keep going.
-       // console.error(`Error parsing with acorn ${file}:`, e.message);
-    }
+    } catch (e) {}
   }
 }
 
@@ -164,7 +156,6 @@ async function processMdxFiles() {
        data.snippets[name] = [];
      }
 
-     // Regex to extract code blocks
      const codeBlockRegex = /```(js|vue|html)\n([\s\S]*?)```/g;
      let match;
      let counter = 1;
@@ -185,6 +176,30 @@ async function main() {
   await processStorybookFiles();
   console.log('Extracting MDX Files...');
   await processMdxFiles();
+  
+  console.log('Running JSDoc Parser...');
+  data.reference.jsdoc = await processJSDoc();
+  
+  console.log('Running SassDoc Parser...');
+  data.reference.sassdoc = await processSassDoc();
+  
+  // Optional: Extract config variables from the returned sassdoc AST
+  if (data.reference.sassdoc) {
+    for (const [groupName, items] of Object.entries(data.reference.sassdoc)) {
+      const configItems = items.filter(item => item.context?.type === 'variable' && groupName.includes('config'));
+      if(configItems.length) {
+        data.configuration[`SCSS Variables (${groupName})`] = {
+          description: `Global SCSS Config Variables for ${groupName}`,
+          properties: configItems.map(v => ({
+            name: v.context.name,
+            type: v.type || 'variable',
+            description: v.description,
+            default: v.context.value
+          }))
+        };
+      }
+    }
+  }
 
   const outDir = path.join(process.cwd(), 'dist', 'mcp');
   fs.mkdirSync(outDir, { recursive: true });
