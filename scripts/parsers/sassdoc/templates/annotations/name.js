@@ -21,7 +21,8 @@ export default ({ item, headlineLevel }) => {
   return `
 <div class="sassdoc-item-header">
 
-${ headline("", headlineLevel - 1) } ${ title } {#${ id }}
+<a id="${ id }"></a>
+${ headline("", headlineLevel - 1) } ${ title }
 
   <div class="sassdoc-item-header__labels">
     ${ labels.join(" ") }

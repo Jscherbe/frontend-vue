@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs-extra';
 import path from 'path';
 import { glob } from 'glob';
 import * as docgen from 'vue-docgen-api';
@@ -170,6 +170,13 @@ async function processMdxFiles() {
 }
 
 async function main() {
+  console.log('Cleaning generated docs directory...');
+  const generatedDocsDir = path.join(process.cwd(), '.storybook', 'generated-docs');
+  if (fs.existsSync(generatedDocsDir)) {
+    fs.removeSync(generatedDocsDir);
+  }
+  fs.mkdirSync(generatedDocsDir, { recursive: true });
+
   console.log('Extracting Vue Components...');
   await processVueComponents();
   console.log('Extracting Storybook Files...');

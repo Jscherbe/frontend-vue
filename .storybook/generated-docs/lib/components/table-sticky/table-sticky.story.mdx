@@ -1,0 +1,279 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/SCSS/Table-sticky" />
+
+
+
+<div class="type-large">
+
+For use with table-sticky plugin (vue) or other framework implementations, not output by default must be enabled.
+
+</div>
+
+
+
+<div class="wysiwyg">
+
+
+
+## Variables
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="variable-config"></a>
+###  $config
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Variable</strong></span> <span class="tag"><strong>Type</strong>: Map</span>
+  </div>
+
+</div>
+
+  
+
+Module Settings
+    
+    
+
+``` scss
+$config: (
+  "box-shadow": true,
+  "ui-color-disabled": #6490af,
+);
+```
+  
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/table-sticky/_table-sticky.scss
+- **Group:** table-sticky
+- **Type:** variable
+- **Lines (comments):** 23-25
+- **Lines (code):** 27-30
+
+</details>
+
+    
+
+#### Map Properties
+
+
+|Name|Type|Default|Description|
+|:--|:--|:--|:--|
+|box-shadow|CssValue|true|Box shadow for controls, defaults to element box-shadow|
+
+    
+
+</div>
+
+  
+
+## Mixins
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="mixin-set"></a>
+###  set()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Mixin</strong></span>
+  </div>
+
+</div>
+
+  
+
+Change modules $config
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/table-sticky/_table-sticky.scss
+- **Group:** table-sticky
+- **Type:** mixin
+- **Lines (comments):** 32-35
+- **Lines (code):** 37-39
+
+</details>
+
+    
+
+#### Examples
+
+      
+
+
+``` scss
+@include ulu.component-table-sticky-set(( "property" : value ));
+```
+  
+
+
+
+      
+
+#### Parameters
+
+
+|Name|Type|Description|
+|:--|:--|:--|
+|$changes|`Map`|Map of changes|
+
+    
+
+#### Require
+
+- [$config](lib/components/facets-sidebar/#variable-config)
+  
+
+</div>
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="mixin-styles"></a>
+###  styles()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Mixin</strong></span>
+  </div>
+
+</div>
+
+  
+
+Prints component styles
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/table-sticky/_table-sticky.scss
+- **Group:** table-sticky
+- **Type:** mixin
+- **Lines (comments):** 50-53
+- **Lines (code):** 55-183
+
+</details>
+
+    
+
+#### Examples
+
+      
+
+
+``` scss
+@include ulu.component-table-sticky-styles();
+```
+  
+
+
+
+      
+
+#### Require
+
+- [get()](lib/components/facets-sidebar/#function-get)
+  
+
+</div>
+
+  
+
+## Functions
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="function-get"></a>
+###  get()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Function</strong></span>
+  </div>
+
+</div>
+
+  
+
+Get a config option
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/table-sticky/_table-sticky.scss
+- **Group:** table-sticky
+- **Type:** function
+- **Lines (comments):** 41-44
+- **Lines (code):** 46-49
+
+</details>
+
+    
+
+#### Examples
+
+      
+
+
+``` scss
+@include ulu.component-table-sticky-get("property");
+```
+  
+
+
+
+      
+
+#### Parameters
+
+
+|Name|Type|Description|
+|:--|:--|:--|
+|$name|`Map`|Name of property|
+
+    
+
+#### Require
+
+- [$config](lib/components/facets-sidebar/#variable-config)
+  
+
+</div>
+
+  
+
+</div>
+  

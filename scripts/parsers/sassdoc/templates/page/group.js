@@ -11,11 +11,13 @@ const renderDemo = (demo, groupName) => {
 
   return `
 
-### ${ demo.title || "Example" }{.h3}
+### ${ demo.title || "Example" }
 
 ${ when(demo.description, d => `<p>${ d }</p>`) }
 
-{% CodePreview %}
+\`\`\`html
+${ componentHtml }
+\`\`\`
 
 ${ when(isFullscreen, () => `
 <div>
@@ -24,9 +26,7 @@ ${ when(isFullscreen, () => `
     <span>View Fullscreen Demo</span>
   </button>
 </div>
-`, componentHtml) }
-
-{% endCodePreview %}
+`) }
 
 ${ when(isFullscreen, () => `
 <div id="${ modalId }" data-ulu-modal-builder='{ "title": "${ modalTitle }", "size": "fullscreen" }' hidden>
@@ -42,7 +42,7 @@ export default ({ title, info, groupName }, markup) => {
   
   const demosMarkup = when(demos.length, () => `
 
-## Demos{.h2}
+## Demos
 
 ${ demos.map(d => renderDemo(d, groupName)).join("\n\n") }
 

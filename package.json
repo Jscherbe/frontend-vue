@@ -30,10 +30,11 @@
     "url": "git+https://github.com/Jscherbe/frontend-vue.git"
   },
   "scripts": {
-    "dev": "storybook dev -p 6006",
-    "docs:build": "storybook build -o docs",
+    "dev": "npm run docs:generate && storybook dev -p 6006",
+    "docs:generate": "node scripts/generate-api-docs.js",
+    "docs:build": "npm run docs:generate && storybook build -o docs",
     "build": "vite build --config library.vite.config.js",
-    "build:mcp-data": "node scripts/extract-mcp-data.js",
+    "build:mcp-data": "npm run docs:generate",
     "deploy": "npm run build && npm run docs:build",
     "update-contexts": "rm -rf .ctx && mkdir -p .ctx/frontend && cp -R node_modules/@ulu/frontend/lib/scss node_modules/@ulu/frontend/lib/js .ctx/frontend/"
   },
@@ -100,9 +101,11 @@
     "fuse.js": "^6.6.2",
     "glob": "^13.0.0",
     "gsap": "^3.13.0",
+    "jsdoc-plugin-typescript": "^3.2.1",
     "jsdoc-to-markdown": "^9.1.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "remark-gfm": "^4.0.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "sass-embedded": "^1.89.2",
     "storybook": "^9.1.1",

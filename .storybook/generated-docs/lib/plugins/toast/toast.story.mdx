@@ -1,0 +1,316 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/SCSS/Toast" />
+
+
+
+<div class="type-large">
+
+Toast notifications
+
+</div>
+
+
+
+<div class="wysiwyg">
+
+
+
+## Variables
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="variable-config"></a>
+###  $config
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Variable</strong></span> <span class="tag"><strong>Type</strong>: Map</span>
+  </div>
+
+</div>
+
+  
+
+Module Settings
+    
+    
+
+``` scss
+$config: (
+  "z-index": true,
+  "box-shadow": true,
+  "background-color": white,
+  "border-radius": true,
+  "border-width": 5px,
+  "border-color": transparent,
+  "padding": 0 0 0 1rem,
+  "line-height": 1,
+  "margin-bottom": 0.5rem,
+  "container-top": 1rem,
+  "container-right": 1rem,
+  "container-width": min(24rem, 100vw - 2rem),
+  "date-color": "type-tertiary",
+  "date-font-weight": true,
+  "icon-margin-right": 0.7rem,
+  "icon-font-size": 1.2rem,
+  "actions-margin-right": 3px,
+  "action-margin-top": 3px,
+  "content-padding": (0.25rem 0.5rem 0.25rem 0),
+  "persistent-animation": (UluWiggle 4s infinite),
+);
+```
+  
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** toast/_toast.scss
+- **Group:** toast
+- **Type:** variable
+- **Lines (comments):** 38-59
+- **Lines (code):** 61-82
+
+</details>
+
+    
+
+#### Map Properties
+
+
+|Name|Type|Default|Description|
+|:--|:--|:--|:--|
+|z-index|CssValue|true|Z-index of the toast container|
+|box-shadow|CssValue|true|Box shadow for the toast|
+|background-color|Color|white|Background color of the toast|
+|border-radius|CssValue|true|Border radius of the toast|
+|border-width|CssValue|5px|Border width of the toast|
+|border-color|Color|transparent|Border color of the toast|
+|padding|CssValue|0 0 0 1rem|Padding of the toast|
+|line-height|CssValue|1|Line height of the toast|
+|margin-bottom|CssValue|0.5rem|Margin bottom of the toast|
+|container-top|CssValue|1rem|Top position of the toast container|
+|container-right|CssValue|1rem|Right position of the toast container|
+|container-width|CssValue|min(24rem, 100vw - 2rem)|Width of the toast container|
+|date-color|Color|"type-tertiary"|Color of the date|
+|date-font-weight|CssValue|true|Font weight of the date|
+|icon-margin-right|CssValue|0.7rem|Margin right of the icon|
+|icon-font-size|CssValue|1.2rem|Font size of the icon|
+|actions-margin-right|CssValue|3px|Margin right of the actions container|
+|action-margin-top|CssValue|3px|Margin top of the action buttons|
+|content-padding|CssValue|0.25rem 0.5rem 0.25rem 0|Padding of the content|
+|persistent-animation|CssValue|UluWiggle 4s infinite|Animation for persistent toasts|
+
+    
+
+</div>
+
+  
+
+## Mixins
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="mixin-set"></a>
+###  set()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Mixin</strong></span>
+  </div>
+
+</div>
+
+  
+
+Change modules $config
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** toast/_toast.scss
+- **Group:** toast
+- **Type:** mixin
+- **Lines (comments):** 84-87
+- **Lines (code):** 89-91
+
+</details>
+
+    
+
+#### Examples
+
+      
+
+
+``` scss
+@include ulu-vue.toast-set(( "property" : value ));
+```
+  
+
+
+
+      
+
+#### Parameters
+
+
+|Name|Type|Description|
+|:--|:--|:--|
+|$changes|`Map`|Map of changes|
+
+    
+
+#### Require
+
+- [$config](lib/plugins/toast/#variable-config)
+  
+
+</div>
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="mixin-styles"></a>
+###  styles()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Mixin</strong></span>
+  </div>
+
+</div>
+
+  
+
+Prints component styles
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** toast/_toast.scss
+- **Group:** toast
+- **Type:** mixin
+- **Lines (comments):** 103-106
+- **Lines (code):** 108-198
+
+</details>
+
+    
+
+#### Examples
+
+      
+
+
+``` scss
+@include ulu.toast-styles();
+```
+  
+
+
+
+      
+
+#### Require
+
+- [get()](lib/plugins/toast/#function-get)
+  
+
+</div>
+
+  
+
+## Functions
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="function-get"></a>
+###  get()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Function</strong></span>
+  </div>
+
+</div>
+
+  
+
+Get a config option
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** toast/_toast.scss
+- **Group:** toast
+- **Type:** function
+- **Lines (comments):** 93-96
+- **Lines (code):** 98-101
+
+</details>
+
+    
+
+#### Examples
+
+      
+
+
+``` scss
+@include ulu.toast-get("property");
+```
+  
+
+
+
+      
+
+#### Parameters
+
+
+|Name|Type|Description|
+|:--|:--|:--|
+|$name|`Map`|Name of property|
+
+    
+
+#### Require
+
+- [$config](lib/plugins/toast/#variable-config)
+  
+
+</div>
+
+  
+
+</div>
+  

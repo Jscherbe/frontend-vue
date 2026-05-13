@@ -1,0 +1,280 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/SCSS/Facets-sidebar" />
+
+
+
+<div class="type-large">
+
+Basic styles for the UluFacetsSidebarLayout component
+
+</div>
+
+
+
+<div class="wysiwyg">
+
+
+
+## Variables
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="variable-config"></a>
+###  $config
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Variable</strong></span> <span class="tag"><strong>Type</strong>: Map</span>
+  </div>
+
+</div>
+
+  
+
+Module Settings
+    
+    
+
+``` scss
+$config: (
+  "template-columns" : (max(25%, 300px) 1fr),
+  "gap" : 2rem
+);
+```
+  
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/facets/_facets-sidebar.scss
+- **Group:** facets-sidebar
+- **Type:** variable
+- **Lines (comments):** 12-15
+- **Lines (code):** 17-20
+
+</details>
+
+    
+
+#### Map Properties
+
+
+|Name|Type|Default|Description|
+|:--|:--|:--|:--|
+|template-columns|List|(250px 1fr)|template columns for sidebar/body widths|
+|gap|CssUnit|2rem|Gap for grid|
+
+    
+
+</div>
+
+  
+
+## Mixins
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="mixin-set"></a>
+###  set()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Mixin</strong></span>
+  </div>
+
+</div>
+
+  
+
+Change modules $config
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/facets/_facets-sidebar.scss
+- **Group:** facets-sidebar
+- **Type:** mixin
+- **Lines (comments):** 22-25
+- **Lines (code):** 27-29
+
+</details>
+
+    
+
+#### Examples
+
+      
+
+
+``` scss
+@include ulu.component-facets-sidebar-set(( "property" : value ));
+```
+  
+
+
+
+      
+
+#### Parameters
+
+
+|Name|Type|Description|
+|:--|:--|:--|
+|$changes|`Map`|Map of changes|
+
+    
+
+#### Require
+
+- [$config](lib/components/facets-sidebar/#variable-config)
+  
+
+</div>
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="mixin-styles"></a>
+###  styles()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Mixin</strong></span>
+  </div>
+
+</div>
+
+  
+
+Prints component styles
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/facets/_facets-sidebar.scss
+- **Group:** facets-sidebar
+- **Type:** mixin
+- **Lines (comments):** 40-43
+- **Lines (code):** 45-58
+
+</details>
+
+    
+
+#### Examples
+
+      
+
+
+``` scss
+@include ulu.component-facets-sidebar-styles();
+```
+  
+
+
+
+      
+
+#### Require
+
+- [get()](lib/components/facets-sidebar/#function-get)
+  
+
+</div>
+
+  
+
+## Functions
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="function-get"></a>
+###  get()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Function</strong></span>
+  </div>
+
+</div>
+
+  
+
+Get a config option
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/facets/_facets-sidebar.scss
+- **Group:** facets-sidebar
+- **Type:** function
+- **Lines (comments):** 31-34
+- **Lines (code):** 36-38
+
+</details>
+
+    
+
+#### Examples
+
+      
+
+
+``` scss
+@include ulu.component-facets-sidebar-get("property");
+```
+  
+
+
+
+      
+
+#### Parameters
+
+
+|Name|Type|Description|
+|:--|:--|:--|
+|$name|`Map`|Name of property|
+
+    
+
+#### Require
+
+- [$config](lib/components/facets-sidebar/#variable-config)
+  
+
+</div>
+
+  
+
+</div>
+  

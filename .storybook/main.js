@@ -1,4 +1,5 @@
 import { mergeConfig } from 'vite';
+import remarkGfm from 'remark-gfm';
 
 const basePath = "/frontend-vue/";
 
@@ -8,11 +9,21 @@ const config = {
     "../lib/FrontPage.story.mdx",
     "../lib/**/*.story.mdx", // Can't use .stories (old syntax that was used to create actual stories)
     "../lib/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+    "./generated-docs/**/*.story.mdx",
     "CHANGELOG.md"
   ],
   addons: [
     "@storybook/addon-links", 
-    "@storybook/addon-docs",
+    {
+      name: "@storybook/addon-docs",
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [remarkGfm],
+          },
+        },
+      },
+    },
     // "@storybook/addon-essentials",
     "storybook-addon-vue-mdx",
   ],

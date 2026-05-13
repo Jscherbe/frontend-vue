@@ -5,35 +5,17 @@ import path from "path";
 import { glob } from "glob";
 
 const src = path.resolve("./lib/");
-const dist = path.resolve("./generated/");
-const tmpDir = path.resolve("./.temp/jsdoc_conversion/");
+const dist = path.resolve("./.storybook/generated-docs/");
+const jsdocConfigPath = path.resolve("./scripts/parsers/jsdoc/jsdoc.json");
 
 export async function processJSDoc() {
   const files = await glob('lib/**/*.js', { ignore: ['**/*.stories.js', '**/*.story.js', '**/tests/**'] });
   
-  fs.mkdirSync(tmpDir, { recursive: true });
-
-  const tmpFiles = [];
-  for (const file of files) {
-    let content = fs.readFileSync(file, 'utf-8');
-    
-    // Aggressively sanitize JSDoc types to prevent catharsis parser errors
-    content = content.replace(/@(param|returns?|typedef|type|property)\s+\{\{[\s\S]*?\}\}/g, '@$1 {Object}');
-    content = content.replace(/@(param|returns?|typedef|type|property)\s+\{([^}]+)\}/g, (match, tag, typeBlock) => {
-       if (typeBlock.includes('=>') || typeBlock.includes('import(') || typeBlock.includes('<') || typeBlock.includes('|') || typeBlock.includes('\n')) {
-         return `@${tag} {any}`;
-       }
-       return match;
-    });
-    
-    const tmpPath = path.join(tmpDir, file);
-    fs.mkdirSync(path.dirname(tmpPath), { recursive: true });
-    fs.writeFileSync(tmpPath, content);
-    tmpFiles.push(tmpPath);
-  }
-
-  // get template data
-  const templateData = await jsdoc2md.getTemplateData({ files: tmpFiles });
+  // get template data using the jsdoc config file
+  const templateData = await jsdoc2md.getTemplateData({ 
+    files,
+    configure: jsdocConfigPath
+  });
 
   // reduce templateData to an array of class names
   const moduleNames = templateData.reduce((moduleNames, identifier) => {
@@ -45,35 +27,51 @@ export async function processJSDoc() {
 
   // create a documentation file for each class
   for (const moduleName of moduleNames) {
+    // Keep the full name for the internal JSDoc template matching
     const template = `{{#module name="${ moduleName }"}}{{>docs}}{{/module}}`;
-    const markdown = await jsdoc2md.render({ 
+    let markdown = await jsdoc2md.render({ 
       data: templateData, 
       template: template,
-      "heading-depth" : 2
+      "heading-depth" : 2,
+      configure: jsdocConfigPath
+    });
+    
+    // MDX strictly parses { and } as JS expressions, and < > as JSX tags if they are inside HTML.
+    // JSDoc generates <code> tags. We convert these to Markdown inline code blocks (backticks)
+    // which safely bypass MDX parsing.
+    markdown = markdown.replace(/<code>([\s\S]*?)<\/code>/g, (match, content) => {
+      // Decode HTML entities JSDoc added, since backticks want raw text
+      const plainText = content
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&#123;/g, '{')
+        .replace(/&#125;/g, '}');
+      return `\`${plainText}\``;
     });
     
     const moduleData = templateData.find(d => d.kind === 'module' && d.name === moduleName);
     let originalFilePath = '';
     if (moduleData && moduleData.meta && moduleData.meta.path) {
-       originalFilePath = moduleData.meta.path.replace(tmpDir, process.cwd());
+       originalFilePath = path.join(moduleData.meta.path, moduleData.meta.filename);
     }
 
     if (originalFilePath) {
-      // Retain structure: e.g. lib/utils/router.js -> generated/lib/utils/router.generated.story.mdx
+      // Clean the module name for file paths and meta titles (remove descriptions/newlines)
+      const cleanName = moduleName.split(/[\s\n]+/)[0];
+
+      // Retain structure: e.g. lib/utils/router.js -> .storybook/generated-docs/lib/utils/router.story.mdx
       const relativePath = path.relative(process.cwd(), originalFilePath);
-      const outputDir = path.join(dist, relativePath);
+      const outputDir = path.dirname(path.join(dist, relativePath));
       fs.mkdirSync(outputDir, { recursive: true });
 
-      const filename = `${ urlize(moduleName) }.generated.story.mdx`;
+      const filename = `${ urlize(cleanName) }.story.mdx`;
       const filepath = path.join(outputDir, filename);
-      const metaTitle = `API/JS/${moduleName}`;
-      const content = `import { Meta } from '@storybook/addon-docs/blocks';\n\n<Meta title="${metaTitle}" />\n\n# ${moduleName}\n\n${markdown}`;
+      const metaTitle = `API/JS/${cleanName}`;
+      const content = `import { Meta } from '@storybook/addon-docs/blocks';\n\n<Meta title="${metaTitle}" />\n\n# ${cleanName}\n\n${markdown}`;
       
       fs.writeFileSync(filepath, content);
     }
   }
-
-  fs.removeSync(tmpDir);
 
   return templateData; // Return AST data for MCP
 }

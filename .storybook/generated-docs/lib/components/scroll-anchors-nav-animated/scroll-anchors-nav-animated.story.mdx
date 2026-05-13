@@ -1,0 +1,246 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/SCSS/Scroll-anchors-nav-animated" />
+
+
+
+<div class="type-large">
+
+For use with UluScrollAnchorsNavAnimated vue component.
+
+</div>
+
+
+
+<div class="wysiwyg">
+
+
+
+## Variables
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="variable-config"></a>
+###  $config
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Variable</strong></span> <span class="tag"><strong>Type</strong>: Map</span>
+  </div>
+
+</div>
+
+  
+
+Module Settings
+    
+    
+
+``` scss
+$config: (
+  "rail-border-color": #dcdcdc,
+  "rail-padding": 1rem,
+  "indicator-color": #000,
+  "indicator-clip-path": null,
+  "transition-duration": 250ms,
+  "transition-timing-function": ease-in-out
+);
+```
+  
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/scroll-anchors/_scroll-anchors-nav-animated.scss
+- **Group:** scroll-anchors-nav-animated
+- **Type:** variable
+- **Lines (comments):** 16-17
+- **Lines (code):** 18-25
+
+</details>
+
+    
+
+</div>
+
+  
+
+## Mixins
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="mixin-set"></a>
+###  set()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Mixin</strong></span>
+  </div>
+
+</div>
+
+  
+
+Change modules $config
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/scroll-anchors/_scroll-anchors-nav-animated.scss
+- **Group:** scroll-anchors-nav-animated
+- **Type:** mixin
+- **Lines (comments):** 27-28
+- **Lines (code):** 29-31
+
+</details>
+
+    
+
+#### Parameters
+
+
+|Name|Type|Description|
+|:--|:--|:--|
+|$changes|`Map`|Map of changes|
+
+    
+
+#### Require
+
+- [$config](lib/components/facets-sidebar/#variable-config)
+  
+
+</div>
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="mixin-styles"></a>
+###  styles()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Mixin</strong></span>
+  </div>
+
+</div>
+
+  
+
+Prints component styles
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/scroll-anchors/_scroll-anchors-nav-animated.scss
+- **Group:** scroll-anchors-nav-animated
+- **Type:** mixin
+- **Lines (comments):** 40-43
+- **Lines (code):** 45-78
+
+</details>
+
+    
+
+#### Examples
+
+      
+
+
+``` scss
+@include ulu.component-scroll-anchors-nav-animated-styles();
+```
+  
+
+
+
+      
+
+#### Require
+
+- [get()](lib/components/facets-sidebar/#function-get)
+  
+
+</div>
+
+  
+
+## Functions
+
+
+
+<div class="sassdoc-item">
+
+
+
+<div class="sassdoc-item-header">
+
+<a id="function-get"></a>
+###  get()
+
+  <div class="sassdoc-item-header__labels">
+    <span class="tag tag--primary"><strong>Function</strong></span>
+  </div>
+
+</div>
+
+  
+
+Get a config option
+    
+    
+
+
+<details>
+  <summary>File Information</summary>
+  
+- **File:** systems/scroll-anchors/_scroll-anchors-nav-animated.scss
+- **Group:** scroll-anchors-nav-animated
+- **Type:** function
+- **Lines (comments):** 33-34
+- **Lines (code):** 35-38
+
+</details>
+
+    
+
+#### Parameters
+
+
+|Name|Type|Description|
+|:--|:--|:--|
+|$name|`Map`|Name of property|
+
+    
+
+#### Require
+
+- [$config](lib/components/facets-sidebar/#variable-config)
+  
+
+</div>
+
+  
+
+</div>
+  
