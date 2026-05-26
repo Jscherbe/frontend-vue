@@ -208,7 +208,7 @@ async function main() {
     }
   }
 
-  const outDir = path.join(process.cwd(), 'dist', 'mcp');
+  const outDir = path.join(process.cwd(), 'dist');
   fs.mkdirSync(outDir, { recursive: true });
   
   const targetPath = path.join(outDir, OUTPUT_FILE);

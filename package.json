@@ -22,7 +22,8 @@
     "./*": {
       "import": "./dist/*.js",
       "types": "./dist/*.d.ts"
-    }
+    },
+    "./ulu-mcp-provider": "./dist/mcp-data.json"
   },
   "types": "./dist/index.d.ts",
   "repository": {
