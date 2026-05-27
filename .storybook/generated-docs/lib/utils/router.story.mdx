@@ -1,0 +1,224 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/router" />
+
+# router
+
+<a name="utils.module_router"></a>
+
+## router
+
+* [router](#utils.module_router)
+    * _static_
+        * [.getRouteTitle(route, [currentRoute])](#utils.module_router.getRouteTitle) ⇒ `string` \| `undefined`
+        * [.createBaseMenu(routes, options)](#utils.module_router.createBaseMenu) ⇒ `Array.<module:utils.router~RouteMenuItem>`
+        * [.flattenMenu(menu)](#utils.module_router.flattenMenu) ⇒ `Array.<module:utils.router~RouteMenuItem>`
+        * [.createSectionMenu(routes, sectionPath, options)](#utils.module_router.createSectionMenu) ⇒ `Array.<module:utils.router~RouteMenuItem>`
+        * [.getChildIndexRoute(children)](#utils.module_router.getChildIndexRoute) ⇒ `Object`
+        * [.createMenuItem(route, routePath, options)](#utils.module_router.createMenuItem) ⇒ `module:utils.router~RouteMenuItem`
+        * [.isStaticRoute(route)](#utils.module_router.isStaticRoute) ⇒ `Boolean`
+        * [.isStaticBaseRoute(route)](#utils.module_router.isStaticBaseRoute) ⇒ `Boolean`
+        * [.nativeLinkRouter(router, event)](#utils.module_router.nativeLinkRouter)
+        * [.$getRouteChildren(route)](#utils.module_router.$getRouteChildren) ⇒ `Array.<Object>` \| `undefined`
+        * [.$getParentRoute(route, deepest)](#utils.module_router.$getParentRoute) ⇒ `Object` \| `Null`
+        * [.$createSectionMenu(route, options)](#utils.module_router.$createSectionMenu) ⇒ `Array.<module:utils.router~RouteMenuItem>`
+        * [.$createBreadcrumb(route)](#utils.module_router.$createBreadcrumb) ⇒ `Array.<Object>`
+    * _inner_
+        * [~RouteMenuItem](#utils.module_router..RouteMenuItem) : `Object`
+
+<a name="utils.module_router.getRouteTitle"></a>
+
+### router.getRouteTitle(route, [currentRoute]) ⇒ `string` \| `undefined`
+This Module Creates Menus from route or router config
+
+/**
+Resolves a route's title from its meta.
+- If `meta.title` is a function, it's called with the `currentRoute` (or the route itself).
+- Otherwise, `meta.title` is returned.
+This function is the single source of truth for resolving titles from route configuration.
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `string` \| `undefined` - The resolved title, or undefined if not found.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| route | `object` | The route or route match object. |
+| [currentRoute] | `object` | The current route from `useRoute()`, passed to functional titles. |
+
+<a name="utils.module_router.createBaseMenu"></a>
+
+### router.createBaseMenu(routes, options) ⇒ `Array.<module:utils.router~RouteMenuItem>`
+Get root/base static routes as menu items
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `Array.<module:utils.router~RouteMenuItem>` - Array of menu items  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| routes | `\*` | Routes to build menu from (not router instance) |
+| options | `Object` | Options |
+| options.qualifier | `Object` | Callback to qualify as a base route (defaults to isStaticBaseRoute) |
+| options.item | `Object` | Options for createMenuItem |
+
+<a name="utils.module_router.flattenMenu"></a>
+
+### router.flattenMenu(menu) ⇒ `Array.<module:utils.router~RouteMenuItem>`
+Returns menu flat (no parent children)
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `Array.<module:utils.router~RouteMenuItem>` - The flattened menu.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| menu | `Array.<module:utils.router~RouteMenuItem>` | The menu to flatten. |
+
+<a name="utils.module_router.createSectionMenu"></a>
+
+### router.createSectionMenu(routes, sectionPath, options) ⇒ `Array.<module:utils.router~RouteMenuItem>`
+Print out a section's menu based on path
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `Array.<module:utils.router~RouteMenuItem>` - Array of menu items  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| routes | `\*` | All routes |
+| sectionPath | `\*` | Path for section to create menu |
+| options | `Object` | Options |
+| options.includeIndex | `Boolean` | Include the parent/index in the menu items ie path: "" |
+| options.item | `Object` | Options to be passed to createMenuItem |
+
+<a name="utils.module_router.getChildIndexRoute"></a>
+
+### router.getChildIndexRoute(children) ⇒ `Object`
+For a given array of child routes return the index
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `Object` - Route  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| children | `Array` | Children array of routes |
+
+<a name="utils.module_router.createMenuItem"></a>
+
+### router.createMenuItem(route, routePath, options) ⇒ `module:utils.router~RouteMenuItem`
+Creates common menu item structure from route, pulls title and weight from meta (on route or index child)
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `module:utils.router~RouteMenuItem` - Menu item  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| route | `Object` | Route |
+| routePath | `Object` | The final path for the menu item |
+| options | `Object` | Function to allow alterering the menu item (adding meta, etc) |
+| options.modify | `function` | Function to allow alterering the menu item (adding meta, etc) (args: item, route) |
+| options.indexMeta | `function` | Include the routes index child's meta (merged on top of route meta) |
+
+<a name="utils.module_router.isStaticRoute"></a>
+
+### router.isStaticRoute(route) ⇒ `Boolean`
+Test if route is static (doesn't include parameters)
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `Boolean` - Whether or not this route is static (not dynamic)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| route | `Object` | Route object to test |
+
+<a name="utils.module_router.isStaticBaseRoute"></a>
+
+### router.isStaticBaseRoute(route) ⇒ `Boolean`
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `Boolean` - Whether or not this route is a static base route  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| route | `Object` | Route object to test |
+
+<a name="utils.module_router.nativeLinkRouter"></a>
+
+### router.nativeLinkRouter(router, event)
+Function to make normal `<a>` behave as router links instread of page reload
+
+**Kind**: static method of [`router`](#utils.module_router)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| router | `Object` | Router instance (ie src/router) to push routes to |
+| event | `Object` | The event object that triggered route change (ie. onclick) pass event object |
+
+<a name="utils.module_router.$getRouteChildren"></a>
+
+### router.$getRouteChildren(route) ⇒ `Array.<Object>` \| `undefined`
+Returns the child routes for base route
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `Array.<Object>` \| `undefined` - The child routes.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| route | `Object` | Route Object |
+
+<a name="utils.module_router.$getParentRoute"></a>
+
+### router.$getParentRoute(route, deepest) ⇒ `Object` \| `Null`
+Returns the route's parent
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `Object` \| `Null` - Parent route, if there is no parent route for the given route this will return null  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| route | `Object` | Route Object |
+| deepest | `Object` | By default this returns the routes parent, if deepest it will return it's base route (top level parent) |
+
+<a name="utils.module_router.$createSectionMenu"></a>
+
+### router.$createSectionMenu(route, options) ⇒ `Array.<module:utils.router~RouteMenuItem>`
+For a given $route will return all it's children as menu items,
+using the route's meta.title property for the title. This is for sections only (routes with children)
+- Useful for dynamic menus (menus within some unknown section) where you don't want to write static paths
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `Array.<module:utils.router~RouteMenuItem>` - Array of menu items  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| route | `Object` | Actual $route object |
+| options | `Object` | Options |
+| options.parent | `Object` | Route parent object, defaults to parent of route |
+| options.includeIndex | `Boolean` | Include the parent/index in the menu items ie path: "" |
+| options.item | `Object` | Options for createMenuItem |
+
+<a name="utils.module_router.$createBreadcrumb"></a>
+
+### router.$createBreadcrumb(route) ⇒ `Array.<Object>`
+For a given $route, this will generate a breadcrumb trail.
+It iterates through `route.matched` to build the trail.
+- Falls back to `meta.title` (string or function).
+- Skips routes where `meta.breadcrumb` is set to `false`.
+- Avoids duplicate crumbs for nested routes with empty paths.
+
+**Kind**: static method of [`router`](#utils.module_router)  
+**Returns**: `Array.<Object>` - An array of breadcrumb items with title, to, and current properties.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| route | `Object` | The Vue Router `$route` object. |
+
+<a name="utils.module_router..RouteMenuItem"></a>
+
+### router~RouteMenuItem : `Object`
+Route Menu Item
+
+**Kind**: inner typedef of [`router`](#utils.module_router)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| path | `String` | Menu item route path |
+| title | `String` | Menu item title |
+

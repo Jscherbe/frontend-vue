@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/useDocumentTitle" />
+
+# useDocumentTitle
+
+<a name="module_useDocumentTitle"></a>
+
+## useDocumentTitle
+<a name="module_useDocumentTitle.useDocumentTitle"></a>
+
+### useDocumentTitle.useDocumentTitle(options)
+A composable to manage the document title.
+
+When called with a `title` option, it sets a dynamic title for the current page.
+This is for use within specific components.
+
+When called without a `title` option (typically in App.vue), it manages the
+document title for the whole app, using titles from components or route meta.
+
+**Kind**: static method of [`useDocumentTitle`](#module_useDocumentTitle)  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| options | `object` |  |  |
+| [options.title] | `module:vue~Ref.<string>` \| `string` |  | The dynamic title to set for the current page. |
+| [options.titleTemplate] | `string` | `&quot;&#x27;%s&#x27;&quot;` | The template for the document title, e.g., '%s | My Site'. |
+| [options.useRoute] | `function` | `defaultUseRoute` | Injectable `useRoute` for testing. |
+| [options.useHead] | `function` | `defaultUseHead` | Injectable `useHead` for testing. |
+

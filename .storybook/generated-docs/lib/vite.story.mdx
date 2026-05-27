@@ -1,0 +1,32 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/vite" />
+
+# vite
+
+<a name="module_vite"></a>
+
+## vite
+<a name="module_vite..defaultTransformAssetUrls"></a>
+
+### vite~defaultTransformAssetUrls
+Vite/Vue plugin utility to automatically transform asset URLs for UluImage components.
+
+Usage in vite.config.js:
+import { uluTransformAssetUrls } from '@ulu/frontend-vue/vite.js';
+import vue from '@vitejs/plugin-vue';
+
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        transformAssetUrls: {
+          // You can spread default tags if needed, or Vue handles merging objects depending on setup.
+          ...uluTransformAssetUrls
+        }
+      }
+    })
+  ]
+});
+
+**Kind**: inner constant of [`vite`](#module_vite)  

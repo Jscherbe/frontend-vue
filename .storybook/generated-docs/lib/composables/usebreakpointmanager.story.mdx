@@ -1,0 +1,29 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/useBreakpointManager" />
+
+# useBreakpointManager
+
+<a name="module_useBreakpointManager"></a>
+
+## useBreakpointManager
+<a name="module_useBreakpointManager.useBreakpointManager"></a>
+
+### useBreakpointManager.useBreakpointManager(options) ⇒ `Object`
+A composable that provides a reactive interface to the `@ulu/frontend/js/ui/breakpoints.js` library.
+It manages breakpoint state and provides reactive variables for the active breakpoint and resize direction.
+This is intended for standalone use; for app-wide integration, use the `breakpointsPlugin`.
+
+**Kind**: static method of [`useBreakpointManager`](#module_useBreakpointManager)  
+**Returns**: `Object` - An object containing reactive refs for:
+- `breakpointManager`: The `BreakpointManager` instance.
+- `breakpointActive`: The name of the currently active breakpoint.
+- `breakpointDirection`: The direction of the last resize (`'up'` or `'down'`).  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| options | `object` |  | Configuration options. |
+| [options.initialValue] | `string` | `null` | Initial value for the active breakpoint, useful for SSR. |
+| [options.onReady] | `function` |  | A callback function that receives the `BreakpointManager` instance once it's initialized. |
+| [options.plugin] | `object` |  | Options to pass directly to the underlying `BreakpointManager` library. |
+

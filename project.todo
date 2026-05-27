@@ -1,8 +1,10 @@
 Todos:
+  ☐ Need to improve jsdoc standard comments
+    ☐ Need `@module` @in-progress
+    ☐ Need `@description` ?
   ☐ Should add slot descriptions with vue-docgen-api syntax 
     * <!-- @slot description after -->
     * <!-- @binding description of any props/data bound to slot -->
-    * What about other items like this could scale or be expected for <dl> or menu components
   ☐ Need to see if we can make github pages cache less persistent (like 1 day) @priority-low
     * Pages entire storybook app is cached even with hashed files/etc so users who previously visited will render the old version of app 
     ☐ May need github workflow for this?

@@ -1,0 +1,23 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/usePagination" />
+
+# usePagination
+
+<a name="module_usePagination"></a>
+
+## usePagination
+<a name="module_usePagination.usePagination"></a>
+
+### usePagination.usePagination(items, itemsPerPage) ⇒ `Object`
+A Vue composable for handling pagination logic.
+It interacts with vue-router to keep the current page in the URL query string.
+
+**Kind**: static method of [`usePagination`](#module_usePagination)  
+**Returns**: `Object` - - An object containing reactive properties for pagination.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| items | `module:vue~Ref.<Array.<any>>` | A ref containing the full list of items to be paginated. |
+| itemsPerPage | `number` | The number of items to display per page. |
+

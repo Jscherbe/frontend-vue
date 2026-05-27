@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/useWindowResize" />
+
+# useWindowResize
+
+<a name="module_useWindowResize"></a>
+
+## useWindowResize
+
+* [useWindowResize](#module_useWindowResize)
+    * _static_
+        * [.useWindowResize()](#module_useWindowResize.useWindowResize) ⇒ `Object`
+    * _inner_
+        * [~register(array, callback)](#module_useWindowResize..register) ⇒ `function`
+
+<a name="module_useWindowResize.useWindowResize"></a>
+
+### useWindowResize.useWindowResize() ⇒ `Object`
+A composable for subscribing to debounced window resize events.
+It provides a reactive state to track if resizing is active and methods
+to register callbacks for the start and end of the resize event.
+
+**Kind**: static method of [`useWindowResize`](#module_useWindowResize)  
+**Returns**: `Object` - An object containing:
+- `resizing`: A reactive boolean that is `true` while the window is being resized.
+- `onResizeStart`: A function to register a callback that fires when resizing starts. Returns a function to unregister the callback.
+- `onResizeEnd`: A function to register a callback that fires after resizing has stopped (debounced). Returns a function to unregister the callback.  
+<a name="module_useWindowResize..register"></a>
+
+### useWindowResize~register(array, callback) ⇒ `function`
+**Kind**: inner method of [`useWindowResize`](#module_useWindowResize)  
+**Returns**: `function` - Remove Function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| array | `Array` | Internal callback array to put callback in |
+| callback | `\*` | Users callback |
+

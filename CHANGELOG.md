@@ -2,6 +2,10 @@
 
 ## 0.6.1
 
+- **UluBadge** | Add modifiers prop and modifiers system (like other components, button, etc)
+
+## 0.6.1
+
 - **Forms** remove deprecated prop warnings and remove deprecated props (ie. label, required, etc that were on the fields and are now on UluFormItem)
   - Keeping them is more confusing in storybook docs
 - **Docs Storybook Site** 

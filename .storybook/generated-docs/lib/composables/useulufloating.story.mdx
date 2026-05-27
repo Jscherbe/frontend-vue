@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/useUluFloating" />
+
+# useUluFloating
+
+<a name="module_useUluFloating"></a>
+
+## useUluFloating
+
+* [useUluFloating](#module_useUluFloating)
+    * _static_
+        * [.useUluFloating(trigger, content, config)](#module_useUluFloating.useUluFloating) ⇒ `Object`
+    * _inner_
+        * [~Placement](#module_useUluFloating..Placement) : `module:@floating-ui/vue~Placement`
+        * [~UluFloatingConfig](#module_useUluFloating..UluFloatingConfig) : `object`
+
+<a name="module_useUluFloating.useUluFloating"></a>
+
+### useUluFloating.useUluFloating(trigger, content, config) ⇒ `Object`
+Composable for using floating-ui
+
+**Kind**: static method of [`useUluFloating`](#module_useUluFloating)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| trigger | `module:vue~Ref.<HTMLElement>` | The trigger element. |
+| content | `module:vue~Ref.<HTMLElement>` | The content element. |
+| config | [`module:vue~Ref.<UluFloatingConfig>`](#module_useUluFloating..UluFloatingConfig) | The configuration for the floating element. |
+
+<a name="module_useUluFloating..Placement"></a>
+
+### useUluFloating~Placement : `module:@floating-ui/vue~Placement`
+**Kind**: inner typedef of [`useUluFloating`](#module_useUluFloating)  
+<a name="module_useUluFloating..UluFloatingConfig"></a>
+
+### useUluFloating~UluFloatingConfig : `object`
+**Kind**: inner typedef of [`useUluFloating`](#module_useUluFloating)  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| placement | [`Placement`](#module_useUluFloating..Placement) | The placement of the floating element. |
+| inline | `boolean` | Whether the floating element is inline. |
+| offset | `number` | The offset of the floating element. |
+| arrow | `boolean` | Whether the floating element has an arrow. |
+| onReady | `function` | Callback function when the floating element is ready. |
+

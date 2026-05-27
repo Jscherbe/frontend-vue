@@ -1,0 +1,37 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/useIcon" />
+
+# useIcon
+
+<a name="module_useIcon"></a>
+
+## useIcon
+
+* [useIcon](#module_useIcon)
+    * [.useIcon()](#module_useIcon.useIcon) ⇒ `Object`
+        * [~getClassesFromDefinition(definition)](#module_useIcon.useIcon..getClassesFromDefinition) ⇒ `String` \| `null`
+
+<a name="module_useIcon.useIcon"></a>
+
+### useIcon.useIcon() ⇒ `Object`
+A utility composable for handling and formatting icon props for `UluIcon`.
+It provides helpers to convert various icon definition formats into either
+a props object for the `FontAwesomeIcon` component or a string of CSS classes.
+
+**Kind**: static method of [`useIcon`](#module_useIcon)  
+**Returns**: `Object` - An object with utility functions:
+- `getIconProps`: Takes an icon definition and returns a props object suitable for a component like `FontAwesomeIcon`.
+- `getClassesFromDefinition`: Takes an icon definition and returns a string of CSS classes for use with the static FontAwesome library.  
+<a name="module_useIcon.useIcon..getClassesFromDefinition"></a>
+
+#### useIcon~getClassesFromDefinition(definition) ⇒ `String` \| `null`
+Converts an icon definition (string, array, or object) into a string of FontAwesome classes.
+
+**Kind**: inner method of [`useIcon`](#module_useIcon.useIcon)  
+**Returns**: `String` \| `null` - A string of FontAwesome classes, or null if unable to parse.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| definition | `String` \| `Array` \| `Object` | The icon definition. |
+

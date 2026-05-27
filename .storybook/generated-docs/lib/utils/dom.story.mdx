@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/dom" />
+
+# dom
+
+<a name="utils.module_dom"></a>
+
+## dom
+
+* [dom](#utils.module_dom)
+    * [.refToElement(value)](#utils.module_dom.refToElement) ⇒ `HTMLElement`
+    * [.newId([prefix])](#utils.module_dom.newId) ⇒ `string`
+
+<a name="utils.module_dom.refToElement"></a>
+
+### dom.refToElement(value) ⇒ `HTMLElement`
+Resolves a Vue template ref's unwrapped value to its underlying DOM element
+
+**Kind**: static method of [`dom`](#utils.module_dom)  
+**Returns**: `HTMLElement` - The HTMLElement or undefined if not found/resolved.  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| value | `HTMLElement` \| `Object` | The unwrapped value from a template ref (e.g., `this.$refs.myElement` or `this.$refs.myComponent`) |
+
+<a name="utils.module_dom.newId"></a>
+
+### dom.newId([prefix]) ⇒ `string`
+Generates a new unique ID with an optional prefix.
+It ensures the ID is not already present in the document.
+
+**Kind**: static method of [`dom`](#utils.module_dom)  
+**Returns**: `string` - The unique ID.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| [prefix] | `string` | `&quot;\&quot;ulu-id\&quot;&quot;` | The prefix for the new ID. |
+

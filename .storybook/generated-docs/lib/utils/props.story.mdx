@@ -1,0 +1,39 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/props" />
+
+# props
+
+<a name="utils.module_props"></a>
+
+## props
+
+* [props](#utils.module_props)
+    * [.isArrayOfObjects(array)](#utils.module_props.isArrayOfObjects) ⇒ `Boolean`
+    * [.checkDeprecatedProps(props, deprecatedNames, callback)](#utils.module_props.checkDeprecatedProps)
+
+<a name="utils.module_props.isArrayOfObjects"></a>
+
+### props.isArrayOfObjects(array) ⇒ `Boolean`
+Ensures the array consists of objects
+
+**Kind**: static method of [`props`](#utils.module_props)  
+**Returns**: `Boolean` - Whether all are objects within  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| array | `Array` | Array to check |
+
+<a name="utils.module_props.checkDeprecatedProps"></a>
+
+### props.checkDeprecatedProps(props, deprecatedNames, callback)
+Checks for deprecated props and calls a callback for each match
+
+**Kind**: static method of [`props`](#utils.module_props)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| props | `object` | The current props object |
+| deprecatedNames | `Array.<string>` | Array of prop names to check |
+| callback | `function` | Function called for each match, receiving the prop name |
+

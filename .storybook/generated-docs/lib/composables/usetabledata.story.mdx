@@ -1,0 +1,88 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="API/JS/useTableData" />
+
+# useTableData
+
+<a name="module_useTableData"></a>
+
+## useTableData
+
+* [useTableData](#module_useTableData)
+    * [.useTableData(props, [onChange])](#module_useTableData.useTableData)
+        * [~rowColumns](#module_useTableData.useTableData..rowColumns)
+        * [~createColumns()](#module_useTableData.useTableData..createColumns)
+        * [~maxColumnChildren()](#module_useTableData.useTableData..maxColumnChildren)
+        * [~createHeaderRows()](#module_useTableData.useTableData..createHeaderRows)
+            * [~setInRows()](#module_useTableData.useTableData..createHeaderRows..setInRows)
+        * [~createRows()](#module_useTableData.useTableData..createRows)
+
+<a name="module_useTableData.useTableData"></a>
+
+### useTableData.useTableData(props, [onChange])
+Composable for managing and normalizing table data structures.
+Generates rows, columns, and accessibility attributes for complex tables.
+
+**Kind**: static method of [`useTableData`](#module_useTableData)  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| props | `Object` | The component props containing columns, rows, footerRows, and idPrefix. |
+| [onChange] | `function` | Optional callback triggered when rows or columns data change (useful for layout recalculation). |
+
+
+* [.useTableData(props, [onChange])](#module_useTableData.useTableData)
+    * [~rowColumns](#module_useTableData.useTableData..rowColumns)
+    * [~createColumns()](#module_useTableData.useTableData..createColumns)
+    * [~maxColumnChildren()](#module_useTableData.useTableData..maxColumnChildren)
+    * [~createHeaderRows()](#module_useTableData.useTableData..createHeaderRows)
+        * [~setInRows()](#module_useTableData.useTableData..createHeaderRows..setInRows)
+    * [~createRows()](#module_useTableData.useTableData..createRows)
+
+<a name="module_useTableData.useTableData..rowColumns"></a>
+
+#### useTableData~rowColumns
+Used to output the body rows. This is an array of only the deepest child columns
+parent column information can be accessed by reference
+
+**Kind**: inner constant of [`useTableData`](#module_useTableData.useTableData)  
+<a name="module_useTableData.useTableData..createColumns"></a>
+
+#### useTableData~createColumns()
+Creates column array for internal use
+- Avoid mutating user's prop 
+- Current columns being used in the display
+- This internal copy has internal properties/structural info (like ID)
+- This is the copy of the users columns to avoid mutating their object
+- Can be used in the future for adding/removing or enabling/disabling
+
+**Kind**: inner method of [`useTableData`](#module_useTableData.useTableData)  
+<a name="module_useTableData.useTableData..maxColumnChildren"></a>
+
+#### useTableData~maxColumnChildren()
+Recursive function used as a reducer to return the deepest nested columns
+
+**Kind**: inner method of [`useTableData`](#module_useTableData.useTableData)  
+<a name="module_useTableData.useTableData..createHeaderRows"></a>
+
+#### useTableData~createHeaderRows()
+Conversion of the columns (which are nested hierarchy) to a flat list of columns 
+sorted by the way they need to be displayed in rows 
+- Used for nested headers
+- Transform nested data into row arrays
+
+**Kind**: inner method of [`useTableData`](#module_useTableData.useTableData)  
+<a name="module_useTableData.useTableData..createHeaderRows..setInRows"></a>
+
+##### createHeaderRows~setInRows()
+Function that adds columns to the rows array's based 
+on their depth, called recursively.
+
+**Kind**: inner method of [`createHeaderRows`](#module_useTableData.useTableData..createHeaderRows)  
+<a name="module_useTableData.useTableData..createRows"></a>
+
+#### useTableData~createRows()
+Creates row array for internal use
+- Avoid mutating user's prop
+
+**Kind**: inner method of [`useTableData`](#module_useTableData.useTableData)  
