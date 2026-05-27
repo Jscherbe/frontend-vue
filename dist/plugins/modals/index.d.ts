@@ -1,9 +1,11 @@
+import { useModals } from './useModals.js';
 /**
  * Modals Vue Plugin
  * @param {Object} App Vue app instance passed to plugin
  * @param {UluModalsPluginOptions} userOptions Options to change (see defaults)
  */
 export default function install(app: any, userOptions: UluModalsPluginOptions): void;
+export { useModals };
 /**
  * Default plugin options
  */

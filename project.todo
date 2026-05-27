@@ -1,4 +1,6 @@
 Todos:
+  ☐ Need to make sure to document :classes props (what keys they accept)
+    * MCP data is missing this
   ☐ Need to improve jsdoc standard comments
     ☐ Need `@module` @in-progress
     ☐ Need `@description` ?
