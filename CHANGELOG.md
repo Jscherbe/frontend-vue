@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.2
+
+- **useModals** add missing export for this composable 
+
 ## 0.6.1
 
 - **Forms** remove deprecated prop warnings and remove deprecated props (ie. label, required, etc that were on the fields and are now on UluFormItem)
