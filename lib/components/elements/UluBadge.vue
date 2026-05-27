@@ -1,11 +1,7 @@
 <template>
   <component 
     class="badge" 
-    :class="[
-      size ? `badge--${ size }` : null,
-      type ? `badge--${ type }` : null,
-      { 'badge--clickable' : isInteractive }
-    ]"
+    :class="resolvedModifiers"
     :is="element"
     :to="to"
     :href="href"
@@ -29,6 +25,7 @@
 <script setup>
   import { computed } from "vue";
   import { RouterLink } from "vue-router";
+  import { useModifiers } from "../../composables/useModifiers.js";
 
   const props = defineProps({
     /**
@@ -63,10 +60,24 @@
      * A URL. Renders as a standard <a> tag.
      */
     href: String,
+    /**
+     * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
+     */
+    modifiers: [String, Array]
   });
 
   const isInteractive = computed(() => {
     return Boolean(props.to || props.click);
+  });
+
+  const { resolvedModifiers } = useModifiers({ 
+    props, 
+    baseClass: "badge",
+    internal: computed(() => ({
+      [props.size] : props.size,
+      [props.type] : props.type,
+      "clickable" : isInteractive.value
+    }))
   });
 
   const element = computed(() => {

@@ -20,62 +20,6 @@
       }
     ],
     "useDocumentTitle": [],
-    "toast": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<toast>Content</toast>"
-      }
-    ],
-    "useTooltipFollow": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<useTooltipFollow>Content</useTooltipFollow>"
-      }
-    ],
-    "useTooltip": [],
-    "tooltip": [
-      {
-        "title": "Basic",
-        "description": "Basic variation",
-        "code": "<tooltip>This is a basic tooltip!</tooltip>"
-      }
-    ],
-    "UluPopover": [],
-    "useModals": [],
-    "modals": [
-      {
-        "title": "GlobalApiTest",
-        "description": "GlobalApiTest variation",
-        "code": "<modals>Content</modals>"
-      },
-      {
-        "title": "modals Example 1",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>"
-      },
-      {
-        "title": "modals Example 2",
-        "description": "Code example extracted from markdown.",
-        "code": "import { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]"
-      },
-      {
-        "title": "modals Example 3",
-        "description": "Code example extracted from markdown.",
-        "code": "import UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });"
-      },
-      {
-        "title": "modals Example 4",
-        "description": "Code example extracted from markdown.",
-        "code": "// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\""
-      },
-      {
-        "title": "modals Example 5",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>"
-      }
-    ],
     "UluProgressCircle": [],
     "UluProgressBar": [],
     "UluAnimateNumber": [],
@@ -191,10 +135,6 @@
         "code": "<UluBreadcrumb items=\"{...}\">Content</UluBreadcrumb>"
       }
     ],
-    "UluWhenBreakpoint": [],
-    "UluTitleRail": [],
-    "UluDataGrid": [],
-    "UluAdaptiveLayout": [],
     "UluTabGroup": [
       {
         "title": "Default",
@@ -462,6 +402,66 @@
       }
     ],
     "UluAlert": [],
+    "toast": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<toast>Content</toast>"
+      }
+    ],
+    "UluWhenBreakpoint": [],
+    "UluTitleRail": [],
+    "UluDataGrid": [],
+    "UluAdaptiveLayout": [],
+    "useTooltipFollow": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<useTooltipFollow>Content</useTooltipFollow>"
+      }
+    ],
+    "useTooltip": [],
+    "tooltip": [
+      {
+        "title": "Basic",
+        "description": "Basic variation",
+        "code": "<tooltip>This is a basic tooltip!</tooltip>"
+      }
+    ],
+    "UluPopover": [],
+    "useModals": [],
+    "modals": [
+      {
+        "title": "GlobalApiTest",
+        "description": "GlobalApiTest variation",
+        "code": "<modals>Content</modals>"
+      },
+      {
+        "title": "modals Example 1",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>"
+      },
+      {
+        "title": "modals Example 2",
+        "description": "Code example extracted from markdown.",
+        "code": "import { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]"
+      },
+      {
+        "title": "modals Example 3",
+        "description": "Code example extracted from markdown.",
+        "code": "import UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });"
+      },
+      {
+        "title": "modals Example 4",
+        "description": "Code example extracted from markdown.",
+        "code": "// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\""
+      },
+      {
+        "title": "modals Example 5",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>"
+      }
+    ],
     "UluTableSticky": [
       {
         "title": "Default",
@@ -620,18 +620,6 @@
         "code": "<script setup>\n  import { ref, computed, provide } from \"vue\";\n  import { useBreakpointManager } from \"./useBreakpointManager.js\";\n\n  const isMobile = ref(false);\n\n  // Example using the onReady callback to set reactive value isMobile\n  // - In this situation isMobile is being used as a primary change in  \n  //   the applications layout \n  const options = { \n    onReady(manager) {\n      manager.at(\"small\").max(() => isMobile.value = true);\n      manager.at(\"large\").min(() => isMobile.value = false);\n    }\n  };\n\n  // Composable returns the following\n  const { \n    /**\n     * Reference to underlying BreakpointManager class\n    */\n    breakpointManager, \n    /**\n     * Active breakpoint name\n    */\n    breakpointActive, \n    /**\n     * Current resizeDirection (\"up\"|\"down\"|null)\n    */\n    breakpointDirection \n  } = useBreakpointManager(options);\n\n\n  // Allowing all components to access these values\n  provide(\"uluBreakpointActive\", computed(() => breakpointActive));\n  provide(\"uluBreakpointDirection\", computed(() => breakpointDirection));\n  provide(\"uluBreakpointManager\", computed(() => breakpointManager));\n  provide(\"uluIsMobile\", computed(() => isMobile));\n\n</script>"
       }
     ],
-    "core": [
-      {
-        "title": "core Example 1",
-        "description": "Code example extracted from markdown.",
-        "code": "<script setup>\nimport { inject, onMounted } from 'vue';\n\nconst uluCore = inject('uluCore');\n\nonMounted(() => {\n  const icons = uluCore.getSetting('iconsByType');\n  console.log('Danger Icon:', icons.danger);\n\n  // Example of updating a single icon dynamically\n  uluCore.setIcon('success', 'my-awesome-success-icon');\n});\n</script>"
-      },
-      {
-        "title": "core Example 2",
-        "description": "Code example extracted from markdown.",
-        "code": "<script>\nexport default {\n  mounted() {\n    const icons = this.$uluCore.getSetting('icons');\n    console.log('Danger Icon:', icons.danger);\n  }\n}\n</script>"
-      }
-    ],
     "breakpoints": [
       {
         "title": "breakpoints Example 1",
@@ -642,6 +630,18 @@
         "title": "breakpoints Example 2",
         "description": "Code example extracted from markdown.",
         "code": "<script>\nexport default {\n  inject: ['uluIsMobile', 'uluBreakpointActive'],\n  mounted() {\n    console.log('Is mobile?', this.uluIsMobile);\n  }\n}\n</script>"
+      }
+    ],
+    "core": [
+      {
+        "title": "core Example 1",
+        "description": "Code example extracted from markdown.",
+        "code": "<script setup>\nimport { inject, onMounted } from 'vue';\n\nconst uluCore = inject('uluCore');\n\nonMounted(() => {\n  const icons = uluCore.getSetting('iconsByType');\n  console.log('Danger Icon:', icons.danger);\n\n  // Example of updating a single icon dynamically\n  uluCore.setIcon('success', 'my-awesome-success-icon');\n});\n</script>"
+      },
+      {
+        "title": "core Example 2",
+        "description": "Code example extracted from markdown.",
+        "code": "<script>\nexport default {\n  mounted() {\n    const icons = this.$uluCore.getSetting('icons');\n    console.log('Danger Icon:', icons.danger);\n  }\n}\n</script>"
       }
     ],
     "forms": [],
@@ -12183,11 +12183,11 @@
     "modals": {
       "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as ModalStories from '../../components/collapsible/UluModal.stories.js';\n\n# Modals\n\nModals plugin allows configuring app-wide modals that are triggered by the global API. Register your modals when you install the plugin then interact with them using the global API.\n\n## Registering your app-wide modals\n\nCreate the modal component file like:\n\n```html\n<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>\n```\n\n\nExample ./scr/modals.js\n\n```js\nimport { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]\n```\n\n## Installing the plugin\n\nExample ./src/main.js\n\n```js\nimport UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });\n\n```\n\n## Using Global API\n\n```js\n\n// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\"\n```\n\n## Using Composition API (via composable)\n\nComposable is used get access to modals API (through inject)\n\n```html\n\n<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>\n\n```\n\n## Standalone Modal Component\n\nThe `UluModal` **component is independent of this plugin.** The plugin is simply a convenient way to manage global modals (for things like a settings dialog) that need to be opened from anywhere in your application.\n\nYou can use `UluModal` as the component that the plugin displays, or you can use it on its own for any case where you are managing the state locally within a component and don't need a global API.\n\nHere is a demonstration of the standalone `UluModal` component:\n\n<Canvas of={ModalStories.Default} />"
     },
-    "core": {
-      "raw_markdown": "# Core Plugin\n\n## Purpose\n\nThe Core Plugin is the central, **required** plugin for the `@ulu/frontend-vue` library. Its primary purpose is to establish a single, reactive source of truth for configuration settings that are shared across multiple components. \n\nBy using Vue's `provide`/`inject` system, this plugin ensures that all components within your application access the same configuration, preventing inconsistencies that can arise from separate module imports.\n\n## Installation\n\nTo use this library, you must register the `corePlugin` on your Vue app instance. You can also pass an options object to override the default settings.\n\n```javascript\n// src/main.js\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { corePlugin } from '@ulu/frontend-vue';\n\nconst app = createApp(App);\n\n// Register the core plugin\napp.use(corePlugin, {\n  // Optional: override general settings\n  fontAwesomeStatic: true,\n\n  // Optional: override specific icons safely\n  iconsByType: {\n    danger: 'my-custom-danger-icon',\n    close: 'my-custom-close-icon'\n  }\n});\n\napp.mount('#app');\n```\n\n## API Reference\n\nThe plugin provides its API to your application in two ways:\n\n-   **Composition API:** `inject('uluCore')`\n-   **Options API:** `this.$uluCore`\n\nThe API object contains the following methods:\n\n- `getSettings()`: Returns the full reactive settings object.\n- `getSetting(key)`: Retrieves a single setting by its key (e.g., `'fontAwesomeStatic'`).\n- `updateSetting(key, value)`: Updates a single setting.\n- `updateSettings(changes)`: Merges an object of changes into the settings.\n- `getDefaultSettings()`: Returns a non-reactive copy of the original default settings.\n- `getIcon(type)`: Retrieves a specific icon class string by its semantic type (e.g., `'danger'`, `'close'`).\n- `setIcon(type, definition)`: Safely sets or overrides a single icon definition.\n\n### Example Usage\n\n**Composition API (`<script setup>`)**\n```vue\n<script setup>\nimport { inject, onMounted } from 'vue';\n\nconst uluCore = inject('uluCore');\n\nonMounted(() => {\n  const icons = uluCore.getSetting('iconsByType');\n  console.log('Danger Icon:', icons.danger);\n\n  // Example of updating a single icon dynamically\n  uluCore.setIcon('success', 'my-awesome-success-icon');\n});\n</script>\n```\n\n**Options API**\n```vue\n<script>\nexport default {\n  mounted() {\n    const icons = this.$uluCore.getSetting('icons');\n    console.log('Danger Icon:', icons.danger);\n  }\n}\n</script>\n```\n\n"
-    },
     "breakpoints": {
       "raw_markdown": "# Breakpoints Plugin\n\n## Purpose\n\nThe Breakpoints Plugin provides app-wide, reactive breakpoint information to your Vue components. It is a lightweight wrapper around the `useBreakpointManager` composable, ensuring that resize events and active breakpoint states are tracked centrally and distributed efficiently via Vue's `provide`/`inject` system.\n\nBy installing this plugin, any component in your application can instantly know the current breakpoint, whether the device is considered \"mobile,\" and the direction the window was just resized.\n\n## Installation\n\nRegister the `breakpointsPlugin` on your Vue app instance.\n\n```javascript\n// src/main.js\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { breakpointsPlugin } from '@ulu/frontend-vue';\n\nconst app = createApp(App);\n\n// Register the breakpoints plugin\napp.use(breakpointsPlugin, {\n  // Optional: Change which breakpoint triggers the 'isMobile' flag (default is 'small')\n  breakpointMobile: 'small',\n  \n  // Optional: Pass options directly to the underlying useBreakpointManager\n  managerOptions: {\n    // onReady(manager) { ... }\n  }\n});\n\napp.mount('#app');\n```\n\n## Provided Injections\n\nThe plugin does not attach methods to the Vue instance. Instead, it provides reactive `computed` refs that you can inject into any component.\n\n- **`uluIsMobile`**: `ComputedRef<Boolean>` - True if the current active breakpoint is less than or equal to the configured `breakpointMobile` (defaults to `'small'`).\n- **`uluBreakpointActive`**: `ComputedRef<String>` - The name of the currently active breakpoint (e.g., `'small'`, `'medium'`, `'large'`).\n- **`uluBreakpointDirection`**: `ComputedRef<Number>` - Indicates the resize direction (`1` for growing larger, `-1` for shrinking smaller, `0` for initialization).\n- **`uluBreakpointManager`**: `ComputedRef<Object>` - The underlying vanilla JS BreakpointManager instance, allowing advanced programmatic subscriptions if needed.\n\n## Example Usage\n\n**Composition API (`<script setup>`)**\n```vue\n<script setup>\n  import { inject } from 'vue';\n\n  const isMobile = inject('uluIsMobile');\n  const currentBreakpoint = inject('uluBreakpointActive');\n</script>\n\n<template>\n  <div>\n    <p v-if=\"isMobile\">You are on a mobile device!</p>\n    <p>Current Breakpoint: {{ currentBreakpoint }}</p>\n  </div>\n</template>\n```\n\n**Options API**\n```vue\n<script>\nexport default {\n  inject: ['uluIsMobile', 'uluBreakpointActive'],\n  mounted() {\n    console.log('Is mobile?', this.uluIsMobile);\n  }\n}\n</script>\n```\n\n## Why use the Plugin vs the Composable?\n\nWhile you can import and use `useBreakpointManager()` directly in individual components, registering the Breakpoints Plugin ensures that the vanilla JS `BreakpointManager` is only instantiated once. This centralizes the resize event listeners, significantly improving performance across large applications with many responsive components.\n"
+    },
+    "core": {
+      "raw_markdown": "# Core Plugin\n\n## Purpose\n\nThe Core Plugin is the central, **required** plugin for the `@ulu/frontend-vue` library. Its primary purpose is to establish a single, reactive source of truth for configuration settings that are shared across multiple components. \n\nBy using Vue's `provide`/`inject` system, this plugin ensures that all components within your application access the same configuration, preventing inconsistencies that can arise from separate module imports.\n\n## Installation\n\nTo use this library, you must register the `corePlugin` on your Vue app instance. You can also pass an options object to override the default settings.\n\n```javascript\n// src/main.js\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { corePlugin } from '@ulu/frontend-vue';\n\nconst app = createApp(App);\n\n// Register the core plugin\napp.use(corePlugin, {\n  // Optional: override general settings\n  fontAwesomeStatic: true,\n\n  // Optional: override specific icons safely\n  iconsByType: {\n    danger: 'my-custom-danger-icon',\n    close: 'my-custom-close-icon'\n  }\n});\n\napp.mount('#app');\n```\n\n## API Reference\n\nThe plugin provides its API to your application in two ways:\n\n-   **Composition API:** `inject('uluCore')`\n-   **Options API:** `this.$uluCore`\n\nThe API object contains the following methods:\n\n- `getSettings()`: Returns the full reactive settings object.\n- `getSetting(key)`: Retrieves a single setting by its key (e.g., `'fontAwesomeStatic'`).\n- `updateSetting(key, value)`: Updates a single setting.\n- `updateSettings(changes)`: Merges an object of changes into the settings.\n- `getDefaultSettings()`: Returns a non-reactive copy of the original default settings.\n- `getIcon(type)`: Retrieves a specific icon class string by its semantic type (e.g., `'danger'`, `'close'`).\n- `setIcon(type, definition)`: Safely sets or overrides a single icon definition.\n\n### Example Usage\n\n**Composition API (`<script setup>`)**\n```vue\n<script setup>\nimport { inject, onMounted } from 'vue';\n\nconst uluCore = inject('uluCore');\n\nonMounted(() => {\n  const icons = uluCore.getSetting('iconsByType');\n  console.log('Danger Icon:', icons.danger);\n\n  // Example of updating a single icon dynamically\n  uluCore.setIcon('success', 'my-awesome-success-icon');\n});\n</script>\n```\n\n**Options API**\n```vue\n<script>\nexport default {\n  mounted() {\n    const icons = this.$uluCore.getSetting('icons');\n    console.log('Danger Icon:', icons.danger);\n  }\n}\n</script>\n```\n\n"
     },
     "forms": {
       "raw_markdown": "import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';\nimport * as FullFormDemoStories from './tests/FullFormDemo.stories.js';\n\n# Forms\n\nThis is a demonstration of a full form built with the `ulu-form` components.\n\n<Canvas of={FullFormDemoStories.Default} />\n"
