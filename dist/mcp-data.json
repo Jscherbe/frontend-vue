@@ -195,22 +195,6 @@
     "UluTitleRail": [],
     "UluDataGrid": [],
     "UluAdaptiveLayout": [],
-    "UluSelectableMenu": [],
-    "UluSearchForm": [],
-    "UluFormTextarea": [],
-    "UluFormText": [],
-    "UluFormSelect": [],
-    "UluFormRequiredChar": [],
-    "UluFormRadio": [],
-    "UluFormLabel": [],
-    "UluFormItemsInline": [],
-    "UluFormItem": [],
-    "UluFormFile": [],
-    "UluFormFieldset": [],
-    "UluFormCheckbox": [],
-    "UluFormActions": [],
-    "UluForm": [],
-    "UluFileDisplay": [],
     "UluTabGroup": [
       {
         "title": "Default",
@@ -239,6 +223,22 @@
     "UluCollapsible": [],
     "UluAccordionGroup": [],
     "UluAccordion": [],
+    "UluSelectableMenu": [],
+    "UluSearchForm": [],
+    "UluFormTextarea": [],
+    "UluFormText": [],
+    "UluFormSelect": [],
+    "UluFormRequiredChar": [],
+    "UluFormRadio": [],
+    "UluFormLabel": [],
+    "UluFormItemsInline": [],
+    "UluFormItem": [],
+    "UluFormFile": [],
+    "UluFormFieldset": [],
+    "UluFormCheckbox": [],
+    "UluFormActions": [],
+    "UluForm": [],
+    "UluFileDisplay": [],
     "UluTag": [],
     "UluTable": [
       {
@@ -4167,276 +4167,6 @@
         }
       ]
     },
-    "UluScrollAnchorsSection": {
-      "description": "Vue Component Props, Emits, and Slots for UluScrollAnchorsSection",
-      "properties": [
-        {
-          "name": "title",
-          "type": "string",
-          "description": "The title of the section, used for navigation and generating a default ID"
-        },
-        {
-          "name": "titleElement",
-          "type": "string",
-          "default": "\"h2\"",
-          "description": "The HTML element to use for the title"
-        },
-        {
-          "name": "titleClass",
-          "type": "string",
-          "default": "\"h2\"",
-          "description": "The class to apply to the title element"
-        },
-        {
-          "name": "customTitleId",
-          "type": "string",
-          "description": "A custom ID to use for the section anchor, overriding the auto-generated one"
-        },
-        {
-          "name": "wrapperClass",
-          "type": "string",
-          "default": "\"scroll-anchors__section\"",
-          "description": "The class to apply to the section's wrapper div"
-        },
-        {
-          "name": "activeClass",
-          "type": "string",
-          "default": "'is-active'",
-          "description": "The class to apply to the wrapper div when the section is active"
-        },
-        {
-          "name": "element",
-          "type": "string",
-          "default": "'section'",
-          "description": "The HTML element to use for the section root"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "title",
-          "description": ""
-        },
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluScrollAnchorsNavAnimated": {
-      "description": "Vue Component Props, Emits, and Slots for UluScrollAnchorsNavAnimated",
-      "properties": [
-        {
-          "name": "element",
-          "type": "string",
-          "default": "\"nav\"",
-          "description": "The HTML element to use for the navigation root"
-        },
-        {
-          "name": "railWidth",
-          "type": "number",
-          "default": "3",
-          "description": "The width of the navigation rail"
-        },
-        {
-          "name": "trimRailToCenters",
-          "type": "boolean",
-          "description": "Dynamically trims the rail to span exactly from the center of the first indicator to the center of the last indicator. Disabled by default"
-        },
-        {
-          "name": "railStartOffset",
-          "type": "number",
-          "default": "0",
-          "description": "Pixel offset for the start (top) of the dynamic rail."
-        },
-        {
-          "name": "railEndOffset",
-          "type": "number",
-          "default": "0",
-          "description": "Pixel offset for the end (bottom) of the dynamic rail."
-        },
-        {
-          "name": "indicatorWidth",
-          "type": "number",
-          "default": "null",
-          "description": "The width of the indicator, defaults to railWidth"
-        },
-        {
-          "name": "indicatorHeight",
-          "type": "number",
-          "default": "null",
-          "description": "If set, creates a static height, centered indicator"
-        },
-        {
-          "name": "indicatorAlignment",
-          "type": "string",
-          "default": "\"center\"",
-          "description": "Vertical alignment of the indicator relative to the link"
-        },
-        {
-          "name": "indicatorAlignmentOffset",
-          "type": "number",
-          "default": "0",
-          "description": "Pixel offset for the indicator's vertical alignment"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluScrollAnchorsNav": {
-      "description": "Vue Component Props, Emits, and Slots for UluScrollAnchorsNav",
-      "properties": [
-        {
-          "name": "element",
-          "type": "string",
-          "default": "\"nav\"",
-          "description": "The HTML element to use for the navigation root"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluScrollAnchorsHeadlessSection": {
-      "description": "Vue Component Props, Emits, and Slots for UluScrollAnchorsHeadlessSection",
-      "properties": [
-        {
-          "name": "title",
-          "type": "string",
-          "description": "The title of the section, used for navigation and generating a default ID"
-        },
-        {
-          "name": "customTitleId",
-          "type": "string",
-          "description": "A custom ID to use for the section anchor, overriding the auto-generated one"
-        },
-        {
-          "name": "element",
-          "type": "string",
-          "default": "\"div\"",
-          "description": "Element to use"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluScrollAnchors": {
-      "description": "Vue Component Props, Emits, and Slots for UluScrollAnchors",
-      "properties": [
-        {
-          "name": "firstItemActive",
-          "type": "boolean",
-          "description": "Make the first item active by default on load"
-        },
-        {
-          "name": "observerOptions",
-          "type": "union",
-          "default": "null",
-          "description": "Custom IntersectionObserver options to completely override internal defaults.\nDefaults: { root: null, threshold: 0, rootMargin: \"-25% 0px -55% 0px\" }\nSee: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver"
-        },
-        {
-          "name": "snapOffset",
-          "type": "union",
-          "default": "false",
-          "description": "Creates a strict 1% horizontal observation line to trigger active states.\n- Accepts a number representing the percentage down from the top of the screen (e.g., 20 for 20%).\n- If you pass true it will default to 20%\n- Optional not enabled by default\n- You can control this yourself with observerOptions"
-        },
-        {
-          "name": "debug",
-          "type": "boolean",
-          "description": "Enable debug logging for the IntersectionObserver"
-        },
-        {
-          "name": "deactivateLastItem",
-          "type": "boolean",
-          "default": "false",
-          "description": "If true, the last section will deactivate when scrolling past its bounding box.\nBy default, the last section remains active until the user scrolls back up."
-        }
-      ],
-      "events": [
-        {
-          "name": "section-change",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluSkeletonText": {
-      "description": "Vue Component Props, Emits, and Slots for UluSkeletonText",
-      "properties": [
-        {
-          "name": "inline",
-          "type": "boolean",
-          "description": "Inline modifier"
-        },
-        {
-          "name": "alt",
-          "type": "boolean",
-          "description": "Use alternate background color"
-        },
-        {
-          "name": "width",
-          "type": "string",
-          "description": "Optional size (width) - should correspond with width setup in scss component"
-        }
-      ],
-      "events": [],
-      "slots": []
-    },
-    "UluSkeletonMedia": {
-      "description": "Vue Component Props, Emits, and Slots for UluSkeletonMedia",
-      "properties": [],
-      "events": [],
-      "slots": []
-    },
-    "UluSkeletonContent": {
-      "description": "Vue Component Props, Emits, and Slots for UluSkeletonContent",
-      "properties": [
-        {
-          "name": "lines",
-          "type": "number",
-          "default": "6",
-          "description": "Amount of lines to generate"
-        }
-      ],
-      "events": [],
-      "slots": []
-    },
-    "UluShowSkeleton": {
-      "description": "Vue Component Props, Emits, and Slots for UluShowSkeleton",
-      "properties": [
-        {
-          "name": "when",
-          "type": "boolean",
-          "description": "If true will show whatever is passed to slot, else skeleton text"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
     "UluFacetsSort": {
       "description": "Vue Component Props, Emits, and Slots for UluFacetsSort",
       "properties": [
@@ -4827,6 +4557,276 @@
       "slots": [
         {
           "name": "label",
+          "description": ""
+        }
+      ]
+    },
+    "UluSkeletonText": {
+      "description": "Vue Component Props, Emits, and Slots for UluSkeletonText",
+      "properties": [
+        {
+          "name": "inline",
+          "type": "boolean",
+          "description": "Inline modifier"
+        },
+        {
+          "name": "alt",
+          "type": "boolean",
+          "description": "Use alternate background color"
+        },
+        {
+          "name": "width",
+          "type": "string",
+          "description": "Optional size (width) - should correspond with width setup in scss component"
+        }
+      ],
+      "events": [],
+      "slots": []
+    },
+    "UluSkeletonMedia": {
+      "description": "Vue Component Props, Emits, and Slots for UluSkeletonMedia",
+      "properties": [],
+      "events": [],
+      "slots": []
+    },
+    "UluSkeletonContent": {
+      "description": "Vue Component Props, Emits, and Slots for UluSkeletonContent",
+      "properties": [
+        {
+          "name": "lines",
+          "type": "number",
+          "default": "6",
+          "description": "Amount of lines to generate"
+        }
+      ],
+      "events": [],
+      "slots": []
+    },
+    "UluShowSkeleton": {
+      "description": "Vue Component Props, Emits, and Slots for UluShowSkeleton",
+      "properties": [
+        {
+          "name": "when",
+          "type": "boolean",
+          "description": "If true will show whatever is passed to slot, else skeleton text"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluScrollAnchorsSection": {
+      "description": "Vue Component Props, Emits, and Slots for UluScrollAnchorsSection",
+      "properties": [
+        {
+          "name": "title",
+          "type": "string",
+          "description": "The title of the section, used for navigation and generating a default ID"
+        },
+        {
+          "name": "titleElement",
+          "type": "string",
+          "default": "\"h2\"",
+          "description": "The HTML element to use for the title"
+        },
+        {
+          "name": "titleClass",
+          "type": "string",
+          "default": "\"h2\"",
+          "description": "The class to apply to the title element"
+        },
+        {
+          "name": "customTitleId",
+          "type": "string",
+          "description": "A custom ID to use for the section anchor, overriding the auto-generated one"
+        },
+        {
+          "name": "wrapperClass",
+          "type": "string",
+          "default": "\"scroll-anchors__section\"",
+          "description": "The class to apply to the section's wrapper div"
+        },
+        {
+          "name": "activeClass",
+          "type": "string",
+          "default": "'is-active'",
+          "description": "The class to apply to the wrapper div when the section is active"
+        },
+        {
+          "name": "element",
+          "type": "string",
+          "default": "'section'",
+          "description": "The HTML element to use for the section root"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "title",
+          "description": ""
+        },
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluScrollAnchorsNavAnimated": {
+      "description": "Vue Component Props, Emits, and Slots for UluScrollAnchorsNavAnimated",
+      "properties": [
+        {
+          "name": "element",
+          "type": "string",
+          "default": "\"nav\"",
+          "description": "The HTML element to use for the navigation root"
+        },
+        {
+          "name": "railWidth",
+          "type": "number",
+          "default": "3",
+          "description": "The width of the navigation rail"
+        },
+        {
+          "name": "trimRailToCenters",
+          "type": "boolean",
+          "description": "Dynamically trims the rail to span exactly from the center of the first indicator to the center of the last indicator. Disabled by default"
+        },
+        {
+          "name": "railStartOffset",
+          "type": "number",
+          "default": "0",
+          "description": "Pixel offset for the start (top) of the dynamic rail."
+        },
+        {
+          "name": "railEndOffset",
+          "type": "number",
+          "default": "0",
+          "description": "Pixel offset for the end (bottom) of the dynamic rail."
+        },
+        {
+          "name": "indicatorWidth",
+          "type": "number",
+          "default": "null",
+          "description": "The width of the indicator, defaults to railWidth"
+        },
+        {
+          "name": "indicatorHeight",
+          "type": "number",
+          "default": "null",
+          "description": "If set, creates a static height, centered indicator"
+        },
+        {
+          "name": "indicatorAlignment",
+          "type": "string",
+          "default": "\"center\"",
+          "description": "Vertical alignment of the indicator relative to the link"
+        },
+        {
+          "name": "indicatorAlignmentOffset",
+          "type": "number",
+          "default": "0",
+          "description": "Pixel offset for the indicator's vertical alignment"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluScrollAnchorsNav": {
+      "description": "Vue Component Props, Emits, and Slots for UluScrollAnchorsNav",
+      "properties": [
+        {
+          "name": "element",
+          "type": "string",
+          "default": "\"nav\"",
+          "description": "The HTML element to use for the navigation root"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluScrollAnchorsHeadlessSection": {
+      "description": "Vue Component Props, Emits, and Slots for UluScrollAnchorsHeadlessSection",
+      "properties": [
+        {
+          "name": "title",
+          "type": "string",
+          "description": "The title of the section, used for navigation and generating a default ID"
+        },
+        {
+          "name": "customTitleId",
+          "type": "string",
+          "description": "A custom ID to use for the section anchor, overriding the auto-generated one"
+        },
+        {
+          "name": "element",
+          "type": "string",
+          "default": "\"div\"",
+          "description": "Element to use"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluScrollAnchors": {
+      "description": "Vue Component Props, Emits, and Slots for UluScrollAnchors",
+      "properties": [
+        {
+          "name": "firstItemActive",
+          "type": "boolean",
+          "description": "Make the first item active by default on load"
+        },
+        {
+          "name": "observerOptions",
+          "type": "union",
+          "default": "null",
+          "description": "Custom IntersectionObserver options to completely override internal defaults.\nDefaults: { root: null, threshold: 0, rootMargin: \"-25% 0px -55% 0px\" }\nSee: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver"
+        },
+        {
+          "name": "snapOffset",
+          "type": "union",
+          "default": "false",
+          "description": "Creates a strict 1% horizontal observation line to trigger active states.\n- Accepts a number representing the percentage down from the top of the screen (e.g., 20 for 20%).\n- If you pass true it will default to 20%\n- Optional not enabled by default\n- You can control this yourself with observerOptions"
+        },
+        {
+          "name": "debug",
+          "type": "boolean",
+          "description": "Enable debug logging for the IntersectionObserver"
+        },
+        {
+          "name": "deactivateLastItem",
+          "type": "boolean",
+          "default": "false",
+          "description": "If true, the last section will deactivate when scrolling past its bounding box.\nBy default, the last section remains active until the user scrolls back up."
+        }
+      ],
+      "events": [
+        {
+          "name": "section-change",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
           "description": ""
         }
       ]
@@ -10951,560 +10951,6 @@
         ]
       }
     },
-    "UluScrollAnchorsSection": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluScrollAnchorsSection",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "title",
-            "description": "The title of the section, used for navigation and generating a default ID",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "titleElement",
-            "description": "The HTML element to use for the title",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"h2\""
-            }
-          },
-          {
-            "name": "titleClass",
-            "description": "The class to apply to the title element",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"h2\""
-            }
-          },
-          {
-            "name": "customTitleId",
-            "description": "A custom ID to use for the section anchor, overriding the auto-generated one",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "wrapperClass",
-            "description": "The class to apply to the section's wrapper div",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"scroll-anchors__section\""
-            }
-          },
-          {
-            "name": "activeClass",
-            "description": "The class to apply to the wrapper div when the section is active",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "'is-active'"
-            }
-          },
-          {
-            "name": "element",
-            "description": "The HTML element to use for the section root",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "'section'"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "title"
-          },
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "section",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/scroll-anchors/UluScrollAnchorsSection.vue"
-        ]
-      }
-    },
-    "UluScrollAnchorsNavAnimated": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluScrollAnchorsNavAnimated",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "element",
-            "description": "The HTML element to use for the navigation root",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"nav\""
-            }
-          },
-          {
-            "name": "railWidth",
-            "description": "The width of the navigation rail",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "3"
-            }
-          },
-          {
-            "name": "trimRailToCenters",
-            "description": "Dynamically trims the rail to span exactly from the center of the first indicator to the center of the last indicator. Disabled by default",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "railStartOffset",
-            "description": "Pixel offset for the start (top) of the dynamic rail.",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "0"
-            }
-          },
-          {
-            "name": "railEndOffset",
-            "description": "Pixel offset for the end (bottom) of the dynamic rail.",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "0"
-            }
-          },
-          {
-            "name": "indicatorWidth",
-            "description": "The width of the indicator, defaults to railWidth",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "null"
-            }
-          },
-          {
-            "name": "indicatorHeight",
-            "description": "If set, creates a static height, centered indicator",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "null"
-            }
-          },
-          {
-            "name": "indicatorAlignment",
-            "description": "Vertical alignment of the indicator relative to the link",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"center\""
-            }
-          },
-          {
-            "name": "indicatorAlignmentOffset",
-            "description": "Pixel offset for the indicator's vertical alignment",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "0"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "item",
-                "title": "binding"
-              },
-              {
-                "name": "index",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/scroll-anchors/UluScrollAnchorsNavAnimated.vue"
-        ]
-      }
-    },
-    "UluScrollAnchorsNav": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluScrollAnchorsNav",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "element",
-            "description": "The HTML element to use for the navigation root",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"nav\""
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "item",
-                "title": "binding"
-              },
-              {
-                "name": "index",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/scroll-anchors/UluScrollAnchorsNav.vue"
-        ]
-      }
-    },
-    "UluScrollAnchorsHeadlessSection": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluScrollAnchorsHeadlessSection",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "title",
-            "description": "The title of the section, used for navigation and generating a default ID",
-            "type": {
-              "name": "string"
-            },
-            "required": true
-          },
-          {
-            "name": "customTitleId",
-            "description": "A custom ID to use for the section anchor, overriding the auto-generated one",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "element",
-            "description": "Element to use",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"div\""
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "isActive",
-                "title": "binding"
-              },
-              {
-                "name": "titleId",
-                "title": "binding"
-              },
-              {
-                "name": "section",
-                "title": "binding"
-              },
-              {
-                "name": "inactiveFrom",
-                "title": "binding"
-              },
-              {
-                "name": "activeFrom",
-                "title": "binding"
-              },
-              {
-                "name": "sectionState",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/scroll-anchors/UluScrollAnchorsHeadlessSection.vue"
-        ]
-      }
-    },
-    "UluScrollAnchors": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluScrollAnchors",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "firstItemActive",
-            "description": "Make the first item active by default on load",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "observerOptions",
-            "description": "Custom IntersectionObserver options to completely override internal defaults.\nDefaults: { root: null, threshold: 0, rootMargin: \"-25% 0px -55% 0px\" }\nSee: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver",
-            "tags": {
-              "type": [
-                {
-                  "title": "type",
-                  "type": {
-                    "name": "union",
-                    "elements": [
-                      {
-                        "name": "Object"
-                      },
-                      {
-                        "name": "null"
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            "type": {
-              "name": "union",
-              "elements": [
-                {
-                  "name": "Object"
-                },
-                {
-                  "name": "null"
-                }
-              ]
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "null"
-            }
-          },
-          {
-            "name": "snapOffset",
-            "description": "Creates a strict 1% horizontal observation line to trigger active states.\n- Accepts a number representing the percentage down from the top of the screen (e.g., 20 for 20%).\n- If you pass true it will default to 20%\n- Optional not enabled by default\n- You can control this yourself with observerOptions",
-            "tags": {
-              "type": [
-                {
-                  "title": "type",
-                  "type": {
-                    "name": "union",
-                    "elements": [
-                      {
-                        "name": "Number"
-                      },
-                      {
-                        "name": "Boolean"
-                      }
-                    ]
-                  }
-                }
-              ],
-              "default": [
-                {
-                  "description": "false",
-                  "title": "default"
-                }
-              ]
-            },
-            "type": {
-              "name": "union",
-              "elements": [
-                {
-                  "name": "Number"
-                },
-                {
-                  "name": "Boolean"
-                }
-              ]
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "false"
-            }
-          },
-          {
-            "name": "debug",
-            "description": "Enable debug logging for the IntersectionObserver",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "deactivateLastItem",
-            "description": "If true, the last section will deactivate when scrolling past its bounding box.\nBy default, the last section remains active until the user scrolls back up.",
-            "type": {
-              "name": "boolean"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "false"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "section-change"
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/scroll-anchors/UluScrollAnchors.vue"
-        ]
-      }
-    },
-    "UluSkeletonText": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluSkeletonText",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "inline",
-            "description": "Inline modifier",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "alt",
-            "description": "Use alternate background color",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "width",
-            "description": "Optional size (width) - should correspond with width setup in scss component",
-            "type": {
-              "name": "string"
-            }
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/skeleton/UluSkeletonText.vue"
-        ]
-      }
-    },
-    "UluSkeletonMedia": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluSkeletonMedia",
-        "description": "",
-        "tags": {},
-        "sourceFiles": [
-          "lib/components/systems/skeleton/UluSkeletonMedia.vue"
-        ]
-      }
-    },
-    "UluSkeletonContent": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluSkeletonContent",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "lines",
-            "description": "Amount of lines to generate",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "6"
-            }
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/skeleton/UluSkeletonContent.vue"
-        ]
-      }
-    },
-    "UluShowSkeleton": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluShowSkeleton",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "when",
-            "description": "If true will show whatever is passed to slot, else skeleton text",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/skeleton/UluShowSkeleton.vue"
-        ]
-      }
-    },
     "UluFacetsSort": {
       "raw_ast_dump": {
         "exportName": "default",
@@ -12154,6 +11600,560 @@
         ]
       }
     },
+    "UluSkeletonText": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluSkeletonText",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "inline",
+            "description": "Inline modifier",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "alt",
+            "description": "Use alternate background color",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "width",
+            "description": "Optional size (width) - should correspond with width setup in scss component",
+            "type": {
+              "name": "string"
+            }
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/skeleton/UluSkeletonText.vue"
+        ]
+      }
+    },
+    "UluSkeletonMedia": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluSkeletonMedia",
+        "description": "",
+        "tags": {},
+        "sourceFiles": [
+          "lib/components/systems/skeleton/UluSkeletonMedia.vue"
+        ]
+      }
+    },
+    "UluSkeletonContent": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluSkeletonContent",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "lines",
+            "description": "Amount of lines to generate",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "6"
+            }
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/skeleton/UluSkeletonContent.vue"
+        ]
+      }
+    },
+    "UluShowSkeleton": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluShowSkeleton",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "when",
+            "description": "If true will show whatever is passed to slot, else skeleton text",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/skeleton/UluShowSkeleton.vue"
+        ]
+      }
+    },
+    "UluScrollAnchorsSection": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluScrollAnchorsSection",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "title",
+            "description": "The title of the section, used for navigation and generating a default ID",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "titleElement",
+            "description": "The HTML element to use for the title",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"h2\""
+            }
+          },
+          {
+            "name": "titleClass",
+            "description": "The class to apply to the title element",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"h2\""
+            }
+          },
+          {
+            "name": "customTitleId",
+            "description": "A custom ID to use for the section anchor, overriding the auto-generated one",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "wrapperClass",
+            "description": "The class to apply to the section's wrapper div",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"scroll-anchors__section\""
+            }
+          },
+          {
+            "name": "activeClass",
+            "description": "The class to apply to the wrapper div when the section is active",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "'is-active'"
+            }
+          },
+          {
+            "name": "element",
+            "description": "The HTML element to use for the section root",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "'section'"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "title"
+          },
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "section",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/scroll-anchors/UluScrollAnchorsSection.vue"
+        ]
+      }
+    },
+    "UluScrollAnchorsNavAnimated": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluScrollAnchorsNavAnimated",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "element",
+            "description": "The HTML element to use for the navigation root",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"nav\""
+            }
+          },
+          {
+            "name": "railWidth",
+            "description": "The width of the navigation rail",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "3"
+            }
+          },
+          {
+            "name": "trimRailToCenters",
+            "description": "Dynamically trims the rail to span exactly from the center of the first indicator to the center of the last indicator. Disabled by default",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "railStartOffset",
+            "description": "Pixel offset for the start (top) of the dynamic rail.",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "0"
+            }
+          },
+          {
+            "name": "railEndOffset",
+            "description": "Pixel offset for the end (bottom) of the dynamic rail.",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "0"
+            }
+          },
+          {
+            "name": "indicatorWidth",
+            "description": "The width of the indicator, defaults to railWidth",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "null"
+            }
+          },
+          {
+            "name": "indicatorHeight",
+            "description": "If set, creates a static height, centered indicator",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "null"
+            }
+          },
+          {
+            "name": "indicatorAlignment",
+            "description": "Vertical alignment of the indicator relative to the link",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"center\""
+            }
+          },
+          {
+            "name": "indicatorAlignmentOffset",
+            "description": "Pixel offset for the indicator's vertical alignment",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "0"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "item",
+                "title": "binding"
+              },
+              {
+                "name": "index",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/scroll-anchors/UluScrollAnchorsNavAnimated.vue"
+        ]
+      }
+    },
+    "UluScrollAnchorsNav": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluScrollAnchorsNav",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "element",
+            "description": "The HTML element to use for the navigation root",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"nav\""
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "item",
+                "title": "binding"
+              },
+              {
+                "name": "index",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/scroll-anchors/UluScrollAnchorsNav.vue"
+        ]
+      }
+    },
+    "UluScrollAnchorsHeadlessSection": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluScrollAnchorsHeadlessSection",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "title",
+            "description": "The title of the section, used for navigation and generating a default ID",
+            "type": {
+              "name": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "customTitleId",
+            "description": "A custom ID to use for the section anchor, overriding the auto-generated one",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "element",
+            "description": "Element to use",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"div\""
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "isActive",
+                "title": "binding"
+              },
+              {
+                "name": "titleId",
+                "title": "binding"
+              },
+              {
+                "name": "section",
+                "title": "binding"
+              },
+              {
+                "name": "inactiveFrom",
+                "title": "binding"
+              },
+              {
+                "name": "activeFrom",
+                "title": "binding"
+              },
+              {
+                "name": "sectionState",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/scroll-anchors/UluScrollAnchorsHeadlessSection.vue"
+        ]
+      }
+    },
+    "UluScrollAnchors": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluScrollAnchors",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "firstItemActive",
+            "description": "Make the first item active by default on load",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "observerOptions",
+            "description": "Custom IntersectionObserver options to completely override internal defaults.\nDefaults: { root: null, threshold: 0, rootMargin: \"-25% 0px -55% 0px\" }\nSee: https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserver/IntersectionObserver",
+            "tags": {
+              "type": [
+                {
+                  "title": "type",
+                  "type": {
+                    "name": "union",
+                    "elements": [
+                      {
+                        "name": "Object"
+                      },
+                      {
+                        "name": "null"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "type": {
+              "name": "union",
+              "elements": [
+                {
+                  "name": "Object"
+                },
+                {
+                  "name": "null"
+                }
+              ]
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "null"
+            }
+          },
+          {
+            "name": "snapOffset",
+            "description": "Creates a strict 1% horizontal observation line to trigger active states.\n- Accepts a number representing the percentage down from the top of the screen (e.g., 20 for 20%).\n- If you pass true it will default to 20%\n- Optional not enabled by default\n- You can control this yourself with observerOptions",
+            "tags": {
+              "type": [
+                {
+                  "title": "type",
+                  "type": {
+                    "name": "union",
+                    "elements": [
+                      {
+                        "name": "Number"
+                      },
+                      {
+                        "name": "Boolean"
+                      }
+                    ]
+                  }
+                }
+              ],
+              "default": [
+                {
+                  "description": "false",
+                  "title": "default"
+                }
+              ]
+            },
+            "type": {
+              "name": "union",
+              "elements": [
+                {
+                  "name": "Number"
+                },
+                {
+                  "name": "Boolean"
+                }
+              ]
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "false"
+            }
+          },
+          {
+            "name": "debug",
+            "description": "Enable debug logging for the IntersectionObserver",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "deactivateLastItem",
+            "description": "If true, the last section will deactivate when scrolling past its bounding box.\nBy default, the last section remains active until the user scrolls back up.",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "false"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "section-change"
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/scroll-anchors/UluScrollAnchors.vue"
+        ]
+      }
+    },
     "FullFormDemo": {
       "raw_ast_dump": {
         "exportName": "default",
@@ -12271,19 +12271,6 @@
         "level": 0
       },
       {
-        "id": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
-        "longname": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
-        "name": "plugins\nResponsible for exporting all plugins\n- Used in bundle exports",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins"
-        },
-        "order": 6,
-        "level": 0
-      },
-      {
         "id": "utils.module:router",
         "longname": "utils.module:router",
         "name": "router",
@@ -12293,7 +12280,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 7,
+        "order": 6,
         "level": 0
       },
       {
@@ -12306,7 +12293,7 @@
           "filename": "props.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 22,
+        "order": 21,
         "level": 0
       },
       {
@@ -12319,7 +12306,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 25,
+        "order": 24,
         "level": 0
       },
       {
@@ -12332,33 +12319,20 @@
           "filename": "dom.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 26,
+        "order": 25,
         "level": 0
       },
       {
-        "id": "module:components",
-        "longname": "module:components",
-        "name": "components",
+        "id": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
+        "longname": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
+        "name": "plugins\nResponsible for exporting all plugins\n- Used in bundle exports",
         "kind": "module",
         "meta": {
           "lineno": 1,
           "filename": "index.js",
-          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/components"
+          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins"
         },
-        "order": 29,
-        "level": 0
-      },
-      {
-        "id": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
-        "longname": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
-        "name": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exports",
-        "kind": "module",
-        "meta": {
-          "lineno": 4,
-          "filename": "index.js",
-          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/components"
-        },
-        "order": 30,
+        "order": 28,
         "level": 0
       },
       {
@@ -12371,7 +12345,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 31,
+        "order": 29,
         "level": 0
       },
       {
@@ -12384,7 +12358,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 34,
+        "order": 32,
         "level": 0
       },
       {
@@ -12397,7 +12371,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 38,
+        "order": 36,
         "level": 0
       },
       {
@@ -12410,7 +12384,7 @@
           "filename": "useRequiredInject.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 46,
+        "order": 44,
         "level": 0
       },
       {
@@ -12423,7 +12397,7 @@
           "filename": "usePagination.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 48,
+        "order": 46,
         "level": 0
       },
       {
@@ -12436,7 +12410,7 @@
           "filename": "useModifiers.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 50,
+        "order": 48,
         "level": 0
       },
       {
@@ -12449,7 +12423,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 52,
+        "order": 50,
         "level": 0
       },
       {
@@ -12462,7 +12436,7 @@
           "filename": "useDocumentTitle.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 55,
+        "order": 53,
         "level": 0
       },
       {
@@ -12475,7 +12449,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 57,
+        "order": 55,
         "level": 0
       },
       {
@@ -12487,6 +12461,32 @@
           "lineno": 1,
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
+        },
+        "order": 60,
+        "level": 0
+      },
+      {
+        "id": "module:components",
+        "longname": "module:components",
+        "name": "components",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/components"
+        },
+        "order": 61,
+        "level": 0
+      },
+      {
+        "id": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
+        "longname": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
+        "name": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exports",
+        "kind": "module",
+        "meta": {
+          "lineno": 4,
+          "filename": "index.js",
+          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/components"
         },
         "order": 62,
         "level": 0
@@ -12544,20 +12544,6 @@
         "level": 0
       },
       {
-        "id": "module:corePlugin",
-        "longname": "module:corePlugin",
-        "name": "corePlugin",
-        "kind": "module",
-        "description": "Core plugin for managing shared configuration for the library.",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/core"
-        },
-        "order": 80,
-        "level": 0
-      },
-      {
         "id": "module:useTooltipFollow",
         "longname": "module:useTooltipFollow",
         "name": "useTooltipFollow",
@@ -12567,7 +12553,7 @@
           "filename": "useTooltipFollow.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 82,
+        "order": 80,
         "level": 0
       },
       {
@@ -12580,7 +12566,7 @@
           "filename": "useTooltip.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 83,
+        "order": 81,
         "level": 0
       },
       {
@@ -12593,7 +12579,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 85,
+        "order": 83,
         "level": 0
       },
       {
@@ -12606,20 +12592,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 91
-      },
-      {
-        "id": "module:breakpointsPlugin",
-        "longname": "module:breakpointsPlugin",
-        "name": "breakpointsPlugin",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/breakpoints"
-        },
-        "order": 113,
-        "level": 0
+        "order": 89
       },
       {
         "id": "module:useModals",
@@ -12631,7 +12604,7 @@
           "filename": "useModals.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 118,
+        "order": 111,
         "level": 0
       },
       {
@@ -12645,7 +12618,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 120,
+        "order": 113,
         "level": 0
       },
       {
@@ -12658,7 +12631,34 @@
           "filename": "api.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 123,
+        "order": 116,
+        "level": 0
+      },
+      {
+        "id": "module:corePlugin",
+        "longname": "module:corePlugin",
+        "name": "corePlugin",
+        "kind": "module",
+        "description": "Core plugin for managing shared configuration for the library.",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/core"
+        },
+        "order": 125,
+        "level": 0
+      },
+      {
+        "id": "module:breakpointsPlugin",
+        "longname": "module:breakpointsPlugin",
+        "name": "breakpointsPlugin",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/breakpoints"
+        },
+        "order": 127,
         "level": 0
       },
       {
@@ -12743,6 +12743,78 @@
         "level": 0
       },
       {
+        "id": "module:popoversPlugin--module.exports",
+        "longname": "module:popoversPlugin",
+        "name": "module.exports",
+        "kind": "function",
+        "isExported": true,
+        "description": "Install the UluPopovers plugin.",
+        "memberof": "module:popoversPlugin",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "The Vue app instance.",
+            "name": "app"
+          },
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "User-defined options to override defaults.",
+            "name": "userOptions"
+          }
+        ],
+        "meta": {
+          "lineno": 58,
+          "filename": "index.js",
+          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 88,
+        "level": 0
+      },
+      {
+        "id": "module:modalsPlugin--module.exports",
+        "longname": "module:modalsPlugin",
+        "name": "module.exports",
+        "kind": "function",
+        "isExported": true,
+        "description": "Modals Vue Plugin",
+        "memberof": "module:modalsPlugin",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "description": "Vue app instance passed to plugin",
+            "name": "App"
+          },
+          {
+            "type": {
+              "names": [
+                "module:modalsPlugin~UluModalsPluginOptions"
+              ]
+            },
+            "description": "Options to change (see defaults)",
+            "name": "userOptions"
+          }
+        ],
+        "meta": {
+          "lineno": 27,
+          "filename": "index.js",
+          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
+        },
+        "order": 115,
+        "level": 0
+      },
+      {
         "id": "module:corePlugin--module.exports",
         "longname": "module:corePlugin",
         "name": "module.exports",
@@ -12816,43 +12888,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/core"
         },
-        "order": 81,
-        "level": 0
-      },
-      {
-        "id": "module:popoversPlugin--module.exports",
-        "longname": "module:popoversPlugin",
-        "name": "module.exports",
-        "kind": "function",
-        "isExported": true,
-        "description": "Install the UluPopovers plugin.",
-        "memberof": "module:popoversPlugin",
-        "params": [
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "The Vue app instance.",
-            "name": "app"
-          },
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "User-defined options to override defaults.",
-            "name": "userOptions"
-          }
-        ],
-        "meta": {
-          "lineno": 58,
-          "filename": "index.js",
-          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 90,
+        "order": 126,
         "level": 0
       },
       {
@@ -12909,43 +12945,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 117,
-        "level": 0
-      },
-      {
-        "id": "module:modalsPlugin--module.exports",
-        "longname": "module:modalsPlugin",
-        "name": "module.exports",
-        "kind": "function",
-        "isExported": true,
-        "description": "Modals Vue Plugin",
-        "memberof": "module:modalsPlugin",
-        "params": [
-          {
-            "type": {
-              "names": [
-                "Object"
-              ]
-            },
-            "description": "Vue app instance passed to plugin",
-            "name": "App"
-          },
-          {
-            "type": {
-              "names": [
-                "module:modalsPlugin~UluModalsPluginOptions"
-              ]
-            },
-            "description": "Options to change (see defaults)",
-            "name": "userOptions"
-          }
-        ],
-        "meta": {
-          "lineno": 27,
-          "filename": "index.js",
-          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
-        },
-        "order": 122,
+        "order": 131,
         "level": 0
       },
       {
@@ -12961,7 +12961,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 58
+        "order": 56
       },
       {
         "id": "module:useBreakpointManager~defaults.onReady",
@@ -12976,7 +12976,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 59
+        "order": 57
       },
       {
         "id": "module:useBreakpointManager~defaults.plugin",
@@ -12991,7 +12991,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 60
+        "order": 58
       },
       {
         "id": "toast.module:defaults--module.exports",
@@ -13088,7 +13088,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 92
+        "order": 90
       },
       {
         "id": "popovers.module:defaults.plugin.directiveName",
@@ -13108,7 +13108,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 93
+        "order": 91
       },
       {
         "id": "popovers.module:defaults.popover",
@@ -13123,7 +13123,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 94
+        "order": 92
       },
       {
         "id": "popovers.module:defaults.popover.inline",
@@ -13143,7 +13143,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 95
+        "order": 93
       },
       {
         "id": "popovers.module:defaults.popover.delay",
@@ -13163,7 +13163,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 96
+        "order": 94
       },
       {
         "id": "popovers.module:defaults.popover.placement",
@@ -13183,7 +13183,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 97
+        "order": 95
       },
       {
         "id": "popovers.module:defaults.popover.strategy",
@@ -13203,7 +13203,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 98
+        "order": 96
       },
       {
         "id": "popovers.module:defaults.popover.offset",
@@ -13223,7 +13223,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 99
+        "order": 97
       },
       {
         "id": "popovers.module:defaults.popover.arrow",
@@ -13243,7 +13243,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 100
+        "order": 98
       },
       {
         "id": "popovers.module:defaults.tooltip",
@@ -13263,7 +13263,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 101
+        "order": 99
       },
       {
         "id": "popovers.module:defaults.tooltip.teleportTo",
@@ -13283,7 +13283,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 102
+        "order": 100
       },
       {
         "id": "popovers.module:defaults.tooltip.class",
@@ -13305,7 +13305,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 103
+        "order": 101
       },
       {
         "id": "popovers.module:defaults.tooltip.showEvents",
@@ -13325,7 +13325,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 104
+        "order": 102
       },
       {
         "id": "popovers.module:defaults.tooltip.hideEvents",
@@ -13345,7 +13345,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 105
+        "order": 103
       },
       {
         "id": "popovers.module:defaults.tooltip.isHtml",
@@ -13365,7 +13365,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 106
+        "order": 104
       },
       {
         "id": "popovers.module:defaults.tooltip.trigger",
@@ -13386,7 +13386,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 107
+        "order": 105
       },
       {
         "id": "popovers.module:defaults.tooltip.content",
@@ -13407,7 +13407,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 108
+        "order": 106
       },
       {
         "id": "popovers.module:defaults.tooltip.delay",
@@ -13427,7 +13427,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 109
+        "order": 107
       },
       {
         "id": "popovers.module:defaults.tooltip.onReady",
@@ -13442,7 +13442,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 110
+        "order": 108
       },
       {
         "id": "popovers.module:defaults.tooltip.component",
@@ -13457,7 +13457,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 111
+        "order": 109
       },
       {
         "id": "popovers.module:defaults.tooltip.componentProps",
@@ -13472,7 +13472,7 @@
           "filename": "defaults.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 112
+        "order": 110
       },
       {
         "id": "module:breakpointsPlugin--module.exports~defaults.breakpointMobile",
@@ -13487,7 +13487,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 115,
+        "order": 129,
         "level": 0
       },
       {
@@ -13503,7 +13503,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 116,
+        "order": 130,
         "level": 0
       },
       {
@@ -13590,7 +13590,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 86,
+        "order": 84,
         "level": 0
       },
       {
@@ -13606,7 +13606,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 87,
+        "order": 85,
         "level": 0
       },
       {
@@ -13622,7 +13622,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 88,
+        "order": 86,
         "level": 0
       },
       {
@@ -13669,7 +13669,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 89,
+        "order": 87,
         "level": 0
       },
       {
@@ -13705,7 +13705,7 @@
           "filename": "useModals.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 119,
+        "order": 112,
         "level": 0
       },
       {
@@ -13798,7 +13798,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 8,
+        "order": 7,
         "level": 0
       },
       {
@@ -13862,7 +13862,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 10,
+        "order": 9,
         "level": 0
       },
       {
@@ -13899,7 +13899,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 11,
+        "order": 10,
         "level": 0
       },
       {
@@ -13972,7 +13972,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 12,
+        "order": 11,
         "level": 0
       },
       {
@@ -14009,7 +14009,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 13,
+        "order": 12,
         "level": 0
       },
       {
@@ -14082,7 +14082,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 14,
+        "order": 13,
         "level": 0
       },
       {
@@ -14119,7 +14119,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 15,
+        "order": 14,
         "level": 0
       },
       {
@@ -14155,7 +14155,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 16,
+        "order": 15,
         "level": 0
       },
       {
@@ -14191,7 +14191,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 17,
+        "order": 16,
         "level": 0
       },
       {
@@ -14229,7 +14229,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 18,
+        "order": 17,
         "level": 0
       },
       {
@@ -14276,7 +14276,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 19,
+        "order": 18,
         "level": 0
       },
       {
@@ -14349,7 +14349,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 20,
+        "order": 19,
         "level": 0
       },
       {
@@ -14386,7 +14386,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 21,
+        "order": 20,
         "level": 0
       },
       {
@@ -14423,7 +14423,7 @@
           "filename": "props.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 23,
+        "order": 22,
         "level": 0
       },
       {
@@ -14468,7 +14468,7 @@
           "filename": "props.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 24,
+        "order": 23,
         "level": 0
       },
       {
@@ -14506,7 +14506,7 @@
           "filename": "dom.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 27,
+        "order": 26,
         "level": 0
       },
       {
@@ -14545,7 +14545,7 @@
           "filename": "dom.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 28,
+        "order": 27,
         "level": 0
       },
       {
@@ -14571,7 +14571,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 33,
+        "order": 31,
         "level": 0
       },
       {
@@ -14625,7 +14625,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 37,
+        "order": 35,
         "level": 0
       },
       {
@@ -14662,7 +14662,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 39,
+        "order": 37,
         "level": 0
       },
       {
@@ -14694,7 +14694,7 @@
           "filename": "useRequiredInject.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 47,
+        "order": 45,
         "level": 0
       },
       {
@@ -14740,7 +14740,7 @@
           "filename": "usePagination.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 49,
+        "order": 47,
         "level": 0
       },
       {
@@ -14813,7 +14813,7 @@
           "filename": "useModifiers.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 51,
+        "order": 49,
         "level": 0
       },
       {
@@ -14839,7 +14839,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 53,
+        "order": 51,
         "level": 0
       },
       {
@@ -14909,7 +14909,7 @@
           "filename": "useDocumentTitle.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 56,
+        "order": 54,
         "level": 0
       },
       {
@@ -14977,7 +14977,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 61,
+        "order": 59,
         "level": 0
       },
       {
@@ -15072,7 +15072,7 @@
           "filename": "useTooltip.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/popovers"
         },
-        "order": 84,
+        "order": 82,
         "level": 0
       },
       {
@@ -15365,7 +15365,7 @@
           "filename": "api.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 125,
+        "order": 118,
         "level": 0
       },
       {
@@ -15381,7 +15381,7 @@
           "filename": "api.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 126,
+        "order": 119,
         "level": 0
       },
       {
@@ -15415,24 +15415,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 45,
-        "level": 0
-      },
-      {
-        "id": "module:breakpointsPlugin--module.exports~defaults",
-        "longname": "module:breakpointsPlugin~defaults",
-        "name": "defaults",
-        "kind": "constant",
-        "scope": "inner",
-        "description": "Plugin Options",
-        "memberof": "module:breakpointsPlugin--module.exports",
-        "params": [],
-        "meta": {
-          "lineno": 10,
-          "filename": "index.js",
-          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/breakpoints"
-        },
-        "order": 114,
+        "order": 43,
         "level": 0
       },
       {
@@ -15449,7 +15432,7 @@
           "filename": "api.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 124,
+        "order": 117,
         "level": 0
       },
       {
@@ -15466,7 +15449,24 @@
           "filename": "api.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 127,
+        "order": 120,
+        "level": 0
+      },
+      {
+        "id": "module:breakpointsPlugin--module.exports~defaults",
+        "longname": "module:breakpointsPlugin~defaults",
+        "name": "defaults",
+        "kind": "constant",
+        "scope": "inner",
+        "description": "Plugin Options",
+        "memberof": "module:breakpointsPlugin--module.exports",
+        "params": [],
+        "meta": {
+          "lineno": 10,
+          "filename": "index.js",
+          "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/breakpoints"
+        },
+        "order": 128,
         "level": 0
       },
       {
@@ -15528,7 +15528,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 32,
+        "order": 30,
         "level": 0
       },
       {
@@ -15545,7 +15545,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 40,
+        "order": 38,
         "level": 0
       },
       {
@@ -15562,7 +15562,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 41,
+        "order": 39,
         "level": 0
       },
       {
@@ -15579,7 +15579,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 42,
+        "order": 40,
         "level": 0
       },
       {
@@ -15596,7 +15596,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 43,
+        "order": 41,
         "level": 0
       },
       {
@@ -15613,7 +15613,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 44,
+        "order": 42,
         "level": 0
       },
       {
@@ -15653,7 +15653,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 54,
+        "order": 52,
         "level": 0
       },
       {
@@ -15684,7 +15684,7 @@
           "filename": "api.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 128,
+        "order": 121,
         "level": 0
       },
       {
@@ -15710,7 +15710,7 @@
           "filename": "api.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 129,
+        "order": 122,
         "level": 0
       },
       {
@@ -15726,7 +15726,7 @@
           "filename": "api.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 130,
+        "order": 123,
         "level": 0
       },
       {
@@ -15752,7 +15752,7 @@
           "filename": "api.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 131,
+        "order": 124,
         "level": 0
       },
       {
@@ -16087,7 +16087,7 @@
           "filename": "router.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/utils"
         },
-        "order": 9,
+        "order": 8,
         "level": 0
       },
       {
@@ -16107,7 +16107,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 35,
+        "order": 33,
         "level": 0
       },
       {
@@ -16174,7 +16174,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/composables"
         },
-        "order": 36,
+        "order": 34,
         "level": 0
       },
       {
@@ -16215,7 +16215,7 @@
           "filename": "index.js",
           "path": "/Users/joe/Projects/Personal/Github/frontend-vue/lib/plugins/modals"
         },
-        "order": 121,
+        "order": 114,
         "level": 0
       }
     ],

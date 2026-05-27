@@ -1,9 +1,10 @@
-import { computed as c, createBlock as k, openBlock as l, resolveDynamicComponent as m, normalizeClass as o, withCtx as g, createElementVNode as h, createElementBlock as i, renderSlot as f, createCommentVNode as b, toDisplayString as r } from "vue";
-import { RouterLink as y } from "vue-router";
-const S = ["aria-hidden"], B = {
+import { computed as o, createBlock as m, openBlock as a, resolveDynamicComponent as f, normalizeClass as i, unref as g, withCtx as h, createElementVNode as y, createElementBlock as r, renderSlot as S, createCommentVNode as b, toDisplayString as c } from "vue";
+import { RouterLink as C } from "vue-router";
+import { useModifiers as v } from "../../composables/useModifiers.js";
+const B = ["aria-hidden"], x = {
   key: 2,
   class: "hidden-visually"
-}, x = {
+}, E = {
   __name: "UluBadge",
   props: {
     /**
@@ -37,32 +38,40 @@ const S = ["aria-hidden"], B = {
     /**
      * A URL. Renders as a standard <a> tag.
      */
-    href: String
+    href: String,
+    /**
+     * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
+     */
+    modifiers: [String, Array]
   },
   setup(e) {
-    const t = e, s = c(() => !!(t.to || t.click)), d = c(() => {
-      const { click: n, to: a, href: u } = t;
-      return n ? "button" : a ? y : u ? "a" : "span";
+    const t = e, s = o(() => !!(t.to || t.click)), { resolvedModifiers: d } = v({
+      props: t,
+      baseClass: "badge",
+      internal: o(() => ({
+        [t.size]: t.size,
+        [t.type]: t.type,
+        clickable: s.value
+      }))
+    }), u = o(() => {
+      const { click: n, to: l, href: k } = t;
+      return n ? "button" : l ? C : k ? "a" : "span";
     });
-    return (n, a) => (l(), k(m(d.value), {
-      class: o(["badge", [
-        e.size ? `badge--${e.size}` : null,
-        e.type ? `badge--${e.type}` : null,
-        { "badge--clickable": s.value }
-      ]]),
+    return (n, l) => (a(), m(f(u.value), {
+      class: i(["badge", g(d)]),
       to: e.to,
       href: e.href,
       onClick: e.click
     }, {
-      default: g(() => [
-        h("span", {
-          class: o(["badge__inner", { "skeleton__background-color": e.skeleton }])
+      default: h(() => [
+        y("span", {
+          class: i(["badge__inner", { "skeleton__background-color": e.skeleton }])
         }, [
-          e.text ? (l(), i("span", {
+          e.text ? (a(), r("span", {
             key: 0,
             "aria-hidden": e.alt ? "true" : null
-          }, r(e.text), 9, S)) : f(n.$slots, "default", { key: 1 }),
-          e.alt ? (l(), i("span", B, r(e.alt), 1)) : b("", !0)
+          }, c(e.text), 9, B)) : S(n.$slots, "default", { key: 1 }),
+          e.alt ? (a(), r("span", x, c(e.alt), 1)) : b("", !0)
         ], 2)
       ]),
       _: 3
@@ -70,5 +79,5 @@ const S = ["aria-hidden"], B = {
   }
 };
 export {
-  x as default
+  E as default
 };

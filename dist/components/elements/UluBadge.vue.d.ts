@@ -7,6 +7,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     skeleton: boolean;
     type?: string | undefined;
     size?: string | undefined;
+    modifiers?: string | unknown[] | undefined;
     to?: string | Record<string, any> | undefined;
     href?: string | undefined;
     click?: Function | undefined;
@@ -16,6 +17,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly skeleton?: boolean | undefined;
         readonly type?: string | undefined;
         readonly size?: string | undefined;
+        readonly modifiers?: string | unknown[] | undefined;
         readonly to?: string | Record<string, any> | undefined;
         readonly href?: string | undefined;
         readonly click?: Function | undefined;

@@ -1,8 +1,9 @@
 /**
- * This Module Creates Menus from route or router config
- * - Note: Functions prefixed with "$" work with $route objects (running application, provided by vue-router ie $router, useRoute, etc),
- * @module router-utils
+ * @module utils.router
  */
+/**
+ * This Module Creates Menus from route or router config
+
 /**
  * Resolves a route's title from its meta.
  * - If `meta.title` is a function, it's called with the `currentRoute` (or the route itself).
@@ -25,7 +26,7 @@ export function getRouteTitle(route: object, currentRoute?: object): string | un
  * @param {Object} options Options
  * @param {Object} options.qualifier Callback to qualify as a base route (defaults to isStaticBaseRoute)
  * @param {Object} options.item Options for createMenuItem
- * @returns {Array.<RouteMenuItem>} Array of menu items
+ * @returns {Array<RouteMenuItem>} Array of menu items
  */
 export function createBaseMenu(routes: any, options: {
     qualifier: Object;
@@ -42,9 +43,9 @@ export function flattenMenu(menu: Array<RouteMenuItem>): Array<RouteMenuItem>;
  * @param {*} routes All routes
  * @param {*} sectionPath Path for section to create menu
  * @param {Object} options Options
- * @param {Boolean} options.includeIndex Include the parent/index in the menu items ie ({ path: "" })
+ * @param {Boolean} options.includeIndex Include the parent/index in the menu items ie path: ""
  * @param {Object} options.item Options to be passed to createMenuItem
- * @returns {Array.<RouteMenuItem>} Array of menu items
+ * @returns {Array<RouteMenuItem>} Array of menu items
  */
 export function createSectionMenu(routes: any, sectionPath: any, options: {
     includeIndex: boolean;
@@ -82,7 +83,7 @@ export function isStaticRoute(route: Object): boolean;
  */
 export function isStaticBaseRoute(route: Object): boolean;
 /**
- * Function to make normal <a> behave as router links instread of page reload
+ * Function to make normal `<a>` behave as router links instread of page reload
  * @param {Object} router Router instance (ie src/router) to push routes to
  * @param {Object} event The event object that triggered route change (ie. onclick) pass event object
  */
@@ -107,9 +108,9 @@ export function $getParentRoute(route: Object, deepest: Object): Object | null;
  * @param {Object} route Actual $route object
  * @param {Object} options Options
  * @param {Object} options.parent Route parent object, defaults to parent of route
- * @param {Boolean} options.includeIndex Include the parent/index in the menu items ie ({ path: "" })
+ * @param {Boolean} options.includeIndex Include the parent/index in the menu items ie path: ""
  * @param {Object} options.item Options for createMenuItem
- * @returns {Array.<RouteMenuItem>} Array of menu items
+ * @returns {Array<RouteMenuItem>} Array of menu items
  */
 export function $createSectionMenu(route: Object, options: {
     parent: Object;
@@ -123,13 +124,9 @@ export function $createSectionMenu(route: Object, options: {
  * - Skips routes where `meta.breadcrumb` is set to `false`.
  * - Avoids duplicate crumbs for nested routes with empty paths.
  * @param {Object} route The Vue Router `$route` object.
- * @returns {Array.<{title: String, to: Object, current: Boolean}>} An array of breadcrumb items.
+ * @returns {Array<Object>} An array of breadcrumb items with title, to, and current properties.
  */
-export function $createBreadcrumb(route: Object): Array<{
-    title: string;
-    to: Object;
-    current: boolean;
-}>;
+export function $createBreadcrumb(route: Object): Array<Object>;
 /**
  * Route Menu Item
  */

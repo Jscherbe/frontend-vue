@@ -1,4 +1,7 @@
 /**
+ * @module utils.props
+ */
+/**
  * Ensures the array consists of objects
  * @param {Array} array Array to check
  * @returns {Boolean} Whether all are objects within

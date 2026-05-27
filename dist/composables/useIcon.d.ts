@@ -1,4 +1,7 @@
 /**
+ * @module useIcon
+ */
+/**
  * A utility composable for handling and formatting icon props for `UluIcon`.
  * It provides helpers to convert various icon definition formats into either
  * a props object for the `FontAwesomeIcon` component or a string of CSS classes.
