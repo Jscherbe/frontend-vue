@@ -63,29 +63,67 @@
 
   const emit = defineEmits(["toggle"]);
   const props = defineProps({
+    /**
+     * Text for popover button
+     */
     triggerText: String,
+    /**
+     * Add optional aria-label to button for icons/etc
+     */
     triggerAlt: String,
+    /**
+     * Disable trigger button
+     */
     disabled: Boolean,
+    /**
+     * Tooltip text for trigger button
+     */
     tooltip: String,
+    /**
+     * Popover size (ie large, etc)
+     */
     size: String,
+    /**
+     * No padding on popover content
+     */
     noPadding: Boolean,
+    /**
+     * Floating UI config (merged with defaults for popover)
+     * - See useUluFloating() composable for config API
+     */
     config: {
       type: Object,
       default: () => ({})
     },
+    /**
+     * Mount this component already open state
+     */
     startOpen: Boolean,
+    /**
+     * Active class for trigger button
+     */
     activeClass: {
       type: String,
       default: "is-active"
     },
+    /**
+     * Add custom classes to specific elements
+     * { trigger, content }
+     */
     classes: {
       type: Object,
       default: () => ({})
     },
+    /**
+     * Close popover when click is outside
+     */
     clickOutsideCloses: {
       type: Boolean,
       default: true
     },
+    /**
+     * Direct focus when open/closing popover
+     */
     directFocus: {
       type: Function,
       default: ({ isOpen, content }) => {

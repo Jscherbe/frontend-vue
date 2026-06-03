@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.6.3
+
+- **useFloatingUi** | Add config options for all floating ui plugins (so you can pass config to any like ship and flip)
+- **UluPopover** | Update prop descriptions for docs
+
 ## 0.6.2
 
 - **useModals** add missing export for this composable 

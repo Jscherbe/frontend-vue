@@ -1,46 +1,46 @@
-import { ref as p, computed as r, watch as d } from "vue";
+import { ref as u, computed as n, watch as d } from "vue";
 import { useFloating as v, autoUpdate as F, inline as S, offset as R, flip as U, shift as $, arrow as b } from "@floating-ui/vue";
-function D(m, f, n) {
-  const o = p(null), s = p([]), w = r(() => n.value?.placement), {
+function D(m, f, r) {
+  const s = u(null), o = u([]), w = n(() => r.value?.placement), {
     floatingStyles: h,
     placement: y,
-    middlewareData: l,
-    update: i,
-    isPositioned: a
+    middlewareData: i,
+    update: l,
+    isPositioned: p
   } = v(m, f, {
     placement: w,
     whileElementsMounted: F,
-    middleware: s
+    middleware: o
   });
   d(
-    [n, o],
-    ([e, u]) => {
-      const t = [];
-      e && (e.inline && t.push(S()), e.offset && t.push(R(e.offset)), t.push(U()), t.push($()), e.arrow && u && t.push(b({ element: u })), s.value = t);
+    [r, s],
+    ([t, a]) => {
+      const e = [];
+      t && (t.inline && e.push(S(t.inline)), t.offset && e.push(R(t.offset)), e.push(U(t.flip)), e.push($(t.shift)), t.arrow && a && e.push(b({ element: a })), o.value = e);
     },
     { immediate: !0, deep: !0 }
   );
-  const c = r(() => {
-    const e = l.value?.arrow;
-    return e ? {
+  const x = n(() => {
+    const t = i.value?.arrow;
+    return t ? {
       position: "absolute",
-      left: e?.x != null ? `${e.x}px` : "",
-      top: e?.y != null ? `${e.y}px` : ""
+      left: t?.x != null ? `${t.x}px` : "",
+      top: t?.y != null ? `${t.y}px` : ""
     } : null;
   });
-  d(n, (e) => {
-    e && e.onReady && e.onReady({ update: i, isPositioned: a });
+  d(r, (t) => {
+    t && t.onReady && t.onReady({ update: l, isPositioned: p });
   });
-  const x = r(() => n.value?.strategy === "fixed");
+  const c = n(() => r.value?.strategy === "fixed");
   return {
     floatingStyles: h,
     placement: y,
-    middlewareData: l,
-    update: i,
-    isPositioned: a,
-    arrowStyles: c,
-    contentArrow: o,
-    isFixedStrategy: x
+    middlewareData: i,
+    update: l,
+    isPositioned: p,
+    arrowStyles: x,
+    contentArrow: s,
+    isFixedStrategy: c
   };
 }
 export {

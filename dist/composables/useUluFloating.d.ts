@@ -4,10 +4,12 @@
 /**
  * @typedef {object} UluFloatingConfig
  * @property {Placement} placement - The placement of the floating element.
- * @property {boolean} inline - Whether the floating element is inline.
- * @property {number} offset - The offset of the floating element.
- * @property {boolean} arrow - Whether the floating element has an arrow.
- * @property {function} onReady - Callback function when the floating element is ready.
+ * @property {Boolean|Object} inline - Whether the floating element is inline. If object is passed will be passed as configuration for the floating ui "inline" plugin.
+ * @property {Number|Object} offset - The offset of the floating element. If object is passed will be passed as configuration for the floating ui "offset" plugin.
+ * @property {Object} flip - This plugin is always added, if object is passed will be passed as configuration for the floating ui "flip" plugin.
+ * @property {Object} shift - This plugin is always added, if object is passed will be passed as configuration for the floating ui "shift" plugin.
+ * @property {Boolean} arrow - Whether the floating element has an arrow.
+ * @property {Function} onReady - Callback function when the floating element is ready.
  */
 /**
  * Composable for using floating-ui
@@ -32,13 +34,21 @@ export type UluFloatingConfig = {
      */
     placement: Placement;
     /**
-     * - Whether the floating element is inline.
+     * - Whether the floating element is inline. If object is passed will be passed as configuration for the floating ui "inline" plugin.
      */
-    inline: boolean;
+    inline: boolean | Object;
     /**
-     * - The offset of the floating element.
+     * - The offset of the floating element. If object is passed will be passed as configuration for the floating ui "offset" plugin.
      */
-    offset: number;
+    offset: number | Object;
+    /**
+     * - This plugin is always added, if object is passed will be passed as configuration for the floating ui "flip" plugin.
+     */
+    flip: Object;
+    /**
+     * - This plugin is always added, if object is passed will be passed as configuration for the floating ui "shift" plugin.
+     */
+    shift: Object;
     /**
      * - Whether the floating element has an arrow.
      */

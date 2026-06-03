@@ -41,8 +41,10 @@ Composable for using floating-ui
 | Name | Type | Description |
 | --- | --- | --- |
 | placement | [`Placement`](#module_useUluFloating..Placement) | The placement of the floating element. |
-| inline | `boolean` | Whether the floating element is inline. |
-| offset | `number` | The offset of the floating element. |
-| arrow | `boolean` | Whether the floating element has an arrow. |
+| inline | `Boolean` \| `Object` | Whether the floating element is inline. If object is passed will be passed as configuration for the floating ui "inline" plugin. |
+| offset | `Number` \| `Object` | The offset of the floating element. If object is passed will be passed as configuration for the floating ui "offset" plugin. |
+| flip | `Object` | This plugin is always added, if object is passed will be passed as configuration for the floating ui "flip" plugin. |
+| shift | `Object` | This plugin is always added, if object is passed will be passed as configuration for the floating ui "shift" plugin. |
+| arrow | `Boolean` | Whether the floating element has an arrow. |
 | onReady | `function` | Callback function when the floating element is ready. |
 
