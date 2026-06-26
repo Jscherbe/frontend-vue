@@ -10,7 +10,8 @@
         list: 'nav-strip__list',
         item: 'nav-strip__item',
         link: 'nav-strip__link',
-        linkExactActive: 'is-active'
+        linkExactActive: 'is-active',
+        linkActive: 'is-active'
       }"
     >
       <template v-for="(_, name) in $slots" #[name]="slotData">

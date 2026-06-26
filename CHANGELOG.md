@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.4
+
+- **UluNavStrip** | Add 'is-active' class to linkActive (router link active)
+
 ## 0.6.3
 
 - **useFloatingUi** | Add config options for all floating ui plugins (so you can pass config to any like ship and flip)

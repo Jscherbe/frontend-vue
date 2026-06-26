@@ -1,5 +1,5 @@
-import { computed as o, createElementBlock as a, createCommentVNode as l, openBlock as m, normalizeClass as c, unref as p, createVNode as u, createSlots as d, renderList as f, withCtx as v, renderSlot as _, normalizeProps as g, guardReactiveProps as h } from "vue";
-import k from "./UluMenu.vue.js";
+import { computed as a, createElementBlock as o, createCommentVNode as l, openBlock as c, normalizeClass as m, unref as p, createVNode as u, createSlots as v, renderList as d, withCtx as f, renderSlot as _, normalizeProps as k, guardReactiveProps as g } from "vue";
+import h from "./UluMenu.vue.js";
 import { useModifiers as B } from "../../composables/useModifiers.js";
 const $ = {
   __name: "UluNavStrip",
@@ -26,32 +26,33 @@ const $ = {
     modifiers: [String, Array]
   },
   setup(t) {
-    const e = t, { resolvedModifiers: i } = B({
+    const e = t, { resolvedModifiers: s } = B({
       props: e,
       baseClass: "nav-strip",
-      internal: o(() => ({
+      internal: a(() => ({
         center: e.center,
         right: e.right,
         rule: e.rule
       }))
     });
-    return (r, C) => t.items?.length ? (m(), a("nav", {
+    return (r, A) => t.items?.length ? (c(), o("nav", {
       key: 0,
-      class: c(["nav-strip", p(i)])
+      class: m(["nav-strip", p(s)])
     }, [
-      u(k, {
+      u(h, {
         items: t.items,
         classes: {
           list: "nav-strip__list",
           item: "nav-strip__item",
           link: "nav-strip__link",
-          linkExactActive: "is-active"
+          linkExactActive: "is-active",
+          linkActive: "is-active"
         }
-      }, d({ _: 2 }, [
-        f(r.$slots, (S, s) => ({
-          name: s,
-          fn: v((n) => [
-            _(r.$slots, s, g(h(n)))
+      }, v({ _: 2 }, [
+        d(r.$slots, (C, i) => ({
+          name: i,
+          fn: f((n) => [
+            _(r.$slots, i, k(g(n)))
           ])
         }))
       ]), 1032, ["items"])
