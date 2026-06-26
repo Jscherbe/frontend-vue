@@ -27,6 +27,22 @@
         "code": "<toast>Content</toast>"
       }
     ],
+    "useTooltipFollow": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<useTooltipFollow>Content</useTooltipFollow>"
+      }
+    ],
+    "useTooltip": [],
+    "tooltip": [
+      {
+        "title": "Basic",
+        "description": "Basic variation",
+        "code": "<tooltip>This is a basic tooltip!</tooltip>"
+      }
+    ],
+    "UluPopover": [],
     "useModals": [],
     "modals": [
       {
@@ -60,25 +76,49 @@
         "code": "<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>"
       }
     ],
-    "useTooltipFollow": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<useTooltipFollow>Content</useTooltipFollow>"
-      }
-    ],
-    "useTooltip": [],
-    "tooltip": [
-      {
-        "title": "Basic",
-        "description": "Basic variation",
-        "code": "<tooltip>This is a basic tooltip!</tooltip>"
-      }
-    ],
-    "UluPopover": [],
     "UluProgressCircle": [],
     "UluProgressBar": [],
     "UluAnimateNumber": [],
+    "UluSanityRichText": [],
+    "UluRouteAnnouncer": [],
+    "UluPlaceholderText": [],
+    "UluPlaceholderImage": [],
+    "UluEmptyView": [],
+    "UluEmpty": [],
+    "UluConditionalWrapper": [],
+    "UluConditionalText": [],
+    "UluAction": [
+      {
+        "title": "AsButton",
+        "description": "AsButton variation",
+        "code": "<UluAction>Content</UluAction>"
+      },
+      {
+        "title": "AsAnchor",
+        "description": "AsAnchor variation",
+        "code": "<UluAction href=\"https://example.com\" target=\"_blank\">Content</UluAction>"
+      },
+      {
+        "title": "AsRouterLink",
+        "description": "AsRouterLink variation",
+        "code": "<UluAction to=\"/about\">Content</UluAction>"
+      },
+      {
+        "title": "ExplicitElementOverride",
+        "description": "ExplicitElementOverride variation",
+        "code": "<UluAction element=\"span\">Content</UluAction>"
+      },
+      {
+        "title": "DownloadWithFilename",
+        "description": "DownloadWithFilename variation",
+        "code": "<UluAction href=\"{...}\" download=\"download-test.txt\">Content</UluAction>"
+      },
+      {
+        "title": "TestDownloadWithoutFilename",
+        "description": "TestDownloadWithoutFilename variation",
+        "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
+      }
+    ],
     "UluSkipLink": [
       {
         "title": "Default",
@@ -155,46 +195,6 @@
     "UluTitleRail": [],
     "UluDataGrid": [],
     "UluAdaptiveLayout": [],
-    "UluSanityRichText": [],
-    "UluRouteAnnouncer": [],
-    "UluPlaceholderText": [],
-    "UluPlaceholderImage": [],
-    "UluEmptyView": [],
-    "UluEmpty": [],
-    "UluConditionalWrapper": [],
-    "UluConditionalText": [],
-    "UluAction": [
-      {
-        "title": "AsButton",
-        "description": "AsButton variation",
-        "code": "<UluAction>Content</UluAction>"
-      },
-      {
-        "title": "AsAnchor",
-        "description": "AsAnchor variation",
-        "code": "<UluAction href=\"https://example.com\" target=\"_blank\">Content</UluAction>"
-      },
-      {
-        "title": "AsRouterLink",
-        "description": "AsRouterLink variation",
-        "code": "<UluAction to=\"/about\">Content</UluAction>"
-      },
-      {
-        "title": "ExplicitElementOverride",
-        "description": "ExplicitElementOverride variation",
-        "code": "<UluAction element=\"span\">Content</UluAction>"
-      },
-      {
-        "title": "DownloadWithFilename",
-        "description": "DownloadWithFilename variation",
-        "code": "<UluAction href=\"{...}\" download=\"download-test.txt\">Content</UluAction>"
-      },
-      {
-        "title": "TestDownloadWithoutFilename",
-        "description": "TestDownloadWithoutFilename variation",
-        "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
-      }
-    ],
     "UluTabGroup": [
       {
         "title": "Default",
@@ -12504,6 +12504,72 @@
         "level": 0
       },
       {
+        "id": "module:corePlugin",
+        "longname": "module:corePlugin",
+        "name": "corePlugin",
+        "kind": "module",
+        "description": "Core plugin for managing shared configuration for the library.",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
+        },
+        "order": 63,
+        "level": 0
+      },
+      {
+        "id": "module:useTooltipFollow",
+        "longname": "module:useTooltipFollow",
+        "name": "useTooltipFollow",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "useTooltipFollow.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 65,
+        "level": 0
+      },
+      {
+        "id": "module:useTooltip",
+        "longname": "module:useTooltip",
+        "name": "useTooltip",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "useTooltip.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 66,
+        "level": 0
+      },
+      {
+        "id": "module:popoversPlugin",
+        "longname": "module:popoversPlugin",
+        "name": "popoversPlugin",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 68,
+        "level": 0
+      },
+      {
+        "id": "popovers.module:defaults",
+        "longname": "popovers.module:defaults",
+        "name": "defaults",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "defaults.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 74,
+        "level": 0
+      },
+      {
         "id": "module:useToast",
         "longname": "module:useToast",
         "name": "useToast",
@@ -12513,7 +12579,7 @@
           "filename": "useToast.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 63,
+        "order": 96,
         "level": 0
       },
       {
@@ -12526,7 +12592,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 65,
+        "order": 98,
         "level": 0
       },
       {
@@ -12539,7 +12605,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 72,
+        "order": 105,
         "level": 0
       },
       {
@@ -12552,8 +12618,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 74,
-        "level": 0
+        "order": 107
       },
       {
         "id": "module:useModals",
@@ -12565,7 +12630,7 @@
           "filename": "useModals.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 80,
+        "order": 113,
         "level": 0
       },
       {
@@ -12579,7 +12644,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 82,
+        "order": 115,
         "level": 0
       },
       {
@@ -12592,72 +12657,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 85,
-        "level": 0
-      },
-      {
-        "id": "module:useTooltipFollow",
-        "longname": "module:useTooltipFollow",
-        "name": "useTooltipFollow",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "useTooltipFollow.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 94,
-        "level": 0
-      },
-      {
-        "id": "module:useTooltip",
-        "longname": "module:useTooltip",
-        "name": "useTooltip",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "useTooltip.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 95,
-        "level": 0
-      },
-      {
-        "id": "module:popoversPlugin",
-        "longname": "module:popoversPlugin",
-        "name": "popoversPlugin",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 97,
-        "level": 0
-      },
-      {
-        "id": "popovers.module:defaults",
-        "longname": "popovers.module:defaults",
-        "name": "defaults",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "defaults.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 103
-      },
-      {
-        "id": "module:corePlugin",
-        "longname": "module:corePlugin",
-        "name": "corePlugin",
-        "kind": "module",
-        "description": "Core plugin for managing shared configuration for the library.",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
-        },
-        "order": 125,
+        "order": 118,
         "level": 0
       },
       {
@@ -12739,94 +12739,6 @@
         "level": 0
       },
       {
-        "id": "module:toastPlugin--module.exports",
-        "longname": "module:toastPlugin",
-        "name": "module.exports",
-        "kind": "function",
-        "isExported": true,
-        "description": "Install plugin",
-        "memberof": "module:toastPlugin",
-        "meta": {
-          "lineno": 11,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
-        },
-        "order": 73,
-        "level": 0
-      },
-      {
-        "id": "module:modalsPlugin--module.exports",
-        "longname": "module:modalsPlugin",
-        "name": "module.exports",
-        "kind": "function",
-        "isExported": true,
-        "description": "Modals Vue Plugin",
-        "memberof": "module:modalsPlugin",
-        "params": [
-          {
-            "type": {
-              "names": [
-                "Object"
-              ]
-            },
-            "description": "Vue app instance passed to plugin",
-            "name": "App"
-          },
-          {
-            "type": {
-              "names": [
-                "module:modalsPlugin~UluModalsPluginOptions"
-              ]
-            },
-            "description": "Options to change (see defaults)",
-            "name": "userOptions"
-          }
-        ],
-        "meta": {
-          "lineno": 28,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
-        },
-        "order": 84,
-        "level": 0
-      },
-      {
-        "id": "module:popoversPlugin--module.exports",
-        "longname": "module:popoversPlugin",
-        "name": "module.exports",
-        "kind": "function",
-        "isExported": true,
-        "description": "Install the UluPopovers plugin.",
-        "memberof": "module:popoversPlugin",
-        "params": [
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "The Vue app instance.",
-            "name": "app"
-          },
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "User-defined options to override defaults.",
-            "name": "userOptions"
-          }
-        ],
-        "meta": {
-          "lineno": 58,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 102,
-        "level": 0
-      },
-      {
         "id": "module:corePlugin--module.exports",
         "longname": "module:corePlugin",
         "name": "module.exports",
@@ -12900,7 +12812,95 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 126,
+        "order": 64,
+        "level": 0
+      },
+      {
+        "id": "module:popoversPlugin--module.exports",
+        "longname": "module:popoversPlugin",
+        "name": "module.exports",
+        "kind": "function",
+        "isExported": true,
+        "description": "Install the UluPopovers plugin.",
+        "memberof": "module:popoversPlugin",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "The Vue app instance.",
+            "name": "app"
+          },
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "User-defined options to override defaults.",
+            "name": "userOptions"
+          }
+        ],
+        "meta": {
+          "lineno": 58,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 73,
+        "level": 0
+      },
+      {
+        "id": "module:toastPlugin--module.exports",
+        "longname": "module:toastPlugin",
+        "name": "module.exports",
+        "kind": "function",
+        "isExported": true,
+        "description": "Install plugin",
+        "memberof": "module:toastPlugin",
+        "meta": {
+          "lineno": 11,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
+        },
+        "order": 106,
+        "level": 0
+      },
+      {
+        "id": "module:modalsPlugin--module.exports",
+        "longname": "module:modalsPlugin",
+        "name": "module.exports",
+        "kind": "function",
+        "isExported": true,
+        "description": "Modals Vue Plugin",
+        "memberof": "module:modalsPlugin",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "description": "Vue app instance passed to plugin",
+            "name": "App"
+          },
+          {
+            "type": {
+              "names": [
+                "module:modalsPlugin~UluModalsPluginOptions"
+              ]
+            },
+            "description": "Options to change (see defaults)",
+            "name": "userOptions"
+          }
+        ],
+        "meta": {
+          "lineno": 28,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
+        },
+        "order": 117,
         "level": 0
       },
       {
@@ -13006,83 +13006,6 @@
         "order": 58
       },
       {
-        "id": "toast.module:defaults--module.exports",
-        "longname": "toast.module:defaults",
-        "name": "module.exports",
-        "kind": "member",
-        "scope": "static",
-        "isExported": true,
-        "description": "Default plugin options",
-        "memberof": "toast.module:defaults",
-        "meta": {
-          "lineno": 9,
-          "filename": "defaults.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
-        },
-        "order": 75,
-        "level": 0
-      },
-      {
-        "id": "toast.module:defaults--module.exports.toastOptions.component",
-        "longname": "toast.module:defaults.toastOptions.component",
-        "name": "component",
-        "kind": "member",
-        "scope": "static",
-        "description": "Component used to render the toast in the display",
-        "memberof": "toast.module:defaults--module.exports.toastOptions",
-        "meta": {
-          "lineno": 14,
-          "filename": "defaults.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
-        },
-        "order": 76
-      },
-      {
-        "id": "toast.module:defaults--module.exports.toastOptions.duration",
-        "longname": "toast.module:defaults.toastOptions.duration",
-        "name": "duration",
-        "kind": "member",
-        "scope": "static",
-        "description": "Duration of toast",
-        "memberof": "toast.module:defaults--module.exports.toastOptions",
-        "meta": {
-          "lineno": 18,
-          "filename": "defaults.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
-        },
-        "order": 77
-      },
-      {
-        "id": "toast.module:defaults--module.exports.toastOptions.actions",
-        "longname": "toast.module:defaults.toastOptions.actions",
-        "name": "actions",
-        "kind": "member",
-        "scope": "static",
-        "description": "Array of actions { label, click }",
-        "memberof": "toast.module:defaults--module.exports.toastOptions",
-        "meta": {
-          "lineno": 22,
-          "filename": "defaults.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
-        },
-        "order": 78
-      },
-      {
-        "id": "toast.module:defaults--module.exports.pluginOptions.position",
-        "longname": "toast.module:defaults.pluginOptions.position",
-        "name": "position",
-        "kind": "member",
-        "scope": "static",
-        "description": "Position of the toast container (holds toasts)",
-        "memberof": "toast.module:defaults--module.exports.pluginOptions",
-        "meta": {
-          "lineno": 29,
-          "filename": "defaults.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
-        },
-        "order": 79
-      },
-      {
         "id": "popovers.module:defaults.plugin",
         "longname": "popovers.module:defaults.plugin",
         "name": "plugin",
@@ -13100,7 +13023,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 104
+        "order": 75,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.plugin.directiveName",
@@ -13120,7 +13044,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 105
+        "order": 76,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.popover",
@@ -13135,7 +13060,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 106
+        "order": 77,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.popover.inline",
@@ -13155,7 +13081,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 107
+        "order": 78,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.popover.delay",
@@ -13175,7 +13102,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 108
+        "order": 79,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.popover.placement",
@@ -13195,7 +13123,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 109
+        "order": 80,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.popover.strategy",
@@ -13215,7 +13144,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 110
+        "order": 81,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.popover.offset",
@@ -13235,7 +13165,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 111
+        "order": 82,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.popover.arrow",
@@ -13255,7 +13186,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 112
+        "order": 83,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip",
@@ -13275,7 +13207,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 113
+        "order": 84,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.teleportTo",
@@ -13295,7 +13228,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 114
+        "order": 85,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.class",
@@ -13317,7 +13251,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 115
+        "order": 86,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.showEvents",
@@ -13337,7 +13272,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 116
+        "order": 87,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.hideEvents",
@@ -13357,7 +13293,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 117
+        "order": 88,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.isHtml",
@@ -13377,7 +13314,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 118
+        "order": 89,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.trigger",
@@ -13398,7 +13336,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 119
+        "order": 90,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.content",
@@ -13419,7 +13358,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 120
+        "order": 91,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.delay",
@@ -13439,7 +13379,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 121
+        "order": 92,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.onReady",
@@ -13454,7 +13395,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 122
+        "order": 93,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.component",
@@ -13469,7 +13411,8 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 123
+        "order": 94,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.tooltip.componentProps",
@@ -13484,7 +13427,84 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 124
+        "order": 95,
+        "level": 0
+      },
+      {
+        "id": "toast.module:defaults--module.exports",
+        "longname": "toast.module:defaults",
+        "name": "module.exports",
+        "kind": "member",
+        "scope": "static",
+        "isExported": true,
+        "description": "Default plugin options",
+        "memberof": "toast.module:defaults",
+        "meta": {
+          "lineno": 9,
+          "filename": "defaults.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
+        },
+        "order": 108
+      },
+      {
+        "id": "toast.module:defaults--module.exports.toastOptions.component",
+        "longname": "toast.module:defaults.toastOptions.component",
+        "name": "component",
+        "kind": "member",
+        "scope": "static",
+        "description": "Component used to render the toast in the display",
+        "memberof": "toast.module:defaults--module.exports.toastOptions",
+        "meta": {
+          "lineno": 14,
+          "filename": "defaults.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
+        },
+        "order": 109
+      },
+      {
+        "id": "toast.module:defaults--module.exports.toastOptions.duration",
+        "longname": "toast.module:defaults.toastOptions.duration",
+        "name": "duration",
+        "kind": "member",
+        "scope": "static",
+        "description": "Duration of toast",
+        "memberof": "toast.module:defaults--module.exports.toastOptions",
+        "meta": {
+          "lineno": 18,
+          "filename": "defaults.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
+        },
+        "order": 110
+      },
+      {
+        "id": "toast.module:defaults--module.exports.toastOptions.actions",
+        "longname": "toast.module:defaults.toastOptions.actions",
+        "name": "actions",
+        "kind": "member",
+        "scope": "static",
+        "description": "Array of actions { label, click }",
+        "memberof": "toast.module:defaults--module.exports.toastOptions",
+        "meta": {
+          "lineno": 22,
+          "filename": "defaults.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
+        },
+        "order": 111
+      },
+      {
+        "id": "toast.module:defaults--module.exports.pluginOptions.position",
+        "longname": "toast.module:defaults.pluginOptions.position",
+        "name": "position",
+        "kind": "member",
+        "scope": "static",
+        "description": "Position of the toast container (holds toasts)",
+        "memberof": "toast.module:defaults--module.exports.pluginOptions",
+        "meta": {
+          "lineno": 29,
+          "filename": "defaults.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
+        },
+        "order": 112
       },
       {
         "id": "module:breakpointsPlugin--module.exports~defaults.breakpointMobile",
@@ -13519,113 +13539,6 @@
         "level": 0
       },
       {
-        "id": "module:useToast.useToast",
-        "longname": "module:useToast.useToast",
-        "name": "useToast",
-        "kind": "constant",
-        "scope": "static",
-        "description": "Composable for accessing the toast API.",
-        "memberof": "module:useToast",
-        "examples": [
-          "import { useToast } from './useToast';\nconst toast = useToast();\ntoast.add({ title: 'Hello World' });"
-        ],
-        "returns": [
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "The toast API."
-          }
-        ],
-        "exceptions": [
-          {
-            "type": {
-              "names": [
-                "Error"
-              ]
-            },
-            "description": "If the toast plugin is not installed."
-          }
-        ],
-        "meta": {
-          "lineno": 15,
-          "filename": "useToast.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
-        },
-        "order": 64,
-        "level": 0
-      },
-      {
-        "id": "toast.module:store.store",
-        "longname": "toast.module:store.store",
-        "name": "store",
-        "kind": "constant",
-        "scope": "static",
-        "description": "Reactive State Object (used inside global components, and as API globally)",
-        "memberof": "toast.module:store",
-        "meta": {
-          "lineno": 13,
-          "filename": "store.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
-        },
-        "order": 66,
-        "level": 0
-      },
-      {
-        "id": "toast.module:store.api",
-        "longname": "toast.module:store.api",
-        "name": "api",
-        "kind": "constant",
-        "scope": "static",
-        "description": "Public API",
-        "memberof": "toast.module:store",
-        "meta": {
-          "lineno": 42,
-          "filename": "store.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
-        },
-        "order": 68,
-        "level": 0
-      },
-      {
-        "id": "module:useModals.useModals",
-        "longname": "module:useModals.useModals",
-        "name": "useModals",
-        "kind": "constant",
-        "scope": "static",
-        "description": "A composable to access the global modals API.\nThis is a simple wrapper around `inject('uluModals')` and throws an error if the plugin is not installed.",
-        "memberof": "module:useModals",
-        "returns": [
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "The modals API with methods like `open`, `close`, `add`, `remove`, and `get`."
-          }
-        ],
-        "exceptions": [
-          {
-            "type": {
-              "names": [
-                "Error"
-              ]
-            },
-            "description": "If the modals plugin is not installed."
-          }
-        ],
-        "meta": {
-          "lineno": 13,
-          "filename": "useModals.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
-        },
-        "order": 81,
-        "level": 0
-      },
-      {
         "id": "module:popoversPlugin--module.exports.POPOVER_OPTIONS_KEY",
         "longname": "module:popoversPlugin.POPOVER_OPTIONS_KEY",
         "name": "POPOVER_OPTIONS_KEY",
@@ -13638,7 +13551,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 98,
+        "order": 69,
         "level": 0
       },
       {
@@ -13654,7 +13567,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 99,
+        "order": 70,
         "level": 0
       },
       {
@@ -13670,7 +13583,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 100,
+        "order": 71,
         "level": 0
       },
       {
@@ -13717,7 +13630,114 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
+        "order": 72,
+        "level": 0
+      },
+      {
+        "id": "module:useToast.useToast",
+        "longname": "module:useToast.useToast",
+        "name": "useToast",
+        "kind": "constant",
+        "scope": "static",
+        "description": "Composable for accessing the toast API.",
+        "memberof": "module:useToast",
+        "examples": [
+          "import { useToast } from './useToast';\nconst toast = useToast();\ntoast.add({ title: 'Hello World' });"
+        ],
+        "returns": [
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "The toast API."
+          }
+        ],
+        "exceptions": [
+          {
+            "type": {
+              "names": [
+                "Error"
+              ]
+            },
+            "description": "If the toast plugin is not installed."
+          }
+        ],
+        "meta": {
+          "lineno": 15,
+          "filename": "useToast.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
+        },
+        "order": 97,
+        "level": 0
+      },
+      {
+        "id": "toast.module:store.store",
+        "longname": "toast.module:store.store",
+        "name": "store",
+        "kind": "constant",
+        "scope": "static",
+        "description": "Reactive State Object (used inside global components, and as API globally)",
+        "memberof": "toast.module:store",
+        "meta": {
+          "lineno": 13,
+          "filename": "store.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
+        },
+        "order": 99,
+        "level": 0
+      },
+      {
+        "id": "toast.module:store.api",
+        "longname": "toast.module:store.api",
+        "name": "api",
+        "kind": "constant",
+        "scope": "static",
+        "description": "Public API",
+        "memberof": "toast.module:store",
+        "meta": {
+          "lineno": 42,
+          "filename": "store.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
+        },
         "order": 101,
+        "level": 0
+      },
+      {
+        "id": "module:useModals.useModals",
+        "longname": "module:useModals.useModals",
+        "name": "useModals",
+        "kind": "constant",
+        "scope": "static",
+        "description": "A composable to access the global modals API.\nThis is a simple wrapper around `inject('uluModals')` and throws an error if the plugin is not installed.",
+        "memberof": "module:useModals",
+        "returns": [
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "The modals API with methods like `open`, `close`, `add`, `remove`, and `get`."
+          }
+        ],
+        "exceptions": [
+          {
+            "type": {
+              "names": [
+                "Error"
+              ]
+            },
+            "description": "If the modals plugin is not installed."
+          }
+        ],
+        "meta": {
+          "lineno": 13,
+          "filename": "useModals.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
+        },
+        "order": 114,
         "level": 0
       },
       {
@@ -14993,6 +15013,31 @@
         "level": 0
       },
       {
+        "id": "module:useTooltip.useTooltip",
+        "longname": "module:useTooltip.useTooltip",
+        "name": "useTooltip",
+        "kind": "function",
+        "scope": "static",
+        "description": "Composable to programmatically control the global tooltip.\nIt provides `showTooltip` and `hideTooltip` methods that are consistent\nwith the `v-ulu-tooltip` directive.",
+        "memberof": "module:useTooltip",
+        "returns": [
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            }
+          }
+        ],
+        "meta": {
+          "lineno": 13,
+          "filename": "useTooltip.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 67,
+        "level": 0
+      },
+      {
         "id": "toast.module:store~api.add",
         "longname": "toast.module:store~api.add",
         "name": "add",
@@ -15020,7 +15065,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 69
+        "order": 102
       },
       {
         "id": "toast.module:store~api.remove",
@@ -15045,7 +15090,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 70
+        "order": 103
       },
       {
         "id": "toast.module:store~api.removeAll",
@@ -15060,32 +15105,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 71
-      },
-      {
-        "id": "module:useTooltip.useTooltip",
-        "longname": "module:useTooltip.useTooltip",
-        "name": "useTooltip",
-        "kind": "function",
-        "scope": "static",
-        "description": "Composable to programmatically control the global tooltip.\nIt provides `showTooltip` and `hideTooltip` methods that are consistent\nwith the `v-ulu-tooltip` directive.",
-        "memberof": "module:useTooltip",
-        "returns": [
-          {
-            "type": {
-              "names": [
-                "Object"
-              ]
-            }
-          }
-        ],
-        "meta": {
-          "lineno": 13,
-          "filename": "useTooltip.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 96,
-        "level": 0
+        "order": 104
       },
       {
         "id": "module:useScrollAnchors.useScrollAnchors",
@@ -15361,7 +15381,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 67,
+        "order": 100,
         "level": 0
       },
       {
@@ -15377,7 +15397,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 87,
+        "order": 120,
         "level": 0
       },
       {
@@ -15393,7 +15413,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 88,
+        "order": 121,
         "level": 0
       },
       {
@@ -15444,7 +15464,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 86,
+        "order": 119,
         "level": 0
       },
       {
@@ -15461,7 +15481,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 89,
+        "order": 122,
         "level": 0
       },
       {
@@ -15696,7 +15716,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 90,
+        "order": 123,
         "level": 0
       },
       {
@@ -15722,7 +15742,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 91,
+        "order": 124,
         "level": 0
       },
       {
@@ -15738,7 +15758,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 92,
+        "order": 125,
         "level": 0
       },
       {
@@ -15764,7 +15784,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 93,
+        "order": 126,
         "level": 0
       },
       {
@@ -16247,7 +16267,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 83,
+        "order": 116,
         "level": 0
       }
     ],

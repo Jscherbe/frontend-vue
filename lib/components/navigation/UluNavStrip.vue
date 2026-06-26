@@ -10,7 +10,7 @@
         list: 'nav-strip__list',
         item: 'nav-strip__item',
         link: 'nav-strip__link',
-        linkExactActive: 'is-active',
+        linkExactActive: 'is-exact-active',
         linkActive: 'is-active'
       }"
       noChildren
