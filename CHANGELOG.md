@@ -1,8 +1,12 @@
 # Change Log
 
-## 0.6.5
+## 0.6.6 
 
 - **UluNavStrip** | Add noChildren prop to underlying UluMenu call (since this menu doesn't support displaying children)
+
+## 0.6.5 
+
+- No changes
 
 ## 0.6.4
 

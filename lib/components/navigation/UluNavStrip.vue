@@ -13,6 +13,7 @@
         linkExactActive: 'is-active',
         linkActive: 'is-active'
       }"
+      noChildren
     >
       <template v-for="(_, name) in $slots" #[name]="slotData">
         <slot :name="name" v-bind="slotData" />
