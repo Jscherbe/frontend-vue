@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.5
+
+- **UluNavStrip** | Add noChildren prop to underlying UluMenu call (since this menu doesn't support displaying children)
+
 ## 0.6.4
 
 - **UluNavStrip** | Add 'is-active' class to linkActive (router link active)

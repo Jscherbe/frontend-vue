@@ -1,0 +1,11 @@
+import{u as l,c as p,e as m,d as c,l as u,y as d,z as g,n as v,b as f,o as _,w as y,r as b,m as h,p as N}from"./iframe-hUBpraf2.js";import{_ as S}from"./UluMenu-DuWVCfE8.js";import"./preload-helper-BJwshlQW.js";import"./UluAction-BmwvLVCs.js";import"./UluTag-BFAgJhlI.js";const r={__name:"UluNavStrip",props:{items:Array,center:Boolean,right:Boolean,rule:Boolean,modifiers:[String,Array]},setup(e){const s=e,{resolvedModifiers:i}=l({props:s,baseClass:"nav-strip",internal:p(()=>({center:s.center,right:s.right,rule:s.rule}))});return(a,k)=>e.items?.length?(_(),m("nav",{key:0,class:v(["nav-strip",f(i)])},[u(S,{items:e.items,classes:{list:"nav-strip__list",item:"nav-strip__item",link:"nav-strip__link",linkExactActive:"is-active",linkActive:"is-active"}},d({_:2},[g(a.$slots,(w,n)=>({name:n,fn:y(o=>[b(a.$slots,n,h(N(o)))])}))]),1032,["items"])],2)):c("",!0)}};r.__docgenInfo={exportName:"default",displayName:"UluNavStrip",description:"",tags:{},props:[{name:"items",description:"Array of items for list (uses UluMenu, see structure there)",type:{name:"array"}},{name:"center",description:"Center aligned",type:{name:"boolean"}},{name:"right",description:"Right aligned",type:{name:"boolean"}},{name:"rule",description:"Rule nav strip style",type:{name:"boolean"}},{name:"modifiers",description:"Modifiers (to add any modifier classes based on base class)",type:{name:"string|array"}}],slots:[{name:"name",scoped:!0,bindings:[{name:"name",title:"binding"}]}],sourceFiles:["/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/navigation/UluNavStrip.vue"]};const L={component:r,tags:["autodocs"]},U=e=>({components:{UluNavStrip:r},setup(){return{args:e}},template:'<UluNavStrip v-bind="args"/>'}),t=U.bind({});t.args={items:[{title:"Example Link (tag)",href:"http://www.google.com",tag:{text:"3"}},{title:"Router (icon)",to:"/",icon:"fas fa-plus"},{title:"Example Link (tooltip)",href:"http://www.google.com",tooltip:"Hello World!"}]};t.parameters={...t.parameters,docs:{...t.parameters?.docs,source:{originalSource:`args => ({
+  components: {
+    UluNavStrip
+  },
+  setup() {
+    return {
+      args
+    };
+  },
+  template: \`<UluNavStrip v-bind="args"/>\`
+})`,...t.parameters?.docs?.source}}};const M=["Default"];export{t as Default,M as __namedExportsOrder,L as default};
