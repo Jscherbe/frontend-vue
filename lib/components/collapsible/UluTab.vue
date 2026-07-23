@@ -1,6 +1,8 @@
 <template>
-  <Tab class="tabs__tab" v-slot="slotProps">
-    <slot v-bind="slotProps"/>
+  <Tab class="tabs__tab">
+    <template #default="slotProps">
+      <slot v-bind="slotProps"/>
+    </template>
   </Tab>
 </template>
 

@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.6.10
+
+- Tabs Updates
+  - **UluTab**, **UluTabPanel**, **UluTabPanels** | Fix Vue warning "Missing ref owner context" caused by mixing class and v-slot bindings on components by separating them using nested default templates.
+
 ## 0.6.9
 
 - Tabs Updates
