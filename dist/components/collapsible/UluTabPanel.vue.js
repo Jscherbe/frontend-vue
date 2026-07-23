@@ -1,11 +1,11 @@
-import { createBlock as t, openBlock as a, unref as o, withCtx as l, renderSlot as n, normalizeProps as u, guardReactiveProps as p } from "vue";
-import { TabPanel as s } from "@headlessui/vue";
+import { createBlock as r, openBlock as t, unref as o, withCtx as l, renderSlot as n, normalizeProps as s, guardReactiveProps as p } from "vue";
+import { TabPanel as _ } from "@headlessui/vue";
 const i = {
   __name: "UluTabPanel",
   setup(c) {
-    return (e, _) => (a(), t(o(s), null, {
-      default: l((r) => [
-        n(e.$slots, "default", u(p(r)))
+    return (e, u) => (t(), r(o(_), { class: "tabs__tabpanel" }, {
+      default: l((a) => [
+        n(e.$slots, "default", s(p(a)))
       ]),
       _: 3
     }));

@@ -7,12 +7,7 @@
     <div 
       v-bind="$attrs"
       class="tabs" 
-      :class="[
-        resolvedModifiers,
-        {
-         'tabs--vertical' : vertical 
-        }
-      ]"
+      :class="resolvedModifiers"
     >
       <slot v-bind="slotProps"/>
     </div>
@@ -20,6 +15,7 @@
 </template>
 
 <script setup>
+  import { computed } from "vue";
   import { TabGroup } from "@headlessui/vue";
   import { useModifiers } from "../../composables/useModifiers.js";
 
@@ -37,10 +33,26 @@
      */
     vertical: Boolean,
     /**
+     * Whether or not to use sticky modifier (tablist)
+     */
+    sticky: Boolean,
+    /**
+     * Whether or not to use transparent modifier (tab panels)
+     */
+    transparent: Boolean,
+    /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
     modifiers: [String, Array]
   });
 
-  const { resolvedModifiers } = useModifiers({ props, baseClass: "tabs" });
+  const { resolvedModifiers } = useModifiers({ 
+    props, 
+    baseClass: "tabs",
+    internal: computed(() => ({
+      "vertical" : props.vertical,
+      "sticky" : props.sticky,
+      "transparent" : props.transparent
+    }))
+  });
 </script>

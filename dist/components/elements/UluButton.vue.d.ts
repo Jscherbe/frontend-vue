@@ -5,13 +5,13 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     iconOnly: boolean;
+    transparent: boolean;
     iconBefore: boolean;
     primary: boolean;
     secondary: boolean;
     small: boolean;
     large: boolean;
     outline: boolean;
-    transparent: boolean;
     noMargin: boolean;
     type?: string | undefined;
     size?: string | undefined;
@@ -26,13 +26,13 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     ariaLabel?: string | undefined;
     $props: {
         readonly iconOnly?: boolean | undefined;
+        readonly transparent?: boolean | undefined;
         readonly iconBefore?: boolean | undefined;
         readonly primary?: boolean | undefined;
         readonly secondary?: boolean | undefined;
         readonly small?: boolean | undefined;
         readonly large?: boolean | undefined;
         readonly outline?: boolean | undefined;
-        readonly transparent?: boolean | undefined;
         readonly noMargin?: boolean | undefined;
         readonly type?: string | undefined;
         readonly size?: string | undefined;

@@ -1,11 +1,11 @@
-import { createBlock as t, openBlock as o, unref as a, withCtx as l, renderSlot as n, normalizeProps as u, guardReactiveProps as p } from "vue";
-import { Tab as s } from "@headlessui/vue";
+import { createBlock as t, openBlock as a, unref as o, withCtx as s, renderSlot as l, normalizeProps as _, guardReactiveProps as c } from "vue";
+import { Tab as n } from "@headlessui/vue";
 const i = {
   __name: "UluTab",
-  setup(c) {
-    return (e, _) => (o(), t(a(s), null, {
-      default: l((r) => [
-        n(e.$slots, "default", u(p(r)))
+  setup(p) {
+    return (e, u) => (a(), t(o(n), { class: "tabs__tab" }, {
+      default: s((r) => [
+        l(e.$slots, "default", _(c(r)))
       ]),
       _: 3
     }));

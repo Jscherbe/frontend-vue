@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.6.9
+
+- Tabs Updates
+  - **UluTabGroup** | Add props for common modifiers "sticky" and "transparent"
+  - **UluTab** | Add selector `tabs__tab` to match frontend component
+  - **UluTabpanel** | Add selector `tabs__tabpanel` to match frontend component
+
 ## 0.6.8
 
 - No changes, update peer dependency for @ulu/frontend to latest minor
