@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.8
+
+- No changes, update peer dependency for @ulu/frontend to latest minor
+
 ## 0.6.7
 
 - **UluNavStrip** | Remove exact active class matching active class (both were 'is-active') since this breaks the class binding in `<router-link>` since we have duplicate keys in the object { 'is-active' : activeCond, 'is-active' : exactActiveCond } so the keys matching causes a unexpected bug do to class binding behavior. Having is-active on active should work correctly, because exact active's are also active.
