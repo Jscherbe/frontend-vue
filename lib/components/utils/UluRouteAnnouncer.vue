@@ -21,16 +21,16 @@
 </template>
 
 <script setup>
-  import { ref, computed, watch, nextTick } from 'vue';
-  import { useRoute } from 'vue-router';
-  import { getRouteTitle } from '../../utils/router.js';
+  import { ref, computed, watch, nextTick } from "vue";
+  import { useRoute, useRouter, START_LOCATION } from "vue-router";
+  import { getRouteTitle } from "../../utils/router.js";
 
   const props = defineProps({
     /**
      * Allow user to bypass this functionality
      * - Function should return true if the page should be announced
-     * - Function is passed  (to, from, $route) => {}
-     *   - to/from are path strings
+     * - Function is passed (to, from) => {}
+     *   - to/from are RouteLocationNormalizedLoaded objects
      */
     validator: {
       type: Function,
@@ -51,15 +51,20 @@
     getTitle: {
       type: Function,
       default: (route) => getRouteTitle(route)
-    }
+    },
+    /**
+     * Enable debug logging
+     */
+    debug: Boolean
   });
 
   const route = useRoute();
+  const router = useRouter();
   const el = ref(null);
 
   const title = computed(() => {
-    // Check if route exists to prevent crash if not in router context (though required)
-    if (!route) return ""; 
+    // Prevent errors if not in router context, or if it's the initial ghost route
+    if (!route || route.matched.length === 0) return ""; 
     const t = props.getTitle(route);
     if (!t) {
       console.warn("RouteAnnouncer: No page title!");
@@ -67,23 +72,30 @@
     return t;
   });
 
-  if (route) {
+  if (router) {
     watch(
-      () => route.path,
+      router.currentRoute,
       async (to, from) => {
-        if (route.hash) {
+        // Skip the very first route transition from the initial ghost route
+        if (from === START_LOCATION || from.matched.length === 0) {
           return;
         }
-        const isValid = props.validator(to, from, route);
+        if (to.hash) {
+          return;
+        }
+        const isValid = props.validator(to, from);
         const isExcluded = props.exclude.some(ex => {
           // Allow wildcard at end to exclude entire sections, etc
           if (ex.endsWith("*")) {
-            return to.startsWith(ex.slice(0, ex.length - 1));
+            return to.path.startsWith(ex.slice(0, ex.length - 1));
           } else {
-            return to === ex;
+            return to.path === ex;
           }
         });
-        if (isValid && !isExcluded) {
+        if (title.value && isValid && !isExcluded) {
+          if (props.debug) {
+            console.log("RouteAnnouncer: Focused title:", title.value);
+          }
           await nextTick();
           el.value?.focus();
         }

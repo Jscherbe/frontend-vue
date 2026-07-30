@@ -1,14 +1,14 @@
-import { ref as s, computed as f, watch as d, nextTick as p, createElementBlock as m, createCommentVNode as h, openBlock as y, toDisplayString as v } from "vue";
-import { useRoute as _ } from "vue-router";
-import { getRouteTitle as g } from "../../utils/router.js";
-const A = {
+import { ref as d, computed as f, watch as p, nextTick as h, createElementBlock as m, createCommentVNode as g, openBlock as v, toDisplayString as y } from "vue";
+import { useRoute as R, useRouter as _, START_LOCATION as A } from "vue-router";
+import { getRouteTitle as T } from "../../utils/router.js";
+const b = {
   __name: "UluRouteAnnouncer",
   props: {
     /**
      * Allow user to bypass this functionality
      * - Function should return true if the page should be announced
-     * - Function is passed  (to, from, $route) => {}
-     *   - to/from are path strings
+     * - Function is passed (to, from) => {}
+     *   - to/from are RouteLocationNormalizedLoaded objects
      */
     validator: {
       type: Function,
@@ -28,32 +28,36 @@ const A = {
      */
     getTitle: {
       type: Function,
-      default: (r) => g(r)
-    }
+      default: (r) => T(r)
+    },
+    /**
+     * Enable debug logging
+     */
+    debug: Boolean
   },
   setup(r) {
-    const n = r, t = _(), u = s(null), l = f(() => {
-      if (!t) return "";
-      const e = n.getTitle(t);
+    const t = r, l = R(), c = _(), a = d(null), n = f(() => {
+      if (!l || l.matched.length === 0) return "";
+      const e = t.getTitle(l);
       return e || console.warn("RouteAnnouncer: No page title!"), e;
     });
-    return t ? d(
-      () => t.path,
-      async (e, a) => {
-        if (t.hash)
+    return c ? p(
+      c.currentRoute,
+      async (e, o) => {
+        if (o === A || o.matched.length === 0 || e.hash)
           return;
-        const c = n.validator(e, a, t), i = n.exclude.some((o) => o.endsWith("*") ? e.startsWith(o.slice(0, o.length - 1)) : e === o);
-        c && !i && (await p(), u.value?.focus());
+        const s = t.validator(e, o), i = t.exclude.some((u) => u.endsWith("*") ? e.path.startsWith(u.slice(0, u.length - 1)) : e.path === u);
+        n.value && s && !i && (t.debug && console.log("RouteAnnouncer: Focused title:", n.value), await h(), a.value?.focus());
       }
-    ) : console.error("RouteAnnouncer: No route found (install vue-router)."), (e, a) => l.value ? (y(), m("p", {
+    ) : console.error("RouteAnnouncer: No route found (install vue-router)."), (e, o) => n.value ? (v(), m("p", {
       key: 0,
       tabindex: "-1",
       class: "hidden-visually",
       ref_key: "el",
-      ref: u
-    }, v(l.value), 513)) : h("", !0);
+      ref: a
+    }, y(n.value), 513)) : g("", !0);
   }
 };
 export {
-  A as default
+  b as default
 };

@@ -1,5 +1,14 @@
 # Change Log
 
+## 0.6.11
+
+- **UluRouteAnnouncer**
+  - Added `debug` prop (`Boolean`) to log console output when a page title is successfully focused/announced.
+  - Improved Vue Router integration to detect and suppress the initial `START_LOCATION` ("ghost route") state:
+    - Silenced the erroneous `"RouteAnnouncer: No page title!"` warning on app mount.
+    - Prevented double-announcing titles when landing directly on sub-pages.
+  - Changed `validator` callback signature: now receives full `to` and `from` route objects (`RouteLocationNormalizedLoaded`) instead of path strings, allowing access to route meta and other properties inside the validator.
+  
 ## 0.6.10
 
 - Tabs Updates
