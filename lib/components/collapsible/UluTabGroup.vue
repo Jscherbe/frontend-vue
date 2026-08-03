@@ -2,7 +2,9 @@
   <TabGroup 
     v-slot="slotProps" 
     :defaultIndex="defaultIndex" 
+    :selectedIndex="selectedIndex"
     :vertical="vertical"
+    @change="$emit('change', $event)"
   >
     <div 
       v-bind="$attrs"
@@ -22,12 +24,15 @@
   defineOptions({ 
     inheritAttrs: false 
   });
-
   const props = defineProps({ 
     /**
-     * Active tab index by default
+     * Active tab index by default (uncontrolled)
      */
     defaultIndex: Number,
+    /**
+     * Actively selected tab index (controlled)
+     */
+    selectedIndex: Number,
     /**
      * Whether or not to use vertical layout
      */
@@ -45,6 +50,10 @@
      */
     modifiers: [String, Array]
   });
+
+  // Explicitly declare the emit so Vue knows to capture the @change listener 
+  // from the parent and NOT bundle it into $attrs
+  defineEmits(['change']);
 
   const { resolvedModifiers } = useModifiers({ 
     props, 

@@ -4,17 +4,20 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
     $slots: S;
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
+    $emit: (event: "change", ...args: any[]) => void;
     vertical: boolean;
     sticky: boolean;
     transparent: boolean;
     modifiers?: string | unknown[] | undefined;
     defaultIndex?: number | undefined;
+    selectedIndex?: number | undefined;
     $props: {
         readonly vertical?: boolean | undefined;
         readonly sticky?: boolean | undefined;
         readonly transparent?: boolean | undefined;
         readonly modifiers?: string | unknown[] | undefined;
         readonly defaultIndex?: number | undefined;
+        readonly selectedIndex?: number | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 type __VLS_TemplateResult = {

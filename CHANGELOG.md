@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.6.12
+
+- **UluTabGroup**
+  - Add change event and selectedIndex prop toto match headless ui component being used under the hood
+
 ## 0.6.11
 
 - **UluRouteAnnouncer**

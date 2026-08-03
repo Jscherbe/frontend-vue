@@ -1,15 +1,19 @@
-import { computed as n, createBlock as i, openBlock as l, unref as a, withCtx as c, createElementVNode as d, mergeProps as u, renderSlot as f, normalizeProps as p, guardReactiveProps as m } from "vue";
-import { TabGroup as v } from "@headlessui/vue";
-import { useModifiers as b } from "../../composables/useModifiers.js";
-const y = /* @__PURE__ */ Object.assign({
+import { computed as l, createBlock as i, openBlock as d, unref as s, withCtx as c, createElementVNode as u, mergeProps as m, renderSlot as f, normalizeProps as p, guardReactiveProps as v } from "vue";
+import { TabGroup as b } from "@headlessui/vue";
+import { useModifiers as x } from "../../composables/useModifiers.js";
+const B = /* @__PURE__ */ Object.assign({
   inheritAttrs: !1
 }, {
   __name: "UluTabGroup",
   props: {
     /**
-     * Active tab index by default
+     * Active tab index by default (uncontrolled)
      */
     defaultIndex: Number,
+    /**
+     * Actively selected tab index (controlled)
+     */
+    selectedIndex: Number,
     /**
      * Whether or not to use vertical layout
      */
@@ -27,31 +31,34 @@ const y = /* @__PURE__ */ Object.assign({
      */
     modifiers: [String, Array]
   },
-  setup(t) {
-    const e = t, { resolvedModifiers: s } = b({
-      props: e,
+  emits: ["change"],
+  setup(e) {
+    const t = e, { resolvedModifiers: o } = x({
+      props: t,
       baseClass: "tabs",
-      internal: n(() => ({
-        vertical: e.vertical,
-        sticky: e.sticky,
-        transparent: e.transparent
+      internal: l(() => ({
+        vertical: t.vertical,
+        sticky: t.sticky,
+        transparent: t.transparent
       }))
     });
-    return (r, k) => (l(), i(a(v), {
-      defaultIndex: t.defaultIndex,
-      vertical: t.vertical
+    return (r, n) => (d(), i(s(b), {
+      defaultIndex: e.defaultIndex,
+      selectedIndex: e.selectedIndex,
+      vertical: e.vertical,
+      onChange: n[0] || (n[0] = (a) => r.$emit("change", a))
     }, {
-      default: c((o) => [
-        d("div", u(r.$attrs, {
-          class: ["tabs", a(s)]
+      default: c((a) => [
+        u("div", m(r.$attrs, {
+          class: ["tabs", s(o)]
         }), [
-          f(r.$slots, "default", p(m(o)))
+          f(r.$slots, "default", p(v(a)))
         ], 16)
       ]),
       _: 3
-    }, 8, ["defaultIndex", "vertical"]));
+    }, 8, ["defaultIndex", "selectedIndex", "vertical"]));
   }
 });
 export {
-  y as default
+  B as default
 };
