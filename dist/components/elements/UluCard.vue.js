@@ -1,5 +1,5 @@
-import { useSlots as V, computed as o, ref as f, createBlock as k, openBlock as a, resolveDynamicComponent as P, normalizeStyle as p, normalizeClass as h, unref as n, withCtx as S, createElementVNode as $, createElementBlock as m, createCommentVNode as y, renderSlot as i, createTextVNode as C, toDisplayString as x, createVNode as A, normalizeProps as I, guardReactiveProps as q } from "vue";
-import { RouterLink as B } from "vue-router";
+import { useSlots as V, computed as o, ref as f, createBlock as k, openBlock as a, resolveDynamicComponent as P, normalizeStyle as p, normalizeClass as h, unref as n, withCtx as S, createElementVNode as O, createElementBlock as m, createCommentVNode as y, renderSlot as i, createTextVNode as C, toDisplayString as x, createVNode as A, normalizeProps as I, guardReactiveProps as q } from "vue";
+import { RouterLink as $ } from "vue-router";
 import { useModifiers as L } from "../../composables/useModifiers.js";
 import { refToElement as F } from "../../utils/dom.js";
 import G from "./UluImage.vue.js";
@@ -114,22 +114,22 @@ const J = { class: "card__body" }, K = { class: "card__main" }, Q = ["href", "ta
     overlay: Boolean,
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
-     * - Can be String or Array of Strings
+     * - Can be String, Array, or Object
      */
-    modifiers: [Array, String]
+    modifiers: [String, Array, Object]
   },
   emits: ["proxy-click"],
-  setup(t, { emit: O }) {
-    const e = t, H = O, s = V();
+  setup(t, { emit: B }) {
+    const e = t, j = B, s = V();
     e.proxyClick && (e.to || e.href) && console.warn("UluCard: 'proxyClick' is ignored when 'to' or 'href' are present."), (e.titleTo || e.titleHref) && (e.to || e.href) && console.warn("UluCard: 'titleTo'/'titleHref' should not be used with 'to'/'href'.");
     const b = o(() => e.image ? e.image : e.imageSrc ? {
       src: e.imageSrc,
       alt: e.imageAlt || ""
-    } : null), T = f(null), v = f(null), { resolvedModifiers: M } = L({ props: e, baseClass: "card" }), E = f(null), c = f(!1), u = o(() => e.proxyClick && !e.to && !e.href), w = o(() => u.value && (e.titleTo || e.titleHref)), j = o(() => u.value && !w.value), g = o(() => u.value || null), z = o(() => ({
+    } : null), T = f(null), v = f(null), { resolvedModifiers: H } = L({ props: e, baseClass: "card" }), E = f(null), c = f(!1), u = o(() => e.proxyClick && !e.to && !e.href), w = o(() => u.value && (e.titleTo || e.titleHref)), M = o(() => u.value && !w.value), g = o(() => u.value || null), z = o(() => ({
       selectorPrevent: "input, select, textarea, button, a, [tabindex='-1']",
       mousedownDurationPrevent: 250,
       ...e.proxyClickOptions
-    })), D = o(() => u.value ? "pointer" : null), N = o(() => e.to ? B : e.href ? "a" : e.cardElement);
+    })), D = o(() => u.value ? "pointer" : null), N = o(() => e.to ? $ : e.href ? "a" : e.cardElement);
     function R({ target: l, timeStamp: d }) {
       if (!g.value) return;
       const { selectorPrevent: r } = z.value;
@@ -142,9 +142,9 @@ const J = { class: "card__body" }, K = { class: "card__main" }, Q = ["href", "ta
         if (w.value) {
           const r = F(v.value);
           r ? r.click() : console.warn("Unable to resolve title link ref");
-        } else if (j.value) {
+        } else if (M.value) {
           const r = T.value?.querySelector("[data-ulu-card-proxy-target]");
-          r ? r.click() : H("proxy-click");
+          r ? r.click() : j("proxy-click");
         }
       }
       c.value = !1;
@@ -158,7 +158,7 @@ const J = { class: "card__body" }, K = { class: "card__main" }, Q = ["href", "ta
           "card--horizontal-center": t.horizontalCenter,
           "card--overlay": t.overlay
         },
-        n(M)
+        n(H)
       ]]),
       onMousedown: R,
       onMouseup: U,
@@ -169,14 +169,14 @@ const J = { class: "card__body" }, K = { class: "card__main" }, Q = ["href", "ta
       "data-ulu-proxy-click-init": g.value
     }, {
       default: S(() => [
-        $("div", J, [
-          $("div", K, [
+        O("div", J, [
+          O("div", K, [
             t.title || n(s).title ? (a(), k(P(t.titleElement), {
               key: 0,
               class: h(["card__title", t.classes.title])
             }, {
               default: S(() => [
-                t.titleTo ? (a(), k(n(B), {
+                t.titleTo ? (a(), k(n($), {
                   key: 0,
                   class: "card__title-link",
                   to: t.titleTo,

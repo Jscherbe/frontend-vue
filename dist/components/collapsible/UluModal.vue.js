@@ -117,7 +117,7 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array],
+    modifiers: [String, Array, Object],
     /**
      * Opt-in convenience behavior. If the modal body's sole content is an iframe, it automatically applies layout fixes.
      */
@@ -129,11 +129,11 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
   },
   emits: ["update:modelValue", "close", "open"],
   setup(t, { emit: j }) {
-    const c = j, e = t, D = J(), N = n(null), E = ce("ulu-modal-title"), B = n(!1), o = n(null), $ = n(null), k = n(null), i = n({
+    const c = j, e = t, D = J(), N = n(null), E = ce("ulu-modal-title"), B = n(!1), o = n(null), O = n(null), k = n(null), i = n({
       isStaticSize: !1,
       isFill: !1,
       bodyStyle: {}
-    }), O = u(() => e.title || D.title), v = u(() => {
+    }), $ = u(() => e.title || D.title), v = u(() => {
       const { allowResize: l, position: s } = e;
       if (!l || !s) return !1;
       const h = ["left", "right", "center"];
@@ -142,7 +142,7 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
       [e.position]: e.position,
       resize: e.allowResize,
       "no-resize": !e.allowResize,
-      "no-header": !O.value,
+      "no-header": !$.value,
       "body-fills": e.bodyFills,
       "no-backdrop": e.noBackdrop,
       "no-min-height": e.noMinHeight,
@@ -178,7 +178,7 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
     }, I = () => {
       if (v.value) {
         const l = e.position === "center" ? { fromX: "right", fromY: "bottom", multiplier: 2 } : { fromX: e.position === "right" ? "left" : "right" };
-        S = new ne(o.value, $.value, l), z = () => {
+        S = new ne(o.value, O.value, l), z = () => {
           B.value = !0;
         }, p = () => {
           setTimeout(() => {
@@ -228,7 +228,7 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
         onClose: q,
         onClick: W
       }, [
-        O.value ? (d(), C("header", {
+        $.value ? (d(), C("header", {
           key: 0,
           class: r(["modal__header", t.classes.header])
         }, [
@@ -277,7 +277,7 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
           key: 2,
           class: "modal__resizer",
           ref_key: "resizer",
-          ref: $,
+          ref: O,
           type: "button"
         }, [
           m(l.$slots, "resizerIcon", {}, () => [

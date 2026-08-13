@@ -97,7 +97,7 @@
     /**
      * Base class modifiers.
      */
-    modifiers: [String, Array],
+    modifiers: [String, Array, Object],
   });
 
   const { resolvedModifiers } = useModifiers({ props, baseClass: 'scroll-slider' });

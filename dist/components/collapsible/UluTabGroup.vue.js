@@ -1,5 +1,5 @@
-import { computed as l, createBlock as i, openBlock as d, unref as s, withCtx as c, createElementVNode as u, mergeProps as m, renderSlot as f, normalizeProps as p, guardReactiveProps as v } from "vue";
-import { TabGroup as b } from "@headlessui/vue";
+import { computed as l, createBlock as i, openBlock as d, unref as s, withCtx as c, createElementVNode as u, mergeProps as m, renderSlot as f, normalizeProps as p, guardReactiveProps as b } from "vue";
+import { TabGroup as v } from "@headlessui/vue";
 import { useModifiers as x } from "../../composables/useModifiers.js";
 const B = /* @__PURE__ */ Object.assign({
   inheritAttrs: !1
@@ -29,7 +29,7 @@ const B = /* @__PURE__ */ Object.assign({
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   emits: ["change"],
   setup(e) {
@@ -42,7 +42,7 @@ const B = /* @__PURE__ */ Object.assign({
         transparent: t.transparent
       }))
     });
-    return (r, n) => (d(), i(s(b), {
+    return (r, n) => (d(), i(s(v), {
       defaultIndex: e.defaultIndex,
       selectedIndex: e.selectedIndex,
       vertical: e.vertical,
@@ -52,7 +52,7 @@ const B = /* @__PURE__ */ Object.assign({
         u("div", m(r.$attrs, {
           class: ["tabs", s(o)]
         }), [
-          f(r.$slots, "default", p(v(a)))
+          f(r.$slots, "default", p(b(a)))
         ], 16)
       ]),
       _: 3

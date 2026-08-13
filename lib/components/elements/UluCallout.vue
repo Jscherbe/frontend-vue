@@ -17,9 +17,9 @@
     fullHeight: Boolean,
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
-     * - Can be String or Array of Strings
+     * - Can be String, Array, or Object
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   });
 
   const { resolvedModifiers } = useModifiers({ props, baseClass: "callout" });

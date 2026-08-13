@@ -7,13 +7,13 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     right: boolean;
     center: boolean;
     rule: boolean;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     items?: unknown[] | undefined;
     $props: {
         readonly right?: boolean | undefined;
         readonly center?: boolean | undefined;
         readonly rule?: boolean | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly items?: unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;

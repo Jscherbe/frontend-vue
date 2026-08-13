@@ -1,5 +1,5 @@
-import { ref as m, provide as f, createElementBlock as c, openBlock as l, renderSlot as s, Fragment as p, renderList as y, createBlock as k, createSlots as $, withCtx as a, createTextVNode as v, toDisplayString as A } from "vue";
-import O from "./UluAccordion.vue.js";
+import { ref as m, provide as f, createElementBlock as g, openBlock as l, renderSlot as s, Fragment as p, renderList as y, createBlock as k, createSlots as $, withCtx as a, createTextVNode as v, toDisplayString as O } from "vue";
+import A from "./UluAccordion.vue.js";
 const S = { class: "accordion-group" }, B = {
   __name: "UluAccordionGroup",
   props: {
@@ -21,7 +21,7 @@ const S = { class: "accordion-group" }, B = {
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
-    modifiers: [String, Array],
+    modifiers: [String, Array, Object],
     /**
      * Enable or configure animations.
      * - `false` (default) to disable all animations.
@@ -35,14 +35,14 @@ const S = { class: "accordion-group" }, B = {
   },
   setup(r) {
     const i = m(null);
-    function u(e, g) {
-      g ? i.value = e : i.value === e && (i.value = null);
+    function u(e, c) {
+      c ? i.value = e : i.value === e && (i.value = null);
     }
     return f("uluAccordionGroup", {
       activeAccordionId: i,
       toggle: u
-    }), (e, g) => (l(), c("div", S, [
-      r.items?.length ? (l(!0), c(p, { key: 0 }, y(r.items, (t, o) => (l(), k(O, {
+    }), (e, c) => (l(), g("div", S, [
+      r.items?.length ? (l(!0), g(p, { key: 0 }, y(r.items, (t, o) => (l(), k(A, {
         key: o,
         "start-open": t.isOpen,
         "trigger-text": t.title,
@@ -58,7 +58,7 @@ const S = { class: "accordion-group" }, B = {
             isOpen: n,
             toggle: d
           }, () => [
-            v(A(t.content), 1)
+            v(O(t.content), 1)
           ])
         ]),
         _: 2

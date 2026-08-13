@@ -7,7 +7,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     classes: Record<string, any>;
     striped: boolean;
     largeFirst: boolean;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     columns?: unknown[] | undefined;
     rows?: unknown[] | undefined;
     footerRows?: unknown[] | undefined;
@@ -19,7 +19,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly classes?: Record<string, any> | undefined;
         readonly striped?: boolean | undefined;
         readonly largeFirst?: boolean | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly columns?: unknown[] | undefined;
         readonly rows?: unknown[] | undefined;
         readonly footerRows?: unknown[] | undefined;

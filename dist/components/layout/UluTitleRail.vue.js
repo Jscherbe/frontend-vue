@@ -46,7 +46,7 @@ const C = {
     /**
      * Modifiers (to add any modifier classes based on base class)
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(e) {
     const a = e, { resolvedModifiers: c } = v({
@@ -57,7 +57,7 @@ const C = {
         rule: a.rule
       }))
     });
-    return (i, B) => (t(), s("div", {
+    return (i, b) => (t(), s("div", {
       class: l(["rail", d(c)])
     }, [
       u("div", {

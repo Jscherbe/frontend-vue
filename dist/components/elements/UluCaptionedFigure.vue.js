@@ -20,7 +20,7 @@ const m = {
     /**
      * Modifiers for styling and positioning (e.g., 'bottom', 'center', 'right', 'traditional').
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(t) {
     const e = t, { resolvedModifiers: s } = f({

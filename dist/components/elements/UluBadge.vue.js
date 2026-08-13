@@ -1,10 +1,10 @@
-import { computed as o, createBlock as m, openBlock as a, resolveDynamicComponent as f, normalizeClass as i, unref as g, withCtx as h, createElementVNode as y, createElementBlock as r, renderSlot as S, createCommentVNode as b, toDisplayString as c } from "vue";
+import { computed as o, createBlock as m, openBlock as a, resolveDynamicComponent as f, normalizeClass as i, unref as g, withCtx as h, createElementVNode as y, createElementBlock as r, renderSlot as b, createCommentVNode as S, toDisplayString as c } from "vue";
 import { RouterLink as C } from "vue-router";
 import { useModifiers as v } from "../../composables/useModifiers.js";
 const B = ["aria-hidden"], x = {
   key: 2,
   class: "hidden-visually"
-}, E = {
+}, D = {
   __name: "UluBadge",
   props: {
     /**
@@ -42,7 +42,7 @@ const B = ["aria-hidden"], x = {
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(e) {
     const t = e, s = o(() => !!(t.to || t.click)), { resolvedModifiers: d } = v({
@@ -70,8 +70,8 @@ const B = ["aria-hidden"], x = {
           e.text ? (a(), r("span", {
             key: 0,
             "aria-hidden": e.alt ? "true" : null
-          }, c(e.text), 9, B)) : S(n.$slots, "default", { key: 1 }),
-          e.alt ? (a(), r("span", x, c(e.alt), 1)) : b("", !0)
+          }, c(e.text), 9, B)) : b(n.$slots, "default", { key: 1 }),
+          e.alt ? (a(), r("span", x, c(e.alt), 1)) : S("", !0)
         ], 2)
       ]),
       _: 3
@@ -79,5 +79,5 @@ const B = ["aria-hidden"], x = {
   }
 };
 export {
-  E as default
+  D as default
 };

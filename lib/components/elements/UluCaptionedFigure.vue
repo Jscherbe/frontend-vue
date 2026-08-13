@@ -26,7 +26,7 @@
     /**
      * Modifiers for styling and positioning (e.g., 'bottom', 'center', 'right', 'traditional').
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   });
 
   const { resolvedModifiers } = useModifiers({ 

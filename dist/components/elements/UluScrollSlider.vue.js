@@ -1,8 +1,8 @@
-import { ref as f, onMounted as g, nextTick as A, onBeforeUnmount as $, createElementBlock as i, openBlock as n, normalizeClass as C, unref as m, createVNode as x, createSlots as E, withCtx as v, createElementVNode as k, createCommentVNode as S, Fragment as N, renderList as O, renderSlot as p } from "vue";
+import { ref as f, onMounted as g, nextTick as A, onBeforeUnmount as $, createElementBlock as i, openBlock as n, normalizeClass as C, unref as m, createVNode as O, createSlots as x, withCtx as v, createElementVNode as k, createCommentVNode as S, Fragment as E, renderList as N, renderSlot as p } from "vue";
 import { useModifiers as w } from "../../composables/useModifiers.js";
 import { newId as M } from "../../utils/dom.js";
 import R from "./UluOverflowScroller.vue.js";
-const V = { class: "scroll-slider__track-crop" }, U = ["id", "onScroll"], j = {
+const V = { class: "scroll-slider__track-crop" }, j = ["id", "onScroll"], U = {
   key: 0,
   class: "scroll-slider__slide scroll-slider__slide--empty",
   role: "presentation"
@@ -59,12 +59,12 @@ const V = { class: "scroll-slider__track-crop" }, U = ["id", "onScroll"], j = {
     /**
      * Base class modifiers.
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(l) {
-    const _ = l, { resolvedModifiers: B } = w({ props: _, baseClass: "scroll-slider" }), y = M("ulu-scroll-slider-track"), h = f(null), u = f([]), r = f([]);
+    const _ = l, { resolvedModifiers: b } = w({ props: _, baseClass: "scroll-slider" }), y = M("ulu-scroll-slider-track"), h = f(null), u = f([]), r = f([]);
     let c = null;
-    const I = (e, o) => {
+    const B = (e, o) => {
       e && (u.value[o] = e);
     };
     return g(() => {
@@ -84,16 +84,16 @@ const V = { class: "scroll-slider__track-crop" }, U = ["id", "onScroll"], j = {
     }), $(() => {
       c && c.disconnect();
     }), (e, o) => (n(), i("div", {
-      class: C(["scroll-slider", m(B)])
+      class: C(["scroll-slider", m(b)])
     }, [
-      x(R, {
+      O(R, {
         class: "scroll-slider__control-context",
         controlsClass: "scroll-slider__controls",
         controls: l.controls,
         scrollAmount: l.scrollAmount,
         scrollBehavior: l.scrollBehavior,
         trackId: m(y)
-      }, E({
+      }, x({
         default: v(({ setTrackRef: s, onScroll: t }) => [
           k("div", V, [
             k("ul", {
@@ -104,12 +104,12 @@ const V = { class: "scroll-slider__track-crop" }, U = ["id", "onScroll"], j = {
               },
               onScroll: t
             }, [
-              l.emptySlides ? (n(), i("li", j, " ")) : S("", !0),
-              (n(!0), i(N, null, O(l.items, (d, a) => (n(), i("li", {
+              l.emptySlides ? (n(), i("li", U, " ")) : S("", !0),
+              (n(!0), i(E, null, N(l.items, (d, a) => (n(), i("li", {
                 key: a,
                 class: "scroll-slider__slide",
                 ref_for: !0,
-                ref: (b) => I(b, a)
+                ref: (I) => B(I, a)
               }, [
                 p(e.$slots, "slide", {
                   item: d,
@@ -118,7 +118,7 @@ const V = { class: "scroll-slider__track-crop" }, U = ["id", "onScroll"], j = {
                 })
               ]))), 128)),
               l.emptySlides ? (n(), i("li", q, " ")) : S("", !0)
-            ], 40, U)
+            ], 40, j)
           ])
         ]),
         _: 2

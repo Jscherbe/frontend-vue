@@ -23,7 +23,7 @@ const N = {
     /**
      * Modifiers (to add any modifier classes based on base class)
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(t) {
     const e = t, { resolvedModifiers: s } = B({

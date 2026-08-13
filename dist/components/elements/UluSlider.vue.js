@@ -91,11 +91,11 @@ const rt = { class: "slider__control-context" }, ut = {
     /**
      * Base class modifiers.
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   emits: ["change"],
   setup(r, { emit: Q }) {
-    const o = r, W = Q, k = at("ulu-slider-track"), N = (t) => `${k}-slide-${t}`, h = a(null), u = a([]), s = a(0), _ = a(!1), R = a(!1), { resolvedModifiers: Y } = nt({ props: o, baseClass: "slider" }), A = et(() => o.transition === "none" ? "none" : o.reduceMotionFallback && R.value ? "fade" : o.transition), Z = (t, l) => {
+    const o = r, W = Q, k = at("ulu-slider-track"), N = (t) => `${k}-slide-${t}`, h = a(null), u = a([]), s = a(0), _ = a(!1), R = a(!1), { resolvedModifiers: Y } = nt({ props: o, baseClass: "slider" }), O = et(() => o.transition === "none" ? "none" : o.reduceMotionFallback && R.value ? "fade" : o.transition), Z = (t, l) => {
       t && (u.value[l] = t);
     }, x = (t) => {
       if (!o.items || o.items.length === 0) return !1;
@@ -107,7 +107,7 @@ const rt = { class: "slider__control-context" }, ut = {
       }, o.autoplay));
     }, $ = () => {
       S.value && (clearInterval(S.value), S.value = null);
-    }, O = () => $(), V = () => T();
+    }, A = () => $(), V = () => T();
     it(() => o.autoplay, () => {
       T();
     }), a(0), a(0), a(null), a([]), a(!1);
@@ -139,7 +139,7 @@ const rt = { class: "slider__control-context" }, ut = {
     }), E = async (t, l = "nav") => {
       if (t === s.value || _.value || !o.items || o.items.length === 0) return;
       _.value = !0, $();
-      const e = s.value, i = o.items.length, v = l === "previous", c = i - 1, m = t === 0 && e === c, B = t === c && e === 0, U = A.value;
+      const e = s.value, i = o.items.length, v = l === "previous", c = i - 1, m = t === 0 && e === c, B = t === c && e === 0, U = O.value;
       if (U === "slide") {
         let n = null, j = 1;
         e !== null && !m && !B && (j = Math.abs(e - t)), i < 3 ? m && !v ? n = e : B && (n = v ? t : e) : m ? n = e : B && (n = t), b(null, !0), n !== null && (g(n, "-1"), f(m ? 0 : w(e), 0));
@@ -164,7 +164,7 @@ const rt = { class: "slider__control-context" }, ut = {
     }, D = () => P("next"), tt = () => P("previous");
     return lt(() => {
       typeof window < "u" && (R.value = window.matchMedia("(prefers-reduced-motion: reduce)").matches), z(() => {
-        const t = A.value === "slide";
+        const t = O.value === "slide";
         u.value.forEach((l, e) => {
           l && (l.style.visibility = e === s.value ? "visible" : "hidden", t ? (l.style.opacity = "1", l.style.order = "0") : (l.style.opacity = e === s.value ? "1" : "0", l.style.order = e === s.value ? "-1" : "0"));
         }), f(t ? w(s.value) : 0, 0), T();
@@ -173,9 +173,9 @@ const rt = { class: "slider__control-context" }, ut = {
       $();
     }), (t, l) => (p(), y("div", {
       class: L(["slider", [M(Y), { "slider--transitioning": _.value }]]),
-      onMouseenter: O,
+      onMouseenter: A,
       onMouseleave: V,
-      onFocusin: O,
+      onFocusin: A,
       onFocusout: V
     }, [
       d("div", rt, [

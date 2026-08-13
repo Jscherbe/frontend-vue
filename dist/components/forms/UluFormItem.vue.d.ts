@@ -9,7 +9,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     error: boolean;
     labelHidden: boolean;
     alignTop: boolean;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     description?: string | undefined;
     label?: string | undefined;
     layout?: string | undefined;
@@ -22,7 +22,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly error?: boolean | undefined;
         readonly labelHidden?: boolean | undefined;
         readonly alignTop?: boolean | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly description?: string | undefined;
         readonly label?: string | undefined;
         readonly layout?: string | undefined;

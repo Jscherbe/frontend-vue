@@ -53,7 +53,7 @@
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   });
 
   const { resolvedModifiers } = useModifiers({ 

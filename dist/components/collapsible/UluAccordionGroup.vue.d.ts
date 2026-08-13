@@ -7,12 +7,12 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     animate: boolean | Record<string, any>;
     triggerTextElement: string;
     items: unknown[];
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
         readonly animate?: boolean | Record<string, any> | undefined;
         readonly triggerTextElement?: string | undefined;
         readonly items?: unknown[] | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
 type __VLS_TemplateResult = {

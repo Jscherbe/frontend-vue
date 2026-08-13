@@ -1,5 +1,5 @@
-import { computed as l, createBlock as r, openBlock as o, normalizeClass as m, unref as c, createSlots as u, withCtx as f, renderSlot as d, normalizeProps as p, guardReactiveProps as y } from "vue";
-import { useModifiers as b } from "../../composables/useModifiers.js";
+import { computed as l, createBlock as r, openBlock as o, normalizeClass as m, unref as c, createSlots as u, withCtx as f, renderSlot as d, normalizeProps as p, guardReactiveProps as b } from "vue";
+import { useModifiers as y } from "../../composables/useModifiers.js";
 import h from "./UluList.vue.js";
 const B = {
   __name: "UluCounterList",
@@ -41,10 +41,10 @@ const B = {
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'alphabetical'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(t) {
-    const e = t, { resolvedModifiers: a } = b({
+    const e = t, { resolvedModifiers: a } = y({
       props: e,
       baseClass: "counter-list",
       internal: l(() => ({
@@ -65,7 +65,7 @@ const B = {
       s.$slots.default ? {
         name: "default",
         fn: f((n) => [
-          d(s.$slots, "default", p(y(n)))
+          d(s.$slots, "default", p(b(n)))
         ]),
         key: "0"
       } : void 0

@@ -57,7 +57,7 @@
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
-    modifiers: [String, Array],
+    modifiers: [String, Array, Object],
     /**
      * Displays only the definition descriptions on the same line.
      */

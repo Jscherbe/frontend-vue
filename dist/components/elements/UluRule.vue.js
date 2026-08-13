@@ -26,7 +26,7 @@ const d = {
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(r) {
     const e = r, t = i(() => ({

@@ -1,4 +1,4 @@
-import { createElementBlock as d, openBlock as l, Fragment as p, renderList as x, createBlock as m, withCtx as r, createVNode as o, createCommentVNode as b, normalizeClass as N, createTextVNode as f, toDisplayString as u, renderSlot as V } from "vue";
+import { createElementBlock as d, openBlock as l, Fragment as g, renderList as p, createBlock as m, withCtx as r, createVNode as o, createCommentVNode as x, normalizeClass as N, createTextVNode as f, toDisplayString as u, renderSlot as V } from "vue";
 import h from "./UluFacetsList.vue.js";
 import y from "../../collapsible/UluAccordion.vue.js";
 const k = { class: "facets-filters" }, C = {
@@ -32,13 +32,13 @@ const k = { class: "facets-filters" }, C = {
     /**
      * Class modifiers for accordion (ie. 'transparent', 'secondary', etc)
      */
-    accordionModifiers: [String, Array]
+    accordionModifiers: [String, Array, Object]
   },
   emits: ["facet-change"],
-  setup(i, { emit: g }) {
-    const n = g, s = (c) => c.multiple ? c.children.filter((t) => t.selected).map((t) => t.uid) : c.children.find((t) => t.selected)?.uid || "";
+  setup(i, { emit: b }) {
+    const n = b, s = (c) => c.multiple ? c.children.filter((t) => t.selected).map((t) => t.uid) : c.children.find((t) => t.selected)?.uid || "";
     return (c, t) => (l(), d("div", k, [
-      (l(!0), d(p, null, x(i.facets, (e) => (l(), m(y, {
+      (l(!0), d(g, null, p(i.facets, (e) => (l(), m(y, {
         key: e.uid,
         modifiers: i.accordionModifiers,
         startOpen: e.open
@@ -81,7 +81,7 @@ const k = { class: "facets-filters" }, C = {
               }, null, 8, ["children", "groupUid", "groupName", "type", "compact", "model-value"])
             ]),
             _: 2
-          }, 1032, ["class", "modifiers"])) : b("", !0)
+          }, 1032, ["class", "modifiers"])) : x("", !0)
         ]),
         _: 2
       }, 1032, ["modifiers", "startOpen"]))), 128))

@@ -53,7 +53,7 @@
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
-    modifiers: [String, Array],
+    modifiers: [String, Array, Object],
     /**
      * Enable or configure animations.
      * - `false` (default) to disable all animations.

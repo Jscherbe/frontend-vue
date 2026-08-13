@@ -27,7 +27,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     titleIcon?: string | undefined;
     resizerIcon?: string | undefined;
     closeIcon?: string | undefined;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
         readonly classes?: Record<string, any> | undefined;
         readonly clickOutsideCloses?: boolean | undefined;
@@ -51,7 +51,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly titleIcon?: string | undefined;
         readonly resizerIcon?: string | undefined;
         readonly closeIcon?: string | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, any, any>;
 type __VLS_TemplateResult = any;

@@ -9,13 +9,13 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     compact: boolean;
     maxVisible: number;
     facets: unknown[];
-    accordionModifiers?: string | unknown[] | undefined;
+    accordionModifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
         readonly classes?: Record<string, any> | undefined;
         readonly compact?: boolean | undefined;
         readonly maxVisible?: number | undefined;
         readonly facets?: unknown[] | undefined;
-        readonly accordionModifiers?: string | unknown[] | undefined;
+        readonly accordionModifiers?: string | Record<string, any> | unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
 type __VLS_TemplateResult = {

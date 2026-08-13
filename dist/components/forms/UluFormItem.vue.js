@@ -3,7 +3,7 @@ import { newId as C } from "../../utils/dom.js";
 import { useModifiers as F } from "../../composables/useModifiers.js";
 import m from "./UluFormMessage.vue.js";
 import h from "./UluFormLabel.vue.js";
-const j = {
+const V = {
   __name: "UluFormItem",
   props: {
     /**
@@ -54,7 +54,7 @@ const j = {
     /**
      * Additional BEM modifiers for the form item.
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(r) {
     const e = r, s = I(), { resolvedModifiers: S } = F({
@@ -145,5 +145,5 @@ const j = {
   }
 };
 export {
-  j as default
+  V as default
 };

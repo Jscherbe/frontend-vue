@@ -117,7 +117,7 @@
     /**
      * Modifiers (to add any modifier classes based on base class)
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   });
 
   const pie = ref(null);

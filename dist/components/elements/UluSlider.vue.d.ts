@@ -15,7 +15,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     autoplay: number;
     reduceMotionFallback: boolean;
     focusOptions: Record<string, any>;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
         readonly duration?: number | undefined;
         readonly transition?: string | undefined;
@@ -27,7 +27,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly autoplay?: number | undefined;
         readonly reduceMotionFallback?: boolean | undefined;
         readonly focusOptions?: Record<string, any> | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {
     trackRef: HTMLUListElement;

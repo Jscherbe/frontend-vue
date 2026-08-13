@@ -1,4 +1,4 @@
-import { provide as b, computed as m, createElementBlock as i, createCommentVNode as g, openBlock as a, normalizeClass as r, unref as L, renderSlot as o, Fragment as u, renderList as f, createElementVNode as C, createTextVNode as p, toDisplayString as y } from "vue";
+import { provide as A, computed as m, createElementBlock as i, createCommentVNode as g, openBlock as a, normalizeClass as r, unref as L, renderSlot as o, Fragment as u, renderList as f, createElementVNode as C, createTextVNode as p, toDisplayString as y } from "vue";
 import { useModifiers as D } from "../../composables/useModifiers.js";
 const M = {
   __name: "UluDefinitionList",
@@ -18,7 +18,7 @@ const M = {
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
-    modifiers: [String, Array],
+    modifiers: [String, Array, Object],
     /**
      * Displays only the definition descriptions on the same line.
      */
@@ -50,7 +50,7 @@ const M = {
   },
   setup(e) {
     const t = e;
-    b("uluDefinitionListClasses", m(() => t.classes));
+    A("uluDefinitionListClasses", m(() => t.classes));
     const B = m(() => ({
       inline: t.inline,
       "inline-all": t.inlineAll,
@@ -63,7 +63,7 @@ const M = {
       props: t,
       internal: B,
       baseClass: "definition-list"
-    }), A = (s) => Array.isArray(s.description) ? s.description : [s.description];
+    }), b = (s) => Array.isArray(s.description) ? s.description : [s.description];
     return (s, $) => (e.items !== void 0 ? e.items.length : s.$slots.default) ? (a(), i("dl", {
       key: 0,
       class: r(["definition-list", [L(k), e.classes.list]])
@@ -82,7 +82,7 @@ const M = {
             p(y(n.term), 1)
           ])
         ], 2),
-        (a(!0), i(u, null, f(A(n), (d, c) => (a(), i("dd", {
+        (a(!0), i(u, null, f(b(n), (d, c) => (a(), i("dd", {
           key: c,
           class: r(e.classes.description)
         }, [

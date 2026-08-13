@@ -18,7 +18,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     outsideBelow: boolean;
     pieStyle: boolean;
     noMask: boolean;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
         readonly duration?: number | undefined;
         readonly easing?: string | undefined;
@@ -34,7 +34,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly outsideBelow?: boolean | undefined;
         readonly pieStyle?: boolean | undefined;
         readonly noMask?: boolean | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {
     pie: SVGCircleElement;

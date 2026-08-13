@@ -56,7 +56,7 @@
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'alphabetical'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   });
 
   const { resolvedModifiers } = useModifiers({

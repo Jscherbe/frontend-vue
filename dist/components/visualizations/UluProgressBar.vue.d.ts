@@ -19,7 +19,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     indeterminate: boolean;
     noValues: boolean;
     amountInHeader: boolean;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     label?: string | undefined;
     formatValue?: Function | undefined;
     $props: {
@@ -38,7 +38,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly indeterminate?: boolean | undefined;
         readonly noValues?: boolean | undefined;
         readonly amountInHeader?: boolean | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly label?: string | undefined;
         readonly formatValue?: Function | undefined;
     };

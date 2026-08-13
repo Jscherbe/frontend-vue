@@ -10,7 +10,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     icon?: string | unknown[] | undefined;
     body?: string | undefined;
     title?: string | undefined;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     to?: string | Record<string, any> | undefined;
     target?: string | undefined;
     href?: string | undefined;
@@ -22,7 +22,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly icon?: string | unknown[] | undefined;
         readonly body?: string | undefined;
         readonly title?: string | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly to?: string | Record<string, any> | undefined;
         readonly target?: string | undefined;
         readonly href?: string | undefined;

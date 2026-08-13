@@ -12,7 +12,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     separated: boolean;
     separatedFirst: boolean;
     separatedLast: boolean;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     items?: unknown[] | undefined;
     $props: {
         readonly classes?: Record<string, any> | undefined;
@@ -23,7 +23,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly separated?: boolean | undefined;
         readonly separatedFirst?: boolean | undefined;
         readonly separatedLast?: boolean | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly items?: unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;

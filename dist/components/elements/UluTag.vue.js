@@ -28,7 +28,7 @@ const B = {
     /**
      * Modifiers for tag class
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(e) {
     const n = e, { resolvedModifiers: r } = d({ props: n, baseClass: "tag" });

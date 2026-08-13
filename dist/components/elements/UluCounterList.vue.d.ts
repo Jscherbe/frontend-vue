@@ -9,7 +9,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     itemElement: string;
     alphabetical: boolean;
     noReset: boolean;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     items?: unknown[] | undefined;
     $props: {
         readonly classes?: Record<string, any> | undefined;
@@ -17,7 +17,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly itemElement?: string | undefined;
         readonly alphabetical?: boolean | undefined;
         readonly noReset?: boolean | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly items?: unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;

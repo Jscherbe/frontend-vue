@@ -92,7 +92,7 @@
     /**
      * Additional style modifiers
      */
-    modifiers: [String, Array],
+    modifiers: [String, Array, Object],
 
     /**
      * Allows user to pass classes object to add custom classes to parts of the component

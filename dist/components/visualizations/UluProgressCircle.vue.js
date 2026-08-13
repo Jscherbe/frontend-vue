@@ -1,6 +1,6 @@
 import { ref as B, watch as h, computed as i, onMounted as k, createElementBlock as o, openBlock as n, normalizeClass as w, unref as V, createElementVNode as l, createCommentVNode as f, toDisplayString as u, normalizeStyle as S, renderSlot as y, createTextVNode as v } from "vue";
-import { useModifiers as _ } from "../../composables/useModifiers.js";
-const b = { class: "hidden-visually" }, x = { class: "progress-circle__chart" }, M = {
+import { useModifiers as b } from "../../composables/useModifiers.js";
+const _ = { class: "hidden-visually" }, x = { class: "progress-circle__chart" }, M = {
   class: "progress-circle__chart-svg",
   viewBox: "0 0 32 32"
 }, N = {
@@ -89,7 +89,7 @@ const b = { class: "hidden-visually" }, x = { class: "progress-circle__chart" },
     /**
      * Modifiers (to add any modifier classes based on base class)
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(a) {
     const e = a, t = B(null), d = (s) => s === 100 ? 101 : s, g = (s = 0) => {
@@ -100,7 +100,7 @@ const b = { class: "hidden-visually" }, x = { class: "progress-circle__chart" },
     h(() => e.percentage, (s, r) => {
       s !== r && g(d(r));
     });
-    const m = i(() => `${d(e.percentage)} 100`), c = i(() => e.outside || e.outsideBelow || e.small), { resolvedModifiers: p } = _({
+    const m = i(() => `${d(e.percentage)} 100`), c = i(() => e.outside || e.outsideBelow || e.small), { resolvedModifiers: p } = b({
       props: e,
       baseClass: "progress-circle",
       internal: i(() => ({
@@ -119,7 +119,7 @@ const b = { class: "hidden-visually" }, x = { class: "progress-circle__chart" },
     }), (s, r) => (n(), o("div", {
       class: w(["progress-circle", V(p)])
     }, [
-      l("strong", b, u(a.label), 1),
+      l("strong", _, u(a.label), 1),
       l("div", x, [
         (n(), o("svg", M, [
           r[0] || (r[0] = l("circle", {

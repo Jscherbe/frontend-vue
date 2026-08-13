@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.13
+
+- Update modifiers props across components to allow Object which is supported by `useModifiers` which these all use under the hood eg. `:modifiers="{ 'compact' : isCompact }"`
+
 ## 0.6.12
 
 - **UluTabGroup**

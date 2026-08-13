@@ -1,8 +1,8 @@
 import { computed as c, inject as x, onMounted as V, createBlock as s, openBlock as d, unref as O, withCtx as i, renderSlot as l, resolveDynamicComponent as T, createTextVNode as B, toDisplayString as C, createElementVNode as M, normalizeClass as S, createVNode as $ } from "vue";
-import A from "../elements/UluIcon.vue.js";
-import b from "./UluCollapsible.vue.js";
-import { useModifiers as h } from "../../composables/useModifiers.js";
-import { newId as j } from "../../utils/dom.js";
+import b from "../elements/UluIcon.vue.js";
+import j from "./UluCollapsible.vue.js";
+import { useModifiers as A } from "../../composables/useModifiers.js";
+import { newId as h } from "../../utils/dom.js";
 const G = {
   __name: "UluAccordion",
   props: {
@@ -55,14 +55,14 @@ const G = {
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   emits: ["update:modelValue"],
   setup(t, { emit: u }) {
-    const r = t, m = u, { resolvedModifiers: g } = h({ props: r, baseClass: "accordion" }), p = c(() => {
+    const r = t, m = u, { resolvedModifiers: g } = A({ props: r, baseClass: "accordion" }), p = c(() => {
       const e = { ...r.classes };
       return e.container = [e.container, g.value], e;
-    }), o = x("uluAccordionGroup", null), a = j("ulu-accordion");
+    }), o = x("uluAccordionGroup", null), a = h("ulu-accordion");
     V(() => {
       o && r.startOpen && o.toggle(a, !0);
     });
@@ -70,7 +70,7 @@ const G = {
     function y(e) {
       o && o.toggle(a, e), m("update:modelValue", e);
     }
-    return (e, E) => (d(), s(b, {
+    return (e, E) => (d(), s(j, {
       id: O(a),
       "model-value": f.value,
       "start-open": t.startOpen,
@@ -92,7 +92,7 @@ const G = {
           M("span", {
             class: S(["accordion__icon", t.classes.icon])
           }, [
-            $(A, {
+            $(b, {
               icon: n ? "type:collapse" : "type:expand",
               style: { display: "inline" }
             }, null, 8, ["icon"])

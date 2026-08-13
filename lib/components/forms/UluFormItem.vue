@@ -110,7 +110,7 @@
     /**
      * Additional BEM modifiers for the form item.
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   });
 
   const slots = useSlots();

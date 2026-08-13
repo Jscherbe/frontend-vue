@@ -10,7 +10,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     scrollBehavior: string;
     emptySlides: boolean;
     observerOptions: Record<string, any>;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
         readonly items?: unknown[] | undefined;
         readonly controls?: boolean | undefined;
@@ -18,7 +18,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly scrollBehavior?: string | undefined;
         readonly emptySlides?: boolean | undefined;
         readonly observerOptions?: Record<string, any> | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
 type __VLS_TemplateResult = {

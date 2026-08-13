@@ -11,7 +11,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     triggerTextElement: string;
     triggerText?: string | undefined;
     modelValue?: boolean | undefined;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
         readonly startOpen?: boolean | undefined;
         readonly classes?: Record<string, any> | undefined;
@@ -19,7 +19,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly triggerTextElement?: string | undefined;
         readonly triggerText?: string | undefined;
         readonly modelValue?: boolean | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
 type __VLS_TemplateResult = {

@@ -3,7 +3,7 @@ import b from "../utils/UluAction.vue.js";
 import c from "./UluIcon.vue.js";
 import { useModifiers as S } from "../../composables/useModifiers.js";
 import { checkDeprecatedProps as h } from "../../utils/props.js";
-const k = { key: 1 }, C = {
+const O = { key: 1 }, C = {
   __name: "UluButton",
   props: {
     /**
@@ -83,7 +83,7 @@ const k = { key: 1 }, C = {
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array],
+    modifiers: [String, Array, Object],
     /**
      * Button type (e.g. 'submit', 'reset', 'button').
      */
@@ -111,7 +111,7 @@ const k = { key: 1 }, C = {
       const t = n.ariaLabel || n.alt || n.iconOnly && n.text;
       return t || null;
     });
-    return (t, O) => (o(), a(b, {
+    return (t, k) => (o(), a(b, {
       to: e.to,
       href: e.href,
       target: e.target,
@@ -132,7 +132,7 @@ const k = { key: 1 }, C = {
           icon: e.icon,
           class: "button__icon"
         }, null, 8, ["icon"])) : r("", !0),
-        (t.$slots.default || e.text) && !e.iconOnly ? (o(), g("span", k, [
+        (t.$slots.default || e.text) && !e.iconOnly ? (o(), g("span", O, [
           l(t.$slots, "default", {}, () => [
             y(B(e.text), 1)
           ])

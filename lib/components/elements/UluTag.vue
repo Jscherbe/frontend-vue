@@ -46,7 +46,7 @@
     /**
      * Modifiers for tag class
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   });
 
   const { resolvedModifiers } = useModifiers({ props, baseClass: "tag" });

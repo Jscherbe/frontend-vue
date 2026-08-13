@@ -1,4 +1,4 @@
-import { createElementBlock as t, openBlock as s, normalizeClass as a, unref as i, renderSlot as n } from "vue";
+import { createElementBlock as r, openBlock as s, normalizeClass as a, unref as i, renderSlot as n } from "vue";
 import { useModifiers as u } from "../../composables/useModifiers.js";
 const d = {
   __name: "UluCallout",
@@ -9,16 +9,16 @@ const d = {
     fullHeight: Boolean,
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
-     * - Can be String or Array of Strings
+     * - Can be String, Array, or Object
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(e) {
     const l = e, { resolvedModifiers: o } = u({ props: l, baseClass: "callout" });
-    return (r, c) => (s(), t("div", {
+    return (t, c) => (s(), r("div", {
       class: a(["callout", [i(o), { "full-height": e.fullHeight }]])
     }, [
-      n(r.$slots, "default")
+      n(t.$slots, "default")
     ], 2));
   }
 };

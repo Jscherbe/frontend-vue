@@ -188,9 +188,9 @@
     overlay: Boolean,
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
-     * - Can be String or Array of Strings
+     * - Can be String, Array, or Object
      */
-    modifiers: [Array, String]
+    modifiers: [String, Array, Object]
   });
 
   const emit = defineEmits(['proxy-click']);

@@ -48,7 +48,7 @@
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   });
 
   // Explicitly declare the emit so Vue knows to capture the @change listener 

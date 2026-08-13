@@ -10,7 +10,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     rule: boolean;
     icon?: string | undefined;
     title?: string | undefined;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
         readonly classes?: Record<string, any> | undefined;
         readonly titleElement?: string | undefined;
@@ -18,7 +18,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly rule?: boolean | undefined;
         readonly icon?: string | undefined;
         readonly title?: string | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;
 type __VLS_TemplateResult = {

@@ -8,14 +8,14 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     type?: string | undefined;
     size?: string | undefined;
     icon?: string | unknown[] | undefined;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     text?: string | number | undefined;
     $props: {
         readonly counter?: boolean | undefined;
         readonly type?: string | undefined;
         readonly size?: string | undefined;
         readonly icon?: string | unknown[] | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly text?: string | number | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLSpanElement>;

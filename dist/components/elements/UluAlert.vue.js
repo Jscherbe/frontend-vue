@@ -33,7 +33,7 @@ const v = { class: "layout-flex" }, S = { class: "type-small" }, $ = {
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(e) {
     const o = e, { resolvedModifiers: c } = y({

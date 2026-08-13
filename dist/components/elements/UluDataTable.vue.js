@@ -1,5 +1,5 @@
-import { computed as l, createBlock as n, openBlock as c, mergeProps as u, unref as f, createSlots as m, renderList as d, withCtx as g, renderSlot as w, normalizeProps as y, guardReactiveProps as R } from "vue";
-import { useModifiers as b } from "../../composables/useModifiers.js";
+import { computed as l, createBlock as n, openBlock as c, mergeProps as u, unref as f, createSlots as m, renderList as d, withCtx as g, renderSlot as w, normalizeProps as b, guardReactiveProps as y } from "vue";
+import { useModifiers as R } from "../../composables/useModifiers.js";
 import p from "./UluTable.vue.js";
 import { isArrayOfObjects as o } from "../../utils/props.js";
 const x = {
@@ -69,7 +69,7 @@ const x = {
     /**
      * Additional style modifiers
      */
-    modifiers: [String, Array],
+    modifiers: [String, Array, Object],
     /**
      * Allows user to pass classes object to add custom classes to parts of the component
      */
@@ -79,7 +79,7 @@ const x = {
     }
   },
   setup(e) {
-    const t = e, { resolvedModifiers: s } = b({
+    const t = e, { resolvedModifiers: s } = R({
       props: t,
       baseClass: "data-table",
       internal: l(() => ({
@@ -103,7 +103,7 @@ const x = {
       d(r.$slots, (C, a) => ({
         name: a,
         fn: g((i) => [
-          w(r.$slots, a, y(R(i)))
+          w(r.$slots, a, b(y(i)))
         ])
       }))
     ]), 1040, ["columns", "rows", "footerRows", "caption", "idPrefix", "getRowValue", "getColumnTitle", "classes"]));

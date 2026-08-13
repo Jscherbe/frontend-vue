@@ -189,7 +189,7 @@
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array],
+    modifiers: [String, Array, Object],
     /**
      * Opt-in convenience behavior. If the modal body's sole content is an iframe, it automatically applies layout fixes.
      */

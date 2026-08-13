@@ -1,7 +1,7 @@
 import { computed as m, createBlock as c, createCommentVNode as l, openBlock as u, resolveDynamicComponent as k, normalizeClass as d, unref as f, withCtx as r, createVNode as _, createSlots as p, renderList as g, renderSlot as h, normalizeProps as C, guardReactiveProps as S } from "vue";
 import B from "./UluMenu.vue.js";
 import { useModifiers as y } from "../../composables/useModifiers.js";
-const b = {
+const $ = {
   __name: "UluMenuStack",
   props: {
     /**
@@ -30,7 +30,7 @@ const b = {
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(e) {
     const t = e, o = m(() => ({
@@ -72,5 +72,5 @@ const b = {
   }
 };
 export {
-  b as default
+  $ as default
 };

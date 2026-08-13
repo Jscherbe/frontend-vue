@@ -8,14 +8,14 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     vertical: boolean;
     sticky: boolean;
     transparent: boolean;
-    modifiers?: string | unknown[] | undefined;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     defaultIndex?: number | undefined;
     selectedIndex?: number | undefined;
     $props: {
         readonly vertical?: boolean | undefined;
         readonly sticky?: boolean | undefined;
         readonly transparent?: boolean | undefined;
-        readonly modifiers?: string | unknown[] | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly defaultIndex?: number | undefined;
         readonly selectedIndex?: number | undefined;
     };

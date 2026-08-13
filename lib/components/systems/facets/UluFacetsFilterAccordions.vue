@@ -80,7 +80,7 @@
     /**
      * Class modifiers for accordion (ie. 'transparent', 'secondary', etc)
      */
-    accordionModifiers: [String, Array]
+    accordionModifiers: [String, Array, Object]
   });
 
   const emit = defineEmits(['facet-change']);

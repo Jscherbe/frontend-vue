@@ -15,7 +15,7 @@ const w = {
 }, A = { class: "progress-bar__value progress-bar__value--amount" }, D = {
   key: 0,
   class: "progress-bar__value progress-bar__value--deficit"
-}, E = { class: "progress-bar__value progress-bar__value--total" }, M = {
+}, E = { class: "progress-bar__value progress-bar__value--total" }, z = {
   __name: "UluProgressBar",
   props: {
     /**
@@ -108,7 +108,7 @@ const w = {
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])
      */
-    modifiers: [String, Array]
+    modifiers: [String, Array, Object]
   },
   setup(e) {
     const a = e, c = (t, l) => `${l === 0 ? 0 : t / l * 100}%`, g = m(() => a.indeterminate ? null : c(a.amount, a.total)), f = m(() => c(a.deficit, a.total)), { resolvedModifiers: y } = $({
@@ -187,5 +187,5 @@ const w = {
   }
 };
 export {
-  M as default
+  z as default
 };
