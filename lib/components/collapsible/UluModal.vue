@@ -55,7 +55,7 @@
       </div>
       <div 
         v-if="$slots.footer" 
-        class="site-modal__footer" 
+        class="modal__footer" 
         :class="classes.footer" 
       >
         <slot name="footer" :close="close"/>

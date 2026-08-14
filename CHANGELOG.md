@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.16
+
+- `UluModal` fix footer classname "site-modal__footer" -> "modal__footer"
+
 ## 0.6.15
 
 - `UluToastDisplay` remove CSS for animation and move to `_toast.scss` stylesheet
