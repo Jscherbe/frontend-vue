@@ -269,7 +269,7 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
         ], 6),
         l.$slots.footer ? (d(), C("div", {
           key: 1,
-          class: r(["site-modal__footer", t.classes.footer])
+          class: r(["modal__footer", t.classes.footer])
         }, [
           m(l.$slots, "footer", { close: a })
         ], 2)) : g("", !0),

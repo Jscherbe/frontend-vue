@@ -119,6 +119,10 @@
         "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
       }
     ],
+    "UluWhenBreakpoint": [],
+    "UluTitleRail": [],
+    "UluDataGrid": [],
+    "UluAdaptiveLayout": [],
     "UluSkipLink": [
       {
         "title": "Default",
@@ -191,54 +195,6 @@
         "code": "<UluBreadcrumb items=\"{...}\">Content</UluBreadcrumb>"
       }
     ],
-    "UluWhenBreakpoint": [],
-    "UluTitleRail": [],
-    "UluDataGrid": [],
-    "UluAdaptiveLayout": [],
-    "UluSelectableMenu": [],
-    "UluSearchForm": [],
-    "UluFormTextarea": [],
-    "UluFormText": [],
-    "UluFormSelect": [],
-    "UluFormRequiredChar": [],
-    "UluFormRadio": [],
-    "UluFormLabel": [],
-    "UluFormItemsInline": [],
-    "UluFormItem": [],
-    "UluFormFile": [],
-    "UluFormFieldset": [],
-    "UluFormCheckbox": [],
-    "UluFormActions": [],
-    "UluForm": [],
-    "UluFileDisplay": [],
-    "UluTabGroup": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<UluTabGroup>Content</UluTabGroup>"
-      },
-      {
-        "title": "Vertical",
-        "description": "Vertical variation",
-        "code": "<UluTabGroup vertical>Content</UluTabGroup>"
-      },
-      {
-        "title": "DefaultIndex",
-        "description": "DefaultIndex variation",
-        "code": "<UluTabGroup :defaultIndex=\"2\">Content</UluTabGroup>"
-      },
-      {
-        "title": "FullWidth",
-        "description": "FullWidth variation",
-        "code": "<UluTabGroup modifiers=\"{...}\">Content</UluTabGroup>"
-      }
-    ],
-    "UluOverflowPopover": [],
-    "UluModal": [],
-    "UluDropdown": [],
-    "UluCollapsible": [],
-    "UluAccordionGroup": [],
-    "UluAccordion": [],
     "UluTag": [],
     "UluTable": [
       {
@@ -462,6 +418,50 @@
       }
     ],
     "UluAlert": [],
+    "UluTabGroup": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<UluTabGroup>Content</UluTabGroup>"
+      },
+      {
+        "title": "Vertical",
+        "description": "Vertical variation",
+        "code": "<UluTabGroup vertical>Content</UluTabGroup>"
+      },
+      {
+        "title": "DefaultIndex",
+        "description": "DefaultIndex variation",
+        "code": "<UluTabGroup :defaultIndex=\"2\">Content</UluTabGroup>"
+      },
+      {
+        "title": "FullWidth",
+        "description": "FullWidth variation",
+        "code": "<UluTabGroup modifiers=\"{...}\">Content</UluTabGroup>"
+      }
+    ],
+    "UluOverflowPopover": [],
+    "UluModal": [],
+    "UluDropdown": [],
+    "UluCollapsible": [],
+    "UluAccordionGroup": [],
+    "UluAccordion": [],
+    "UluSelectableMenu": [],
+    "UluSearchForm": [],
+    "UluFormTextarea": [],
+    "UluFormText": [],
+    "UluFormSelect": [],
+    "UluFormRequiredChar": [],
+    "UluFormRadio": [],
+    "UluFormLabel": [],
+    "UluFormItemsInline": [],
+    "UluFormItem": [],
+    "UluFormFile": [],
+    "UluFormFieldset": [],
+    "UluFormCheckbox": [],
+    "UluFormActions": [],
+    "UluForm": [],
+    "UluFileDisplay": [],
     "UluTableSticky": [
       {
         "title": "Default",
@@ -12614,6 +12614,71 @@
         "level": 0
       },
       {
+        "id": "module:useTooltipFollow",
+        "longname": "module:useTooltipFollow",
+        "name": "useTooltipFollow",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "useTooltipFollow.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 80,
+        "level": 0
+      },
+      {
+        "id": "module:useTooltip",
+        "longname": "module:useTooltip",
+        "name": "useTooltip",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "useTooltip.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 81,
+        "level": 0
+      },
+      {
+        "id": "module:popoversPlugin",
+        "longname": "module:popoversPlugin",
+        "name": "popoversPlugin",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 83,
+        "level": 0
+      },
+      {
+        "id": "popovers.module:defaults",
+        "longname": "popovers.module:defaults",
+        "name": "defaults",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "defaults.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 89
+      },
+      {
+        "id": "module:corePlugin",
+        "longname": "module:corePlugin",
+        "name": "corePlugin",
+        "kind": "module",
+        "description": "Core plugin for managing shared configuration for the library.",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
+        },
+        "order": 111,
+        "level": 0
+      },
+      {
         "id": "module:useModals",
         "longname": "module:useModals",
         "name": "useModals",
@@ -12623,7 +12688,7 @@
           "filename": "useModals.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 80,
+        "order": 113,
         "level": 0
       },
       {
@@ -12637,7 +12702,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 82,
+        "order": 115,
         "level": 0
       },
       {
@@ -12650,72 +12715,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 85,
-        "level": 0
-      },
-      {
-        "id": "module:useTooltipFollow",
-        "longname": "module:useTooltipFollow",
-        "name": "useTooltipFollow",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "useTooltipFollow.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 94,
-        "level": 0
-      },
-      {
-        "id": "module:useTooltip",
-        "longname": "module:useTooltip",
-        "name": "useTooltip",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "useTooltip.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 95,
-        "level": 0
-      },
-      {
-        "id": "module:popoversPlugin",
-        "longname": "module:popoversPlugin",
-        "name": "popoversPlugin",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 97,
-        "level": 0
-      },
-      {
-        "id": "popovers.module:defaults",
-        "longname": "popovers.module:defaults",
-        "name": "defaults",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "defaults.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 103
-      },
-      {
-        "id": "module:corePlugin",
-        "longname": "module:corePlugin",
-        "name": "corePlugin",
-        "kind": "module",
-        "description": "Core plugin for managing shared configuration for the library.",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
-        },
-        "order": 125,
+        "order": 118,
         "level": 0
       },
       {
@@ -12813,42 +12813,6 @@
         "level": 0
       },
       {
-        "id": "module:modalsPlugin--module.exports",
-        "longname": "module:modalsPlugin",
-        "name": "module.exports",
-        "kind": "function",
-        "isExported": true,
-        "description": "Modals Vue Plugin",
-        "memberof": "module:modalsPlugin",
-        "params": [
-          {
-            "type": {
-              "names": [
-                "Object"
-              ]
-            },
-            "description": "Vue app instance passed to plugin",
-            "name": "App"
-          },
-          {
-            "type": {
-              "names": [
-                "module:modalsPlugin~UluModalsPluginOptions"
-              ]
-            },
-            "description": "Options to change (see defaults)",
-            "name": "userOptions"
-          }
-        ],
-        "meta": {
-          "lineno": 28,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
-        },
-        "order": 84,
-        "level": 0
-      },
-      {
         "id": "module:popoversPlugin--module.exports",
         "longname": "module:popoversPlugin",
         "name": "module.exports",
@@ -12881,7 +12845,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 102,
+        "order": 88,
         "level": 0
       },
       {
@@ -12958,7 +12922,43 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 126,
+        "order": 112,
+        "level": 0
+      },
+      {
+        "id": "module:modalsPlugin--module.exports",
+        "longname": "module:modalsPlugin",
+        "name": "module.exports",
+        "kind": "function",
+        "isExported": true,
+        "description": "Modals Vue Plugin",
+        "memberof": "module:modalsPlugin",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "description": "Vue app instance passed to plugin",
+            "name": "App"
+          },
+          {
+            "type": {
+              "names": [
+                "module:modalsPlugin~UluModalsPluginOptions"
+              ]
+            },
+            "description": "Options to change (see defaults)",
+            "name": "userOptions"
+          }
+        ],
+        "meta": {
+          "lineno": 28,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
+        },
+        "order": 117,
         "level": 0
       },
       {
@@ -13158,7 +13158,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 104
+        "order": 90
       },
       {
         "id": "popovers.module:defaults.plugin.directiveName",
@@ -13178,7 +13178,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 105
+        "order": 91
       },
       {
         "id": "popovers.module:defaults.popover",
@@ -13193,7 +13193,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 106
+        "order": 92
       },
       {
         "id": "popovers.module:defaults.popover.inline",
@@ -13213,7 +13213,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 107
+        "order": 93
       },
       {
         "id": "popovers.module:defaults.popover.delay",
@@ -13233,7 +13233,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 108
+        "order": 94
       },
       {
         "id": "popovers.module:defaults.popover.placement",
@@ -13253,7 +13253,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 109
+        "order": 95
       },
       {
         "id": "popovers.module:defaults.popover.strategy",
@@ -13273,7 +13273,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 110
+        "order": 96
       },
       {
         "id": "popovers.module:defaults.popover.offset",
@@ -13293,7 +13293,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 111
+        "order": 97
       },
       {
         "id": "popovers.module:defaults.popover.arrow",
@@ -13313,7 +13313,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 112
+        "order": 98
       },
       {
         "id": "popovers.module:defaults.tooltip",
@@ -13333,7 +13333,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 113
+        "order": 99
       },
       {
         "id": "popovers.module:defaults.tooltip.teleportTo",
@@ -13353,7 +13353,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 114
+        "order": 100
       },
       {
         "id": "popovers.module:defaults.tooltip.class",
@@ -13375,7 +13375,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 115
+        "order": 101
       },
       {
         "id": "popovers.module:defaults.tooltip.showEvents",
@@ -13395,7 +13395,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 116
+        "order": 102
       },
       {
         "id": "popovers.module:defaults.tooltip.hideEvents",
@@ -13415,7 +13415,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 117
+        "order": 103
       },
       {
         "id": "popovers.module:defaults.tooltip.isHtml",
@@ -13435,7 +13435,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 118
+        "order": 104
       },
       {
         "id": "popovers.module:defaults.tooltip.trigger",
@@ -13456,7 +13456,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 119
+        "order": 105
       },
       {
         "id": "popovers.module:defaults.tooltip.content",
@@ -13477,7 +13477,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 120
+        "order": 106
       },
       {
         "id": "popovers.module:defaults.tooltip.delay",
@@ -13497,7 +13497,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 121
+        "order": 107
       },
       {
         "id": "popovers.module:defaults.tooltip.onReady",
@@ -13512,7 +13512,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 122
+        "order": 108
       },
       {
         "id": "popovers.module:defaults.tooltip.component",
@@ -13527,7 +13527,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 123
+        "order": 109
       },
       {
         "id": "popovers.module:defaults.tooltip.componentProps",
@@ -13542,7 +13542,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 124
+        "order": 110
       },
       {
         "id": "module:breakpointsPlugin--module.exports~defaults.breakpointMobile",
@@ -13648,42 +13648,6 @@
         "level": 0
       },
       {
-        "id": "module:useModals.useModals",
-        "longname": "module:useModals.useModals",
-        "name": "useModals",
-        "kind": "constant",
-        "scope": "static",
-        "description": "A composable to access the global modals API.\nThis is a simple wrapper around `inject('uluModals')` and throws an error if the plugin is not installed.",
-        "memberof": "module:useModals",
-        "returns": [
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "The modals API with methods like `open`, `close`, `add`, `remove`, and `get`."
-          }
-        ],
-        "exceptions": [
-          {
-            "type": {
-              "names": [
-                "Error"
-              ]
-            },
-            "description": "If the modals plugin is not installed."
-          }
-        ],
-        "meta": {
-          "lineno": 13,
-          "filename": "useModals.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
-        },
-        "order": 81,
-        "level": 0
-      },
-      {
         "id": "module:popoversPlugin--module.exports.POPOVER_OPTIONS_KEY",
         "longname": "module:popoversPlugin.POPOVER_OPTIONS_KEY",
         "name": "POPOVER_OPTIONS_KEY",
@@ -13696,7 +13660,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 98,
+        "order": 84,
         "level": 0
       },
       {
@@ -13712,7 +13676,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 99,
+        "order": 85,
         "level": 0
       },
       {
@@ -13728,7 +13692,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 100,
+        "order": 86,
         "level": 0
       },
       {
@@ -13775,7 +13739,43 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 101,
+        "order": 87,
+        "level": 0
+      },
+      {
+        "id": "module:useModals.useModals",
+        "longname": "module:useModals.useModals",
+        "name": "useModals",
+        "kind": "constant",
+        "scope": "static",
+        "description": "A composable to access the global modals API.\nThis is a simple wrapper around `inject('uluModals')` and throws an error if the plugin is not installed.",
+        "memberof": "module:useModals",
+        "returns": [
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "The modals API with methods like `open`, `close`, `add`, `remove`, and `get`."
+          }
+        ],
+        "exceptions": [
+          {
+            "type": {
+              "names": [
+                "Error"
+              ]
+            },
+            "description": "If the modals plugin is not installed."
+          }
+        ],
+        "meta": {
+          "lineno": 13,
+          "filename": "useModals.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
+        },
+        "order": 114,
         "level": 0
       },
       {
@@ -15142,7 +15142,7 @@
           "filename": "useTooltip.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 96,
+        "order": 82,
         "level": 0
       },
       {
@@ -15435,7 +15435,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 87,
+        "order": 120,
         "level": 0
       },
       {
@@ -15451,7 +15451,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 88,
+        "order": 121,
         "level": 0
       },
       {
@@ -15502,7 +15502,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 86,
+        "order": 119,
         "level": 0
       },
       {
@@ -15519,7 +15519,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 89,
+        "order": 122,
         "level": 0
       },
       {
@@ -15754,7 +15754,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 90,
+        "order": 123,
         "level": 0
       },
       {
@@ -15780,7 +15780,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 91,
+        "order": 124,
         "level": 0
       },
       {
@@ -15796,7 +15796,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 92,
+        "order": 125,
         "level": 0
       },
       {
@@ -15822,7 +15822,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 93,
+        "order": 126,
         "level": 0
       },
       {
@@ -16305,7 +16305,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 83,
+        "order": 116,
         "level": 0
       }
     ],
