@@ -180,18 +180,18 @@ $config: (
     }
   }
 
-  // Vue animation
-  #{ $prefix }--animation-move, 
-  #{ $prefix }--animation-enter-active,
-  #{ $prefix }--animation-leave-active {
+  // Vue transition group animation on container
+  .toast-animation-move, 
+  .toast-animation-enter-active,
+  .toast-animation-leave-active {
     transition: all 0.3s ease;
   }
-  #{ $prefix }--animation-enter-from,
-  #{ $prefix }--animation-leave-to {
+  .toast-animation-enter-from,
+  .toast-animation-leave-to {
     opacity: 0;
     transform: translateX(30px);
   }
-  #{ $prefix }--animation-leave-active {
+  .toast-animation-leave-active {
     position: absolute;
     width: 100%;
   }

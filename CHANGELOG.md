@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.15
+
+- `UluToastDisplay` remove CSS for animation and move to `_toast.scss` stylesheet
+
 ## 0.6.14
 
 - Add `useToast` component to exports barrel files (was missing)
