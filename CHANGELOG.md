@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.20
+
+- `UluToast` support defining actions as standard objects `{ label, click, class }` alongside legacy function-based actions (backwards-compatible)
+
 ## 0.6.19
 
 - `UluToast` add support for individual toast actions to specify their own classes via `action.class`

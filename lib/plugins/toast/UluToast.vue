@@ -83,8 +83,11 @@
 
   const handleAction = (event, action) => {
     props.toast.close();
-    nextTick(() => {
-      action(event, props.toast, action);
-    });
+    const callback = typeof action === "function" ? action : action.click;
+    if (callback) {
+      nextTick(() => {
+        callback(event, props.toast, action);
+      });
+    }
   };
 </script>

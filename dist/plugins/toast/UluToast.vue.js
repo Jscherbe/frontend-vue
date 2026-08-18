@@ -1,5 +1,5 @@
-import { computed as f, createElementBlock as a, openBlock as o, normalizeClass as e, createCommentVNode as n, createElementVNode as r, renderSlot as m, createBlock as B, toDisplayString as d, Fragment as g, renderList as S, createVNode as h, nextTick as E } from "vue";
-import v from "../../components/elements/UluIcon.vue.js";
+import { computed as C, createElementBlock as l, openBlock as o, normalizeClass as e, createCommentVNode as c, createElementVNode as r, renderSlot as m, createBlock as B, toDisplayString as d, Fragment as g, renderList as S, createVNode as h, nextTick as E } from "vue";
+import k from "../../components/elements/UluIcon.vue.js";
 import { mergeClassLookups as L } from "../../utils/props.js";
 const $ = ["onClick"], T = {
   __name: "UluToast",
@@ -17,22 +17,24 @@ const $ = ["onClick"], T = {
     }
   },
   setup(t) {
-    const k = {
+    const v = {
       content: "type-small",
       date: "type-small-x",
       actions: "type-small-x",
       action: "button button--small button--outline",
       closeButton: "button button--icon button--transparent"
-    }, u = t, s = f(() => L(
-      k,
+    }, u = t, s = C(() => L(
+      v,
       u.classes,
       u.toast?.classes
-    )), y = (l, c) => {
-      u.toast.close(), E(() => {
-        c(l, u.toast, c);
+    )), y = (i, n) => {
+      u.toast.close();
+      const a = typeof n == "function" ? n : n.click;
+      a && E(() => {
+        a(i, u.toast, n);
       });
     };
-    return (l, c) => (o(), a("div", {
+    return (i, n) => (o(), l("div", {
       class: e(["toast", [
         {
           "toast--persistent": !t.toast.duration
@@ -40,54 +42,54 @@ const $ = ["onClick"], T = {
         t.toast?.class
       ]])
     }, [
-      t.toast.icon || l.$slots.icon ? (o(), a("div", {
+      t.toast.icon || i.$slots.icon ? (o(), l("div", {
         key: 0,
         class: e(["toast__icon", s.value.icon])
       }, [
-        m(l.$slots, "icon", { toast: t.toast }, () => [
-          t.toast.icon ? (o(), B(v, {
+        m(i.$slots, "icon", { toast: t.toast }, () => [
+          t.toast.icon ? (o(), B(k, {
             key: 0,
             icon: t.toast.icon
-          }, null, 8, ["icon"])) : n("", !0)
+          }, null, 8, ["icon"])) : c("", !0)
         ])
-      ], 2)) : n("", !0),
+      ], 2)) : c("", !0),
       r("div", {
         class: e(["toast__content", s.value.content])
       }, [
-        m(l.$slots, "content", { toast: t.toast }, () => [
-          t.toast.title ? (o(), a("div", {
+        m(i.$slots, "content", { toast: t.toast }, () => [
+          t.toast.title ? (o(), l("div", {
             key: 0,
             class: e(["toast__header", s.value.header])
           }, [
             r("strong", {
               class: e(["toast__title", s.value.title])
             }, d(t.toast.title), 3),
-            t.toast.date ? (o(), a("span", {
+            t.toast.date ? (o(), l("span", {
               key: 0,
               class: e(["toast__date", s.value.date])
-            }, d(t.toast.date), 3)) : n("", !0)
-          ], 2)) : n("", !0),
-          t.toast.description ? (o(), a("div", {
+            }, d(t.toast.date), 3)) : c("", !0)
+          ], 2)) : c("", !0),
+          t.toast.description ? (o(), l("div", {
             key: 1,
             class: e(["toast__body", s.value.body])
-          }, d(t.toast.description), 3)) : n("", !0)
+          }, d(t.toast.description), 3)) : c("", !0)
         ])
       ], 2),
-      t.toast.actions?.length ? (o(), a("div", {
+      t.toast.actions?.length ? (o(), l("div", {
         key: 1,
         class: e(["toast__actions", s.value.actions])
       }, [
-        (o(!0), a(g, null, S(t.toast.actions, (i, b) => (o(), a("button", {
+        (o(!0), l(g, null, S(t.toast.actions, (a, b) => (o(), l("button", {
           key: b,
-          class: e(["toast__action", [s.value.action, i.class]]),
-          onClick: (C) => y(C, i)
-        }, d(i.label), 11, $))), 128))
-      ], 2)) : n("", !0),
+          class: e(["toast__action", [s.value.action, a.class]]),
+          onClick: (f) => y(f, a)
+        }, d(a.label), 11, $))), 128))
+      ], 2)) : c("", !0),
       r("button", {
         class: e(["toast__close", s.value.closeButton]),
-        onClick: c[0] || (c[0] = (...i) => t.toast.close && t.toast.close(...i))
+        onClick: n[0] || (n[0] = (...a) => t.toast.close && t.toast.close(...a))
       }, [
-        h(v, { icon: "type:close" })
+        h(k, { icon: "type:close" })
       ], 2)
     ], 2));
   }
