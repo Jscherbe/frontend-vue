@@ -1,11 +1,16 @@
 # Change Log
 
+## 0.6.19
+
+- `UluToast` add support for individual toast actions to specify their own classes via `action.class`
+
 ## 0.6.18
 
 - Add generic `mergeClassLookups` utility to `utils.props` for flexible, hierarchical component class merging.
 - Export `utils.props` module publicly so consumers can reuse it for custom component development.
 - Document all individual utility exports in `Overview/API Reference` story documentation.
 - Update `UluToast` to use `mergeClassLookups` with appropriate merge precedence (defaults -> component prop -> toast config).
+
   - Will be updating other components using class lookups incrementally in the future
 
 ## 0.6.17

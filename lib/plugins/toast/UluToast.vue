@@ -36,7 +36,7 @@
         v-for="(action, index) in toast.actions"
         :key="index"
         class="toast__action" 
-        :class="resolvedClasses.action"
+        :class="[resolvedClasses.action, action.class]"
         @click="handleAction($event, action)"
       >
         {{ action.label }}
