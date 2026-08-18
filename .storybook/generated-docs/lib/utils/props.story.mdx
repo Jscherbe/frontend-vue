@@ -11,6 +11,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 * [props](#utils.module_props)
     * [.isArrayOfObjects(array)](#utils.module_props.isArrayOfObjects) ⇒ `Boolean`
     * [.checkDeprecatedProps(props, deprecatedNames, callback)](#utils.module_props.checkDeprecatedProps)
+    * [.mergeClasses(defaults, ...sources)](#utils.module_props.mergeClasses) ⇒ `Object`
 
 <a name="utils.module_props.isArrayOfObjects"></a>
 
@@ -36,4 +37,23 @@ Checks for deprecated props and calls a callback for each match
 | props | `object` | The current props object |
 | deprecatedNames | `Array.<string>` | Array of prop names to check |
 | callback | `function` | Function called for each match, receiving the prop name |
+
+<a name="utils.module_props.mergeClasses"></a>
+
+### props.mergeClasses(defaults, ...sources) ⇒ `Object`
+Merges multiple sources of class configuration objects.
+Sources are evaluated left-to-right (later sources override earlier ones).
+
+Behavior:
+- Object: Merges with the currently resolved classes.
+- Boolean (false): Clears the currently resolved classes to an empty object.
+- Function: Called with (resolved, defaults). Its return value replaces the resolved classes.
+
+**Kind**: static method of [`props`](#utils.module_props)  
+**Returns**: `Object` - The final resolved classes object  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| defaults | `Object` | The base default classes |
+| ...sources | `Object` \| `Boolean` \| `function` | The sources to merge |
 

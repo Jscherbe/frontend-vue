@@ -11,46 +11,55 @@
       toast?.class
     ]"
   >
-    <div v-if="toast.icon || $slots.icon" class="toast__icon" :class="classes.icon">
+    <div v-if="toast.icon || $slots.icon" class="toast__icon" :class="resolvedClasses.icon">
       <slot name="icon" :toast="toast">
         <UluIcon v-if="toast.icon" :icon="toast.icon"/>
       </slot>
     </div>
-    <div class="toast__content" :class="classes.content">
+    <div class="toast__content" :class="resolvedClasses.content">
       <slot name="content" :toast="toast">
-        <div v-if="toast.title" class="toast__header" :class="classes.header">
-          <strong class="toast__title" :class="classes.title">
+        <div v-if="toast.title" class="toast__header" :class="resolvedClasses.header">
+          <strong class="toast__title" :class="resolvedClasses.title">
             {{ toast.title }}
           </strong>
-          <span v-if="toast.date" class="toast__date" :class="classes.date">
+          <span v-if="toast.date" class="toast__date" :class="resolvedClasses.date">
             {{ toast.date }}
           </span>
         </div>
-        <div v-if="toast.description" class="toast__body" :class="classes.body">
+        <div v-if="toast.description" class="toast__body" :class="resolvedClasses.body">
           {{ toast.description }}
         </div>
       </slot>
     </div>
-    <div v-if="toast.actions?.length" class="toast__actions" :class="classes.actions">
+    <div v-if="toast.actions?.length" class="toast__actions" :class="resolvedClasses.actions">
       <button 
         v-for="(action, index) in toast.actions"
         :key="index"
         class="toast__action" 
-        :class="classes.action"
+        :class="resolvedClasses.action"
         @click="handleAction($event, action)"
       >
         {{ action.label }}
       </button>
     </div>
-    <button class="toast__close" :class="classes.closeButton" @click="toast.close">
+    <button class="toast__close" :class="resolvedClasses.closeButton" @click="toast.close">
       <UluIcon :icon="'type:close'"/>
     </button>
   </div>
 </template>
 
 <script setup>
-  import { nextTick } from "vue";
+  import { nextTick, computed } from "vue";
   import UluIcon from "../../components/elements/UluIcon.vue";
+  import { mergeClassLookups } from "../../utils/props.js";
+  
+  const DEFAULT_CLASSES = {
+    content: "type-small",
+    date: "type-small-x",
+    actions: "type-small-x",
+    action: "button button--small button--outline",
+    closeButton: "button button--icon button--transparent"
+  };
 
   const props = defineProps({
     /**
@@ -61,16 +70,16 @@
      * Icons for each element { icon, header, content, date, actions, action, closeButton, title, body, closeButton }
      */
     classes: {
-      type: Object,
-      default: () => ({
-        content: "type-small",
-        date: "type-small-x",
-        actions: "type-small-x",
-        action: "button button--small button--outline",
-        closeButton: "button button--icon button--transparent"
-      })
+      type: [Object, Boolean, Function],
+      default: () => ({})
     }
   });
+
+  const resolvedClasses = computed(() => mergeClassLookups(
+    DEFAULT_CLASSES,
+    props.classes,
+    props.toast?.classes
+  ));
 
   const handleAction = (event, action) => {
     props.toast.close();
