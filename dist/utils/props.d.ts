@@ -28,4 +28,13 @@ export function checkDeprecatedProps(props: object, deprecatedNames: string[], c
  * @returns {Object} The final resolved classes object
  */
 export function mergeClassLookups(defaults: Object, ...sources: (Object | boolean | Function)[]): Object;
+/**
+ * Merges a base class (string, array, or object) with a user-supplied class override.
+ * Supports string, array, object, function, or boolean (false to clear) overrides.
+ *
+ * @param {String|Array|Object} base The base classes
+ * @param {String|Array|Object|Function|Boolean} override The class override
+ * @returns {String|Array|Object} The resolved classes suitable for Vue class binding
+ */
+export function resolveClassOverride(base: string | any[] | Object, override: string | any[] | Object | Function | boolean): string | any[] | Object;
 //# sourceMappingURL=props.d.ts.map

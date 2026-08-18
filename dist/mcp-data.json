@@ -119,6 +119,10 @@
         "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
       }
     ],
+    "UluWhenBreakpoint": [],
+    "UluTitleRail": [],
+    "UluDataGrid": [],
+    "UluAdaptiveLayout": [],
     "UluSkipLink": [
       {
         "title": "Default",
@@ -191,10 +195,34 @@
         "code": "<UluBreadcrumb items=\"{...}\">Content</UluBreadcrumb>"
       }
     ],
-    "UluWhenBreakpoint": [],
-    "UluTitleRail": [],
-    "UluDataGrid": [],
-    "UluAdaptiveLayout": [],
+    "UluTabGroup": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<UluTabGroup>Content</UluTabGroup>"
+      },
+      {
+        "title": "Vertical",
+        "description": "Vertical variation",
+        "code": "<UluTabGroup vertical>Content</UluTabGroup>"
+      },
+      {
+        "title": "DefaultIndex",
+        "description": "DefaultIndex variation",
+        "code": "<UluTabGroup :defaultIndex=\"2\">Content</UluTabGroup>"
+      },
+      {
+        "title": "FullWidth",
+        "description": "FullWidth variation",
+        "code": "<UluTabGroup modifiers=\"{...}\">Content</UluTabGroup>"
+      }
+    ],
+    "UluOverflowPopover": [],
+    "UluModal": [],
+    "UluDropdown": [],
+    "UluCollapsible": [],
+    "UluAccordionGroup": [],
+    "UluAccordion": [],
     "UluSelectableMenu": [],
     "UluSearchForm": [],
     "UluFormTextarea": [],
@@ -434,34 +462,6 @@
       }
     ],
     "UluAlert": [],
-    "UluTabGroup": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<UluTabGroup>Content</UluTabGroup>"
-      },
-      {
-        "title": "Vertical",
-        "description": "Vertical variation",
-        "code": "<UluTabGroup vertical>Content</UluTabGroup>"
-      },
-      {
-        "title": "DefaultIndex",
-        "description": "DefaultIndex variation",
-        "code": "<UluTabGroup :defaultIndex=\"2\">Content</UluTabGroup>"
-      },
-      {
-        "title": "FullWidth",
-        "description": "FullWidth variation",
-        "code": "<UluTabGroup modifiers=\"{...}\">Content</UluTabGroup>"
-      }
-    ],
-    "UluOverflowPopover": [],
-    "UluModal": [],
-    "UluDropdown": [],
-    "UluCollapsible": [],
-    "UluAccordionGroup": [],
-    "UluAccordion": [],
     "UluTableSticky": [
       {
         "title": "Default",
@@ -12239,7 +12239,7 @@
       "raw_markdown": "\nimport { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';\nimport { version } from '../package.json';\nimport * as ButtonStories from './components/elements/UluButton.stories.js';\nimport * as CardStories from './components/elements/UluCard.stories.js';\n\n<Meta title=\"Overview/Introduction\" />\n\n# Ulu Frontend Vue\n\nWelcome to the living style guide for the Ulu Vue component library. This library provides a comprehensive set of accessible, reusable, and composable Vue 3 components, composables, and plugins to build modern web applications.\n\nThis documentation provides interactive examples and detailed API documentation for each part of the library.\n\n---\n\n## Core Concepts\n\nThe Ulu ecosystem is built on two main packages:\n\n- **`@ulu/frontend`**: The framework-agnostic core. It contains the foundational SCSS for styling, vanilla JavaScript utilities, and base components. It knows nothing about Vue. \n- **`@ulu/frontend-vue`** (This Library): The Vue 3 implementation. It provides wrapper components, composables, and plugins that build upon and integrate seamlessly with the `@ulu/frontend` core.\n\nThis separation allows for a consistent design system that can be applied to any web technology, while providing a rich, idiomatic experience for Vue developers.\n\n**Note:** For `@ulu/frontend` (components) that you are using from this Vue library. You need to output the component stylesheets like you would normally (create global stylesheet). The components in this library do not at the frontend scss modules. While they could be included in each component this would make it so that you can't build your own implementations (local app component / etc) with the class structures since the styles would only be available if that component is used. \n\nExample global stylesheet outputting all \"included\" components and base styles. Note you can configure whats output with ulu.component-set-includes for example. Note there are many ways to assemble the stylesheet (manual per component mixins, etc), this example shows the convenience modules which output each modules stylesheet based on includes/excludes.\n\n```sass\n@use \"config\"; // Your config changes for example\n@use \"@ulu/frontend/scss/stylesheets/base-styles.scss\"; // Outputs base styles that are included\n@use \"@ulu/frontend/scss/stylesheets/component-styles.scss\"; // Outputs component styles that are included\n@use \"@ulu/frontend/scss/stylesheets/helper-styles.scss\"; // Outputs helper styles that are included\n```\n\n*Please see `@ulu/frontend` library for full documentation of configuring and outputting stylesheet*\n\n---\n\n## Installation\n\nTo get started, add the library to your project.\n\n```bash\nnpm install @ulu/frontend-vue\n```\n\nNext, you must register the required plugins in your main application entry point (`main.js`). The `corePlugin` is essential, and other plugins like `breakpointsPlugin`, `popoverPlugin` are optional. Some components require plugins. If a required plugin is missing, an error is thrown.\n\n**`src/main.js`**\n```javascript\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { \n  corePlugin, \n  breakpointsPlugin, \n  toastPlugin, \n  modalsPlugin, \n  popoversPlugin \n} from '@ulu/frontend-vue';\nimport router from './router'; // Your vue-router instance\n\n// Import the main SCSS entry point\nimport '@ulu/frontend-vue/lib/_index.scss';\n\nconst app = createApp(App);\n\napp.use(router);\n\n// Register Ulu plugins\napp.use(corePlugin, {\n  // Optional: override default icons\n  iconsByType: {\n    danger: 'fas fa-exclamation-triangle',\n    close: 'fas fa-times'\n  }\n});\napp.use(breakpointsPlugin);\napp.use(toastPlugin);\napp.use(modalsPlugin, { \n  modals: [\n    /* your global modals */\n  ] \n});\napp.use(popoversPlugin);\n\n\napp.mount('#app');\n```\n\nFinally, you need to add the display components for plugins like `toast` and `modals` to your root `App.vue` file.\n\n**`src/App.vue`**\n```html\n<template>\n  <!-- Your App Layout -->\n  <router-view />\n\n  <!-- Ulu Plugin Display Components -->\n  <UluToastDisplay />\n  <UluModalsDisplay />\n  <UluTooltipDisplay />\n</template>\n```\n\n---\n\n## What's Inside?\n\nThe library is organized into several key areas:\n\n### Components\n\nThese are the reusable building blocks of your UI. They are organized by function into categories like `elements`, `collapsible`, `forms`, `layout`, `navigation`, and `systems`.\n\n**Simple Component Example: `UluButton`**\n\n<Canvas of={ButtonStories.Primary} />\n\n**Complex Component Example: `UluCard`**\n\n<Canvas of={CardStories.Default} />\n\n### Composables\n\nReusable, stateful logic that can be shared across components.\n\n- `useFacets`: A powerful composable for client-side filtering, searching, and sorting of data.\n- `usePagination`: Handles all the logic for paginating a list of items, including integration with Vue Router.\n- `useBreakpointManager`: A reactive interface to CSS breakpoints.\n- `useModifiers`: A utility for creating BEM-style modifier classes.\n- `useWindowResize`: A debounced window resize event listener.\n- `useRequiredInject`: A utility to ensure required dependencies are injected from plugins.\n\n### Plugins\n\nPlugins provide global functionality and APIs that can be accessed from anywhere in your application.\n\n- **`corePlugin` (Required)**: Manages global settings, primarily for the icon system.\n- **`breakpointsPlugin`**: Provides reactive information about the current CSS breakpoint (`uluIsMobile`, `uluBreakpointActive`).\n- **`modalsPlugin`**: A system for registering and triggering global modals (e.g., for settings or confirmation dialogs).\n- **`toastPlugin`**: A global API (`$uluToast`) for showing toast notifications.\n- **`popoversPlugin`**: Enables a simple `v-ulu-tooltip` directive for tooltips and provides the `UluPopover` component.\n\n**Example: Triggering a Toast Notification**\n```javascript\nimport { useToast } from '@ulu/frontend-vue';\n\nconst toast = useToast();\n\ntoast.add({\n  title: 'Success!',\n  description: 'Your profile has been updated.',\n  class: 'is-success'\n});\n```\n\n### Component Systems\n\nSystems are complex, multi-component features that solve a specific problem.\n\n- **Facets**: A complete system for faceted search, built around the `useFacets` composable. Includes components for search, sort, filters, and results display.\n- **Scroll Anchors**: A system for creating navigations that track the user's scroll position within a page.\n- **Skeleton**: A set of components for creating beautiful and effective loading states.\n- **Table Sticky**: A powerful table component with sticky headers and columns.\n- **Slider**: A flexible slideshow/carousel component.\n\n### Resolver\n\nResolver for [`unplugin-vue-components`](https://github.com/unplugin/unplugin-vue-components/tree/main]) is available to use like:\n\n```js\n// vite.config.js\n\nimport { defineConfig } from \"vite\";\nimport Components from \"unplugin-vue-components/vite\";\nimport { UluUnpluginResolver } from \"@ulu/frontend-vue/resolver\";\n\nexport default defineConfig({\n  plugins: [\n    // ...\n    Components({ \n      resolvers: [\n        UluUnpluginResolver()\n      ]\n    }),\n    // ...\n  ],\n  // ...\n});\n```\n\n### Vite Asset URLs\n\nWhen using components like `UluImage` and `UluImageSource`, you may want to pass relative asset paths directly as props (e.g. `<UluImage src=\"./assets/img.png\" />`) instead of manually importing them in your setup script. \n\nTo enable Vite to automatically resolve these paths, you can add our custom transform rules to the Vue plugin in your `vite.config.js`:\n\n*Note: this includes the defaults (img, source, video, ...) in addition to the Ulu specific components, since configuring this clears the defaults (it's not merged).*\n\n```js\n// vite.config.js\n\nimport { defineConfig } from \"vite\";\nimport vue from \"@vitejs/plugin-vue\";\nimport { uluTransformAssetUrls } from \"@ulu/frontend-vue/vite.js\";\n\nexport default defineConfig({\n  plugins: [\n    vue({\n      template: {\n        transformAssetUrls: {\n          // \n          ...uluTransformAssetUrls\n        }\n      }\n    }),\n    // ...\n  ],\n  // ...\n});\n```"
     },
     "ExportsMap": {
-      "raw_markdown": "\nimport { Meta } from '@storybook/addon-docs/blocks';\n\n<Meta title=\"Overview/API Reference\" />\n\n# API Reference\n\nThis page provides a comprehensive map of all named exports from the `@ulu/frontend-vue` library. Use this as a quick reference to discover available components, composables, plugins, and utilities.\n\n## Components\n\nThese are the building blocks for your UI. They are imported as named exports.\n\n*   `UluAccordion`\n*   `UluAccordionGroup`\n*   `UluAction`\n*   `UluAdaptiveLayout`\n*   `UluAlert`\n*   `UluAnimateNumber`\n*   `UluBadge`\n*   `UluBadgeStack`\n*   `UluBreadcrumb`\n*   `UluButton`\n*   `UluButtonVerbose`\n*   `UluCallout`\n*   `UluCard`\n*   `UluCollapsible`\n*   `UluConditionalText`\n*   `UluConditionalWrapper`\n*   `UluDataGrid`\n*   `UluDataTable`\n*   `UluDefinitionList`\n*   `UluDefinitionListItem`\n*   `UluDropdown`\n*   `UluEmpty`\n*   `UluEmptyView`\n*   `UluExternalLink`\n*   `UluFacetsActiveFilters`\n*   `UluFacetsFilterAccordions`\n*   `UluFacetsFilterLists`\n*   `UluFacetsFilterPopovers`\n*   `UluFacetsFilterSelects`\n*   `UluFacetsHeaderLayout`\n*   `UluFacetsList`\n*   `UluFacetsResults`\n*   `UluFacetsSearch`\n*   `UluFacetsSidebarLayout`\n*   `UluFacetsSort`\n*   `UluFileDisplay`\n*   `UluForm`\n*   `UluFormActions`\n*   `UluFormCheckbox`\n*   `UluFormFieldset`\n*   `UluFormFile`\n*   `UluFormItem`\n*   `UluFormItemsInline`\n*   `UluFormLabel`\n*   `UluFormMessage`\n*   `UluFormRadio`\n*   `UluFormRequiredChar`\n*   `UluFormSelect`\n*   `UluFormText`\n*   `UluFormTextarea`\n*   `UluIcon`\n*   `UluImage`\n*   `UluImageSource`\n*   In Progress - `UluImageSlider`\n*   `UluList`\n*   `UluListItem`\n*   `UluCounterList`\n*   `UluMain`\n*   `UluMenu`\n*   `UluMenuStack`\n*   `UluModal`\n*   `UluNavStrip`\n*   `UluOverflowPopover`\n*   `UluPager`\n*   `UluPlaceholderImage`\n*   `UluPlaceholderText`\n*   `UluProgressBar`\n*   `UluProgressCircle`\n*   `UluRouteAnnouncer`\n*   `UluRule`\n*   `UluSanityRichText`\n*   `UluScrollAnchors`\n*   `UluScrollAnchorsHeadlessSection`\n*   `UluScrollAnchorsNav`\n*   `UluScrollAnchorsNavAnimated`\n*   `UluScrollAnchorsSection`\n*   `UluScrollSlider`\n*   `UluSearchForm`\n*   `UluSelectableMenu`\n*   `UluShowSkeleton`\n*   `UluSkeletonContent`\n*   `UluSkeletonMedia`\n*   `UluSkeletonText`\n*   `UluSkipLink`\n*   `UluSlider`\n*   `UluSpokeSpinner`\n*   `UluTab`\n*   `UluTabGroup`\n*   `UluTabList`\n*   `UluTabPanel`\n*   `UluTabPanels`\n*   `UluTable`\n*   `UluTableSticky`\n*   `UluTableStickyRows`\n*   `UluTableStickyTable`\n*   `UluTag`\n*   `UluTitleRail`\n*   `UluToast`\n*   `UluToastDisplay`\n\n---\n\n## Composables\n\nReusable, stateful logic that can be shared across components.\n\n*   `useBreakpointManager`\n*   `useDocumentTitle`\n*   `useFacets`\n*   `useIcon`\n*   `useModifiers`\n*   `usePagination`\n*   `useRequiredInject`\n*   `useScrollAnchorSection`\n*   `useScrollAnchorSections`\n*   `useScrollAnchors`\n*   `useTableData`\n*   `useToast`\n*   `useTooltip`\n*   `useTooltipFollow`\n*   `useUluFloating`\n*   `useWindowResize`\n\n---\n\n## Plugins\n\nPlugins provide global functionality and APIs.\n\n*   `breakpointsPlugin`\n*   `corePlugin`\n*   `modalsPlugin`\n*   `popoversPlugin`\n*   `toastPlugin`\n\n\n\n---\n\n## Utilities\n\nThe `utils` export is a namespace containing helper functions.\n\n### DOM (`utils.dom`)\n\n*   `utils.dom.refToElement`\n*   `utils.dom.newId`\n\n### Props (`utils.props`)\n\n*   `utils.props.isArrayOfObjects`\n*   `utils.props.checkDeprecatedProps`\n*   `utils.props.mergeClassLookups`\n\n### Router (`utils.router`)\n\n*   `utils.router.getRouteTitle`\n*   `utils.router.createBaseMenu`\n*   `utils.router.flattenMenu`\n*   `utils.router.createSectionMenu`\n*   `utils.router.getChildIndexRoute`\n*   `utils.router.createMenuItem`\n*   `utils.router.isStaticRoute`\n*   `utils.router.isStaticBaseRoute`\n*   `utils.router.nativeLinkRouter`\n*   `utils.router.$getRouteChildren`\n*   `utils.router.$getParentRoute`\n*   `utils.router.$createSectionMenu`\n*   `utils.router.$createBreadcrumb`\n"
+      "raw_markdown": "\nimport { Meta } from '@storybook/addon-docs/blocks';\n\n<Meta title=\"Overview/API Reference\" />\n\n# API Reference\n\nThis page provides a comprehensive map of all named exports from the `@ulu/frontend-vue` library. Use this as a quick reference to discover available components, composables, plugins, and utilities.\n\n## Components\n\nThese are the building blocks for your UI. They are imported as named exports.\n\n*   `UluAccordion`\n*   `UluAccordionGroup`\n*   `UluAction`\n*   `UluAdaptiveLayout`\n*   `UluAlert`\n*   `UluAnimateNumber`\n*   `UluBadge`\n*   `UluBadgeStack`\n*   `UluBreadcrumb`\n*   `UluButton`\n*   `UluButtonVerbose`\n*   `UluCallout`\n*   `UluCard`\n*   `UluCollapsible`\n*   `UluConditionalText`\n*   `UluConditionalWrapper`\n*   `UluDataGrid`\n*   `UluDataTable`\n*   `UluDefinitionList`\n*   `UluDefinitionListItem`\n*   `UluDropdown`\n*   `UluEmpty`\n*   `UluEmptyView`\n*   `UluExternalLink`\n*   `UluFacetsActiveFilters`\n*   `UluFacetsFilterAccordions`\n*   `UluFacetsFilterLists`\n*   `UluFacetsFilterPopovers`\n*   `UluFacetsFilterSelects`\n*   `UluFacetsHeaderLayout`\n*   `UluFacetsList`\n*   `UluFacetsResults`\n*   `UluFacetsSearch`\n*   `UluFacetsSidebarLayout`\n*   `UluFacetsSort`\n*   `UluFileDisplay`\n*   `UluForm`\n*   `UluFormActions`\n*   `UluFormCheckbox`\n*   `UluFormFieldset`\n*   `UluFormFile`\n*   `UluFormItem`\n*   `UluFormItemsInline`\n*   `UluFormLabel`\n*   `UluFormMessage`\n*   `UluFormRadio`\n*   `UluFormRequiredChar`\n*   `UluFormSelect`\n*   `UluFormText`\n*   `UluFormTextarea`\n*   `UluIcon`\n*   `UluImage`\n*   `UluImageSource`\n*   In Progress - `UluImageSlider`\n*   `UluList`\n*   `UluListItem`\n*   `UluCounterList`\n*   `UluMain`\n*   `UluMenu`\n*   `UluMenuStack`\n*   `UluModal`\n*   `UluNavStrip`\n*   `UluOverflowPopover`\n*   `UluPager`\n*   `UluPlaceholderImage`\n*   `UluPlaceholderText`\n*   `UluProgressBar`\n*   `UluProgressCircle`\n*   `UluRouteAnnouncer`\n*   `UluRule`\n*   `UluSanityRichText`\n*   `UluScrollAnchors`\n*   `UluScrollAnchorsHeadlessSection`\n*   `UluScrollAnchorsNav`\n*   `UluScrollAnchorsNavAnimated`\n*   `UluScrollAnchorsSection`\n*   `UluScrollSlider`\n*   `UluSearchForm`\n*   `UluSelectableMenu`\n*   `UluShowSkeleton`\n*   `UluSkeletonContent`\n*   `UluSkeletonMedia`\n*   `UluSkeletonText`\n*   `UluSkipLink`\n*   `UluSlider`\n*   `UluSpokeSpinner`\n*   `UluTab`\n*   `UluTabGroup`\n*   `UluTabList`\n*   `UluTabPanel`\n*   `UluTabPanels`\n*   `UluTable`\n*   `UluTableSticky`\n*   `UluTableStickyRows`\n*   `UluTableStickyTable`\n*   `UluTag`\n*   `UluTitleRail`\n*   `UluToast`\n*   `UluToastDisplay`\n\n---\n\n## Composables\n\nReusable, stateful logic that can be shared across components.\n\n*   `useBreakpointManager`\n*   `useDocumentTitle`\n*   `useFacets`\n*   `useIcon`\n*   `useModifiers`\n*   `usePagination`\n*   `useRequiredInject`\n*   `useScrollAnchorSection`\n*   `useScrollAnchorSections`\n*   `useScrollAnchors`\n*   `useTableData`\n*   `useToast`\n*   `useTooltip`\n*   `useTooltipFollow`\n*   `useUluFloating`\n*   `useWindowResize`\n\n---\n\n## Plugins\n\nPlugins provide global functionality and APIs.\n\n*   `breakpointsPlugin`\n*   `corePlugin`\n*   `modalsPlugin`\n*   `popoversPlugin`\n*   `toastPlugin`\n\n\n\n---\n\n## Utilities\n\nThe `utils` export is a namespace containing helper functions.\n\n### DOM (`utils.dom`)\n\n*   `utils.dom.refToElement`\n*   `utils.dom.newId`\n\n### Props (`utils.props`)\n\n*   `utils.props.isArrayOfObjects`\n*   `utils.props.checkDeprecatedProps`\n*   `utils.props.mergeClassLookups`\n*   `utils.props.resolveClassOverride`\n\n### Router (`utils.router`)\n\n*   `utils.router.getRouteTitle`\n*   `utils.router.createBaseMenu`\n*   `utils.router.flattenMenu`\n*   `utils.router.createSectionMenu`\n*   `utils.router.getChildIndexRoute`\n*   `utils.router.createMenuItem`\n*   `utils.router.isStaticRoute`\n*   `utils.router.isStaticBaseRoute`\n*   `utils.router.nativeLinkRouter`\n*   `utils.router.$getRouteChildren`\n*   `utils.router.$getParentRoute`\n*   `utils.router.$createSectionMenu`\n*   `utils.router.$createBreadcrumb`\n"
     },
     "ChangeLog": {
       "raw_markdown": "import { Meta, Markdown } from '@storybook/addon-docs/blocks';\nimport CHANGELOG from '../CHANGELOG.md?raw';\n\n<Meta title=\"Overview/Change Log\" />\n\n<Markdown>\n{CHANGELOG}\n</Markdown>"
@@ -12341,19 +12341,6 @@
         "level": 0
       },
       {
-        "id": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
-        "longname": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
-        "name": "plugins\nResponsible for exporting all plugins\n- Used in bundle exports",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins"
-        },
-        "order": 6,
-        "level": 0
-      },
-      {
         "id": "utils.module:router",
         "longname": "utils.module:router",
         "name": "router",
@@ -12363,7 +12350,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 7,
+        "order": 6,
         "level": 0
       },
       {
@@ -12376,7 +12363,7 @@
           "filename": "props.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 22,
+        "order": 21,
         "level": 0
       },
       {
@@ -12406,6 +12393,19 @@
         "level": 0
       },
       {
+        "id": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
+        "longname": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
+        "name": "plugins\nResponsible for exporting all plugins\n- Used in bundle exports",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins"
+        },
+        "order": 30,
+        "level": 0
+      },
+      {
         "id": "module:components",
         "longname": "module:components",
         "name": "components",
@@ -12415,7 +12415,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components"
         },
-        "order": 30,
+        "order": 31,
         "level": 0
       },
       {
@@ -12428,7 +12428,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components"
         },
-        "order": 31,
+        "order": 32,
         "level": 0
       },
       {
@@ -12441,7 +12441,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 32,
+        "order": 33,
         "level": 0
       },
       {
@@ -12454,7 +12454,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 35,
+        "order": 36,
         "level": 0
       },
       {
@@ -12467,7 +12467,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 39,
+        "order": 40,
         "level": 0
       },
       {
@@ -12480,7 +12480,7 @@
           "filename": "useRequiredInject.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 47,
+        "order": 48,
         "level": 0
       },
       {
@@ -12493,7 +12493,7 @@
           "filename": "usePagination.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 49,
+        "order": 50,
         "level": 0
       },
       {
@@ -12506,7 +12506,7 @@
           "filename": "useModifiers.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 51,
+        "order": 52,
         "level": 0
       },
       {
@@ -12519,7 +12519,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 53,
+        "order": 54,
         "level": 0
       },
       {
@@ -12532,7 +12532,7 @@
           "filename": "useDocumentTitle.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 56,
+        "order": 57,
         "level": 0
       },
       {
@@ -12545,7 +12545,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 58,
+        "order": 59,
         "level": 0
       },
       {
@@ -12558,7 +12558,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 63,
+        "order": 64,
         "level": 0
       },
       {
@@ -12571,7 +12571,7 @@
           "filename": "useToast.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 64,
+        "order": 65,
         "level": 0
       },
       {
@@ -12584,7 +12584,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 66,
+        "order": 67,
         "level": 0
       },
       {
@@ -12597,7 +12597,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 73,
+        "order": 74,
         "level": 0
       },
       {
@@ -12610,7 +12610,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 75,
+        "order": 76,
         "level": 0
       },
       {
@@ -12623,7 +12623,7 @@
           "filename": "useTooltipFollow.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 81,
+        "order": 82,
         "level": 0
       },
       {
@@ -12636,7 +12636,7 @@
           "filename": "useTooltip.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 82,
+        "order": 83,
         "level": 0
       },
       {
@@ -12649,7 +12649,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 84,
+        "order": 85,
         "level": 0
       },
       {
@@ -12662,7 +12662,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 90
+        "order": 91
       },
       {
         "id": "module:corePlugin",
@@ -12675,7 +12675,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 112,
+        "order": 113,
         "level": 0
       },
       {
@@ -12688,7 +12688,7 @@
           "filename": "useModals.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 114,
+        "order": 115,
         "level": 0
       },
       {
@@ -12702,7 +12702,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 116,
+        "order": 117,
         "level": 0
       },
       {
@@ -12715,7 +12715,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 119,
+        "order": 120,
         "level": 0
       },
       {
@@ -12728,7 +12728,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 128,
+        "order": 129,
         "level": 0
       },
       {
@@ -12741,7 +12741,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems"
         },
-        "order": 133,
+        "order": 134,
         "level": 0
       },
       {
@@ -12754,7 +12754,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 134,
+        "order": 135,
         "level": 0
       },
       {
@@ -12767,7 +12767,7 @@
           "filename": "useScrollAnchorSections.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 144,
+        "order": 145,
         "level": 0
       },
       {
@@ -12780,7 +12780,7 @@
           "filename": "useScrollAnchorSection.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 146,
+        "order": 147,
         "level": 0
       },
       {
@@ -12793,7 +12793,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 148,
+        "order": 149,
         "level": 0
       },
       {
@@ -12809,7 +12809,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 74,
+        "order": 75,
         "level": 0
       },
       {
@@ -12845,7 +12845,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 89,
+        "order": 90,
         "level": 0
       },
       {
@@ -12922,7 +12922,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 113,
+        "order": 114,
         "level": 0
       },
       {
@@ -12958,7 +12958,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 118,
+        "order": 119,
         "level": 0
       },
       {
@@ -13015,7 +13015,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 132,
+        "order": 133,
         "level": 0
       },
       {
@@ -13031,7 +13031,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 59
+        "order": 60
       },
       {
         "id": "module:useBreakpointManager~defaults.onReady",
@@ -13046,7 +13046,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 60
+        "order": 61
       },
       {
         "id": "module:useBreakpointManager~defaults.plugin",
@@ -13061,7 +13061,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 61
+        "order": 62
       },
       {
         "id": "toast.module:defaults--module.exports",
@@ -13077,7 +13077,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 76,
+        "order": 77,
         "level": 0
       },
       {
@@ -13093,7 +13093,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 77
+        "order": 78
       },
       {
         "id": "toast.module:defaults--module.exports.toastOptions.duration",
@@ -13108,7 +13108,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 78
+        "order": 79
       },
       {
         "id": "toast.module:defaults--module.exports.toastOptions.actions",
@@ -13123,7 +13123,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 79
+        "order": 80
       },
       {
         "id": "toast.module:defaults--module.exports.pluginOptions.position",
@@ -13138,7 +13138,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 80
+        "order": 81
       },
       {
         "id": "popovers.module:defaults.plugin",
@@ -13158,7 +13158,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 91
+        "order": 92
       },
       {
         "id": "popovers.module:defaults.plugin.directiveName",
@@ -13178,7 +13178,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 92
+        "order": 93
       },
       {
         "id": "popovers.module:defaults.popover",
@@ -13193,7 +13193,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 93
+        "order": 94
       },
       {
         "id": "popovers.module:defaults.popover.inline",
@@ -13213,7 +13213,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 94
+        "order": 95
       },
       {
         "id": "popovers.module:defaults.popover.delay",
@@ -13233,7 +13233,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 95
+        "order": 96
       },
       {
         "id": "popovers.module:defaults.popover.placement",
@@ -13253,7 +13253,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 96
+        "order": 97
       },
       {
         "id": "popovers.module:defaults.popover.strategy",
@@ -13273,7 +13273,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 97
+        "order": 98
       },
       {
         "id": "popovers.module:defaults.popover.offset",
@@ -13293,7 +13293,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 98
+        "order": 99
       },
       {
         "id": "popovers.module:defaults.popover.arrow",
@@ -13313,7 +13313,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 99
+        "order": 100
       },
       {
         "id": "popovers.module:defaults.tooltip",
@@ -13333,7 +13333,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 100
+        "order": 101
       },
       {
         "id": "popovers.module:defaults.tooltip.teleportTo",
@@ -13353,7 +13353,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 101
+        "order": 102
       },
       {
         "id": "popovers.module:defaults.tooltip.class",
@@ -13375,7 +13375,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 102
+        "order": 103
       },
       {
         "id": "popovers.module:defaults.tooltip.showEvents",
@@ -13395,7 +13395,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 103
+        "order": 104
       },
       {
         "id": "popovers.module:defaults.tooltip.hideEvents",
@@ -13415,7 +13415,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 104
+        "order": 105
       },
       {
         "id": "popovers.module:defaults.tooltip.isHtml",
@@ -13435,7 +13435,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 105
+        "order": 106
       },
       {
         "id": "popovers.module:defaults.tooltip.trigger",
@@ -13456,7 +13456,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 106
+        "order": 107
       },
       {
         "id": "popovers.module:defaults.tooltip.content",
@@ -13477,7 +13477,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 107
+        "order": 108
       },
       {
         "id": "popovers.module:defaults.tooltip.delay",
@@ -13497,7 +13497,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 108
+        "order": 109
       },
       {
         "id": "popovers.module:defaults.tooltip.onReady",
@@ -13512,7 +13512,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 109
+        "order": 110
       },
       {
         "id": "popovers.module:defaults.tooltip.component",
@@ -13527,7 +13527,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 110
+        "order": 111
       },
       {
         "id": "popovers.module:defaults.tooltip.componentProps",
@@ -13542,7 +13542,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 111
+        "order": 112
       },
       {
         "id": "module:breakpointsPlugin--module.exports~defaults.breakpointMobile",
@@ -13557,7 +13557,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 130,
+        "order": 131,
         "level": 0
       },
       {
@@ -13573,7 +13573,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 131,
+        "order": 132,
         "level": 0
       },
       {
@@ -13612,7 +13612,7 @@
           "filename": "useToast.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 65,
+        "order": 66,
         "level": 0
       },
       {
@@ -13628,7 +13628,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 67,
+        "order": 68,
         "level": 0
       },
       {
@@ -13644,7 +13644,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 69,
+        "order": 70,
         "level": 0
       },
       {
@@ -13660,7 +13660,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 85,
+        "order": 86,
         "level": 0
       },
       {
@@ -13676,7 +13676,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 86,
+        "order": 87,
         "level": 0
       },
       {
@@ -13692,7 +13692,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 87,
+        "order": 88,
         "level": 0
       },
       {
@@ -13739,7 +13739,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 88,
+        "order": 89,
         "level": 0
       },
       {
@@ -13775,7 +13775,7 @@
           "filename": "useModals.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 115,
+        "order": 116,
         "level": 0
       },
       {
@@ -13868,7 +13868,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 8,
+        "order": 7,
         "level": 0
       },
       {
@@ -13932,7 +13932,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 10,
+        "order": 9,
         "level": 0
       },
       {
@@ -13969,7 +13969,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 11,
+        "order": 10,
         "level": 0
       },
       {
@@ -14042,7 +14042,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 12,
+        "order": 11,
         "level": 0
       },
       {
@@ -14079,7 +14079,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 13,
+        "order": 12,
         "level": 0
       },
       {
@@ -14152,7 +14152,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 14,
+        "order": 13,
         "level": 0
       },
       {
@@ -14189,7 +14189,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 15,
+        "order": 14,
         "level": 0
       },
       {
@@ -14225,7 +14225,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 16,
+        "order": 15,
         "level": 0
       },
       {
@@ -14261,7 +14261,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 17,
+        "order": 16,
         "level": 0
       },
       {
@@ -14299,7 +14299,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 18,
+        "order": 17,
         "level": 0
       },
       {
@@ -14346,7 +14346,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 19,
+        "order": 18,
         "level": 0
       },
       {
@@ -14419,7 +14419,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 20,
+        "order": 19,
         "level": 0
       },
       {
@@ -14456,7 +14456,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 21,
+        "order": 20,
         "level": 0
       },
       {
@@ -14493,7 +14493,7 @@
           "filename": "props.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 23,
+        "order": 22,
         "level": 0
       },
       {
@@ -14538,7 +14538,7 @@
           "filename": "props.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 24,
+        "order": 23,
         "level": 0
       },
       {
@@ -14584,6 +14584,60 @@
         ],
         "meta": {
           "lineno": 40,
+          "filename": "props.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
+        },
+        "order": 24,
+        "level": 0
+      },
+      {
+        "id": "utils.module:props.resolveClassOverride",
+        "longname": "utils.module:props.resolveClassOverride",
+        "name": "resolveClassOverride",
+        "kind": "function",
+        "scope": "static",
+        "description": "Merges a base class (string, array, or object) with a user-supplied class override.\nSupports string, array, object, function, or boolean (false to clear) overrides.",
+        "memberof": "utils.module:props",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "String",
+                "Array",
+                "Object"
+              ]
+            },
+            "description": "The base classes",
+            "name": "base"
+          },
+          {
+            "type": {
+              "names": [
+                "String",
+                "Array",
+                "Object",
+                "function",
+                "Boolean"
+              ]
+            },
+            "description": "The class override",
+            "name": "override"
+          }
+        ],
+        "returns": [
+          {
+            "type": {
+              "names": [
+                "String",
+                "Array",
+                "Object"
+              ]
+            },
+            "description": "The resolved classes suitable for Vue class binding"
+          }
+        ],
+        "meta": {
+          "lineno": 62,
           "filename": "props.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
@@ -14690,7 +14744,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 34,
+        "order": 35,
         "level": 0
       },
       {
@@ -14744,7 +14798,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 38,
+        "order": 39,
         "level": 0
       },
       {
@@ -14781,7 +14835,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 40,
+        "order": 41,
         "level": 0
       },
       {
@@ -14813,7 +14867,7 @@
           "filename": "useRequiredInject.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 48,
+        "order": 49,
         "level": 0
       },
       {
@@ -14859,7 +14913,7 @@
           "filename": "usePagination.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 50,
+        "order": 51,
         "level": 0
       },
       {
@@ -14932,7 +14986,7 @@
           "filename": "useModifiers.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 52,
+        "order": 53,
         "level": 0
       },
       {
@@ -14958,7 +15012,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 54,
+        "order": 55,
         "level": 0
       },
       {
@@ -15028,7 +15082,7 @@
           "filename": "useDocumentTitle.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 57,
+        "order": 58,
         "level": 0
       },
       {
@@ -15096,7 +15150,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 62,
+        "order": 63,
         "level": 0
       },
       {
@@ -15127,7 +15181,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 70
+        "order": 71
       },
       {
         "id": "toast.module:store~api.remove",
@@ -15152,7 +15206,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 71
+        "order": 72
       },
       {
         "id": "toast.module:store~api.removeAll",
@@ -15167,7 +15221,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 72
+        "order": 73
       },
       {
         "id": "module:useTooltip.useTooltip",
@@ -15191,7 +15245,7 @@
           "filename": "useTooltip.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 83,
+        "order": 84,
         "level": 0
       },
       {
@@ -15217,7 +15271,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 135,
+        "order": 136,
         "level": 0
       },
       {
@@ -15243,7 +15297,7 @@
           "filename": "useScrollAnchorSections.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 145,
+        "order": 146,
         "level": 0
       },
       {
@@ -15280,7 +15334,7 @@
           "filename": "useScrollAnchorSection.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 147,
+        "order": 148,
         "level": 0
       },
       {
@@ -15452,7 +15506,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 153,
+        "order": 154,
         "level": 0
       },
       {
@@ -15468,7 +15522,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 68,
+        "order": 69,
         "level": 0
       },
       {
@@ -15484,7 +15538,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 121,
+        "order": 122,
         "level": 0
       },
       {
@@ -15500,7 +15554,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 122,
+        "order": 123,
         "level": 0
       },
       {
@@ -15534,7 +15588,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 46,
+        "order": 47,
         "level": 0
       },
       {
@@ -15551,7 +15605,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 120,
+        "order": 121,
         "level": 0
       },
       {
@@ -15568,7 +15622,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 123,
+        "order": 124,
         "level": 0
       },
       {
@@ -15585,7 +15639,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 129,
+        "order": 130,
         "level": 0
       },
       {
@@ -15602,7 +15656,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 142,
+        "order": 143,
         "level": 0
       },
       {
@@ -15647,7 +15701,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 33,
+        "order": 34,
         "level": 0
       },
       {
@@ -15664,7 +15718,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 41,
+        "order": 42,
         "level": 0
       },
       {
@@ -15681,7 +15735,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 42,
+        "order": 43,
         "level": 0
       },
       {
@@ -15698,7 +15752,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 43,
+        "order": 44,
         "level": 0
       },
       {
@@ -15715,7 +15769,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 44,
+        "order": 45,
         "level": 0
       },
       {
@@ -15732,7 +15786,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 45,
+        "order": 46,
         "level": 0
       },
       {
@@ -15772,7 +15826,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 55,
+        "order": 56,
         "level": 0
       },
       {
@@ -15803,7 +15857,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 124,
+        "order": 125,
         "level": 0
       },
       {
@@ -15829,7 +15883,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 125,
+        "order": 126,
         "level": 0
       },
       {
@@ -15845,7 +15899,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 126,
+        "order": 127,
         "level": 0
       },
       {
@@ -15871,7 +15925,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 127,
+        "order": 128,
         "level": 0
       },
       {
@@ -15888,7 +15942,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 136,
+        "order": 137,
         "level": 0
       },
       {
@@ -15905,7 +15959,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 137,
+        "order": 138,
         "level": 0
       },
       {
@@ -15922,7 +15976,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 138,
+        "order": 139,
         "level": 0
       },
       {
@@ -15939,7 +15993,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 139,
+        "order": 140,
         "level": 0
       },
       {
@@ -15956,7 +16010,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 140,
+        "order": 141,
         "level": 0
       },
       {
@@ -15973,7 +16027,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 141,
+        "order": 142,
         "level": 0
       },
       {
@@ -15990,7 +16044,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 143,
+        "order": 144,
         "level": 0
       },
       {
@@ -16027,7 +16081,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 149,
+        "order": 150,
         "level": 0
       },
       {
@@ -16064,7 +16118,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 150,
+        "order": 151,
         "level": 0
       },
       {
@@ -16119,7 +16173,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 151,
+        "order": 152,
         "level": 0
       },
       {
@@ -16165,7 +16219,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 152,
+        "order": 153,
         "level": 0
       },
       {
@@ -16206,7 +16260,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 9,
+        "order": 8,
         "level": 0
       },
       {
@@ -16226,7 +16280,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 36,
+        "order": 37,
         "level": 0
       },
       {
@@ -16313,7 +16367,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 37,
+        "order": 38,
         "level": 0
       },
       {
@@ -16354,7 +16408,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 117,
+        "order": 118,
         "level": 0
       }
     ],

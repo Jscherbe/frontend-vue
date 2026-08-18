@@ -36,14 +36,14 @@
         v-for="(action, index) in toast.actions"
         :key="index"
         class="toast__action" 
-        :class="[resolvedClasses.action, action.class]"
+        :class="resolveClassOverride(resolvedClasses.action, action.class)"
         @click="handleAction($event, action)"
       >
         {{ action.label }}
       </button>
     </div>
     <button class="toast__close" :class="resolvedClasses.closeButton" @click="toast.close">
-      <UluIcon :icon="'type:close'"/>
+      <UluIcon icon="type:close" />
     </button>
   </div>
 </template>
@@ -51,7 +51,7 @@
 <script setup>
   import { nextTick, computed } from "vue";
   import UluIcon from "../../components/elements/UluIcon.vue";
-  import { mergeClassLookups } from "../../utils/props.js";
+  import { mergeClassLookups, resolveClassOverride } from "../../utils/props.js";
   
   const DEFAULT_CLASSES = {
     content: "type-small",

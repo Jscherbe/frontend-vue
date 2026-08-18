@@ -12,6 +12,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
     * [.isArrayOfObjects(array)](#utils.module_props.isArrayOfObjects) ⇒ `Boolean`
     * [.checkDeprecatedProps(props, deprecatedNames, callback)](#utils.module_props.checkDeprecatedProps)
     * [.mergeClassLookups(defaults, ...sources)](#utils.module_props.mergeClassLookups) ⇒ `Object`
+    * [.resolveClassOverride(base, override)](#utils.module_props.resolveClassOverride) ⇒ `String` \| `Array` \| `Object`
 
 <a name="utils.module_props.isArrayOfObjects"></a>
 
@@ -56,4 +57,18 @@ Behavior:
 | --- | --- | --- |
 | defaults | `Object` | The base default classes |
 | ...sources | `Object` \| `Boolean` \| `function` | The sources to merge |
+
+<a name="utils.module_props.resolveClassOverride"></a>
+
+### props.resolveClassOverride(base, override) ⇒ `String` \| `Array` \| `Object`
+Merges a base class (string, array, or object) with a user-supplied class override.
+Supports string, array, object, function, or boolean (false to clear) overrides.
+
+**Kind**: static method of [`props`](#utils.module_props)  
+**Returns**: `String` \| `Array` \| `Object` - The resolved classes suitable for Vue class binding  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| base | `String` \| `Array` \| `Object` | The base classes |
+| override | `String` \| `Array` \| `Object` \| `function` \| `Boolean` | The class override |
 

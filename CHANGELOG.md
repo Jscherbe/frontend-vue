@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.6.21
+
+- Add generic `resolveClassOverride` helper function to `utils.props` to merge individual element classes (supporting strings, objects, arrays, booleans, and functional modifiers).
+- Update `UluToast` action buttons to use `resolveClassOverride` so actions can append, modify, or completely override classes.
+
 ## 0.6.20
 
 - `UluToast` support defining actions as standard objects `{ label, click, class }` alongside legacy function-based actions (backwards-compatible)

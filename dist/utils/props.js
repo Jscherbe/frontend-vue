@@ -1,19 +1,23 @@
-function t(f) {
-  return f.every((r) => typeof r == "object");
+function o(f) {
+  return f.every((e) => typeof e == "object");
 }
-function c(f, r, o) {
-  r.forEach((e) => {
-    f[e] !== void 0 && o(e);
+function r(f, e, n) {
+  e.forEach((t) => {
+    f[t] !== void 0 && n(t);
   });
 }
-function n(f, ...r) {
-  let o = { ...f };
-  for (const e of r)
-    e === !1 ? o = {} : typeof e == "function" ? o = e(o, f) : typeof e == "object" && e !== null && (o = { ...o, ...e });
-  return o;
+function c(f, ...e) {
+  let n = { ...f };
+  for (const t of e)
+    t === !1 ? n = {} : typeof t == "function" ? n = t(n, f) : typeof t == "object" && t !== null && (n = { ...n, ...t });
+  return n;
+}
+function u(f, e) {
+  return e ? e === !1 ? "" : typeof e == "function" ? e(f) : [f, e] : f;
 }
 export {
-  c as checkDeprecatedProps,
-  t as isArrayOfObjects,
-  n as mergeClassLookups
+  r as checkDeprecatedProps,
+  o as isArrayOfObjects,
+  c as mergeClassLookups,
+  u as resolveClassOverride
 };
