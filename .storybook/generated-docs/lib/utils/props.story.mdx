@@ -11,7 +11,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 * [props](#utils.module_props)
     * [.isArrayOfObjects(array)](#utils.module_props.isArrayOfObjects) ⇒ `Boolean`
     * [.checkDeprecatedProps(props, deprecatedNames, callback)](#utils.module_props.checkDeprecatedProps)
-    * [.mergeClasses(defaults, ...sources)](#utils.module_props.mergeClasses) ⇒ `Object`
+    * [.mergeClassLookups(defaults, ...sources)](#utils.module_props.mergeClassLookups) ⇒ `Object`
 
 <a name="utils.module_props.isArrayOfObjects"></a>
 
@@ -38,10 +38,10 @@ Checks for deprecated props and calls a callback for each match
 | deprecatedNames | `Array.<string>` | Array of prop names to check |
 | callback | `function` | Function called for each match, receiving the prop name |
 
-<a name="utils.module_props.mergeClasses"></a>
+<a name="utils.module_props.mergeClassLookups"></a>
 
-### props.mergeClasses(defaults, ...sources) ⇒ `Object`
-Merges multiple sources of class configuration objects.
+### props.mergeClassLookups(defaults, ...sources) ⇒ `Object`
+Merges multiple sources of class configuration objects (class lookups).
 Sources are evaluated left-to-right (later sources override earlier ones).
 
 Behavior:

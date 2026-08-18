@@ -2,10 +2,10 @@ declare namespace _default {
     namespace toastOptions {
         let component: import("vue").Raw<{
             new (...args: any[]): import("vue").CreateComponentPublicInstanceWithMixins<Readonly<{}> & Readonly<{}>, {
-                classes: Record<string, any>;
+                classes: boolean | Function | Record<string, any>;
                 toast?: Record<string, any> | undefined;
                 $props: {
-                    readonly classes?: Record<string, any> | undefined;
+                    readonly classes?: boolean | Function | Record<string, any> | undefined;
                     readonly toast?: Record<string, any> | undefined;
                 };
             }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, import("vue").PublicProps, {}, true, {}, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, {}, HTMLDivElement, import("vue").ComponentProvideOptions, {
@@ -16,10 +16,10 @@ declare namespace _default {
                 M: {};
                 Defaults: {};
             }, Readonly<{}> & Readonly<{}>, {
-                classes: Record<string, any>;
+                classes: boolean | Function | Record<string, any>;
                 toast?: Record<string, any> | undefined;
                 $props: {
-                    readonly classes?: Record<string, any> | undefined;
+                    readonly classes?: boolean | Function | Record<string, any> | undefined;
                     readonly toast?: Record<string, any> | undefined;
                 };
             }, {}, {}, {}, {}>;
@@ -27,10 +27,10 @@ declare namespace _default {
             __isTeleport?: never;
             __isSuspense?: never;
         } & import("vue").ComponentOptionsBase<Readonly<{}> & Readonly<{}>, {
-            classes: Record<string, any>;
+            classes: boolean | Function | Record<string, any>;
             toast?: Record<string, any> | undefined;
             $props: {
-                readonly classes?: Record<string, any> | undefined;
+                readonly classes?: boolean | Function | Record<string, any> | undefined;
                 readonly toast?: Record<string, any> | undefined;
             };
         }, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, {}, {}, string, {}, import("vue").GlobalComponents, import("vue").GlobalDirectives, string, import("vue").ComponentProvideOptions> & import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps & (new () => {

@@ -4,10 +4,10 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
     $slots: S;
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
-    classes: Record<string, any>;
+    classes: boolean | Function | Record<string, any>;
     toast?: Record<string, any> | undefined;
     $props: {
-        readonly classes?: Record<string, any> | undefined;
+        readonly classes?: boolean | Function | Record<string, any> | undefined;
         readonly toast?: Record<string, any> | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, HTMLDivElement>;

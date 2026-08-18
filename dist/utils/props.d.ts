@@ -14,4 +14,18 @@ export function isArrayOfObjects(array: any[]): boolean;
  * @param {function} callback - Function called for each match, receiving the prop name
  */
 export function checkDeprecatedProps(props: object, deprecatedNames: string[], callback: Function): void;
+/**
+ * Merges multiple sources of class configuration objects (class lookups).
+ * Sources are evaluated left-to-right (later sources override earlier ones).
+ *
+ * Behavior:
+ * - Object: Merges with the currently resolved classes.
+ * - Boolean (false): Clears the currently resolved classes to an empty object.
+ * - Function: Called with (resolved, defaults). Its return value replaces the resolved classes.
+ *
+ * @param {Object} defaults The base default classes
+ * @param  {...(Object|Boolean|Function)} sources The sources to merge
+ * @returns {Object} The final resolved classes object
+ */
+export function mergeClassLookups(defaults: Object, ...sources: (Object | boolean | Function)[]): Object;
 //# sourceMappingURL=props.d.ts.map
