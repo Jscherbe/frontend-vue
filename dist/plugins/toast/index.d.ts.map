@@ -1,1 +1,1 @@
-{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../lib/plugins/toast/index.js"],"names":[],"mappings":"AAQA;;GAEG;AACH,kEASC;;yBAdwB,eAAe"}
+{"version":3,"file":"index.d.ts","sourceRoot":"","sources":["../../../lib/plugins/toast/index.js"],"names":[],"mappings":"AAQA;;GAEG;AACH,kEASC;yBAdwB,eAAe;qBAFnB,gBAAgB;4BACT,uBAAuB"}

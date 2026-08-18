@@ -1,4 +1,6 @@
 Todos:
+  ☐ Need to rethink some of the :classes bindings, these should really be merged with defaults so users can simply add a single key vs having to copy the defaults into their project 
+  ☐ Toast plugin display component should pass toast.classes so classes can be overridden per toast
   ☐ Need to make sure to document :classes props (what keys they accept)
     * MCP data is missing this
   ☐ Need to improve jsdoc standard comments

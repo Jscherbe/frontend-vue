@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.17
+
+- Make sure all toast components (which are registered globally) are also exported in main barrel file(s) for library
+
 ## 0.6.16
 
 - `UluModal` fix footer classname "site-modal__footer" -> "modal__footer"
