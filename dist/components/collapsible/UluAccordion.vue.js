@@ -1,9 +1,10 @@
-import { computed as c, inject as x, onMounted as V, createBlock as s, openBlock as d, unref as O, withCtx as i, renderSlot as l, resolveDynamicComponent as T, createTextVNode as B, toDisplayString as C, createElementVNode as M, normalizeClass as S, createVNode as $ } from "vue";
-import b from "../elements/UluIcon.vue.js";
-import j from "./UluCollapsible.vue.js";
-import { useModifiers as A } from "../../composables/useModifiers.js";
-import { newId as h } from "../../utils/dom.js";
-const G = {
+import { computed as s, inject as V, onMounted as O, createBlock as d, openBlock as u, unref as S, withCtx as i, renderSlot as l, resolveDynamicComponent as C, createTextVNode as T, toDisplayString as A, createElementVNode as B, normalizeClass as _, createVNode as E } from "vue";
+import M from "../elements/UluIcon.vue.js";
+import $ from "./UluCollapsible.vue.js";
+import { useModifiers as b } from "../../composables/useModifiers.js";
+import { newId as j } from "../../utils/dom.js";
+import { mergeClassLookups as U } from "../../utils/props.js";
+const I = {
   __name: "UluAccordion",
   props: {
     /**
@@ -44,13 +45,8 @@ const G = {
      * - Any valid class binding value per element
      */
     classes: {
-      type: Object,
-      default: () => ({
-        container: "accordion",
-        trigger: "accordion__summary",
-        content: "accordion__content",
-        containerOpen: "is-active"
-      })
+      type: [Object, Boolean, Function],
+      default: () => ({})
     },
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
@@ -58,51 +54,57 @@ const G = {
     modifiers: [String, Array, Object]
   },
   emits: ["update:modelValue"],
-  setup(t, { emit: u }) {
-    const r = t, m = u, { resolvedModifiers: g } = A({ props: r, baseClass: "accordion" }), p = c(() => {
-      const e = { ...r.classes };
-      return e.container = [e.container, g.value], e;
-    }), o = x("uluAccordionGroup", null), a = h("ulu-accordion");
-    V(() => {
+  setup(t, { emit: m }) {
+    const g = {
+      container: "accordion",
+      trigger: "accordion__summary",
+      content: "accordion__content",
+      containerOpen: "is-active",
+      icon: "accordion__icon"
+    }, r = t, p = m, { resolvedModifiers: f } = b({ props: r, baseClass: "accordion" }), c = s(() => {
+      const e = U(g, r.classes);
+      return e.container = [e.container, f.value], e;
+    }), o = V("uluAccordionGroup", null), a = j("ulu-accordion");
+    O(() => {
       o && r.startOpen && o.toggle(a, !0);
     });
-    const f = c(() => o ? o.activeAccordionId.value === a : r.modelValue);
+    const v = s(() => o ? o.activeAccordionId.value === a : r.modelValue);
     function y(e) {
-      o && o.toggle(a, e), m("update:modelValue", e);
+      o && o.toggle(a, e), p("update:modelValue", e);
     }
-    return (e, E) => (d(), s(j, {
-      id: O(a),
-      "model-value": f.value,
+    return (e, h) => (u(), d($, {
+      id: S(a),
+      "model-value": v.value,
       "start-open": t.startOpen,
       "trigger-text": t.triggerText,
-      classes: p.value,
+      classes: c.value,
       animate: t.animate,
       "onUpdate:modelValue": y
     }, {
       trigger: i(({ isOpen: n }) => [
         l(e.$slots, "trigger", { isOpen: n }, () => [
-          (d(), s(T(t.triggerTextElement), null, {
+          (u(), d(C(t.triggerTextElement), null, {
             default: i(() => [
-              B(C(t.triggerText), 1)
+              T(A(t.triggerText), 1)
             ]),
             _: 1
           }))
         ]),
         l(e.$slots, "icon", { isOpen: n }, () => [
-          M("span", {
-            class: S(["accordion__icon", t.classes.icon])
+          B("span", {
+            class: _(c.value.icon)
           }, [
-            $(b, {
+            E(M, {
               icon: n ? "type:collapse" : "type:expand",
               style: { display: "inline" }
             }, null, 8, ["icon"])
           ], 2)
         ])
       ]),
-      default: i(({ isOpen: n, toggle: v }) => [
+      default: i(({ isOpen: n, toggle: x }) => [
         l(e.$slots, "default", {
           isOpen: n,
-          toggle: v
+          toggle: x
         })
       ]),
       _: 3
@@ -110,5 +112,5 @@ const G = {
   }
 };
 export {
-  G as default
+  I as default
 };

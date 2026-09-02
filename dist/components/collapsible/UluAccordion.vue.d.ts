@@ -6,7 +6,7 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     $emit: (event: "update:modelValue", ...args: any[]) => void;
     startOpen: boolean;
-    classes: Record<string, any>;
+    classes: boolean | Function | Record<string, any>;
     animate: boolean | Record<string, any>;
     triggerTextElement: string;
     triggerText?: string | undefined;
@@ -14,7 +14,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
         readonly startOpen?: boolean | undefined;
-        readonly classes?: Record<string, any> | undefined;
+        readonly classes?: boolean | Function | Record<string, any> | undefined;
         readonly animate?: boolean | Record<string, any> | undefined;
         readonly triggerTextElement?: string | undefined;
         readonly triggerText?: string | undefined;
