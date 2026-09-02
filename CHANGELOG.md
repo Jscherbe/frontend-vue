@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.22
+
+- `UluAccordion` | Update classes prop so that it's merged with default accordion classes using the new mergeClassLookups util (so it matches this API now where you can pass an object, a boolean false for no classes, or a function to resolve yourself for complete control)
+
 ## 0.6.21
 
 - Add generic `resolveClassOverride` helper function to `utils.props` to merge individual element classes (supporting strings, objects, arrays, booleans, and functional modifiers).

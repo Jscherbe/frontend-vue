@@ -4,7 +4,7 @@
     :model-value="resolvedModelValue"
     :start-open="startOpen"
     :trigger-text="triggerText"
-    :classes="mergedClasses"
+    :classes="resolvedClasses"
     :animate="animate"
     @update:model-value="handleUpdateModelValue"
   >
@@ -15,7 +15,7 @@
         </component>
       </slot>
       <slot name="icon" :isOpen="isOpen">
-        <span class="accordion__icon" :class="classes.icon">
+        <span :class="resolvedClasses.icon">
           <UluIcon 
             :icon="isOpen ? 'type:collapse' : 'type:expand'"
             style="display: inline;"
@@ -36,6 +36,15 @@
   import UluCollapsible from "./UluCollapsible.vue";
   import { useModifiers } from "../../composables/useModifiers.js";
   import { newId } from "../../utils/dom.js";
+  import { mergeClassLookups } from "../../utils/props.js";
+
+  const DEFAULT_CLASSES = {
+    container: 'accordion',
+    trigger: 'accordion__summary',
+    content: 'accordion__content',
+    containerOpen: 'is-active',
+    icon: 'accordion__icon'
+  };
 
   const props = defineProps({
     /**
@@ -76,13 +85,8 @@
      * - Any valid class binding value per element
      */
     classes: {
-      type: Object,
-      default: () => ({
-        container: 'accordion',
-        trigger: 'accordion__summary',
-        content: 'accordion__content',
-        containerOpen: 'is-active'
-      })
+      type: [Object, Boolean, Function],
+      default: () => ({})
     },
     /**
      * Class modifiers (ie. 'transparent', 'secondary', etc)
@@ -94,8 +98,8 @@
 
   const { resolvedModifiers } = useModifiers({ props, baseClass: "accordion" });
 
-  const mergedClasses = computed(() => {
-    const merged = { ...props.classes };
+  const resolvedClasses = computed(() => {
+    const merged = mergeClassLookups(DEFAULT_CLASSES, props.classes);
     merged.container = [merged.container, resolvedModifiers.value];
     return merged;
   });
