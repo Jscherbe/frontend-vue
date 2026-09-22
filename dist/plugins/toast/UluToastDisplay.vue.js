@@ -1,9 +1,9 @@
-import { computed as i, createBlock as r, openBlock as e, Teleport as p, unref as s, createVNode as u, TransitionGroup as m, normalizeClass as _, withCtx as d, createElementBlock as f, Fragment as k, renderList as T, resolveDynamicComponent as g } from "vue";
-import { store as v } from "./store.js";
+import { computed as l, createBlock as r, openBlock as e, Teleport as p, unref as s, createVNode as u, TransitionGroup as m, normalizeClass as _, withCtx as d, createElementBlock as f, Fragment as k, renderList as y, resolveDynamicComponent as T } from "vue";
+import { store as g } from "./store.js";
 const C = {
   __name: "UluToastDisplay",
-  setup(x) {
-    const { toasts: c, pluginOptions: o } = v, l = i(() => {
+  setup(v) {
+    const { toasts: c, pluginOptions: o } = g, i = l(() => {
       const { position: n } = o;
       return n.map((a) => `toast-container--${a}`);
     });
@@ -11,12 +11,13 @@ const C = {
       to: s(o).teleportTo
     }, [
       u(m, {
-        class: _(["toast-container", l.value]),
+        class: _(["toast-container", i.value]),
         name: "toast-animation",
-        tag: "div"
+        tag: "div",
+        type: "transition"
       }, {
         default: d(() => [
-          (e(!0), f(k, null, T(s(c), (t) => (e(), r(g(t.component), {
+          (e(!0), f(k, null, y(s(c), (t) => (e(), r(T(t.component), {
             key: t.uid,
             toast: t
           }, null, 8, ["toast"]))), 128))

@@ -195,4 +195,9 @@ $config: (
     position: absolute;
     width: 100%;
   }
+  // Add this so transitioning toasts can never intercept clicks
+  .toast-animation-enter-active,
+  .toast-animation-leave-active {
+    pointer-events: none; 
+  }
 }

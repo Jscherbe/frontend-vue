@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.6.23
+
+- **Toast Plugin** | 
+  - Add pointer events none to transitioning state to avoid ghost clicks
+  - Add type transition to TransitionGroup on container (to avoid issues with the indefinite type toast [wobble type], which causes Vue to think the animation is longer than it is)
+
 ## 0.6.22
 
 - `UluAccordion` | Update classes prop so that it's merged with default accordion classes using the new mergeClassLookups util (so it matches this API now where you can pass an object, a boolean false for no classes, or a function to resolve yourself for complete control)

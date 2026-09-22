@@ -5,6 +5,7 @@
       :class="classes"
       name="toast-animation" 
       tag="div"
+      type="transition"
     >
       <component
         v-for="toast in toasts"
