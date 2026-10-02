@@ -1,39 +1,25 @@
-<!-- NOTE: Need to rename classes when moving this into the library -->
 <template>
-  <span 
-    class="popover popover--tooltip is-active"
-    ref="content"
+  <UluPopoverContent 
+    class="popover--tooltip is-active"
     :id="TOOLTIP_ID"
-    :data-placement="placement"
-    :class="[
-      {
-        'popover--fixed' : isFixedStrategy
-      },
-      resolvedConfig.class
-    ]"
-    :style="floatingStyles"
+    :trigger="trigger"
+    :config="resolvedConfig"
+    :class="resolvedConfig.class"
   >
-    <span v-if="resolvedConfig.isHtml" class="popover__inner" v-html="resolvedConfig.content">
-    </span>
-    <span v-else class="popover__inner">
+    <span v-if="resolvedConfig.isHtml" v-html="resolvedConfig.content"></span>
+    <template v-else>
       <component v-if="resolvedConfig.component" :is="resolvedConfig.component" v-bind="resolvedConfig.componentProps"/>
       <template v-else>
         {{ resolvedConfig.content }}
       </template>
-    </span>
-    <span 
-      v-if="resolvedConfig.arrow"
-      class="popover__arrow" 
-      ref="contentArrow"
-      :style="arrowStyles"
-    ></span>
-  </span>
+    </template>
+  </UluPopoverContent>
 </template>
 
 <script setup>
-  import { ref, toRef, computed } from "vue";
-  import { useUluFloating } from "../../composables/useUluFloating.js";
+  import { computed } from "vue";
   import { TOOLTIP_ID } from "./index.js";
+  import UluPopoverContent from "./UluPopoverContent.vue";
 
   const props = defineProps({
     config: Object,
@@ -43,13 +29,5 @@
     }
   });
 
-  const content = ref(null);
   const resolvedConfig = computed(() => props.config);
-  const { 
-    floatingStyles, 
-    placement,
-    arrowStyles,
-    contentArrow,
-    isFixedStrategy
-  } = useUluFloating(toRef(props, 'trigger'), content, resolvedConfig);
 </script>

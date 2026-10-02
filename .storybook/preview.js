@@ -8,7 +8,8 @@ import {
   modalsPlugin, 
   popoversPlugin, 
   toastPlugin, 
-  breakpointsPlugin 
+  breakpointsPlugin,
+  tourPlugin
 } from "../lib/index.js";
 
 import modals from "../lib/plugins/modals/tests/test-modals.js";
@@ -72,7 +73,8 @@ setup((app) => {
     .use(popoversPlugin)
     .use(toastPlugin)
     .use(modalsPlugin, { modals })
-    .use(breakpointsPlugin);
+    .use(breakpointsPlugin)
+    .use(tourPlugin);
 });
 
 // Export a global decorator to wrap all stories with a router-view
@@ -91,6 +93,7 @@ export const decorators = [
       <UluModalsDisplay/>
       <UluTooltipDisplay/>
       <UluToastDisplay/>
+      <UluTourDisplay/>
     `,
   }),
 ];

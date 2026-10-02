@@ -19,39 +19,29 @@
       {{ triggerText }}
     </slot>
   </button>
-  <span 
-    class="popover"
-    ref="content"
+
+  <UluPopoverContent 
+    ref="popoverBase"
+    :trigger="trigger"
+    :config="resolvedConfig"
     :class="[ 
       size ? `popover--${ size }` : '',
       { 
         'popover--no-padding' : noPadding,
-        'popover--fixed' : isFixedStrategy,
         'is-active' : isOpen
       }, 
       classes.content,
     ]"
     :aria-labelledby="triggerId" 
     :id="id" 
-    :style="floatingStyles"
-    :data-placement="placement"
     @keydown.esc="changeTo(false)"
     tabindex="-1"
   >
-    <span class="popover__inner">
-      <slot :isOpen="isOpen" :toggle="toggle" :close="close"/>
-    </span>
-    <span v-if="$slots.footer" class="popover__footer">
+    <slot :isOpen="isOpen" :toggle="toggle" :close="close"/>
+    <template #footer v-if="$slots.footer">
       <slot name="footer" :close="close"/>
-    </span>
-    <span 
-      v-if="resolvedConfig.arrow"
-      class="popover__arrow" 
-      ref="contentArrow"
-      :style="arrowStyles"
-      data-ulu-popover-arrow
-    ></span>
-  </span>
+    </template>
+  </UluPopoverContent>
 </template>
 <script setup>
   import { ref, computed, unref, nextTick } from "vue";
@@ -59,7 +49,7 @@
   import { POPOVER_OPTIONS_KEY } from "./index.js";
   import defaults from "./defaults.js";
   import { newId } from "../../utils/dom.js";
-  import { useUluFloating } from "../../composables/useUluFloating.js";
+  import UluPopoverContent from "./UluPopoverContent.vue";
 
   const emit = defineEmits(["toggle"]);
   const props = defineProps({
@@ -127,7 +117,7 @@
     directFocus: {
       type: Function,
       default: ({ isOpen, content }) => {
-        if (isOpen) {
+        if (isOpen && content) {
           content.focus({ preventScroll: true });
         }
       }
@@ -146,16 +136,7 @@
   
   const isOpen = ref(props.startOpen || false);
   const trigger = ref(null);
-  const content = ref(null);
-
-  const { 
-    floatingStyles, 
-    placement, 
-    update,
-    arrowStyles,
-    contentArrow,
-    isFixedStrategy
-  } = useUluFloating(trigger, content, resolvedConfig);
+  const popoverBase = ref(null);
 
   const toggle = () => {
     changeTo(!isOpen.value);
@@ -164,15 +145,17 @@
   const changeTo = (toOpen) => {
     isOpen.value = toOpen;
     
+    const contentRef = popoverBase.value?.content;
     const focusArgs = { 
       trigger: unref(trigger), 
-      content: unref(content), 
+      content: unref(contentRef), 
       isOpen: unref(isOpen) 
     };
     const eventArgs = { isOpen: focusArgs.isOpen };
+    
     nextTick(() => {
       if (isOpen.value) {
-        update();
+        popoverBase.value?.update();
         // Push to next event, without this will get triggered by the original click event
         window.setTimeout(() => {
           addOutsideClick();
@@ -194,7 +177,8 @@
         destroyOutsideClick();
       }
       outsideHandler = event => {
-        if (content.value && !content.value.contains(event.target)) {
+        const contentRef = popoverBase.value?.content;
+        if (contentRef && !contentRef.contains(event.target)) {
           changeTo(false);
         }
       };
@@ -208,4 +192,24 @@
     }
   };
   const close = () => changeTo(false);
+
+  defineExpose({
+    /**
+     * The reactive internal open/closed state of the popover
+     */
+    isOpen,
+    /**
+     * Method to toggle the popover open/closed
+     */
+    toggle,
+    /**
+     * Method to force the popover closed
+     */
+    close,
+    /**
+     * Method to explicitly set the open state
+     * @param {Boolean} toOpen - The desired state
+     */
+    changeTo
+  });
 </script>
