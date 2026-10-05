@@ -20,137 +20,9 @@
       }
     ],
     "useDocumentTitle": [],
-    "tour": [
-      {
-        "title": "tour Example 1",
-        "description": "Code example extracted from markdown.",
-        "code": "import UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);"
-      },
-      {
-        "title": "tour Example 2",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>"
-      },
-      {
-        "title": "tour Example 3",
-        "description": "Code example extracted from markdown.",
-        "code": "const demoTour = {\n  name: 'demo-tour',\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalOptions: { size: 'small' }\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    },\n    {\n      target: '#step-2-btn',\n      title: 'With Highlight',\n      content: 'This step has the backdrop highlight enabled!',\n      placement: 'right',\n      highlight: true\n    }\n  ]\n};"
-      },
-      {
-        "title": "tour Example 4",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>"
-      },
-      {
-        "title": "tour Example 5",
-        "description": "Code example extracted from markdown.",
-        "code": "this.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();"
-      },
-      {
-        "title": "tour Example 6",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <div class=\"my-custom-step-layout\">\n    <h3>Custom Design</h3>\n    <!-- Re-use the default buttons if desired -->\n    <UluTourPager />\n  </div>\n</template>\n\n<script setup>\n  import { UluTourPager } from \"@ulu/frontend-vue\";\n</script>"
-      }
-    ],
-    "toast": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<toast>Content</toast>"
-      }
-    ],
-    "useModals": [],
-    "modals": [
-      {
-        "title": "GlobalApiTest",
-        "description": "GlobalApiTest variation",
-        "code": "<modals>Content</modals>"
-      },
-      {
-        "title": "modals Example 1",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>"
-      },
-      {
-        "title": "modals Example 2",
-        "description": "Code example extracted from markdown.",
-        "code": "import { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]"
-      },
-      {
-        "title": "modals Example 3",
-        "description": "Code example extracted from markdown.",
-        "code": "import UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });"
-      },
-      {
-        "title": "modals Example 4",
-        "description": "Code example extracted from markdown.",
-        "code": "// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\""
-      },
-      {
-        "title": "modals Example 5",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>"
-      }
-    ],
-    "useTooltipFollow": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<useTooltipFollow>Content</useTooltipFollow>"
-      }
-    ],
-    "useTooltip": [],
-    "tooltip": [
-      {
-        "title": "Basic",
-        "description": "Basic variation",
-        "code": "<tooltip>This is a basic tooltip!</tooltip>"
-      }
-    ],
-    "UluPopover": [],
     "UluProgressCircle": [],
     "UluProgressBar": [],
     "UluAnimateNumber": [],
-    "UluSanityRichText": [],
-    "UluRouteAnnouncer": [],
-    "UluPlaceholderText": [],
-    "UluPlaceholderImage": [],
-    "UluEmptyView": [],
-    "UluEmpty": [],
-    "UluConditionalWrapper": [],
-    "UluConditionalText": [],
-    "UluAction": [
-      {
-        "title": "AsButton",
-        "description": "AsButton variation",
-        "code": "<UluAction>Content</UluAction>"
-      },
-      {
-        "title": "AsAnchor",
-        "description": "AsAnchor variation",
-        "code": "<UluAction href=\"https://example.com\" target=\"_blank\">Content</UluAction>"
-      },
-      {
-        "title": "AsRouterLink",
-        "description": "AsRouterLink variation",
-        "code": "<UluAction to=\"/about\">Content</UluAction>"
-      },
-      {
-        "title": "ExplicitElementOverride",
-        "description": "ExplicitElementOverride variation",
-        "code": "<UluAction element=\"span\">Content</UluAction>"
-      },
-      {
-        "title": "DownloadWithFilename",
-        "description": "DownloadWithFilename variation",
-        "code": "<UluAction href=\"{...}\" download=\"download-test.txt\">Content</UluAction>"
-      },
-      {
-        "title": "TestDownloadWithoutFilename",
-        "description": "TestDownloadWithoutFilename variation",
-        "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
-      }
-    ],
     "UluSkipLink": [
       {
         "title": "Default",
@@ -223,26 +95,87 @@
         "code": "<UluBreadcrumb items=\"{...}\">Content</UluBreadcrumb>"
       }
     ],
+    "UluSanityRichText": [],
+    "UluRouteAnnouncer": [],
+    "UluPlaceholderText": [],
+    "UluPlaceholderImage": [],
+    "UluEmptyView": [],
+    "UluEmpty": [],
+    "UluConditionalWrapper": [],
+    "UluConditionalText": [],
+    "UluAction": [
+      {
+        "title": "AsButton",
+        "description": "AsButton variation",
+        "code": "<UluAction>Content</UluAction>"
+      },
+      {
+        "title": "AsAnchor",
+        "description": "AsAnchor variation",
+        "code": "<UluAction href=\"https://example.com\" target=\"_blank\">Content</UluAction>"
+      },
+      {
+        "title": "AsRouterLink",
+        "description": "AsRouterLink variation",
+        "code": "<UluAction to=\"/about\">Content</UluAction>"
+      },
+      {
+        "title": "ExplicitElementOverride",
+        "description": "ExplicitElementOverride variation",
+        "code": "<UluAction element=\"span\">Content</UluAction>"
+      },
+      {
+        "title": "DownloadWithFilename",
+        "description": "DownloadWithFilename variation",
+        "code": "<UluAction href=\"{...}\" download=\"download-test.txt\">Content</UluAction>"
+      },
+      {
+        "title": "TestDownloadWithoutFilename",
+        "description": "TestDownloadWithoutFilename variation",
+        "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
+      }
+    ],
     "UluWhenBreakpoint": [],
     "UluTitleRail": [],
     "UluDataGrid": [],
     "UluAdaptiveLayout": [],
-    "UluSelectableMenu": [],
-    "UluSearchForm": [],
-    "UluFormTextarea": [],
-    "UluFormText": [],
-    "UluFormSelect": [],
-    "UluFormRequiredChar": [],
-    "UluFormRadio": [],
-    "UluFormLabel": [],
-    "UluFormItemsInline": [],
-    "UluFormItem": [],
-    "UluFormFile": [],
-    "UluFormFieldset": [],
-    "UluFormCheckbox": [],
-    "UluFormActions": [],
-    "UluForm": [],
-    "UluFileDisplay": [],
+    "tour": [
+      {
+        "title": "tour Example 1",
+        "description": "Code example extracted from markdown.",
+        "code": "import UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);"
+      },
+      {
+        "title": "tour Example 2",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>"
+      },
+      {
+        "title": "tour Example 3",
+        "description": "Code example extracted from markdown.",
+        "code": "const demoTour = {\n  name: 'demo-tour',\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalOptions: { size: 'small' }\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};"
+      },
+      {
+        "title": "tour Example 4",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>"
+      },
+      {
+        "title": "tour Example 5",
+        "description": "Code example extracted from markdown.",
+        "code": "this.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();"
+      },
+      {
+        "title": "tour Example 6",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <div style=\"text-align: center;\">\n    <img src=\"/logo.png\" />\n    <p>This is my custom graphic step.</p>\n  </div>\n</template>"
+      },
+      {
+        "title": "tour Example 7",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <div class=\"my-custom-floating-drawer\">\n    <h3>Custom Design</h3>\n    <!-- Wire up your own buttons -->\n    <button @click=\"api.next()\">Got it!</button>\n  </div>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n  const { api } = useTour();\n</script>"
+      }
+    ],
     "UluTabGroup": [
       {
         "title": "Default",
@@ -271,6 +204,29 @@
     "UluCollapsible": [],
     "UluAccordionGroup": [],
     "UluAccordion": [],
+    "UluSelectableMenu": [],
+    "UluSearchForm": [],
+    "UluFormTextarea": [],
+    "UluFormText": [],
+    "UluFormSelect": [],
+    "UluFormRequiredChar": [],
+    "UluFormRadio": [],
+    "UluFormLabel": [],
+    "UluFormItemsInline": [],
+    "UluFormItem": [],
+    "UluFormFile": [],
+    "UluFormFieldset": [],
+    "UluFormCheckbox": [],
+    "UluFormActions": [],
+    "UluForm": [],
+    "UluFileDisplay": [],
+    "toast": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<toast>Content</toast>"
+      }
+    ],
     "UluTag": [],
     "UluTable": [
       {
@@ -494,6 +450,55 @@
       }
     ],
     "UluAlert": [],
+    "useTooltipFollow": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<useTooltipFollow>Content</useTooltipFollow>"
+      }
+    ],
+    "useTooltip": [],
+    "tooltip": [
+      {
+        "title": "Basic",
+        "description": "Basic variation",
+        "code": "<tooltip>This is a basic tooltip!</tooltip>"
+      }
+    ],
+    "UluPopover": [],
+    "useModals": [],
+    "modals": [
+      {
+        "title": "GlobalApiTest",
+        "description": "GlobalApiTest variation",
+        "code": "<modals>Content</modals>"
+      },
+      {
+        "title": "modals Example 1",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>"
+      },
+      {
+        "title": "modals Example 2",
+        "description": "Code example extracted from markdown.",
+        "code": "import { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]"
+      },
+      {
+        "title": "modals Example 3",
+        "description": "Code example extracted from markdown.",
+        "code": "import UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });"
+      },
+      {
+        "title": "modals Example 4",
+        "description": "Code example extracted from markdown.",
+        "code": "// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\""
+      },
+      {
+        "title": "modals Example 5",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>"
+      }
+    ],
     "UluTableSticky": [
       {
         "title": "Default",
@@ -512,6 +517,10 @@
         "code": "<CardExample horizontal>Content</CardExample>"
       }
     ],
+    "UluScrollAnchorsNavAnimated": [],
+    "UluScrollAnchorsNav": [],
+    "UluScrollAnchorsHeadlessSection": [],
+    "UluScrollAnchors": [],
     "facets-router": [
       {
         "title": "Default",
@@ -588,10 +597,6 @@
         "code": "<Facets facetFields=\"{...}\" countMode=\"intuitive\">Content</Facets>"
       }
     ],
-    "UluScrollAnchorsNavAnimated": [],
-    "UluScrollAnchorsNav": [],
-    "UluScrollAnchorsHeadlessSection": [],
-    "UluScrollAnchors": [],
     "FullFormDemo": [],
     "FrontPage": [
       {
@@ -707,25 +712,6 @@
     ]
   },
   "configuration": {
-    "UluTourPager": {
-      "description": "Vue Component Props, Emits, and Slots for UluTourPager",
-      "properties": [
-        {
-          "name": "showClose",
-          "type": "boolean",
-          "default": "false",
-          "description": "Display a close button alongside the pager buttons"
-        }
-      ],
-      "events": [],
-      "slots": []
-    },
-    "UluTourDisplay": {
-      "description": "Vue Component Props, Emits, and Slots for UluTourDisplay",
-      "properties": [],
-      "events": [],
-      "slots": []
-    },
     "UluToastDisplay": {
       "description": "Vue Component Props, Emits, and Slots for UluToastDisplay",
       "properties": [],
@@ -758,6 +744,43 @@
           "description": ""
         }
       ]
+    },
+    "UluTourPager": {
+      "description": "Vue Component Props, Emits, and Slots for UluTourPager",
+      "properties": [
+        {
+          "name": "showClose",
+          "type": "boolean",
+          "default": "false",
+          "description": "Display a close button alongside the pager buttons"
+        }
+      ],
+      "events": [],
+      "slots": []
+    },
+    "UluTourDisplay": {
+      "description": "Vue Component Props, Emits, and Slots for UluTourDisplay",
+      "properties": [],
+      "events": [],
+      "slots": []
+    },
+    "UluTourContent": {
+      "description": "Vue Component Props, Emits, and Slots for UluTourContent",
+      "properties": [
+        {
+          "name": "step",
+          "type": "object",
+          "description": "The tour step configuration object"
+        },
+        {
+          "name": "isModal",
+          "type": "boolean",
+          "default": "false",
+          "description": "Adjusts the typography to match a modal context rather than a popover context"
+        }
+      ],
+      "events": [],
+      "slots": []
     },
     "UluTooltipPopover": {
       "description": "Vue Component Props, Emits, and Slots for UluTooltipPopover",
@@ -2151,473 +2174,6 @@
         }
       ]
     },
-    "UluTabPanels": {
-      "description": "Vue Component Props, Emits, and Slots for UluTabPanels",
-      "properties": [],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluTabPanel": {
-      "description": "Vue Component Props, Emits, and Slots for UluTabPanel",
-      "properties": [],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluTabList": {
-      "description": "Vue Component Props, Emits, and Slots for UluTabList",
-      "properties": [],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluTabGroup": {
-      "description": "Vue Component Props, Emits, and Slots for UluTabGroup",
-      "properties": [
-        {
-          "name": "defaultIndex",
-          "type": "number",
-          "description": "Active tab index by default (uncontrolled)"
-        },
-        {
-          "name": "selectedIndex",
-          "type": "number",
-          "description": "Actively selected tab index (controlled)"
-        },
-        {
-          "name": "vertical",
-          "type": "boolean",
-          "description": "Whether or not to use vertical layout"
-        },
-        {
-          "name": "sticky",
-          "type": "boolean",
-          "description": "Whether or not to use sticky modifier (tablist)"
-        },
-        {
-          "name": "transparent",
-          "type": "boolean",
-          "description": "Whether or not to use transparent modifier (tab panels)"
-        },
-        {
-          "name": "modifiers",
-          "type": "string|array|object",
-          "description": "Class modifiers (ie. 'transparent', 'secondary', etc)"
-        }
-      ],
-      "events": [
-        {
-          "name": "change",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluTab": {
-      "description": "Vue Component Props, Emits, and Slots for UluTab",
-      "properties": [],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluOverflowPopover": {
-      "description": "Vue Component Props, Emits, and Slots for UluOverflowPopover",
-      "properties": [
-        {
-          "name": "triggerIcon",
-          "type": "string",
-          "description": "Default icon for overflow popover trigger"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluModal": {
-      "description": "Vue Component Props, Emits, and Slots for UluModal",
-      "properties": [
-        {
-          "name": "modelValue",
-          "type": "boolean",
-          "description": "Controls the visibility of the modal (for v-model)."
-        },
-        {
-          "name": "teleport",
-          "type": "string|boolean|object",
-          "default": "\"body\"",
-          "description": "Target for Vue's Teleport. Defaults to 'body'.\nSet to `false` to disable teleporting (modal renders inline).\nSet to `null` or `undefined` for `body` fallback with disabled as false."
-        },
-        {
-          "name": "preventScroll",
-          "type": "boolean",
-          "default": "true",
-          "description": "When open and not non-modal, the body is prevented from scrolling (defaults to true)."
-        },
-        {
-          "name": "preventScrollShift",
-          "type": "boolean",
-          "default": "true",
-          "description": "Compensate for layout shift when preventing scroll. Which adds padding equal to scrollbars \nwidth while dialog is open"
-        },
-        {
-          "name": "nonModal",
-          "type": "boolean",
-          "description": "Use non-modal interface for dialog"
-        },
-        {
-          "name": "clickOutsideCloses",
-          "type": "boolean",
-          "default": "true",
-          "description": "Close modal on click outside"
-        },
-        {
-          "name": "allowResize",
-          "type": "boolean",
-          "description": "Enable resizer"
-        },
-        {
-          "name": "position",
-          "type": "string",
-          "default": "\"center\"",
-          "description": "Position (any position that modal.scss supports)"
-        },
-        {
-          "name": "fullscreen",
-          "type": "boolean",
-          "description": "Use fullscreen layout"
-        },
-        {
-          "name": "fullscreenMobile",
-          "type": "boolean",
-          "description": "If true, modal is forced to fullscreen on mobile viewports"
-        },
-        {
-          "name": "bodyFills",
-          "type": "boolean",
-          "description": "If `true`, the modal body will fill the available space."
-        },
-        {
-          "name": "noBackdrop",
-          "type": "boolean",
-          "description": "If `true`, no backdrop will be displayed behind the modal"
-        },
-        {
-          "name": "noMinHeight",
-          "type": "boolean",
-          "description": "If `true`, the modal will not have a minimum height"
-        },
-        {
-          "name": "labelledby",
-          "type": "string",
-          "description": "Set aria-labelledby by element id (to add accessible label)\n- Use this if you are not using the default modal title (custom titles)"
-        },
-        {
-          "name": "describedby",
-          "type": "string",
-          "description": "Set aria-describedby by element id (to add accessible description)\n- This is usually content you passed into the modal body (paragraph/etc)"
-        },
-        {
-          "name": "title",
-          "type": "string",
-          "description": "Text for modal title in header (can use title slot as well for complex markup), if not passed the header will be omitted"
-        },
-        {
-          "name": "titleIcon",
-          "type": "string",
-          "description": "Optional icon for before title (uses UluIcon interface)"
-        },
-        {
-          "name": "resizerIcon",
-          "type": "string",
-          "description": "Default icon for resizer"
-        },
-        {
-          "name": "closeIcon",
-          "type": "string",
-          "description": "Default icon for close button (uses UluIcon interface)"
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{\n  close: \"button button--icon\"\n}",
-          "description": "Classes for elements ({ container, header, title, body, footer })\n- Any valid class binding value per element"
-        },
-        {
-          "name": "modifiers",
-          "type": "string|array|object",
-          "description": "Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])"
-        },
-        {
-          "name": "autoIframe",
-          "type": "boolean",
-          "description": "Opt-in convenience behavior. If the modal body's sole content is an iframe, it automatically applies layout fixes."
-        },
-        {
-          "name": "noPauseVideos",
-          "type": "boolean",
-          "description": "Opt-out behavior to prevent pausing videos (YouTube and native <video>) when the modal closes."
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        },
-        {
-          "name": "close",
-          "description": ""
-        },
-        {
-          "name": "open",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "title",
-          "description": ""
-        },
-        {
-          "name": "closeIcon",
-          "description": ""
-        },
-        {
-          "name": "default",
-          "description": ""
-        },
-        {
-          "name": "footer",
-          "description": ""
-        },
-        {
-          "name": "resizerIcon",
-          "description": ""
-        }
-      ]
-    },
-    "UluDropdown": {
-      "description": "Vue Component Props, Emits, and Slots for UluDropdown",
-      "properties": [
-        {
-          "name": "items",
-          "type": "array",
-          "description": "Dropdown menu items (to be passed to UluMenu)"
-        },
-        {
-          "name": "triggerText",
-          "type": "string",
-          "description": "Optional text if not using slot"
-        },
-        {
-          "name": "popoverClasses",
-          "type": "object",
-          "default": "{\n  trigger: \"button\"\n}",
-          "description": "Pass classes object to UluPopover classes prop"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "trigger",
-          "description": ""
-        },
-        {
-          "name": "name",
-          "description": ""
-        }
-      ]
-    },
-    "UluCollapsible": {
-      "description": "Vue Component Props, Emits, and Slots for UluCollapsible",
-      "properties": [
-        {
-          "name": "modelValue",
-          "type": "boolean",
-          "default": "undefined",
-          "description": "v-model for controlling open state"
-        },
-        {
-          "name": "triggerText",
-          "type": "string",
-          "description": "Set text for trigger (instead of using slot)"
-        },
-        {
-          "name": "closeOnEscape",
-          "type": "boolean",
-          "description": "Closes with escape key"
-        },
-        {
-          "name": "startOpen",
-          "type": "boolean",
-          "description": "When the component is shown it should start visible or hidden"
-        },
-        {
-          "name": "animate",
-          "type": "boolean|object",
-          "default": "true",
-          "description": "Enable or configure animations.\n- `true` to enable animations with default settings (default)\n- `false` (disable)\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' })."
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{\n  container: 'ulu-collapsible',\n  trigger: 'ulu-collapsible__trigger',\n  content: 'ulu-collapsible__content',\n  containerOpen: 'ulu-collapsible--open',\n  containerClosed: 'ulu-collapsible--closed'\n}",
-          "description": "Classes for elements ({ container, trigger, content })\n- Any valid class binding value per element"
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "trigger",
-          "description": ""
-        },
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluAccordionGroup": {
-      "description": "Vue Component Props, Emits, and Slots for UluAccordionGroup",
-      "properties": [
-        {
-          "name": "items",
-          "type": "array",
-          "default": "[]",
-          "description": "Array of items to render as accordions.\nEach item can have: title, content, isOpen, classes"
-        },
-        {
-          "name": "triggerTextElement",
-          "type": "string",
-          "default": "\"strong\"",
-          "description": "If using summary text sets the inner element the text is wrapped in, usually a headline or strong"
-        },
-        {
-          "name": "modifiers",
-          "type": "string|array|object",
-          "description": "Class modifiers (ie. 'transparent', 'secondary', etc)"
-        },
-        {
-          "name": "animate",
-          "type": "boolean|object",
-          "default": "true",
-          "description": "Enable or configure animations.\n- `false` (default) to disable all animations.\n- `true` to enable animations with default settings.\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' })."
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "trigger",
-          "description": ""
-        },
-        {
-          "name": "icon",
-          "description": ""
-        },
-        {
-          "name": "item",
-          "description": ""
-        },
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluAccordion": {
-      "description": "Vue Component Props, Emits, and Slots for UluAccordion",
-      "properties": [
-        {
-          "name": "modelValue",
-          "type": "boolean",
-          "default": "undefined",
-          "description": "v-model for controlling open state  (optional)"
-        },
-        {
-          "name": "startOpen",
-          "type": "boolean",
-          "description": "Whether the accordion is open by default"
-        },
-        {
-          "name": "animate",
-          "type": "boolean|object",
-          "default": "true",
-          "description": "Enable or configure animations.\n- `false` (default) to disable all animations.\n- `true` to enable animations with default settings.\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' })."
-        },
-        {
-          "name": "triggerText",
-          "type": "string",
-          "description": "Text to use for accordion, alternatively use #trigger slot"
-        },
-        {
-          "name": "triggerTextElement",
-          "type": "string",
-          "default": "\"strong\"",
-          "description": "If using summary text sets the inner element the text is wrapped in, usually a headline or strong"
-        },
-        {
-          "name": "classes",
-          "type": "object|boolean|func",
-          "default": "() => ({})",
-          "description": "Classes for elements. See UluCollapsible for all available class keys (trigger, content, etc).\nThe 'icon' key is also available for the icon span.\n- Any valid class binding value per element"
-        },
-        {
-          "name": "modifiers",
-          "type": "string|array|object",
-          "description": "Class modifiers (ie. 'transparent', 'secondary', etc)"
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "trigger",
-          "description": ""
-        },
-        {
-          "name": "icon",
-          "description": ""
-        },
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
     "UluTag": {
       "description": "Vue Component Props, Emits, and Slots for UluTag",
       "properties": [
@@ -3955,6 +3511,473 @@
         }
       ]
     },
+    "UluTabPanels": {
+      "description": "Vue Component Props, Emits, and Slots for UluTabPanels",
+      "properties": [],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluTabPanel": {
+      "description": "Vue Component Props, Emits, and Slots for UluTabPanel",
+      "properties": [],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluTabList": {
+      "description": "Vue Component Props, Emits, and Slots for UluTabList",
+      "properties": [],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluTabGroup": {
+      "description": "Vue Component Props, Emits, and Slots for UluTabGroup",
+      "properties": [
+        {
+          "name": "defaultIndex",
+          "type": "number",
+          "description": "Active tab index by default (uncontrolled)"
+        },
+        {
+          "name": "selectedIndex",
+          "type": "number",
+          "description": "Actively selected tab index (controlled)"
+        },
+        {
+          "name": "vertical",
+          "type": "boolean",
+          "description": "Whether or not to use vertical layout"
+        },
+        {
+          "name": "sticky",
+          "type": "boolean",
+          "description": "Whether or not to use sticky modifier (tablist)"
+        },
+        {
+          "name": "transparent",
+          "type": "boolean",
+          "description": "Whether or not to use transparent modifier (tab panels)"
+        },
+        {
+          "name": "modifiers",
+          "type": "string|array|object",
+          "description": "Class modifiers (ie. 'transparent', 'secondary', etc)"
+        }
+      ],
+      "events": [
+        {
+          "name": "change",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluTab": {
+      "description": "Vue Component Props, Emits, and Slots for UluTab",
+      "properties": [],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluOverflowPopover": {
+      "description": "Vue Component Props, Emits, and Slots for UluOverflowPopover",
+      "properties": [
+        {
+          "name": "triggerIcon",
+          "type": "string",
+          "description": "Default icon for overflow popover trigger"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluModal": {
+      "description": "Vue Component Props, Emits, and Slots for UluModal",
+      "properties": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "description": "Controls the visibility of the modal (for v-model)."
+        },
+        {
+          "name": "teleport",
+          "type": "string|boolean|object",
+          "default": "\"body\"",
+          "description": "Target for Vue's Teleport. Defaults to 'body'.\nSet to `false` to disable teleporting (modal renders inline).\nSet to `null` or `undefined` for `body` fallback with disabled as false."
+        },
+        {
+          "name": "preventScroll",
+          "type": "boolean",
+          "default": "true",
+          "description": "When open and not non-modal, the body is prevented from scrolling (defaults to true)."
+        },
+        {
+          "name": "preventScrollShift",
+          "type": "boolean",
+          "default": "true",
+          "description": "Compensate for layout shift when preventing scroll. Which adds padding equal to scrollbars \nwidth while dialog is open"
+        },
+        {
+          "name": "nonModal",
+          "type": "boolean",
+          "description": "Use non-modal interface for dialog"
+        },
+        {
+          "name": "clickOutsideCloses",
+          "type": "boolean",
+          "default": "true",
+          "description": "Close modal on click outside"
+        },
+        {
+          "name": "allowResize",
+          "type": "boolean",
+          "description": "Enable resizer"
+        },
+        {
+          "name": "position",
+          "type": "string",
+          "default": "\"center\"",
+          "description": "Position (any position that modal.scss supports)"
+        },
+        {
+          "name": "fullscreen",
+          "type": "boolean",
+          "description": "Use fullscreen layout"
+        },
+        {
+          "name": "fullscreenMobile",
+          "type": "boolean",
+          "description": "If true, modal is forced to fullscreen on mobile viewports"
+        },
+        {
+          "name": "bodyFills",
+          "type": "boolean",
+          "description": "If `true`, the modal body will fill the available space."
+        },
+        {
+          "name": "noBackdrop",
+          "type": "boolean",
+          "description": "If `true`, no backdrop will be displayed behind the modal"
+        },
+        {
+          "name": "noMinHeight",
+          "type": "boolean",
+          "description": "If `true`, the modal will not have a minimum height"
+        },
+        {
+          "name": "labelledby",
+          "type": "string",
+          "description": "Set aria-labelledby by element id (to add accessible label)\n- Use this if you are not using the default modal title (custom titles)"
+        },
+        {
+          "name": "describedby",
+          "type": "string",
+          "description": "Set aria-describedby by element id (to add accessible description)\n- This is usually content you passed into the modal body (paragraph/etc)"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": "Text for modal title in header (can use title slot as well for complex markup), if not passed the header will be omitted"
+        },
+        {
+          "name": "titleIcon",
+          "type": "string",
+          "description": "Optional icon for before title (uses UluIcon interface)"
+        },
+        {
+          "name": "resizerIcon",
+          "type": "string",
+          "description": "Default icon for resizer"
+        },
+        {
+          "name": "closeIcon",
+          "type": "string",
+          "description": "Default icon for close button (uses UluIcon interface)"
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{\n  close: \"button button--icon\"\n}",
+          "description": "Classes for elements ({ container, header, title, body, footer })\n- Any valid class binding value per element"
+        },
+        {
+          "name": "modifiers",
+          "type": "string|array|object",
+          "description": "Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])"
+        },
+        {
+          "name": "autoIframe",
+          "type": "boolean",
+          "description": "Opt-in convenience behavior. If the modal body's sole content is an iframe, it automatically applies layout fixes."
+        },
+        {
+          "name": "noPauseVideos",
+          "type": "boolean",
+          "description": "Opt-out behavior to prevent pausing videos (YouTube and native <video>) when the modal closes."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        },
+        {
+          "name": "close",
+          "description": ""
+        },
+        {
+          "name": "open",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "title",
+          "description": ""
+        },
+        {
+          "name": "closeIcon",
+          "description": ""
+        },
+        {
+          "name": "default",
+          "description": ""
+        },
+        {
+          "name": "footer",
+          "description": ""
+        },
+        {
+          "name": "resizerIcon",
+          "description": ""
+        }
+      ]
+    },
+    "UluDropdown": {
+      "description": "Vue Component Props, Emits, and Slots for UluDropdown",
+      "properties": [
+        {
+          "name": "items",
+          "type": "array",
+          "description": "Dropdown menu items (to be passed to UluMenu)"
+        },
+        {
+          "name": "triggerText",
+          "type": "string",
+          "description": "Optional text if not using slot"
+        },
+        {
+          "name": "popoverClasses",
+          "type": "object",
+          "default": "{\n  trigger: \"button\"\n}",
+          "description": "Pass classes object to UluPopover classes prop"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "trigger",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "description": ""
+        }
+      ]
+    },
+    "UluCollapsible": {
+      "description": "Vue Component Props, Emits, and Slots for UluCollapsible",
+      "properties": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "default": "undefined",
+          "description": "v-model for controlling open state"
+        },
+        {
+          "name": "triggerText",
+          "type": "string",
+          "description": "Set text for trigger (instead of using slot)"
+        },
+        {
+          "name": "closeOnEscape",
+          "type": "boolean",
+          "description": "Closes with escape key"
+        },
+        {
+          "name": "startOpen",
+          "type": "boolean",
+          "description": "When the component is shown it should start visible or hidden"
+        },
+        {
+          "name": "animate",
+          "type": "boolean|object",
+          "default": "true",
+          "description": "Enable or configure animations.\n- `true` to enable animations with default settings (default)\n- `false` (disable)\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' })."
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{\n  container: 'ulu-collapsible',\n  trigger: 'ulu-collapsible__trigger',\n  content: 'ulu-collapsible__content',\n  containerOpen: 'ulu-collapsible--open',\n  containerClosed: 'ulu-collapsible--closed'\n}",
+          "description": "Classes for elements ({ container, trigger, content })\n- Any valid class binding value per element"
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "trigger",
+          "description": ""
+        },
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluAccordionGroup": {
+      "description": "Vue Component Props, Emits, and Slots for UluAccordionGroup",
+      "properties": [
+        {
+          "name": "items",
+          "type": "array",
+          "default": "[]",
+          "description": "Array of items to render as accordions.\nEach item can have: title, content, isOpen, classes"
+        },
+        {
+          "name": "triggerTextElement",
+          "type": "string",
+          "default": "\"strong\"",
+          "description": "If using summary text sets the inner element the text is wrapped in, usually a headline or strong"
+        },
+        {
+          "name": "modifiers",
+          "type": "string|array|object",
+          "description": "Class modifiers (ie. 'transparent', 'secondary', etc)"
+        },
+        {
+          "name": "animate",
+          "type": "boolean|object",
+          "default": "true",
+          "description": "Enable or configure animations.\n- `false` (default) to disable all animations.\n- `true` to enable animations with default settings.\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' })."
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "trigger",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "description": ""
+        },
+        {
+          "name": "item",
+          "description": ""
+        },
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluAccordion": {
+      "description": "Vue Component Props, Emits, and Slots for UluAccordion",
+      "properties": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "default": "undefined",
+          "description": "v-model for controlling open state  (optional)"
+        },
+        {
+          "name": "startOpen",
+          "type": "boolean",
+          "description": "Whether the accordion is open by default"
+        },
+        {
+          "name": "animate",
+          "type": "boolean|object",
+          "default": "true",
+          "description": "Enable or configure animations.\n- `false` (default) to disable all animations.\n- `true` to enable animations with default settings.\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' })."
+        },
+        {
+          "name": "triggerText",
+          "type": "string",
+          "description": "Text to use for accordion, alternatively use #trigger slot"
+        },
+        {
+          "name": "triggerTextElement",
+          "type": "string",
+          "default": "\"strong\"",
+          "description": "If using summary text sets the inner element the text is wrapped in, usually a headline or strong"
+        },
+        {
+          "name": "classes",
+          "type": "object|boolean|func",
+          "default": "() => ({})",
+          "description": "Classes for elements. See UluCollapsible for all available class keys (trigger, content, etc).\nThe 'icon' key is also available for the icon span.\n- Any valid class binding value per element"
+        },
+        {
+          "name": "modifiers",
+          "type": "string|array|object",
+          "description": "Class modifiers (ie. 'transparent', 'secondary', etc)"
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "trigger",
+          "description": ""
+        },
+        {
+          "name": "icon",
+          "description": ""
+        },
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
     "CustomToast": {
       "description": "Vue Component Props, Emits, and Slots for CustomToast",
       "properties": [],
@@ -4277,64 +4300,6 @@
         }
       ]
     },
-    "UluSkeletonText": {
-      "description": "Vue Component Props, Emits, and Slots for UluSkeletonText",
-      "properties": [
-        {
-          "name": "inline",
-          "type": "boolean",
-          "description": "Inline modifier"
-        },
-        {
-          "name": "alt",
-          "type": "boolean",
-          "description": "Use alternate background color"
-        },
-        {
-          "name": "width",
-          "type": "string",
-          "description": "Optional size (width) - should correspond with width setup in scss component"
-        }
-      ],
-      "events": [],
-      "slots": []
-    },
-    "UluSkeletonMedia": {
-      "description": "Vue Component Props, Emits, and Slots for UluSkeletonMedia",
-      "properties": [],
-      "events": [],
-      "slots": []
-    },
-    "UluSkeletonContent": {
-      "description": "Vue Component Props, Emits, and Slots for UluSkeletonContent",
-      "properties": [
-        {
-          "name": "lines",
-          "type": "number",
-          "default": "6",
-          "description": "Amount of lines to generate"
-        }
-      ],
-      "events": [],
-      "slots": []
-    },
-    "UluShowSkeleton": {
-      "description": "Vue Component Props, Emits, and Slots for UluShowSkeleton",
-      "properties": [
-        {
-          "name": "when",
-          "type": "boolean",
-          "description": "If true will show whatever is passed to slot, else skeleton text"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
     "UluScrollAnchorsSection": {
       "description": "Vue Component Props, Emits, and Slots for UluScrollAnchorsSection",
       "properties": [
@@ -4540,6 +4505,64 @@
           "description": ""
         }
       ],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluSkeletonText": {
+      "description": "Vue Component Props, Emits, and Slots for UluSkeletonText",
+      "properties": [
+        {
+          "name": "inline",
+          "type": "boolean",
+          "description": "Inline modifier"
+        },
+        {
+          "name": "alt",
+          "type": "boolean",
+          "description": "Use alternate background color"
+        },
+        {
+          "name": "width",
+          "type": "string",
+          "description": "Optional size (width) - should correspond with width setup in scss component"
+        }
+      ],
+      "events": [],
+      "slots": []
+    },
+    "UluSkeletonMedia": {
+      "description": "Vue Component Props, Emits, and Slots for UluSkeletonMedia",
+      "properties": [],
+      "events": [],
+      "slots": []
+    },
+    "UluSkeletonContent": {
+      "description": "Vue Component Props, Emits, and Slots for UluSkeletonContent",
+      "properties": [
+        {
+          "name": "lines",
+          "type": "number",
+          "default": "6",
+          "description": "Amount of lines to generate"
+        }
+      ],
+      "events": [],
+      "slots": []
+    },
+    "UluShowSkeleton": {
+      "description": "Vue Component Props, Emits, and Slots for UluShowSkeleton",
+      "properties": [
+        {
+          "name": "when",
+          "type": "boolean",
+          "description": "If true will show whatever is passed to slot, else skeleton text"
+        }
+      ],
+      "events": [],
       "slots": [
         {
           "name": "default",
@@ -4949,41 +4972,6 @@
     }
   },
   "reference": {
-    "UluTourPager": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluTourPager",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "showClose",
-            "description": "Display a close button alongside the pager buttons",
-            "type": {
-              "name": "boolean"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "false"
-            }
-          }
-        ],
-        "sourceFiles": [
-          "lib/plugins/tour/UluTourPager.vue"
-        ]
-      }
-    },
-    "UluTourDisplay": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluTourDisplay",
-        "description": "",
-        "tags": {},
-        "sourceFiles": [
-          "lib/plugins/tour/UluTourDisplay.vue"
-        ]
-      }
-    },
     "UluToastDisplay": {
       "raw_ast_dump": {
         "exportName": "default",
@@ -5045,6 +5033,73 @@
         ],
         "sourceFiles": [
           "lib/plugins/toast/UluToast.vue"
+        ]
+      }
+    },
+    "UluTourPager": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTourPager",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "showClose",
+            "description": "Display a close button alongside the pager buttons",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "false"
+            }
+          }
+        ],
+        "sourceFiles": [
+          "lib/plugins/tour/UluTourPager.vue"
+        ]
+      }
+    },
+    "UluTourDisplay": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTourDisplay",
+        "description": "",
+        "tags": {},
+        "sourceFiles": [
+          "lib/plugins/tour/UluTourDisplay.vue"
+        ]
+      }
+    },
+    "UluTourContent": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTourContent",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "step",
+            "description": "The tour step configuration object",
+            "type": {
+              "name": "object"
+            },
+            "required": true
+          },
+          {
+            "name": "isModal",
+            "description": "Adjusts the typography to match a modal context rather than a popover context",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "false"
+            }
+          }
+        ],
+        "sourceFiles": [
+          "lib/plugins/tour/UluTourContent.vue"
         ]
       }
     },
@@ -7312,808 +7367,6 @@
         ],
         "sourceFiles": [
           "lib/components/forms/UluFileDisplay.vue"
-        ]
-      }
-    },
-    "UluTabPanels": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluTabPanels",
-        "description": "",
-        "tags": {},
-        "slots": [
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": []
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluTabPanels.vue"
-        ]
-      }
-    },
-    "UluTabPanel": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluTabPanel",
-        "description": "",
-        "tags": {},
-        "slots": [
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": []
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluTabPanel.vue"
-        ]
-      }
-    },
-    "UluTabList": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluTabList",
-        "description": "",
-        "tags": {},
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluTabList.vue"
-        ]
-      }
-    },
-    "UluTabGroup": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluTabGroup",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "defaultIndex",
-            "description": "Active tab index by default (uncontrolled)",
-            "type": {
-              "name": "number"
-            }
-          },
-          {
-            "name": "selectedIndex",
-            "description": "Actively selected tab index (controlled)",
-            "type": {
-              "name": "number"
-            }
-          },
-          {
-            "name": "vertical",
-            "description": "Whether or not to use vertical layout",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "sticky",
-            "description": "Whether or not to use sticky modifier (tablist)",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "transparent",
-            "description": "Whether or not to use transparent modifier (tab panels)",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "modifiers",
-            "description": "Class modifiers (ie. 'transparent', 'secondary', etc)",
-            "type": {
-              "name": "string|array|object"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "change"
-          }
-        ],
-        "slots": [
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": []
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluTabGroup.vue"
-        ]
-      }
-    },
-    "UluTab": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluTab",
-        "description": "",
-        "tags": {},
-        "slots": [
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": []
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluTab.vue"
-        ]
-      }
-    },
-    "UluOverflowPopover": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluOverflowPopover",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "triggerIcon",
-            "description": "Default icon for overflow popover trigger",
-            "type": {
-              "name": "string"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluOverflowPopover.vue"
-        ]
-      }
-    },
-    "UluModal": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluModal",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "modelValue",
-            "description": "Controls the visibility of the modal (for v-model).",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "teleport",
-            "description": "Target for Vue's Teleport. Defaults to 'body'.\nSet to `false` to disable teleporting (modal renders inline).\nSet to `null` or `undefined` for `body` fallback with disabled as false.",
-            "type": {
-              "name": "string|boolean|object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"body\""
-            }
-          },
-          {
-            "name": "preventScroll",
-            "description": "When open and not non-modal, the body is prevented from scrolling (defaults to true).",
-            "type": {
-              "name": "boolean"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "true"
-            }
-          },
-          {
-            "name": "preventScrollShift",
-            "description": "Compensate for layout shift when preventing scroll. Which adds padding equal to scrollbars \nwidth while dialog is open",
-            "type": {
-              "name": "boolean"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "true"
-            }
-          },
-          {
-            "name": "nonModal",
-            "description": "Use non-modal interface for dialog",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "clickOutsideCloses",
-            "description": "Close modal on click outside",
-            "type": {
-              "name": "boolean"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "true"
-            }
-          },
-          {
-            "name": "allowResize",
-            "description": "Enable resizer",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "position",
-            "description": "Position (any position that modal.scss supports)",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"center\""
-            }
-          },
-          {
-            "name": "fullscreen",
-            "description": "Use fullscreen layout",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "fullscreenMobile",
-            "description": "If true, modal is forced to fullscreen on mobile viewports",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "bodyFills",
-            "description": "If `true`, the modal body will fill the available space.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "noBackdrop",
-            "description": "If `true`, no backdrop will be displayed behind the modal",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "noMinHeight",
-            "description": "If `true`, the modal will not have a minimum height",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "labelledby",
-            "description": "Set aria-labelledby by element id (to add accessible label)\n- Use this if you are not using the default modal title (custom titles)",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "describedby",
-            "description": "Set aria-describedby by element id (to add accessible description)\n- This is usually content you passed into the modal body (paragraph/etc)",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "title",
-            "description": "Text for modal title in header (can use title slot as well for complex markup), if not passed the header will be omitted",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "titleIcon",
-            "description": "Optional icon for before title (uses UluIcon interface)",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "resizerIcon",
-            "description": "Default icon for resizer",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "closeIcon",
-            "description": "Default icon for close button (uses UluIcon interface)",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "classes",
-            "description": "Classes for elements ({ container, header, title, body, footer })\n- Any valid class binding value per element",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{\n  close: \"button button--icon\"\n}"
-            }
-          },
-          {
-            "name": "modifiers",
-            "description": "Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])",
-            "type": {
-              "name": "string|array|object"
-            }
-          },
-          {
-            "name": "autoIframe",
-            "description": "Opt-in convenience behavior. If the modal body's sole content is an iframe, it automatically applies layout fixes.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "noPauseVideos",
-            "description": "Opt-out behavior to prevent pausing videos (YouTube and native <video>) when the modal closes.",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          },
-          {
-            "name": "close"
-          },
-          {
-            "name": "open"
-          }
-        ],
-        "slots": [
-          {
-            "name": "title",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "close",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "closeIcon"
-          },
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "close",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "footer",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "close",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "resizerIcon"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluModal.vue"
-        ]
-      }
-    },
-    "UluDropdown": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluDropdown",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "items",
-            "description": "Dropdown menu items (to be passed to UluMenu)",
-            "type": {
-              "name": "array"
-            }
-          },
-          {
-            "name": "triggerText",
-            "description": "Optional text if not using slot",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "popoverClasses",
-            "description": "Pass classes object to UluPopover classes prop",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{\n  trigger: \"button\"\n}"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "trigger",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "isOpen",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "name",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "name",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluDropdown.vue"
-        ]
-      }
-    },
-    "UluCollapsible": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluCollapsible",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "modelValue",
-            "description": "v-model for controlling open state",
-            "type": {
-              "name": "boolean"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "undefined"
-            }
-          },
-          {
-            "name": "triggerText",
-            "description": "Set text for trigger (instead of using slot)",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "closeOnEscape",
-            "description": "Closes with escape key",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "startOpen",
-            "description": "When the component is shown it should start visible or hidden",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "animate",
-            "description": "Enable or configure animations.\n- `true` to enable animations with default settings (default)\n- `false` (disable)\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' }).",
-            "type": {
-              "name": "boolean|object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "true"
-            }
-          },
-          {
-            "name": "classes",
-            "description": "Classes for elements ({ container, trigger, content })\n- Any valid class binding value per element",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{\n  container: 'ulu-collapsible',\n  trigger: 'ulu-collapsible__trigger',\n  content: 'ulu-collapsible__content',\n  containerOpen: 'ulu-collapsible--open',\n  containerClosed: 'ulu-collapsible--closed'\n}"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          }
-        ],
-        "slots": [
-          {
-            "name": "trigger",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "isOpen",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "isOpen",
-                "title": "binding"
-              },
-              {
-                "name": "toggle",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluCollapsible.vue"
-        ]
-      }
-    },
-    "UluAccordionGroup": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluAccordionGroup",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "items",
-            "description": "Array of items to render as accordions.\nEach item can have: title, content, isOpen, classes",
-            "type": {
-              "name": "array"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "[]"
-            }
-          },
-          {
-            "name": "triggerTextElement",
-            "description": "If using summary text sets the inner element the text is wrapped in, usually a headline or strong",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"strong\""
-            }
-          },
-          {
-            "name": "modifiers",
-            "description": "Class modifiers (ie. 'transparent', 'secondary', etc)",
-            "type": {
-              "name": "string|array|object"
-            }
-          },
-          {
-            "name": "animate",
-            "description": "Enable or configure animations.\n- `false` (default) to disable all animations.\n- `true` to enable animations with default settings.\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' }).",
-            "type": {
-              "name": "boolean|object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "true"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "trigger",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "item",
-                "title": "binding"
-              },
-              {
-                "name": "index",
-                "title": "binding"
-              },
-              {
-                "name": "isOpen",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "icon",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "item",
-                "title": "binding"
-              },
-              {
-                "name": "index",
-                "title": "binding"
-              },
-              {
-                "name": "isOpen",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "item",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "item",
-                "title": "binding"
-              },
-              {
-                "name": "index",
-                "title": "binding"
-              },
-              {
-                "name": "isOpen",
-                "title": "binding"
-              },
-              {
-                "name": "toggle",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluAccordionGroup.vue"
-        ]
-      }
-    },
-    "UluAccordion": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluAccordion",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "modelValue",
-            "description": "v-model for controlling open state  (optional)",
-            "type": {
-              "name": "boolean"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "undefined"
-            }
-          },
-          {
-            "name": "startOpen",
-            "description": "Whether the accordion is open by default",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "animate",
-            "description": "Enable or configure animations.\n- `false` (default) to disable all animations.\n- `true` to enable animations with default settings.\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' }).",
-            "type": {
-              "name": "boolean|object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "true"
-            }
-          },
-          {
-            "name": "triggerText",
-            "description": "Text to use for accordion, alternatively use #trigger slot",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "triggerTextElement",
-            "description": "If using summary text sets the inner element the text is wrapped in, usually a headline or strong",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"strong\""
-            }
-          },
-          {
-            "name": "classes",
-            "description": "Classes for elements. See UluCollapsible for all available class keys (trigger, content, etc).\nThe 'icon' key is also available for the icon span.\n- Any valid class binding value per element",
-            "type": {
-              "name": "object|boolean|func"
-            },
-            "defaultValue": {
-              "func": true,
-              "value": "() => ({})"
-            }
-          },
-          {
-            "name": "modifiers",
-            "description": "Class modifiers (ie. 'transparent', 'secondary', etc)",
-            "type": {
-              "name": "string|array|object"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          }
-        ],
-        "slots": [
-          {
-            "name": "trigger",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "isOpen",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "icon",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "isOpen",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "isOpen",
-                "title": "binding"
-              },
-              {
-                "name": "toggle",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/collapsible/UluAccordion.vue"
         ]
       }
     },
@@ -10538,6 +9791,808 @@
         ]
       }
     },
+    "UluTabPanels": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTabPanels",
+        "description": "",
+        "tags": {},
+        "slots": [
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": []
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluTabPanels.vue"
+        ]
+      }
+    },
+    "UluTabPanel": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTabPanel",
+        "description": "",
+        "tags": {},
+        "slots": [
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": []
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluTabPanel.vue"
+        ]
+      }
+    },
+    "UluTabList": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTabList",
+        "description": "",
+        "tags": {},
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluTabList.vue"
+        ]
+      }
+    },
+    "UluTabGroup": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTabGroup",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "defaultIndex",
+            "description": "Active tab index by default (uncontrolled)",
+            "type": {
+              "name": "number"
+            }
+          },
+          {
+            "name": "selectedIndex",
+            "description": "Actively selected tab index (controlled)",
+            "type": {
+              "name": "number"
+            }
+          },
+          {
+            "name": "vertical",
+            "description": "Whether or not to use vertical layout",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "sticky",
+            "description": "Whether or not to use sticky modifier (tablist)",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "transparent",
+            "description": "Whether or not to use transparent modifier (tab panels)",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "modifiers",
+            "description": "Class modifiers (ie. 'transparent', 'secondary', etc)",
+            "type": {
+              "name": "string|array|object"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "change"
+          }
+        ],
+        "slots": [
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": []
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluTabGroup.vue"
+        ]
+      }
+    },
+    "UluTab": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTab",
+        "description": "",
+        "tags": {},
+        "slots": [
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": []
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluTab.vue"
+        ]
+      }
+    },
+    "UluOverflowPopover": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluOverflowPopover",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "triggerIcon",
+            "description": "Default icon for overflow popover trigger",
+            "type": {
+              "name": "string"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluOverflowPopover.vue"
+        ]
+      }
+    },
+    "UluModal": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluModal",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "modelValue",
+            "description": "Controls the visibility of the modal (for v-model).",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "teleport",
+            "description": "Target for Vue's Teleport. Defaults to 'body'.\nSet to `false` to disable teleporting (modal renders inline).\nSet to `null` or `undefined` for `body` fallback with disabled as false.",
+            "type": {
+              "name": "string|boolean|object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"body\""
+            }
+          },
+          {
+            "name": "preventScroll",
+            "description": "When open and not non-modal, the body is prevented from scrolling (defaults to true).",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "true"
+            }
+          },
+          {
+            "name": "preventScrollShift",
+            "description": "Compensate for layout shift when preventing scroll. Which adds padding equal to scrollbars \nwidth while dialog is open",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "true"
+            }
+          },
+          {
+            "name": "nonModal",
+            "description": "Use non-modal interface for dialog",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "clickOutsideCloses",
+            "description": "Close modal on click outside",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "true"
+            }
+          },
+          {
+            "name": "allowResize",
+            "description": "Enable resizer",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "position",
+            "description": "Position (any position that modal.scss supports)",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"center\""
+            }
+          },
+          {
+            "name": "fullscreen",
+            "description": "Use fullscreen layout",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "fullscreenMobile",
+            "description": "If true, modal is forced to fullscreen on mobile viewports",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "bodyFills",
+            "description": "If `true`, the modal body will fill the available space.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "noBackdrop",
+            "description": "If `true`, no backdrop will be displayed behind the modal",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "noMinHeight",
+            "description": "If `true`, the modal will not have a minimum height",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "labelledby",
+            "description": "Set aria-labelledby by element id (to add accessible label)\n- Use this if you are not using the default modal title (custom titles)",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "describedby",
+            "description": "Set aria-describedby by element id (to add accessible description)\n- This is usually content you passed into the modal body (paragraph/etc)",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "title",
+            "description": "Text for modal title in header (can use title slot as well for complex markup), if not passed the header will be omitted",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "titleIcon",
+            "description": "Optional icon for before title (uses UluIcon interface)",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "resizerIcon",
+            "description": "Default icon for resizer",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "closeIcon",
+            "description": "Default icon for close button (uses UluIcon interface)",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "classes",
+            "description": "Classes for elements ({ container, header, title, body, footer })\n- Any valid class binding value per element",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{\n  close: \"button button--icon\"\n}"
+            }
+          },
+          {
+            "name": "modifiers",
+            "description": "Modifiers (to add any modifier classes based on base class [ie. 'tertiary'])",
+            "type": {
+              "name": "string|array|object"
+            }
+          },
+          {
+            "name": "autoIframe",
+            "description": "Opt-in convenience behavior. If the modal body's sole content is an iframe, it automatically applies layout fixes.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "noPauseVideos",
+            "description": "Opt-out behavior to prevent pausing videos (YouTube and native <video>) when the modal closes.",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          },
+          {
+            "name": "close"
+          },
+          {
+            "name": "open"
+          }
+        ],
+        "slots": [
+          {
+            "name": "title",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "close",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "closeIcon"
+          },
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "close",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "footer",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "close",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "resizerIcon"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluModal.vue"
+        ]
+      }
+    },
+    "UluDropdown": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluDropdown",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "items",
+            "description": "Dropdown menu items (to be passed to UluMenu)",
+            "type": {
+              "name": "array"
+            }
+          },
+          {
+            "name": "triggerText",
+            "description": "Optional text if not using slot",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "popoverClasses",
+            "description": "Pass classes object to UluPopover classes prop",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{\n  trigger: \"button\"\n}"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "trigger",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "isOpen",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "name",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "name",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluDropdown.vue"
+        ]
+      }
+    },
+    "UluCollapsible": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluCollapsible",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "modelValue",
+            "description": "v-model for controlling open state",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "undefined"
+            }
+          },
+          {
+            "name": "triggerText",
+            "description": "Set text for trigger (instead of using slot)",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "closeOnEscape",
+            "description": "Closes with escape key",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "startOpen",
+            "description": "When the component is shown it should start visible or hidden",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "animate",
+            "description": "Enable or configure animations.\n- `true` to enable animations with default settings (default)\n- `false` (disable)\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' }).",
+            "type": {
+              "name": "boolean|object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "true"
+            }
+          },
+          {
+            "name": "classes",
+            "description": "Classes for elements ({ container, trigger, content })\n- Any valid class binding value per element",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{\n  container: 'ulu-collapsible',\n  trigger: 'ulu-collapsible__trigger',\n  content: 'ulu-collapsible__content',\n  containerOpen: 'ulu-collapsible--open',\n  containerClosed: 'ulu-collapsible--closed'\n}"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          }
+        ],
+        "slots": [
+          {
+            "name": "trigger",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "isOpen",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "isOpen",
+                "title": "binding"
+              },
+              {
+                "name": "toggle",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluCollapsible.vue"
+        ]
+      }
+    },
+    "UluAccordionGroup": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluAccordionGroup",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "items",
+            "description": "Array of items to render as accordions.\nEach item can have: title, content, isOpen, classes",
+            "type": {
+              "name": "array"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "[]"
+            }
+          },
+          {
+            "name": "triggerTextElement",
+            "description": "If using summary text sets the inner element the text is wrapped in, usually a headline or strong",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"strong\""
+            }
+          },
+          {
+            "name": "modifiers",
+            "description": "Class modifiers (ie. 'transparent', 'secondary', etc)",
+            "type": {
+              "name": "string|array|object"
+            }
+          },
+          {
+            "name": "animate",
+            "description": "Enable or configure animations.\n- `false` (default) to disable all animations.\n- `true` to enable animations with default settings.\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' }).",
+            "type": {
+              "name": "boolean|object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "true"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "trigger",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "item",
+                "title": "binding"
+              },
+              {
+                "name": "index",
+                "title": "binding"
+              },
+              {
+                "name": "isOpen",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "icon",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "item",
+                "title": "binding"
+              },
+              {
+                "name": "index",
+                "title": "binding"
+              },
+              {
+                "name": "isOpen",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "item",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "item",
+                "title": "binding"
+              },
+              {
+                "name": "index",
+                "title": "binding"
+              },
+              {
+                "name": "isOpen",
+                "title": "binding"
+              },
+              {
+                "name": "toggle",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluAccordionGroup.vue"
+        ]
+      }
+    },
+    "UluAccordion": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluAccordion",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "modelValue",
+            "description": "v-model for controlling open state  (optional)",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "undefined"
+            }
+          },
+          {
+            "name": "startOpen",
+            "description": "Whether the accordion is open by default",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "animate",
+            "description": "Enable or configure animations.\n- `false` (default) to disable all animations.\n- `true` to enable animations with default settings.\n- An object to provide custom options to auto-animate (e.g., { duration: 100, easing: 'linear' }).",
+            "type": {
+              "name": "boolean|object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "true"
+            }
+          },
+          {
+            "name": "triggerText",
+            "description": "Text to use for accordion, alternatively use #trigger slot",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "triggerTextElement",
+            "description": "If using summary text sets the inner element the text is wrapped in, usually a headline or strong",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"strong\""
+            }
+          },
+          {
+            "name": "classes",
+            "description": "Classes for elements. See UluCollapsible for all available class keys (trigger, content, etc).\nThe 'icon' key is also available for the icon span.\n- Any valid class binding value per element",
+            "type": {
+              "name": "object|boolean|func"
+            },
+            "defaultValue": {
+              "func": true,
+              "value": "() => ({})"
+            }
+          },
+          {
+            "name": "modifiers",
+            "description": "Class modifiers (ie. 'transparent', 'secondary', etc)",
+            "type": {
+              "name": "string|array|object"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          }
+        ],
+        "slots": [
+          {
+            "name": "trigger",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "isOpen",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "icon",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "isOpen",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "isOpen",
+                "title": "binding"
+              },
+              {
+                "name": "toggle",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/collapsible/UluAccordion.vue"
+        ]
+      }
+    },
     "CustomToast": {
       "raw_ast_dump": {
         "displayName": "CustomToast",
@@ -11233,100 +11288,6 @@
         ]
       }
     },
-    "UluSkeletonText": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluSkeletonText",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "inline",
-            "description": "Inline modifier",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "alt",
-            "description": "Use alternate background color",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "width",
-            "description": "Optional size (width) - should correspond with width setup in scss component",
-            "type": {
-              "name": "string"
-            }
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/skeleton/UluSkeletonText.vue"
-        ]
-      }
-    },
-    "UluSkeletonMedia": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluSkeletonMedia",
-        "description": "",
-        "tags": {},
-        "sourceFiles": [
-          "lib/components/systems/skeleton/UluSkeletonMedia.vue"
-        ]
-      }
-    },
-    "UluSkeletonContent": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluSkeletonContent",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "lines",
-            "description": "Amount of lines to generate",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "6"
-            }
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/skeleton/UluSkeletonContent.vue"
-        ]
-      }
-    },
-    "UluShowSkeleton": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluShowSkeleton",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "when",
-            "description": "If true will show whatever is passed to slot, else skeleton text",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/skeleton/UluShowSkeleton.vue"
-        ]
-      }
-    },
     "UluScrollAnchorsSection": {
       "raw_ast_dump": {
         "exportName": "default",
@@ -11784,6 +11745,100 @@
         ],
         "sourceFiles": [
           "lib/components/systems/scroll-anchors/UluScrollAnchors.vue"
+        ]
+      }
+    },
+    "UluSkeletonText": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluSkeletonText",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "inline",
+            "description": "Inline modifier",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "alt",
+            "description": "Use alternate background color",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "width",
+            "description": "Optional size (width) - should correspond with width setup in scss component",
+            "type": {
+              "name": "string"
+            }
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/skeleton/UluSkeletonText.vue"
+        ]
+      }
+    },
+    "UluSkeletonMedia": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluSkeletonMedia",
+        "description": "",
+        "tags": {},
+        "sourceFiles": [
+          "lib/components/systems/skeleton/UluSkeletonMedia.vue"
+        ]
+      }
+    },
+    "UluSkeletonContent": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluSkeletonContent",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "lines",
+            "description": "Amount of lines to generate",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "6"
+            }
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/skeleton/UluSkeletonContent.vue"
+        ]
+      }
+    },
+    "UluShowSkeleton": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluShowSkeleton",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "when",
+            "description": "If true will show whatever is passed to slot, else skeleton text",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/skeleton/UluShowSkeleton.vue"
         ]
       }
     },
@@ -12451,7 +12506,7 @@
       "raw_markdown": "\nimport { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';\nimport { version } from '../package.json';\nimport * as ButtonStories from './components/elements/UluButton.stories.js';\nimport * as CardStories from './components/elements/UluCard.stories.js';\n\n<Meta title=\"Overview/Introduction\" />\n\n# Ulu Frontend Vue\n\nWelcome to the living style guide for the Ulu Vue component library. This library provides a comprehensive set of accessible, reusable, and composable Vue 3 components, composables, and plugins to build modern web applications.\n\nThis documentation provides interactive examples and detailed API documentation for each part of the library.\n\n---\n\n## Core Concepts\n\nThe Ulu ecosystem is built on two main packages:\n\n- **`@ulu/frontend`**: The framework-agnostic core. It contains the foundational SCSS for styling, vanilla JavaScript utilities, and base components. It knows nothing about Vue. \n- **`@ulu/frontend-vue`** (This Library): The Vue 3 implementation. It provides wrapper components, composables, and plugins that build upon and integrate seamlessly with the `@ulu/frontend` core.\n\nThis separation allows for a consistent design system that can be applied to any web technology, while providing a rich, idiomatic experience for Vue developers.\n\n**Note:** For `@ulu/frontend` (components) that you are using from this Vue library. You need to output the component stylesheets like you would normally (create global stylesheet). The components in this library do not at the frontend scss modules. While they could be included in each component this would make it so that you can't build your own implementations (local app component / etc) with the class structures since the styles would only be available if that component is used. \n\nExample global stylesheet outputting all \"included\" components and base styles. Note you can configure whats output with ulu.component-set-includes for example. Note there are many ways to assemble the stylesheet (manual per component mixins, etc), this example shows the convenience modules which output each modules stylesheet based on includes/excludes.\n\n```sass\n@use \"config\"; // Your config changes for example\n@use \"@ulu/frontend/scss/stylesheets/base-styles.scss\"; // Outputs base styles that are included\n@use \"@ulu/frontend/scss/stylesheets/component-styles.scss\"; // Outputs component styles that are included\n@use \"@ulu/frontend/scss/stylesheets/helper-styles.scss\"; // Outputs helper styles that are included\n```\n\n*Please see `@ulu/frontend` library for full documentation of configuring and outputting stylesheet*\n\n---\n\n## Installation\n\nTo get started, add the library to your project.\n\n```bash\nnpm install @ulu/frontend-vue\n```\n\nNext, you must register the required plugins in your main application entry point (`main.js`). The `corePlugin` is essential, and other plugins like `breakpointsPlugin`, `popoverPlugin` are optional. Some components require plugins. If a required plugin is missing, an error is thrown.\n\n**`src/main.js`**\n```javascript\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { \n  corePlugin, \n  breakpointsPlugin, \n  toastPlugin, \n  modalsPlugin, \n  popoversPlugin \n} from '@ulu/frontend-vue';\nimport router from './router'; // Your vue-router instance\n\n// Import the main SCSS entry point\nimport '@ulu/frontend-vue/lib/_index.scss';\n\nconst app = createApp(App);\n\napp.use(router);\n\n// Register Ulu plugins\napp.use(corePlugin, {\n  // Optional: override default icons\n  iconsByType: {\n    danger: 'fas fa-exclamation-triangle',\n    close: 'fas fa-times'\n  }\n});\napp.use(breakpointsPlugin);\napp.use(toastPlugin);\napp.use(modalsPlugin, { \n  modals: [\n    /* your global modals */\n  ] \n});\napp.use(popoversPlugin);\n\n\napp.mount('#app');\n```\n\nFinally, you need to add the display components for plugins like `toast` and `modals` to your root `App.vue` file.\n\n**`src/App.vue`**\n```html\n<template>\n  <!-- Your App Layout -->\n  <router-view />\n\n  <!-- Ulu Plugin Display Components -->\n  <UluToastDisplay />\n  <UluModalsDisplay />\n  <UluTooltipDisplay />\n</template>\n```\n\n---\n\n## What's Inside?\n\nThe library is organized into several key areas:\n\n### Components\n\nThese are the reusable building blocks of your UI. They are organized by function into categories like `elements`, `collapsible`, `forms`, `layout`, `navigation`, and `systems`.\n\n**Simple Component Example: `UluButton`**\n\n<Canvas of={ButtonStories.Primary} />\n\n**Complex Component Example: `UluCard`**\n\n<Canvas of={CardStories.Default} />\n\n### Composables\n\nReusable, stateful logic that can be shared across components.\n\n- `useFacets`: A powerful composable for client-side filtering, searching, and sorting of data.\n- `usePagination`: Handles all the logic for paginating a list of items, including integration with Vue Router.\n- `useBreakpointManager`: A reactive interface to CSS breakpoints.\n- `useModifiers`: A utility for creating BEM-style modifier classes.\n- `useWindowResize`: A debounced window resize event listener.\n- `useRequiredInject`: A utility to ensure required dependencies are injected from plugins.\n\n### Plugins\n\nPlugins provide global functionality and APIs that can be accessed from anywhere in your application.\n\n- **`corePlugin` (Required)**: Manages global settings, primarily for the icon system.\n- **`breakpointsPlugin`**: Provides reactive information about the current CSS breakpoint (`uluIsMobile`, `uluBreakpointActive`).\n- **`modalsPlugin`**: A system for registering and triggering global modals (e.g., for settings or confirmation dialogs).\n- **`toastPlugin`**: A global API (`$uluToast`) for showing toast notifications.\n- **`popoversPlugin`**: Enables a simple `v-ulu-tooltip` directive for tooltips and provides the `UluPopover` component.\n\n**Example: Triggering a Toast Notification**\n```javascript\nimport { useToast } from '@ulu/frontend-vue';\n\nconst toast = useToast();\n\ntoast.add({\n  title: 'Success!',\n  description: 'Your profile has been updated.',\n  class: 'is-success'\n});\n```\n\n### Component Systems\n\nSystems are complex, multi-component features that solve a specific problem.\n\n- **Facets**: A complete system for faceted search, built around the `useFacets` composable. Includes components for search, sort, filters, and results display.\n- **Scroll Anchors**: A system for creating navigations that track the user's scroll position within a page.\n- **Skeleton**: A set of components for creating beautiful and effective loading states.\n- **Table Sticky**: A powerful table component with sticky headers and columns.\n- **Slider**: A flexible slideshow/carousel component.\n\n### Resolver\n\nResolver for [`unplugin-vue-components`](https://github.com/unplugin/unplugin-vue-components/tree/main]) is available to use like:\n\n```js\n// vite.config.js\n\nimport { defineConfig } from \"vite\";\nimport Components from \"unplugin-vue-components/vite\";\nimport { UluUnpluginResolver } from \"@ulu/frontend-vue/resolver\";\n\nexport default defineConfig({\n  plugins: [\n    // ...\n    Components({ \n      resolvers: [\n        UluUnpluginResolver()\n      ]\n    }),\n    // ...\n  ],\n  // ...\n});\n```\n\n### Vite Asset URLs\n\nWhen using components like `UluImage` and `UluImageSource`, you may want to pass relative asset paths directly as props (e.g. `<UluImage src=\"./assets/img.png\" />`) instead of manually importing them in your setup script. \n\nTo enable Vite to automatically resolve these paths, you can add our custom transform rules to the Vue plugin in your `vite.config.js`:\n\n*Note: this includes the defaults (img, source, video, ...) in addition to the Ulu specific components, since configuring this clears the defaults (it's not merged).*\n\n```js\n// vite.config.js\n\nimport { defineConfig } from \"vite\";\nimport vue from \"@vitejs/plugin-vue\";\nimport { uluTransformAssetUrls } from \"@ulu/frontend-vue/vite.js\";\n\nexport default defineConfig({\n  plugins: [\n    vue({\n      template: {\n        transformAssetUrls: {\n          // \n          ...uluTransformAssetUrls\n        }\n      }\n    }),\n    // ...\n  ],\n  // ...\n});\n```"
     },
     "ExportsMap": {
-      "raw_markdown": "\nimport { Meta } from '@storybook/addon-docs/blocks';\n\n<Meta title=\"Overview/API Reference\" />\n\n# API Reference\n\nThis page provides a comprehensive map of all named exports from the `@ulu/frontend-vue` library. Use this as a quick reference to discover available components, composables, plugins, and utilities.\n\n## Components\n\nThese are the building blocks for your UI. They are imported as named exports.\n\n*   `UluAccordion`\n*   `UluAccordionGroup`\n*   `UluAction`\n*   `UluAdaptiveLayout`\n*   `UluAlert`\n*   `UluAnimateNumber`\n*   `UluBadge`\n*   `UluBadgeStack`\n*   `UluBreadcrumb`\n*   `UluButton`\n*   `UluButtonVerbose`\n*   `UluCallout`\n*   `UluCard`\n*   `UluCollapsible`\n*   `UluConditionalText`\n*   `UluConditionalWrapper`\n*   `UluDataGrid`\n*   `UluDataTable`\n*   `UluDefinitionList`\n*   `UluDefinitionListItem`\n*   `UluDropdown`\n*   `UluEmpty`\n*   `UluEmptyView`\n*   `UluExternalLink`\n*   `UluFacetsActiveFilters`\n*   `UluFacetsFilterAccordions`\n*   `UluFacetsFilterLists`\n*   `UluFacetsFilterPopovers`\n*   `UluFacetsFilterSelects`\n*   `UluFacetsHeaderLayout`\n*   `UluFacetsList`\n*   `UluFacetsResults`\n*   `UluFacetsSearch`\n*   `UluFacetsSidebarLayout`\n*   `UluFacetsSort`\n*   `UluFileDisplay`\n*   `UluForm`\n*   `UluFormActions`\n*   `UluFormCheckbox`\n*   `UluFormFieldset`\n*   `UluFormFile`\n*   `UluFormItem`\n*   `UluFormItemsInline`\n*   `UluFormLabel`\n*   `UluFormMessage`\n*   `UluFormRadio`\n*   `UluFormRequiredChar`\n*   `UluFormSelect`\n*   `UluFormText`\n*   `UluFormTextarea`\n*   `UluIcon`\n*   `UluImage`\n*   `UluImageSource`\n*   In Progress - `UluImageSlider`\n*   `UluList`\n*   `UluListItem`\n*   `UluCounterList`\n*   `UluMain`\n*   `UluMenu`\n*   `UluMenuStack`\n*   `UluModal`\n*   `UluNavStrip`\n*   `UluOverflowPopover`\n*   `UluPager`\n*   `UluPlaceholderImage`\n*   `UluPlaceholderText`\n*   `UluProgressBar`\n*   `UluProgressCircle`\n*   `UluRouteAnnouncer`\n*   `UluRule`\n*   `UluSanityRichText`\n*   `UluScrollAnchors`\n*   `UluScrollAnchorsHeadlessSection`\n*   `UluScrollAnchorsNav`\n*   `UluScrollAnchorsNavAnimated`\n*   `UluScrollAnchorsSection`\n*   `UluScrollSlider`\n*   `UluSearchForm`\n*   `UluSelectableMenu`\n*   `UluShowSkeleton`\n*   `UluSkeletonContent`\n*   `UluSkeletonMedia`\n*   `UluSkeletonText`\n*   `UluSkipLink`\n*   `UluSlider`\n*   `UluSpokeSpinner`\n*   `UluTab`\n*   `UluTabGroup`\n*   `UluTabList`\n*   `UluTabPanel`\n*   `UluTabPanels`\n*   `UluTable`\n*   `UluTableSticky`\n*   `UluTableStickyRows`\n*   `UluTableStickyTable`\n*   `UluTag`\n*   `UluTitleRail`\n*   `UluToast`\n*   `UluToastDisplay`\n\n---\n\n## Composables\n\nReusable, stateful logic that can be shared across components.\n\n*   `useBreakpointManager`\n*   `useDocumentTitle`\n*   `useFacets`\n*   `useIcon`\n*   `useModifiers`\n*   `usePagination`\n*   `useRequiredInject`\n*   `useScrollAnchorSection`\n*   `useScrollAnchorSections`\n*   `useScrollAnchors`\n*   `useTableData`\n*   `useToast`\n*   `useTooltip`\n*   `useTooltipFollow`\n*   `useUluFloating`\n*   `useWindowResize`\n\n---\n\n## Plugins\n\nPlugins provide global functionality and APIs.\n\n*   `breakpointsPlugin`\n*   `corePlugin`\n*   `modalsPlugin`\n*   `popoversPlugin`\n*   `toastPlugin`\n\n\n\n---\n\n## Utilities\n\nThe `utils` export is a namespace containing helper functions.\n\n### DOM (`utils.dom`)\n\n*   `utils.dom.refToElement`\n*   `utils.dom.newId`\n\n### Props (`utils.props`)\n\n*   `utils.props.isArrayOfObjects`\n*   `utils.props.checkDeprecatedProps`\n*   `utils.props.mergeClassLookups`\n*   `utils.props.resolveClassOverride`\n\n### Router (`utils.router`)\n\n*   `utils.router.getRouteTitle`\n*   `utils.router.createBaseMenu`\n*   `utils.router.flattenMenu`\n*   `utils.router.createSectionMenu`\n*   `utils.router.getChildIndexRoute`\n*   `utils.router.createMenuItem`\n*   `utils.router.isStaticRoute`\n*   `utils.router.isStaticBaseRoute`\n*   `utils.router.nativeLinkRouter`\n*   `utils.router.$getRouteChildren`\n*   `utils.router.$getParentRoute`\n*   `utils.router.$createSectionMenu`\n*   `utils.router.$createBreadcrumb`\n"
+      "raw_markdown": "import { Meta } from '@storybook/addon-docs/blocks';\n\n<Meta title=\"Overview/API Reference\" />\n\n# API Reference\n\nThis page provides a comprehensive map of all named exports from the `@ulu/frontend-vue` library. Use this as a quick reference to discover available components, composables, plugins, and utilities.\n\n## Components\n\nThese are the building blocks for your UI. They are imported as named exports.\n\n*   `UluAccordion`\n*   `UluAccordionGroup`\n*   `UluAction`\n*   `UluAdaptiveLayout`\n*   `UluAlert`\n*   `UluAnimateNumber`\n*   `UluBadge`\n*   `UluBadgeStack`\n*   `UluBreadcrumb`\n*   `UluButton`\n*   `UluButtonVerbose`\n*   `UluCallout`\n*   `UluCard`\n*   `UluCollapsible`\n*   `UluConditionalText`\n*   `UluConditionalWrapper`\n*   `UluDataGrid`\n*   `UluDataTable`\n*   `UluDefinitionList`\n*   `UluDefinitionListItem`\n*   `UluDropdown`\n*   `UluEmpty`\n*   `UluEmptyView`\n*   `UluExternalLink`\n*   `UluFacetsActiveFilters`\n*   `UluFacetsFilterAccordions`\n*   `UluFacetsFilterLists`\n*   `UluFacetsFilterPopovers`\n*   `UluFacetsFilterSelects`\n*   `UluFacetsHeaderLayout`\n*   `UluFacetsList`\n*   `UluFacetsResults`\n*   `UluFacetsSearch`\n*   `UluFacetsSidebarLayout`\n*   `UluFacetsSort`\n*   `UluFileDisplay`\n*   `UluForm`\n*   `UluFormActions`\n*   `UluFormCheckbox`\n*   `UluFormFieldset`\n*   `UluFormFile`\n*   `UluFormItem`\n*   `UluFormItemsInline`\n*   `UluFormLabel`\n*   `UluFormMessage`\n*   `UluFormRadio`\n*   `UluFormRequiredChar`\n*   `UluFormSelect`\n*   `UluFormText`\n*   `UluFormTextarea`\n*   `UluIcon`\n*   `UluImage`\n*   `UluImageSource`\n*   In Progress - `UluImageSlider`\n*   `UluList`\n*   `UluListItem`\n*   `UluCounterList`\n*   `UluMain`\n*   `UluMenu`\n*   `UluMenuStack`\n*   `UluModal`\n*   `UluNavStrip`\n*   `UluOverflowPopover`\n*   `UluPopover`\n*   `UluPopoverContent`\n*   `UluPager`\n*   `UluPlaceholderImage`\n*   `UluPlaceholderText`\n*   `UluProgressBar`\n*   `UluProgressCircle`\n*   `UluRouteAnnouncer`\n*   `UluRule`\n*   `UluSanityRichText`\n*   `UluScrollAnchors`\n*   `UluScrollAnchorsHeadlessSection`\n*   `UluScrollAnchorsNav`\n*   `UluScrollAnchorsNavAnimated`\n*   `UluScrollAnchorsSection`\n*   `UluScrollSlider`\n*   `UluSearchForm`\n*   `UluSelectableMenu`\n*   `UluShowSkeleton`\n*   `UluSkeletonContent`\n*   `UluSkeletonMedia`\n*   `UluSkeletonText`\n*   `UluSkipLink`\n*   `UluSlider`\n*   `UluSpokeSpinner`\n*   `UluTab`\n*   `UluTabGroup`\n*   `UluTabList`\n*   `UluTabPanel`\n*   `UluTabPanels`\n*   `UluTable`\n*   `UluTableSticky`\n*   `UluTableStickyRows`\n*   `UluTableStickyTable`\n*   `UluTag`\n*   `UluTitleRail`\n*   `UluToast`\n*   `UluToastDisplay`\n*   `UluTooltipDisplay`\n*   `UluTooltipPopover`\n*   `UluTourDisplay`\n*   `UluTourPager`\n*   `UluTourContent`\n\n---\n\n## Composables\n\nReusable, stateful logic that can be shared across components.\n\n*   `useBreakpointManager`\n*   `useDocumentTitle`\n*   `useFacets`\n*   `useIcon`\n*   `useModifiers`\n*   `usePagination`\n*   `useRequiredInject`\n*   `useScrollAnchorSection`\n*   `useScrollAnchorSections`\n*   `useScrollAnchors`\n*   `useTableData`\n*   `useToast`\n*   `useTooltip`\n*   `useTooltipFollow`\n*   `useTour`\n*   `useUluFloating`\n*   `useWindowResize`\n\n---\n\n## Plugins\n\nPlugins provide global functionality and APIs.\n\n*   `breakpointsPlugin`\n*   `corePlugin`\n*   `modalsPlugin`\n*   `popoversPlugin`\n*   `toastPlugin`\n*   `tourPlugin`\n\n\n\n---\n\n## Utilities\n\nThe `utils` export is a namespace containing helper functions.\n\n### DOM (`utils.dom`)\n\n*   `utils.dom.refToElement`\n*   `utils.dom.newId`\n\n### Props (`utils.props`)\n\n*   `utils.props.isArrayOfObjects`\n*   `utils.props.checkDeprecatedProps`\n*   `utils.props.mergeClassLookups`\n*   `utils.props.resolveClassOverride`\n\n### Router (`utils.router`)\n\n*   `utils.router.getRouteTitle`\n*   `utils.router.createBaseMenu`\n*   `utils.router.flattenMenu`\n*   `utils.router.createSectionMenu`\n*   `utils.router.getChildIndexRoute`\n*   `utils.router.createMenuItem`\n*   `utils.router.isStaticRoute`\n*   `utils.router.isStaticBaseRoute`\n*   `utils.router.nativeLinkRouter`\n*   `utils.router.$getRouteChildren`\n*   `utils.router.$getParentRoute`\n*   `utils.router.$createSectionMenu`\n*   `utils.router.$createBreadcrumb`\n"
     },
     "ChangeLog": {
       "raw_markdown": "import { Meta, Markdown } from '@storybook/addon-docs/blocks';\nimport CHANGELOG from '../CHANGELOG.md?raw';\n\n<Meta title=\"Overview/Change Log\" />\n\n<Markdown>\n{CHANGELOG}\n</Markdown>"
@@ -12475,7 +12530,7 @@
       "raw_markdown": "# useBreakpointManager\n\nComposable for adding breakpoint manager and related breakpoint info (via breakpoint manager from `@ulu/frontend/js/ui/breakpoints.js > BreakpointManager`).\n\n**Note:** Using the composable is only necessary for unique situations. For basic breakpoint setup use the `breakpointsPlugin`. Which uses this composable.\n\n## Options for this composable\n\n```js\nconst defaults = {\n  /**\n   * Set an initial value (value in mounted, SSR)\n   */\n  initialValue: null,\n  /**\n   * Function called after init (passed manager)\n   */\n  onReady: null,\n  /**\n   * Options sent to CssBreakpoints library (ulu/frontend/js/breakpoints <BreakpointManager>)\n   */\n  plugin: {\n    customProperty: \"--breakpoint\"\n  }\n}\n```\n\n## Example Usage\n\n```html\n<script setup>\n  import { ref, computed, provide } from \"vue\";\n  import { useBreakpointManager } from \"./useBreakpointManager.js\";\n\n  const isMobile = ref(false);\n\n  // Example using the onReady callback to set reactive value isMobile\n  // - In this situation isMobile is being used as a primary change in  \n  //   the applications layout \n  const options = { \n    onReady(manager) {\n      manager.at(\"small\").max(() => isMobile.value = true);\n      manager.at(\"large\").min(() => isMobile.value = false);\n    }\n  };\n\n  // Composable returns the following\n  const { \n    /**\n     * Reference to underlying BreakpointManager class\n    */\n    breakpointManager, \n    /**\n     * Active breakpoint name\n    */\n    breakpointActive, \n    /**\n     * Current resizeDirection (\"up\"|\"down\"|null)\n    */\n    breakpointDirection \n  } = useBreakpointManager(options);\n\n\n  // Allowing all components to access these values\n  provide(\"uluBreakpointActive\", computed(() => breakpointActive));\n  provide(\"uluBreakpointDirection\", computed(() => breakpointDirection));\n  provide(\"uluBreakpointManager\", computed(() => breakpointManager));\n  provide(\"uluIsMobile\", computed(() => isMobile));\n\n</script>\n```"
     },
     "tour": {
-      "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as TourStories from './tour.stories.js';\n\n# Tour Plugin\n\nThe Tour plugin allows configuring an app-wide guided tour that leverages `UluModal` and `@floating-ui/vue`. Register the plugin, and use the global API (or composable) to start step-by-step onboarding flows.\n\n## Installing the plugin\n\nExample `./src/main.js`\n\n```js\nimport UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);\n```\n\nTo display the tour, you must include the `UluTourDisplay` component somewhere in your application root (e.g. `App.vue`):\n\n```html\n<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>\n```\n\n## Creating a Tour\n\nA tour is defined as an object containing a `name` and an array of `steps`.\n\n```js\nconst demoTour = {\n  name: 'demo-tour',\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalOptions: { size: 'small' }\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    },\n    {\n      target: '#step-2-btn',\n      title: 'With Highlight',\n      content: 'This step has the backdrop highlight enabled!',\n      placement: 'right',\n      highlight: true\n    }\n  ]\n};\n```\n\n### Step API Structure\n\nEach step object can accept the following properties:\n\n*   **`target`**: *(String)* The CSS selector for the target element. If omitted, the step renders as a centered modal.\n*   **`title`**: *(String)* The title text for the step.\n*   **`content`**: *(String)* The body content text for the step.\n*   **`component`**: *(Object)* A custom Vue component to replace the step body or layout.\n*   **`componentProps`**: *(Object)* Props to bind to the custom component.\n*   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back/Close buttons).\n*   **`placement`**: *(String)* Floating UI placement string (e.g. `'bottom'`, `'right'`).\n*   **`highlight`**: *(Boolean)* If true, darkens the backdrop around the target element.\n*   **`modalOptions`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).\n*   **`onEnter`**: *(Function)* An async hook called before the step is rendered.\n\n## Starting the Tour\n\nYou can control the tour programmatically using the `useTour` composable:\n\n```html\n<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>\n```\n\nAlternatively, you can use the global API:\n\n```js\nthis.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();\n```\n\n## Custom Components & Layouts\n\nIf you need a completely custom step design, you can pass a Vue component to the step definition. \n\nIf you just want to replace the text body, provide `component` and `componentProps`. The default footer will remain intact.\n\nIf you want to replace the **entire** layout (including the buttons), provide `component` and `hideFooter: true`. Inside your custom component, you can import the reusable `UluTourPager` to render the default buttons, or you can use `useTour()` to wire up your own buttons entirely:\n\n```html\n<template>\n  <div class=\"my-custom-step-layout\">\n    <h3>Custom Design</h3>\n    <!-- Re-use the default buttons if desired -->\n    <UluTourPager />\n  </div>\n</template>\n\n<script setup>\n  import { UluTourPager } from \"@ulu/frontend-vue\";\n</script>\n```\n\n## Demonstration\n\n<Canvas of={TourStories.Default} />\n"
+      "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as TourStories from './tour.stories.js';\n\n# Tour Plugin\n\nThe Tour plugin allows configuring an app-wide guided tour that leverages `UluModal` and `@floating-ui/vue`. Register the plugin, and use the global API (or composable) to start step-by-step onboarding flows.\n\n## Installing the plugin\n\nExample `./src/main.js`\n\n```js\nimport UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);\n```\n\nTo display the tour, you must include the `UluTourDisplay` component somewhere in your application root (e.g. `App.vue`):\n\n```html\n<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>\n```\n\n## Creating a Tour\n\nA tour is defined as an object containing a `name` and an array of `steps`.\n\n```js\nconst demoTour = {\n  name: 'demo-tour',\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalOptions: { size: 'small' }\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};\n```\n\n### Step API Structure\n\nEach step object can accept the following properties:\n\n*   **`target`**: *(String)* The CSS selector for the target element. If omitted, the step renders as a centered modal.\n*   **`title`**: *(String)* The title text for the step.\n*   **`content`**: *(String)* The body content text for the step.\n*   **`contentComponent`**: *(Object)* A Vue component to replace only the text content (keeps the modal/popover shell and default footer intact).\n*   **`component`**: *(Object)* A Vue component to completely replace the outer wrapper (bypasses modal/popover entirely).\n*   **`componentProps`**: *(Object)* Props to bind to `contentComponent` or `component`.\n*   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back/Close buttons). Useful if you want the standard text but no buttons.\n*   **`placement`**: *(String)* Floating UI placement string (e.g. `'bottom'`, `'right'`).\n*   **`highlight`**: *(Boolean)* If true, darkens the backdrop around the target element.\n*   **`modalOptions`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).\n*   **`onEnter`**: *(Function)* An async hook called before the step is rendered.\n\n## Starting the Tour\n\nYou can control the tour programmatically using the `useTour` composable:\n\n```html\n<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>\n```\n\nAlternatively, you can use the global API:\n\n```js\nthis.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();\n```\n\n## Custom Components & Layouts\n\nIf you need custom designs, the plugin supports two levels of control:\n\n### 1. Custom Inner Content (`contentComponent`)\n\nUse `contentComponent` if you want to render an image, form, or custom layout inside the step, but want to **keep** the default popover/modal wrappers and the Next/Back footer buttons.\n\n```html\n<template>\n  <div style=\"text-align: center;\">\n    <img src=\"/logo.png\" />\n    <p>This is my custom graphic step.</p>\n  </div>\n</template>\n```\n\n### 2. Full Wrapper Takeover (`component`)\n\nUse `component` if you want to bypass the `<UluModal>` and `<UluPopoverContent>` wrappers entirely. This allows you to build custom off-canvas drawers, alert banners, or custom absolute-positioned panels. \n\nYou are responsible for your own positioning, styling, and wiring up the Next/Back buttons via `useTour()`.\n\n```html\n<template>\n  <div class=\"my-custom-floating-drawer\">\n    <h3>Custom Design</h3>\n    <!-- Wire up your own buttons -->\n    <button @click=\"api.next()\">Got it!</button>\n  </div>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n  const { api } = useTour();\n</script>\n```\n\n## Demonstration\n\n<Canvas of={TourStories.Default} />\n"
     },
     "modals": {
       "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as ModalStories from '../../components/collapsible/UluModal.stories.js';\n\n# Modals\n\nModals plugin allows configuring app-wide modals that are triggered by the global API. Register your modals when you install the plugin then interact with them using the global API.\n\n## Registering your app-wide modals\n\nCreate the modal component file like:\n\n```html\n<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>\n```\n\n\nExample ./scr/modals.js\n\n```js\nimport { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]\n```\n\n## Installing the plugin\n\nExample ./src/main.js\n\n```js\nimport UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });\n\n```\n\n## Using Global API\n\n```js\n\n// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\"\n```\n\n## Using Composition API (via composable)\n\nComposable is used get access to modals API (through inject)\n\n```html\n\n<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>\n\n```\n\n## Standalone Modal Component\n\nThe `UluModal` **component is independent of this plugin.** The plugin is simply a convenient way to manage global modals (for things like a settings dialog) that need to be opened from anywhere in your application.\n\nYou can use `UluModal` as the component that the plugin displays, or you can use it on its own for any case where you are managing the state locally within a component and don't need a global API.\n\nHere is a demonstration of the standalone `UluModal` component:\n\n<Canvas of={ModalStories.Default} />"
@@ -12556,6 +12611,19 @@
         "level": 0
       },
       {
+        "id": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
+        "longname": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
+        "name": "plugins\nResponsible for exporting all plugins\n- Used in bundle exports",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins"
+        },
+        "order": 6,
+        "level": 0
+      },
+      {
         "id": "utils.module:router",
         "longname": "utils.module:router",
         "name": "router",
@@ -12565,7 +12633,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 6,
+        "order": 7,
         "level": 0
       },
       {
@@ -12578,7 +12646,7 @@
           "filename": "props.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 21,
+        "order": 22,
         "level": 0
       },
       {
@@ -12591,7 +12659,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 26,
+        "order": 27,
         "level": 0
       },
       {
@@ -12604,20 +12672,7 @@
           "filename": "dom.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 27,
-        "level": 0
-      },
-      {
-        "id": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
-        "longname": "plugins\nResponsible for exporting all plugins\n- Used in bundle exportsmodule:",
-        "name": "plugins\nResponsible for exporting all plugins\n- Used in bundle exports",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins"
-        },
-        "order": 30,
+        "order": 28,
         "level": 0
       },
       {
@@ -12777,6 +12832,19 @@
         "level": 0
       },
       {
+        "id": "module:tourPlugin",
+        "longname": "module:tourPlugin",
+        "name": "tourPlugin",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 66,
+        "level": 0
+      },
+      {
         "id": "module:useToast",
         "longname": "module:useToast",
         "name": "useToast",
@@ -12786,7 +12854,7 @@
           "filename": "useToast.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 65,
+        "order": 74,
         "level": 0
       },
       {
@@ -12799,7 +12867,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 67,
+        "order": 76,
         "level": 0
       },
       {
@@ -12812,7 +12880,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 74,
+        "order": 83,
         "level": 0
       },
       {
@@ -12825,111 +12893,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 76,
-        "level": 0
-      },
-      {
-        "id": "module:tourPlugin",
-        "longname": "module:tourPlugin",
-        "name": "tourPlugin",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
-        },
-        "order": 82,
-        "level": 0
-      },
-      {
-        "id": "module:useTooltipFollow",
-        "longname": "module:useTooltipFollow",
-        "name": "useTooltipFollow",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "useTooltipFollow.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 91,
-        "level": 0
-      },
-      {
-        "id": "module:useTooltip",
-        "longname": "module:useTooltip",
-        "name": "useTooltip",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "useTooltip.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 92,
-        "level": 0
-      },
-      {
-        "id": "module:popoversPlugin",
-        "longname": "module:popoversPlugin",
-        "name": "popoversPlugin",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 94,
-        "level": 0
-      },
-      {
-        "id": "popovers.module:defaults",
-        "longname": "popovers.module:defaults",
-        "name": "defaults",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "defaults.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 100
-      },
-      {
-        "id": "module:useModals",
-        "longname": "module:useModals",
-        "name": "useModals",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "useModals.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
-        },
-        "order": 122,
-        "level": 0
-      },
-      {
-        "id": "module:modalsPlugin",
-        "longname": "module:modalsPlugin",
-        "name": "modalsPlugin",
-        "kind": "module",
-        "description": "Modals plugin (adds components, global registry, etc)\n- Updated version handles both independent and global registered/triggered modals",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
-        },
-        "order": 124,
-        "level": 0
-      },
-      {
-        "id": "modals.module:api",
-        "longname": "modals.module:api",
-        "name": "api",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "api.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
-        },
-        "order": 127,
+        "order": 85,
         "level": 0
       },
       {
@@ -12943,7 +12907,47 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 136,
+        "order": 91,
+        "level": 0
+      },
+      {
+        "id": "module:useModals",
+        "longname": "module:useModals",
+        "name": "useModals",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "useModals.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
+        },
+        "order": 93,
+        "level": 0
+      },
+      {
+        "id": "module:modalsPlugin",
+        "longname": "module:modalsPlugin",
+        "name": "modalsPlugin",
+        "kind": "module",
+        "description": "Modals plugin (adds components, global registry, etc)\n- Updated version handles both independent and global registered/triggered modals",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
+        },
+        "order": 95,
+        "level": 0
+      },
+      {
+        "id": "modals.module:api",
+        "longname": "modals.module:api",
+        "name": "api",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "api.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
+        },
+        "order": 98,
         "level": 0
       },
       {
@@ -12956,8 +12960,59 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 138,
+        "order": 107,
         "level": 0
+      },
+      {
+        "id": "module:useTooltipFollow",
+        "longname": "module:useTooltipFollow",
+        "name": "useTooltipFollow",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "useTooltipFollow.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 112,
+        "level": 0
+      },
+      {
+        "id": "module:useTooltip",
+        "longname": "module:useTooltip",
+        "name": "useTooltip",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "useTooltip.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 113,
+        "level": 0
+      },
+      {
+        "id": "module:popoversPlugin",
+        "longname": "module:popoversPlugin",
+        "name": "popoversPlugin",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 115,
+        "level": 0
+      },
+      {
+        "id": "popovers.module:defaults",
+        "longname": "popovers.module:defaults",
+        "name": "defaults",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "defaults.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
+        },
+        "order": 121
       },
       {
         "id": "module:systems",
@@ -13037,79 +13092,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 75,
-        "level": 0
-      },
-      {
-        "id": "module:popoversPlugin--module.exports",
-        "longname": "module:popoversPlugin",
-        "name": "module.exports",
-        "kind": "function",
-        "isExported": true,
-        "description": "Install the UluPopovers plugin.",
-        "memberof": "module:popoversPlugin",
-        "params": [
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "The Vue app instance.",
-            "name": "app"
-          },
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "User-defined options to override defaults.",
-            "name": "userOptions"
-          }
-        ],
-        "meta": {
-          "lineno": 59,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
-        },
-        "order": 99,
-        "level": 0
-      },
-      {
-        "id": "module:modalsPlugin--module.exports",
-        "longname": "module:modalsPlugin",
-        "name": "module.exports",
-        "kind": "function",
-        "isExported": true,
-        "description": "Modals Vue Plugin",
-        "memberof": "module:modalsPlugin",
-        "params": [
-          {
-            "type": {
-              "names": [
-                "Object"
-              ]
-            },
-            "description": "Vue app instance passed to plugin",
-            "name": "App"
-          },
-          {
-            "type": {
-              "names": [
-                "module:modalsPlugin~UluModalsPluginOptions"
-              ]
-            },
-            "description": "Options to change (see defaults)",
-            "name": "userOptions"
-          }
-        ],
-        "meta": {
-          "lineno": 28,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
-        },
-        "order": 126,
+        "order": 84,
         "level": 0
       },
       {
@@ -13186,7 +13169,43 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 137,
+        "order": 92,
+        "level": 0
+      },
+      {
+        "id": "module:modalsPlugin--module.exports",
+        "longname": "module:modalsPlugin",
+        "name": "module.exports",
+        "kind": "function",
+        "isExported": true,
+        "description": "Modals Vue Plugin",
+        "memberof": "module:modalsPlugin",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "description": "Vue app instance passed to plugin",
+            "name": "App"
+          },
+          {
+            "type": {
+              "names": [
+                "module:modalsPlugin~UluModalsPluginOptions"
+              ]
+            },
+            "description": "Options to change (see defaults)",
+            "name": "userOptions"
+          }
+        ],
+        "meta": {
+          "lineno": 28,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
+        },
+        "order": 97,
         "level": 0
       },
       {
@@ -13243,48 +13262,44 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 142,
+        "order": 111,
         "level": 0
       },
       {
-        "id": "tourState",
-        "longname": "tourState",
-        "name": "tourState",
-        "kind": "constant",
-        "scope": "global",
-        "description": "Global reactive state for the tour plugin",
-        "type": {
-          "names": [
-            "Object"
-          ]
-        },
-        "properties": [
+        "id": "module:popoversPlugin--module.exports",
+        "longname": "module:popoversPlugin",
+        "name": "module.exports",
+        "kind": "function",
+        "isExported": true,
+        "description": "Install the UluPopovers plugin.",
+        "memberof": "module:popoversPlugin",
+        "params": [
           {
             "type": {
               "names": [
-                "Object",
-                "null"
+                "object"
               ]
             },
-            "description": "The currently active tour configuration",
-            "name": "active"
+            "description": "The Vue app instance.",
+            "name": "app"
           },
           {
             "type": {
               "names": [
-                "Number"
+                "object"
               ]
             },
-            "description": "The index of the current step in the active tour",
-            "name": "stepIndex"
+            "description": "User-defined options to override defaults.",
+            "name": "userOptions"
           }
         ],
         "meta": {
-          "lineno": 9,
-          "filename": "api.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+          "lineno": 59,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 83
+        "order": 120,
+        "level": 0
       },
       {
         "id": "createApi",
@@ -13293,6 +13308,17 @@
         "kind": "constant",
         "scope": "global",
         "description": "Creates the tour API methods used to control the tour lifecycle",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "description": "The reactive state object",
+            "name": "state"
+          }
+        ],
         "returns": [
           {
             "type": {
@@ -13304,11 +13330,25 @@
           }
         ],
         "meta": {
-          "lineno": 32,
+          "lineno": 23,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
-        "order": 85
+        "order": 68
+      },
+      {
+        "id": "useTour",
+        "longname": "useTour",
+        "name": "useTour",
+        "kind": "function",
+        "scope": "global",
+        "description": "Composable for accessing the Tour API and state",
+        "meta": {
+          "lineno": 6,
+          "filename": "useTour.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 65
       },
       {
         "id": "start",
@@ -13348,11 +13388,11 @@
           }
         ],
         "meta": {
-          "lineno": 39,
+          "lineno": 30,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
-        "order": 86
+        "order": 69
       },
       {
         "id": "next",
@@ -13362,11 +13402,11 @@
         "scope": "global",
         "description": "Advances the tour to the next step, or stops if it is the last step",
         "meta": {
-          "lineno": 48,
+          "lineno": 39,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
-        "order": 87
+        "order": 70
       },
       {
         "id": "prev",
@@ -13376,11 +13416,11 @@
         "scope": "global",
         "description": "Returns the tour to the previous step",
         "meta": {
-          "lineno": 63,
+          "lineno": 54,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
-        "order": 88
+        "order": 71
       },
       {
         "id": "stop",
@@ -13390,11 +13430,11 @@
         "scope": "global",
         "description": "Stops and closes the current tour",
         "meta": {
-          "lineno": 76,
+          "lineno": 67,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
-        "order": 89
+        "order": 72
       },
       {
         "id": "_runHooks",
@@ -13415,11 +13455,11 @@
           }
         ],
         "meta": {
-          "lineno": 84,
+          "lineno": 75,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
-        "order": 90
+        "order": 73
       },
       {
         "id": "TourStep",
@@ -13470,8 +13510,18 @@
               ]
             },
             "optional": true,
-            "description": "A Vue component to render as the step body or layout.",
+            "description": "A Vue component to completely replace the modal/popover wrapper and layout.",
             "name": "component"
+          },
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "optional": true,
+            "description": "A Vue component to replace the step text content, keeping the modal/popover wrappers and default footer.",
+            "name": "contentComponent"
           },
           {
             "type": {
@@ -13535,11 +13585,11 @@
           }
         ],
         "meta": {
-          "lineno": 14,
+          "lineno": 3,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
-        "order": 84
+        "order": 67
       },
       {
         "id": "module:useBreakpointManager~defaults.initialValue",
@@ -13600,7 +13650,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 77,
+        "order": 86,
         "level": 0
       },
       {
@@ -13616,7 +13666,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 78
+        "order": 87
       },
       {
         "id": "toast.module:defaults--module.exports.toastOptions.duration",
@@ -13631,7 +13681,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 79
+        "order": 88
       },
       {
         "id": "toast.module:defaults--module.exports.toastOptions.actions",
@@ -13646,7 +13696,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 80
+        "order": 89
       },
       {
         "id": "toast.module:defaults--module.exports.pluginOptions.position",
@@ -13661,7 +13711,39 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 81
+        "order": 90
+      },
+      {
+        "id": "module:breakpointsPlugin--module.exports~defaults.breakpointMobile",
+        "longname": "module:breakpointsPlugin~defaults.breakpointMobile",
+        "name": "breakpointMobile",
+        "kind": "member",
+        "scope": "static",
+        "description": "Breakpoint for mobile down/max",
+        "memberof": "module:breakpointsPlugin--module.exports~defaults",
+        "meta": {
+          "lineno": 14,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
+        },
+        "order": 109,
+        "level": 0
+      },
+      {
+        "id": "module:breakpointsPlugin--module.exports~defaults.managerOptions",
+        "longname": "module:breakpointsPlugin~defaults.managerOptions",
+        "name": "managerOptions",
+        "kind": "member",
+        "scope": "static",
+        "description": "Options to pass to useBreakpointManager()",
+        "memberof": "module:breakpointsPlugin--module.exports~defaults",
+        "meta": {
+          "lineno": 18,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
+        },
+        "order": 110,
+        "level": 0
       },
       {
         "id": "popovers.module:defaults.plugin",
@@ -13681,7 +13763,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 101
+        "order": 122
       },
       {
         "id": "popovers.module:defaults.plugin.directiveName",
@@ -13701,7 +13783,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 102
+        "order": 123
       },
       {
         "id": "popovers.module:defaults.popover",
@@ -13716,7 +13798,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 103
+        "order": 124
       },
       {
         "id": "popovers.module:defaults.popover.inline",
@@ -13736,7 +13818,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 104
+        "order": 125
       },
       {
         "id": "popovers.module:defaults.popover.delay",
@@ -13756,7 +13838,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 105
+        "order": 126
       },
       {
         "id": "popovers.module:defaults.popover.placement",
@@ -13776,7 +13858,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 106
+        "order": 127
       },
       {
         "id": "popovers.module:defaults.popover.strategy",
@@ -13796,7 +13878,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 107
+        "order": 128
       },
       {
         "id": "popovers.module:defaults.popover.offset",
@@ -13816,7 +13898,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 108
+        "order": 129
       },
       {
         "id": "popovers.module:defaults.popover.arrow",
@@ -13836,7 +13918,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 109
+        "order": 130
       },
       {
         "id": "popovers.module:defaults.tooltip",
@@ -13856,7 +13938,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 110
+        "order": 131
       },
       {
         "id": "popovers.module:defaults.tooltip.teleportTo",
@@ -13876,7 +13958,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 111
+        "order": 132
       },
       {
         "id": "popovers.module:defaults.tooltip.class",
@@ -13898,7 +13980,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 112
+        "order": 133
       },
       {
         "id": "popovers.module:defaults.tooltip.showEvents",
@@ -13918,7 +14000,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 113
+        "order": 134
       },
       {
         "id": "popovers.module:defaults.tooltip.hideEvents",
@@ -13938,7 +14020,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 114
+        "order": 135
       },
       {
         "id": "popovers.module:defaults.tooltip.isHtml",
@@ -13958,7 +14040,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 115
+        "order": 136
       },
       {
         "id": "popovers.module:defaults.tooltip.trigger",
@@ -13979,7 +14061,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 116
+        "order": 137
       },
       {
         "id": "popovers.module:defaults.tooltip.content",
@@ -14000,7 +14082,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 117
+        "order": 138
       },
       {
         "id": "popovers.module:defaults.tooltip.delay",
@@ -14020,7 +14102,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 118
+        "order": 139
       },
       {
         "id": "popovers.module:defaults.tooltip.onReady",
@@ -14035,7 +14117,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 119
+        "order": 140
       },
       {
         "id": "popovers.module:defaults.tooltip.component",
@@ -14050,7 +14132,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 120
+        "order": 141
       },
       {
         "id": "popovers.module:defaults.tooltip.componentProps",
@@ -14065,39 +14147,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 121
-      },
-      {
-        "id": "module:breakpointsPlugin--module.exports~defaults.breakpointMobile",
-        "longname": "module:breakpointsPlugin~defaults.breakpointMobile",
-        "name": "breakpointMobile",
-        "kind": "member",
-        "scope": "static",
-        "description": "Breakpoint for mobile down/max",
-        "memberof": "module:breakpointsPlugin--module.exports~defaults",
-        "meta": {
-          "lineno": 14,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
-        },
-        "order": 140,
-        "level": 0
-      },
-      {
-        "id": "module:breakpointsPlugin--module.exports~defaults.managerOptions",
-        "longname": "module:breakpointsPlugin~defaults.managerOptions",
-        "name": "managerOptions",
-        "kind": "member",
-        "scope": "static",
-        "description": "Options to pass to useBreakpointManager()",
-        "memberof": "module:breakpointsPlugin--module.exports~defaults",
-        "meta": {
-          "lineno": 18,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
-        },
-        "order": 141,
-        "level": 0
+        "order": 142
       },
       {
         "id": "module:useToast.useToast",
@@ -14135,7 +14185,7 @@
           "filename": "useToast.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 66,
+        "order": 75,
         "level": 0
       },
       {
@@ -14151,7 +14201,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 68,
+        "order": 77,
         "level": 0
       },
       {
@@ -14167,7 +14217,43 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 70,
+        "order": 79,
+        "level": 0
+      },
+      {
+        "id": "module:useModals.useModals",
+        "longname": "module:useModals.useModals",
+        "name": "useModals",
+        "kind": "constant",
+        "scope": "static",
+        "description": "A composable to access the global modals API.\nThis is a simple wrapper around `inject('uluModals')` and throws an error if the plugin is not installed.",
+        "memberof": "module:useModals",
+        "returns": [
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "The modals API with methods like `open`, `close`, `add`, `remove`, and `get`."
+          }
+        ],
+        "exceptions": [
+          {
+            "type": {
+              "names": [
+                "Error"
+              ]
+            },
+            "description": "If the modals plugin is not installed."
+          }
+        ],
+        "meta": {
+          "lineno": 13,
+          "filename": "useModals.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
+        },
+        "order": 94,
         "level": 0
       },
       {
@@ -14183,7 +14269,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 95,
+        "order": 116,
         "level": 0
       },
       {
@@ -14199,7 +14285,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 96,
+        "order": 117,
         "level": 0
       },
       {
@@ -14215,7 +14301,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 97,
+        "order": 118,
         "level": 0
       },
       {
@@ -14262,43 +14348,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 98,
-        "level": 0
-      },
-      {
-        "id": "module:useModals.useModals",
-        "longname": "module:useModals.useModals",
-        "name": "useModals",
-        "kind": "constant",
-        "scope": "static",
-        "description": "A composable to access the global modals API.\nThis is a simple wrapper around `inject('uluModals')` and throws an error if the plugin is not installed.",
-        "memberof": "module:useModals",
-        "returns": [
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "The modals API with methods like `open`, `close`, `add`, `remove`, and `get`."
-          }
-        ],
-        "exceptions": [
-          {
-            "type": {
-              "names": [
-                "Error"
-              ]
-            },
-            "description": "If the modals plugin is not installed."
-          }
-        ],
-        "meta": {
-          "lineno": 13,
-          "filename": "useModals.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
-        },
-        "order": 123,
+        "order": 119,
         "level": 0
       },
       {
@@ -14391,7 +14441,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 7,
+        "order": 8,
         "level": 0
       },
       {
@@ -14455,7 +14505,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 9,
+        "order": 10,
         "level": 0
       },
       {
@@ -14492,7 +14542,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 10,
+        "order": 11,
         "level": 0
       },
       {
@@ -14565,7 +14615,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 11,
+        "order": 12,
         "level": 0
       },
       {
@@ -14602,7 +14652,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 12,
+        "order": 13,
         "level": 0
       },
       {
@@ -14675,7 +14725,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 13,
+        "order": 14,
         "level": 0
       },
       {
@@ -14712,7 +14762,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 14,
+        "order": 15,
         "level": 0
       },
       {
@@ -14748,7 +14798,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 15,
+        "order": 16,
         "level": 0
       },
       {
@@ -14784,7 +14834,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 16,
+        "order": 17,
         "level": 0
       },
       {
@@ -14822,7 +14872,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 17,
+        "order": 18,
         "level": 0
       },
       {
@@ -14869,7 +14919,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 18,
+        "order": 19,
         "level": 0
       },
       {
@@ -14942,7 +14992,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 19,
+        "order": 20,
         "level": 0
       },
       {
@@ -14979,7 +15029,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 20,
+        "order": 21,
         "level": 0
       },
       {
@@ -15016,7 +15066,7 @@
           "filename": "props.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 22,
+        "order": 23,
         "level": 0
       },
       {
@@ -15061,7 +15111,7 @@
           "filename": "props.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 23,
+        "order": 24,
         "level": 0
       },
       {
@@ -15110,7 +15160,7 @@
           "filename": "props.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 24,
+        "order": 25,
         "level": 0
       },
       {
@@ -15164,7 +15214,7 @@
           "filename": "props.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 25,
+        "order": 26,
         "level": 0
       },
       {
@@ -15202,7 +15252,7 @@
           "filename": "dom.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 28,
+        "order": 29,
         "level": 0
       },
       {
@@ -15241,7 +15291,7 @@
           "filename": "dom.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 29,
+        "order": 30,
         "level": 0
       },
       {
@@ -15704,7 +15754,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 71
+        "order": 80
       },
       {
         "id": "toast.module:store~api.remove",
@@ -15729,7 +15779,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 72
+        "order": 81
       },
       {
         "id": "toast.module:store~api.removeAll",
@@ -15744,7 +15794,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 73
+        "order": 82
       },
       {
         "id": "module:useTooltip.useTooltip",
@@ -15768,7 +15818,7 @@
           "filename": "useTooltip.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 93,
+        "order": 114,
         "level": 0
       },
       {
@@ -16045,7 +16095,7 @@
           "filename": "store.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/toast"
         },
-        "order": 69,
+        "order": 78,
         "level": 0
       },
       {
@@ -16061,7 +16111,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 129,
+        "order": 100,
         "level": 0
       },
       {
@@ -16077,7 +16127,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 130,
+        "order": 101,
         "level": 0
       },
       {
@@ -16128,7 +16178,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 128,
+        "order": 99,
         "level": 0
       },
       {
@@ -16145,7 +16195,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 131,
+        "order": 102,
         "level": 0
       },
       {
@@ -16162,7 +16212,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 139,
+        "order": 108,
         "level": 0
       },
       {
@@ -16380,7 +16430,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 132,
+        "order": 103,
         "level": 0
       },
       {
@@ -16406,7 +16456,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 133,
+        "order": 104,
         "level": 0
       },
       {
@@ -16422,7 +16472,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 134,
+        "order": 105,
         "level": 0
       },
       {
@@ -16448,7 +16498,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 135,
+        "order": 106,
         "level": 0
       },
       {
@@ -16783,7 +16833,7 @@
           "filename": "router.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/utils"
         },
-        "order": 8,
+        "order": 9,
         "level": 0
       },
       {
@@ -16931,7 +16981,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 125,
+        "order": 96,
         "level": 0
       }
     ],

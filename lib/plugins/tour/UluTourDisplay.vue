@@ -1,26 +1,34 @@
 <template>
   <Teleport to="body">
     <template v-if="tourState.active">
-      <!-- RENDER MODAL STEP -->
+      
+      <!-- 1. FULL COMPONENT TAKEOVER -->
+      <component 
+        v-if="currentStep?.component" 
+        :is="currentStep.component" 
+        v-bind="currentStep.componentProps" 
+      />
+
+      <!-- 2. RENDER MODAL STEP -->
       <UluModal 
-        v-if="!currentStep?.target" 
+        v-else-if="!currentStep?.target" 
         :modelValue="true"
         v-bind="currentStep?.modalOptions"
         @close="api.stop()"
       >
         <component 
-          v-if="currentStep?.component" 
-          :is="currentStep.component" 
+          v-if="currentStep?.contentComponent" 
+          :is="currentStep.contentComponent" 
           v-bind="currentStep.componentProps"
         />
-        <UluTourStep v-else :step="currentStep" :is-modal="true" />
+        <UluTourContent v-else :step="currentStep" :is-modal="true" />
         
         <template #footer v-if="!currentStep?.hideFooter">
           <UluTourPager />
         </template>
       </UluModal>
 
-      <!-- RENDER POPOVER STEP -->
+      <!-- 3. RENDER POPOVER STEP -->
       <UluPopoverContent 
         v-else
         class="is-active"
@@ -32,11 +40,11 @@
         @click.stop
       >
         <component 
-          v-if="currentStep?.component" 
-          :is="currentStep.component" 
+          v-if="currentStep?.contentComponent" 
+          :is="currentStep.contentComponent" 
           v-bind="currentStep.componentProps"
         />
-        <UluTourStep v-else :step="currentStep" :is-modal="false" />
+        <UluTourContent v-else :step="currentStep" :is-modal="false" />
         
         <template #footer v-if="!currentStep?.hideFooter">
           <UluTourPager :showClose="true" />
@@ -56,18 +64,15 @@
 
 <script setup>
   import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue';
-  import { useRequiredInject } from '../../composables/useRequiredInject.js';
   import UluModal from '../../components/collapsible/UluModal.vue';
   import UluPopoverContent from '../popovers/UluPopoverContent.vue';
   import UluTourPager from './UluTourPager.vue';
-  import UluTourStep from './UluTourStep.vue';
-  import { tourState as globalTourState } from './api.js';
+  import UluTourContent from './UluTourContent.vue';
+  import { useTour } from './useTour.js';
   
-  const api = useRequiredInject('uluTour');
-  const tourState = globalTourState;
+  const { api, state: tourState } = useTour();
   
   const currentStep = computed(() => tourState.active?.steps[tourState.stepIndex]);
-  const isLastStep = computed(() => tourState.active && tourState.stepIndex === tourState.active.steps.length - 1);
 
   // Floating UI Setup for Popovers
   const targetEl = ref(null);

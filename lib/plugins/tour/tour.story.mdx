@@ -46,13 +46,6 @@ const demoTour = {
       title: 'First Feature',
       content: 'This points to a simple button.',
       placement: 'bottom'
-    },
-    {
-      target: '#step-2-btn',
-      title: 'With Highlight',
-      content: 'This step has the backdrop highlight enabled!',
-      placement: 'right',
-      highlight: true
     }
   ]
 };
@@ -65,9 +58,10 @@ Each step object can accept the following properties:
 *   **`target`**: *(String)* The CSS selector for the target element. If omitted, the step renders as a centered modal.
 *   **`title`**: *(String)* The title text for the step.
 *   **`content`**: *(String)* The body content text for the step.
-*   **`component`**: *(Object)* A custom Vue component to replace the step body or layout.
-*   **`componentProps`**: *(Object)* Props to bind to the custom component.
-*   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back/Close buttons).
+*   **`contentComponent`**: *(Object)* A Vue component to replace only the text content (keeps the modal/popover shell and default footer intact).
+*   **`component`**: *(Object)* A Vue component to completely replace the outer wrapper (bypasses modal/popover entirely).
+*   **`componentProps`**: *(Object)* Props to bind to `contentComponent` or `component`.
+*   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back/Close buttons). Useful if you want the standard text but no buttons.
 *   **`placement`**: *(String)* Floating UI placement string (e.g. `'bottom'`, `'right'`).
 *   **`highlight`**: *(Boolean)* If true, darkens the backdrop around the target element.
 *   **`modalOptions`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).
@@ -104,23 +98,39 @@ this.$uluTour.stop();
 
 ## Custom Components & Layouts
 
-If you need a completely custom step design, you can pass a Vue component to the step definition. 
+If you need custom designs, the plugin supports two levels of control:
 
-If you just want to replace the text body, provide `component` and `componentProps`. The default footer will remain intact.
+### 1. Custom Inner Content (`contentComponent`)
 
-If you want to replace the **entire** layout (including the buttons), provide `component` and `hideFooter: true`. Inside your custom component, you can import the reusable `UluTourPager` to render the default buttons, or you can use `useTour()` to wire up your own buttons entirely:
+Use `contentComponent` if you want to render an image, form, or custom layout inside the step, but want to **keep** the default popover/modal wrappers and the Next/Back footer buttons.
 
 ```html
 <template>
-  <div class="my-custom-step-layout">
+  <div style="text-align: center;">
+    <img src="/logo.png" />
+    <p>This is my custom graphic step.</p>
+  </div>
+</template>
+```
+
+### 2. Full Wrapper Takeover (`component`)
+
+Use `component` if you want to bypass the `<UluModal>` and `<UluPopoverContent>` wrappers entirely. This allows you to build custom off-canvas drawers, alert banners, or custom absolute-positioned panels. 
+
+You are responsible for your own positioning, styling, and wiring up the Next/Back buttons via `useTour()`.
+
+```html
+<template>
+  <div class="my-custom-floating-drawer">
     <h3>Custom Design</h3>
-    <!-- Re-use the default buttons if desired -->
-    <UluTourPager />
+    <!-- Wire up your own buttons -->
+    <button @click="api.next()">Got it!</button>
   </div>
 </template>
 
 <script setup>
-  import { UluTourPager } from "@ulu/frontend-vue";
+  import { useTour } from "@ulu/frontend-vue";
+  const { api } = useTour();
 </script>
 ```
 

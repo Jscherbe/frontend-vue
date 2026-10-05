@@ -56,11 +56,14 @@
   
   const resolvedConfig = computed(() => props.config || {});
 
+  
   const { floatingStyles, placement, arrowStyles, update, isFixedStrategy, contentArrow } = useUluFloating(
     computed(() => props.trigger), 
     contentEl, 
     resolvedConfig
   );
+  console.log("isFixedStrategy:\n", isFixedStrategy.value);
+  console.log("floatingStyles:\n", floatingStyles.value);
 
   defineExpose({
     /**
