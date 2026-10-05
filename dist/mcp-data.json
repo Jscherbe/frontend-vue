@@ -20,22 +20,38 @@
       }
     ],
     "useDocumentTitle": [],
-    "useTooltipFollow": [
+    "tour": [
       {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<useTooltipFollow>Content</useTooltipFollow>"
+        "title": "tour Example 1",
+        "description": "Code example extracted from markdown.",
+        "code": "import UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);"
+      },
+      {
+        "title": "tour Example 2",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>"
+      },
+      {
+        "title": "tour Example 3",
+        "description": "Code example extracted from markdown.",
+        "code": "const demoTour = {\n  name: 'demo-tour',\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalOptions: { size: 'small' }\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    },\n    {\n      target: '#step-2-btn',\n      title: 'With Highlight',\n      content: 'This step has the backdrop highlight enabled!',\n      placement: 'right',\n      highlight: true\n    }\n  ]\n};"
+      },
+      {
+        "title": "tour Example 4",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>"
+      },
+      {
+        "title": "tour Example 5",
+        "description": "Code example extracted from markdown.",
+        "code": "this.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();"
+      },
+      {
+        "title": "tour Example 6",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <div class=\"my-custom-step-layout\">\n    <h3>Custom Design</h3>\n    <!-- Re-use the default buttons if desired -->\n    <UluTourPager />\n  </div>\n</template>\n\n<script setup>\n  import { UluTourPager } from \"@ulu/frontend-vue\";\n</script>"
       }
     ],
-    "useTooltip": [],
-    "tooltip": [
-      {
-        "title": "Basic",
-        "description": "Basic variation",
-        "code": "<tooltip>This is a basic tooltip!</tooltip>"
-      }
-    ],
-    "UluPopover": [],
     "toast": [
       {
         "title": "Default",
@@ -76,9 +92,65 @@
         "code": "<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>"
       }
     ],
+    "useTooltipFollow": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<useTooltipFollow>Content</useTooltipFollow>"
+      }
+    ],
+    "useTooltip": [],
+    "tooltip": [
+      {
+        "title": "Basic",
+        "description": "Basic variation",
+        "code": "<tooltip>This is a basic tooltip!</tooltip>"
+      }
+    ],
+    "UluPopover": [],
     "UluProgressCircle": [],
     "UluProgressBar": [],
     "UluAnimateNumber": [],
+    "UluSanityRichText": [],
+    "UluRouteAnnouncer": [],
+    "UluPlaceholderText": [],
+    "UluPlaceholderImage": [],
+    "UluEmptyView": [],
+    "UluEmpty": [],
+    "UluConditionalWrapper": [],
+    "UluConditionalText": [],
+    "UluAction": [
+      {
+        "title": "AsButton",
+        "description": "AsButton variation",
+        "code": "<UluAction>Content</UluAction>"
+      },
+      {
+        "title": "AsAnchor",
+        "description": "AsAnchor variation",
+        "code": "<UluAction href=\"https://example.com\" target=\"_blank\">Content</UluAction>"
+      },
+      {
+        "title": "AsRouterLink",
+        "description": "AsRouterLink variation",
+        "code": "<UluAction to=\"/about\">Content</UluAction>"
+      },
+      {
+        "title": "ExplicitElementOverride",
+        "description": "ExplicitElementOverride variation",
+        "code": "<UluAction element=\"span\">Content</UluAction>"
+      },
+      {
+        "title": "DownloadWithFilename",
+        "description": "DownloadWithFilename variation",
+        "code": "<UluAction href=\"{...}\" download=\"download-test.txt\">Content</UluAction>"
+      },
+      {
+        "title": "TestDownloadWithoutFilename",
+        "description": "TestDownloadWithoutFilename variation",
+        "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
+      }
+    ],
     "UluSkipLink": [
       {
         "title": "Default",
@@ -155,46 +227,6 @@
     "UluTitleRail": [],
     "UluDataGrid": [],
     "UluAdaptiveLayout": [],
-    "UluSanityRichText": [],
-    "UluRouteAnnouncer": [],
-    "UluPlaceholderText": [],
-    "UluPlaceholderImage": [],
-    "UluEmptyView": [],
-    "UluEmpty": [],
-    "UluConditionalWrapper": [],
-    "UluConditionalText": [],
-    "UluAction": [
-      {
-        "title": "AsButton",
-        "description": "AsButton variation",
-        "code": "<UluAction>Content</UluAction>"
-      },
-      {
-        "title": "AsAnchor",
-        "description": "AsAnchor variation",
-        "code": "<UluAction href=\"https://example.com\" target=\"_blank\">Content</UluAction>"
-      },
-      {
-        "title": "AsRouterLink",
-        "description": "AsRouterLink variation",
-        "code": "<UluAction to=\"/about\">Content</UluAction>"
-      },
-      {
-        "title": "ExplicitElementOverride",
-        "description": "ExplicitElementOverride variation",
-        "code": "<UluAction element=\"span\">Content</UluAction>"
-      },
-      {
-        "title": "DownloadWithFilename",
-        "description": "DownloadWithFilename variation",
-        "code": "<UluAction href=\"{...}\" download=\"download-test.txt\">Content</UluAction>"
-      },
-      {
-        "title": "TestDownloadWithoutFilename",
-        "description": "TestDownloadWithoutFilename variation",
-        "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
-      }
-    ],
     "UluSelectableMenu": [],
     "UluSearchForm": [],
     "UluFormTextarea": [],
@@ -211,6 +243,34 @@
     "UluFormActions": [],
     "UluForm": [],
     "UluFileDisplay": [],
+    "UluTabGroup": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<UluTabGroup>Content</UluTabGroup>"
+      },
+      {
+        "title": "Vertical",
+        "description": "Vertical variation",
+        "code": "<UluTabGroup vertical>Content</UluTabGroup>"
+      },
+      {
+        "title": "DefaultIndex",
+        "description": "DefaultIndex variation",
+        "code": "<UluTabGroup :defaultIndex=\"2\">Content</UluTabGroup>"
+      },
+      {
+        "title": "FullWidth",
+        "description": "FullWidth variation",
+        "code": "<UluTabGroup modifiers=\"{...}\">Content</UluTabGroup>"
+      }
+    ],
+    "UluOverflowPopover": [],
+    "UluModal": [],
+    "UluDropdown": [],
+    "UluCollapsible": [],
+    "UluAccordionGroup": [],
+    "UluAccordion": [],
     "UluTag": [],
     "UluTable": [
       {
@@ -434,34 +494,6 @@
       }
     ],
     "UluAlert": [],
-    "UluTabGroup": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<UluTabGroup>Content</UluTabGroup>"
-      },
-      {
-        "title": "Vertical",
-        "description": "Vertical variation",
-        "code": "<UluTabGroup vertical>Content</UluTabGroup>"
-      },
-      {
-        "title": "DefaultIndex",
-        "description": "DefaultIndex variation",
-        "code": "<UluTabGroup :defaultIndex=\"2\">Content</UluTabGroup>"
-      },
-      {
-        "title": "FullWidth",
-        "description": "FullWidth variation",
-        "code": "<UluTabGroup modifiers=\"{...}\">Content</UluTabGroup>"
-      }
-    ],
-    "UluOverflowPopover": [],
-    "UluModal": [],
-    "UluDropdown": [],
-    "UluCollapsible": [],
-    "UluAccordionGroup": [],
-    "UluAccordion": [],
     "UluTableSticky": [
       {
         "title": "Default",
@@ -480,10 +512,6 @@
         "code": "<CardExample horizontal>Content</CardExample>"
       }
     ],
-    "UluScrollAnchorsNavAnimated": [],
-    "UluScrollAnchorsNav": [],
-    "UluScrollAnchorsHeadlessSection": [],
-    "UluScrollAnchors": [],
     "facets-router": [
       {
         "title": "Default",
@@ -560,6 +588,10 @@
         "code": "<Facets facetFields=\"{...}\" countMode=\"intuitive\">Content</Facets>"
       }
     ],
+    "UluScrollAnchorsNavAnimated": [],
+    "UluScrollAnchorsNav": [],
+    "UluScrollAnchorsHeadlessSection": [],
+    "UluScrollAnchors": [],
     "FullFormDemo": [],
     "FrontPage": [
       {
@@ -675,6 +707,25 @@
     ]
   },
   "configuration": {
+    "UluTourPager": {
+      "description": "Vue Component Props, Emits, and Slots for UluTourPager",
+      "properties": [
+        {
+          "name": "showClose",
+          "type": "boolean",
+          "default": "false",
+          "description": "Display a close button alongside the pager buttons"
+        }
+      ],
+      "events": [],
+      "slots": []
+    },
+    "UluTourDisplay": {
+      "description": "Vue Component Props, Emits, and Slots for UluTourDisplay",
+      "properties": [],
+      "events": [],
+      "slots": []
+    },
     "UluToastDisplay": {
       "description": "Vue Component Props, Emits, and Slots for UluToastDisplay",
       "properties": [],
@@ -731,6 +782,40 @@
       "properties": [],
       "events": [],
       "slots": []
+    },
+    "UluPopoverContent": {
+      "description": "Vue Component Props, Emits, and Slots for UluPopoverContent",
+      "properties": [
+        {
+          "name": "trigger",
+          "type": "object",
+          "default": "null",
+          "description": "The target element for the popover to float alongside"
+        },
+        {
+          "name": "config",
+          "type": "object",
+          "default": "{}",
+          "description": "Floating UI configuration"
+        },
+        {
+          "name": "element",
+          "type": "string",
+          "default": "'span'",
+          "description": "The HTML element to use for the popover (defaults to span for inline validity)"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        },
+        {
+          "name": "footer",
+          "description": ""
+        }
+      ]
     },
     "UluPopover": {
       "description": "Vue Component Props, Emits, and Slots for UluPopover",
@@ -797,7 +882,7 @@
         {
           "name": "directFocus",
           "type": "func",
-          "default": "({ isOpen, content }) => {\n  if (isOpen) {\n    content.focus({ preventScroll: true });\n  }\n}",
+          "default": "({ isOpen, content }) => {\n  if (isOpen && content) {\n    content.focus({ preventScroll: true });\n  }\n}",
           "description": "Direct focus when open/closing popover"
         }
       ],
@@ -4864,6 +4949,41 @@
     }
   },
   "reference": {
+    "UluTourPager": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTourPager",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "showClose",
+            "description": "Display a close button alongside the pager buttons",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "false"
+            }
+          }
+        ],
+        "sourceFiles": [
+          "lib/plugins/tour/UluTourPager.vue"
+        ]
+      }
+    },
+    "UluTourDisplay": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTourDisplay",
+        "description": "",
+        "tags": {},
+        "sourceFiles": [
+          "lib/plugins/tour/UluTourDisplay.vue"
+        ]
+      }
+    },
     "UluToastDisplay": {
       "raw_ast_dump": {
         "exportName": "default",
@@ -4968,12 +5088,104 @@
         ]
       }
     },
+    "UluPopoverContent": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluPopoverContent",
+        "description": "",
+        "tags": {},
+        "expose": [
+          {
+            "name": "update",
+            "description": "Manually trigger a floating UI position update"
+          },
+          {
+            "name": "content",
+            "description": "The internal root popover element reference"
+          }
+        ],
+        "props": [
+          {
+            "name": "trigger",
+            "description": "The target element for the popover to float alongside",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "null"
+            }
+          },
+          {
+            "name": "config",
+            "description": "Floating UI configuration",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{}"
+            }
+          },
+          {
+            "name": "element",
+            "description": "The HTML element to use for the popover (defaults to span for inline validity)",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "'span'"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          },
+          {
+            "name": "footer"
+          }
+        ],
+        "sourceFiles": [
+          "lib/plugins/popovers/UluPopoverContent.vue"
+        ]
+      }
+    },
     "UluPopover": {
       "raw_ast_dump": {
         "exportName": "default",
         "displayName": "UluPopover",
         "description": "",
         "tags": {},
+        "expose": [
+          {
+            "name": "isOpen",
+            "description": "The reactive internal open/closed state of the popover"
+          },
+          {
+            "name": "toggle",
+            "description": "Method to toggle the popover open/closed"
+          },
+          {
+            "name": "close",
+            "description": "Method to force the popover closed"
+          },
+          {
+            "name": "changeTo",
+            "description": "Method to explicitly set the open state",
+            "tags": [
+              {
+                "title": "param",
+                "type": {
+                  "name": "Boolean"
+                },
+                "name": "toOpen",
+                "description": "The desired state"
+              }
+            ]
+          }
+        ],
         "props": [
           {
             "name": "triggerText",
@@ -5076,7 +5288,7 @@
             },
             "defaultValue": {
               "func": true,
-              "value": "({ isOpen, content }) => {\n  if (isOpen) {\n    content.focus({ preventScroll: true });\n  }\n}"
+              "value": "({ isOpen, content }) => {\n  if (isOpen && content) {\n    content.focus({ preventScroll: true });\n  }\n}"
             }
           }
         ],
@@ -12262,11 +12474,14 @@
     "useBreakpointManager": {
       "raw_markdown": "# useBreakpointManager\n\nComposable for adding breakpoint manager and related breakpoint info (via breakpoint manager from `@ulu/frontend/js/ui/breakpoints.js > BreakpointManager`).\n\n**Note:** Using the composable is only necessary for unique situations. For basic breakpoint setup use the `breakpointsPlugin`. Which uses this composable.\n\n## Options for this composable\n\n```js\nconst defaults = {\n  /**\n   * Set an initial value (value in mounted, SSR)\n   */\n  initialValue: null,\n  /**\n   * Function called after init (passed manager)\n   */\n  onReady: null,\n  /**\n   * Options sent to CssBreakpoints library (ulu/frontend/js/breakpoints <BreakpointManager>)\n   */\n  plugin: {\n    customProperty: \"--breakpoint\"\n  }\n}\n```\n\n## Example Usage\n\n```html\n<script setup>\n  import { ref, computed, provide } from \"vue\";\n  import { useBreakpointManager } from \"./useBreakpointManager.js\";\n\n  const isMobile = ref(false);\n\n  // Example using the onReady callback to set reactive value isMobile\n  // - In this situation isMobile is being used as a primary change in  \n  //   the applications layout \n  const options = { \n    onReady(manager) {\n      manager.at(\"small\").max(() => isMobile.value = true);\n      manager.at(\"large\").min(() => isMobile.value = false);\n    }\n  };\n\n  // Composable returns the following\n  const { \n    /**\n     * Reference to underlying BreakpointManager class\n    */\n    breakpointManager, \n    /**\n     * Active breakpoint name\n    */\n    breakpointActive, \n    /**\n     * Current resizeDirection (\"up\"|\"down\"|null)\n    */\n    breakpointDirection \n  } = useBreakpointManager(options);\n\n\n  // Allowing all components to access these values\n  provide(\"uluBreakpointActive\", computed(() => breakpointActive));\n  provide(\"uluBreakpointDirection\", computed(() => breakpointDirection));\n  provide(\"uluBreakpointManager\", computed(() => breakpointManager));\n  provide(\"uluIsMobile\", computed(() => isMobile));\n\n</script>\n```"
     },
-    "core": {
-      "raw_markdown": "# Core Plugin\n\n## Purpose\n\nThe Core Plugin is the central, **required** plugin for the `@ulu/frontend-vue` library. Its primary purpose is to establish a single, reactive source of truth for configuration settings that are shared across multiple components. \n\nBy using Vue's `provide`/`inject` system, this plugin ensures that all components within your application access the same configuration, preventing inconsistencies that can arise from separate module imports.\n\n## Installation\n\nTo use this library, you must register the `corePlugin` on your Vue app instance. You can also pass an options object to override the default settings.\n\n```javascript\n// src/main.js\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { corePlugin } from '@ulu/frontend-vue';\n\nconst app = createApp(App);\n\n// Register the core plugin\napp.use(corePlugin, {\n  // Optional: override general settings\n  fontAwesomeStatic: true,\n\n  // Optional: override specific icons safely\n  iconsByType: {\n    danger: 'my-custom-danger-icon',\n    close: 'my-custom-close-icon'\n  }\n});\n\napp.mount('#app');\n```\n\n## API Reference\n\nThe plugin provides its API to your application in two ways:\n\n-   **Composition API:** `inject('uluCore')`\n-   **Options API:** `this.$uluCore`\n\nThe API object contains the following methods:\n\n- `getSettings()`: Returns the full reactive settings object.\n- `getSetting(key)`: Retrieves a single setting by its key (e.g., `'fontAwesomeStatic'`).\n- `updateSetting(key, value)`: Updates a single setting.\n- `updateSettings(changes)`: Merges an object of changes into the settings.\n- `getDefaultSettings()`: Returns a non-reactive copy of the original default settings.\n- `getIcon(type)`: Retrieves a specific icon class string by its semantic type (e.g., `'danger'`, `'close'`).\n- `setIcon(type, definition)`: Safely sets or overrides a single icon definition.\n\n### Example Usage\n\n**Composition API (`<script setup>`)**\n```vue\n<script setup>\nimport { inject, onMounted } from 'vue';\n\nconst uluCore = inject('uluCore');\n\nonMounted(() => {\n  const icons = uluCore.getSetting('iconsByType');\n  console.log('Danger Icon:', icons.danger);\n\n  // Example of updating a single icon dynamically\n  uluCore.setIcon('success', 'my-awesome-success-icon');\n});\n</script>\n```\n\n**Options API**\n```vue\n<script>\nexport default {\n  mounted() {\n    const icons = this.$uluCore.getSetting('icons');\n    console.log('Danger Icon:', icons.danger);\n  }\n}\n</script>\n```\n\n"
+    "tour": {
+      "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as TourStories from './tour.stories.js';\n\n# Tour Plugin\n\nThe Tour plugin allows configuring an app-wide guided tour that leverages `UluModal` and `@floating-ui/vue`. Register the plugin, and use the global API (or composable) to start step-by-step onboarding flows.\n\n## Installing the plugin\n\nExample `./src/main.js`\n\n```js\nimport UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);\n```\n\nTo display the tour, you must include the `UluTourDisplay` component somewhere in your application root (e.g. `App.vue`):\n\n```html\n<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>\n```\n\n## Creating a Tour\n\nA tour is defined as an object containing a `name` and an array of `steps`.\n\n```js\nconst demoTour = {\n  name: 'demo-tour',\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalOptions: { size: 'small' }\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    },\n    {\n      target: '#step-2-btn',\n      title: 'With Highlight',\n      content: 'This step has the backdrop highlight enabled!',\n      placement: 'right',\n      highlight: true\n    }\n  ]\n};\n```\n\n### Step API Structure\n\nEach step object can accept the following properties:\n\n*   **`target`**: *(String)* The CSS selector for the target element. If omitted, the step renders as a centered modal.\n*   **`title`**: *(String)* The title text for the step.\n*   **`content`**: *(String)* The body content text for the step.\n*   **`component`**: *(Object)* A custom Vue component to replace the step body or layout.\n*   **`componentProps`**: *(Object)* Props to bind to the custom component.\n*   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back/Close buttons).\n*   **`placement`**: *(String)* Floating UI placement string (e.g. `'bottom'`, `'right'`).\n*   **`highlight`**: *(Boolean)* If true, darkens the backdrop around the target element.\n*   **`modalOptions`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).\n*   **`onEnter`**: *(Function)* An async hook called before the step is rendered.\n\n## Starting the Tour\n\nYou can control the tour programmatically using the `useTour` composable:\n\n```html\n<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>\n```\n\nAlternatively, you can use the global API:\n\n```js\nthis.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();\n```\n\n## Custom Components & Layouts\n\nIf you need a completely custom step design, you can pass a Vue component to the step definition. \n\nIf you just want to replace the text body, provide `component` and `componentProps`. The default footer will remain intact.\n\nIf you want to replace the **entire** layout (including the buttons), provide `component` and `hideFooter: true`. Inside your custom component, you can import the reusable `UluTourPager` to render the default buttons, or you can use `useTour()` to wire up your own buttons entirely:\n\n```html\n<template>\n  <div class=\"my-custom-step-layout\">\n    <h3>Custom Design</h3>\n    <!-- Re-use the default buttons if desired -->\n    <UluTourPager />\n  </div>\n</template>\n\n<script setup>\n  import { UluTourPager } from \"@ulu/frontend-vue\";\n</script>\n```\n\n## Demonstration\n\n<Canvas of={TourStories.Default} />\n"
     },
     "modals": {
       "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as ModalStories from '../../components/collapsible/UluModal.stories.js';\n\n# Modals\n\nModals plugin allows configuring app-wide modals that are triggered by the global API. Register your modals when you install the plugin then interact with them using the global API.\n\n## Registering your app-wide modals\n\nCreate the modal component file like:\n\n```html\n<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>\n```\n\n\nExample ./scr/modals.js\n\n```js\nimport { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]\n```\n\n## Installing the plugin\n\nExample ./src/main.js\n\n```js\nimport UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });\n\n```\n\n## Using Global API\n\n```js\n\n// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\"\n```\n\n## Using Composition API (via composable)\n\nComposable is used get access to modals API (through inject)\n\n```html\n\n<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>\n\n```\n\n## Standalone Modal Component\n\nThe `UluModal` **component is independent of this plugin.** The plugin is simply a convenient way to manage global modals (for things like a settings dialog) that need to be opened from anywhere in your application.\n\nYou can use `UluModal` as the component that the plugin displays, or you can use it on its own for any case where you are managing the state locally within a component and don't need a global API.\n\nHere is a demonstration of the standalone `UluModal` component:\n\n<Canvas of={ModalStories.Default} />"
+    },
+    "core": {
+      "raw_markdown": "# Core Plugin\n\n## Purpose\n\nThe Core Plugin is the central, **required** plugin for the `@ulu/frontend-vue` library. Its primary purpose is to establish a single, reactive source of truth for configuration settings that are shared across multiple components. \n\nBy using Vue's `provide`/`inject` system, this plugin ensures that all components within your application access the same configuration, preventing inconsistencies that can arise from separate module imports.\n\n## Installation\n\nTo use this library, you must register the `corePlugin` on your Vue app instance. You can also pass an options object to override the default settings.\n\n```javascript\n// src/main.js\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { corePlugin } from '@ulu/frontend-vue';\n\nconst app = createApp(App);\n\n// Register the core plugin\napp.use(corePlugin, {\n  // Optional: override general settings\n  fontAwesomeStatic: true,\n\n  // Optional: override specific icons safely\n  iconsByType: {\n    danger: 'my-custom-danger-icon',\n    close: 'my-custom-close-icon'\n  }\n});\n\napp.mount('#app');\n```\n\n## API Reference\n\nThe plugin provides its API to your application in two ways:\n\n-   **Composition API:** `inject('uluCore')`\n-   **Options API:** `this.$uluCore`\n\nThe API object contains the following methods:\n\n- `getSettings()`: Returns the full reactive settings object.\n- `getSetting(key)`: Retrieves a single setting by its key (e.g., `'fontAwesomeStatic'`).\n- `updateSetting(key, value)`: Updates a single setting.\n- `updateSettings(changes)`: Merges an object of changes into the settings.\n- `getDefaultSettings()`: Returns a non-reactive copy of the original default settings.\n- `getIcon(type)`: Retrieves a specific icon class string by its semantic type (e.g., `'danger'`, `'close'`).\n- `setIcon(type, definition)`: Safely sets or overrides a single icon definition.\n\n### Example Usage\n\n**Composition API (`<script setup>`)**\n```vue\n<script setup>\nimport { inject, onMounted } from 'vue';\n\nconst uluCore = inject('uluCore');\n\nonMounted(() => {\n  const icons = uluCore.getSetting('iconsByType');\n  console.log('Danger Icon:', icons.danger);\n\n  // Example of updating a single icon dynamically\n  uluCore.setIcon('success', 'my-awesome-success-icon');\n});\n</script>\n```\n\n**Options API**\n```vue\n<script>\nexport default {\n  mounted() {\n    const icons = this.$uluCore.getSetting('icons');\n    console.log('Danger Icon:', icons.danger);\n  }\n}\n</script>\n```\n\n"
     },
     "breakpoints": {
       "raw_markdown": "# Breakpoints Plugin\n\n## Purpose\n\nThe Breakpoints Plugin provides app-wide, reactive breakpoint information to your Vue components. It is a lightweight wrapper around the `useBreakpointManager` composable, ensuring that resize events and active breakpoint states are tracked centrally and distributed efficiently via Vue's `provide`/`inject` system.\n\nBy installing this plugin, any component in your application can instantly know the current breakpoint, whether the device is considered \"mobile,\" and the direction the window was just resized.\n\n## Installation\n\nRegister the `breakpointsPlugin` on your Vue app instance.\n\n```javascript\n// src/main.js\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { breakpointsPlugin } from '@ulu/frontend-vue';\n\nconst app = createApp(App);\n\n// Register the breakpoints plugin\napp.use(breakpointsPlugin, {\n  // Optional: Change which breakpoint triggers the 'isMobile' flag (default is 'small')\n  breakpointMobile: 'small',\n  \n  // Optional: Pass options directly to the underlying useBreakpointManager\n  managerOptions: {\n    // onReady(manager) { ... }\n  }\n});\n\napp.mount('#app');\n```\n\n## Provided Injections\n\nThe plugin does not attach methods to the Vue instance. Instead, it provides reactive `computed` refs that you can inject into any component.\n\n- **`uluIsMobile`**: `ComputedRef<Boolean>` - True if the current active breakpoint is less than or equal to the configured `breakpointMobile` (defaults to `'small'`).\n- **`uluBreakpointActive`**: `ComputedRef<String>` - The name of the currently active breakpoint (e.g., `'small'`, `'medium'`, `'large'`).\n- **`uluBreakpointDirection`**: `ComputedRef<Number>` - Indicates the resize direction (`1` for growing larger, `-1` for shrinking smaller, `0` for initialization).\n- **`uluBreakpointManager`**: `ComputedRef<Object>` - The underlying vanilla JS BreakpointManager instance, allowing advanced programmatic subscriptions if needed.\n\n## Example Usage\n\n**Composition API (`<script setup>`)**\n```vue\n<script setup>\n  import { inject } from 'vue';\n\n  const isMobile = inject('uluIsMobile');\n  const currentBreakpoint = inject('uluBreakpointActive');\n</script>\n\n<template>\n  <div>\n    <p v-if=\"isMobile\">You are on a mobile device!</p>\n    <p>Current Breakpoint: {{ currentBreakpoint }}</p>\n  </div>\n</template>\n```\n\n**Options API**\n```vue\n<script>\nexport default {\n  inject: ['uluIsMobile', 'uluBreakpointActive'],\n  mounted() {\n    console.log('Is mobile?', this.uluIsMobile);\n  }\n}\n</script>\n```\n\n## Why use the Plugin vs the Composable?\n\nWhile you can import and use `useBreakpointManager()` directly in individual components, registering the Breakpoints Plugin ensures that the vanilla JS `BreakpointManager` is only instantiated once. This centralizes the resize event listeners, significantly improving performance across large applications with many responsive components.\n"
@@ -12406,6 +12621,32 @@
         "level": 0
       },
       {
+        "id": "module:components",
+        "longname": "module:components",
+        "name": "components",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components"
+        },
+        "order": 31,
+        "level": 0
+      },
+      {
+        "id": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
+        "longname": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
+        "name": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exports",
+        "kind": "module",
+        "meta": {
+          "lineno": 4,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components"
+        },
+        "order": 32,
+        "level": 0
+      },
+      {
         "id": "module:useWindowResize",
         "longname": "module:useWindowResize",
         "name": "useWindowResize",
@@ -12415,7 +12656,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 31,
+        "order": 33,
         "level": 0
       },
       {
@@ -12428,7 +12669,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 34,
+        "order": 36,
         "level": 0
       },
       {
@@ -12441,7 +12682,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 38,
+        "order": 40,
         "level": 0
       },
       {
@@ -12454,7 +12695,7 @@
           "filename": "useRequiredInject.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 46,
+        "order": 48,
         "level": 0
       },
       {
@@ -12467,7 +12708,7 @@
           "filename": "usePagination.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 48,
+        "order": 50,
         "level": 0
       },
       {
@@ -12480,7 +12721,7 @@
           "filename": "useModifiers.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 50,
+        "order": 52,
         "level": 0
       },
       {
@@ -12493,7 +12734,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 52,
+        "order": 54,
         "level": 0
       },
       {
@@ -12506,7 +12747,7 @@
           "filename": "useDocumentTitle.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 55,
+        "order": 57,
         "level": 0
       },
       {
@@ -12519,7 +12760,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 57,
+        "order": 59,
         "level": 0
       },
       {
@@ -12531,32 +12772,6 @@
           "lineno": 1,
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
-        },
-        "order": 62,
-        "level": 0
-      },
-      {
-        "id": "module:components",
-        "longname": "module:components",
-        "name": "components",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components"
-        },
-        "order": 63,
-        "level": 0
-      },
-      {
-        "id": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
-        "longname": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
-        "name": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exports",
-        "kind": "module",
-        "meta": {
-          "lineno": 4,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components"
         },
         "order": 64,
         "level": 0
@@ -12614,6 +12829,19 @@
         "level": 0
       },
       {
+        "id": "module:tourPlugin",
+        "longname": "module:tourPlugin",
+        "name": "tourPlugin",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 82,
+        "level": 0
+      },
+      {
         "id": "module:useTooltipFollow",
         "longname": "module:useTooltipFollow",
         "name": "useTooltipFollow",
@@ -12623,7 +12851,7 @@
           "filename": "useTooltipFollow.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 82,
+        "order": 91,
         "level": 0
       },
       {
@@ -12636,7 +12864,7 @@
           "filename": "useTooltip.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 83,
+        "order": 92,
         "level": 0
       },
       {
@@ -12649,7 +12877,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 85,
+        "order": 94,
         "level": 0
       },
       {
@@ -12662,7 +12890,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 91
+        "order": 100
       },
       {
         "id": "module:useModals",
@@ -12674,7 +12902,7 @@
           "filename": "useModals.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 113,
+        "order": 122,
         "level": 0
       },
       {
@@ -12688,7 +12916,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 115,
+        "order": 124,
         "level": 0
       },
       {
@@ -12701,7 +12929,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 118,
+        "order": 127,
         "level": 0
       },
       {
@@ -12715,7 +12943,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 127,
+        "order": 136,
         "level": 0
       },
       {
@@ -12728,7 +12956,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 129,
+        "order": 138,
         "level": 0
       },
       {
@@ -12741,7 +12969,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems"
         },
-        "order": 134,
+        "order": 143,
         "level": 0
       },
       {
@@ -12754,7 +12982,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 135,
+        "order": 144,
         "level": 0
       },
       {
@@ -12767,7 +12995,7 @@
           "filename": "useScrollAnchorSections.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 145,
+        "order": 154,
         "level": 0
       },
       {
@@ -12780,7 +13008,7 @@
           "filename": "useScrollAnchorSection.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 147,
+        "order": 156,
         "level": 0
       },
       {
@@ -12793,7 +13021,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 149,
+        "order": 158,
         "level": 0
       },
       {
@@ -12841,11 +13069,11 @@
           }
         ],
         "meta": {
-          "lineno": 58,
+          "lineno": 59,
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 90,
+        "order": 99,
         "level": 0
       },
       {
@@ -12881,7 +13109,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 117,
+        "order": 126,
         "level": 0
       },
       {
@@ -12958,7 +13186,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 128,
+        "order": 137,
         "level": 0
       },
       {
@@ -13015,8 +13243,303 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 133,
+        "order": 142,
         "level": 0
+      },
+      {
+        "id": "tourState",
+        "longname": "tourState",
+        "name": "tourState",
+        "kind": "constant",
+        "scope": "global",
+        "description": "Global reactive state for the tour plugin",
+        "type": {
+          "names": [
+            "Object"
+          ]
+        },
+        "properties": [
+          {
+            "type": {
+              "names": [
+                "Object",
+                "null"
+              ]
+            },
+            "description": "The currently active tour configuration",
+            "name": "active"
+          },
+          {
+            "type": {
+              "names": [
+                "Number"
+              ]
+            },
+            "description": "The index of the current step in the active tour",
+            "name": "stepIndex"
+          }
+        ],
+        "meta": {
+          "lineno": 9,
+          "filename": "api.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 83
+      },
+      {
+        "id": "createApi",
+        "longname": "createApi",
+        "name": "createApi",
+        "kind": "constant",
+        "scope": "global",
+        "description": "Creates the tour API methods used to control the tour lifecycle",
+        "returns": [
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "description": "Tour API object"
+          }
+        ],
+        "meta": {
+          "lineno": 32,
+          "filename": "api.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 85
+      },
+      {
+        "id": "start",
+        "longname": "start",
+        "name": "start",
+        "kind": "function",
+        "scope": "global",
+        "description": "Starts a new tour",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "description": "The tour configuration object",
+            "name": "tour"
+          },
+          {
+            "type": {
+              "names": [
+                "Array.<module:plugins/tour/api~TourStep>"
+              ]
+            },
+            "description": "Array of steps for the tour",
+            "name": "tour.steps"
+          },
+          {
+            "type": {
+              "names": [
+                "String"
+              ]
+            },
+            "optional": true,
+            "description": "Optional name for the tour",
+            "name": "tour.name"
+          }
+        ],
+        "meta": {
+          "lineno": 39,
+          "filename": "api.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 86
+      },
+      {
+        "id": "next",
+        "longname": "next",
+        "name": "next",
+        "kind": "function",
+        "scope": "global",
+        "description": "Advances the tour to the next step, or stops if it is the last step",
+        "meta": {
+          "lineno": 48,
+          "filename": "api.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 87
+      },
+      {
+        "id": "prev",
+        "longname": "prev",
+        "name": "prev",
+        "kind": "function",
+        "scope": "global",
+        "description": "Returns the tour to the previous step",
+        "meta": {
+          "lineno": 63,
+          "filename": "api.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 88
+      },
+      {
+        "id": "stop",
+        "longname": "stop",
+        "name": "stop",
+        "kind": "function",
+        "scope": "global",
+        "description": "Stops and closes the current tour",
+        "meta": {
+          "lineno": 76,
+          "filename": "api.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 89
+      },
+      {
+        "id": "_runHooks",
+        "longname": "_runHooks",
+        "name": "_runHooks",
+        "kind": "function",
+        "scope": "global",
+        "description": "Internal method to run asynchronous lifecycle hooks on a step",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "description": "The tour step configuration",
+            "name": "step"
+          }
+        ],
+        "meta": {
+          "lineno": 84,
+          "filename": "api.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 90
+      },
+      {
+        "id": "TourStep",
+        "longname": "TourStep",
+        "name": "TourStep",
+        "kind": "typedef",
+        "scope": "global",
+        "type": {
+          "names": [
+            "Object"
+          ]
+        },
+        "properties": [
+          {
+            "type": {
+              "names": [
+                "String"
+              ]
+            },
+            "optional": true,
+            "description": "The CSS selector for the target element. If omitted, step renders as a modal.",
+            "name": "target"
+          },
+          {
+            "type": {
+              "names": [
+                "String"
+              ]
+            },
+            "optional": true,
+            "description": "The title text for the step.",
+            "name": "title"
+          },
+          {
+            "type": {
+              "names": [
+                "String"
+              ]
+            },
+            "optional": true,
+            "description": "The content text for the step.",
+            "name": "content"
+          },
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "optional": true,
+            "description": "A Vue component to render as the step body or layout.",
+            "name": "component"
+          },
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "optional": true,
+            "description": "Props to bind to the custom component.",
+            "name": "componentProps"
+          },
+          {
+            "type": {
+              "names": [
+                "Boolean"
+              ]
+            },
+            "optional": true,
+            "description": "If true, hides the default tour footer (Next/Back/Close buttons).",
+            "name": "hideFooter"
+          },
+          {
+            "type": {
+              "names": [
+                "String"
+              ]
+            },
+            "optional": true,
+            "description": "Floating UI placement string (e.g. 'bottom', 'right').",
+            "name": "placement"
+          },
+          {
+            "type": {
+              "names": [
+                "Boolean"
+              ]
+            },
+            "optional": true,
+            "description": "If true, darkens the backdrop around the target element.",
+            "name": "highlight"
+          },
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "optional": true,
+            "description": "Props to pass to the modal (if target is omitted).",
+            "name": "modalOptions"
+          },
+          {
+            "type": {
+              "names": [
+                "function"
+              ]
+            },
+            "optional": true,
+            "description": "Async hook called before the step is rendered.",
+            "name": "onEnter"
+          }
+        ],
+        "meta": {
+          "lineno": 14,
+          "filename": "api.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
+        },
+        "order": 84
       },
       {
         "id": "module:useBreakpointManager~defaults.initialValue",
@@ -13031,7 +13554,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 58
+        "order": 60
       },
       {
         "id": "module:useBreakpointManager~defaults.onReady",
@@ -13046,7 +13569,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 59
+        "order": 61
       },
       {
         "id": "module:useBreakpointManager~defaults.plugin",
@@ -13061,7 +13584,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 60
+        "order": 62
       },
       {
         "id": "toast.module:defaults--module.exports",
@@ -13158,7 +13681,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 92
+        "order": 101
       },
       {
         "id": "popovers.module:defaults.plugin.directiveName",
@@ -13178,7 +13701,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 93
+        "order": 102
       },
       {
         "id": "popovers.module:defaults.popover",
@@ -13193,7 +13716,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 94
+        "order": 103
       },
       {
         "id": "popovers.module:defaults.popover.inline",
@@ -13213,7 +13736,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 95
+        "order": 104
       },
       {
         "id": "popovers.module:defaults.popover.delay",
@@ -13233,7 +13756,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 96
+        "order": 105
       },
       {
         "id": "popovers.module:defaults.popover.placement",
@@ -13253,7 +13776,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 97
+        "order": 106
       },
       {
         "id": "popovers.module:defaults.popover.strategy",
@@ -13273,7 +13796,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 98
+        "order": 107
       },
       {
         "id": "popovers.module:defaults.popover.offset",
@@ -13293,7 +13816,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 99
+        "order": 108
       },
       {
         "id": "popovers.module:defaults.popover.arrow",
@@ -13313,7 +13836,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 100
+        "order": 109
       },
       {
         "id": "popovers.module:defaults.tooltip",
@@ -13333,7 +13856,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 101
+        "order": 110
       },
       {
         "id": "popovers.module:defaults.tooltip.teleportTo",
@@ -13353,7 +13876,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 102
+        "order": 111
       },
       {
         "id": "popovers.module:defaults.tooltip.class",
@@ -13375,7 +13898,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 103
+        "order": 112
       },
       {
         "id": "popovers.module:defaults.tooltip.showEvents",
@@ -13395,7 +13918,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 104
+        "order": 113
       },
       {
         "id": "popovers.module:defaults.tooltip.hideEvents",
@@ -13415,7 +13938,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 105
+        "order": 114
       },
       {
         "id": "popovers.module:defaults.tooltip.isHtml",
@@ -13435,7 +13958,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 106
+        "order": 115
       },
       {
         "id": "popovers.module:defaults.tooltip.trigger",
@@ -13456,7 +13979,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 107
+        "order": 116
       },
       {
         "id": "popovers.module:defaults.tooltip.content",
@@ -13477,7 +14000,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 108
+        "order": 117
       },
       {
         "id": "popovers.module:defaults.tooltip.delay",
@@ -13497,7 +14020,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 109
+        "order": 118
       },
       {
         "id": "popovers.module:defaults.tooltip.onReady",
@@ -13512,7 +14035,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 110
+        "order": 119
       },
       {
         "id": "popovers.module:defaults.tooltip.component",
@@ -13527,7 +14050,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 111
+        "order": 120
       },
       {
         "id": "popovers.module:defaults.tooltip.componentProps",
@@ -13542,7 +14065,7 @@
           "filename": "defaults.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 112
+        "order": 121
       },
       {
         "id": "module:breakpointsPlugin--module.exports~defaults.breakpointMobile",
@@ -13557,7 +14080,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 131,
+        "order": 140,
         "level": 0
       },
       {
@@ -13573,7 +14096,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 132,
+        "order": 141,
         "level": 0
       },
       {
@@ -13656,11 +14179,11 @@
         "description": "Injection key for popover options (merged/resolved with users defaults)",
         "memberof": "module:popoversPlugin--module.exports",
         "meta": {
-          "lineno": 13,
+          "lineno": 14,
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 86,
+        "order": 95,
         "level": 0
       },
       {
@@ -13672,11 +14195,11 @@
         "description": "Injection key for tooltip state object (used in tooltip composable, display, etc)",
         "memberof": "module:popoversPlugin--module.exports",
         "meta": {
-          "lineno": 18,
+          "lineno": 19,
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 87,
+        "order": 96,
         "level": 0
       },
       {
@@ -13688,11 +14211,11 @@
         "description": "The id for the global tooltip (which is on the tooltip and put on the element aria-describedby)",
         "memberof": "module:popoversPlugin--module.exports",
         "meta": {
-          "lineno": 23,
+          "lineno": 24,
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 88,
+        "order": 97,
         "level": 0
       },
       {
@@ -13735,11 +14258,11 @@
           }
         ],
         "meta": {
-          "lineno": 37,
+          "lineno": 38,
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 89,
+        "order": 98,
         "level": 0
       },
       {
@@ -13775,7 +14298,7 @@
           "filename": "useModals.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 114,
+        "order": 123,
         "level": 0
       },
       {
@@ -14744,7 +15267,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 33,
+        "order": 35,
         "level": 0
       },
       {
@@ -14798,7 +15321,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 37,
+        "order": 39,
         "level": 0
       },
       {
@@ -14835,7 +15358,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 39,
+        "order": 41,
         "level": 0
       },
       {
@@ -14867,7 +15390,7 @@
           "filename": "useRequiredInject.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 47,
+        "order": 49,
         "level": 0
       },
       {
@@ -14913,7 +15436,7 @@
           "filename": "usePagination.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 49,
+        "order": 51,
         "level": 0
       },
       {
@@ -14986,7 +15509,7 @@
           "filename": "useModifiers.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 51,
+        "order": 53,
         "level": 0
       },
       {
@@ -15012,7 +15535,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 53,
+        "order": 55,
         "level": 0
       },
       {
@@ -15082,7 +15605,7 @@
           "filename": "useDocumentTitle.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 56,
+        "order": 58,
         "level": 0
       },
       {
@@ -15150,7 +15673,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 61,
+        "order": 63,
         "level": 0
       },
       {
@@ -15245,7 +15768,7 @@
           "filename": "useTooltip.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/popovers"
         },
-        "order": 84,
+        "order": 93,
         "level": 0
       },
       {
@@ -15271,7 +15794,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 136,
+        "order": 145,
         "level": 0
       },
       {
@@ -15297,7 +15820,7 @@
           "filename": "useScrollAnchorSections.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 146,
+        "order": 155,
         "level": 0
       },
       {
@@ -15334,7 +15857,7 @@
           "filename": "useScrollAnchorSection.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 148,
+        "order": 157,
         "level": 0
       },
       {
@@ -15506,7 +16029,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 154,
+        "order": 163,
         "level": 0
       },
       {
@@ -15538,7 +16061,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 120,
+        "order": 129,
         "level": 0
       },
       {
@@ -15554,7 +16077,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 121,
+        "order": 130,
         "level": 0
       },
       {
@@ -15588,7 +16111,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 45,
+        "order": 47,
         "level": 0
       },
       {
@@ -15605,7 +16128,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 119,
+        "order": 128,
         "level": 0
       },
       {
@@ -15622,7 +16145,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 122,
+        "order": 131,
         "level": 0
       },
       {
@@ -15639,7 +16162,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 130,
+        "order": 139,
         "level": 0
       },
       {
@@ -15656,7 +16179,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 143,
+        "order": 152,
         "level": 0
       },
       {
@@ -15701,7 +16224,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 32,
+        "order": 34,
         "level": 0
       },
       {
@@ -15718,7 +16241,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 40,
+        "order": 42,
         "level": 0
       },
       {
@@ -15735,7 +16258,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 41,
+        "order": 43,
         "level": 0
       },
       {
@@ -15752,7 +16275,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 42,
+        "order": 44,
         "level": 0
       },
       {
@@ -15769,7 +16292,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 43,
+        "order": 45,
         "level": 0
       },
       {
@@ -15786,7 +16309,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 44,
+        "order": 46,
         "level": 0
       },
       {
@@ -15826,7 +16349,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 54,
+        "order": 56,
         "level": 0
       },
       {
@@ -15857,7 +16380,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 123,
+        "order": 132,
         "level": 0
       },
       {
@@ -15883,7 +16406,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 124,
+        "order": 133,
         "level": 0
       },
       {
@@ -15899,7 +16422,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 125,
+        "order": 134,
         "level": 0
       },
       {
@@ -15925,7 +16448,7 @@
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 126,
+        "order": 135,
         "level": 0
       },
       {
@@ -15942,7 +16465,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 137,
+        "order": 146,
         "level": 0
       },
       {
@@ -15959,7 +16482,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 138,
+        "order": 147,
         "level": 0
       },
       {
@@ -15976,7 +16499,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 139,
+        "order": 148,
         "level": 0
       },
       {
@@ -15993,7 +16516,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 140,
+        "order": 149,
         "level": 0
       },
       {
@@ -16010,7 +16533,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 141,
+        "order": 150,
         "level": 0
       },
       {
@@ -16027,7 +16550,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 142,
+        "order": 151,
         "level": 0
       },
       {
@@ -16044,7 +16567,7 @@
           "filename": "useScrollAnchors.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/scroll-anchors"
         },
-        "order": 144,
+        "order": 153,
         "level": 0
       },
       {
@@ -16081,7 +16604,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 150,
+        "order": 159,
         "level": 0
       },
       {
@@ -16118,7 +16641,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 151,
+        "order": 160,
         "level": 0
       },
       {
@@ -16173,7 +16696,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 152,
+        "order": 161,
         "level": 0
       },
       {
@@ -16219,7 +16742,7 @@
           "filename": "useFacets.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components/systems/facets"
         },
-        "order": 153,
+        "order": 162,
         "level": 0
       },
       {
@@ -16280,7 +16803,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 35,
+        "order": 37,
         "level": 0
       },
       {
@@ -16367,7 +16890,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 36,
+        "order": 38,
         "level": 0
       },
       {
@@ -16408,7 +16931,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/modals"
         },
-        "order": 116,
+        "order": 125,
         "level": 0
       }
     ],

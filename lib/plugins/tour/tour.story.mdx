@@ -1,0 +1,129 @@
+import { Canvas } from '@storybook/addon-docs/blocks';
+import * as TourStories from './tour.stories.js';
+
+# Tour Plugin
+
+The Tour plugin allows configuring an app-wide guided tour that leverages `UluModal` and `@floating-ui/vue`. Register the plugin, and use the global API (or composable) to start step-by-step onboarding flows.
+
+## Installing the plugin
+
+Example `./src/main.js`
+
+```js
+import UluTour from "@ulu/frontend-vue/plugins/tour/index.js";
+
+//...
+
+app.use(UluTour);
+```
+
+To display the tour, you must include the `UluTourDisplay` component somewhere in your application root (e.g. `App.vue`):
+
+```html
+<template>
+  <div id="app">
+    <router-view />
+    <UluTourDisplay />
+  </div>
+</template>
+```
+
+## Creating a Tour
+
+A tour is defined as an object containing a `name` and an array of `steps`.
+
+```js
+const demoTour = {
+  name: 'demo-tour',
+  steps: [
+    {
+      title: 'Welcome!',
+      content: 'This step is a modal because it has no target element. Click next to continue.',
+      modalOptions: { size: 'small' }
+    },
+    {
+      target: '#step-1-btn',
+      title: 'First Feature',
+      content: 'This points to a simple button.',
+      placement: 'bottom'
+    },
+    {
+      target: '#step-2-btn',
+      title: 'With Highlight',
+      content: 'This step has the backdrop highlight enabled!',
+      placement: 'right',
+      highlight: true
+    }
+  ]
+};
+```
+
+### Step API Structure
+
+Each step object can accept the following properties:
+
+*   **`target`**: *(String)* The CSS selector for the target element. If omitted, the step renders as a centered modal.
+*   **`title`**: *(String)* The title text for the step.
+*   **`content`**: *(String)* The body content text for the step.
+*   **`component`**: *(Object)* A custom Vue component to replace the step body or layout.
+*   **`componentProps`**: *(Object)* Props to bind to the custom component.
+*   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back/Close buttons).
+*   **`placement`**: *(String)* Floating UI placement string (e.g. `'bottom'`, `'right'`).
+*   **`highlight`**: *(Boolean)* If true, darkens the backdrop around the target element.
+*   **`modalOptions`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).
+*   **`onEnter`**: *(Function)* An async hook called before the step is rendered.
+
+## Starting the Tour
+
+You can control the tour programmatically using the `useTour` composable:
+
+```html
+<template>
+  <button @click="startTour">Start Tour</button>
+</template>
+
+<script setup>
+  import { useTour } from "@ulu/frontend-vue";
+
+  const { api } = useTour();
+
+  const startTour = () => {
+    api.start(demoTour);
+  };
+</script>
+```
+
+Alternatively, you can use the global API:
+
+```js
+this.$uluTour.start(demoTour);
+this.$uluTour.next();
+this.$uluTour.prev();
+this.$uluTour.stop();
+```
+
+## Custom Components & Layouts
+
+If you need a completely custom step design, you can pass a Vue component to the step definition. 
+
+If you just want to replace the text body, provide `component` and `componentProps`. The default footer will remain intact.
+
+If you want to replace the **entire** layout (including the buttons), provide `component` and `hideFooter: true`. Inside your custom component, you can import the reusable `UluTourPager` to render the default buttons, or you can use `useTour()` to wire up your own buttons entirely:
+
+```html
+<template>
+  <div class="my-custom-step-layout">
+    <h3>Custom Design</h3>
+    <!-- Re-use the default buttons if desired -->
+    <UluTourPager />
+  </div>
+</template>
+
+<script setup>
+  import { UluTourPager } from "@ulu/frontend-vue";
+</script>
+```
+
+## Demonstration
+
+<Canvas of={TourStories.Default} />

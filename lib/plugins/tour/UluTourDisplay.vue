@@ -8,19 +8,15 @@
         v-bind="currentStep?.modalOptions"
         @close="api.stop()"
       >
-        <component v-if="currentStep?.component" :is="currentStep.component" />
-        <template v-else>
-          <h2 class="type-large margin-bottom-small" v-if="currentStep?.title">{{ currentStep.title }}</h2>
-          <p class="type-small" v-if="currentStep?.content">{{ currentStep.content }}</p>
-        </template>
+        <component 
+          v-if="currentStep?.component" 
+          :is="currentStep.component" 
+          v-bind="currentStep.componentProps"
+        />
+        <UluTourStep v-else :step="currentStep" :is-modal="true" />
         
-        <template #footer>
-          <div class="margin-top-small" style="display: flex; gap: 0.5rem; justify-content: flex-end;">
-            <button v-if="tourState.stepIndex > 0" class="button button--outline button--small" @click="api.prev()">Back</button>
-            <button class="button button--small" @click="api.next()">
-              {{ isLastStep ? 'Finish' : 'Next' }}
-            </button>
-          </div>
+        <template #footer v-if="!currentStep?.hideFooter">
+          <UluTourPager />
         </template>
       </UluModal>
 
@@ -35,18 +31,16 @@
         :style="{ zIndex: 9999 }"
         @click.stop
       >
-        <component v-if="currentStep?.component" :is="currentStep.component" />
-        <template v-else>
-          <strong class="type-small margin-bottom-small" style="display: block;" v-if="currentStep?.title">{{ currentStep.title }}</strong>
-          <p class="type-small margin-bottom-small" v-if="currentStep?.content">{{ currentStep.content }}</p>
+        <component 
+          v-if="currentStep?.component" 
+          :is="currentStep.component" 
+          v-bind="currentStep.componentProps"
+        />
+        <UluTourStep v-else :step="currentStep" :is-modal="false" />
+        
+        <template #footer v-if="!currentStep?.hideFooter">
+          <UluTourPager :showClose="true" />
         </template>
-        <div class="margin-top-small" style="display: flex; gap: 0.5rem; justify-content: flex-end;">
-          <button v-if="tourState.stepIndex > 0" class="button button--outline button--small" @click="api.prev()">Back</button>
-          <button class="button button--small" @click="api.next()">
-            {{ isLastStep ? 'Finish' : 'Next' }}
-          </button>
-          <button class="button button--transparent button--small" @click="api.stop()">Close</button>
-        </div>
       </UluPopoverContent>
 
       <!-- OPTIONAL HIGHLIGHT BACKDROP -->
@@ -65,6 +59,8 @@
   import { useRequiredInject } from '../../composables/useRequiredInject.js';
   import UluModal from '../../components/collapsible/UluModal.vue';
   import UluPopoverContent from '../popovers/UluPopoverContent.vue';
+  import UluTourPager from './UluTourPager.vue';
+  import UluTourStep from './UluTourStep.vue';
   import { tourState as globalTourState } from './api.js';
   
   const api = useRequiredInject('uluTour');
@@ -160,4 +156,3 @@
     window.removeEventListener('scroll', updateTargetRect);
   });
 </script>
-
