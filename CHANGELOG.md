@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.32
+
+- **Tour Plugin** | Custom step components (`component` and `contentComponent`) now receive `step`, `tourState`, and `isModal` (for `contentComponent`) as props.
+
 ## 0.6.31
 
 - **Tour Plugin** | Added missing lifecycle hooks for better step transitions and cleanup.

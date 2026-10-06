@@ -7,6 +7,8 @@
         v-if="currentStep?.component" 
         :is="currentStep.component" 
         data-ulu-tour-ui="true"
+        :step="currentStep"
+        :tourState="tourState"
         v-bind="currentStep.componentProps" 
       />
 
@@ -21,6 +23,9 @@
         <component 
           v-if="currentStep?.contentComponent" 
           :is="currentStep.contentComponent" 
+          :step="currentStep"
+          :tourState="tourState"
+          :is-modal="true"
           v-bind="currentStep.componentProps"
         />
         <UluTourContent v-else :step="currentStep" :is-modal="true" />
@@ -45,6 +50,9 @@
         <component 
           v-if="currentStep?.contentComponent" 
           :is="currentStep.contentComponent" 
+          :step="currentStep"
+          :tourState="tourState"
+          :is-modal="false"
           v-bind="currentStep.componentProps"
         />
         <UluTourContent v-else :step="currentStep" :is-modal="false" />
