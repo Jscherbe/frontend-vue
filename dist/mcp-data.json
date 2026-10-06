@@ -20,13 +20,142 @@
       }
     ],
     "useDocumentTitle": [],
+    "tour": [
+      {
+        "title": "tour Example 1",
+        "description": "Code example extracted from markdown.",
+        "code": "import UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);"
+      },
+      {
+        "title": "tour Example 2",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>"
+      },
+      {
+        "title": "tour Example 3",
+        "description": "Code example extracted from markdown.",
+        "code": "const demoTour = {\n  name: 'demo-tour',\n  popoverProps: { modifiers: 'large' }, // Global popover styling for all steps\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalProps: { size: 'small' } // Step-specific override\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};"
+      },
+      {
+        "title": "tour Example 4",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>"
+      },
+      {
+        "title": "tour Example 5",
+        "description": "Code example extracted from markdown.",
+        "code": "this.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();"
+      },
+      {
+        "title": "tour Example 6",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <div style=\"text-align: center;\">\n    <img src=\"/logo.png\" />\n    <p>This is my custom graphic step.</p>\n  </div>\n</template>"
+      },
+      {
+        "title": "tour Example 7",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <div class=\"my-custom-floating-drawer\">\n    <h3>Custom Design</h3>\n    <!-- Wire up your own buttons -->\n    <button @click=\"api.next()\">Got it!</button>\n  </div>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n  const { api } = useTour();\n</script>"
+      }
+    ],
+    "toast": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<toast>Content</toast>"
+      }
+    ],
+    "useModals": [],
+    "modals": [
+      {
+        "title": "GlobalApiTest",
+        "description": "GlobalApiTest variation",
+        "code": "<modals>Content</modals>"
+      },
+      {
+        "title": "modals Example 1",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>"
+      },
+      {
+        "title": "modals Example 2",
+        "description": "Code example extracted from markdown.",
+        "code": "import { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]"
+      },
+      {
+        "title": "modals Example 3",
+        "description": "Code example extracted from markdown.",
+        "code": "import UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });"
+      },
+      {
+        "title": "modals Example 4",
+        "description": "Code example extracted from markdown.",
+        "code": "// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\""
+      },
+      {
+        "title": "modals Example 5",
+        "description": "Code example extracted from markdown.",
+        "code": "<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>"
+      }
+    ],
+    "useTooltipFollow": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<useTooltipFollow>Content</useTooltipFollow>"
+      }
+    ],
+    "useTooltip": [],
+    "tooltip": [
+      {
+        "title": "Basic",
+        "description": "Basic variation",
+        "code": "<tooltip>This is a basic tooltip!</tooltip>"
+      }
+    ],
+    "UluPopover": [],
     "UluProgressCircle": [],
     "UluProgressBar": [],
     "UluAnimateNumber": [],
-    "UluWhenBreakpoint": [],
-    "UluTitleRail": [],
-    "UluDataGrid": [],
-    "UluAdaptiveLayout": [],
+    "UluSanityRichText": [],
+    "UluRouteAnnouncer": [],
+    "UluPlaceholderText": [],
+    "UluPlaceholderImage": [],
+    "UluEmptyView": [],
+    "UluEmpty": [],
+    "UluConditionalWrapper": [],
+    "UluConditionalText": [],
+    "UluAction": [
+      {
+        "title": "AsButton",
+        "description": "AsButton variation",
+        "code": "<UluAction>Content</UluAction>"
+      },
+      {
+        "title": "AsAnchor",
+        "description": "AsAnchor variation",
+        "code": "<UluAction href=\"https://example.com\" target=\"_blank\">Content</UluAction>"
+      },
+      {
+        "title": "AsRouterLink",
+        "description": "AsRouterLink variation",
+        "code": "<UluAction to=\"/about\">Content</UluAction>"
+      },
+      {
+        "title": "ExplicitElementOverride",
+        "description": "ExplicitElementOverride variation",
+        "code": "<UluAction element=\"span\">Content</UluAction>"
+      },
+      {
+        "title": "DownloadWithFilename",
+        "description": "DownloadWithFilename variation",
+        "code": "<UluAction href=\"{...}\" download=\"download-test.txt\">Content</UluAction>"
+      },
+      {
+        "title": "TestDownloadWithoutFilename",
+        "description": "TestDownloadWithoutFilename variation",
+        "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
+      }
+    ],
     "UluSkipLink": [
       {
         "title": "Default",
@@ -99,46 +228,10 @@
         "code": "<UluBreadcrumb items=\"{...}\">Content</UluBreadcrumb>"
       }
     ],
-    "UluSanityRichText": [],
-    "UluRouteAnnouncer": [],
-    "UluPlaceholderText": [],
-    "UluPlaceholderImage": [],
-    "UluEmptyView": [],
-    "UluEmpty": [],
-    "UluConditionalWrapper": [],
-    "UluConditionalText": [],
-    "UluAction": [
-      {
-        "title": "AsButton",
-        "description": "AsButton variation",
-        "code": "<UluAction>Content</UluAction>"
-      },
-      {
-        "title": "AsAnchor",
-        "description": "AsAnchor variation",
-        "code": "<UluAction href=\"https://example.com\" target=\"_blank\">Content</UluAction>"
-      },
-      {
-        "title": "AsRouterLink",
-        "description": "AsRouterLink variation",
-        "code": "<UluAction to=\"/about\">Content</UluAction>"
-      },
-      {
-        "title": "ExplicitElementOverride",
-        "description": "ExplicitElementOverride variation",
-        "code": "<UluAction element=\"span\">Content</UluAction>"
-      },
-      {
-        "title": "DownloadWithFilename",
-        "description": "DownloadWithFilename variation",
-        "code": "<UluAction href=\"{...}\" download=\"download-test.txt\">Content</UluAction>"
-      },
-      {
-        "title": "TestDownloadWithoutFilename",
-        "description": "TestDownloadWithoutFilename variation",
-        "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
-      }
-    ],
+    "UluWhenBreakpoint": [],
+    "UluTitleRail": [],
+    "UluDataGrid": [],
+    "UluAdaptiveLayout": [],
     "UluSelectableMenu": [],
     "UluSearchForm": [],
     "UluFormTextarea": [],
@@ -155,43 +248,6 @@
     "UluFormActions": [],
     "UluForm": [],
     "UluFileDisplay": [],
-    "tour": [
-      {
-        "title": "tour Example 1",
-        "description": "Code example extracted from markdown.",
-        "code": "import UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);"
-      },
-      {
-        "title": "tour Example 2",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>"
-      },
-      {
-        "title": "tour Example 3",
-        "description": "Code example extracted from markdown.",
-        "code": "const demoTour = {\n  name: 'demo-tour',\n  popoverProps: { modifiers: 'large' }, // Global popover styling for all steps\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalProps: { size: 'small' } // Step-specific override\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};"
-      },
-      {
-        "title": "tour Example 4",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>"
-      },
-      {
-        "title": "tour Example 5",
-        "description": "Code example extracted from markdown.",
-        "code": "this.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();"
-      },
-      {
-        "title": "tour Example 6",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <div style=\"text-align: center;\">\n    <img src=\"/logo.png\" />\n    <p>This is my custom graphic step.</p>\n  </div>\n</template>"
-      },
-      {
-        "title": "tour Example 7",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <div class=\"my-custom-floating-drawer\">\n    <h3>Custom Design</h3>\n    <!-- Wire up your own buttons -->\n    <button @click=\"api.next()\">Got it!</button>\n  </div>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n  const { api } = useTour();\n</script>"
-      }
-    ],
     "UluTabGroup": [
       {
         "title": "Default",
@@ -220,13 +276,6 @@
     "UluCollapsible": [],
     "UluAccordionGroup": [],
     "UluAccordion": [],
-    "toast": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<toast>Content</toast>"
-      }
-    ],
     "UluTag": [],
     "UluTable": [
       {
@@ -450,55 +499,6 @@
       }
     ],
     "UluAlert": [],
-    "useTooltipFollow": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<useTooltipFollow>Content</useTooltipFollow>"
-      }
-    ],
-    "useTooltip": [],
-    "tooltip": [
-      {
-        "title": "Basic",
-        "description": "Basic variation",
-        "code": "<tooltip>This is a basic tooltip!</tooltip>"
-      }
-    ],
-    "UluPopover": [],
-    "useModals": [],
-    "modals": [
-      {
-        "title": "GlobalApiTest",
-        "description": "GlobalApiTest variation",
-        "code": "<modals>Content</modals>"
-      },
-      {
-        "title": "modals Example 1",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>"
-      },
-      {
-        "title": "modals Example 2",
-        "description": "Code example extracted from markdown.",
-        "code": "import { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]"
-      },
-      {
-        "title": "modals Example 3",
-        "description": "Code example extracted from markdown.",
-        "code": "import UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });"
-      },
-      {
-        "title": "modals Example 4",
-        "description": "Code example extracted from markdown.",
-        "code": "// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\""
-      },
-      {
-        "title": "modals Example 5",
-        "description": "Code example extracted from markdown.",
-        "code": "<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>"
-      }
-    ],
     "UluTableSticky": [
       {
         "title": "Default",
@@ -506,10 +506,6 @@
         "code": "<UluTableSticky columns=\"{...}\" rows=\"{...}\" caption=\"Example Sticky Table\" scrollControls>Content</UluTableSticky>"
       }
     ],
-    "UluScrollAnchorsNavAnimated": [],
-    "UluScrollAnchorsNav": [],
-    "UluScrollAnchorsHeadlessSection": [],
-    "UluScrollAnchors": [],
     "UluSkeletonText": [],
     "UluSkeletonMedia": [],
     "UluSkeletonContent": [],
@@ -521,6 +517,10 @@
         "code": "<CardExample horizontal>Content</CardExample>"
       }
     ],
+    "UluScrollAnchorsNavAnimated": [],
+    "UluScrollAnchorsNav": [],
+    "UluScrollAnchorsHeadlessSection": [],
+    "UluScrollAnchors": [],
     "facets-router": [
       {
         "title": "Default",
@@ -657,18 +657,6 @@
         "code": "<script setup>\n  import { ref, computed, provide } from \"vue\";\n  import { useBreakpointManager } from \"./useBreakpointManager.js\";\n\n  const isMobile = ref(false);\n\n  // Example using the onReady callback to set reactive value isMobile\n  // - In this situation isMobile is being used as a primary change in  \n  //   the applications layout \n  const options = { \n    onReady(manager) {\n      manager.at(\"small\").max(() => isMobile.value = true);\n      manager.at(\"large\").min(() => isMobile.value = false);\n    }\n  };\n\n  // Composable returns the following\n  const { \n    /**\n     * Reference to underlying BreakpointManager class\n    */\n    breakpointManager, \n    /**\n     * Active breakpoint name\n    */\n    breakpointActive, \n    /**\n     * Current resizeDirection (\"up\"|\"down\"|null)\n    */\n    breakpointDirection \n  } = useBreakpointManager(options);\n\n\n  // Allowing all components to access these values\n  provide(\"uluBreakpointActive\", computed(() => breakpointActive));\n  provide(\"uluBreakpointDirection\", computed(() => breakpointDirection));\n  provide(\"uluBreakpointManager\", computed(() => breakpointManager));\n  provide(\"uluIsMobile\", computed(() => isMobile));\n\n</script>"
       }
     ],
-    "core": [
-      {
-        "title": "core Example 1",
-        "description": "Code example extracted from markdown.",
-        "code": "<script setup>\nimport { inject, onMounted } from 'vue';\n\nconst uluCore = inject('uluCore');\n\nonMounted(() => {\n  const icons = uluCore.getSetting('iconsByType');\n  console.log('Danger Icon:', icons.danger);\n\n  // Example of updating a single icon dynamically\n  uluCore.setIcon('success', 'my-awesome-success-icon');\n});\n</script>"
-      },
-      {
-        "title": "core Example 2",
-        "description": "Code example extracted from markdown.",
-        "code": "<script>\nexport default {\n  mounted() {\n    const icons = this.$uluCore.getSetting('icons');\n    console.log('Danger Icon:', icons.danger);\n  }\n}\n</script>"
-      }
-    ],
     "breakpoints": [
       {
         "title": "breakpoints Example 1",
@@ -681,14 +669,19 @@
         "code": "<script>\nexport default {\n  inject: ['uluIsMobile', 'uluBreakpointActive'],\n  mounted() {\n    console.log('Is mobile?', this.uluIsMobile);\n  }\n}\n</script>"
       }
     ],
-    "forms": [],
-    "facets": [
+    "core": [
       {
-        "title": "facets Example 1",
+        "title": "core Example 1",
         "description": "Code example extracted from markdown.",
-        "code": "<script setup>\n  import { ref } from 'vue';\n  import { useFacets } from './useFacets.js';\n  import UluFacetsFilterAccordions from './UluFacetsFilterAccordions.vue';\n  import UluFacetsResults from './UluFacetsResults.vue';\n  import UluFacetsSearch from './UluFacetsSearch.vue';\n  import UluFacetsSort from './UluFacetsSort.vue';\n  import UluFacetsSidebarLayout from './UluFacetsSidebarLayout.vue';\n  import { mockItems } from './_mock-data';\n\n  const allItems = ref(mockItems);\n\n  // 1. Define fields for automatic facet generation\n  const facetFields = [\n    { name: 'Category', uid: 'category', open: true, multiple: true },\n    { name: 'Author', uid: 'author', open: true },\n    { name: 'Year', uid: 'date', open: true, getValue: item => item.date.getFullYear() }\n  ];\n\n  // 2. Define any extra sort types\n  const extraSortTypes = {\n    newest: { text: 'Date (Newest)', sort: (items) => [...items].sort((a, b) => b.date - a.date) },\n    oldest: { text: 'Date (Oldest)', sort: (items) => [...items].sort((a, b) => a.date - b.date) }\n  };\n\n  // 3. Initialize the composable\n  const {\n    facets,\n    searchValue,\n    selectedSort,\n    sortTypes,\n    displayItems,\n    selectedFacets, // Use this to check if filters are active\n    handleFacetChange,\n    clearFilters\n  } = useFacets(allItems, {\n    facetFields,\n    extraSortTypes,\n    initialSortType: 'newest',\n    countMode: 'intuitive', // Show counts next to facet values\n    searchOptions: { keys: ['title', 'description', 'author'] }\n  });\n</script>\n\n<template>\n  <UluFacetsSidebarLayout>\n    <template #header>\n      <div style=\"display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;\">\n        <h2>Found {{ displayItems.length }} items</h2>\n        <UluFacetsSort v-model=\"selectedSort\" :sort-types=\"sortTypes\" />\n      </div>\n    </template>\n    <template #sidebar>\n      <UluFacetsSearch v-model=\"searchValue\" placeholder=\"Search articles...\" />\n      <hr/>\n      <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n        <h3>Filters</h3>\n        <button v-if=\"selectedFacets.length > 0\" @click=\"clearFilters\" style=\"border: none; background: none; color: blue; cursor: pointer;\">Clear</button>\n      </div>\n      <UluFacetsFilterAccordions :facets=\"facets\" @facet-change=\"handleFacetChange\" :max-visible=\"5\" />\n    </template>\n    <template #main>\n      <UluFacetsResults :items=\"displayItems\">\n        <template #item=\"{ item }\">\n          <div style=\"border: 1px solid #eee; padding: 1rem; margin-bottom: 1rem; border-radius: 4px;\">\n            <h3>{{ item.title }}</h3>\n            <p>{{ item.description }}</p>\n            <p><small><strong>Author:</strong> {{ Array.isArray(item.author) ? item.author.join(', ') : item.author }}</small></p>\n            <p><small><strong>Published on:</strong> {{ item.date.toLocaleDateString() }}</small></p>\n          </div>\n        </template>\n        <template #empty>\n          <div style=\"padding: 2rem; text-align: center;\">\n            <p>No matching items found. Try clearing some filters.</p>\n          </div>\n        </template>\n      </UluFacetsResults>\n    </template>\n  </UluFacetsSidebarLayout>\n</template>"
+        "code": "<script setup>\nimport { inject, onMounted } from 'vue';\n\nconst uluCore = inject('uluCore');\n\nonMounted(() => {\n  const icons = uluCore.getSetting('iconsByType');\n  console.log('Danger Icon:', icons.danger);\n\n  // Example of updating a single icon dynamically\n  uluCore.setIcon('success', 'my-awesome-success-icon');\n});\n</script>"
+      },
+      {
+        "title": "core Example 2",
+        "description": "Code example extracted from markdown.",
+        "code": "<script>\nexport default {\n  mounted() {\n    const icons = this.$uluCore.getSetting('icons');\n    console.log('Danger Icon:', icons.danger);\n  }\n}\n</script>"
       }
     ],
+    "forms": [],
     "useScrollAnchors": [
       {
         "title": "useScrollAnchors Example 1",
@@ -708,6 +701,13 @@
         "title": "useScrollAnchorSection Example 1",
         "description": "Code example extracted from markdown.",
         "code": "<script setup>\nimport { useScrollAnchorSection } from './useScrollAnchorSection';\n\nconst props = defineProps({\n  title: {\n    type: String,\n    required: true\n  },\n  customTitleId: String,\n});\n\nconst { sectionRef, titleId, isActive, section } = useScrollAnchorSection(props);\n</script>\n\n<template>\n  <section :class=\"['my-custom-section', { 'is-active': isActive }]\" :ref=\"sectionRef\">\n    <h2 :id=\"titleId\">{{ title }}</h2>\n    <p>This section is {{ isActive ? 'active' : 'inactive' }}.</p>\n    <!-- More content here -->\n    <slot />\n  </section>\n</template>"
+      }
+    ],
+    "facets": [
+      {
+        "title": "facets Example 1",
+        "description": "Code example extracted from markdown.",
+        "code": "<script setup>\n  import { ref } from 'vue';\n  import { useFacets } from './useFacets.js';\n  import UluFacetsFilterAccordions from './UluFacetsFilterAccordions.vue';\n  import UluFacetsResults from './UluFacetsResults.vue';\n  import UluFacetsSearch from './UluFacetsSearch.vue';\n  import UluFacetsSort from './UluFacetsSort.vue';\n  import UluFacetsSidebarLayout from './UluFacetsSidebarLayout.vue';\n  import { mockItems } from './_mock-data';\n\n  const allItems = ref(mockItems);\n\n  // 1. Define fields for automatic facet generation\n  const facetFields = [\n    { name: 'Category', uid: 'category', open: true, multiple: true },\n    { name: 'Author', uid: 'author', open: true },\n    { name: 'Year', uid: 'date', open: true, getValue: item => item.date.getFullYear() }\n  ];\n\n  // 2. Define any extra sort types\n  const extraSortTypes = {\n    newest: { text: 'Date (Newest)', sort: (items) => [...items].sort((a, b) => b.date - a.date) },\n    oldest: { text: 'Date (Oldest)', sort: (items) => [...items].sort((a, b) => a.date - b.date) }\n  };\n\n  // 3. Initialize the composable\n  const {\n    facets,\n    searchValue,\n    selectedSort,\n    sortTypes,\n    displayItems,\n    selectedFacets, // Use this to check if filters are active\n    handleFacetChange,\n    clearFilters\n  } = useFacets(allItems, {\n    facetFields,\n    extraSortTypes,\n    initialSortType: 'newest',\n    countMode: 'intuitive', // Show counts next to facet values\n    searchOptions: { keys: ['title', 'description', 'author'] }\n  });\n</script>\n\n<template>\n  <UluFacetsSidebarLayout>\n    <template #header>\n      <div style=\"display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;\">\n        <h2>Found {{ displayItems.length }} items</h2>\n        <UluFacetsSort v-model=\"selectedSort\" :sort-types=\"sortTypes\" />\n      </div>\n    </template>\n    <template #sidebar>\n      <UluFacetsSearch v-model=\"searchValue\" placeholder=\"Search articles...\" />\n      <hr/>\n      <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n        <h3>Filters</h3>\n        <button v-if=\"selectedFacets.length > 0\" @click=\"clearFilters\" style=\"border: none; background: none; color: blue; cursor: pointer;\">Clear</button>\n      </div>\n      <UluFacetsFilterAccordions :facets=\"facets\" @facet-change=\"handleFacetChange\" :max-visible=\"5\" />\n    </template>\n    <template #main>\n      <UluFacetsResults :items=\"displayItems\">\n        <template #item=\"{ item }\">\n          <div style=\"border: 1px solid #eee; padding: 1rem; margin-bottom: 1rem; border-radius: 4px;\">\n            <h3>{{ item.title }}</h3>\n            <p>{{ item.description }}</p>\n            <p><small><strong>Author:</strong> {{ Array.isArray(item.author) ? item.author.join(', ') : item.author }}</small></p>\n            <p><small><strong>Published on:</strong> {{ item.date.toLocaleDateString() }}</small></p>\n          </div>\n        </template>\n        <template #empty>\n          <div style=\"padding: 2rem; text-align: center;\">\n            <p>No matching items found. Try clearing some filters.</p>\n          </div>\n        </template>\n      </UluFacetsResults>\n    </template>\n  </UluFacetsSidebarLayout>\n</template>"
       }
     ]
   },
@@ -848,6 +848,10 @@
         {
           "name": "close",
           "description": ""
+        },
+        {
+          "name": "update:isOpen",
+          "description": ""
         }
       ],
       "slots": [
@@ -864,6 +868,12 @@
     "UluPopover": {
       "description": "Vue Component Props, Emits, and Slots for UluPopover",
       "properties": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "default": "undefined",
+          "description": "V-model state to control the popover externally"
+        },
         {
           "name": "triggerText",
           "type": "string",
@@ -932,6 +942,10 @@
       "events": [
         {
           "name": "toggle",
+          "description": ""
+        },
+        {
+          "name": "update:modelValue",
           "description": ""
         }
       ],
@@ -4058,6 +4072,400 @@
       "events": [],
       "slots": []
     },
+    "UluFacetsSort": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsSort",
+      "properties": [
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{}",
+          "description": ""
+        },
+        {
+          "name": "sortTypes",
+          "type": "object",
+          "default": "{}",
+          "description": ""
+        },
+        {
+          "name": "modelValue",
+          "type": "string",
+          "default": "''",
+          "description": ""
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluFacetsSidebarLayout": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsSidebarLayout",
+      "properties": [
+        {
+          "name": "mobileButtonText",
+          "type": "string",
+          "default": "\"Filters & Sort\"",
+          "description": ""
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{\n  mobileButton: 'button'\n}",
+          "description": "Classes for elements. See UluCollapsible for all available class keys (trigger, content, etc).\nThe 'icon' key is also available for the icon span.\n- Any valid class binding value per element"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "header",
+          "description": ""
+        },
+        {
+          "name": "main",
+          "description": ""
+        },
+        {
+          "name": "sidebar",
+          "description": ""
+        }
+      ]
+    },
+    "UluFacetsSearch": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsSearch",
+      "properties": [
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{}",
+          "description": ""
+        },
+        {
+          "name": "modelValue",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"Keywords…\"",
+          "description": ""
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        }
+      ],
+      "slots": []
+    },
+    "UluFacetsResults": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsResults",
+      "properties": [
+        {
+          "name": "items",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "tag",
+          "type": "string",
+          "default": "'ul'",
+          "description": ""
+        },
+        {
+          "name": "transitionName",
+          "type": "string",
+          "default": "'facets-fade'",
+          "description": ""
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{}",
+          "description": ""
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "item",
+          "description": ""
+        },
+        {
+          "name": "empty",
+          "description": ""
+        }
+      ]
+    },
+    "UluFacetsList": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsList",
+      "properties": [
+        {
+          "name": "groupUid",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "groupName",
+          "type": "string",
+          "description": ""
+        },
+        {
+          "name": "children",
+          "type": "array",
+          "description": ""
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "default": "'checkbox'",
+          "description": ""
+        },
+        {
+          "name": "compact",
+          "type": "boolean",
+          "description": ""
+        },
+        {
+          "name": "modelValue",
+          "type": "string|array",
+          "description": ""
+        }
+      ],
+      "events": [
+        {
+          "name": "facet-change",
+          "description": ""
+        }
+      ],
+      "slots": []
+    },
+    "UluFacetsHeaderLayout": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsHeaderLayout",
+      "properties": [],
+      "events": [],
+      "slots": [
+        {
+          "name": "header",
+          "description": ""
+        },
+        {
+          "name": "main",
+          "description": ""
+        }
+      ]
+    },
+    "UluFacetsFilterSelects": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsFilterSelects",
+      "properties": [
+        {
+          "name": "facets",
+          "type": "array",
+          "default": "[]",
+          "description": "Facets Array"
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{}",
+          "description": "Optional classes bindings for all elements { container, group, label, select }"
+        }
+      ],
+      "events": [
+        {
+          "name": "facet-change",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "label",
+          "description": ""
+        },
+        {
+          "name": "optionAll",
+          "description": ""
+        },
+        {
+          "name": "option",
+          "description": ""
+        }
+      ]
+    },
+    "UluFacetsFilterPopovers": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsFilterPopovers",
+      "properties": [
+        {
+          "name": "facets",
+          "type": "array",
+          "default": "[]",
+          "description": "An array of facet groups to display."
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{\n  trigger: \"button\",\n\n  // content: null,\n  // container: null,\n  // group: null\n  triggerIcon: \"button__icon\"\n}",
+          "description": "An object of classes to apply to the component."
+        },
+        {
+          "name": "hideInputs",
+          "type": "boolean",
+          "description": "If true, the input elements will be visually hidden."
+        }
+      ],
+      "events": [
+        {
+          "name": "facet-change",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "trigger",
+          "description": ""
+        }
+      ]
+    },
+    "UluFacetsFilterLists": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsFilterLists",
+      "properties": [
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{}",
+          "description": "An object of classes to apply to the component."
+        },
+        {
+          "name": "maxVisible",
+          "type": "number",
+          "default": "5",
+          "description": "The maximum number of facets to show before showing the \"More\" button."
+        },
+        {
+          "name": "facets",
+          "type": "array",
+          "default": "[]",
+          "description": "An array of facet groups to display."
+        },
+        {
+          "name": "compact",
+          "type": "boolean",
+          "description": "Whether to use compact modifier on selectable menu"
+        }
+      ],
+      "events": [
+        {
+          "name": "facet-change",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "groupTrigger",
+          "description": ""
+        }
+      ]
+    },
+    "UluFacetsFilterAccordions": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsFilterAccordions",
+      "properties": [
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{}",
+          "description": "An object of classes to apply to the component."
+        },
+        {
+          "name": "maxVisible",
+          "type": "number",
+          "default": "5",
+          "description": "The maximum number of facets to show before showing the \"More\" button."
+        },
+        {
+          "name": "facets",
+          "type": "array",
+          "default": "[]",
+          "description": "An array of facet groups to display."
+        },
+        {
+          "name": "compact",
+          "type": "boolean",
+          "description": "Whether to use compact modifier on selectable menu"
+        },
+        {
+          "name": "accordionModifiers",
+          "type": "string|array|object",
+          "description": "Class modifiers for accordion (ie. 'transparent', 'secondary', etc)"
+        }
+      ],
+      "events": [
+        {
+          "name": "facet-change",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "groupTrigger",
+          "description": ""
+        }
+      ]
+    },
+    "UluFacetsActiveFilters": {
+      "description": "Vue Component Props, Emits, and Slots for UluFacetsActiveFilters",
+      "properties": [
+        {
+          "name": "selectedFacets",
+          "type": "array",
+          "default": "[]",
+          "description": "The selectedFacets array from the useFacets composable."
+        },
+        {
+          "name": "labelElement",
+          "type": "string",
+          "default": "\"strong\"",
+          "description": "Element to use for label"
+        },
+        {
+          "name": "removeIcon",
+          "type": "string",
+          "default": "\"type:close\"",
+          "description": "Icon to use for remove (in button)"
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{\n  container: \"layout-flex flex-wrap\",\n  label: \"hidden-visually\",\n  list: \"layout-flex flex-wrap\",\n  item: \"margin-right-small-x\",\n  filterButton: \"button button--small button--outline no-min-width\",\n  filterButtonText: null,\n  filterButtonIcon: \"button__icon\",\n  clearButton: \"button button--small\"\n}",
+          "description": "Classes for different element { label, list, item, filterButton, filterButtonText, filterButtonIcon, clearButton }"
+        }
+      ],
+      "events": [
+        {
+          "name": "facet-change",
+          "description": ""
+        },
+        {
+          "name": "clear-filters",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "label",
+          "description": ""
+        }
+      ]
+    },
     "UluTableStickyTable": {
       "description": "Vue Component Props, Emits, and Slots for UluTableStickyTable",
       "properties": [
@@ -4590,400 +4998,6 @@
         }
       ]
     },
-    "UluFacetsSort": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsSort",
-      "properties": [
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{}",
-          "description": ""
-        },
-        {
-          "name": "sortTypes",
-          "type": "object",
-          "default": "{}",
-          "description": ""
-        },
-        {
-          "name": "modelValue",
-          "type": "string",
-          "default": "''",
-          "description": ""
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluFacetsSidebarLayout": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsSidebarLayout",
-      "properties": [
-        {
-          "name": "mobileButtonText",
-          "type": "string",
-          "default": "\"Filters & Sort\"",
-          "description": ""
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{\n  mobileButton: 'button'\n}",
-          "description": "Classes for elements. See UluCollapsible for all available class keys (trigger, content, etc).\nThe 'icon' key is also available for the icon span.\n- Any valid class binding value per element"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "header",
-          "description": ""
-        },
-        {
-          "name": "main",
-          "description": ""
-        },
-        {
-          "name": "sidebar",
-          "description": ""
-        }
-      ]
-    },
-    "UluFacetsSearch": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsSearch",
-      "properties": [
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{}",
-          "description": ""
-        },
-        {
-          "name": "modelValue",
-          "type": "string",
-          "description": ""
-        },
-        {
-          "name": "placeholder",
-          "type": "string",
-          "default": "\"Keywords…\"",
-          "description": ""
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        }
-      ],
-      "slots": []
-    },
-    "UluFacetsResults": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsResults",
-      "properties": [
-        {
-          "name": "items",
-          "type": "array",
-          "description": ""
-        },
-        {
-          "name": "tag",
-          "type": "string",
-          "default": "'ul'",
-          "description": ""
-        },
-        {
-          "name": "transitionName",
-          "type": "string",
-          "default": "'facets-fade'",
-          "description": ""
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{}",
-          "description": ""
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "item",
-          "description": ""
-        },
-        {
-          "name": "empty",
-          "description": ""
-        }
-      ]
-    },
-    "UluFacetsList": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsList",
-      "properties": [
-        {
-          "name": "groupUid",
-          "type": "string",
-          "description": ""
-        },
-        {
-          "name": "groupName",
-          "type": "string",
-          "description": ""
-        },
-        {
-          "name": "children",
-          "type": "array",
-          "description": ""
-        },
-        {
-          "name": "type",
-          "type": "string",
-          "default": "'checkbox'",
-          "description": ""
-        },
-        {
-          "name": "compact",
-          "type": "boolean",
-          "description": ""
-        },
-        {
-          "name": "modelValue",
-          "type": "string|array",
-          "description": ""
-        }
-      ],
-      "events": [
-        {
-          "name": "facet-change",
-          "description": ""
-        }
-      ],
-      "slots": []
-    },
-    "UluFacetsHeaderLayout": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsHeaderLayout",
-      "properties": [],
-      "events": [],
-      "slots": [
-        {
-          "name": "header",
-          "description": ""
-        },
-        {
-          "name": "main",
-          "description": ""
-        }
-      ]
-    },
-    "UluFacetsFilterSelects": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsFilterSelects",
-      "properties": [
-        {
-          "name": "facets",
-          "type": "array",
-          "default": "[]",
-          "description": "Facets Array"
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{}",
-          "description": "Optional classes bindings for all elements { container, group, label, select }"
-        }
-      ],
-      "events": [
-        {
-          "name": "facet-change",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "label",
-          "description": ""
-        },
-        {
-          "name": "optionAll",
-          "description": ""
-        },
-        {
-          "name": "option",
-          "description": ""
-        }
-      ]
-    },
-    "UluFacetsFilterPopovers": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsFilterPopovers",
-      "properties": [
-        {
-          "name": "facets",
-          "type": "array",
-          "default": "[]",
-          "description": "An array of facet groups to display."
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{\n  trigger: \"button\",\n\n  // content: null,\n  // container: null,\n  // group: null\n  triggerIcon: \"button__icon\"\n}",
-          "description": "An object of classes to apply to the component."
-        },
-        {
-          "name": "hideInputs",
-          "type": "boolean",
-          "description": "If true, the input elements will be visually hidden."
-        }
-      ],
-      "events": [
-        {
-          "name": "facet-change",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "trigger",
-          "description": ""
-        }
-      ]
-    },
-    "UluFacetsFilterLists": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsFilterLists",
-      "properties": [
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{}",
-          "description": "An object of classes to apply to the component."
-        },
-        {
-          "name": "maxVisible",
-          "type": "number",
-          "default": "5",
-          "description": "The maximum number of facets to show before showing the \"More\" button."
-        },
-        {
-          "name": "facets",
-          "type": "array",
-          "default": "[]",
-          "description": "An array of facet groups to display."
-        },
-        {
-          "name": "compact",
-          "type": "boolean",
-          "description": "Whether to use compact modifier on selectable menu"
-        }
-      ],
-      "events": [
-        {
-          "name": "facet-change",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "groupTrigger",
-          "description": ""
-        }
-      ]
-    },
-    "UluFacetsFilterAccordions": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsFilterAccordions",
-      "properties": [
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{}",
-          "description": "An object of classes to apply to the component."
-        },
-        {
-          "name": "maxVisible",
-          "type": "number",
-          "default": "5",
-          "description": "The maximum number of facets to show before showing the \"More\" button."
-        },
-        {
-          "name": "facets",
-          "type": "array",
-          "default": "[]",
-          "description": "An array of facet groups to display."
-        },
-        {
-          "name": "compact",
-          "type": "boolean",
-          "description": "Whether to use compact modifier on selectable menu"
-        },
-        {
-          "name": "accordionModifiers",
-          "type": "string|array|object",
-          "description": "Class modifiers for accordion (ie. 'transparent', 'secondary', etc)"
-        }
-      ],
-      "events": [
-        {
-          "name": "facet-change",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "groupTrigger",
-          "description": ""
-        }
-      ]
-    },
-    "UluFacetsActiveFilters": {
-      "description": "Vue Component Props, Emits, and Slots for UluFacetsActiveFilters",
-      "properties": [
-        {
-          "name": "selectedFacets",
-          "type": "array",
-          "default": "[]",
-          "description": "The selectedFacets array from the useFacets composable."
-        },
-        {
-          "name": "labelElement",
-          "type": "string",
-          "default": "\"strong\"",
-          "description": "Element to use for label"
-        },
-        {
-          "name": "removeIcon",
-          "type": "string",
-          "default": "\"type:close\"",
-          "description": "Icon to use for remove (in button)"
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{\n  container: \"layout-flex flex-wrap\",\n  label: \"hidden-visually\",\n  list: \"layout-flex flex-wrap\",\n  item: \"margin-right-small-x\",\n  filterButton: \"button button--small button--outline no-min-width\",\n  filterButtonText: null,\n  filterButtonIcon: \"button__icon\",\n  clearButton: \"button button--small\"\n}",
-          "description": "Classes for different element { label, list, item, filterButton, filterButtonText, filterButtonIcon, clearButton }"
-        }
-      ],
-      "events": [
-        {
-          "name": "facet-change",
-          "description": ""
-        },
-        {
-          "name": "clear-filters",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "label",
-          "description": ""
-        }
-      ]
-    },
     "FullFormDemo": {
       "description": "Vue Component Props, Emits, and Slots for FullFormDemo",
       "properties": [],
@@ -5248,6 +5262,9 @@
         "events": [
           {
             "name": "close"
+          },
+          {
+            "name": "update:isOpen"
           }
         ],
         "slots": [
@@ -5320,6 +5337,17 @@
           }
         ],
         "props": [
+          {
+            "name": "modelValue",
+            "description": "V-model state to control the popover externally",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "undefined"
+            }
+          },
           {
             "name": "triggerText",
             "type": {
@@ -5413,6 +5441,9 @@
         "events": [
           {
             "name": "toggle"
+          },
+          {
+            "name": "update:modelValue"
           }
         ],
         "slots": [
@@ -10760,6 +10791,655 @@
         ]
       }
     },
+    "UluFacetsSort": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsSort",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "classes",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{}"
+            }
+          },
+          {
+            "name": "sortTypes",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{}"
+            }
+          },
+          {
+            "name": "modelValue",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "''"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsSort.vue"
+        ]
+      }
+    },
+    "UluFacetsSidebarLayout": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsSidebarLayout",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "mobileButtonText",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"Filters & Sort\""
+            }
+          },
+          {
+            "name": "classes",
+            "description": "Classes for elements. See UluCollapsible for all available class keys (trigger, content, etc).\nThe 'icon' key is also available for the icon span.\n- Any valid class binding value per element",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{\n  mobileButton: 'button'\n}"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "header"
+          },
+          {
+            "name": "main"
+          },
+          {
+            "name": "sidebar"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsSidebarLayout.vue"
+        ]
+      }
+    },
+    "UluFacetsSearch": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsSearch",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "classes",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{}"
+            }
+          },
+          {
+            "name": "modelValue",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "placeholder",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"Keywords…\""
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsSearch.vue"
+        ]
+      }
+    },
+    "UluFacetsResults": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsResults",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "items",
+            "type": {
+              "name": "array"
+            },
+            "required": true
+          },
+          {
+            "name": "tag",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "'ul'"
+            }
+          },
+          {
+            "name": "transitionName",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "'facets-fade'"
+            }
+          },
+          {
+            "name": "classes",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{}"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "item",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "item",
+                "title": "binding"
+              },
+              {
+                "name": "index",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "empty"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsResults.vue"
+        ]
+      }
+    },
+    "UluFacetsList": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsList",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "groupUid",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "groupName",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "children",
+            "type": {
+              "name": "array"
+            }
+          },
+          {
+            "name": "type",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "'checkbox'"
+            }
+          },
+          {
+            "name": "compact",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "modelValue",
+            "type": {
+              "name": "string|array"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "facet-change"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsList.vue"
+        ]
+      }
+    },
+    "UluFacetsHeaderLayout": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsHeaderLayout",
+        "description": "",
+        "tags": {},
+        "slots": [
+          {
+            "name": "header"
+          },
+          {
+            "name": "main"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsHeaderLayout.vue"
+        ]
+      }
+    },
+    "UluFacetsFilterSelects": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsFilterSelects",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "facets",
+            "description": "Facets Array",
+            "type": {
+              "name": "array"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "[]"
+            }
+          },
+          {
+            "name": "classes",
+            "description": "Optional classes bindings for all elements { container, group, label, select }",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{}"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "facet-change"
+          }
+        ],
+        "slots": [
+          {
+            "name": "label"
+          },
+          {
+            "name": "optionAll",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "group",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "option",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "group",
+                "title": "binding"
+              },
+              {
+                "name": "option",
+                "title": "binding"
+              },
+              {
+                "name": "index",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsFilterSelects.vue"
+        ]
+      }
+    },
+    "UluFacetsFilterPopovers": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsFilterPopovers",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "facets",
+            "description": "An array of facet groups to display.",
+            "type": {
+              "name": "array"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "[]"
+            }
+          },
+          {
+            "name": "classes",
+            "description": "An object of classes to apply to the component.",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{\n  trigger: \"button\",\n\n  // content: null,\n  // container: null,\n  // group: null\n  triggerIcon: \"button__icon\"\n}"
+            }
+          },
+          {
+            "name": "hideInputs",
+            "description": "If true, the input elements will be visually hidden.",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "facet-change"
+          }
+        ],
+        "slots": [
+          {
+            "name": "trigger",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "group",
+                "title": "binding"
+              },
+              {
+                "name": "label",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsFilterPopovers.vue"
+        ]
+      }
+    },
+    "UluFacetsFilterLists": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsFilterLists",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "classes",
+            "description": "An object of classes to apply to the component.",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{}"
+            }
+          },
+          {
+            "name": "maxVisible",
+            "description": "The maximum number of facets to show before showing the \"More\" button.",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "5"
+            }
+          },
+          {
+            "name": "facets",
+            "description": "An array of facet groups to display.",
+            "type": {
+              "name": "array"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "[]"
+            }
+          },
+          {
+            "name": "compact",
+            "description": "Whether to use compact modifier on selectable menu",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "facet-change"
+          }
+        ],
+        "slots": [
+          {
+            "name": "groupTrigger",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "group",
+                "title": "binding"
+              },
+              {
+                "name": "isOpen",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsFilterLists.vue"
+        ]
+      }
+    },
+    "UluFacetsFilterAccordions": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsFilterAccordions",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "classes",
+            "description": "An object of classes to apply to the component.",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{}"
+            }
+          },
+          {
+            "name": "maxVisible",
+            "description": "The maximum number of facets to show before showing the \"More\" button.",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "5"
+            }
+          },
+          {
+            "name": "facets",
+            "description": "An array of facet groups to display.",
+            "type": {
+              "name": "array"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "[]"
+            }
+          },
+          {
+            "name": "compact",
+            "description": "Whether to use compact modifier on selectable menu",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "accordionModifiers",
+            "description": "Class modifiers for accordion (ie. 'transparent', 'secondary', etc)",
+            "type": {
+              "name": "string|array|object"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "facet-change"
+          }
+        ],
+        "slots": [
+          {
+            "name": "groupTrigger",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "group",
+                "title": "binding"
+              },
+              {
+                "name": "isOpen",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsFilterAccordions.vue"
+        ]
+      }
+    },
+    "UluFacetsActiveFilters": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFacetsActiveFilters",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "selectedFacets",
+            "description": "The selectedFacets array from the useFacets composable.",
+            "type": {
+              "name": "array"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "[]"
+            }
+          },
+          {
+            "name": "labelElement",
+            "description": "Element to use for label",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"strong\""
+            }
+          },
+          {
+            "name": "removeIcon",
+            "description": "Icon to use for remove (in button)",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"type:close\""
+            }
+          },
+          {
+            "name": "classes",
+            "description": "Classes for different element { label, list, item, filterButton, filterButtonText, filterButtonIcon, clearButton }",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{\n  container: \"layout-flex flex-wrap\",\n  label: \"hidden-visually\",\n  list: \"layout-flex flex-wrap\",\n  item: \"margin-right-small-x\",\n  filterButton: \"button button--small button--outline no-min-width\",\n  filterButtonText: null,\n  filterButtonIcon: \"button__icon\",\n  clearButton: \"button button--small\"\n}"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "facet-change"
+          },
+          {
+            "name": "clear-filters"
+          }
+        ],
+        "slots": [
+          {
+            "name": "label"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/systems/facets/UluFacetsActiveFilters.vue"
+        ]
+      }
+    },
     "UluTableStickyTable": {
       "raw_ast_dump": {
         "exportName": "default",
@@ -11905,655 +12585,6 @@
         ]
       }
     },
-    "UluFacetsSort": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsSort",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "classes",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{}"
-            }
-          },
-          {
-            "name": "sortTypes",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{}"
-            }
-          },
-          {
-            "name": "modelValue",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "''"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsSort.vue"
-        ]
-      }
-    },
-    "UluFacetsSidebarLayout": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsSidebarLayout",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "mobileButtonText",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"Filters & Sort\""
-            }
-          },
-          {
-            "name": "classes",
-            "description": "Classes for elements. See UluCollapsible for all available class keys (trigger, content, etc).\nThe 'icon' key is also available for the icon span.\n- Any valid class binding value per element",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{\n  mobileButton: 'button'\n}"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "header"
-          },
-          {
-            "name": "main"
-          },
-          {
-            "name": "sidebar"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsSidebarLayout.vue"
-        ]
-      }
-    },
-    "UluFacetsSearch": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsSearch",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "classes",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{}"
-            }
-          },
-          {
-            "name": "modelValue",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "placeholder",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"Keywords…\""
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsSearch.vue"
-        ]
-      }
-    },
-    "UluFacetsResults": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsResults",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "items",
-            "type": {
-              "name": "array"
-            },
-            "required": true
-          },
-          {
-            "name": "tag",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "'ul'"
-            }
-          },
-          {
-            "name": "transitionName",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "'facets-fade'"
-            }
-          },
-          {
-            "name": "classes",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{}"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "item",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "item",
-                "title": "binding"
-              },
-              {
-                "name": "index",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "empty"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsResults.vue"
-        ]
-      }
-    },
-    "UluFacetsList": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsList",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "groupUid",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "groupName",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "children",
-            "type": {
-              "name": "array"
-            }
-          },
-          {
-            "name": "type",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "'checkbox'"
-            }
-          },
-          {
-            "name": "compact",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "modelValue",
-            "type": {
-              "name": "string|array"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "facet-change"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsList.vue"
-        ]
-      }
-    },
-    "UluFacetsHeaderLayout": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsHeaderLayout",
-        "description": "",
-        "tags": {},
-        "slots": [
-          {
-            "name": "header"
-          },
-          {
-            "name": "main"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsHeaderLayout.vue"
-        ]
-      }
-    },
-    "UluFacetsFilterSelects": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsFilterSelects",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "facets",
-            "description": "Facets Array",
-            "type": {
-              "name": "array"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "[]"
-            }
-          },
-          {
-            "name": "classes",
-            "description": "Optional classes bindings for all elements { container, group, label, select }",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{}"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "facet-change"
-          }
-        ],
-        "slots": [
-          {
-            "name": "label"
-          },
-          {
-            "name": "optionAll",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "group",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "option",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "group",
-                "title": "binding"
-              },
-              {
-                "name": "option",
-                "title": "binding"
-              },
-              {
-                "name": "index",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsFilterSelects.vue"
-        ]
-      }
-    },
-    "UluFacetsFilterPopovers": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsFilterPopovers",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "facets",
-            "description": "An array of facet groups to display.",
-            "type": {
-              "name": "array"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "[]"
-            }
-          },
-          {
-            "name": "classes",
-            "description": "An object of classes to apply to the component.",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{\n  trigger: \"button\",\n\n  // content: null,\n  // container: null,\n  // group: null\n  triggerIcon: \"button__icon\"\n}"
-            }
-          },
-          {
-            "name": "hideInputs",
-            "description": "If true, the input elements will be visually hidden.",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "facet-change"
-          }
-        ],
-        "slots": [
-          {
-            "name": "trigger",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "group",
-                "title": "binding"
-              },
-              {
-                "name": "label",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsFilterPopovers.vue"
-        ]
-      }
-    },
-    "UluFacetsFilterLists": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsFilterLists",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "classes",
-            "description": "An object of classes to apply to the component.",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{}"
-            }
-          },
-          {
-            "name": "maxVisible",
-            "description": "The maximum number of facets to show before showing the \"More\" button.",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "5"
-            }
-          },
-          {
-            "name": "facets",
-            "description": "An array of facet groups to display.",
-            "type": {
-              "name": "array"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "[]"
-            }
-          },
-          {
-            "name": "compact",
-            "description": "Whether to use compact modifier on selectable menu",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "facet-change"
-          }
-        ],
-        "slots": [
-          {
-            "name": "groupTrigger",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "group",
-                "title": "binding"
-              },
-              {
-                "name": "isOpen",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsFilterLists.vue"
-        ]
-      }
-    },
-    "UluFacetsFilterAccordions": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsFilterAccordions",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "classes",
-            "description": "An object of classes to apply to the component.",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{}"
-            }
-          },
-          {
-            "name": "maxVisible",
-            "description": "The maximum number of facets to show before showing the \"More\" button.",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "5"
-            }
-          },
-          {
-            "name": "facets",
-            "description": "An array of facet groups to display.",
-            "type": {
-              "name": "array"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "[]"
-            }
-          },
-          {
-            "name": "compact",
-            "description": "Whether to use compact modifier on selectable menu",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "accordionModifiers",
-            "description": "Class modifiers for accordion (ie. 'transparent', 'secondary', etc)",
-            "type": {
-              "name": "string|array|object"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "facet-change"
-          }
-        ],
-        "slots": [
-          {
-            "name": "groupTrigger",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "group",
-                "title": "binding"
-              },
-              {
-                "name": "isOpen",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsFilterAccordions.vue"
-        ]
-      }
-    },
-    "UluFacetsActiveFilters": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFacetsActiveFilters",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "selectedFacets",
-            "description": "The selectedFacets array from the useFacets composable.",
-            "type": {
-              "name": "array"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "[]"
-            }
-          },
-          {
-            "name": "labelElement",
-            "description": "Element to use for label",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"strong\""
-            }
-          },
-          {
-            "name": "removeIcon",
-            "description": "Icon to use for remove (in button)",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"type:close\""
-            }
-          },
-          {
-            "name": "classes",
-            "description": "Classes for different element { label, list, item, filterButton, filterButtonText, filterButtonIcon, clearButton }",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{\n  container: \"layout-flex flex-wrap\",\n  label: \"hidden-visually\",\n  list: \"layout-flex flex-wrap\",\n  item: \"margin-right-small-x\",\n  filterButton: \"button button--small button--outline no-min-width\",\n  filterButtonText: null,\n  filterButtonIcon: \"button__icon\",\n  clearButton: \"button button--small\"\n}"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "facet-change"
-          },
-          {
-            "name": "clear-filters"
-          }
-        ],
-        "slots": [
-          {
-            "name": "label"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/systems/facets/UluFacetsActiveFilters.vue"
-        ]
-      }
-    },
     "FullFormDemo": {
       "raw_ast_dump": {
         "exportName": "default",
@@ -12595,20 +12626,17 @@
     "tour": {
       "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as TourStories from './tour.stories.js';\n\n# Tour Plugin\n\nThe Tour plugin allows configuring an app-wide guided tour that leverages `UluModal` and `@floating-ui/vue`. Register the plugin, and use the global API (or composable) to start step-by-step onboarding flows.\n\n## Installing the plugin\n\nExample `./src/main.js`\n\n```js\nimport UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);\n```\n\nTo display the tour, you must include the `UluTourDisplay` component somewhere in your application root (e.g. `App.vue`):\n\n```html\n<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>\n```\n\n## Creating a Tour\n\nA tour is defined as an object containing a `name` and an array of `steps`. You can also define global `modalProps` or `popoverProps` on the root tour object to apply them to all steps by default.\n\n```js\nconst demoTour = {\n  name: 'demo-tour',\n  popoverProps: { modifiers: 'large' }, // Global popover styling for all steps\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalProps: { size: 'small' } // Step-specific override\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};\n```\n\n### Step API Structure\n\nEach step object can accept the following properties:\n\n*   **`target`**: *(String)* The CSS selector for the target element. If omitted, the step renders as a centered modal.\n*   **`title`**: *(String)* The title text for the step.\n*   **`content`**: *(String)* The body content text for the step.\n*   **`contentComponent`**: *(Object)* A Vue component to replace only the text content (keeps the modal/popover shell and default footer intact).\n*   **`component`**: *(Object)* A Vue component to completely replace the outer wrapper (bypasses modal/popover entirely).\n*   **`componentProps`**: *(Object)* Props to bind to `contentComponent` or `component`.\n*   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back buttons). Useful if you want the standard text but no buttons.\n*   **`placement`**: *(String)* Floating UI placement string (e.g. `'bottom'`, `'right'`).\n*   **`highlight`**: *(Boolean)* If true, darkens the backdrop around the target element.\n*   **`modalProps`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).\n*   **`popoverProps`**: *(Object)* Props to pass to the popover (only applies if `target` is present).\n*   **`onEnter`**: *(Function)* An async hook called before the step is rendered.\n\n## Starting the Tour\n\nYou can control the tour programmatically using the `useTour` composable:\n\n```html\n<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>\n```\n\nAlternatively, you can use the global API:\n\n```js\nthis.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();\n```\n\n## Custom Components & Layouts\n\nIf you need custom designs, the plugin supports two levels of control:\n\n### 1. Custom Inner Content (`contentComponent`)\n\nUse `contentComponent` if you want to render an image, form, or custom layout inside the step, but want to **keep** the default popover/modal wrappers and the Next/Back footer buttons.\n\n```html\n<template>\n  <div style=\"text-align: center;\">\n    <img src=\"/logo.png\" />\n    <p>This is my custom graphic step.</p>\n  </div>\n</template>\n```\n\n### 2. Full Wrapper Takeover (`component`)\n\nUse `component` if you want to bypass the `<UluModal>` and `<UluPopoverBase>` wrappers entirely. This allows you to build custom off-canvas drawers, alert banners, or custom absolute-positioned panels. \n\nYou are responsible for your own positioning, styling, and wiring up the Next/Back buttons via `useTour()`.\n\n```html\n<template>\n  <div class=\"my-custom-floating-drawer\">\n    <h3>Custom Design</h3>\n    <!-- Wire up your own buttons -->\n    <button @click=\"api.next()\">Got it!</button>\n  </div>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n  const { api } = useTour();\n</script>\n```\n\n## Demonstration\n\n<Canvas of={TourStories.Default} />\n"
     },
-    "core": {
-      "raw_markdown": "# Core Plugin\n\n## Purpose\n\nThe Core Plugin is the central, **required** plugin for the `@ulu/frontend-vue` library. Its primary purpose is to establish a single, reactive source of truth for configuration settings that are shared across multiple components. \n\nBy using Vue's `provide`/`inject` system, this plugin ensures that all components within your application access the same configuration, preventing inconsistencies that can arise from separate module imports.\n\n## Installation\n\nTo use this library, you must register the `corePlugin` on your Vue app instance. You can also pass an options object to override the default settings.\n\n```javascript\n// src/main.js\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { corePlugin } from '@ulu/frontend-vue';\n\nconst app = createApp(App);\n\n// Register the core plugin\napp.use(corePlugin, {\n  // Optional: override general settings\n  fontAwesomeStatic: true,\n\n  // Optional: override specific icons safely\n  iconsByType: {\n    danger: 'my-custom-danger-icon',\n    close: 'my-custom-close-icon'\n  }\n});\n\napp.mount('#app');\n```\n\n## API Reference\n\nThe plugin provides its API to your application in two ways:\n\n-   **Composition API:** `inject('uluCore')`\n-   **Options API:** `this.$uluCore`\n\nThe API object contains the following methods:\n\n- `getSettings()`: Returns the full reactive settings object.\n- `getSetting(key)`: Retrieves a single setting by its key (e.g., `'fontAwesomeStatic'`).\n- `updateSetting(key, value)`: Updates a single setting.\n- `updateSettings(changes)`: Merges an object of changes into the settings.\n- `getDefaultSettings()`: Returns a non-reactive copy of the original default settings.\n- `getIcon(type)`: Retrieves a specific icon class string by its semantic type (e.g., `'danger'`, `'close'`).\n- `setIcon(type, definition)`: Safely sets or overrides a single icon definition.\n\n### Example Usage\n\n**Composition API (`<script setup>`)**\n```vue\n<script setup>\nimport { inject, onMounted } from 'vue';\n\nconst uluCore = inject('uluCore');\n\nonMounted(() => {\n  const icons = uluCore.getSetting('iconsByType');\n  console.log('Danger Icon:', icons.danger);\n\n  // Example of updating a single icon dynamically\n  uluCore.setIcon('success', 'my-awesome-success-icon');\n});\n</script>\n```\n\n**Options API**\n```vue\n<script>\nexport default {\n  mounted() {\n    const icons = this.$uluCore.getSetting('icons');\n    console.log('Danger Icon:', icons.danger);\n  }\n}\n</script>\n```\n\n"
-    },
     "modals": {
       "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as ModalStories from '../../components/collapsible/UluModal.stories.js';\n\n# Modals\n\nModals plugin allows configuring app-wide modals that are triggered by the global API. Register your modals when you install the plugin then interact with them using the global API.\n\n## Registering your app-wide modals\n\nCreate the modal component file like:\n\n```html\n<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>\n```\n\n\nExample ./scr/modals.js\n\n```js\nimport { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]\n```\n\n## Installing the plugin\n\nExample ./src/main.js\n\n```js\nimport UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });\n\n```\n\n## Using Global API\n\n```js\n\n// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\"\n```\n\n## Using Composition API (via composable)\n\nComposable is used get access to modals API (through inject)\n\n```html\n\n<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>\n\n```\n\n## Standalone Modal Component\n\nThe `UluModal` **component is independent of this plugin.** The plugin is simply a convenient way to manage global modals (for things like a settings dialog) that need to be opened from anywhere in your application.\n\nYou can use `UluModal` as the component that the plugin displays, or you can use it on its own for any case where you are managing the state locally within a component and don't need a global API.\n\nHere is a demonstration of the standalone `UluModal` component:\n\n<Canvas of={ModalStories.Default} />"
     },
     "breakpoints": {
       "raw_markdown": "# Breakpoints Plugin\n\n## Purpose\n\nThe Breakpoints Plugin provides app-wide, reactive breakpoint information to your Vue components. It is a lightweight wrapper around the `useBreakpointManager` composable, ensuring that resize events and active breakpoint states are tracked centrally and distributed efficiently via Vue's `provide`/`inject` system.\n\nBy installing this plugin, any component in your application can instantly know the current breakpoint, whether the device is considered \"mobile,\" and the direction the window was just resized.\n\n## Installation\n\nRegister the `breakpointsPlugin` on your Vue app instance.\n\n```javascript\n// src/main.js\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { breakpointsPlugin } from '@ulu/frontend-vue';\n\nconst app = createApp(App);\n\n// Register the breakpoints plugin\napp.use(breakpointsPlugin, {\n  // Optional: Change which breakpoint triggers the 'isMobile' flag (default is 'small')\n  breakpointMobile: 'small',\n  \n  // Optional: Pass options directly to the underlying useBreakpointManager\n  managerOptions: {\n    // onReady(manager) { ... }\n  }\n});\n\napp.mount('#app');\n```\n\n## Provided Injections\n\nThe plugin does not attach methods to the Vue instance. Instead, it provides reactive `computed` refs that you can inject into any component.\n\n- **`uluIsMobile`**: `ComputedRef<Boolean>` - True if the current active breakpoint is less than or equal to the configured `breakpointMobile` (defaults to `'small'`).\n- **`uluBreakpointActive`**: `ComputedRef<String>` - The name of the currently active breakpoint (e.g., `'small'`, `'medium'`, `'large'`).\n- **`uluBreakpointDirection`**: `ComputedRef<Number>` - Indicates the resize direction (`1` for growing larger, `-1` for shrinking smaller, `0` for initialization).\n- **`uluBreakpointManager`**: `ComputedRef<Object>` - The underlying vanilla JS BreakpointManager instance, allowing advanced programmatic subscriptions if needed.\n\n## Example Usage\n\n**Composition API (`<script setup>`)**\n```vue\n<script setup>\n  import { inject } from 'vue';\n\n  const isMobile = inject('uluIsMobile');\n  const currentBreakpoint = inject('uluBreakpointActive');\n</script>\n\n<template>\n  <div>\n    <p v-if=\"isMobile\">You are on a mobile device!</p>\n    <p>Current Breakpoint: {{ currentBreakpoint }}</p>\n  </div>\n</template>\n```\n\n**Options API**\n```vue\n<script>\nexport default {\n  inject: ['uluIsMobile', 'uluBreakpointActive'],\n  mounted() {\n    console.log('Is mobile?', this.uluIsMobile);\n  }\n}\n</script>\n```\n\n## Why use the Plugin vs the Composable?\n\nWhile you can import and use `useBreakpointManager()` directly in individual components, registering the Breakpoints Plugin ensures that the vanilla JS `BreakpointManager` is only instantiated once. This centralizes the resize event listeners, significantly improving performance across large applications with many responsive components.\n"
     },
+    "core": {
+      "raw_markdown": "# Core Plugin\n\n## Purpose\n\nThe Core Plugin is the central, **required** plugin for the `@ulu/frontend-vue` library. Its primary purpose is to establish a single, reactive source of truth for configuration settings that are shared across multiple components. \n\nBy using Vue's `provide`/`inject` system, this plugin ensures that all components within your application access the same configuration, preventing inconsistencies that can arise from separate module imports.\n\n## Installation\n\nTo use this library, you must register the `corePlugin` on your Vue app instance. You can also pass an options object to override the default settings.\n\n```javascript\n// src/main.js\nimport { createApp } from 'vue';\nimport App from './App.vue';\nimport { corePlugin } from '@ulu/frontend-vue';\n\nconst app = createApp(App);\n\n// Register the core plugin\napp.use(corePlugin, {\n  // Optional: override general settings\n  fontAwesomeStatic: true,\n\n  // Optional: override specific icons safely\n  iconsByType: {\n    danger: 'my-custom-danger-icon',\n    close: 'my-custom-close-icon'\n  }\n});\n\napp.mount('#app');\n```\n\n## API Reference\n\nThe plugin provides its API to your application in two ways:\n\n-   **Composition API:** `inject('uluCore')`\n-   **Options API:** `this.$uluCore`\n\nThe API object contains the following methods:\n\n- `getSettings()`: Returns the full reactive settings object.\n- `getSetting(key)`: Retrieves a single setting by its key (e.g., `'fontAwesomeStatic'`).\n- `updateSetting(key, value)`: Updates a single setting.\n- `updateSettings(changes)`: Merges an object of changes into the settings.\n- `getDefaultSettings()`: Returns a non-reactive copy of the original default settings.\n- `getIcon(type)`: Retrieves a specific icon class string by its semantic type (e.g., `'danger'`, `'close'`).\n- `setIcon(type, definition)`: Safely sets or overrides a single icon definition.\n\n### Example Usage\n\n**Composition API (`<script setup>`)**\n```vue\n<script setup>\nimport { inject, onMounted } from 'vue';\n\nconst uluCore = inject('uluCore');\n\nonMounted(() => {\n  const icons = uluCore.getSetting('iconsByType');\n  console.log('Danger Icon:', icons.danger);\n\n  // Example of updating a single icon dynamically\n  uluCore.setIcon('success', 'my-awesome-success-icon');\n});\n</script>\n```\n\n**Options API**\n```vue\n<script>\nexport default {\n  mounted() {\n    const icons = this.$uluCore.getSetting('icons');\n    console.log('Danger Icon:', icons.danger);\n  }\n}\n</script>\n```\n\n"
+    },
     "forms": {
       "raw_markdown": "import { Meta, Canvas, Story } from '@storybook/addon-docs/blocks';\nimport * as FullFormDemoStories from './tests/FullFormDemo.stories.js';\n\n# Forms\n\nThis is a demonstration of a full form built with the `ulu-form` components.\n\n<Canvas of={FullFormDemoStories.Default} />\n"
-    },
-    "facets": {
-      "raw_markdown": "# Faceted Search\n\nThis story demonstrates the `useFacets` composable and its associated components. It showcases how to set up a faceted search interface with automatic facet generation, searching, sorting, and filtering. For detailed configuration options, see the [`facetFields` API reference](#facetfields-api) below the example.\n\n```html\n<script setup>\n  import { ref } from 'vue';\n  import { useFacets } from './useFacets.js';\n  import UluFacetsFilterAccordions from './UluFacetsFilterAccordions.vue';\n  import UluFacetsResults from './UluFacetsResults.vue';\n  import UluFacetsSearch from './UluFacetsSearch.vue';\n  import UluFacetsSort from './UluFacetsSort.vue';\n  import UluFacetsSidebarLayout from './UluFacetsSidebarLayout.vue';\n  import { mockItems } from './_mock-data';\n\n  const allItems = ref(mockItems);\n\n  // 1. Define fields for automatic facet generation\n  const facetFields = [\n    { name: 'Category', uid: 'category', open: true, multiple: true },\n    { name: 'Author', uid: 'author', open: true },\n    { name: 'Year', uid: 'date', open: true, getValue: item => item.date.getFullYear() }\n  ];\n\n  // 2. Define any extra sort types\n  const extraSortTypes = {\n    newest: { text: 'Date (Newest)', sort: (items) => [...items].sort((a, b) => b.date - a.date) },\n    oldest: { text: 'Date (Oldest)', sort: (items) => [...items].sort((a, b) => a.date - b.date) }\n  };\n\n  // 3. Initialize the composable\n  const {\n    facets,\n    searchValue,\n    selectedSort,\n    sortTypes,\n    displayItems,\n    selectedFacets, // Use this to check if filters are active\n    handleFacetChange,\n    clearFilters\n  } = useFacets(allItems, {\n    facetFields,\n    extraSortTypes,\n    initialSortType: 'newest',\n    countMode: 'intuitive', // Show counts next to facet values\n    searchOptions: { keys: ['title', 'description', 'author'] }\n  });\n</script>\n\n<template>\n  <UluFacetsSidebarLayout>\n    <template #header>\n      <div style=\"display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;\">\n        <h2>Found {{ displayItems.length }} items</h2>\n        <UluFacetsSort v-model=\"selectedSort\" :sort-types=\"sortTypes\" />\n      </div>\n    </template>\n    <template #sidebar>\n      <UluFacetsSearch v-model=\"searchValue\" placeholder=\"Search articles...\" />\n      <hr/>\n      <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n        <h3>Filters</h3>\n        <button v-if=\"selectedFacets.length > 0\" @click=\"clearFilters\" style=\"border: none; background: none; color: blue; cursor: pointer;\">Clear</button>\n      </div>\n      <UluFacetsFilterAccordions :facets=\"facets\" @facet-change=\"handleFacetChange\" :max-visible=\"5\" />\n    </template>\n    <template #main>\n      <UluFacetsResults :items=\"displayItems\">\n        <template #item=\"{ item }\">\n          <div style=\"border: 1px solid #eee; padding: 1rem; margin-bottom: 1rem; border-radius: 4px;\">\n            <h3>{{ item.title }}</h3>\n            <p>{{ item.description }}</p>\n            <p><small><strong>Author:</strong> {{ Array.isArray(item.author) ? item.author.join(', ') : item.author }}</small></p>\n            <p><small><strong>Published on:</strong> {{ item.date.toLocaleDateString() }}</small></p>\n          </div>\n        </template>\n        <template #empty>\n          <div style=\"padding: 2rem; text-align: center;\">\n            <p>No matching items found. Try clearing some filters.</p>\n          </div>\n        </template>\n      </UluFacetsResults>\n    </template>\n  </UluFacetsSidebarLayout>\n</template>\n```\n\n<h3 id=\"facetfields-api\">facetFields API</h3>\n\nThe `useFacets` composable can automatically generate filter groups from a `facetFields` configuration array. Each object in the array defines a facet group and its behavior. Here are the available keys:\n\n<table>\n  <thead>\n    <tr>\n      <th>Key</th>\n      <th>Type</th>\n      <th>Default</th>\n      <th>Description</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td><code>uid</code></td>\n      <td><code>String</code></td>\n      <td><strong>Required</strong></td>\n      <td>The property key on each item in your data array that holds the facet&#39;s value.</td>\n    </tr>\n    <tr>\n      <td><code>name</code></td>\n      <td><code>String</code></td>\n      <td><strong>Required</strong></td>\n      <td>The display name for the facet group, shown as a title in the UI.</td>\n    </tr>\n    <tr>\n      <td><code>multiple</code></td>\n      <td><code>Boolean</code></td>\n      <td><code>false</code></td>\n      <td>If <code>true</code>, allows multiple values to be selected (renders as checkboxes). If <code>false</code>,\n        only one value can be selected (renders as radio buttons).</td>\n    </tr>\n    <tr>\n      <td><code>open</code></td>\n      <td><code>Boolean</code></td>\n      <td><code>false</code></td>\n      <td>If <code>true</code>, the facet group will be expanded by default in the UI.</td>\n    </tr>\n    <tr>\n      <td><code>match</code></td>\n      <td><code>String</code></td>\n      <td><code>&#39;some&#39;</code></td>\n      <td>Only applies when <code>multiple: true</code>. If set to <code>&#39;all&#39;</code>, items must match\n        <strong>all</strong> selected values in the group (AND logic). The default is to match <strong>any</strong>\n        value (OR logic).</td>\n    </tr>\n    <tr>\n      <td><code>getValue</code></td>\n      <td><code>Function</code></td>\n      <td><code>item =&gt; item[uid]</code></td>\n      <td>A function that receives an item and returns the value for the facet. Useful for derived or nested values\n        (e.g., <code>item =&gt; item.date.getFullYear()</code>).</td>\n    </tr>\n    <tr>\n      <td><code>getLabel</code></td>\n      <td><code>Function</code></td>\n      <td><code>value =&gt; value</code></td>\n      <td>A function that receives a facet value and returns a formatted string for display. Useful for transforming\n        values into more readable labels.</td>\n    </tr>\n  </tbody>\n</table>"
     },
     "useScrollAnchors": {
       "raw_markdown": "# useScrollAnchors\n\nThe main composable that contains the core \"engine\" for the Scroll Anchors system.\nIt encapsulates the `IntersectionObserver` logic to track sections and manage their active state.\nThis is intended for advanced use cases where a developer needs to build a custom provider\ncomponent instead of using the default `UluScrollAnchors`.\n\n## Usage\n\nThis composable is used to power a custom provider component. You would use it to provide the context to child components via Vue's `provide` function, using string-based keys.\n\n```html\n<script setup>\n  import { ref, computed, provide } from \"vue\";\n  import { useScrollAnchors } from './useScrollAnchors.js';\n\n  const props = defineProps({\n    firstItemActive: Boolean,\n    observerOptions: Object\n  });\n  const emit = defineEmits(['section-change']);\n  const componentEl = ref(null);\n  const sections = ref([]);\n\n  // Use the composable to handle the core logic\n  useScrollAnchors({ sections, props, emit, componentElRef: componentEl });\n\n  // Provide the state and registration functions to children\n  provide('uluScrollAnchorsSections', computed(() => sections.value));\n  provide('uluScrollAnchorsRegister', (section) => sections.value.push(section));\n  provide('uluScrollAnchorsUnregister', (sectionId) => {\n    const index = sections.value.findIndex(r => r.id === sectionId);\n    if (index > -1) sections.value.splice(index, 1);\n  });\n</script>\n\n<template>\n  <!-- Your custom wrapper, or no wrapper at all -->\n  <div ref=\"componentEl\">\n    <slot/>\n  </div>\n</template>\n```\n\n## Parameters\n\nThe `useScrollAnchors` composable accepts a single object with the following properties:\n\n- `sections` (Ref): A `ref` to the array of section objects that will be tracked.\n- `props` (Object): A props object containing `observerOptions` and `firstItemActive`.\n- `emit` (Function): The `emit` function from the host component, used to emit the `section-change` event.\n- `componentElRef` (Ref): A `ref` to an element within the component, used to find the nearest scrollable ancestor. This is not needed if `observerOptions.root` is set.\n\n## Returns\n\nThis composable does not return any values. It manages the observer and mutates the `active` state on the items within the `sections` array directly.\n"
@@ -12618,6 +12646,9 @@
     },
     "useScrollAnchorSection": {
       "raw_markdown": "# useScrollAnchorSection\n\nA composable that provides the core logic for a scroll anchor section, allowing components to register themselves with the `UluScrollAnchors` parent and react to their active state.\n\nThis composable is intended to be used within a Vue component's `<script setup>` block to manage the lifecycle and state of a scrollable section.\n\n## Usage\n\n```html\n<script setup>\nimport { useScrollAnchorSection } from './useScrollAnchorSection';\n\nconst props = defineProps({\n  title: {\n    type: String,\n    required: true\n  },\n  customTitleId: String,\n});\n\nconst { sectionRef, titleId, isActive, section } = useScrollAnchorSection(props);\n</script>\n\n<template>\n  <section :class=\"['my-custom-section', { 'is-active': isActive }]\" :ref=\"sectionRef\">\n    <h2 :id=\"titleId\">{{ title }}</h2>\n    <p>This section is {{ isActive ? 'active' : 'inactive' }}.</p>\n    <!-- More content here -->\n    <slot />\n  </section>\n</template>\n```\n\n## Parameters\n\nThe `useScrollAnchorSection` composable accepts a `props` object with the following properties:\n\n- `title` (String, required): The title of the section. Used for generating a default `titleId` and for display in navigation.\n- `customTitleId` (String, optional): A custom ID for the section's anchor. If not provided, one will be generated from the `title`.\n\n## Returns\n\nThe composable returns an object with the following reactive properties:\n\n- `sectionRef`: A ref that should be bound to the root HTML element of your section component. This element is observed by `UluScrollAnchors` to determine the section's visibility.\n- `titleId` (ComputedRef): The unique ID for the section's title, used for anchor links.\n- `isActive` (ComputedRef): A boolean indicating whether the section is currently active (in view).\n- `section` (Reactive): The full reactive section object registered with `UluScrollAnchors`, containing `id`, `title`, `titleId`, `element`, and `active` state.\n\n## Integration with `UluScrollAnchors`\n\nThis composable works in conjunction with the `UluScrollAnchors` component. When a component using `useScrollAnchorSection` is mounted within `UluScrollAnchors`, it automatically registers itself. `UluScrollAnchors` then tracks its visibility and updates the `isActive` state.\n"
+    },
+    "facets": {
+      "raw_markdown": "# Faceted Search\n\nThis story demonstrates the `useFacets` composable and its associated components. It showcases how to set up a faceted search interface with automatic facet generation, searching, sorting, and filtering. For detailed configuration options, see the [`facetFields` API reference](#facetfields-api) below the example.\n\n```html\n<script setup>\n  import { ref } from 'vue';\n  import { useFacets } from './useFacets.js';\n  import UluFacetsFilterAccordions from './UluFacetsFilterAccordions.vue';\n  import UluFacetsResults from './UluFacetsResults.vue';\n  import UluFacetsSearch from './UluFacetsSearch.vue';\n  import UluFacetsSort from './UluFacetsSort.vue';\n  import UluFacetsSidebarLayout from './UluFacetsSidebarLayout.vue';\n  import { mockItems } from './_mock-data';\n\n  const allItems = ref(mockItems);\n\n  // 1. Define fields for automatic facet generation\n  const facetFields = [\n    { name: 'Category', uid: 'category', open: true, multiple: true },\n    { name: 'Author', uid: 'author', open: true },\n    { name: 'Year', uid: 'date', open: true, getValue: item => item.date.getFullYear() }\n  ];\n\n  // 2. Define any extra sort types\n  const extraSortTypes = {\n    newest: { text: 'Date (Newest)', sort: (items) => [...items].sort((a, b) => b.date - a.date) },\n    oldest: { text: 'Date (Oldest)', sort: (items) => [...items].sort((a, b) => a.date - b.date) }\n  };\n\n  // 3. Initialize the composable\n  const {\n    facets,\n    searchValue,\n    selectedSort,\n    sortTypes,\n    displayItems,\n    selectedFacets, // Use this to check if filters are active\n    handleFacetChange,\n    clearFilters\n  } = useFacets(allItems, {\n    facetFields,\n    extraSortTypes,\n    initialSortType: 'newest',\n    countMode: 'intuitive', // Show counts next to facet values\n    searchOptions: { keys: ['title', 'description', 'author'] }\n  });\n</script>\n\n<template>\n  <UluFacetsSidebarLayout>\n    <template #header>\n      <div style=\"display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;\">\n        <h2>Found {{ displayItems.length }} items</h2>\n        <UluFacetsSort v-model=\"selectedSort\" :sort-types=\"sortTypes\" />\n      </div>\n    </template>\n    <template #sidebar>\n      <UluFacetsSearch v-model=\"searchValue\" placeholder=\"Search articles...\" />\n      <hr/>\n      <div style=\"display: flex; justify-content: space-between; align-items: center;\">\n        <h3>Filters</h3>\n        <button v-if=\"selectedFacets.length > 0\" @click=\"clearFilters\" style=\"border: none; background: none; color: blue; cursor: pointer;\">Clear</button>\n      </div>\n      <UluFacetsFilterAccordions :facets=\"facets\" @facet-change=\"handleFacetChange\" :max-visible=\"5\" />\n    </template>\n    <template #main>\n      <UluFacetsResults :items=\"displayItems\">\n        <template #item=\"{ item }\">\n          <div style=\"border: 1px solid #eee; padding: 1rem; margin-bottom: 1rem; border-radius: 4px;\">\n            <h3>{{ item.title }}</h3>\n            <p>{{ item.description }}</p>\n            <p><small><strong>Author:</strong> {{ Array.isArray(item.author) ? item.author.join(', ') : item.author }}</small></p>\n            <p><small><strong>Published on:</strong> {{ item.date.toLocaleDateString() }}</small></p>\n          </div>\n        </template>\n        <template #empty>\n          <div style=\"padding: 2rem; text-align: center;\">\n            <p>No matching items found. Try clearing some filters.</p>\n          </div>\n        </template>\n      </UluFacetsResults>\n    </template>\n  </UluFacetsSidebarLayout>\n</template>\n```\n\n<h3 id=\"facetfields-api\">facetFields API</h3>\n\nThe `useFacets` composable can automatically generate filter groups from a `facetFields` configuration array. Each object in the array defines a facet group and its behavior. Here are the available keys:\n\n<table>\n  <thead>\n    <tr>\n      <th>Key</th>\n      <th>Type</th>\n      <th>Default</th>\n      <th>Description</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td><code>uid</code></td>\n      <td><code>String</code></td>\n      <td><strong>Required</strong></td>\n      <td>The property key on each item in your data array that holds the facet&#39;s value.</td>\n    </tr>\n    <tr>\n      <td><code>name</code></td>\n      <td><code>String</code></td>\n      <td><strong>Required</strong></td>\n      <td>The display name for the facet group, shown as a title in the UI.</td>\n    </tr>\n    <tr>\n      <td><code>multiple</code></td>\n      <td><code>Boolean</code></td>\n      <td><code>false</code></td>\n      <td>If <code>true</code>, allows multiple values to be selected (renders as checkboxes). If <code>false</code>,\n        only one value can be selected (renders as radio buttons).</td>\n    </tr>\n    <tr>\n      <td><code>open</code></td>\n      <td><code>Boolean</code></td>\n      <td><code>false</code></td>\n      <td>If <code>true</code>, the facet group will be expanded by default in the UI.</td>\n    </tr>\n    <tr>\n      <td><code>match</code></td>\n      <td><code>String</code></td>\n      <td><code>&#39;some&#39;</code></td>\n      <td>Only applies when <code>multiple: true</code>. If set to <code>&#39;all&#39;</code>, items must match\n        <strong>all</strong> selected values in the group (AND logic). The default is to match <strong>any</strong>\n        value (OR logic).</td>\n    </tr>\n    <tr>\n      <td><code>getValue</code></td>\n      <td><code>Function</code></td>\n      <td><code>item =&gt; item[uid]</code></td>\n      <td>A function that receives an item and returns the value for the facet. Useful for derived or nested values\n        (e.g., <code>item =&gt; item.date.getFullYear()</code>).</td>\n    </tr>\n    <tr>\n      <td><code>getLabel</code></td>\n      <td><code>Function</code></td>\n      <td><code>value =&gt; value</code></td>\n      <td>A function that receives a facet value and returns a formatted string for display. Useful for transforming\n        values into more readable labels.</td>\n    </tr>\n  </tbody>\n</table>"
     },
     "jsdoc": [
       {
@@ -12739,32 +12770,6 @@
         "level": 0
       },
       {
-        "id": "module:components",
-        "longname": "module:components",
-        "name": "components",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components"
-        },
-        "order": 31,
-        "level": 0
-      },
-      {
-        "id": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
-        "longname": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
-        "name": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exports",
-        "kind": "module",
-        "meta": {
-          "lineno": 4,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components"
-        },
-        "order": 32,
-        "level": 0
-      },
-      {
         "id": "module:useWindowResize",
         "longname": "module:useWindowResize",
         "name": "useWindowResize",
@@ -12774,7 +12779,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 33,
+        "order": 31,
         "level": 0
       },
       {
@@ -12787,7 +12792,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 36,
+        "order": 34,
         "level": 0
       },
       {
@@ -12800,7 +12805,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 40,
+        "order": 38,
         "level": 0
       },
       {
@@ -12813,7 +12818,7 @@
           "filename": "useRequiredInject.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 48,
+        "order": 46,
         "level": 0
       },
       {
@@ -12826,7 +12831,7 @@
           "filename": "usePagination.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 50,
+        "order": 48,
         "level": 0
       },
       {
@@ -12839,7 +12844,7 @@
           "filename": "useModifiers.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 52,
+        "order": 50,
         "level": 0
       },
       {
@@ -12852,7 +12857,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 54,
+        "order": 52,
         "level": 0
       },
       {
@@ -12865,7 +12870,7 @@
           "filename": "useDocumentTitle.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 57,
+        "order": 55,
         "level": 0
       },
       {
@@ -12878,7 +12883,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 59,
+        "order": 57,
         "level": 0
       },
       {
@@ -12890,6 +12895,32 @@
           "lineno": 1,
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
+        },
+        "order": 62,
+        "level": 0
+      },
+      {
+        "id": "module:components",
+        "longname": "module:components",
+        "name": "components",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components"
+        },
+        "order": 63,
+        "level": 0
+      },
+      {
+        "id": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
+        "longname": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exportsmodule:",
+        "name": "components/index.js\nResponsible for exporting all components\n- Used in main plugin and bundle exports",
+        "kind": "module",
+        "meta": {
+          "lineno": 4,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/components"
         },
         "order": 64,
         "level": 0
@@ -13051,6 +13082,19 @@
         "level": 0
       },
       {
+        "id": "module:breakpointsPlugin",
+        "longname": "module:breakpointsPlugin",
+        "name": "breakpointsPlugin",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
+        },
+        "order": 136,
+        "level": 0
+      },
+      {
         "id": "module:corePlugin",
         "longname": "module:corePlugin",
         "name": "corePlugin",
@@ -13061,20 +13105,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 136,
-        "level": 0
-      },
-      {
-        "id": "module:breakpointsPlugin",
-        "longname": "module:breakpointsPlugin",
-        "name": "breakpointsPlugin",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
-        },
-        "order": 138,
+        "order": 141,
         "level": 0
       },
       {
@@ -13231,6 +13262,63 @@
         "level": 0
       },
       {
+        "id": "module:breakpointsPlugin--module.exports",
+        "longname": "module:breakpointsPlugin",
+        "name": "module.exports",
+        "kind": "function",
+        "isExported": true,
+        "description": "Installs the breakpoints plugin, providing app-wide reactive breakpoint information.\nIt uses `useBreakpointManager` internally and provides `uluIsMobile`,\n`uluBreakpointActive`, `uluBreakpointDirection`, and `uluBreakpointManager` to all components.",
+        "memberof": "module:breakpointsPlugin",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "The Vue app instance.",
+            "name": "app"
+          },
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "User-defined options.",
+            "name": "userOptions"
+          },
+          {
+            "type": {
+              "names": [
+                "string"
+              ]
+            },
+            "optional": true,
+            "defaultvalue": "\"small\"",
+            "description": "The breakpoint name to use for `isMobile` detection.",
+            "name": "userOptions.breakpointMobile"
+          },
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "optional": true,
+            "description": "Options to pass to the underlying `useBreakpointManager`.",
+            "name": "userOptions.managerOptions"
+          }
+        ],
+        "meta": {
+          "lineno": 31,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
+        },
+        "order": 140,
+        "level": 0
+      },
+      {
         "id": "module:corePlugin--module.exports",
         "longname": "module:corePlugin",
         "name": "module.exports",
@@ -13303,63 +13391,6 @@
           "lineno": 49,
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
-        },
-        "order": 137,
-        "level": 0
-      },
-      {
-        "id": "module:breakpointsPlugin--module.exports",
-        "longname": "module:breakpointsPlugin",
-        "name": "module.exports",
-        "kind": "function",
-        "isExported": true,
-        "description": "Installs the breakpoints plugin, providing app-wide reactive breakpoint information.\nIt uses `useBreakpointManager` internally and provides `uluIsMobile`,\n`uluBreakpointActive`, `uluBreakpointDirection`, and `uluBreakpointManager` to all components.",
-        "memberof": "module:breakpointsPlugin",
-        "params": [
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "The Vue app instance.",
-            "name": "app"
-          },
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "User-defined options.",
-            "name": "userOptions"
-          },
-          {
-            "type": {
-              "names": [
-                "string"
-              ]
-            },
-            "optional": true,
-            "defaultvalue": "\"small\"",
-            "description": "The breakpoint name to use for `isMobile` detection.",
-            "name": "userOptions.breakpointMobile"
-          },
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "optional": true,
-            "description": "Options to pass to the underlying `useBreakpointManager`.",
-            "name": "userOptions.managerOptions"
-          }
-        ],
-        "meta": {
-          "lineno": 31,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
         "order": 142,
         "level": 0
@@ -13697,7 +13728,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 60
+        "order": 58
       },
       {
         "id": "module:useBreakpointManager~defaults.onReady",
@@ -13712,7 +13743,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 61
+        "order": 59
       },
       {
         "id": "module:useBreakpointManager~defaults.plugin",
@@ -13727,7 +13758,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 62
+        "order": 60
       },
       {
         "id": "toast.module:defaults--module.exports",
@@ -14223,7 +14254,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 140,
+        "order": 138,
         "level": 0
       },
       {
@@ -14239,7 +14270,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 141,
+        "order": 139,
         "level": 0
       },
       {
@@ -15410,7 +15441,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 35,
+        "order": 33,
         "level": 0
       },
       {
@@ -15464,7 +15495,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 39,
+        "order": 37,
         "level": 0
       },
       {
@@ -15501,7 +15532,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 41,
+        "order": 39,
         "level": 0
       },
       {
@@ -15533,7 +15564,7 @@
           "filename": "useRequiredInject.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 49,
+        "order": 47,
         "level": 0
       },
       {
@@ -15579,7 +15610,7 @@
           "filename": "usePagination.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 51,
+        "order": 49,
         "level": 0
       },
       {
@@ -15652,7 +15683,7 @@
           "filename": "useModifiers.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 53,
+        "order": 51,
         "level": 0
       },
       {
@@ -15678,7 +15709,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 55,
+        "order": 53,
         "level": 0
       },
       {
@@ -15748,7 +15779,7 @@
           "filename": "useDocumentTitle.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 58,
+        "order": 56,
         "level": 0
       },
       {
@@ -15816,7 +15847,7 @@
           "filename": "useBreakpointManager.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 63,
+        "order": 61,
         "level": 0
       },
       {
@@ -16254,7 +16285,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 47,
+        "order": 45,
         "level": 0
       },
       {
@@ -16305,7 +16336,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 139,
+        "order": 137,
         "level": 0
       },
       {
@@ -16367,7 +16398,7 @@
           "filename": "useWindowResize.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 34,
+        "order": 32,
         "level": 0
       },
       {
@@ -16384,7 +16415,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 42,
+        "order": 40,
         "level": 0
       },
       {
@@ -16401,7 +16432,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 43,
+        "order": 41,
         "level": 0
       },
       {
@@ -16418,7 +16449,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 44,
+        "order": 42,
         "level": 0
       },
       {
@@ -16435,7 +16466,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 45,
+        "order": 43,
         "level": 0
       },
       {
@@ -16452,7 +16483,7 @@
           "filename": "useTableData.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 46,
+        "order": 44,
         "level": 0
       },
       {
@@ -16492,7 +16523,7 @@
           "filename": "useIcon.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 56,
+        "order": 54,
         "level": 0
       },
       {
@@ -16946,7 +16977,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 37,
+        "order": 35,
         "level": 0
       },
       {
@@ -17033,7 +17064,7 @@
           "filename": "useUluFloating.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/composables"
         },
-        "order": 38,
+        "order": 36,
         "level": 0
       },
       {

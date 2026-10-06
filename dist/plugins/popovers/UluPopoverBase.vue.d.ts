@@ -16,7 +16,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
      * The internal root popover element reference
      */
     content: import('vue').Ref<null, null>;
-    $emit: (event: "close", ...args: any[]) => void;
+    $emit: (event: "close" | "update:isOpen", ...args: any[]) => void;
     isOpen: boolean;
     clickOutsideCloses: boolean;
     escapeCloses: boolean;

@@ -7,7 +7,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     /**
      * The reactive internal open/closed state of the popover
      */
-    isOpen: import('vue').Ref<boolean, boolean>;
+    isOpen: import('vue').WritableComputedRef<boolean, boolean>;
     /**
      * Method to toggle the popover open/closed
      */
@@ -21,7 +21,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
      * @param {Boolean} toOpen - The desired state
      */
     changeTo: (toOpen: any) => void;
-    $emit: (event: "toggle", ...args: any[]) => void;
+    $emit: (event: "toggle" | "update:modelValue", ...args: any[]) => void;
     clickOutsideCloses: boolean;
     config: Record<string, any>;
     disabled: boolean;
@@ -30,6 +30,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     activeClass: string;
     classes: Record<string, any>;
     directFocus?: Function | undefined;
+    modelValue?: boolean | undefined;
     triggerText?: string | undefined;
     triggerAlt?: string | undefined;
     tooltip?: string | undefined;
@@ -43,6 +44,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly activeClass?: string | undefined;
         readonly classes?: Record<string, any> | undefined;
         readonly directFocus?: Function | undefined;
+        readonly modelValue?: boolean | undefined;
         readonly triggerText?: string | undefined;
         readonly triggerAlt?: string | undefined;
         readonly tooltip?: string | undefined;
@@ -75,7 +77,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
             close: () => void;
             update: Function;
             content: import('vue').Ref<null, null>;
-            $emit: (event: "close", ...args: any[]) => void;
+            $emit: (event: "close" | "update:isOpen", ...args: any[]) => void;
             isOpen: boolean;
             clickOutsideCloses: boolean;
             escapeCloses: boolean;
@@ -116,7 +118,7 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         close: () => void;
         update: Function;
         content: import('vue').Ref<null, null>;
-        $emit: (event: "close", ...args: any[]) => void;
+        $emit: (event: "close" | "update:isOpen", ...args: any[]) => void;
         isOpen: boolean;
         clickOutsideCloses: boolean;
         escapeCloses: boolean;
@@ -183,7 +185,7 @@ type __VLS_TemplateResult = {
                 close: () => void;
                 update: Function;
                 content: Ref<null, null>;
-                $emit: (event: "close", ...args: any[]) => void;
+                $emit: (event: "close" | "update:isOpen", ...args: any[]) => void;
                 isOpen: boolean;
                 clickOutsideCloses: boolean;
                 escapeCloses: boolean;
@@ -208,7 +210,7 @@ type __VLS_TemplateResult = {
             close: () => void;
             update: Function;
             content: Ref<null, null>;
-            $emit: (event: "close", ...args: any[]) => void;
+            $emit: (event: "close" | "update:isOpen", ...args: any[]) => void;
             isOpen: boolean;
             clickOutsideCloses: boolean;
             escapeCloses: boolean;

@@ -9,15 +9,15 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     classes: Record<string, any>;
     closeOnEscape: boolean;
     animate: boolean | Record<string, any>;
-    triggerText?: string | undefined;
     modelValue?: boolean | undefined;
+    triggerText?: string | undefined;
     $props: {
         readonly startOpen?: boolean | undefined;
         readonly classes?: Record<string, any> | undefined;
         readonly closeOnEscape?: boolean | undefined;
         readonly animate?: boolean | Record<string, any> | undefined;
-        readonly triggerText?: string | undefined;
         readonly modelValue?: boolean | undefined;
+        readonly triggerText?: string | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {
     container: HTMLDivElement;

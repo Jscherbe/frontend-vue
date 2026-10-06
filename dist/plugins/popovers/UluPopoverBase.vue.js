@@ -1,4 +1,4 @@
-import { ref as B, computed as m, watch as x, nextTick as g, onUnmounted as L, createElementBlock as u, openBlock as d, withKeys as M, unref as l, normalizeStyle as y, normalizeClass as T, createElementVNode as j, createCommentVNode as v, renderSlot as O } from "vue";
+import { ref as B, computed as g, watch as x, nextTick as y, onUnmounted as L, createElementBlock as u, openBlock as p, withKeys as M, unref as l, normalizeStyle as v, normalizeClass as T, createElementVNode as j, createCommentVNode as O, renderSlot as k } from "vue";
 import { useUluFloating as A } from "../../composables/useUluFloating.js";
 import { useModifiers as H } from "../../composables/useModifiers.js";
 import { wasClickOutside as U } from "@ulu/utils/browser/dom.js";
@@ -57,14 +57,14 @@ const $ = ["data-placement"], z = { class: "popover__inner" }, K = {
      */
     modifiers: [String, Array, Object]
   },
-  emits: ["close"],
+  emits: ["close", "update:isOpen"],
   setup(s, { expose: r, emit: c }) {
-    const k = c, e = s, o = B(null), { resolvedModifiers: C } = H({ props: e, baseClass: "popover" }), f = m(() => e.config || {}), { floatingStyles: _, placement: w, arrowStyles: E, update: p, isFixedStrategy: F, contentArrow: S } = A(
-      m(() => e.trigger),
+    const d = c, e = s, o = B(null), { resolvedModifiers: C } = H({ props: e, baseClass: "popover" }), f = g(() => e.config || {}), { floatingStyles: _, placement: w, arrowStyles: E, update: m, isFixedStrategy: F, contentArrow: S } = A(
+      g(() => e.trigger),
       o,
       f
     ), i = () => {
-      k("close");
+      d("close"), d("update:isOpen", !1);
     }, h = (t) => {
       e.isOpen && e.escapeCloses && (t.preventDefault(), i());
     };
@@ -83,9 +83,9 @@ const $ = ["data-placement"], z = { class: "popover__inner" }, K = {
       }, 0));
     };
     return x(() => e.isOpen, (t) => {
-      t ? (p(), b(), e.directFocus && g(() => {
+      t ? (m(), b(), e.directFocus && y(() => {
         e.directFocus({ isOpen: !0, trigger: e.trigger, content: o.value });
-      })) : (a(), e.directFocus && g(() => {
+      })) : (a(), e.directFocus && y(() => {
         e.directFocus({ isOpen: !1, trigger: e.trigger, content: o.value });
       }));
     }, { immediate: !0 }), L(() => {
@@ -98,12 +98,12 @@ const $ = ["data-placement"], z = { class: "popover__inner" }, K = {
       /**
        * Manually trigger a floating UI position update
        */
-      update: p,
+      update: m,
       /**
        * The internal root popover element reference
        */
       content: o
-    }), (t, N) => (d(), u("span", {
+    }), (t, N) => (p(), u("span", {
       class: T(["popover", [
         {
           "popover--fixed": l(F),
@@ -113,31 +113,31 @@ const $ = ["data-placement"], z = { class: "popover__inner" }, K = {
       ]]),
       ref_key: "contentEl",
       ref: o,
-      style: y(l(_)),
+      style: v(l(_)),
       "data-placement": l(w),
       onKeydown: M(h, ["esc"]),
       tabindex: "-1"
     }, [
       j("span", z, [
-        O(t.$slots, "default", {
+        k(t.$slots, "default", {
           isOpen: s.isOpen,
           close: i
         })
       ]),
-      t.$slots.footer ? (d(), u("span", K, [
-        O(t.$slots, "footer", {
+      t.$slots.footer ? (p(), u("span", K, [
+        k(t.$slots, "footer", {
           isOpen: s.isOpen,
           close: i
         })
-      ])) : v("", !0),
-      f.value.arrow ? (d(), u("span", {
+      ])) : O("", !0),
+      f.value.arrow ? (p(), u("span", {
         key: 1,
         class: "popover__arrow",
         ref_key: "contentArrow",
         ref: S,
-        style: y(l(E)),
+        style: v(l(E)),
         "data-ulu-popover-arrow": ""
-      }, null, 4)) : v("", !0)
+      }, null, 4)) : O("", !0)
     ], 46, $));
   }
 };

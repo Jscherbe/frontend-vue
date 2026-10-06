@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.6.25
+
+- **UluPopover / UluPopoverBase** | Added native `v-model` support for both components.
+  - `UluPopover` now implements the "Dual-State Pattern". It maintains its uncontrolled internal state by default, but accepts `v-model` to allow the parent to become the source of truth, effortlessly turning it into a controlled component without breaking the trigger button's functionality.
+  - `UluPopoverBase` now emits `@update:isOpen` alongside `@close`, allowing developers building headless popovers to seamlessly use `v-model:isOpen="myRef"`.
+
 ## 0.6.24
 
 - **Tour Plugin (New)** | Added a new native tour plugin (`useTour`, `UluTourDisplay`) that leverages `UluModal` and `@floating-ui/vue` for guided tours, removing the need for third-party dependencies.

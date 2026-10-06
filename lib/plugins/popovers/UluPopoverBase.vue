@@ -36,7 +36,7 @@
   import { useModifiers } from '../../composables/useModifiers.js';
   import { wasClickOutside } from '@ulu/utils/browser/dom.js';
 
-  const emit = defineEmits(['close']);
+  const emit = defineEmits(['close', 'update:isOpen']);
 
   const props = defineProps({
     /**
@@ -108,6 +108,7 @@
 
   const close = () => {
     emit('close');
+    emit('update:isOpen', false);
   };
 
   const handleEsc = (event) => {

@@ -6,8 +6,8 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     $emit: (event: "close" | "update:modelValue" | "open", ...args: any[]) => void;
     clickOutsideCloses: boolean;
-    classes: Record<string, any>;
     modelValue: boolean;
+    classes: Record<string, any>;
     teleport: string | boolean | Record<string, any>;
     preventScroll: boolean;
     preventScrollShift: boolean;
@@ -30,8 +30,8 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     closeIcon?: string | undefined;
     $props: {
         readonly clickOutsideCloses?: boolean | undefined;
-        readonly classes?: Record<string, any> | undefined;
         readonly modelValue?: boolean | undefined;
+        readonly classes?: Record<string, any> | undefined;
         readonly teleport?: string | boolean | Record<string, any> | undefined;
         readonly preventScroll?: boolean | undefined;
         readonly preventScrollShift?: boolean | undefined;

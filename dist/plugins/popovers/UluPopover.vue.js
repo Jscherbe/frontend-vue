@@ -1,12 +1,19 @@
-import { computed as x, ref as n, resolveDirective as T, createElementBlock as p, openBlock as m, Fragment as j, withDirectives as z, createVNode as I, unref as s, normalizeClass as O, renderSlot as r, createTextVNode as h, toDisplayString as w, createSlots as D, withCtx as b } from "vue";
+import { computed as O, ref as r, resolveDirective as I, createElementBlock as b, openBlock as y, Fragment as T, withDirectives as j, createVNode as z, unref as a, normalizeClass as C, renderSlot as d, createTextVNode as h, toDisplayString as w, createSlots as D, withCtx as k } from "vue";
 import { useRequiredInject as E } from "../../composables/useRequiredInject.js";
 import { POPOVER_OPTIONS_KEY as N } from "./index.js";
-import V from "./defaults.js";
-import { newId as C } from "../../utils/dom.js";
-import A from "./UluPopoverBase.vue.js";
-const R = ["id", "disabled", "aria-expanded", "aria-controls", "aria-label"], L = {
+import A from "./defaults.js";
+import { newId as B } from "../../utils/dom.js";
+import R from "./UluPopoverBase.vue.js";
+const q = ["id", "disabled", "aria-expanded", "aria-controls", "aria-label"], M = {
   __name: "UluPopover",
   props: {
+    /**
+     * V-model state to control the popover externally
+     */
+    modelValue: {
+      type: Boolean,
+      default: void 0
+    },
     triggerText: String,
     triggerAlt: String,
     disabled: Boolean,
@@ -36,90 +43,97 @@ const R = ["id", "disabled", "aria-expanded", "aria-controls", "aria-label"], L 
      */
     directFocus: Function
   },
-  emits: ["toggle"],
-  setup(e, { expose: y, emit: k }) {
-    const S = k, c = e, d = C(), g = C(), u = E(N), B = u ? u.popover : V.popover, $ = x(() => ({ ...B, ...c.config })), t = n(c.startOpen || !1), f = n(null), F = n(null), a = () => {
-      i(!t.value);
-    }, i = (o) => {
-      t.value = o, S("toggle", { isOpen: o });
-    }, l = () => i(!1);
-    return y({
+  emits: ["toggle", "update:modelValue"],
+  setup(e, { expose: S, emit: V }) {
+    const c = V, l = e, u = B(), g = B(), f = E(N), $ = f ? f.popover : A.popover, F = O(() => ({ ...$, ...l.config })), m = r(l.startOpen || !1), p = r(null), P = r(null), o = O({
+      get() {
+        return l.modelValue !== void 0 ? l.modelValue : m.value;
+      },
+      set(t) {
+        l.modelValue !== void 0 ? c("update:modelValue", t) : m.value = t;
+      }
+    }), n = () => {
+      i(!o.value);
+    }, i = (t) => {
+      o.value = t, c("toggle", { isOpen: t });
+    }, s = () => i(!1);
+    return S({
       /**
        * The reactive internal open/closed state of the popover
        */
-      isOpen: t,
+      isOpen: o,
       /**
        * Method to toggle the popover open/closed
        */
-      toggle: a,
+      toggle: n,
       /**
        * Method to force the popover closed
        */
-      close: l,
+      close: s,
       /**
        * Method to explicitly set the open state
        * @param {Boolean} toOpen - The desired state
        */
       changeTo: i
-    }), (o, v) => {
-      const P = T("ulu-tooltip");
-      return m(), p(j, null, [
-        z((m(), p("button", {
+    }), (t, v) => {
+      const x = I("ulu-tooltip");
+      return y(), b(T, null, [
+        j((y(), b("button", {
           type: "button",
           ref_key: "trigger",
-          ref: f,
-          onClick: a,
-          id: s(g),
+          ref: p,
+          onClick: n,
+          id: a(g),
           disabled: e.disabled,
-          class: O([
-            { [e.activeClass]: t.value },
+          class: C([
+            { [e.activeClass]: o.value },
             e.classes.trigger
           ]),
-          "aria-expanded": t.value ? "true" : "false",
-          "aria-controls": s(d),
+          "aria-expanded": o.value ? "true" : "false",
+          "aria-controls": a(u),
           "aria-label": e.triggerAlt
         }, [
-          r(o.$slots, "trigger", {
-            isOpen: t.value,
-            close: l
+          d(t.$slots, "trigger", {
+            isOpen: o.value,
+            close: s
           }, () => [
             h(w(e.triggerText), 1)
           ])
-        ], 10, R)), [
-          [P, e.tooltip ? e.tooltip : null]
+        ], 10, q)), [
+          [x, e.tooltip ? e.tooltip : null]
         ]),
-        I(A, {
+        z(R, {
           ref_key: "popoverBase",
-          ref: F,
-          trigger: f.value,
-          config: $.value,
-          isOpen: t.value,
+          ref: P,
+          trigger: p.value,
+          config: F.value,
+          isOpen: o.value,
           clickOutsideCloses: e.clickOutsideCloses,
           directFocus: e.directFocus,
-          class: O([
+          class: C([
             e.size ? `popover--${e.size}` : "",
             {
               "popover--no-padding": e.noPadding
             },
             e.classes.content
           ]),
-          "aria-labelledby": s(g),
-          id: s(d),
-          onClose: v[0] || (v[0] = (q) => i(!1))
+          "aria-labelledby": a(g),
+          id: a(u),
+          onClose: v[0] || (v[0] = (K) => i(!1))
         }, D({
-          default: b(() => [
-            r(o.$slots, "default", {
-              isOpen: t.value,
-              toggle: a,
-              close: l
+          default: k(() => [
+            d(t.$slots, "default", {
+              isOpen: o.value,
+              toggle: n,
+              close: s
             })
           ]),
           _: 2
         }, [
-          o.$slots.footer ? {
+          t.$slots.footer ? {
             name: "footer",
-            fn: b(() => [
-              r(o.$slots, "footer", { close: l })
+            fn: k(() => [
+              d(t.$slots, "footer", { close: s })
             ]),
             key: "0"
           } : void 0
@@ -129,5 +143,5 @@ const R = ["id", "disabled", "aria-expanded", "aria-controls", "aria-label"], L 
   }
 };
 export {
-  L as default
+  M as default
 };

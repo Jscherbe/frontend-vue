@@ -52,8 +52,15 @@
   import { newId } from "../../utils/dom.js";
   import UluPopoverBase from "./UluPopoverBase.vue";
 
-  const emit = defineEmits(["toggle"]);
+  const emit = defineEmits(["toggle", "update:modelValue"]);
   const props = defineProps({
+    /**
+     * V-model state to control the popover externally
+     */
+    modelValue: {
+      type: Boolean,
+      default: undefined
+    },
     triggerText: String,
     triggerAlt: String,
     disabled: Boolean,
@@ -91,9 +98,22 @@
   const baseConfig = injectedOptions ? injectedOptions.popover : defaults.popover;
   const resolvedConfig = computed(() => ({ ...baseConfig, ...props.config }));
   
-  const isOpen = ref(props.startOpen || false);
+  const internalIsOpen = ref(props.startOpen || false);
   const trigger = ref(null);
   const popoverBase = ref(null);
+
+  const isOpen = computed({
+    get() {
+      return props.modelValue !== undefined ? props.modelValue : internalIsOpen.value;
+    },
+    set(val) {
+      if (props.modelValue !== undefined) {
+        emit("update:modelValue", val);
+      } else {
+        internalIsOpen.value = val;
+      }
+    }
+  });
 
   const toggle = () => {
     changeTo(!isOpen.value);
