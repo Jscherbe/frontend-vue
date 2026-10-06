@@ -29,7 +29,7 @@
       </UluModal>
 
       <!-- 3. RENDER POPOVER STEP -->
-      <UluPopoverContent 
+      <UluPopoverBase 
         v-else
         ref="popoverBase"
         :trigger="targetEl"
@@ -49,7 +49,7 @@
         <template #footer v-if="!currentStep?.hideFooter">
           <UluTourPager />
         </template>
-      </UluPopoverContent>
+      </UluPopoverBase>
 
       <!-- OPTIONAL HIGHLIGHT BACKDROP -->
       <div 
@@ -65,7 +65,7 @@
 <script setup>
   import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue';
   import UluModal from '../../components/collapsible/UluModal.vue';
-  import UluPopoverContent from '../popovers/UluPopoverContent.vue';
+  import UluPopoverBase from '../popovers/UluPopoverBase.vue';
   import UluTourPager from './UluTourPager.vue';
   import UluTourContent from './UluTourContent.vue';
   import { useTour } from './useTour.js';
@@ -152,7 +152,7 @@
       const el = document.querySelector(step.target);
       if (el) {
         targetEl.value = el;
-        // UluPopoverContent's isOpen watcher automatically calls update(), 
+        // UluPopoverBase's isOpen watcher automatically calls update(), 
         // but since isOpen stays strictly true here when switching between popover steps,
         // we might need to manually trigger an update if the target changed.
         if (popoverBase.value) {

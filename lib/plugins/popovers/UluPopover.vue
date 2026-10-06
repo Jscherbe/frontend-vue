@@ -20,7 +20,7 @@
     </slot>
   </button>
 
-  <UluPopoverContent 
+  <UluPopoverBase 
     ref="popoverBase"
     :trigger="trigger"
     :config="resolvedConfig"
@@ -42,7 +42,7 @@
     <template #footer v-if="$slots.footer">
       <slot name="footer" :close="close"/>
     </template>
-  </UluPopoverContent>
+  </UluPopoverBase>
 </template>
 <script setup>
   import { ref, computed } from "vue";
@@ -50,7 +50,7 @@
   import { POPOVER_OPTIONS_KEY } from "./index.js";
   import defaults from "./defaults.js";
   import { newId } from "../../utils/dom.js";
-  import UluPopoverContent from "./UluPopoverContent.vue";
+  import UluPopoverBase from "./UluPopoverBase.vue";
 
   const emit = defineEmits(["toggle"]);
   const props = defineProps({
@@ -79,7 +79,7 @@
     },
     /**
      * Direct focus when open/closing popover.
-     * Overrides UluPopoverContent's default focus management.
+     * Overrides UluPopoverBase's default focus management.
      */
     directFocus: Function
   });

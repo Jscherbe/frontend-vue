@@ -1,5 +1,5 @@
 <template>
-  <UluPopoverContent 
+  <UluPopoverBase 
     class="popover--tooltip is-active"
     :id="TOOLTIP_ID"
     :trigger="trigger"
@@ -13,13 +13,13 @@
         {{ resolvedConfig.content }}
       </template>
     </template>
-  </UluPopoverContent>
+  </UluPopoverBase>
 </template>
 
 <script setup>
   import { computed } from "vue";
   import { TOOLTIP_ID } from "./index.js";
-  import UluPopoverContent from "./UluPopoverContent.vue";
+  import UluPopoverBase from "./UluPopoverBase.vue";
 
   const props = defineProps({
     config: Object,
