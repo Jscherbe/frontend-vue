@@ -141,6 +141,11 @@
         // the popover across the screen causing `wasClickOutside` (bounding rect check) to fail.
         if (contentEl.value.contains(event.target)) return;
 
+        // Ignore clicks that originate from within the Tour UI.
+        // This prevents the user's background popovers/dropdowns from 
+        // collapsing when they interact with the Tour (e.g., clicking 'Next')
+        if (event.target.closest('[data-ulu-tour-ui]')) return;
+
         if (wasClickOutside(contentEl.value, event)) {
           // If the click is on the trigger itself, we let the trigger handle toggling
           if (props.trigger instanceof HTMLElement && props.trigger.contains(event.target)) {

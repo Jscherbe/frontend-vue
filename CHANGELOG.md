@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.29
+
+- **Tour Plugin** | Add data attribute to tour components so click outside in popover can disable itself without developers needing to add conditions to popovers like clickOutsideCloses="!tourState.active"
+
 ## 0.6.28
 
 - **Tour Plugin** | Minor, remove opinionated default classes in UluTourContent and set them only if user passes no class options

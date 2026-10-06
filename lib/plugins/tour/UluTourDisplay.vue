@@ -6,6 +6,7 @@
       <component 
         v-if="currentStep?.component" 
         :is="currentStep.component" 
+        data-ulu-tour-ui="true"
         v-bind="currentStep.componentProps" 
       />
 
@@ -13,6 +14,7 @@
       <UluModal 
         v-else-if="!currentStep?.target" 
         :modelValue="true"
+        data-ulu-tour-ui="true"
         v-bind="resolvedModalProps"
         @close="api.stop()"
       >
@@ -36,6 +38,7 @@
         :config="resolvedConfig"
         :style="{ zIndex: 9999 }"
         :isOpen="true"
+        data-ulu-tour-ui="true"
         @close="api.stop()"
         v-bind="resolvedPopoverProps"
       >
@@ -56,6 +59,7 @@
         v-if="currentStep?.target && currentStep?.highlight && targetRect" 
         class="tour-highlight-backdrop"
         :style="highlightStyles"
+        data-ulu-tour-ui="true"
         @click="api.stop()"
       ></div>
     </template>
