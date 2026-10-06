@@ -5,7 +5,10 @@
     ref="contentEl"
     :style="floatingStyles"
     :data-placement="placement"
-    :class="{ 'popover--fixed': isFixedStrategy }"
+    :class="[
+      { 'popover--fixed': isFixedStrategy },
+      resolvedModifiers
+    ]"
   >
     <component :is="element" class="popover__inner">
       <slot />
@@ -27,6 +30,7 @@
 <script setup>
   import { ref, computed } from 'vue';
   import { useUluFloating } from '../../composables/useUluFloating.js';
+  import { useModifiers } from '../../composables/useModifiers.js';
 
   const props = defineProps({
     /**
@@ -49,21 +53,24 @@
     element: {
       type: String,
       default: 'span'
-    }
+    },
+    /**
+     * Modifiers (to add any modifier classes based on base class [ie. 'large'])
+     */
+    modifiers: [String, Array, Object]
   });
 
   const contentEl = ref(null);
   
+  const { resolvedModifiers } = useModifiers({ props, baseClass: "popover" });
+  
   const resolvedConfig = computed(() => props.config || {});
 
-  
   const { floatingStyles, placement, arrowStyles, update, isFixedStrategy, contentArrow } = useUluFloating(
     computed(() => props.trigger), 
     contentEl, 
     resolvedConfig
   );
-  console.log("isFixedStrategy:\n", isFixedStrategy.value);
-  console.log("floatingStyles:\n", floatingStyles.value);
 
   defineExpose({
     /**
@@ -76,4 +83,3 @@
     content: contentEl
   });
 </script>
-

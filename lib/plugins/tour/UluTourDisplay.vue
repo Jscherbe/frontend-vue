@@ -13,7 +13,7 @@
       <UluModal 
         v-else-if="!currentStep?.target" 
         :modelValue="true"
-        v-bind="currentStep?.modalOptions"
+        v-bind="resolvedModalProps"
         @close="api.stop()"
       >
         <component 
@@ -37,6 +37,7 @@
         :trigger="targetEl"
         :config="resolvedConfig"
         :style="{ zIndex: 9999 }"
+        v-bind="resolvedPopoverProps"
         @click.stop
       >
         <component 
@@ -83,6 +84,21 @@
     arrow: true,
     offset: 8
   }));
+  
+  // Prop Resolution
+  const resolvedModalProps = computed(() => {
+    return {
+      ...(tourState.active?.modalProps || {}),
+      ...(currentStep.value?.modalProps || {})
+    };
+  });
+  
+  const resolvedPopoverProps = computed(() => {
+    return {
+      ...(tourState.active?.popoverProps || {}),
+      ...(currentStep.value?.popoverProps || {})
+    };
+  });
 
   // Highlight Backdrop Setup
   const targetRect = ref(null);

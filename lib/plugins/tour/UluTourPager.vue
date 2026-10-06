@@ -1,16 +1,34 @@
 <template>
-  <div class="margin-top-small" style="display: flex; gap: 0.5rem; justify-content: flex-end;">
-    <button v-if="state.stepIndex > 0" class="button button--outline button--small" @click="api.prev()">Back</button>
-    <button class="button button--small" @click="api.next()">
-      {{ isLastStep ? 'Finish' : 'Next' }}
-    </button>
-    <button v-if="showClose" class="button button--transparent button--small" @click="api.stop()">Close</button>
-  </div>
+  <UluButton 
+    v-if="state.stepIndex > 0" 
+    transparent 
+    small 
+    @click="api.prev()"
+  >
+    Back
+  </UluButton>
+  
+  <UluButton 
+    small 
+    @click="api.next()"
+  >
+    {{ isLastStep ? 'Finish' : 'Next' }}
+  </UluButton>
+  
+  <UluButton 
+    v-if="showClose" 
+    transparent 
+    small 
+    @click="api.stop()"
+  >
+    Close
+  </UluButton>
 </template>
 
 <script setup>
   import { computed } from 'vue';
   import { useTour } from './useTour.js';
+  import UluButton from '../../components/elements/UluButton.vue';
 
   defineProps({
     /**

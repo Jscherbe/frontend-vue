@@ -30,16 +30,17 @@ To display the tour, you must include the `UluTourDisplay` component somewhere i
 
 ## Creating a Tour
 
-A tour is defined as an object containing a `name` and an array of `steps`.
+A tour is defined as an object containing a `name` and an array of `steps`. You can also define global `modalProps` or `popoverProps` on the root tour object to apply them to all steps by default.
 
 ```js
 const demoTour = {
   name: 'demo-tour',
+  popoverProps: { modifiers: 'large' }, // Global popover styling for all steps
   steps: [
     {
       title: 'Welcome!',
       content: 'This step is a modal because it has no target element. Click next to continue.',
-      modalOptions: { size: 'small' }
+      modalProps: { size: 'small' } // Step-specific override
     },
     {
       target: '#step-1-btn',
@@ -64,7 +65,8 @@ Each step object can accept the following properties:
 *   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back/Close buttons). Useful if you want the standard text but no buttons.
 *   **`placement`**: *(String)* Floating UI placement string (e.g. `'bottom'`, `'right'`).
 *   **`highlight`**: *(Boolean)* If true, darkens the backdrop around the target element.
-*   **`modalOptions`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).
+*   **`modalProps`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).
+*   **`popoverProps`**: *(Object)* Props to pass to the popover (only applies if `target` is present).
 *   **`onEnter`**: *(Function)* An async hook called before the step is rendered.
 
 ## Starting the Tour

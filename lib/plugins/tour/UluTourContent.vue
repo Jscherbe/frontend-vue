@@ -19,20 +19,20 @@
 </template>
 
 <script setup>
-defineProps({
-  /**
-   * The tour step configuration object
-   */
-  step: {
-    type: Object,
-    required: true
-  },
-  /**
-   * Adjusts the typography to match a modal context rather than a popover context
-   */
-  isModal: {
-    type: Boolean,
-    default: false
-  }
-});
+  defineProps({
+    /**
+     * The tour step configuration object
+     */
+    step: {
+      type: Object,
+      required: true
+    },
+    /**
+     * Adjusts the typography to match a modal context rather than a popover context
+     */
+    isModal: {
+      type: Boolean,
+      default: false
+    }
+  });
 </script>
