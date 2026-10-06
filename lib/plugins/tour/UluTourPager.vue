@@ -1,28 +1,38 @@
 <template>
-  <UluButton 
-    v-if="state.stepIndex > 0" 
-    transparent 
-    small 
-    @click="api.prev()"
-  >
-    Back
-  </UluButton>
-  
-  <UluButton 
-    small 
-    @click="api.next()"
-  >
-    {{ isLastStep ? 'Finish' : 'Next' }}
-  </UluButton>
-  
-  <UluButton 
-    v-if="showClose" 
-    transparent 
-    small 
-    @click="api.stop()"
-  >
-    Close
-  </UluButton>
+  <div class="tour-pager layout-flex-justified">
+    <div class="margin-right-small">
+      <UluButton 
+        v-if="showClose" 
+        class="no-margin"
+        text="Close"
+        icon="type:close"
+        @click="api.stop()"
+        outline 
+        small 
+        iconBefore
+      />
+    </div>
+    <div>
+      <div class="button-group no-margin-bottom">
+        <UluButton 
+          v-if="state.stepIndex > 0" 
+          text="Previous"
+          @click="api.prev()"
+          transparent 
+          iconBefore
+          small 
+        />
+        <UluButton 
+          :text="isLastStep ? 'Finish' : 'Next'"
+          :icon="isLastStep ? null : 'type:next'"
+          @click="api.next()"
+          small 
+          primary
+          class="margin-left-auto"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script setup>

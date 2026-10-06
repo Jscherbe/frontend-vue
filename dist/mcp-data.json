@@ -20,13 +20,6 @@
       }
     ],
     "useDocumentTitle": [],
-    "toast": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<toast>Content</toast>"
-      }
-    ],
     "tour": [
       {
         "title": "tour Example 1",
@@ -41,7 +34,7 @@
       {
         "title": "tour Example 3",
         "description": "Code example extracted from markdown.",
-        "code": "const demoTour = {\n  name: 'demo-tour',\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalOptions: { size: 'small' }\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};"
+        "code": "const demoTour = {\n  name: 'demo-tour',\n  popoverProps: { modifiers: 'large' }, // Global popover styling for all steps\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalProps: { size: 'small' } // Step-specific override\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};"
       },
       {
         "title": "tour Example 4",
@@ -64,6 +57,29 @@
         "code": "<template>\n  <div class=\"my-custom-floating-drawer\">\n    <h3>Custom Design</h3>\n    <!-- Wire up your own buttons -->\n    <button @click=\"api.next()\">Got it!</button>\n  </div>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n  const { api } = useTour();\n</script>"
       }
     ],
+    "toast": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<toast>Content</toast>"
+      }
+    ],
+    "useTooltipFollow": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<useTooltipFollow>Content</useTooltipFollow>"
+      }
+    ],
+    "useTooltip": [],
+    "tooltip": [
+      {
+        "title": "Basic",
+        "description": "Basic variation",
+        "code": "<tooltip>This is a basic tooltip!</tooltip>"
+      }
+    ],
+    "UluPopover": [],
     "useModals": [],
     "modals": [
       {
@@ -97,22 +113,6 @@
         "code": "<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>"
       }
     ],
-    "useTooltipFollow": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<useTooltipFollow>Content</useTooltipFollow>"
-      }
-    ],
-    "useTooltip": [],
-    "tooltip": [
-      {
-        "title": "Basic",
-        "description": "Basic variation",
-        "code": "<tooltip>This is a basic tooltip!</tooltip>"
-      }
-    ],
-    "UluPopover": [],
     "UluProgressCircle": [],
     "UluProgressBar": [],
     "UluAnimateNumber": [],
@@ -232,22 +232,6 @@
     "UluTitleRail": [],
     "UluDataGrid": [],
     "UluAdaptiveLayout": [],
-    "UluSelectableMenu": [],
-    "UluSearchForm": [],
-    "UluFormTextarea": [],
-    "UluFormText": [],
-    "UluFormSelect": [],
-    "UluFormRequiredChar": [],
-    "UluFormRadio": [],
-    "UluFormLabel": [],
-    "UluFormItemsInline": [],
-    "UluFormItem": [],
-    "UluFormFile": [],
-    "UluFormFieldset": [],
-    "UluFormCheckbox": [],
-    "UluFormActions": [],
-    "UluForm": [],
-    "UluFileDisplay": [],
     "UluTabGroup": [
       {
         "title": "Default",
@@ -276,6 +260,22 @@
     "UluCollapsible": [],
     "UluAccordionGroup": [],
     "UluAccordion": [],
+    "UluSelectableMenu": [],
+    "UluSearchForm": [],
+    "UluFormTextarea": [],
+    "UluFormText": [],
+    "UluFormSelect": [],
+    "UluFormRequiredChar": [],
+    "UluFormRadio": [],
+    "UluFormLabel": [],
+    "UluFormItemsInline": [],
+    "UluFormItem": [],
+    "UluFormFile": [],
+    "UluFormFieldset": [],
+    "UluFormCheckbox": [],
+    "UluFormActions": [],
+    "UluForm": [],
+    "UluFileDisplay": [],
     "UluTag": [],
     "UluTable": [
       {
@@ -826,6 +826,11 @@
           "type": "string",
           "default": "'span'",
           "description": "The HTML element to use for the popover (defaults to span for inline validity)"
+        },
+        {
+          "name": "modifiers",
+          "type": "string|array|object",
+          "description": "Modifiers (to add any modifier classes based on base class [ie. 'large'])"
         }
       ],
       "events": [],
@@ -1395,6 +1400,125 @@
         }
       ]
     },
+    "UluWhenBreakpoint": {
+      "description": "Vue Component Props, Emits, and Slots for UluWhenBreakpoint",
+      "properties": [
+        {
+          "name": "max",
+          "type": "string",
+          "description": "The maximum breakpoint to show the content at."
+        },
+        {
+          "name": "min",
+          "type": "string",
+          "description": "The minimum breakpoint to show the content at."
+        },
+        {
+          "name": "only",
+          "type": "string",
+          "description": "Only show the content at this breakpoint."
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluTitleRail": {
+      "description": "Vue Component Props, Emits, and Slots for UluTitleRail",
+      "properties": [
+        {
+          "name": "icon",
+          "type": "string",
+          "description": "Icon to display next to the title."
+        },
+        {
+          "name": "iconAlign",
+          "type": "string",
+          "default": "\"baseline\"",
+          "description": "The alignment of the icon with the title."
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{\n  title: \"h2\",\n  icon: \"margin-right-small\"\n}",
+          "description": "Classes for the different elements in the component."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": "The title to display."
+        },
+        {
+          "name": "titleElement",
+          "type": "string",
+          "default": "\"h2\"",
+          "description": "The HTML element to use for the title."
+        },
+        {
+          "name": "rule",
+          "type": "boolean",
+          "description": "If true, a rule will be displayed under the title."
+        },
+        {
+          "name": "modifiers",
+          "type": "string|array|object",
+          "description": "Modifiers (to add any modifier classes based on base class)"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        },
+        {
+          "name": "end",
+          "description": ""
+        }
+      ]
+    },
+    "UluDataGrid": {
+      "description": "Vue Component Props, Emits, and Slots for UluDataGrid",
+      "properties": [
+        {
+          "name": "element",
+          "type": "string",
+          "default": "\"div\"",
+          "description": "The element to use on data-grid container"
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "description": "Tell the component when this grid is actually in a hidden container \n- When value changes the component will properly update position classes"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluAdaptiveLayout": {
+      "description": "Vue Component Props, Emits, and Slots for UluAdaptiveLayout",
+      "properties": [],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        },
+        {
+          "name": "mobile",
+          "description": ""
+        }
+      ]
+    },
     "UluSkipLink": {
       "description": "Vue Component Props, Emits, and Slots for UluSkipLink",
       "properties": [],
@@ -1587,589 +1711,6 @@
         },
         {
           "name": "separator",
-          "description": ""
-        }
-      ]
-    },
-    "UluWhenBreakpoint": {
-      "description": "Vue Component Props, Emits, and Slots for UluWhenBreakpoint",
-      "properties": [
-        {
-          "name": "max",
-          "type": "string",
-          "description": "The maximum breakpoint to show the content at."
-        },
-        {
-          "name": "min",
-          "type": "string",
-          "description": "The minimum breakpoint to show the content at."
-        },
-        {
-          "name": "only",
-          "type": "string",
-          "description": "Only show the content at this breakpoint."
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluTitleRail": {
-      "description": "Vue Component Props, Emits, and Slots for UluTitleRail",
-      "properties": [
-        {
-          "name": "icon",
-          "type": "string",
-          "description": "Icon to display next to the title."
-        },
-        {
-          "name": "iconAlign",
-          "type": "string",
-          "default": "\"baseline\"",
-          "description": "The alignment of the icon with the title."
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{\n  title: \"h2\",\n  icon: \"margin-right-small\"\n}",
-          "description": "Classes for the different elements in the component."
-        },
-        {
-          "name": "title",
-          "type": "string",
-          "description": "The title to display."
-        },
-        {
-          "name": "titleElement",
-          "type": "string",
-          "default": "\"h2\"",
-          "description": "The HTML element to use for the title."
-        },
-        {
-          "name": "rule",
-          "type": "boolean",
-          "description": "If true, a rule will be displayed under the title."
-        },
-        {
-          "name": "modifiers",
-          "type": "string|array|object",
-          "description": "Modifiers (to add any modifier classes based on base class)"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        },
-        {
-          "name": "end",
-          "description": ""
-        }
-      ]
-    },
-    "UluDataGrid": {
-      "description": "Vue Component Props, Emits, and Slots for UluDataGrid",
-      "properties": [
-        {
-          "name": "element",
-          "type": "string",
-          "default": "\"div\"",
-          "description": "The element to use on data-grid container"
-        },
-        {
-          "name": "hidden",
-          "type": "boolean",
-          "description": "Tell the component when this grid is actually in a hidden container \n- When value changes the component will properly update position classes"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluAdaptiveLayout": {
-      "description": "Vue Component Props, Emits, and Slots for UluAdaptiveLayout",
-      "properties": [],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        },
-        {
-          "name": "mobile",
-          "description": ""
-        }
-      ]
-    },
-    "UluSelectableMenu": {
-      "description": "Vue Component Props, Emits, and Slots for UluSelectableMenu",
-      "properties": [
-        {
-          "name": "legend",
-          "type": "string",
-          "description": "The legend for the menu."
-        },
-        {
-          "name": "options",
-          "type": "array",
-          "description": "An array of options for the menu."
-        },
-        {
-          "name": "compact",
-          "type": "boolean",
-          "description": "Use compact modifier on menu stack"
-        },
-        {
-          "name": "type",
-          "type": "string",
-          "default": "'checkbox'",
-          "description": "The type of input to use ('checkbox' or 'radio')."
-        },
-        {
-          "name": "modelValue",
-          "type": "string|array",
-          "description": "The value of the menu (for v-model)."
-        },
-        {
-          "name": "hideInputs",
-          "type": "boolean",
-          "description": "If true, the input elements will be visually hidden."
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluSearchForm": {
-      "description": "Vue Component Props, Emits, and Slots for UluSearchForm",
-      "properties": [
-        {
-          "name": "modelValue",
-          "type": "string",
-          "default": "\"\"",
-          "description": "The search input value (for v-model)."
-        },
-        {
-          "name": "placeholder",
-          "type": "string",
-          "default": "\"Titles, keyword…\"",
-          "description": "The placeholder text for the search input."
-        },
-        {
-          "name": "label",
-          "type": "string",
-          "default": "\"Search\"",
-          "description": "The visually hidden label for the search input."
-        },
-        {
-          "name": "submitButtonProps",
-          "type": "object",
-          "default": "{\n  type: \"submit\",\n  primary: true,\n  icon: \"type:search\",\n  ariaLabel: \"Submit Search\"\n}",
-          "description": "Props to pass to the default UluButton component (used for submit button)\n- Alternately use 'submit' slot"
-        },
-        {
-          "name": "id",
-          "type": "string",
-          "description": "Optional ID for the input element. If not provided, a unique ID is generated."
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        },
-        {
-          "name": "submit",
-          "description": ""
-        }
-      ],
-      "slots": [
-        {
-          "name": "submit",
-          "description": ""
-        }
-      ]
-    },
-    "UluFormTextarea": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormTextarea",
-      "properties": [
-        {
-          "name": "modelValue",
-          "type": "string|number",
-          "description": "The value of the textarea (for v-model)."
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        }
-      ],
-      "slots": []
-    },
-    "UluFormText": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormText",
-      "properties": [
-        {
-          "name": "modelValue",
-          "type": "string|number",
-          "description": "The value of the text input (for v-model)."
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        }
-      ],
-      "slots": []
-    },
-    "UluFormSelect": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormSelect",
-      "properties": [
-        {
-          "name": "modelValue",
-          "type": "string|number|array",
-          "description": "The value of the select input (for v-model)."
-        },
-        {
-          "name": "options",
-          "type": "array",
-          "description": "An array of options for the select input. Each option should be an object with `value` and `text` properties."
-        },
-        {
-          "name": "placeholder",
-          "type": "string|boolean",
-          "default": "\"Please select one\"",
-          "description": "The text for the default disabled option. Pass false to hide it."
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        }
-      ],
-      "slots": []
-    },
-    "UluFormRequiredChar": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormRequiredChar",
-      "properties": [],
-      "events": [],
-      "slots": []
-    },
-    "UluFormRadio": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormRadio",
-      "properties": [
-        {
-          "name": "modelValue",
-          "type": "string|number|boolean",
-          "description": "The value of the selected radio button in the group (for v-model)."
-        },
-        {
-          "name": "value",
-          "type": "string|number|boolean",
-          "description": "The value of this radio button."
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        }
-      ],
-      "slots": []
-    },
-    "UluFormMessage": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormMessage",
-      "properties": [
-        {
-          "name": "warning",
-          "type": "boolean",
-          "description": "If true, the message will be styled as a warning."
-        },
-        {
-          "name": "error",
-          "type": "boolean",
-          "description": "If true, the message will be styled as an error."
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluFormLabel": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormLabel",
-      "properties": [
-        {
-          "name": "id",
-          "type": "string",
-          "description": "The ID of the input this label is associated with."
-        },
-        {
-          "name": "labelHidden",
-          "type": "boolean",
-          "description": "If true, the label will be visually hidden."
-        },
-        {
-          "name": "required",
-          "type": "boolean",
-          "description": "If true, appends the required character."
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluFormItemsInline": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormItemsInline",
-      "properties": [],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluFormItem": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormItem",
-      "properties": [
-        {
-          "name": "layout",
-          "type": "string",
-          "description": "The layout variant for this form item (e.g., 'text', 'select', 'textarea', 'checkbox', 'radio', 'file').\nThis determines the layout and BEM styling of the item container."
-        },
-        {
-          "name": "fieldId",
-          "type": "string",
-          "description": "The ID to use for the form field. If not provided, a unique ID is generated."
-        },
-        {
-          "name": "label",
-          "type": "string",
-          "description": "The label for the form field."
-        },
-        {
-          "name": "labelHidden",
-          "type": "boolean",
-          "description": "If true, the label will be visually hidden."
-        },
-        {
-          "name": "description",
-          "type": "string",
-          "description": "The description text for the form field."
-        },
-        {
-          "name": "errorMessage",
-          "type": "string",
-          "description": "The error message text."
-        },
-        {
-          "name": "warningMessage",
-          "type": "string",
-          "description": "The warning message text."
-        },
-        {
-          "name": "required",
-          "type": "boolean",
-          "description": "If true, the field will be marked as required."
-        },
-        {
-          "name": "error",
-          "type": "boolean",
-          "description": "If true, applies the error state styles."
-        },
-        {
-          "name": "warning",
-          "type": "boolean",
-          "description": "If true, applies the warning state styles."
-        },
-        {
-          "name": "alignTop",
-          "type": "boolean",
-          "description": "If true, aligns the item to the top."
-        },
-        {
-          "name": "modifiers",
-          "type": "string|array|object",
-          "description": "Additional BEM modifiers for the form item."
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "label",
-          "description": ""
-        },
-        {
-          "name": "default",
-          "description": ""
-        },
-        {
-          "name": "description",
-          "description": ""
-        },
-        {
-          "name": "errorMessage",
-          "description": ""
-        },
-        {
-          "name": "warningMessage",
-          "description": ""
-        }
-      ]
-    },
-    "UluFormFile": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormFile",
-      "properties": [
-        {
-          "name": "multiple",
-          "type": "boolean",
-          "description": "If true, allows multiple file selection."
-        }
-      ],
-      "events": [
-        {
-          "name": "file-change",
-          "description": ""
-        }
-      ],
-      "slots": []
-    },
-    "UluFormFieldset": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormFieldset",
-      "properties": [
-        {
-          "name": "legend",
-          "type": "string",
-          "description": "The legend for the fieldset."
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluFormCheckbox": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormCheckbox",
-      "properties": [
-        {
-          "name": "modelValue",
-          "type": "boolean",
-          "description": "The value of the checkbox (for v-model)."
-        }
-      ],
-      "events": [
-        {
-          "name": "update:modelValue",
-          "description": ""
-        }
-      ],
-      "slots": []
-    },
-    "UluFormActions": {
-      "description": "Vue Component Props, Emits, and Slots for UluFormActions",
-      "properties": [],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluForm": {
-      "description": "Vue Component Props, Emits, and Slots for UluForm",
-      "properties": [
-        {
-          "name": "element",
-          "type": "string",
-          "default": "'form'",
-          "description": "The HTML element to use for the form."
-        },
-        {
-          "name": "fullWidth",
-          "type": "boolean",
-          "description": "If true, applies the full-width styles to text inputs."
-        },
-        {
-          "name": "fullWidthSelect",
-          "type": "boolean",
-          "description": "If true, applies the full-width styles to select inputs."
-        },
-        {
-          "name": "hideLabels",
-          "type": "boolean",
-          "description": "If true, hides all labels in the form."
-        },
-        {
-          "name": "actionsRight",
-          "type": "boolean",
-          "description": "If true, right-aligns the form actions."
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluFileDisplay": {
-      "description": "Vue Component Props, Emits, and Slots for UluFileDisplay",
-      "properties": [
-        {
-          "name": "file",
-          "type": "object",
-          "description": "The File object to be displayed."
-        },
-        {
-          "name": "icon",
-          "type": "string",
-          "default": "\"type:file\"",
-          "description": "The icon to display next to the file name."
-        },
-        {
-          "name": "noFileSize",
-          "type": "boolean",
-          "description": "If true, the file size will not be displayed."
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
           "description": ""
         }
       ]
@@ -2635,6 +2176,470 @@
           "name": "icon",
           "description": ""
         },
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluSelectableMenu": {
+      "description": "Vue Component Props, Emits, and Slots for UluSelectableMenu",
+      "properties": [
+        {
+          "name": "legend",
+          "type": "string",
+          "description": "The legend for the menu."
+        },
+        {
+          "name": "options",
+          "type": "array",
+          "description": "An array of options for the menu."
+        },
+        {
+          "name": "compact",
+          "type": "boolean",
+          "description": "Use compact modifier on menu stack"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "default": "'checkbox'",
+          "description": "The type of input to use ('checkbox' or 'radio')."
+        },
+        {
+          "name": "modelValue",
+          "type": "string|array",
+          "description": "The value of the menu (for v-model)."
+        },
+        {
+          "name": "hideInputs",
+          "type": "boolean",
+          "description": "If true, the input elements will be visually hidden."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluSearchForm": {
+      "description": "Vue Component Props, Emits, and Slots for UluSearchForm",
+      "properties": [
+        {
+          "name": "modelValue",
+          "type": "string",
+          "default": "\"\"",
+          "description": "The search input value (for v-model)."
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "default": "\"Titles, keyword…\"",
+          "description": "The placeholder text for the search input."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "default": "\"Search\"",
+          "description": "The visually hidden label for the search input."
+        },
+        {
+          "name": "submitButtonProps",
+          "type": "object",
+          "default": "{\n  type: \"submit\",\n  primary: true,\n  icon: \"type:search\",\n  ariaLabel: \"Submit Search\"\n}",
+          "description": "Props to pass to the default UluButton component (used for submit button)\n- Alternately use 'submit' slot"
+        },
+        {
+          "name": "id",
+          "type": "string",
+          "description": "Optional ID for the input element. If not provided, a unique ID is generated."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        },
+        {
+          "name": "submit",
+          "description": ""
+        }
+      ],
+      "slots": [
+        {
+          "name": "submit",
+          "description": ""
+        }
+      ]
+    },
+    "UluFormTextarea": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormTextarea",
+      "properties": [
+        {
+          "name": "modelValue",
+          "type": "string|number",
+          "description": "The value of the textarea (for v-model)."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        }
+      ],
+      "slots": []
+    },
+    "UluFormText": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormText",
+      "properties": [
+        {
+          "name": "modelValue",
+          "type": "string|number",
+          "description": "The value of the text input (for v-model)."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        }
+      ],
+      "slots": []
+    },
+    "UluFormSelect": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormSelect",
+      "properties": [
+        {
+          "name": "modelValue",
+          "type": "string|number|array",
+          "description": "The value of the select input (for v-model)."
+        },
+        {
+          "name": "options",
+          "type": "array",
+          "description": "An array of options for the select input. Each option should be an object with `value` and `text` properties."
+        },
+        {
+          "name": "placeholder",
+          "type": "string|boolean",
+          "default": "\"Please select one\"",
+          "description": "The text for the default disabled option. Pass false to hide it."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        }
+      ],
+      "slots": []
+    },
+    "UluFormRequiredChar": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormRequiredChar",
+      "properties": [],
+      "events": [],
+      "slots": []
+    },
+    "UluFormRadio": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormRadio",
+      "properties": [
+        {
+          "name": "modelValue",
+          "type": "string|number|boolean",
+          "description": "The value of the selected radio button in the group (for v-model)."
+        },
+        {
+          "name": "value",
+          "type": "string|number|boolean",
+          "description": "The value of this radio button."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        }
+      ],
+      "slots": []
+    },
+    "UluFormMessage": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormMessage",
+      "properties": [
+        {
+          "name": "warning",
+          "type": "boolean",
+          "description": "If true, the message will be styled as a warning."
+        },
+        {
+          "name": "error",
+          "type": "boolean",
+          "description": "If true, the message will be styled as an error."
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluFormLabel": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormLabel",
+      "properties": [
+        {
+          "name": "id",
+          "type": "string",
+          "description": "The ID of the input this label is associated with."
+        },
+        {
+          "name": "labelHidden",
+          "type": "boolean",
+          "description": "If true, the label will be visually hidden."
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "description": "If true, appends the required character."
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluFormItemsInline": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormItemsInline",
+      "properties": [],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluFormItem": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormItem",
+      "properties": [
+        {
+          "name": "layout",
+          "type": "string",
+          "description": "The layout variant for this form item (e.g., 'text', 'select', 'textarea', 'checkbox', 'radio', 'file').\nThis determines the layout and BEM styling of the item container."
+        },
+        {
+          "name": "fieldId",
+          "type": "string",
+          "description": "The ID to use for the form field. If not provided, a unique ID is generated."
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "description": "The label for the form field."
+        },
+        {
+          "name": "labelHidden",
+          "type": "boolean",
+          "description": "If true, the label will be visually hidden."
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "description": "The description text for the form field."
+        },
+        {
+          "name": "errorMessage",
+          "type": "string",
+          "description": "The error message text."
+        },
+        {
+          "name": "warningMessage",
+          "type": "string",
+          "description": "The warning message text."
+        },
+        {
+          "name": "required",
+          "type": "boolean",
+          "description": "If true, the field will be marked as required."
+        },
+        {
+          "name": "error",
+          "type": "boolean",
+          "description": "If true, applies the error state styles."
+        },
+        {
+          "name": "warning",
+          "type": "boolean",
+          "description": "If true, applies the warning state styles."
+        },
+        {
+          "name": "alignTop",
+          "type": "boolean",
+          "description": "If true, aligns the item to the top."
+        },
+        {
+          "name": "modifiers",
+          "type": "string|array|object",
+          "description": "Additional BEM modifiers for the form item."
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "label",
+          "description": ""
+        },
+        {
+          "name": "default",
+          "description": ""
+        },
+        {
+          "name": "description",
+          "description": ""
+        },
+        {
+          "name": "errorMessage",
+          "description": ""
+        },
+        {
+          "name": "warningMessage",
+          "description": ""
+        }
+      ]
+    },
+    "UluFormFile": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormFile",
+      "properties": [
+        {
+          "name": "multiple",
+          "type": "boolean",
+          "description": "If true, allows multiple file selection."
+        }
+      ],
+      "events": [
+        {
+          "name": "file-change",
+          "description": ""
+        }
+      ],
+      "slots": []
+    },
+    "UluFormFieldset": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormFieldset",
+      "properties": [
+        {
+          "name": "legend",
+          "type": "string",
+          "description": "The legend for the fieldset."
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluFormCheckbox": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormCheckbox",
+      "properties": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "description": "The value of the checkbox (for v-model)."
+        }
+      ],
+      "events": [
+        {
+          "name": "update:modelValue",
+          "description": ""
+        }
+      ],
+      "slots": []
+    },
+    "UluFormActions": {
+      "description": "Vue Component Props, Emits, and Slots for UluFormActions",
+      "properties": [],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluForm": {
+      "description": "Vue Component Props, Emits, and Slots for UluForm",
+      "properties": [
+        {
+          "name": "element",
+          "type": "string",
+          "default": "'form'",
+          "description": "The HTML element to use for the form."
+        },
+        {
+          "name": "fullWidth",
+          "type": "boolean",
+          "description": "If true, applies the full-width styles to text inputs."
+        },
+        {
+          "name": "fullWidthSelect",
+          "type": "boolean",
+          "description": "If true, applies the full-width styles to select inputs."
+        },
+        {
+          "name": "hideLabels",
+          "type": "boolean",
+          "description": "If true, hides all labels in the form."
+        },
+        {
+          "name": "actionsRight",
+          "type": "boolean",
+          "description": "If true, right-aligns the form actions."
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluFileDisplay": {
+      "description": "Vue Component Props, Emits, and Slots for UluFileDisplay",
+      "properties": [
+        {
+          "name": "file",
+          "type": "object",
+          "description": "The File object to be displayed."
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "default": "\"type:file\"",
+          "description": "The icon to display next to the file name."
+        },
+        {
+          "name": "noFileSize",
+          "type": "boolean",
+          "description": "If true, the file size will not be displayed."
+        }
+      ],
+      "events": [],
+      "slots": [
         {
           "name": "default",
           "description": ""
@@ -5192,6 +5197,13 @@
               "func": false,
               "value": "'span'"
             }
+          },
+          {
+            "name": "modifiers",
+            "description": "Modifiers (to add any modifier classes based on base class [ie. 'large'])",
+            "type": {
+              "name": "string|array|object"
+            }
           }
         ],
         "slots": [
@@ -6154,6 +6166,182 @@
         ]
       }
     },
+    "UluWhenBreakpoint": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluWhenBreakpoint",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "max",
+            "description": "The maximum breakpoint to show the content at.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "min",
+            "description": "The minimum breakpoint to show the content at.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "only",
+            "description": "Only show the content at this breakpoint.",
+            "type": {
+              "name": "string"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/layout/UluWhenBreakpoint.vue"
+        ]
+      }
+    },
+    "UluTitleRail": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTitleRail",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "icon",
+            "description": "Icon to display next to the title.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "iconAlign",
+            "description": "The alignment of the icon with the title.",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"baseline\""
+            }
+          },
+          {
+            "name": "classes",
+            "description": "Classes for the different elements in the component.",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{\n  title: \"h2\",\n  icon: \"margin-right-small\"\n}"
+            }
+          },
+          {
+            "name": "title",
+            "description": "The title to display.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "titleElement",
+            "description": "The HTML element to use for the title.",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"h2\""
+            }
+          },
+          {
+            "name": "rule",
+            "description": "If true, a rule will be displayed under the title.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "modifiers",
+            "description": "Modifiers (to add any modifier classes based on base class)",
+            "type": {
+              "name": "string|array|object"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          },
+          {
+            "name": "end"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/layout/UluTitleRail.vue"
+        ]
+      }
+    },
+    "UluDataGrid": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluDataGrid",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "element",
+            "description": "The element to use on data-grid container",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"div\""
+            }
+          },
+          {
+            "name": "hidden",
+            "description": "Tell the component when this grid is actually in a hidden container \n- When value changes the component will properly update position classes",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/layout/UluDataGrid.vue"
+        ]
+      }
+    },
+    "UluAdaptiveLayout": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluAdaptiveLayout",
+        "description": "",
+        "tags": {},
+        "slots": [
+          {
+            "name": "default"
+          },
+          {
+            "name": "mobile"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/layout/UluAdaptiveLayout.vue"
+        ]
+      }
+    },
     "UluSkipLink": {
       "raw_ast_dump": {
         "displayName": "UluSkipLink",
@@ -6497,876 +6685,6 @@
         ],
         "sourceFiles": [
           "lib/components/navigation/UluBreadcrumb.vue"
-        ]
-      }
-    },
-    "UluWhenBreakpoint": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluWhenBreakpoint",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "max",
-            "description": "The maximum breakpoint to show the content at.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "min",
-            "description": "The minimum breakpoint to show the content at.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "only",
-            "description": "Only show the content at this breakpoint.",
-            "type": {
-              "name": "string"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/layout/UluWhenBreakpoint.vue"
-        ]
-      }
-    },
-    "UluTitleRail": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluTitleRail",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "icon",
-            "description": "Icon to display next to the title.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "iconAlign",
-            "description": "The alignment of the icon with the title.",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"baseline\""
-            }
-          },
-          {
-            "name": "classes",
-            "description": "Classes for the different elements in the component.",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{\n  title: \"h2\",\n  icon: \"margin-right-small\"\n}"
-            }
-          },
-          {
-            "name": "title",
-            "description": "The title to display.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "titleElement",
-            "description": "The HTML element to use for the title.",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"h2\""
-            }
-          },
-          {
-            "name": "rule",
-            "description": "If true, a rule will be displayed under the title.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "modifiers",
-            "description": "Modifiers (to add any modifier classes based on base class)",
-            "type": {
-              "name": "string|array|object"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          },
-          {
-            "name": "end"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/layout/UluTitleRail.vue"
-        ]
-      }
-    },
-    "UluDataGrid": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluDataGrid",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "element",
-            "description": "The element to use on data-grid container",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"div\""
-            }
-          },
-          {
-            "name": "hidden",
-            "description": "Tell the component when this grid is actually in a hidden container \n- When value changes the component will properly update position classes",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/layout/UluDataGrid.vue"
-        ]
-      }
-    },
-    "UluAdaptiveLayout": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluAdaptiveLayout",
-        "description": "",
-        "tags": {},
-        "slots": [
-          {
-            "name": "default"
-          },
-          {
-            "name": "mobile"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/layout/UluAdaptiveLayout.vue"
-        ]
-      }
-    },
-    "UluSelectableMenu": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluSelectableMenu",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "legend",
-            "description": "The legend for the menu.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "options",
-            "description": "An array of options for the menu.",
-            "type": {
-              "name": "array"
-            }
-          },
-          {
-            "name": "compact",
-            "description": "Use compact modifier on menu stack",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "type",
-            "description": "The type of input to use ('checkbox' or 'radio').",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "'checkbox'"
-            }
-          },
-          {
-            "name": "modelValue",
-            "description": "The value of the menu (for v-model).",
-            "type": {
-              "name": "string|array"
-            }
-          },
-          {
-            "name": "hideInputs",
-            "description": "If true, the input elements will be visually hidden.",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          }
-        ],
-        "slots": [
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "option",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluSelectableMenu.vue"
-        ]
-      }
-    },
-    "UluSearchForm": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluSearchForm",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "modelValue",
-            "description": "The search input value (for v-model).",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"\""
-            }
-          },
-          {
-            "name": "placeholder",
-            "description": "The placeholder text for the search input.",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"Titles, keyword…\""
-            }
-          },
-          {
-            "name": "label",
-            "description": "The visually hidden label for the search input.",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"Search\""
-            }
-          },
-          {
-            "name": "submitButtonProps",
-            "description": "Props to pass to the default UluButton component (used for submit button)\n- Alternately use 'submit' slot",
-            "type": {
-              "name": "object"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "{\n  type: \"submit\",\n  primary: true,\n  icon: \"type:search\",\n  ariaLabel: \"Submit Search\"\n}"
-            }
-          },
-          {
-            "name": "id",
-            "description": "Optional ID for the input element. If not provided, a unique ID is generated.",
-            "type": {
-              "name": "string"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          },
-          {
-            "name": "submit"
-          }
-        ],
-        "slots": [
-          {
-            "name": "submit"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluSearchForm.vue"
-        ]
-      }
-    },
-    "UluFormTextarea": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormTextarea",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "modelValue",
-            "description": "The value of the textarea (for v-model).",
-            "type": {
-              "name": "string|number"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormTextarea.vue"
-        ]
-      }
-    },
-    "UluFormText": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormText",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "modelValue",
-            "description": "The value of the text input (for v-model).",
-            "type": {
-              "name": "string|number"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormText.vue"
-        ]
-      }
-    },
-    "UluFormSelect": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormSelect",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "modelValue",
-            "description": "The value of the select input (for v-model).",
-            "type": {
-              "name": "string|number|array"
-            }
-          },
-          {
-            "name": "options",
-            "description": "An array of options for the select input. Each option should be an object with `value` and `text` properties.",
-            "type": {
-              "name": "array"
-            }
-          },
-          {
-            "name": "placeholder",
-            "description": "The text for the default disabled option. Pass false to hide it.",
-            "type": {
-              "name": "string|boolean"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"Please select one\""
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormSelect.vue"
-        ]
-      }
-    },
-    "UluFormRequiredChar": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormRequiredChar",
-        "description": "",
-        "tags": {},
-        "sourceFiles": [
-          "lib/components/forms/UluFormRequiredChar.vue"
-        ]
-      }
-    },
-    "UluFormRadio": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormRadio",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "modelValue",
-            "description": "The value of the selected radio button in the group (for v-model).",
-            "type": {
-              "name": "string|number|boolean"
-            }
-          },
-          {
-            "name": "value",
-            "description": "The value of this radio button.",
-            "type": {
-              "name": "string|number|boolean"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormRadio.vue"
-        ]
-      }
-    },
-    "UluFormMessage": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormMessage",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "warning",
-            "description": "If true, the message will be styled as a warning.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "error",
-            "description": "If true, the message will be styled as an error.",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormMessage.vue"
-        ]
-      }
-    },
-    "UluFormLabel": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormLabel",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "id",
-            "description": "The ID of the input this label is associated with.",
-            "type": {
-              "name": "string"
-            },
-            "required": true
-          },
-          {
-            "name": "labelHidden",
-            "description": "If true, the label will be visually hidden.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "required",
-            "description": "If true, appends the required character.",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormLabel.vue"
-        ]
-      }
-    },
-    "UluFormItemsInline": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormItemsInline",
-        "description": "",
-        "tags": {},
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormItemsInline.vue"
-        ]
-      }
-    },
-    "UluFormItem": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormItem",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "layout",
-            "description": "The layout variant for this form item (e.g., 'text', 'select', 'textarea', 'checkbox', 'radio', 'file').\nThis determines the layout and BEM styling of the item container.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "fieldId",
-            "description": "The ID to use for the form field. If not provided, a unique ID is generated.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "label",
-            "description": "The label for the form field.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "labelHidden",
-            "description": "If true, the label will be visually hidden.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "description",
-            "description": "The description text for the form field.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "errorMessage",
-            "description": "The error message text.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "warningMessage",
-            "description": "The warning message text.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "required",
-            "description": "If true, the field will be marked as required.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "error",
-            "description": "If true, applies the error state styles.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "warning",
-            "description": "If true, applies the warning state styles.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "alignTop",
-            "description": "If true, aligns the item to the top.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "modifiers",
-            "description": "Additional BEM modifiers for the form item.",
-            "type": {
-              "name": "string|array|object"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "label"
-          },
-          {
-            "name": "default"
-          },
-          {
-            "name": "description"
-          },
-          {
-            "name": "errorMessage"
-          },
-          {
-            "name": "warningMessage"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormItem.vue"
-        ]
-      }
-    },
-    "UluFormFile": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormFile",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "multiple",
-            "description": "If true, allows multiple file selection.",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "file-change"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormFile.vue"
-        ]
-      }
-    },
-    "UluFormFieldset": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormFieldset",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "legend",
-            "description": "The legend for the fieldset.",
-            "type": {
-              "name": "string"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormFieldset.vue"
-        ]
-      }
-    },
-    "UluFormCheckbox": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormCheckbox",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "modelValue",
-            "description": "The value of the checkbox (for v-model).",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "events": [
-          {
-            "name": "update:modelValue"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormCheckbox.vue"
-        ]
-      }
-    },
-    "UluFormActions": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFormActions",
-        "description": "",
-        "tags": {},
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFormActions.vue"
-        ]
-      }
-    },
-    "UluForm": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluForm",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "element",
-            "description": "The HTML element to use for the form.",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "'form'"
-            }
-          },
-          {
-            "name": "fullWidth",
-            "description": "If true, applies the full-width styles to text inputs.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "fullWidthSelect",
-            "description": "If true, applies the full-width styles to select inputs.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "hideLabels",
-            "description": "If true, hides all labels in the form.",
-            "type": {
-              "name": "boolean"
-            }
-          },
-          {
-            "name": "actionsRight",
-            "description": "If true, right-aligns the form actions.",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluForm.vue"
-        ]
-      }
-    },
-    "UluFileDisplay": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluFileDisplay",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "file",
-            "description": "The File object to be displayed.",
-            "type": {
-              "name": "object"
-            },
-            "required": true
-          },
-          {
-            "name": "icon",
-            "description": "The icon to display next to the file name.",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"type:file\""
-            }
-          },
-          {
-            "name": "noFileSize",
-            "description": "If true, the file size will not be displayed.",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "fileName",
-                "title": "binding"
-              },
-              {
-                "name": "fileSize",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/forms/UluFileDisplay.vue"
         ]
       }
     },
@@ -8169,6 +7487,700 @@
         ],
         "sourceFiles": [
           "lib/components/collapsible/UluAccordion.vue"
+        ]
+      }
+    },
+    "UluSelectableMenu": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluSelectableMenu",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "legend",
+            "description": "The legend for the menu.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "options",
+            "description": "An array of options for the menu.",
+            "type": {
+              "name": "array"
+            }
+          },
+          {
+            "name": "compact",
+            "description": "Use compact modifier on menu stack",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "type",
+            "description": "The type of input to use ('checkbox' or 'radio').",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "'checkbox'"
+            }
+          },
+          {
+            "name": "modelValue",
+            "description": "The value of the menu (for v-model).",
+            "type": {
+              "name": "string|array"
+            }
+          },
+          {
+            "name": "hideInputs",
+            "description": "If true, the input elements will be visually hidden.",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          }
+        ],
+        "slots": [
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "option",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluSelectableMenu.vue"
+        ]
+      }
+    },
+    "UluSearchForm": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluSearchForm",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "modelValue",
+            "description": "The search input value (for v-model).",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"\""
+            }
+          },
+          {
+            "name": "placeholder",
+            "description": "The placeholder text for the search input.",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"Titles, keyword…\""
+            }
+          },
+          {
+            "name": "label",
+            "description": "The visually hidden label for the search input.",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"Search\""
+            }
+          },
+          {
+            "name": "submitButtonProps",
+            "description": "Props to pass to the default UluButton component (used for submit button)\n- Alternately use 'submit' slot",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{\n  type: \"submit\",\n  primary: true,\n  icon: \"type:search\",\n  ariaLabel: \"Submit Search\"\n}"
+            }
+          },
+          {
+            "name": "id",
+            "description": "Optional ID for the input element. If not provided, a unique ID is generated.",
+            "type": {
+              "name": "string"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          },
+          {
+            "name": "submit"
+          }
+        ],
+        "slots": [
+          {
+            "name": "submit"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluSearchForm.vue"
+        ]
+      }
+    },
+    "UluFormTextarea": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormTextarea",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "modelValue",
+            "description": "The value of the textarea (for v-model).",
+            "type": {
+              "name": "string|number"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormTextarea.vue"
+        ]
+      }
+    },
+    "UluFormText": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormText",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "modelValue",
+            "description": "The value of the text input (for v-model).",
+            "type": {
+              "name": "string|number"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormText.vue"
+        ]
+      }
+    },
+    "UluFormSelect": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormSelect",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "modelValue",
+            "description": "The value of the select input (for v-model).",
+            "type": {
+              "name": "string|number|array"
+            }
+          },
+          {
+            "name": "options",
+            "description": "An array of options for the select input. Each option should be an object with `value` and `text` properties.",
+            "type": {
+              "name": "array"
+            }
+          },
+          {
+            "name": "placeholder",
+            "description": "The text for the default disabled option. Pass false to hide it.",
+            "type": {
+              "name": "string|boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"Please select one\""
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormSelect.vue"
+        ]
+      }
+    },
+    "UluFormRequiredChar": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormRequiredChar",
+        "description": "",
+        "tags": {},
+        "sourceFiles": [
+          "lib/components/forms/UluFormRequiredChar.vue"
+        ]
+      }
+    },
+    "UluFormRadio": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormRadio",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "modelValue",
+            "description": "The value of the selected radio button in the group (for v-model).",
+            "type": {
+              "name": "string|number|boolean"
+            }
+          },
+          {
+            "name": "value",
+            "description": "The value of this radio button.",
+            "type": {
+              "name": "string|number|boolean"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormRadio.vue"
+        ]
+      }
+    },
+    "UluFormMessage": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormMessage",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "warning",
+            "description": "If true, the message will be styled as a warning.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "error",
+            "description": "If true, the message will be styled as an error.",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormMessage.vue"
+        ]
+      }
+    },
+    "UluFormLabel": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormLabel",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "id",
+            "description": "The ID of the input this label is associated with.",
+            "type": {
+              "name": "string"
+            },
+            "required": true
+          },
+          {
+            "name": "labelHidden",
+            "description": "If true, the label will be visually hidden.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "required",
+            "description": "If true, appends the required character.",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormLabel.vue"
+        ]
+      }
+    },
+    "UluFormItemsInline": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormItemsInline",
+        "description": "",
+        "tags": {},
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormItemsInline.vue"
+        ]
+      }
+    },
+    "UluFormItem": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormItem",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "layout",
+            "description": "The layout variant for this form item (e.g., 'text', 'select', 'textarea', 'checkbox', 'radio', 'file').\nThis determines the layout and BEM styling of the item container.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "fieldId",
+            "description": "The ID to use for the form field. If not provided, a unique ID is generated.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "label",
+            "description": "The label for the form field.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "labelHidden",
+            "description": "If true, the label will be visually hidden.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "description",
+            "description": "The description text for the form field.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "errorMessage",
+            "description": "The error message text.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "warningMessage",
+            "description": "The warning message text.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "required",
+            "description": "If true, the field will be marked as required.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "error",
+            "description": "If true, applies the error state styles.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "warning",
+            "description": "If true, applies the warning state styles.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "alignTop",
+            "description": "If true, aligns the item to the top.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "modifiers",
+            "description": "Additional BEM modifiers for the form item.",
+            "type": {
+              "name": "string|array|object"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "label"
+          },
+          {
+            "name": "default"
+          },
+          {
+            "name": "description"
+          },
+          {
+            "name": "errorMessage"
+          },
+          {
+            "name": "warningMessage"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormItem.vue"
+        ]
+      }
+    },
+    "UluFormFile": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormFile",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "multiple",
+            "description": "If true, allows multiple file selection.",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "file-change"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormFile.vue"
+        ]
+      }
+    },
+    "UluFormFieldset": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormFieldset",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "legend",
+            "description": "The legend for the fieldset.",
+            "type": {
+              "name": "string"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormFieldset.vue"
+        ]
+      }
+    },
+    "UluFormCheckbox": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormCheckbox",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "modelValue",
+            "description": "The value of the checkbox (for v-model).",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "events": [
+          {
+            "name": "update:modelValue"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormCheckbox.vue"
+        ]
+      }
+    },
+    "UluFormActions": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFormActions",
+        "description": "",
+        "tags": {},
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFormActions.vue"
+        ]
+      }
+    },
+    "UluForm": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluForm",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "element",
+            "description": "The HTML element to use for the form.",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "'form'"
+            }
+          },
+          {
+            "name": "fullWidth",
+            "description": "If true, applies the full-width styles to text inputs.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "fullWidthSelect",
+            "description": "If true, applies the full-width styles to select inputs.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "hideLabels",
+            "description": "If true, hides all labels in the form.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "actionsRight",
+            "description": "If true, right-aligns the form actions.",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluForm.vue"
+        ]
+      }
+    },
+    "UluFileDisplay": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluFileDisplay",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "file",
+            "description": "The File object to be displayed.",
+            "type": {
+              "name": "object"
+            },
+            "required": true
+          },
+          {
+            "name": "icon",
+            "description": "The icon to display next to the file name.",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"type:file\""
+            }
+          },
+          {
+            "name": "noFileSize",
+            "description": "If true, the file size will not be displayed.",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "fileName",
+                "title": "binding"
+              },
+              {
+                "name": "fileSize",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/forms/UluFileDisplay.vue"
         ]
       }
     },
@@ -12530,7 +12542,7 @@
       "raw_markdown": "# useBreakpointManager\n\nComposable for adding breakpoint manager and related breakpoint info (via breakpoint manager from `@ulu/frontend/js/ui/breakpoints.js > BreakpointManager`).\n\n**Note:** Using the composable is only necessary for unique situations. For basic breakpoint setup use the `breakpointsPlugin`. Which uses this composable.\n\n## Options for this composable\n\n```js\nconst defaults = {\n  /**\n   * Set an initial value (value in mounted, SSR)\n   */\n  initialValue: null,\n  /**\n   * Function called after init (passed manager)\n   */\n  onReady: null,\n  /**\n   * Options sent to CssBreakpoints library (ulu/frontend/js/breakpoints <BreakpointManager>)\n   */\n  plugin: {\n    customProperty: \"--breakpoint\"\n  }\n}\n```\n\n## Example Usage\n\n```html\n<script setup>\n  import { ref, computed, provide } from \"vue\";\n  import { useBreakpointManager } from \"./useBreakpointManager.js\";\n\n  const isMobile = ref(false);\n\n  // Example using the onReady callback to set reactive value isMobile\n  // - In this situation isMobile is being used as a primary change in  \n  //   the applications layout \n  const options = { \n    onReady(manager) {\n      manager.at(\"small\").max(() => isMobile.value = true);\n      manager.at(\"large\").min(() => isMobile.value = false);\n    }\n  };\n\n  // Composable returns the following\n  const { \n    /**\n     * Reference to underlying BreakpointManager class\n    */\n    breakpointManager, \n    /**\n     * Active breakpoint name\n    */\n    breakpointActive, \n    /**\n     * Current resizeDirection (\"up\"|\"down\"|null)\n    */\n    breakpointDirection \n  } = useBreakpointManager(options);\n\n\n  // Allowing all components to access these values\n  provide(\"uluBreakpointActive\", computed(() => breakpointActive));\n  provide(\"uluBreakpointDirection\", computed(() => breakpointDirection));\n  provide(\"uluBreakpointManager\", computed(() => breakpointManager));\n  provide(\"uluIsMobile\", computed(() => isMobile));\n\n</script>\n```"
     },
     "tour": {
-      "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as TourStories from './tour.stories.js';\n\n# Tour Plugin\n\nThe Tour plugin allows configuring an app-wide guided tour that leverages `UluModal` and `@floating-ui/vue`. Register the plugin, and use the global API (or composable) to start step-by-step onboarding flows.\n\n## Installing the plugin\n\nExample `./src/main.js`\n\n```js\nimport UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);\n```\n\nTo display the tour, you must include the `UluTourDisplay` component somewhere in your application root (e.g. `App.vue`):\n\n```html\n<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>\n```\n\n## Creating a Tour\n\nA tour is defined as an object containing a `name` and an array of `steps`.\n\n```js\nconst demoTour = {\n  name: 'demo-tour',\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalOptions: { size: 'small' }\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};\n```\n\n### Step API Structure\n\nEach step object can accept the following properties:\n\n*   **`target`**: *(String)* The CSS selector for the target element. If omitted, the step renders as a centered modal.\n*   **`title`**: *(String)* The title text for the step.\n*   **`content`**: *(String)* The body content text for the step.\n*   **`contentComponent`**: *(Object)* A Vue component to replace only the text content (keeps the modal/popover shell and default footer intact).\n*   **`component`**: *(Object)* A Vue component to completely replace the outer wrapper (bypasses modal/popover entirely).\n*   **`componentProps`**: *(Object)* Props to bind to `contentComponent` or `component`.\n*   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back/Close buttons). Useful if you want the standard text but no buttons.\n*   **`placement`**: *(String)* Floating UI placement string (e.g. `'bottom'`, `'right'`).\n*   **`highlight`**: *(Boolean)* If true, darkens the backdrop around the target element.\n*   **`modalOptions`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).\n*   **`onEnter`**: *(Function)* An async hook called before the step is rendered.\n\n## Starting the Tour\n\nYou can control the tour programmatically using the `useTour` composable:\n\n```html\n<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>\n```\n\nAlternatively, you can use the global API:\n\n```js\nthis.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();\n```\n\n## Custom Components & Layouts\n\nIf you need custom designs, the plugin supports two levels of control:\n\n### 1. Custom Inner Content (`contentComponent`)\n\nUse `contentComponent` if you want to render an image, form, or custom layout inside the step, but want to **keep** the default popover/modal wrappers and the Next/Back footer buttons.\n\n```html\n<template>\n  <div style=\"text-align: center;\">\n    <img src=\"/logo.png\" />\n    <p>This is my custom graphic step.</p>\n  </div>\n</template>\n```\n\n### 2. Full Wrapper Takeover (`component`)\n\nUse `component` if you want to bypass the `<UluModal>` and `<UluPopoverContent>` wrappers entirely. This allows you to build custom off-canvas drawers, alert banners, or custom absolute-positioned panels. \n\nYou are responsible for your own positioning, styling, and wiring up the Next/Back buttons via `useTour()`.\n\n```html\n<template>\n  <div class=\"my-custom-floating-drawer\">\n    <h3>Custom Design</h3>\n    <!-- Wire up your own buttons -->\n    <button @click=\"api.next()\">Got it!</button>\n  </div>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n  const { api } = useTour();\n</script>\n```\n\n## Demonstration\n\n<Canvas of={TourStories.Default} />\n"
+      "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as TourStories from './tour.stories.js';\n\n# Tour Plugin\n\nThe Tour plugin allows configuring an app-wide guided tour that leverages `UluModal` and `@floating-ui/vue`. Register the plugin, and use the global API (or composable) to start step-by-step onboarding flows.\n\n## Installing the plugin\n\nExample `./src/main.js`\n\n```js\nimport UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);\n```\n\nTo display the tour, you must include the `UluTourDisplay` component somewhere in your application root (e.g. `App.vue`):\n\n```html\n<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>\n```\n\n## Creating a Tour\n\nA tour is defined as an object containing a `name` and an array of `steps`. You can also define global `modalProps` or `popoverProps` on the root tour object to apply them to all steps by default.\n\n```js\nconst demoTour = {\n  name: 'demo-tour',\n  popoverProps: { modifiers: 'large' }, // Global popover styling for all steps\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalProps: { size: 'small' } // Step-specific override\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};\n```\n\n### Step API Structure\n\nEach step object can accept the following properties:\n\n*   **`target`**: *(String)* The CSS selector for the target element. If omitted, the step renders as a centered modal.\n*   **`title`**: *(String)* The title text for the step.\n*   **`content`**: *(String)* The body content text for the step.\n*   **`contentComponent`**: *(Object)* A Vue component to replace only the text content (keeps the modal/popover shell and default footer intact).\n*   **`component`**: *(Object)* A Vue component to completely replace the outer wrapper (bypasses modal/popover entirely).\n*   **`componentProps`**: *(Object)* Props to bind to `contentComponent` or `component`.\n*   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back/Close buttons). Useful if you want the standard text but no buttons.\n*   **`placement`**: *(String)* Floating UI placement string (e.g. `'bottom'`, `'right'`).\n*   **`highlight`**: *(Boolean)* If true, darkens the backdrop around the target element.\n*   **`modalProps`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).\n*   **`popoverProps`**: *(Object)* Props to pass to the popover (only applies if `target` is present).\n*   **`onEnter`**: *(Function)* An async hook called before the step is rendered.\n\n## Starting the Tour\n\nYou can control the tour programmatically using the `useTour` composable:\n\n```html\n<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>\n```\n\nAlternatively, you can use the global API:\n\n```js\nthis.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();\n```\n\n## Custom Components & Layouts\n\nIf you need custom designs, the plugin supports two levels of control:\n\n### 1. Custom Inner Content (`contentComponent`)\n\nUse `contentComponent` if you want to render an image, form, or custom layout inside the step, but want to **keep** the default popover/modal wrappers and the Next/Back footer buttons.\n\n```html\n<template>\n  <div style=\"text-align: center;\">\n    <img src=\"/logo.png\" />\n    <p>This is my custom graphic step.</p>\n  </div>\n</template>\n```\n\n### 2. Full Wrapper Takeover (`component`)\n\nUse `component` if you want to bypass the `<UluModal>` and `<UluPopoverContent>` wrappers entirely. This allows you to build custom off-canvas drawers, alert banners, or custom absolute-positioned panels. \n\nYou are responsible for your own positioning, styling, and wiring up the Next/Back buttons via `useTour()`.\n\n```html\n<template>\n  <div class=\"my-custom-floating-drawer\">\n    <h3>Custom Design</h3>\n    <!-- Wire up your own buttons -->\n    <button @click=\"api.next()\">Got it!</button>\n  </div>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n  const { api } = useTour();\n</script>\n```\n\n## Demonstration\n\n<Canvas of={TourStories.Default} />\n"
     },
     "modals": {
       "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as ModalStories from '../../components/collapsible/UluModal.stories.js';\n\n# Modals\n\nModals plugin allows configuring app-wide modals that are triggered by the global API. Register your modals when you install the plugin then interact with them using the global API.\n\n## Registering your app-wide modals\n\nCreate the modal component file like:\n\n```html\n<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>\n```\n\n\nExample ./scr/modals.js\n\n```js\nimport { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]\n```\n\n## Installing the plugin\n\nExample ./src/main.js\n\n```js\nimport UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });\n\n```\n\n## Using Global API\n\n```js\n\n// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\"\n```\n\n## Using Composition API (via composable)\n\nComposable is used get access to modals API (through inject)\n\n```html\n\n<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>\n\n```\n\n## Standalone Modal Component\n\nThe `UluModal` **component is independent of this plugin.** The plugin is simply a convenient way to manage global modals (for things like a settings dialog) that need to be opened from anywhere in your application.\n\nYou can use `UluModal` as the component that the plugin displays, or you can use it on its own for any case where you are managing the state locally within a component and don't need a global API.\n\nHere is a demonstration of the standalone `UluModal` component:\n\n<Canvas of={ModalStories.Default} />"
@@ -13330,7 +13342,7 @@
           }
         ],
         "meta": {
-          "lineno": 23,
+          "lineno": 24,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13385,10 +13397,30 @@
             "optional": true,
             "description": "Optional name for the tour",
             "name": "tour.name"
+          },
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "optional": true,
+            "description": "Global props applied to all modal steps in this tour (can be overridden by step)",
+            "name": "tour.modalProps"
+          },
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "optional": true,
+            "description": "Global props applied to all popover steps in this tour (can be overridden by step)",
+            "name": "tour.popoverProps"
           }
         ],
         "meta": {
-          "lineno": 30,
+          "lineno": 33,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13402,7 +13434,7 @@
         "scope": "global",
         "description": "Advances the tour to the next step, or stops if it is the last step",
         "meta": {
-          "lineno": 39,
+          "lineno": 42,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13416,7 +13448,7 @@
         "scope": "global",
         "description": "Returns the tour to the previous step",
         "meta": {
-          "lineno": 54,
+          "lineno": 57,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13430,7 +13462,7 @@
         "scope": "global",
         "description": "Stops and closes the current tour",
         "meta": {
-          "lineno": 67,
+          "lineno": 70,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13455,7 +13487,7 @@
           }
         ],
         "meta": {
-          "lineno": 75,
+          "lineno": 78,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13571,7 +13603,17 @@
             },
             "optional": true,
             "description": "Props to pass to the modal (if target is omitted).",
-            "name": "modalOptions"
+            "name": "modalProps"
+          },
+          {
+            "type": {
+              "names": [
+                "Object"
+              ]
+            },
+            "optional": true,
+            "description": "Props to pass to the popover (if target is present).",
+            "name": "popoverProps"
           },
           {
             "type": {

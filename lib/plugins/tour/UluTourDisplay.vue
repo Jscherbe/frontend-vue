@@ -95,6 +95,7 @@
   
   const resolvedPopoverProps = computed(() => {
     return {
+      modifiers: 'large',
       ...(tourState.active?.popoverProps || {}),
       ...(currentStep.value?.popoverProps || {})
     };
