@@ -1,6 +1,7 @@
-import { createElementBlock as o, openBlock as t, createBlock as s, createCommentVNode as n, createVNode as c, resolveDynamicComponent as l, normalizeClass as r, withCtx as i, createTextVNode as m, toDisplayString as a } from "vue";
-import d from "../../components/elements/UluRule.vue.js";
-const u = { class: "tour-content crop-margins" }, p = { key: 1 }, C = {
+import { computed as c, createElementBlock as a, openBlock as o, createBlock as i, createCommentVNode as l, createVNode as u, resolveDynamicComponent as m, normalizeClass as d, withCtx as p, createTextVNode as f, toDisplayString as r } from "vue";
+import C from "../../components/elements/UluRule.vue.js";
+import { useTour as h } from "./useTour.js";
+const v = { class: "tour-content crop-margins" }, y = { key: 1 }, M = {
   __name: "UluTourContent",
   props: {
     /**
@@ -19,21 +20,25 @@ const u = { class: "tour-content crop-margins" }, p = { key: 1 }, C = {
     }
   },
   setup(e) {
-    return (f, h) => (t(), o("div", u, [
-      e.step?.title ? (t(), s(l(e.isModal ? "h2" : "strong"), {
+    const { state: s } = h(), t = e, n = c(() => t.step.titleClass ? t.step.titleClass : t.isModal ? s.active?.modalTitleClass || "h3" : s.active?.popoverTitleClass || "h4");
+    return (k, T) => (o(), a("div", v, [
+      e.step?.title ? (o(), i(m(e.isModal ? "h2" : "strong"), {
         key: 0,
-        class: r([e.isModal ? "h3" : "h4", "display-block no-margin"])
+        class: d([
+          "display-block no-margin",
+          n.value
+        ])
       }, {
-        default: i(() => [
-          m(a(e.step.title), 1)
+        default: p(() => [
+          f(r(e.step.title), 1)
         ]),
         _: 1
-      }, 8, ["class"])) : n("", !0),
-      c(d),
-      e.step?.content ? (t(), o("p", p, a(e.step.content), 1)) : n("", !0)
+      }, 8, ["class"])) : l("", !0),
+      u(C),
+      e.step?.content ? (o(), a("p", y, r(e.step.content), 1)) : l("", !0)
     ]));
   }
 };
 export {
-  C as default
+  M as default
 };

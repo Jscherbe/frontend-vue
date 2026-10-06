@@ -7,6 +7,9 @@ const o = (e) => ({
    * @param {String} [tour.name] - Optional name for the tour
    * @param {Object} [tour.modalProps] - Global props applied to all modal steps in this tour (can be overridden by step)
    * @param {Object} [tour.popoverProps] - Global props applied to all popover steps in this tour (can be overridden by step)
+   * @param {String|Array|Object} [tour.modalTitleClass] - Global class applied to the title of modal steps.
+   * @param {String|Array|Object} [tour.popoverTitleClass] - Global class applied to the title of popover steps.
+   * @param {String|Array|Object} [tour.pagerClass] - Global class applied to the pager.
    */
   async start(n) {
     n?.steps?.length && (await this._runHooks(n.steps[0]), e.active = t(n), e.stepIndex = 0);

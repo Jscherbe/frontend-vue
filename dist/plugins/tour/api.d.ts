@@ -9,6 +9,14 @@ export type TourStep = {
      */
     title?: string | undefined;
     /**
+     * - Class to apply to the title.
+     */
+    titleClass?: string | Object | any[] | undefined;
+    /**
+     * - Class to apply to the pager footer.
+     */
+    pagerClass?: string | Object | any[] | undefined;
+    /**
      * - The content text for the step.
      */
     content?: string | undefined;

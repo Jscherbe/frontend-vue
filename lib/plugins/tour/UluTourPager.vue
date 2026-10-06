@@ -1,5 +1,9 @@
 <template>
-  <div class="tour-pager layout-flex-justified">
+  <div :class="[
+    'tour-pager layout-flex-justified', 
+    state.active?.pagerClass,
+    currentStep?.pagerClass
+  ]">
     <UluButton 
       @click="api.prev()"
       text="Previous"
@@ -27,10 +31,9 @@
 
   const { api, state } = useTour();
 
+  const currentStep = computed(() => state.active?.steps[state.stepIndex]);
+
   const isLastStep = computed(() => {
     return state.active && state.stepIndex === state.active.steps.length - 1;
-  });
-  const isFirstStep = computed(() => {
-    return state.active && state.stepIndex === 0;
   });
 </script>

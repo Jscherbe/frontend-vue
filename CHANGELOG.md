@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.6.27
+
+- **Tour Plugin** | Added ability to pass class configurations to the tour objects
+  - Global `tour` config now accepts `modalTitleClass`, `popoverTitleClass`, and `pagerClass`
+  - Individual `step` configs can override via `titleClass` and `pagerClass`
+  - *Note: If you need something more specific it is simple to just build your own tour components using the component option*
+  
 ## 0.6.26
 
 - **UluPopover / UluPopoverBase** | Fix bug with focus introduced in last version

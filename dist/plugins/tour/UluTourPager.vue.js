@@ -1,29 +1,35 @@
-import { computed as s, createElementBlock as p, openBlock as u, createVNode as i, unref as n } from "vue";
-import { useTour as c } from "./useTour.js";
+import { computed as a, createElementBlock as u, openBlock as c, normalizeClass as m, unref as s, createVNode as o } from "vue";
+import { useTour as d } from "./useTour.js";
 import l from "../../components/elements/UluButton.vue.js";
-const d = { class: "tour-pager layout-flex-justified" }, y = {
+const y = {
   __name: "UluTourPager",
-  setup(m) {
-    const { api: r, state: e } = c(), o = s(() => e.active && e.stepIndex === e.active.steps.length - 1);
-    return s(() => e.active && e.stepIndex === 0), (x, t) => (u(), p("div", d, [
-      i(l, {
-        onClick: t[0] || (t[0] = (a) => n(r).prev()),
+  setup(v) {
+    const { api: n, state: e } = d(), i = a(() => e.active?.steps[e.stepIndex]), r = a(() => e.active && e.stepIndex === e.active.steps.length - 1);
+    return (x, t) => (c(), u("div", {
+      class: m([
+        "tour-pager layout-flex-justified",
+        s(e).active?.pagerClass,
+        i.value?.pagerClass
+      ])
+    }, [
+      o(l, {
+        onClick: t[0] || (t[0] = (p) => s(n).prev()),
         text: "Previous",
-        disabled: n(e).stepIndex === 0,
+        disabled: s(e).stepIndex === 0,
         icon: "type:previous",
         iconBefore: "",
         small: "",
         secondary: "",
         transparent: ""
       }, null, 8, ["disabled"]),
-      i(l, {
+      o(l, {
         primary: "",
-        icon: o.value ? null : "type:next",
-        onClick: t[1] || (t[1] = (a) => n(r).next()),
-        text: o.value ? "Finish" : "Next",
+        icon: r.value ? null : "type:next",
+        onClick: t[1] || (t[1] = (p) => s(n).next()),
+        text: r.value ? "Finish" : "Next",
         small: ""
       }, null, 8, ["icon", "text"])
-    ]));
+    ], 2));
   }
 };
 export {
