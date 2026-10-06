@@ -2,14 +2,14 @@
   <Teleport to="body">
     <template v-if="tourState.active">
       
-      <!-- FULL COMPONENT TAKEOVER -->
+      <!-- 1. FULL COMPONENT TAKEOVER -->
       <component 
         v-if="currentStep?.component" 
         :is="currentStep.component" 
         v-bind="currentStep.componentProps" 
       />
 
-      <!-- RENDER MODAL STEP -->
+      <!-- 2. RENDER MODAL STEP -->
       <UluModal 
         v-else-if="!currentStep?.target" 
         :modelValue="true"
@@ -28,17 +28,16 @@
         </template>
       </UluModal>
 
-      <!-- RENDER POPOVER STEP -->
+      <!-- 3. RENDER POPOVER STEP -->
       <UluPopoverContent 
         v-else
-        class="is-active"
-        element="div"
         ref="popoverBase"
         :trigger="targetEl"
         :config="resolvedConfig"
         :style="{ zIndex: 9999 }"
+        :isOpen="true"
+        @close="api.stop()"
         v-bind="resolvedPopoverProps"
-        @click.stop
       >
         <component 
           v-if="currentStep?.contentComponent" 
@@ -70,7 +69,6 @@
   import UluTourPager from './UluTourPager.vue';
   import UluTourContent from './UluTourContent.vue';
   import { useTour } from './useTour.js';
-  import { wasClickOutside } from '@ulu/utils/browser/dom.js';
   
   const { api, state: tourState } = useTour();
   
@@ -147,50 +145,16 @@
     };
   });
 
-  // --- Click Outside Logic ---
-  let clickOutsideListener = null;
-
-  const removeClickOutside = () => {
-    if (clickOutsideListener) {
-      document.removeEventListener('click', clickOutsideListener);
-      clickOutsideListener = null;
-    }
-  };
-
-  const attachClickOutside = () => {
-    removeClickOutside(); // Clean up any existing listener
-    
-    clickOutsideListener = (event) => {
-      if (!tourState.active || !popoverBase.value?.content) return;
-      
-      // CRITICAL FIX: If the element that was clicked is no longer in the DOM,
-      // it means the click caused a state change that unmounted the element 
-      // (like clicking 'Next' on a modal, or 'Next' inside a custom component).
-      // We must ignore these "ghost" clicks, otherwise they evaluate as "outside".
-      if (!document.body.contains(event.target)) return;
-
-      if (wasClickOutside(popoverBase.value.content, event)) {
-        api.stop();
-      }
-    };
-
-    // Defer attaching so the click that opened this step doesn't instantly close it
-    setTimeout(() => {
-      if (clickOutsideListener) {
-        document.addEventListener('click', clickOutsideListener);
-      }
-    }, 0);
-  };
-
-  // Watch for step changes to update targets and listeners
+  // Watch for step changes to update floating UI target
   watch(currentStep, async (step) => {
     if (step?.target) {
-      // Step is a Popover -> Set up targets and listeners
-      attachClickOutside();
       await nextTick();
       const el = document.querySelector(step.target);
       if (el) {
         targetEl.value = el;
+        // UluPopoverContent's isOpen watcher automatically calls update(), 
+        // but since isOpen stays strictly true here when switching between popover steps,
+        // we might need to manually trigger an update if the target changed.
         if (popoverBase.value) {
           popoverBase.value.update();
         }
@@ -201,8 +165,6 @@
         console.warn(`Tour target not found: ${step.target}`);
       }
     } else {
-      // Step is a Modal -> Clean up popover logic
-      removeClickOutside();
       targetEl.value = null;
       targetRect.value = null;
     }
@@ -216,6 +178,5 @@
   onUnmounted(() => {
     window.removeEventListener('resize', updateTargetRect);
     window.removeEventListener('scroll', updateTargetRect);
-    removeClickOutside();
   });
 </script>

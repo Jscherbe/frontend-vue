@@ -5,8 +5,9 @@
 - **Tour Plugin (New)** | Added a new native tour plugin (`useTour`, `UluTourDisplay`) that leverages `UluModal` and `@floating-ui/vue` for guided tours, removing the need for third-party dependencies.
 - **Popovers Refactor (Base Component)** | Extracted the shared DOM structure and Floating-UI composable logic from `UluPopover`, `UluTooltipPopover`, and `UluTourDisplay` into a new base component: `UluPopoverContent`.
   - **Reasoning**: All popover-like components shared identical wrapper elements (`.popover`, `.popover__inner`, `.popover__arrow`) and Floating-UI integration. DRYing this up into a single source of truth makes maintenance significantly easier and paves a clean path for the future when we migrate away from Floating-UI to the native HTML `popover` API (which will now only require updating one file).
-  - Exported and registered `UluPopoverContent` globally, in case developers need to construct custom headless popover instances manually.
-- **UluPopover** | Added `defineExpose` for internal state and methods (`isOpen`, `toggle`, `close`, `changeTo`) to allow programmatic control.
+  - **Standalone Behaviors**: Moved all accessibility and behavioral logic (click outside to close, escape key to close, and trigger focus management) directly into `UluPopoverContent`.
+  - Exported and registered `UluPopoverContent` globally, in case developers need to construct custom headless popover instances manually (they now receive all expected popover lifecycle behaviors for free).
+- **UluPopover** | Added `defineExpose` for internal state and methods (`isOpen`, `toggle`, `close`, `changeTo`) and added JSDocs for IDE documentation.
 
 ## 0.6.23
 

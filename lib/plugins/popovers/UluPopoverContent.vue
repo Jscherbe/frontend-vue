@@ -1,38 +1,79 @@
 <template>
-  <component 
-    :is="element"
+  <span 
     class="popover"
     ref="contentEl"
     :style="floatingStyles"
     :data-placement="placement"
     :class="[
-      { 'popover--fixed': isFixedStrategy },
+      { 
+        'popover--fixed': isFixedStrategy,
+        'is-active': isOpen 
+      },
       resolvedModifiers
     ]"
+    @keydown.esc="handleEsc"
+    tabindex="-1"
   >
-    <component :is="element" class="popover__inner">
-      <slot />
-    </component>
-    <component :is="element" v-if="$slots.footer" class="popover__footer">
-      <slot name="footer" />
-    </component>
-    <component 
-      :is="element"
+    <span class="popover__inner">
+      <slot :isOpen="isOpen" :close="close" />
+    </span>
+    <span v-if="$slots.footer" class="popover__footer">
+      <slot name="footer" :isOpen="isOpen" :close="close" />
+    </span>
+    <span 
       v-if="resolvedConfig.arrow"
       class="popover__arrow" 
       ref="contentArrow"
       :style="arrowStyles"
       data-ulu-popover-arrow
-    ></component>
-  </component>
+    ></span>
+  </span>
 </template>
 
 <script setup>
-  import { ref, computed } from 'vue';
+  import { ref, computed, watch, onUnmounted, nextTick } from 'vue';
   import { useUluFloating } from '../../composables/useUluFloating.js';
   import { useModifiers } from '../../composables/useModifiers.js';
+  import { wasClickOutside } from '@ulu/utils/browser/dom.js';
+
+  const emit = defineEmits(['close']);
 
   const props = defineProps({
+    /**
+     * Controls the open/active state of the popover
+     */
+    isOpen: {
+      type: Boolean,
+      default: false
+    },
+    /**
+     * Close popover when click is outside
+     */
+    clickOutsideCloses: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Close popover when escape key is pressed
+     */
+    escapeCloses: {
+      type: Boolean,
+      default: true
+    },
+    /**
+     * Direct focus when open/closing popover
+     */
+    directFocus: {
+      type: Function,
+      default: ({ isOpen, trigger, content }) => {
+        if (isOpen && content) {
+          content.focus({ preventScroll: true });
+        } else if (!isOpen && trigger && trigger instanceof HTMLElement) {
+          // Note: using nextTick prevents scroll jumping in some cases
+          trigger.focus({ preventScroll: true });
+        }
+      }
+    },
     /**
      * The target element for the popover to float alongside
      */
@@ -46,13 +87,6 @@
     config: {
       type: Object,
       default: () => ({})
-    },
-    /**
-     * The HTML element to use for the popover (defaults to span for inline validity)
-     */
-    element: {
-      type: String,
-      default: 'span'
     },
     /**
      * Modifiers (to add any modifier classes based on base class [ie. 'large'])
@@ -72,7 +106,80 @@
     resolvedConfig
   );
 
+  const close = () => {
+    emit('close');
+  };
+
+  const handleEsc = (event) => {
+    if (props.isOpen && props.escapeCloses) {
+      event.preventDefault();
+      close();
+    }
+  };
+
+  let outsideHandler = null;
+
+  const destroyOutsideClick = () => {
+    if (outsideHandler) {
+      document.removeEventListener("click", outsideHandler);
+      outsideHandler = null;
+    }
+  };
+
+  const addOutsideClick = () => {
+    destroyOutsideClick();
+    if (props.clickOutsideCloses) {
+      outsideHandler = (event) => {
+        if (!props.isOpen || !contentEl.value) return;
+        
+        // Ignore clicks on elements that have been removed from the DOM
+        if (!document.body.contains(event.target)) return;
+
+        if (wasClickOutside(contentEl.value, event)) {
+          // If the click is on the trigger itself, we let the trigger handle toggling
+          if (props.trigger instanceof HTMLElement && props.trigger.contains(event.target)) {
+            return;
+          }
+          close();
+        }
+      };
+      // Defer so the click that opened the popover doesn't instantly close it
+      setTimeout(() => {
+        if (outsideHandler) {
+          document.addEventListener("click", outsideHandler);
+        }
+      }, 0);
+    }
+  };
+
+  watch(() => props.isOpen, (newVal) => {
+    if (newVal) {
+      update();
+      addOutsideClick();
+      if (props.directFocus) {
+        nextTick(() => {
+          props.directFocus({ isOpen: true, trigger: props.trigger, content: contentEl.value });
+        });
+      }
+    } else {
+      destroyOutsideClick();
+      if (props.directFocus) {
+        nextTick(() => {
+          props.directFocus({ isOpen: false, trigger: props.trigger, content: contentEl.value });
+        });
+      }
+    }
+  }, { immediate: true });
+
+  onUnmounted(() => {
+    destroyOutsideClick();
+  });
+
   defineExpose({
+    /**
+     * Emits the close event
+     */
+    close,
     /**
      * Manually trigger a floating UI position update
      */
