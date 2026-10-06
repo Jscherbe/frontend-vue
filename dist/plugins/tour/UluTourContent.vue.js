@@ -20,14 +20,11 @@ const v = { class: "tour-content crop-margins" }, y = { key: 1 }, M = {
     }
   },
   setup(e) {
-    const { state: s } = h(), t = e, n = c(() => t.step.titleClass ? t.step.titleClass : t.isModal ? s.active?.modalTitleClass || "h3" : s.active?.popoverTitleClass || "h4");
+    const { state: s } = h(), t = e, n = c(() => t.step.titleClass ? t.step.titleClass : t.isModal ? s.active?.modalTitleClass || ["h3", "no-margin"] : s.active?.popoverTitleClass || ["h4", "display-block", "no-margin"]);
     return (k, T) => (o(), a("div", v, [
       e.step?.title ? (o(), i(m(e.isModal ? "h2" : "strong"), {
         key: 0,
-        class: d([
-          "display-block no-margin",
-          n.value
-        ])
+        class: d(n.value)
       }, {
         default: p(() => [
           f(r(e.step.title), 1)

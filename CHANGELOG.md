@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.28
+
+- **Tour Plugin** | Minor, remove opinionated default classes in UluTourContent and set them only if user passes no class options
+
 ## 0.6.27
 
 - **Tour Plugin** | Added ability to pass class configurations to the tour objects

@@ -3,10 +3,7 @@
     <component 
       v-if="step?.title"
       :is="isModal ? 'h2' : 'strong'" 
-      :class="[
-        'display-block no-margin',
-        resolvedTitleClass
-      ]"
+      :class="resolvedTitleClass"
     >
       {{ step.title }}
     </component>
@@ -45,9 +42,9 @@
     if (props.step.titleClass) return props.step.titleClass;
     
     if (props.isModal) {
-      return tourState.active?.modalTitleClass || 'h3';
+      return tourState.active?.modalTitleClass || ['h3', 'no-margin'];
     } else {
-      return tourState.active?.popoverTitleClass || 'h4';
+      return tourState.active?.popoverTitleClass || ['h4', 'display-block', 'no-margin'];
     }
   });
 </script>
