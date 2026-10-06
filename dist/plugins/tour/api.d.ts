@@ -56,5 +56,9 @@ export type TourStep = {
      * - Async hook called before the step is rendered.
      */
     onEnter?: Function | undefined;
+    /**
+     * - Async hook called after the step is exited.
+     */
+    onLeave?: Function | undefined;
 };
 //# sourceMappingURL=api.d.ts.map

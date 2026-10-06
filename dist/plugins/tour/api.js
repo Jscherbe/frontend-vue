@@ -1,5 +1,5 @@
-import { markRaw as t } from "vue";
-const o = (e) => ({
+import { markRaw as o } from "vue";
+const s = (e) => ({
   /**
    * Starts a new tour
    * @param {Object} tour - The tour configuration object
@@ -10,9 +10,10 @@ const o = (e) => ({
    * @param {String|Array|Object} [tour.modalTitleClass] - Global class applied to the title of modal steps.
    * @param {String|Array|Object} [tour.popoverTitleClass] - Global class applied to the title of popover steps.
    * @param {String|Array|Object} [tour.pagerClass] - Global class applied to the pager.
+   * @param {Function} [tour.onStop] - Async hook called when the tour is closed/finished.
    */
   async start(n) {
-    n?.steps?.length && (await this._runHooks(n.steps[0]), e.active = t(n), e.stepIndex = 0);
+    n?.steps?.length && (await this._runHooks(n.steps[0]), e.active = o(n), e.stepIndex = 0);
   },
   /**
    * Advances the tour to the next step, or stops if it is the last step
@@ -21,10 +22,11 @@ const o = (e) => ({
     const n = e.active;
     if (n)
       if (e.stepIndex < n.steps.length - 1) {
-        const s = e.stepIndex + 1;
-        await this._runHooks(n.steps[s]), e.stepIndex = s;
+        await this._runLeaveHook(n.steps[e.stepIndex]);
+        const i = e.stepIndex + 1;
+        await this._runHooks(n.steps[i]), e.stepIndex = i;
       } else
-        this.stop();
+        await this.stop();
   },
   /**
    * Returns the tour to the previous step
@@ -32,24 +34,33 @@ const o = (e) => ({
   async prev() {
     const n = e.active;
     if (n && e.stepIndex > 0) {
-      const s = e.stepIndex - 1;
-      await this._runHooks(n.steps[s]), e.stepIndex = s;
+      await this._runLeaveHook(n.steps[e.stepIndex]);
+      const i = e.stepIndex - 1;
+      await this._runHooks(n.steps[i]), e.stepIndex = i;
     }
   },
   /**
    * Stops and closes the current tour
    */
-  stop() {
-    e.active = null, e.stepIndex = 0;
+  async stop() {
+    const n = e.active;
+    n && (n.steps[e.stepIndex] && await this._runLeaveHook(n.steps[e.stepIndex]), typeof n.onStop == "function" && await n.onStop()), e.active = null, e.stepIndex = 0;
   },
   /**
-   * Internal method to run asynchronous lifecycle hooks on a step
+   * Internal method to run asynchronous enter hooks on a step
    * @param {Object} step - The tour step configuration
    */
   async _runHooks(n) {
     n && typeof n.onEnter == "function" && await n.onEnter();
+  },
+  /**
+   * Internal method to run asynchronous leave hooks on a step
+   * @param {Object} step - The tour step configuration
+   */
+  async _runLeaveHook(n) {
+    n && typeof n.onLeave == "function" && await n.onLeave();
   }
 });
 export {
-  o as createApi
+  s as createApi
 };

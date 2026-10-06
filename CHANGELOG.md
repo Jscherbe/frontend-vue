@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.6.31
+
+- **Tour Plugin** | Added missing lifecycle hooks for better step transitions and cleanup.
+  - `onLeave` callback added to individual steps. Wait for asynchronous tasks to complete before transitioning to the next step.
+  - `onStop` callback added to the global tour configuration. Wait for asynchronous tasks to complete before the tour closes.
+
 ## 0.6.30
 
 - **UluModal** | Add fallthrough attributes to dialog which were being ignored since the dialog is within a teleport
