@@ -11,6 +11,7 @@
       :aria-describedby="describedby"
       ref="container" 
       :style="{ width: containerWidth }"
+      v-bind="$attrs"
       @cancel.prevent="close"  
       @close="handleDialogCloseEvent"
       @click="handleClick"

@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.30
+
+- **UluModal** | Add fallthrough attributes to dialog which were being ignored since the dialog is within a teleport
+
 ## 0.6.29
 
 - **Tour Plugin** | Add data attribute to tour components so click outside in popover can disable itself without developers needing to add conditions to popovers like clickOutsideCloses="!tourState.active"

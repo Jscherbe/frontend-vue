@@ -1,10 +1,10 @@
-import { useSlots as J, ref as n, computed as u, watch as M, nextTick as w, onMounted as K, onBeforeUnmount as Q, createBlock as F, openBlock as d, Teleport as Z, createElementVNode as f, withModifiers as x, normalizeStyle as H, normalizeClass as r, unref as L, createElementBlock as C, createCommentVNode as g, renderSlot as m, toDisplayString as ee, createVNode as T } from "vue";
+import { useSlots as G, ref as n, computed as c, watch as M, nextTick as w, onMounted as J, onBeforeUnmount as K, createBlock as F, openBlock as u, Teleport as Q, createElementVNode as d, mergeProps as Z, unref as H, withModifiers as x, createElementBlock as C, createCommentVNode as g, normalizeClass as f, renderSlot as m, toDisplayString as ee, createVNode as L, normalizeStyle as le } from "vue";
 import R from "../elements/UluIcon.vue.js";
-import { useModifiers as le } from "../../composables/useModifiers.js";
-import { preventScroll as oe, wasClickOutside as te } from "@ulu/utils/browser/dom.js";
-import { getSoleIframeLayout as se, youtubePrepVideos as ie, youtubePauseVideos as ae, Resizer as ne, observeDialogToggle as re } from "@ulu/frontend";
-import { newId as ce } from "../../utils/dom.js";
-const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "modal__title-text" }, pe = {
+import { useModifiers as oe } from "../../composables/useModifiers.js";
+import { preventScroll as te, wasClickOutside as se } from "@ulu/utils/browser/dom.js";
+import { getSoleIframeLayout as ie, youtubePrepVideos as ae, youtubePauseVideos as ne, Resizer as re, observeDialogToggle as ce } from "@ulu/frontend";
+import { newId as ue } from "../../utils/dom.js";
+const de = ["aria-labelledby", "aria-describedby"], fe = ["id"], me = { class: "modal__title-text" }, he = {
   __name: "UluModal",
   props: {
     /**
@@ -128,21 +128,21 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
     noPauseVideos: Boolean
   },
   emits: ["update:modelValue", "close", "open"],
-  setup(t, { emit: j }) {
-    const c = j, e = t, D = J(), N = n(null), E = ce("ulu-modal-title"), B = n(!1), o = n(null), O = n(null), k = n(null), i = n({
+  setup(t, { emit: T }) {
+    const r = T, e = t, j = G(), D = n(null), E = ue("ulu-modal-title"), B = n(!1), o = n(null), $ = n(null), k = n(null), i = n({
       isStaticSize: !1,
       isFill: !1,
       bodyStyle: {}
-    }), $ = u(() => e.title || D.title), v = u(() => {
+    }), O = c(() => e.title || j.title), v = c(() => {
       const { allowResize: l, position: s } = e;
       if (!l || !s) return !1;
       const h = ["left", "right", "center"];
       return h.includes(s) ? !0 : (console.warn(`Passed invalid position for resize (${s}), use ${h.join(", ")}`), !1);
-    }), _ = u(() => e.position === "center" ? "type:resizeBoth" : "type:resizeHorizontal"), A = u(() => ({
+    }), N = c(() => e.position === "center" ? "type:resizeBoth" : "type:resizeHorizontal"), A = c(() => ({
       [e.position]: e.position,
       resize: e.allowResize,
       "no-resize": !e.allowResize,
-      "no-header": !$.value,
+      "no-header": !O.value,
       "body-fills": e.bodyFills,
       "no-backdrop": e.noBackdrop,
       "no-min-height": e.noMinHeight,
@@ -152,33 +152,33 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
       "fullscreen-mobile": e.fullscreenMobile,
       "frame-ratio": i.value.isStaticSize,
       "frame-fill": i.value.isFill
-    })), { resolvedModifiers: U } = le({
+    })), { resolvedModifiers: U } = oe({
       props: e,
       baseClass: "modal",
       internal: A
-    }), X = u(() => e.labelledby ? e.labelledby : E), a = () => {
-      c("update:modelValue", !1), c("close");
-    }, q = () => {
-      e.modelValue && (c("update:modelValue", !1), c("close"));
-    }, W = (l) => {
+    }), X = c(() => e.labelledby ? e.labelledby : E), a = () => {
+      r("update:modelValue", !1), r("close");
+    }, _ = () => {
+      e.modelValue && (r("update:modelValue", !1), r("close"));
+    }, q = (l) => {
       if (e.clickOutsideCloses && !B.value) {
         const { target: s } = l;
-        s === o.value && te(o.value, l) && a();
+        s === o.value && se(o.value, l) && a();
       }
     };
     let y = null, b = null, S = null, z = null, p = null;
-    const Y = () => {
-      !e.nonModal && e.preventScroll && (y = re(o.value, (l) => {
-        l ? b = oe({ preventShift: e.preventScrollShift }) : P();
+    const W = () => {
+      !e.nonModal && e.preventScroll && (y = ce(o.value, (l) => {
+        l ? b = te({ preventShift: e.preventScrollShift }) : P();
       }));
-    }, G = () => {
+    }, Y = () => {
       y && (y.destroy(), y = null);
     }, P = () => {
       b && (b(), b = null);
     }, I = () => {
       if (v.value) {
         const l = e.position === "center" ? { fromX: "right", fromY: "bottom", multiplier: 2 } : { fromX: e.position === "right" ? "left" : "right" };
-        S = new ne(o.value, O.value, l), z = () => {
+        S = new re(o.value, $.value, l), z = () => {
           B.value = !0;
         }, p = () => {
           setTimeout(() => {
@@ -194,12 +194,12 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
         if (o.value)
           if (l) {
             if (e.autoIframe && k.value) {
-              const s = se(k.value);
+              const s = ie(k.value);
               s && (s.iframe.classList.add("modal__frame-content"), s.isStaticSize ? (i.value.isStaticSize = !0, i.value.isFill = !1, i.value.bodyStyle = { aspectRatio: s.aspectRatio }) : (i.value.isFill = !0, i.value.isStaticSize = !1, i.value.bodyStyle = s.fillHeight ? { minHeight: s.fillHeight } : {}));
             }
-            e.noPauseVideos || ie(o.value), o.value[e.nonModal ? "show" : "showModal"](), c("open");
+            e.noPauseVideos || ae(o.value), o.value[e.nonModal ? "show" : "showModal"](), r("open");
           } else
-            e.noPauseVideos || (ae(o.value), o.value.querySelectorAll("video").forEach((h) => h.pause())), o.value.close(), i.value = { isStaticSize: !1, isFill: !1, bodyStyle: {} };
+            e.noPauseVideos || (ne(o.value), o.value.querySelectorAll("video").forEach((h) => h.pause())), o.value.close(), i.value = { isStaticSize: !1, isFill: !1, bodyStyle: {} };
       });
     }, { immediate: !0 }), M(v, (l) => {
       l ? w(() => {
@@ -209,88 +209,89 @@ const ue = ["aria-labelledby", "aria-describedby"], de = ["id"], fe = { class: "
       l !== s && (V(), w(() => {
         I();
       }));
+    }), J(() => {
+      W(), I();
     }), K(() => {
-      Y(), I();
-    }), Q(() => {
-      o.value && o.value.open && o.value.close(), G(), P(), V();
-    }), (l, s) => (d(), F(Z, {
+      o.value && o.value.open && o.value.close(), Y(), P(), V();
+    }), (l, s) => (u(), F(Q, {
       to: t.teleport === !1 ? null : t.teleport,
       disabled: t.teleport === !1
     }, [
-      f("dialog", {
-        class: r(["modal", [L(U), t.classes.container]]),
+      d("dialog", Z({
+        class: ["modal", [H(U), t.classes.container]],
         "aria-labelledby": X.value,
         "aria-describedby": t.describedby,
         ref_key: "container",
         ref: o,
-        style: H({ width: N.value }),
+        style: { width: D.value }
+      }, l.$attrs, {
         onCancel: x(a, ["prevent"]),
-        onClose: q,
-        onClick: W
-      }, [
-        $.value ? (d(), C("header", {
+        onClose: _,
+        onClick: q
+      }), [
+        O.value ? (u(), C("header", {
           key: 0,
-          class: r(["modal__header", t.classes.header])
+          class: f(["modal__header", t.classes.header])
         }, [
-          f("h2", {
-            class: r(["modal__title", t.classes.title]),
-            id: L(E)
+          d("h2", {
+            class: f(["modal__title", t.classes.title]),
+            id: H(E)
           }, [
             m(l.$slots, "title", { close: a }, () => [
-              t.titleIcon ? (d(), F(R, {
+              t.titleIcon ? (u(), F(R, {
                 key: 0,
                 class: "modal__title-icon",
                 icon: t.titleIcon
               }, null, 8, ["icon"])) : g("", !0),
-              f("span", fe, ee(t.title), 1)
+              d("span", me, ee(t.title), 1)
             ])
-          ], 10, de),
-          f("button", {
-            class: r(["modal__close", t.classes.close]),
+          ], 10, fe),
+          d("button", {
+            class: f(["modal__close", t.classes.close]),
             "aria-label": "Close modal",
             onClick: a,
             autofocus: ""
           }, [
             m(l.$slots, "closeIcon", {}, () => [
-              T(R, {
+              L(R, {
                 class: "modal__close-icon",
                 icon: t.closeIcon || "type:close"
               }, null, 8, ["icon"])
             ])
           ], 2)
         ], 2)) : g("", !0),
-        f("div", {
-          class: r(["modal__body", t.classes.body]),
-          style: H(i.value.bodyStyle),
+        d("div", {
+          class: f(["modal__body", t.classes.body]),
+          style: le(i.value.bodyStyle),
           ref_key: "body",
           ref: k
         }, [
           m(l.$slots, "default", { close: a })
         ], 6),
-        l.$slots.footer ? (d(), C("div", {
+        l.$slots.footer ? (u(), C("div", {
           key: 1,
-          class: r(["modal__footer", t.classes.footer])
+          class: f(["modal__footer", t.classes.footer])
         }, [
           m(l.$slots, "footer", { close: a })
         ], 2)) : g("", !0),
-        v.value ? (d(), C("button", {
+        v.value ? (u(), C("button", {
           key: 2,
           class: "modal__resizer",
           ref_key: "resizer",
-          ref: O,
+          ref: $,
           type: "button"
         }, [
           m(l.$slots, "resizerIcon", {}, () => [
-            T(R, {
+            L(R, {
               class: "modal__resizer-icon",
-              icon: t.resizerIcon || _.value
+              icon: t.resizerIcon || N.value
             }, null, 8, ["icon"])
           ])
         ], 512)) : g("", !0)
-      ], 46, ue)
+      ], 16, de)
     ], 8, ["to", "disabled"]));
   }
 };
 export {
-  pe as default
+  he as default
 };
