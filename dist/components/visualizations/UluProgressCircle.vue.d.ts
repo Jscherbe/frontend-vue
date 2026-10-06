@@ -5,9 +5,9 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     duration: number;
+    small: boolean;
     easing: string;
     danger: boolean;
-    small: boolean;
     label: string;
     warning: boolean;
     success: boolean;
@@ -21,9 +21,9 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
         readonly duration?: number | undefined;
+        readonly small?: boolean | undefined;
         readonly easing?: string | undefined;
         readonly danger?: boolean | undefined;
-        readonly small?: boolean | undefined;
         readonly label?: string | undefined;
         readonly warning?: boolean | undefined;
         readonly success?: boolean | undefined;

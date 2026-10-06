@@ -5,16 +5,16 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     $emit: (event: "change", ...args: any[]) => void;
+    transparent: boolean;
     vertical: boolean;
     sticky: boolean;
-    transparent: boolean;
     modifiers?: string | Record<string, any> | unknown[] | undefined;
     defaultIndex?: number | undefined;
     selectedIndex?: number | undefined;
     $props: {
+        readonly transparent?: boolean | undefined;
         readonly vertical?: boolean | undefined;
         readonly sticky?: boolean | undefined;
-        readonly transparent?: boolean | undefined;
         readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly defaultIndex?: number | undefined;
         readonly selectedIndex?: number | undefined;

@@ -5,8 +5,8 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     $emit: (event: "close" | "update:modelValue" | "open", ...args: any[]) => void;
-    classes: Record<string, any>;
     clickOutsideCloses: boolean;
+    classes: Record<string, any>;
     modelValue: boolean;
     teleport: string | boolean | Record<string, any>;
     preventScroll: boolean;
@@ -21,16 +21,16 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     noMinHeight: boolean;
     autoIframe: boolean;
     noPauseVideos: boolean;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     labelledby?: string | undefined;
     describedby?: string | undefined;
     title?: string | undefined;
     titleIcon?: string | undefined;
     resizerIcon?: string | undefined;
     closeIcon?: string | undefined;
-    modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
-        readonly classes?: Record<string, any> | undefined;
         readonly clickOutsideCloses?: boolean | undefined;
+        readonly classes?: Record<string, any> | undefined;
         readonly modelValue?: boolean | undefined;
         readonly teleport?: string | boolean | Record<string, any> | undefined;
         readonly preventScroll?: boolean | undefined;
@@ -45,13 +45,13 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly noMinHeight?: boolean | undefined;
         readonly autoIframe?: boolean | undefined;
         readonly noPauseVideos?: boolean | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly labelledby?: string | undefined;
         readonly describedby?: string | undefined;
         readonly title?: string | undefined;
         readonly titleIcon?: string | undefined;
         readonly resizerIcon?: string | undefined;
         readonly closeIcon?: string | undefined;
-        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, any, any>;
 type __VLS_TemplateResult = any;

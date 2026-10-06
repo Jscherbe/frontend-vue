@@ -5,8 +5,8 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     $emit: (event: "change", ...args: any[]) => void;
-    duration: number;
     transition: string;
+    duration: number;
     items: unknown[];
     nav: boolean;
     controls: boolean;
@@ -17,8 +17,8 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     focusOptions: Record<string, any>;
     modifiers?: string | Record<string, any> | unknown[] | undefined;
     $props: {
-        readonly duration?: number | undefined;
         readonly transition?: string | undefined;
+        readonly duration?: number | undefined;
         readonly items?: unknown[] | undefined;
         readonly nav?: boolean | undefined;
         readonly controls?: boolean | undefined;

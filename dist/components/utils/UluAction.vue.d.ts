@@ -5,9 +5,9 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     type?: string | undefined;
+    target?: string | undefined;
     activeClass?: string | undefined;
     to?: string | Record<string, any> | undefined;
-    target?: string | undefined;
     path?: string | undefined;
     href?: string | undefined;
     download?: string | boolean | undefined;
@@ -16,9 +16,9 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     click?: Function | undefined;
     $props: {
         readonly type?: string | undefined;
+        readonly target?: string | undefined;
         readonly activeClass?: string | undefined;
         readonly to?: string | Record<string, any> | undefined;
-        readonly target?: string | undefined;
         readonly path?: string | undefined;
         readonly href?: string | undefined;
         readonly download?: string | boolean | undefined;

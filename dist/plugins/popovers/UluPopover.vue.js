@@ -1,184 +1,133 @@
-import { computed as V, ref as v, resolveDirective as D, createElementBlock as d, openBlock as u, Fragment as K, withDirectives as L, createElementVNode as x, unref as t, normalizeClass as F, renderSlot as m, createTextVNode as R, toDisplayString as U, withKeys as q, normalizeStyle as T, createCommentVNode as h, nextTick as H } from "vue";
-import { useRequiredInject as Y } from "../../composables/useRequiredInject.js";
-import { POPOVER_OPTIONS_KEY as G } from "./index.js";
-import J from "./defaults.js";
-import { newId as A } from "../../utils/dom.js";
-import { useUluFloating as M } from "../../composables/useUluFloating.js";
-const Q = ["id", "disabled", "aria-expanded", "aria-controls", "aria-label"], W = ["aria-labelledby", "id", "data-placement"], X = { class: "popover__inner" }, Z = {
-  key: 0,
-  class: "popover__footer"
-}, ie = {
+import { computed as x, ref as n, resolveDirective as T, createElementBlock as p, openBlock as m, Fragment as j, withDirectives as z, createVNode as I, unref as s, normalizeClass as O, renderSlot as r, createTextVNode as h, toDisplayString as w, createSlots as D, withCtx as b } from "vue";
+import { useRequiredInject as E } from "../../composables/useRequiredInject.js";
+import { POPOVER_OPTIONS_KEY as N } from "./index.js";
+import V from "./defaults.js";
+import { newId as C } from "../../utils/dom.js";
+import A from "./UluPopoverBase.vue.js";
+const R = ["id", "disabled", "aria-expanded", "aria-controls", "aria-label"], L = {
   __name: "UluPopover",
   props: {
-    /**
-     * Text for popover button
-     */
     triggerText: String,
-    /**
-     * Add optional aria-label to button for icons/etc
-     */
     triggerAlt: String,
-    /**
-     * Disable trigger button
-     */
     disabled: Boolean,
-    /**
-     * Tooltip text for trigger button
-     */
     tooltip: String,
-    /**
-     * Popover size (ie large, etc)
-     */
     size: String,
-    /**
-     * No padding on popover content
-     */
     noPadding: Boolean,
-    /**
-     * Floating UI config (merged with defaults for popover)
-     * - See useUluFloating() composable for config API
-     */
     config: {
       type: Object,
       default: () => ({})
     },
-    /**
-     * Mount this component already open state
-     */
     startOpen: Boolean,
-    /**
-     * Active class for trigger button
-     */
     activeClass: {
       type: String,
       default: "is-active"
     },
-    /**
-     * Add custom classes to specific elements
-     * { trigger, content }
-     */
     classes: {
       type: Object,
       default: () => ({})
     },
-    /**
-     * Close popover when click is outside
-     */
     clickOutsideCloses: {
       type: Boolean,
       default: !0
     },
     /**
-     * Direct focus when open/closing popover
+     * Direct focus when open/closing popover.
+     * Overrides UluPopoverBase's default focus management.
      */
-    directFocus: {
-      type: Function,
-      default: ({ isOpen: e, content: g }) => {
-        e && g.focus({ preventScroll: !0 });
-      }
-    }
+    directFocus: Function
   },
   emits: ["toggle"],
-  setup(e, { emit: g }) {
-    const y = g, i = e, O = A(), b = A(), k = Y(G), B = k ? k.popover : J.popover, S = V(() => ({ ...B, ...i.config })), o = v(i.startOpen || !1), p = v(null), r = v(null), {
-      floatingStyles: E,
-      placement: P,
-      update: $,
-      arrowStyles: z,
-      contentArrow: j,
-      isFixedStrategy: I
-    } = M(p, r, S), w = () => {
-      a(!o.value);
-    }, a = (l) => {
-      o.value = l;
-      const n = {
-        trigger: t(p),
-        content: t(r),
-        isOpen: t(o)
-      }, c = { isOpen: n.isOpen };
-      H(() => {
-        o.value ? ($(), window.setTimeout(() => {
-          N(), i.directFocus(n), y("toggle", c);
-        }, 0)) : (C(), i.directFocus(n), y("toggle", c));
-      });
-    };
-    let s;
-    const N = () => {
-      i.clickOutsideCloses && (s && C(), s = (l) => {
-        r.value && !r.value.contains(l.target) && a(!1);
-      }, document.addEventListener("click", s));
-    }, C = () => {
-      s && (document.removeEventListener("click", s), s = null);
-    }, f = () => a(!1);
-    return (l, n) => {
-      const c = D("ulu-tooltip");
-      return u(), d(K, null, [
-        L((u(), d("button", {
+  setup(e, { expose: y, emit: k }) {
+    const S = k, c = e, d = C(), g = C(), u = E(N), B = u ? u.popover : V.popover, $ = x(() => ({ ...B, ...c.config })), t = n(c.startOpen || !1), f = n(null), F = n(null), a = () => {
+      i(!t.value);
+    }, i = (o) => {
+      t.value = o, S("toggle", { isOpen: o });
+    }, l = () => i(!1);
+    return y({
+      /**
+       * The reactive internal open/closed state of the popover
+       */
+      isOpen: t,
+      /**
+       * Method to toggle the popover open/closed
+       */
+      toggle: a,
+      /**
+       * Method to force the popover closed
+       */
+      close: l,
+      /**
+       * Method to explicitly set the open state
+       * @param {Boolean} toOpen - The desired state
+       */
+      changeTo: i
+    }), (o, v) => {
+      const P = T("ulu-tooltip");
+      return m(), p(j, null, [
+        z((m(), p("button", {
           type: "button",
           ref_key: "trigger",
-          ref: p,
-          onClick: w,
-          id: t(b),
+          ref: f,
+          onClick: a,
+          id: s(g),
           disabled: e.disabled,
-          class: F([
-            { [e.activeClass]: o.value },
+          class: O([
+            { [e.activeClass]: t.value },
             e.classes.trigger
           ]),
-          "aria-expanded": o.value ? "true" : "false",
-          "aria-controls": t(O),
+          "aria-expanded": t.value ? "true" : "false",
+          "aria-controls": s(d),
           "aria-label": e.triggerAlt
         }, [
-          m(l.$slots, "trigger", {
-            isOpen: o.value,
-            close: f
+          r(o.$slots, "trigger", {
+            isOpen: t.value,
+            close: l
           }, () => [
-            R(U(e.triggerText), 1)
+            h(w(e.triggerText), 1)
           ])
-        ], 10, Q)), [
-          [c, e.tooltip ? e.tooltip : null]
+        ], 10, R)), [
+          [P, e.tooltip ? e.tooltip : null]
         ]),
-        x("span", {
-          class: F(["popover", [
+        I(A, {
+          ref_key: "popoverBase",
+          ref: F,
+          trigger: f.value,
+          config: $.value,
+          isOpen: t.value,
+          clickOutsideCloses: e.clickOutsideCloses,
+          directFocus: e.directFocus,
+          class: O([
             e.size ? `popover--${e.size}` : "",
             {
-              "popover--no-padding": e.noPadding,
-              "popover--fixed": t(I),
-              "is-active": o.value
+              "popover--no-padding": e.noPadding
             },
             e.classes.content
-          ]]),
-          ref_key: "content",
-          ref: r,
-          "aria-labelledby": t(b),
-          id: t(O),
-          style: T(t(E)),
-          "data-placement": t(P),
-          onKeydown: n[0] || (n[0] = q((_) => a(!1), ["esc"])),
-          tabindex: "-1"
-        }, [
-          x("span", X, [
-            m(l.$slots, "default", {
-              isOpen: o.value,
-              toggle: w,
-              close: f
+          ]),
+          "aria-labelledby": s(g),
+          id: s(d),
+          onClose: v[0] || (v[0] = (q) => i(!1))
+        }, D({
+          default: b(() => [
+            r(o.$slots, "default", {
+              isOpen: t.value,
+              toggle: a,
+              close: l
             })
           ]),
-          l.$slots.footer ? (u(), d("span", Z, [
-            m(l.$slots, "footer", { close: f })
-          ])) : h("", !0),
-          S.value.arrow ? (u(), d("span", {
-            key: 1,
-            class: "popover__arrow",
-            ref_key: "contentArrow",
-            ref: j,
-            style: T(t(z)),
-            "data-ulu-popover-arrow": ""
-          }, null, 4)) : h("", !0)
-        ], 46, W)
+          _: 2
+        }, [
+          o.$slots.footer ? {
+            name: "footer",
+            fn: b(() => [
+              r(o.$slots, "footer", { close: l })
+            ]),
+            key: "0"
+          } : void 0
+        ]), 1032, ["trigger", "config", "isOpen", "clickOutsideCloses", "directFocus", "class", "aria-labelledby", "id"])
       ], 64);
     };
   }
 };
 export {
-  ie as default
+  L as default
 };

@@ -14,10 +14,10 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     horizontal: boolean;
     horizontalCenter: boolean;
     overlay: boolean;
-    title?: string | undefined;
     modifiers?: string | Record<string, any> | unknown[] | undefined;
-    to?: string | Record<string, any> | undefined;
     target?: string | undefined;
+    title?: string | undefined;
+    to?: string | Record<string, any> | undefined;
     href?: string | undefined;
     titleTo?: string | Record<string, any> | undefined;
     titleHref?: string | undefined;
@@ -35,10 +35,10 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
         readonly horizontal?: boolean | undefined;
         readonly horizontalCenter?: boolean | undefined;
         readonly overlay?: boolean | undefined;
-        readonly title?: string | undefined;
         readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
-        readonly to?: string | Record<string, any> | undefined;
         readonly target?: string | undefined;
+        readonly title?: string | undefined;
+        readonly to?: string | Record<string, any> | undefined;
         readonly href?: string | undefined;
         readonly titleTo?: string | Record<string, any> | undefined;
         readonly titleHref?: string | undefined;

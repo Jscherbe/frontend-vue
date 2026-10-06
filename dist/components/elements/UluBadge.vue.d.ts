@@ -5,24 +5,24 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     skeleton: boolean;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
     type?: string | undefined;
     size?: string | undefined;
-    modifiers?: string | Record<string, any> | unknown[] | undefined;
     to?: string | Record<string, any> | undefined;
     href?: string | undefined;
     click?: Function | undefined;
-    text?: string | undefined;
     alt?: string | undefined;
+    text?: string | undefined;
     $props: {
         readonly skeleton?: boolean | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly type?: string | undefined;
         readonly size?: string | undefined;
-        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly to?: string | Record<string, any> | undefined;
         readonly href?: string | undefined;
         readonly click?: Function | undefined;
-        readonly text?: string | undefined;
         readonly alt?: string | undefined;
+        readonly text?: string | undefined;
     };
 }, {}, {}, {}, import('vue').ComponentOptionsMixin, import('vue').ComponentOptionsMixin, {}, string, import('vue').PublicProps, Readonly<{}> & Readonly<{}>, {}, {}, {}, {}, string, import('vue').ComponentProvideOptions, true, {}, any>;
 type __VLS_TemplateResult = {

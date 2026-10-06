@@ -1,10 +1,10 @@
 <template>
-  <div class="tour-step crop-margins">
+  <div class="tour-content crop-margins">
     <component 
       v-if="step?.title"
       :is="isModal ? 'h2' : 'strong'" 
       :class="isModal ? 'h3' : 'h4'" 
-      class="display-block no-margin-top"
+      class="display-block no-margin"
     >
       {{ step.title }}
     </component>

@@ -135,6 +135,11 @@
         // Ignore clicks on elements that have been removed from the DOM
         if (!document.body.contains(event.target)) return;
 
+        // If the click happened on a DOM node physically inside the popover,
+        // it is NOT an outside click, even if floating-ui instantly moved
+        // the popover across the screen causing `wasClickOutside` (bounding rect check) to fail.
+        if (contentEl.value.contains(event.target)) return;
+
         if (wasClickOutside(contentEl.value, event)) {
           // If the click is on the trigger itself, we let the trigger handle toggling
           if (props.trigger instanceof HTMLElement && props.trigger.contains(event.target)) {

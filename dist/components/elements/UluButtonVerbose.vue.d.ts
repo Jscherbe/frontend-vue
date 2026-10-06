@@ -7,24 +7,24 @@ declare const __VLS_component: import('vue').DefineComponent<{}, {
     titleElement: string;
     inline: boolean;
     fullWidth: boolean;
+    modifiers?: string | Record<string, any> | unknown[] | undefined;
+    target?: string | undefined;
     icon?: string | unknown[] | undefined;
     body?: string | undefined;
     title?: string | undefined;
-    modifiers?: string | Record<string, any> | unknown[] | undefined;
     to?: string | Record<string, any> | undefined;
-    target?: string | undefined;
     href?: string | undefined;
     download?: string | boolean | undefined;
     $props: {
         readonly titleElement?: string | undefined;
         readonly inline?: boolean | undefined;
         readonly fullWidth?: boolean | undefined;
+        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
+        readonly target?: string | undefined;
         readonly icon?: string | unknown[] | undefined;
         readonly body?: string | undefined;
         readonly title?: string | undefined;
-        readonly modifiers?: string | Record<string, any> | unknown[] | undefined;
         readonly to?: string | Record<string, any> | undefined;
-        readonly target?: string | undefined;
         readonly href?: string | undefined;
         readonly download?: string | boolean | undefined;
     };

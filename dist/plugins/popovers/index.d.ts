@@ -20,4 +20,8 @@ export const TOOLTIP_ID: "ulu-global-tooltip";
 export { useTooltip };
 export { default as useTooltipFollow } from './useTooltipFollow.js';
 export function resolveTooltipConfig(rawConfig: any, tooltipDefaults: object): object | null;
+export { default as UluPopover } from './UluPopover.vue';
+export { default as UluPopoverBase } from './UluPopoverBase.vue';
+export { default as UluTooltipDisplay } from './UluTooltipDisplay.vue';
+export { default as UluTooltipPopover } from './UluTooltipPopover.vue';
 //# sourceMappingURL=index.d.ts.map

@@ -5,14 +5,14 @@ type __VLS_WithTemplateSlots<T, S> = T & (new () => {
 });
 declare const __VLS_component: import('vue').DefineComponent<{}, {
     $emit: (event: "update:modelValue" | "submit", ...args: any[]) => void;
-    modelValue: string;
     placeholder: string;
+    modelValue: string;
     label: string;
     submitButtonProps: Record<string, any>;
     id?: string | undefined;
     $props: {
-        readonly modelValue?: string | undefined;
         readonly placeholder?: string | undefined;
+        readonly modelValue?: string | undefined;
         readonly label?: string | undefined;
         readonly submitButtonProps?: Record<string, any> | undefined;
         readonly id?: string | undefined;
