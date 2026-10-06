@@ -9,6 +9,7 @@
         data-ulu-tour-ui="true"
         :step="currentStep"
         :tourState="tourState"
+        :api="api"
         v-bind="currentStep.componentProps" 
       />
 
@@ -25,6 +26,7 @@
           :is="currentStep.contentComponent" 
           :step="currentStep"
           :tourState="tourState"
+          :api="api"
           :is-modal="true"
           v-bind="currentStep.componentProps"
         />
@@ -52,6 +54,7 @@
           :is="currentStep.contentComponent" 
           :step="currentStep"
           :tourState="tourState"
+          :api="api"
           :is-modal="false"
           v-bind="currentStep.componentProps"
         />

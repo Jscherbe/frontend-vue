@@ -1,8 +1,12 @@
 # Change Log
 
+## 0.6.33
+
+- **Tour Plugin** | Add "api" prop to custom step components (`component` and `contentComponent`) 
+
 ## 0.6.32
 
-- **Tour Plugin** | Custom step components (`component` and `contentComponent`) now receive `step`, `tourState`, and `isModal` (for `contentComponent`) as props.
+- **Tour Plugin** | Custom step components (`component` and `contentComponent`) now receive `step`, `tourState`, `api`, and `isModal` (for `contentComponent`) as props.
 
 ## 0.6.31
 
