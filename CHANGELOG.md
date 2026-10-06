@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.6.26
+
+- **UluPopover / UluPopoverBase** | Fix bug with focus introduced in last version
+
 ## 0.6.25
 
 - **UluPopover / UluPopoverBase** | Added native `v-model` support for both components.

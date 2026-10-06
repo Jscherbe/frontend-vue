@@ -158,7 +158,7 @@
     }
   };
 
-  watch(() => props.isOpen, (newVal) => {
+  watch(() => props.isOpen, (newVal, oldVal) => {
     if (newVal) {
       update();
       addOutsideClick();
@@ -169,7 +169,9 @@
       }
     } else {
       destroyOutsideClick();
-      if (props.directFocus) {
+      // Only return focus if we are actually transitioning from open to closed
+      // This prevents stealing focus on initial mount when oldVal is undefined
+      if (props.directFocus && oldVal === true) {
         nextTick(() => {
           props.directFocus({ isOpen: false, trigger: props.trigger, content: contentEl.value });
         });
