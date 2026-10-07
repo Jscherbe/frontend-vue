@@ -4,8 +4,8 @@
       
       <!-- 1. FULL COMPONENT TAKEOVER -->
       <component 
-        v-if="currentStep?.component" 
-        :is="currentStep.component" 
+        v-if="resolvedComponent" 
+        :is="resolvedComponent" 
         data-ulu-tour-ui="true"
         :step="currentStep"
         :tourState="tourState"
@@ -14,16 +14,17 @@
       />
 
       <!-- 2. RENDER MODAL STEP -->
-      <UluModal 
+      <component 
         v-else-if="!currentStep?.target" 
+        :is="resolvedModalComponent"
         :modelValue="true"
         data-ulu-tour-ui="true"
         v-bind="resolvedModalProps"
         @close="api.stop()"
       >
         <component 
-          v-if="currentStep?.contentComponent" 
-          :is="currentStep.contentComponent" 
+          v-if="resolvedContentComponent" 
+          :is="resolvedContentComponent" 
           :step="currentStep"
           :tourState="tourState"
           :api="api"
@@ -33,13 +34,14 @@
         <UluTourContent v-else :step="currentStep" :is-modal="true" />
         
         <template #footer v-if="!currentStep?.hideFooter">
-          <UluTourPager />
+          <component :is="resolvedPagerComponent" />
         </template>
-      </UluModal>
+      </component>
 
       <!-- 3. RENDER POPOVER STEP -->
-      <UluPopoverBase 
+      <component 
         v-else
+        :is="resolvedPopoverComponent"
         ref="popoverBase"
         :trigger="targetEl"
         :config="resolvedConfig"
@@ -50,8 +52,8 @@
         v-bind="resolvedPopoverProps"
       >
         <component 
-          v-if="currentStep?.contentComponent" 
-          :is="currentStep.contentComponent" 
+          v-if="resolvedContentComponent" 
+          :is="resolvedContentComponent" 
           :step="currentStep"
           :tourState="tourState"
           :api="api"
@@ -61,9 +63,9 @@
         <UluTourContent v-else :step="currentStep" :is-modal="false" />
         
         <template #footer v-if="!currentStep?.hideFooter">
-          <UluTourPager />
+          <component :is="resolvedPagerComponent" />
         </template>
-      </UluPopoverBase>
+      </component>
 
       <!-- OPTIONAL HIGHLIGHT BACKDROP -->
       <div 
@@ -88,6 +90,13 @@
   const { api, state: tourState } = useTour();
   
   const currentStep = computed(() => tourState.active?.steps[tourState.stepIndex]);
+
+  // Component Resolution
+  const resolvedComponent = computed(() => currentStep.value?.component || tourState.active?.component);
+  const resolvedContentComponent = computed(() => currentStep.value?.contentComponent || tourState.active?.contentComponent);
+  const resolvedPagerComponent = computed(() => currentStep.value?.pagerComponent || tourState.active?.pagerComponent || UluTourPager);
+  const resolvedModalComponent = computed(() => currentStep.value?.modalComponent || tourState.active?.modalComponent || UluModal);
+  const resolvedPopoverComponent = computed(() => currentStep.value?.popoverComponent || tourState.active?.popoverComponent || UluPopoverBase);
 
   // Floating UI Setup for Popovers
   const targetEl = ref(null);

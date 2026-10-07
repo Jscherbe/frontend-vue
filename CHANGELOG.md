@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.6.34
+
+- **Tour Plugin** | Added `onStart` lifecycle hook to the global tour configuration.
+- **Tour Plugin** | Added global component overrides to the tour configuration. You can now define `component`, `contentComponent`, `pagerComponent`, `modalComponent`, and `popoverComponent` at the top level of the tour to apply them to all steps.
+
 ## 0.6.33
 
 - **Tour Plugin** | Add "api" prop to custom step components (`component` and `contentComponent`) 
