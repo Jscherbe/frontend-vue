@@ -1,5 +1,5 @@
-import { markRaw as s } from "vue";
-const r = (n) => ({
+import { markRaw as o } from "vue";
+const a = (n) => ({
   /**
    * Starts a new tour
    * @param {Object} tour - The tour configuration object
@@ -18,7 +18,18 @@ const r = (n) => ({
       n.isTransitioning = !0;
       try {
         if (!i?.steps?.length) return;
-        typeof i.onStart == "function" && await i.onStart(), await this._runHooks(i.steps[0]), n.active = s(i), n.stepIndex = 0;
+        typeof i.onStart == "function" && await i.onStart();
+        let s = 0;
+        for (; s < i.steps.length; ) {
+          const e = i.steps[s];
+          if (!(typeof e.skip == "function" ? await e.skip() : e.skip)) break;
+          s++;
+        }
+        if (s >= i.steps.length) {
+          typeof i.onStop == "function" && await i.onStop();
+          return;
+        }
+        await this._runHooks(i.steps[s]), n.active = o(i), n.stepIndex = s;
       } finally {
         n.isTransitioning = !1;
       }
@@ -33,12 +44,13 @@ const r = (n) => ({
     if (i) {
       n.isTransitioning = !0;
       try {
-        if (n.stepIndex < i.steps.length - 1) {
-          await this._runLeaveHook(i.steps[n.stepIndex]);
-          const e = n.stepIndex + 1;
-          await this._runHooks(i.steps[e]), n.stepIndex = e;
-        } else
-          await this.stop(!0);
+        let s = n.stepIndex + 1;
+        for (; s < i.steps.length; ) {
+          const e = i.steps[s];
+          if (!(typeof e.skip == "function" ? await e.skip() : e.skip)) break;
+          s++;
+        }
+        s < i.steps.length ? (await this._runLeaveHook(i.steps[n.stepIndex]), await this._runHooks(i.steps[s]), n.stepIndex = s) : await this.stop(!0);
       } finally {
         n.isTransitioning = !1;
       }
@@ -53,11 +65,13 @@ const r = (n) => ({
     if (i) {
       n.isTransitioning = !0;
       try {
-        if (n.stepIndex > 0) {
-          await this._runLeaveHook(i.steps[n.stepIndex]);
-          const e = n.stepIndex - 1;
-          await this._runHooks(i.steps[e]), n.stepIndex = e;
+        let s = n.stepIndex - 1;
+        for (; s >= 0; ) {
+          const e = i.steps[s];
+          if (!(typeof e.skip == "function" ? await e.skip() : e.skip)) break;
+          s--;
         }
+        s >= 0 && (await this._runLeaveHook(i.steps[n.stepIndex]), await this._runHooks(i.steps[s]), n.stepIndex = s);
       } finally {
         n.isTransitioning = !1;
       }
@@ -71,8 +85,8 @@ const r = (n) => ({
     if (!(!i && n.isTransitioning)) {
       n.isTransitioning = !0;
       try {
-        const e = n.active;
-        e && (e.steps[n.stepIndex] && await this._runLeaveHook(e.steps[n.stepIndex]), typeof e.onStop == "function" && await e.onStop()), n.active = null, n.stepIndex = 0;
+        const s = n.active;
+        s && (s.steps[n.stepIndex] && await this._runLeaveHook(s.steps[n.stepIndex]), typeof s.onStop == "function" && await s.onStop()), n.active = null, n.stepIndex = 0;
       } finally {
         n.isTransitioning = !1;
       }
@@ -94,5 +108,5 @@ const r = (n) => ({
   }
 });
 export {
-  r as createApi
+  a as createApi
 };

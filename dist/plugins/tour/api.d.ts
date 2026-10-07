@@ -1,9 +1,9 @@
 export function createApi(state: Object): Object;
 export type TourStep = {
     /**
-     * - The CSS selector for the target element. If omitted, step renders as a modal.
+     * - The CSS selector, DOM element, or function returning either, for the target element. If omitted or resolves to falsy, step renders as a modal.
      */
-    target?: string | undefined;
+    target?: string | Function | HTMLElement | undefined;
     /**
      * - The title text for the step.
      */
@@ -44,6 +44,10 @@ export type TourStep = {
      * - If true, darkens the backdrop around the target element.
      */
     highlight?: boolean | undefined;
+    /**
+     * - If true or returns true, this step will be skipped when navigating the tour.
+     */
+    skip?: boolean | Function | undefined;
     /**
      * - Props to pass to the modal (if target is omitted).
      */
