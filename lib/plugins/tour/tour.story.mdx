@@ -52,22 +52,85 @@ const demoTour = {
 };
 ```
 
-### Step API Structure
+## Configuration API Reference
 
-Each step object can accept the following properties:
+Here is a complete representation of a tour object demonstrating all available configuration properties, global overrides, lifecycle hooks, and step options.
 
-*   **`target`**: *(String)* The CSS selector for the target element. If omitted, the step renders as a centered modal.
-*   **`title`**: *(String)* The title text for the step.
-*   **`content`**: *(String)* The body content text for the step.
-*   **`contentComponent`**: *(Object)* A Vue component to replace only the text content (keeps the modal/popover shell and default footer intact).
-*   **`component`**: *(Object)* A Vue component to completely replace the outer wrapper (bypasses modal/popover entirely).
-*   **`componentProps`**: *(Object)* Props to bind to `contentComponent` or `component`.
-*   **`hideFooter`**: *(Boolean)* If true, hides the default tour footer (Next/Back buttons). Useful if you want the standard text but no buttons.
-*   **`placement`**: *(String)* Floating UI placement string (e.g. `'bottom'`, `'right'`).
-*   **`highlight`**: *(Boolean)* If true, darkens the backdrop around the target element.
-*   **`modalProps`**: *(Object)* Props to pass to the modal (only applies if `target` is omitted).
-*   **`popoverProps`**: *(Object)* Props to pass to the popover (only applies if `target` is present).
-*   **`onEnter`**: *(Function)* An async hook called before the step is rendered.
+```js
+const comprehensiveTour = {
+  // Optional identifier for the tour
+  name: 'my-feature-tour',
+  
+  // --- GLOBAL LIFECYCLE HOOKS ---
+  // Async hook called right before the tour initializes
+  onStart: async () => {
+    console.log('Tour is starting! Preparing UI...');
+  },
+  // Async hook called when the tour stops/closes (via api.stop() or the last step)
+  onStop: async () => {
+    console.log('Tour finished! Cleaning up...');
+  },
+
+  // --- GLOBAL COMPONENT OVERRIDES ---
+  // Replace the structural layout for ALL steps by default
+  component: MyFullTakeoverComponent,         // Bypasses Modal/Popover completely
+  modalComponent: MyCustomModalWrapper,       // Replaces UluModal wrapper
+  popoverComponent: MyCustomPopoverWrapper,   // Replaces UluPopoverBase wrapper
+  contentComponent: MyCustomContentLayout,    // Replaces the inner text layout
+  pagerComponent: MyCustomPaginationFooter,   // Replaces the UluTourPager (Next/Back footer)
+  
+  // --- GLOBAL PROP OVERRIDES ---
+  modalProps: { size: 'large' },             // Props passed to every Modal step
+  popoverProps: { modifiers: 'large' },      // Props passed to every Popover step
+  modalTitleClass: ['h3', 'text-primary'],   // Typography classes for Modal titles
+  popoverTitleClass: ['h4', 'text-primary'], // Typography classes for Popover titles
+  pagerClass: ['margin-top-large'],          // Classes applied to the pager footer wrapper
+
+  // --- STEP DEFINITIONS ---
+  steps: [
+    {
+      // --- CORE ---
+      // Target: String (CSS Selector), DOM HTMLElement, or a Function returning either.
+      // If the target is omitted or the function returns falsy, it renders as a Modal.
+      target: () => window.innerWidth > 768 ? '#desktop-sidebar' : null,
+      title: 'Step Title',
+      content: 'Step body content.',
+
+      // --- STYLING & POSITIONING ---
+      placement: 'right', // Floating UI placement (e.g. 'bottom', 'left-start')
+      highlight: true,    // Dims the background around the target element
+      titleClass: 'custom-title', // Override global title classes for this step
+      pagerClass: 'custom-pager', // Override global pager classes for this step
+      modalProps: {},     // Step-specific props for UluModal
+      popoverProps: {},   // Step-specific props for UluPopoverBase
+      
+      // --- COMPONENT OVERRIDES (Step Level) ---
+      // These override the global tour configurations above for this specific step.
+      component: null, 
+      contentComponent: null, 
+      pagerComponent: null,
+      modalComponent: null,
+      popoverComponent: null,
+      componentProps: { }, // Props passed down to custom component overrides
+
+      // --- BEHAVIOR ---
+      hideFooter: false,  // If true, the pager (Next/Prev) is not rendered
+      // Boolean or Sync/Async function. If true, the step is bypassed dynamically!
+      skip: async () => await checkUserSettings('sawFeature1'),
+
+      // --- STEP LIFECYCLE HOOKS ---
+      // Awaited right before the step transitions in
+      onEnter: async () => {
+        await openSidebarMenu();
+      },
+      // Awaited right before the step transitions out (either forward or backward)
+      onLeave: async () => {
+        await closeSidebarMenu();
+      }
+    }
+  ]
+};
+```
 
 ## Starting the Tour
 

@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.6.35
+
+- **Tour Plugin**
+  - Added a `skip` property to tour steps. Accepts a boolean or an async/sync function. If it resolves to true, the state machine will smoothly bypass the step in whatever direction the tour is currently navigating (start, next, or prev).
+  - The `target` property on tour steps can now accept a direct DOM `HTMLElement` or a function that returns a selector/element. If the function resolves to a falsy value, the step gracefully falls back to rendering as a modal.
+
 ## 0.6.34
 
 - **Tour Plugin**

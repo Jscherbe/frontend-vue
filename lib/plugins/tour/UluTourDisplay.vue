@@ -15,7 +15,7 @@
 
       <!-- 2. RENDER MODAL STEP -->
       <component 
-        v-else-if="!currentStep?.target" 
+        v-else-if="!resolvedTargetDescriptor" 
         :is="resolvedModalComponent"
         :modelValue="true"
         data-ulu-tour-ui="true"
@@ -102,6 +102,12 @@
   const targetEl = ref(null);
   const popoverBase = ref(null);
 
+  const resolvedTargetDescriptor = computed(() => {
+    const t = currentStep.value?.target;
+    if (typeof t === 'function') return t();
+    return t;
+  });
+
   const resolvedConfig = computed(() => ({
     placement: currentStep.value?.placement || 'bottom',
     arrow: true,
@@ -170,10 +176,10 @@
   });
 
   // Watch for step changes to update floating UI target
-  watch(currentStep, async (step) => {
-    if (step?.target) {
+  watch(resolvedTargetDescriptor, async (descriptor) => {
+    if (descriptor) {
       await nextTick();
-      const el = document.querySelector(step.target);
+      const el = typeof descriptor === 'string' ? document.querySelector(descriptor) : descriptor;
       if (el) {
         targetEl.value = el;
         // UluPopoverBase's isOpen watcher automatically calls update(), 
@@ -182,11 +188,12 @@
         if (popoverBase.value) {
           popoverBase.value.update();
         }
-        if (step.highlight) {
+        if (currentStep.value?.highlight) {
           updateTargetRect();
         }
       } else {
-        console.warn(`Tour target not found: ${step.target}`);
+        console.warn(`Tour target not found:`, descriptor);
+        targetEl.value = null;
       }
     } else {
       targetEl.value = null;
