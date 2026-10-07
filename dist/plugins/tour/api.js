@@ -1,5 +1,5 @@
-import { markRaw as o } from "vue";
-const s = (e) => ({
+import { markRaw as s } from "vue";
+const r = (n) => ({
   /**
    * Starts a new tour
    * @param {Object} tour - The tour configuration object
@@ -10,57 +10,89 @@ const s = (e) => ({
    * @param {String|Array|Object} [tour.modalTitleClass] - Global class applied to the title of modal steps.
    * @param {String|Array|Object} [tour.popoverTitleClass] - Global class applied to the title of popover steps.
    * @param {String|Array|Object} [tour.pagerClass] - Global class applied to the pager.
+   * @param {Function} [tour.onStart] - Async hook called before the tour starts.
    * @param {Function} [tour.onStop] - Async hook called when the tour is closed/finished.
    */
-  async start(n) {
-    n?.steps?.length && (await this._runHooks(n.steps[0]), e.active = o(n), e.stepIndex = 0);
+  async start(i) {
+    if (!n.isTransitioning) {
+      n.isTransitioning = !0;
+      try {
+        if (!i?.steps?.length) return;
+        typeof i.onStart == "function" && await i.onStart(), await this._runHooks(i.steps[0]), n.active = s(i), n.stepIndex = 0;
+      } finally {
+        n.isTransitioning = !1;
+      }
+    }
   },
   /**
    * Advances the tour to the next step, or stops if it is the last step
    */
   async next() {
-    const n = e.active;
-    if (n)
-      if (e.stepIndex < n.steps.length - 1) {
-        await this._runLeaveHook(n.steps[e.stepIndex]);
-        const i = e.stepIndex + 1;
-        await this._runHooks(n.steps[i]), e.stepIndex = i;
-      } else
-        await this.stop();
+    if (n.isTransitioning) return;
+    const i = n.active;
+    if (i) {
+      n.isTransitioning = !0;
+      try {
+        if (n.stepIndex < i.steps.length - 1) {
+          await this._runLeaveHook(i.steps[n.stepIndex]);
+          const e = n.stepIndex + 1;
+          await this._runHooks(i.steps[e]), n.stepIndex = e;
+        } else
+          await this.stop(!0);
+      } finally {
+        n.isTransitioning = !1;
+      }
+    }
   },
   /**
    * Returns the tour to the previous step
    */
   async prev() {
-    const n = e.active;
-    if (n && e.stepIndex > 0) {
-      await this._runLeaveHook(n.steps[e.stepIndex]);
-      const i = e.stepIndex - 1;
-      await this._runHooks(n.steps[i]), e.stepIndex = i;
+    if (n.isTransitioning) return;
+    const i = n.active;
+    if (i) {
+      n.isTransitioning = !0;
+      try {
+        if (n.stepIndex > 0) {
+          await this._runLeaveHook(i.steps[n.stepIndex]);
+          const e = n.stepIndex - 1;
+          await this._runHooks(i.steps[e]), n.stepIndex = e;
+        }
+      } finally {
+        n.isTransitioning = !1;
+      }
     }
   },
   /**
    * Stops and closes the current tour
+   * @param {Boolean} [internalBypass=false] - Used internally to bypass transition check
    */
-  async stop() {
-    const n = e.active;
-    n && (n.steps[e.stepIndex] && await this._runLeaveHook(n.steps[e.stepIndex]), typeof n.onStop == "function" && await n.onStop()), e.active = null, e.stepIndex = 0;
+  async stop(i = !1) {
+    if (!(!i && n.isTransitioning)) {
+      n.isTransitioning = !0;
+      try {
+        const e = n.active;
+        e && (e.steps[n.stepIndex] && await this._runLeaveHook(e.steps[n.stepIndex]), typeof e.onStop == "function" && await e.onStop()), n.active = null, n.stepIndex = 0;
+      } finally {
+        n.isTransitioning = !1;
+      }
+    }
   },
   /**
    * Internal method to run asynchronous enter hooks on a step
    * @param {Object} step - The tour step configuration
    */
-  async _runHooks(n) {
-    n && typeof n.onEnter == "function" && await n.onEnter();
+  async _runHooks(i) {
+    i && typeof i.onEnter == "function" && await i.onEnter();
   },
   /**
    * Internal method to run asynchronous leave hooks on a step
    * @param {Object} step - The tour step configuration
    */
-  async _runLeaveHook(n) {
-    n && typeof n.onLeave == "function" && await n.onLeave();
+  async _runLeaveHook(i) {
+    i && typeof i.onLeave == "function" && await i.onLeave();
   }
 });
 export {
-  s as createApi
+  r as createApi
 };
