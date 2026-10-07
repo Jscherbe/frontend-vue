@@ -2,8 +2,10 @@
 
 ## 0.6.34
 
-- **Tour Plugin** | Added `onStart` lifecycle hook to the global tour configuration.
-- **Tour Plugin** | Added global component overrides to the tour configuration. You can now define `component`, `contentComponent`, `pagerComponent`, `modalComponent`, and `popoverComponent` at the top level of the tour to apply them to all steps.
+- **Tour Plugin**
+  - Added `onStart` lifecycle hook to the global tour configuration.
+  - Added global component overrides to the tour configuration. You can now define `component`, `contentComponent`, `pagerComponent`, `modalComponent`, and `popoverComponent` at the top level of the tour to apply them to all steps.
+  - Fixed a concurrency issue where rapidly clicking the Next/Previous buttons could crash the tour if asynchronous lifecycle hooks (`onLeave`, etc.) were still running. State methods are now locked while transitioning.
 
 ## 0.6.33
 
