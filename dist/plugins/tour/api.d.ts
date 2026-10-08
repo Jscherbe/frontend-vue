@@ -5,6 +5,10 @@ export type TourStep = {
      */
     target?: string | Function | HTMLElement | undefined;
     /**
+     * - Element to highlight if different from target. Falls back to target if not provided.
+     */
+    highlightElement?: string | Function | HTMLElement | undefined;
+    /**
      * - The title text for the step.
      */
     title?: string | undefined;
@@ -16,6 +20,10 @@ export type TourStep = {
      * - Class to apply to the pager footer.
      */
     pagerClass?: string | Object | any[] | undefined;
+    /**
+     * - Class to apply to the progress indicator.
+     */
+    progressClass?: string | Object | any[] | undefined;
     /**
      * - The content text for the step.
      */
@@ -36,6 +44,10 @@ export type TourStep = {
      * - If true, hides the default tour footer (Next/Back buttons).
      */
     hideFooter?: boolean | undefined;
+    /**
+     * - If true, hides the "Part X / Y" progress indicator for this step.
+     */
+    hideProgress?: boolean | undefined;
     /**
      * - Floating UI placement string (e.g. 'bottom', 'right').
      */

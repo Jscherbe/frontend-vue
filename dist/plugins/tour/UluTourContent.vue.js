@@ -1,7 +1,10 @@
-import { computed as c, createElementBlock as a, openBlock as o, createBlock as i, createCommentVNode as l, createVNode as u, resolveDynamicComponent as m, normalizeClass as d, withCtx as p, createTextVNode as f, toDisplayString as r } from "vue";
-import C from "../../components/elements/UluRule.vue.js";
-import { useTour as h } from "./useTour.js";
-const v = { class: "tour-content crop-margins" }, y = { key: 1 }, M = {
+import { computed as r, createElementBlock as a, openBlock as o, createBlock as f, createCommentVNode as l, createVNode as h, resolveDynamicComponent as C, normalizeClass as c, withCtx as _, createElementVNode as u, toDisplayString as n } from "vue";
+import y from "../../components/elements/UluRule.vue.js";
+import { useTour as P } from "./useTour.js";
+const k = { class: "tour-content crop-margins" }, x = { class: "tour-content__title-text" }, T = {
+  key: 1,
+  class: "tour-content__body"
+}, V = {
   __name: "UluTourContent",
   props: {
     /**
@@ -19,23 +22,28 @@ const v = { class: "tour-content crop-margins" }, y = { key: 1 }, M = {
       default: !1
     }
   },
-  setup(e) {
-    const { state: s } = h(), t = e, n = c(() => t.step.titleClass ? t.step.titleClass : t.isModal ? s.active?.modalTitleClass || ["h3", "no-margin"] : s.active?.popoverTitleClass || ["h4", "display-block", "no-margin"]);
-    return (k, T) => (o(), a("div", v, [
-      e.step?.title ? (o(), i(m(e.isModal ? "h2" : "strong"), {
+  setup(t) {
+    const { state: e } = P(), s = t, d = r(() => s.step.titleClass ? s.step.titleClass : s.isModal ? e.active?.modalTitleClass || ["h3", "no-margin"] : e.active?.popoverTitleClass || ["h4", "display-block", "no-margin"]), p = r(() => s.step.progressClass || e.active?.progressClass || "headline-label"), m = r(() => e.stepIndex + 1), g = r(() => e.active?.steps?.length || 0), v = r(() => s.step.hideProgress !== void 0 ? !s.step.hideProgress : e.active?.hideProgress !== void 0 ? !e.active.hideProgress : !0);
+    return (b, i) => (o(), a("div", k, [
+      t.step?.title ? (o(), f(C(t.isModal ? "h2" : "strong"), {
         key: 0,
-        class: d(n.value)
+        class: c(["tour-content__title", d.value])
       }, {
-        default: p(() => [
-          f(r(e.step.title), 1)
+        default: _(() => [
+          v.value ? (o(), a("span", {
+            key: 0,
+            class: c(["tour-content__title-progress", p.value])
+          }, " Part " + n(m.value) + " / " + n(g.value), 3)) : l("", !0),
+          i[0] || (i[0] = u("span", { class: "hidden-visually" }, ":", -1)),
+          u("span", x, n(t.step.title), 1)
         ]),
         _: 1
       }, 8, ["class"])) : l("", !0),
-      u(C),
-      e.step?.content ? (o(), a("p", y, r(e.step.content), 1)) : l("", !0)
+      h(y),
+      t.step?.content ? (o(), a("p", T, n(t.step.content), 1)) : l("", !0)
     ]));
   }
 };
 export {
-  M as default
+  V as default
 };

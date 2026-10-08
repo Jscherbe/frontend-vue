@@ -10,6 +10,8 @@ const a = (n) => ({
    * @param {String|Array|Object} [tour.modalTitleClass] - Global class applied to the title of modal steps.
    * @param {String|Array|Object} [tour.popoverTitleClass] - Global class applied to the title of popover steps.
    * @param {String|Array|Object} [tour.pagerClass] - Global class applied to the pager.
+   * @param {String|Array|Object} [tour.progressClass] - Global class applied to the progress indicator.
+   * @param {Boolean} [tour.hideProgress] - Globally hides the progress indicator for all steps unless overridden.
    * @param {Function} [tour.onStart] - Async hook called before the tour starts.
    * @param {Function} [tour.onStop] - Async hook called when the tour is closed/finished.
    */
