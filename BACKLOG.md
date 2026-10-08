@@ -2,6 +2,10 @@
 
 Place to put any future changes
 
+## Whenever frontend Updates
+
+- Update @ulu/utils version to match
+
 ## 0.7.0
 
 - Remove deprecated props (UluButton)

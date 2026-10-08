@@ -1,5 +1,12 @@
 # Change Log
 
+## 0.6.36
+
+- **Tour Plugin**
+  - Added `highlightElement` option to tour steps. This allows the backdrop highlight to target a different element than the popover anchor. It accepts a selector string, an HTMLElement, or a function returning either (or a ref). It falls back to the step's `target` if not set.
+  - Added an optional progress indicator (e.g., "Part 1 / 3") to the default tour content component.
+  - Added `hideProgress` option to the global tour config and individual steps to control the visibility of the new progress indicator.
+
 ## 0.6.35
 
 - **Tour Plugin**

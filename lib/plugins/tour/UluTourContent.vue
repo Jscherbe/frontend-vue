@@ -1,5 +1,8 @@
 <template>
   <div class="tour-content crop-margins">
+    <div v-if="showProgress" class="type-small margin-bottom-small">
+      Part {{ currentProgress }} / {{ totalProgress }}
+    </div>
     <component 
       v-if="step?.title"
       :is="isModal ? 'h2' : 'strong'" 
@@ -46,5 +49,19 @@
     } else {
       return tourState.active?.popoverTitleClass || ['h4', 'display-block', 'no-margin'];
     }
+  });
+
+  const currentProgress = computed(() => tourState.stepIndex + 1);
+  
+  const totalProgress = computed(() => tourState.active?.steps?.length || 0);
+  
+  const showProgress = computed(() => {
+    if (props.step.hideProgress !== undefined) {
+      return !props.step.hideProgress;
+    }
+    if (tourState.active?.hideProgress !== undefined) {
+      return !tourState.active.hideProgress;
+    }
+    return true;
   });
 </script>

@@ -80,7 +80,7 @@
 </template>
 
 <script setup>
-  import { ref, computed, watch, nextTick, onMounted, onUnmounted } from 'vue';
+  import { ref, computed, watch, nextTick, onMounted, onUnmounted, unref } from 'vue';
   import UluModal from '../../components/collapsible/UluModal.vue';
   import UluPopoverBase from '../popovers/UluPopoverBase.vue';
   import UluTourPager from './UluTourPager.vue';
@@ -100,12 +100,19 @@
 
   // Floating UI Setup for Popovers
   const targetEl = ref(null);
+  const highlightEl = ref(null);
   const popoverBase = ref(null);
 
   const resolvedTargetDescriptor = computed(() => {
-    const t = currentStep.value?.target;
-    if (typeof t === 'function') return t();
+    const t = unref(currentStep.value?.target);
+    if (typeof t === 'function') return unref(t());
     return t;
+  });
+
+  const resolvedHighlightDescriptor = computed(() => {
+    const h = unref(currentStep.value?.highlightElement);
+    if (typeof h === 'function') return unref(h());
+    return h;
   });
 
   const resolvedConfig = computed(() => ({
@@ -134,8 +141,9 @@
   const targetRect = ref(null);
   
   const updateTargetRect = () => {
-    if (targetEl.value) {
-      const rect = targetEl.value.getBoundingClientRect();
+    const el = highlightEl.value || targetEl.value;
+    if (el) {
+      const rect = el.getBoundingClientRect();
       targetRect.value = {
         top: rect.top,
         left: rect.left,
@@ -175,11 +183,11 @@
     };
   });
 
-  // Watch for step changes to update floating UI target
-  watch(resolvedTargetDescriptor, async (descriptor) => {
-    if (descriptor) {
+  // Watch for step changes to update floating UI target and highlight target
+  watch([resolvedTargetDescriptor, resolvedHighlightDescriptor], async ([targetDesc, highlightDesc]) => {
+    if (targetDesc) {
       await nextTick();
-      const el = typeof descriptor === 'string' ? document.querySelector(descriptor) : descriptor;
+      const el = typeof targetDesc === 'string' ? document.querySelector(targetDesc) : unref(targetDesc);
       if (el) {
         targetEl.value = el;
         // UluPopoverBase's isOpen watcher automatically calls update(), 
@@ -188,16 +196,29 @@
         if (popoverBase.value) {
           popoverBase.value.update();
         }
-        if (currentStep.value?.highlight) {
-          updateTargetRect();
-        }
       } else {
-        console.warn(`Tour target not found:`, descriptor);
+        console.warn(`Tour target not found:`, targetDesc);
         targetEl.value = null;
       }
     } else {
       targetEl.value = null;
-      targetRect.value = null;
+    }
+
+    if (highlightDesc) {
+      await nextTick();
+      const hEl = typeof highlightDesc === 'string' ? document.querySelector(highlightDesc) : unref(highlightDesc);
+      if (hEl) {
+        highlightEl.value = hEl;
+      } else {
+        console.warn(`Tour highlight element not found:`, highlightDesc);
+        highlightEl.value = null;
+      }
+    } else {
+      highlightEl.value = null;
+    }
+
+    if (currentStep.value?.highlight) {
+      updateTargetRect();
     }
   }, { immediate: true });
 

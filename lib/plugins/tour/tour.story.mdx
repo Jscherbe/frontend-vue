@@ -85,14 +85,20 @@ const comprehensiveTour = {
   modalTitleClass: ['h3', 'text-primary'],   // Typography classes for Modal titles
   popoverTitleClass: ['h4', 'text-primary'], // Typography classes for Popover titles
   pagerClass: ['margin-top-large'],          // Classes applied to the pager footer wrapper
+  hideProgress: false,                       // Globally hides the progress indicator ("Part 1 / 3")
 
   // --- STEP DEFINITIONS ---
   steps: [
     {
       // --- CORE ---
-      // Target: String (CSS Selector), DOM HTMLElement, or a Function returning either.
+      // Target: String (CSS Selector), DOM HTMLElement, or a Function returning either (or a ref).
       // If the target is omitted or the function returns falsy, it renders as a Modal.
       target: () => window.innerWidth > 768 ? '#desktop-sidebar' : null,
+      
+      // Highlight Element: String, DOM HTMLElement, Function or Ref. 
+      // Used for the backdrop highlight if it needs to be different from the target. Falls back to target if omitted.
+      highlightElement: () => window.innerWidth > 768 ? '#desktop-sidebar-container' : null,
+      
       title: 'Step Title',
       content: 'Step body content.',
 
@@ -114,7 +120,9 @@ const comprehensiveTour = {
       componentProps: { }, // Props passed down to custom component overrides
 
       // --- BEHAVIOR ---
-      hideFooter: false,  // If true, the pager (Next/Prev) is not rendered
+      hideFooter: false,   // If true, the pager (Next/Prev) is not rendered
+      hideProgress: false, // If true, hides the "Part X / Y" progress indicator for this step
+      
       // Boolean or Sync/Async function. If true, the step is bypassed dynamically!
       skip: async () => await checkUserSettings('sawFeature1'),
 
