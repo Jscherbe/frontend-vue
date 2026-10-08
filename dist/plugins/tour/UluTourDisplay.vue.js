@@ -1,4 +1,4 @@
-import { computed as r, ref as h, unref as n, watch as M, nextTick as $, onMounted as R, onUnmounted as q, createBlock as a, openBlock as u, Teleport as U, createElementBlock as P, createCommentVNode as S, Fragment as V, resolveDynamicComponent as i, mergeProps as d, createSlots as _, withCtx as y, normalizeStyle as H } from "vue";
+import { computed as r, ref as y, unref as n, watch as M, nextTick as $, onMounted as R, onUnmounted as q, createBlock as u, openBlock as a, Teleport as U, createElementBlock as P, createCommentVNode as S, Fragment as V, resolveDynamicComponent as s, mergeProps as c, createSlots as _, withCtx as C, normalizeStyle as H } from "vue";
 import N from "../../components/collapsible/UluModal.vue.js";
 import O from "../popovers/UluPopoverBase.vue.js";
 import j from "./UluTourPager.vue.js";
@@ -7,11 +7,11 @@ import { useTour as A } from "./useTour.js";
 const Z = {
   __name: "UluTourDisplay",
   setup(G) {
-    const { api: s, state: l } = A(), t = r(() => l.active?.steps[l.stepIndex]), w = r(() => t.value?.component || l.active?.component), f = r(() => t.value?.contentComponent || l.active?.contentComponent), x = r(() => t.value?.pagerComponent || l.active?.pagerComponent || j), T = r(() => t.value?.modalComponent || l.active?.modalComponent || N), B = r(() => t.value?.popoverComponent || l.active?.popoverComponent || O), v = h(null), g = h(null), C = h(null), k = r(() => {
+    const { api: i, state: l } = A(), t = r(() => l.active?.steps[l.stepIndex]), h = r(() => t.value?.component || l.active?.component), f = r(() => t.value?.contentComponent || l.active?.contentComponent), x = r(() => t.value?.pagerComponent || l.active?.pagerComponent || j), T = r(() => t.value?.modalComponent || l.active?.modalComponent || N), b = r(() => t.value?.popoverComponent || l.active?.popoverComponent || O), v = y(null), g = y(null), w = y(null), k = r(() => {
       const e = n(t.value?.target);
       return typeof e == "function" ? n(e()) : e;
-    }), b = r(() => {
-      const e = n(t.value?.highlightElement);
+    }), B = r(() => {
+      const e = n(t.value?.highlight);
       return typeof e == "function" ? n(e()) : e;
     }), z = r(() => ({
       placement: t.value?.placement || "bottom",
@@ -24,21 +24,21 @@ const Z = {
       modifiers: "large",
       ...l.active?.popoverProps || {},
       ...t.value?.popoverProps || {}
-    })), m = h(null), c = () => {
+    })), d = y(null), m = () => {
       const e = g.value || v.value;
       if (e) {
         const o = e.getBoundingClientRect();
-        m.value = {
+        d.value = {
           top: o.top,
           left: o.left,
           width: o.width,
           height: o.height
         };
       } else
-        m.value = null;
+        d.value = null;
     }, I = r(() => {
-      if (!m.value) return {};
-      const e = m.value;
+      if (!d.value) return {};
+      const e = d.value;
       return {
         position: "fixed",
         top: 0,
@@ -63,51 +63,51 @@ const Z = {
       )`
       };
     });
-    return M([k, b], async ([e, o]) => {
+    return M([k, B], async ([e, o]) => {
       if (e) {
         await $();
         const p = typeof e == "string" ? document.querySelector(e) : n(e);
-        p ? (v.value = p, C.value && C.value.update()) : (console.warn("Tour target not found:", e), v.value = null);
+        p ? (v.value = p, w.value && w.value.update()) : (console.warn("Tour target not found:", e), v.value = null);
       } else
         v.value = null;
-      if (o) {
+      if (o && typeof o != "boolean") {
         await $();
         const p = typeof o == "string" ? document.querySelector(o) : n(o);
         p ? g.value = p : (console.warn("Tour highlight element not found:", o), g.value = null);
       } else
         g.value = null;
-      t.value?.highlight && c();
+      o && m();
     }, { immediate: !0 }), R(() => {
-      window.addEventListener("resize", c), window.addEventListener("scroll", c);
+      window.addEventListener("resize", m), window.addEventListener("scroll", m);
     }), q(() => {
-      window.removeEventListener("resize", c), window.removeEventListener("scroll", c);
-    }), (e, o) => (u(), a(U, { to: "body" }, [
-      n(l).active ? (u(), P(V, { key: 0 }, [
-        w.value ? (u(), a(i(w.value), d({
+      window.removeEventListener("resize", m), window.removeEventListener("scroll", m);
+    }), (e, o) => (a(), u(U, { to: "body" }, [
+      n(l).active ? (a(), P(V, { key: 0 }, [
+        h.value ? (a(), u(s(h.value), c({
           key: 0,
           "data-ulu-tour-ui": "true",
           step: t.value,
           tourState: n(l),
-          api: n(s)
-        }, t.value.componentProps), null, 16, ["step", "tourState", "api"])) : k.value ? (u(), a(i(B.value), d({
+          api: n(i)
+        }, t.value.componentProps), null, 16, ["step", "tourState", "api"])) : k.value ? (a(), u(s(b.value), c({
           key: 2,
           ref_key: "popoverBase",
-          ref: C,
+          ref: w,
           trigger: v.value,
           config: z.value,
           style: { zIndex: 9999 },
           isOpen: !0,
           "data-ulu-tour-ui": "true",
-          onClose: o[1] || (o[1] = (p) => n(s).stop())
+          onClose: o[1] || (o[1] = (p) => n(i).stop())
         }, F.value), _({
-          default: y(() => [
-            f.value ? (u(), a(i(f.value), d({
+          default: C(() => [
+            f.value ? (a(), u(s(f.value), c({
               key: 0,
               step: t.value,
               tourState: n(l),
-              api: n(s),
+              api: n(i),
               "is-modal": !1
-            }, t.value.componentProps), null, 16, ["step", "tourState", "api"])) : (u(), a(E, {
+            }, t.value.componentProps), null, 16, ["step", "tourState", "api"])) : (a(), u(E, {
               key: 1,
               step: t.value,
               "is-modal": !1
@@ -117,26 +117,26 @@ const Z = {
         }, [
           t.value?.hideFooter ? void 0 : {
             name: "footer",
-            fn: y(() => [
-              (u(), a(i(x.value)))
+            fn: C(() => [
+              (a(), u(s(x.value)))
             ]),
             key: "0"
           }
-        ]), 1040, ["trigger", "config"])) : (u(), a(i(T.value), d({
+        ]), 1040, ["trigger", "config"])) : (a(), u(s(T.value), c({
           key: 1,
           modelValue: !0,
           "data-ulu-tour-ui": "true"
         }, L.value, {
-          onClose: o[0] || (o[0] = (p) => n(s).stop())
+          onClose: o[0] || (o[0] = (p) => n(i).stop())
         }), _({
-          default: y(() => [
-            f.value ? (u(), a(i(f.value), d({
+          default: C(() => [
+            f.value ? (a(), u(s(f.value), c({
               key: 0,
               step: t.value,
               tourState: n(l),
-              api: n(s),
+              api: n(i),
               "is-modal": !0
-            }, t.value.componentProps), null, 16, ["step", "tourState", "api"])) : (u(), a(E, {
+            }, t.value.componentProps), null, 16, ["step", "tourState", "api"])) : (a(), u(E, {
               key: 1,
               step: t.value,
               "is-modal": !0
@@ -146,18 +146,18 @@ const Z = {
         }, [
           t.value?.hideFooter ? void 0 : {
             name: "footer",
-            fn: y(() => [
-              (u(), a(i(x.value)))
+            fn: C(() => [
+              (a(), u(s(x.value)))
             ]),
             key: "0"
           }
         ]), 1040)),
-        t.value?.target && t.value?.highlight && m.value ? (u(), P("div", {
+        t.value?.target && t.value?.highlight && d.value ? (a(), P("div", {
           key: 3,
           class: "tour-highlight-backdrop",
           style: H(I.value),
           "data-ulu-tour-ui": "true",
-          onClick: o[2] || (o[2] = (p) => n(s).stop())
+          onClick: o[2] || (o[2] = (p) => n(i).stop())
         }, null, 4)) : S("", !0)
       ], 64)) : S("", !0)
     ]));

@@ -5,10 +5,6 @@ export type TourStep = {
      */
     target?: string | Function | HTMLElement | undefined;
     /**
-     * - Element to highlight if different from target. Falls back to target if not provided.
-     */
-    highlightElement?: string | Function | HTMLElement | undefined;
-    /**
      * - The title text for the step.
      */
     title?: string | undefined;
@@ -53,9 +49,9 @@ export type TourStep = {
      */
     placement?: string | undefined;
     /**
-     * - If true, darkens the backdrop around the target element.
+     * - If true, darkens the backdrop around the target element. If a selector, element, or function is provided, the backdrop highlights that specific element instead of the target.
      */
-    highlight?: boolean | undefined;
+    highlight?: string | boolean | Function | HTMLElement | undefined;
     /**
      * - If true or returns true, this step will be skipped when navigating the tour.
      */
