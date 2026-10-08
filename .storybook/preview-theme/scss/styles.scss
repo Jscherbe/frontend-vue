@@ -16,7 +16,8 @@
   "popover",
   "menu-stack",
   "form-theme",
-  "rule"
+  "rule",
+  "headline-label"
 ));
 
 @include ulu.component-spoke-spinner-set-styles((
@@ -51,6 +52,7 @@
 // Include any components that are outside in-ulu container (teleports/etc)
 @include ulu.component-button-styles();
 @include ulu.component-button-group-styles();
+@include ulu.component-headline-label-styles();
 @include ulu.component-rule-styles();
 @include ulu.component-form-theme-styles();
 @include ulu.component-menu-stack-styles();

@@ -1,17 +1,26 @@
 <template>
   <div class="tour-content crop-margins">
-    <div v-if="showProgress" class="type-small margin-bottom-small">
-      Part {{ currentProgress }} / {{ totalProgress }}
-    </div>
     <component 
       v-if="step?.title"
+      class="tour-content__title"
       :is="isModal ? 'h2' : 'strong'" 
       :class="resolvedTitleClass"
     >
-      {{ step.title }}
+      <span 
+        v-if="showProgress" 
+        class="tour-content__title-progress"
+        :class="resolvedProgressClass"
+      >
+        Part {{ currentProgress }} / {{ totalProgress }}
+      </span>
+      <span class="hidden-visually">:</span>
+      <span class="tour-content__title-text">{{ step.title }}</span>
     </component>
     <UluRule />
-    <p v-if="step?.content">
+    <p 
+      class="tour-content__body"
+      v-if="step?.content"
+    >
       {{ step.content }}
     </p>
   </div>
@@ -49,6 +58,10 @@
     } else {
       return tourState.active?.popoverTitleClass || ['h4', 'display-block', 'no-margin'];
     }
+  });
+
+  const resolvedProgressClass = computed(() => {
+    return props.step.progressClass || tourState.active?.progressClass || 'headline-label';
   });
 
   const currentProgress = computed(() => tourState.stepIndex + 1);
