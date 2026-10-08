@@ -39,7 +39,7 @@
       {
         "title": "tour Example 4",
         "description": "Code example extracted from markdown.",
-        "code": "const comprehensiveTour = {\n  // Optional identifier for the tour\n  name: 'my-feature-tour',\n  \n  // --- GLOBAL LIFECYCLE HOOKS ---\n  // Async hook called right before the tour initializes\n  onStart: async () => {\n    console.log('Tour is starting! Preparing UI...');\n  },\n  // Async hook called when the tour stops/closes (via api.stop() or the last step)\n  onStop: async () => {\n    console.log('Tour finished! Cleaning up...');\n  },\n\n  // --- GLOBAL COMPONENT OVERRIDES ---\n  // Replace the structural layout for ALL steps by default\n  component: MyFullTakeoverComponent,         // Bypasses Modal/Popover completely\n  modalComponent: MyCustomModalWrapper,       // Replaces UluModal wrapper\n  popoverComponent: MyCustomPopoverWrapper,   // Replaces UluPopoverBase wrapper\n  contentComponent: MyCustomContentLayout,    // Replaces the inner text layout\n  pagerComponent: MyCustomPaginationFooter,   // Replaces the UluTourPager (Next/Back footer)\n  \n  // --- GLOBAL PROP OVERRIDES ---\n  modalProps: { size: 'large' },             // Props passed to every Modal step\n  popoverProps: { modifiers: 'large' },      // Props passed to every Popover step\n  modalTitleClass: ['h3', 'text-primary'],   // Typography classes for Modal titles\n  popoverTitleClass: ['h4', 'text-primary'], // Typography classes for Popover titles\n  pagerClass: ['margin-top-large'],          // Classes applied to the pager footer wrapper\n  progressClass: 'headline-label',           // Classes applied to the progress indicator\n  hideProgress: false,                       // Globally hides the progress indicator (\"Part 1 / 3\")\n\n  // --- STEP DEFINITIONS ---\n  steps: [\n    {\n      // --- CORE ---\n      // Target: String (CSS Selector), DOM HTMLElement, or a Function returning either (or a ref).\n      // If the target is omitted or the function returns falsy, it renders as a Modal.\n      target: () => window.innerWidth > 768 ? '#desktop-sidebar' : null,\n      \n      // Highlight Element: String, DOM HTMLElement, Function or Ref. \n      // Used for the backdrop highlight if it needs to be different from the target. Falls back to target if omitted.\n      highlightElement: () => window.innerWidth > 768 ? '#desktop-sidebar-container' : null,\n      \n      title: 'Step Title',\n      content: 'Step body content.',\n\n      // --- STYLING & POSITIONING ---\n      placement: 'right', // Floating UI placement (e.g. 'bottom', 'left-start')\n      highlight: true,    // Dims the background around the target element\n      titleClass: 'custom-title', // Override global title classes for this step\n      pagerClass: 'custom-pager', // Override global pager classes for this step\n      modalProps: {},     // Step-specific props for UluModal\n      popoverProps: {},   // Step-specific props for UluPopoverBase\n      \n      // --- COMPONENT OVERRIDES (Step Level) ---\n      // These override the global tour configurations above for this specific step.\n      component: null, \n      contentComponent: null, \n      pagerComponent: null,\n      modalComponent: null,\n      popoverComponent: null,\n      componentProps: { }, // Props passed down to custom component overrides\n\n      // --- BEHAVIOR ---\n      hideFooter: false,   // If true, the pager (Next/Prev) is not rendered\n      hideProgress: false, // If true, hides the \"Part X / Y\" progress indicator for this step\n      \n      // Boolean or Sync/Async function. If true, the step is bypassed dynamically!\n      skip: async () => await checkUserSettings('sawFeature1'),\n\n      // --- STEP LIFECYCLE HOOKS ---\n      // Awaited right before the step transitions in\n      onEnter: async () => {\n        await openSidebarMenu();\n      },\n      // Awaited right before the step transitions out (either forward or backward)\n      onLeave: async () => {\n        await closeSidebarMenu();\n      }\n    }\n  ]\n};"
+        "code": "const comprehensiveTour = {\n  // Optional identifier for the tour\n  name: 'my-feature-tour',\n  \n  // --- GLOBAL LIFECYCLE HOOKS ---\n  // Async hook called right before the tour initializes\n  onStart: async () => {\n    console.log('Tour is starting! Preparing UI...');\n  },\n  // Async hook called when the tour stops/closes (via api.stop() or the last step)\n  onStop: async () => {\n    console.log('Tour finished! Cleaning up...');\n  },\n\n  // --- GLOBAL COMPONENT OVERRIDES ---\n  // Replace the structural layout for ALL steps by default\n  component: MyFullTakeoverComponent,         // Bypasses Modal/Popover completely\n  modalComponent: MyCustomModalWrapper,       // Replaces UluModal wrapper\n  popoverComponent: MyCustomPopoverWrapper,   // Replaces UluPopoverBase wrapper\n  contentComponent: MyCustomContentLayout,    // Replaces the inner text layout\n  pagerComponent: MyCustomPaginationFooter,   // Replaces the UluTourPager (Next/Back footer)\n  \n  // --- GLOBAL PROP OVERRIDES ---\n  modalProps: { size: 'large' },             // Props passed to every Modal step\n  popoverProps: { modifiers: 'large' },      // Props passed to every Popover step\n  modalTitleClass: ['h3', 'text-primary'],   // Typography classes for Modal titles\n  popoverTitleClass: ['h4', 'text-primary'], // Typography classes for Popover titles\n  pagerClass: ['margin-top-large'],          // Classes applied to the pager footer wrapper\n  progressClass: 'headline-label',           // Classes applied to the progress indicator\n  hideProgress: false,                       // Globally hides the progress indicator (\"Part 1 / 3\")\n\n  // --- STEP DEFINITIONS ---\n  steps: [\n    {\n      // --- CORE ---\n      // Target: String (CSS Selector), DOM HTMLElement, or a Function returning either (or a ref).\n      // If the target is omitted or the function returns falsy, it renders as a Modal.\n      target: () => window.innerWidth > 768 ? '#desktop-sidebar' : null,\n      title: 'Step Title',\n      content: 'Step body content.',\n\n      // --- STYLING & POSITIONING ---\n      placement: 'right', // Floating UI placement (e.g. 'bottom', 'left-start')\n      \n      // Highlight: Boolean, String (CSS Selector), DOM HTMLElement, Function, or Ref.\n      // If true, darkens the backdrop around the target element. \n      // If a selector, element, or function is provided, it highlights that specific element instead.\n      highlight: () => window.innerWidth > 768 ? '#desktop-sidebar-container' : true,\n      \n      titleClass: 'custom-title', // Override global title classes for this step\n      pagerClass: 'custom-pager', // Override global pager classes for this step\n      modalProps: {},     // Step-specific props for UluModal\n      popoverProps: {},   // Step-specific props for UluPopoverBase\n      \n      // --- COMPONENT OVERRIDES (Step Level) ---\n      // These override the global tour configurations above for this specific step.\n      component: null, \n      contentComponent: null, \n      pagerComponent: null,\n      modalComponent: null,\n      popoverComponent: null,\n      componentProps: { }, // Props passed down to custom component overrides\n\n      // --- BEHAVIOR ---\n      hideFooter: false,   // If true, the pager (Next/Prev) is not rendered\n      hideProgress: false, // If true, hides the \"Part X / Y\" progress indicator for this step\n      \n      // Boolean or Sync/Async function. If true, the step is bypassed dynamically!\n      skip: async () => await checkUserSettings('sawFeature1'),\n\n      // --- STEP LIFECYCLE HOOKS ---\n      // Awaited right before the step transitions in\n      onEnter: async () => {\n        await openSidebarMenu();\n      },\n      // Awaited right before the step transitions out (either forward or backward)\n      onLeave: async () => {\n        await closeSidebarMenu();\n      }\n    }\n  ]\n};"
       },
       {
         "title": "tour Example 5",
@@ -69,6 +69,22 @@
         "code": "<toast>Content</toast>"
       }
     ],
+    "useTooltipFollow": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<useTooltipFollow>Content</useTooltipFollow>"
+      }
+    ],
+    "useTooltip": [],
+    "tooltip": [
+      {
+        "title": "Basic",
+        "description": "Basic variation",
+        "code": "<tooltip>This is a basic tooltip!</tooltip>"
+      }
+    ],
+    "UluPopover": [],
     "useModals": [],
     "modals": [
       {
@@ -102,25 +118,49 @@
         "code": "<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>"
       }
     ],
-    "useTooltipFollow": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<useTooltipFollow>Content</useTooltipFollow>"
-      }
-    ],
-    "useTooltip": [],
-    "tooltip": [
-      {
-        "title": "Basic",
-        "description": "Basic variation",
-        "code": "<tooltip>This is a basic tooltip!</tooltip>"
-      }
-    ],
-    "UluPopover": [],
     "UluProgressCircle": [],
     "UluProgressBar": [],
     "UluAnimateNumber": [],
+    "UluSanityRichText": [],
+    "UluRouteAnnouncer": [],
+    "UluPlaceholderText": [],
+    "UluPlaceholderImage": [],
+    "UluEmptyView": [],
+    "UluEmpty": [],
+    "UluConditionalWrapper": [],
+    "UluConditionalText": [],
+    "UluAction": [
+      {
+        "title": "AsButton",
+        "description": "AsButton variation",
+        "code": "<UluAction>Content</UluAction>"
+      },
+      {
+        "title": "AsAnchor",
+        "description": "AsAnchor variation",
+        "code": "<UluAction href=\"https://example.com\" target=\"_blank\">Content</UluAction>"
+      },
+      {
+        "title": "AsRouterLink",
+        "description": "AsRouterLink variation",
+        "code": "<UluAction to=\"/about\">Content</UluAction>"
+      },
+      {
+        "title": "ExplicitElementOverride",
+        "description": "ExplicitElementOverride variation",
+        "code": "<UluAction element=\"span\">Content</UluAction>"
+      },
+      {
+        "title": "DownloadWithFilename",
+        "description": "DownloadWithFilename variation",
+        "code": "<UluAction href=\"{...}\" download=\"download-test.txt\">Content</UluAction>"
+      },
+      {
+        "title": "TestDownloadWithoutFilename",
+        "description": "TestDownloadWithoutFilename variation",
+        "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
+      }
+    ],
     "UluSkipLink": [
       {
         "title": "Default",
@@ -191,46 +231,6 @@
         "title": "PerItemClasses",
         "description": "PerItemClasses variation",
         "code": "<UluBreadcrumb items=\"{...}\">Content</UluBreadcrumb>"
-      }
-    ],
-    "UluSanityRichText": [],
-    "UluRouteAnnouncer": [],
-    "UluPlaceholderText": [],
-    "UluPlaceholderImage": [],
-    "UluEmptyView": [],
-    "UluEmpty": [],
-    "UluConditionalWrapper": [],
-    "UluConditionalText": [],
-    "UluAction": [
-      {
-        "title": "AsButton",
-        "description": "AsButton variation",
-        "code": "<UluAction>Content</UluAction>"
-      },
-      {
-        "title": "AsAnchor",
-        "description": "AsAnchor variation",
-        "code": "<UluAction href=\"https://example.com\" target=\"_blank\">Content</UluAction>"
-      },
-      {
-        "title": "AsRouterLink",
-        "description": "AsRouterLink variation",
-        "code": "<UluAction to=\"/about\">Content</UluAction>"
-      },
-      {
-        "title": "ExplicitElementOverride",
-        "description": "ExplicitElementOverride variation",
-        "code": "<UluAction element=\"span\">Content</UluAction>"
-      },
-      {
-        "title": "DownloadWithFilename",
-        "description": "DownloadWithFilename variation",
-        "code": "<UluAction href=\"{...}\" download=\"download-test.txt\">Content</UluAction>"
-      },
-      {
-        "title": "TestDownloadWithoutFilename",
-        "description": "TestDownloadWithoutFilename variation",
-        "code": "<UluAction href=\"{...}\" download>Content</UluAction>"
       }
     ],
     "UluWhenBreakpoint": [],
@@ -504,6 +504,13 @@
       }
     ],
     "UluAlert": [],
+    "UluTableSticky": [
+      {
+        "title": "Default",
+        "description": "Default variation",
+        "code": "<UluTableSticky columns=\"{...}\" rows=\"{...}\" caption=\"Example Sticky Table\" scrollControls>Content</UluTableSticky>"
+      }
+    ],
     "UluSkeletonText": [],
     "UluSkeletonMedia": [],
     "UluSkeletonContent": [],
@@ -513,13 +520,6 @@
         "title": "Horizontal",
         "description": "Horizontal variation",
         "code": "<CardExample horizontal>Content</CardExample>"
-      }
-    ],
-    "UluTableSticky": [
-      {
-        "title": "Default",
-        "description": "Default variation",
-        "code": "<UluTableSticky columns=\"{...}\" rows=\"{...}\" caption=\"Example Sticky Table\" scrollControls>Content</UluTableSticky>"
       }
     ],
     "UluScrollAnchorsNavAnimated": [],
@@ -747,6 +747,39 @@
       "events": [],
       "slots": []
     },
+    "UluToastDisplay": {
+      "description": "Vue Component Props, Emits, and Slots for UluToastDisplay",
+      "properties": [],
+      "events": [],
+      "slots": []
+    },
+    "UluToast": {
+      "description": "Vue Component Props, Emits, and Slots for UluToast",
+      "properties": [
+        {
+          "name": "toast",
+          "type": "object",
+          "description": "Toast configuration"
+        },
+        {
+          "name": "classes",
+          "type": "object|boolean|func",
+          "default": "() => ({})",
+          "description": "Icons for each element { icon, header, content, date, actions, action, closeButton, title, body, closeButton }"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "icon",
+          "description": ""
+        },
+        {
+          "name": "content",
+          "description": ""
+        }
+      ]
+    },
     "UluTooltipPopover": {
       "description": "Vue Component Props, Emits, and Slots for UluTooltipPopover",
       "properties": [
@@ -932,39 +965,6 @@
         },
         {
           "name": "footer",
-          "description": ""
-        }
-      ]
-    },
-    "UluToastDisplay": {
-      "description": "Vue Component Props, Emits, and Slots for UluToastDisplay",
-      "properties": [],
-      "events": [],
-      "slots": []
-    },
-    "UluToast": {
-      "description": "Vue Component Props, Emits, and Slots for UluToast",
-      "properties": [
-        {
-          "name": "toast",
-          "type": "object",
-          "description": "Toast configuration"
-        },
-        {
-          "name": "classes",
-          "type": "object|boolean|func",
-          "default": "() => ({})",
-          "description": "Icons for each element { icon, header, content, date, actions, action, closeButton, title, body, closeButton }"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "icon",
-          "description": ""
-        },
-        {
-          "name": "content",
           "description": ""
         }
       ]
@@ -1217,321 +1217,6 @@
         }
       ]
     },
-    "UluWhenBreakpoint": {
-      "description": "Vue Component Props, Emits, and Slots for UluWhenBreakpoint",
-      "properties": [
-        {
-          "name": "max",
-          "type": "string",
-          "description": "The maximum breakpoint to show the content at."
-        },
-        {
-          "name": "min",
-          "type": "string",
-          "description": "The minimum breakpoint to show the content at."
-        },
-        {
-          "name": "only",
-          "type": "string",
-          "description": "Only show the content at this breakpoint."
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluTitleRail": {
-      "description": "Vue Component Props, Emits, and Slots for UluTitleRail",
-      "properties": [
-        {
-          "name": "icon",
-          "type": "string",
-          "description": "Icon to display next to the title."
-        },
-        {
-          "name": "iconAlign",
-          "type": "string",
-          "default": "\"baseline\"",
-          "description": "The alignment of the icon with the title."
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{\n  title: \"h2\",\n  icon: \"margin-right-small\"\n}",
-          "description": "Classes for the different elements in the component."
-        },
-        {
-          "name": "title",
-          "type": "string",
-          "description": "The title to display."
-        },
-        {
-          "name": "titleElement",
-          "type": "string",
-          "default": "\"h2\"",
-          "description": "The HTML element to use for the title."
-        },
-        {
-          "name": "rule",
-          "type": "boolean",
-          "description": "If true, a rule will be displayed under the title."
-        },
-        {
-          "name": "modifiers",
-          "type": "string|array|object",
-          "description": "Modifiers (to add any modifier classes based on base class)"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        },
-        {
-          "name": "end",
-          "description": ""
-        }
-      ]
-    },
-    "UluDataGrid": {
-      "description": "Vue Component Props, Emits, and Slots for UluDataGrid",
-      "properties": [
-        {
-          "name": "element",
-          "type": "string",
-          "default": "\"div\"",
-          "description": "The element to use on data-grid container"
-        },
-        {
-          "name": "hidden",
-          "type": "boolean",
-          "description": "Tell the component when this grid is actually in a hidden container \n- When value changes the component will properly update position classes"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        }
-      ]
-    },
-    "UluAdaptiveLayout": {
-      "description": "Vue Component Props, Emits, and Slots for UluAdaptiveLayout",
-      "properties": [],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        },
-        {
-          "name": "mobile",
-          "description": ""
-        }
-      ]
-    },
-    "UluSkipLink": {
-      "description": "Vue Component Props, Emits, and Slots for UluSkipLink",
-      "properties": [],
-      "events": [],
-      "slots": []
-    },
-    "UluPager": {
-      "description": "Vue Component Props, Emits, and Slots for UluPager",
-      "properties": [
-        {
-          "name": "titleElement",
-          "type": "string",
-          "default": "'h4'",
-          "description": "The HTML element to use for the visually hidden title."
-        },
-        {
-          "name": "items",
-          "type": "object",
-          "default": "{}",
-          "description": "List of pager items."
-        },
-        {
-          "name": "current",
-          "type": "number",
-          "default": "1",
-          "description": "The page number of the current page."
-        },
-        {
-          "name": "ellipses",
-          "type": "object",
-          "default": "{}",
-          "description": "Ellipses configuration."
-        }
-      ],
-      "events": [],
-      "slots": []
-    },
-    "UluNavStrip": {
-      "description": "Vue Component Props, Emits, and Slots for UluNavStrip",
-      "properties": [
-        {
-          "name": "items",
-          "type": "array",
-          "description": "Array of items for list (uses UluMenu, see structure there)"
-        },
-        {
-          "name": "center",
-          "type": "boolean",
-          "description": "Center aligned"
-        },
-        {
-          "name": "right",
-          "type": "boolean",
-          "description": "Right aligned"
-        },
-        {
-          "name": "rule",
-          "type": "boolean",
-          "description": "Rule nav strip style"
-        },
-        {
-          "name": "modifiers",
-          "type": "string|array|object",
-          "description": "Modifiers (to add any modifier classes based on base class)"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "name",
-          "description": ""
-        }
-      ]
-    },
-    "UluMenuStack": {
-      "description": "Vue Component Props, Emits, and Slots for UluMenuStack",
-      "properties": [
-        {
-          "name": "items",
-          "type": "array",
-          "description": "Menu item (see UluMenu)"
-        },
-        {
-          "name": "containerElement",
-          "type": "string",
-          "default": "\"nav\"",
-          "description": "The HTML element to use as the container (e.g., 'nav', 'div', 'aside')."
-        },
-        {
-          "name": "hanging",
-          "type": "boolean",
-          "description": "Hanging style menu"
-        },
-        {
-          "name": "compact",
-          "type": "boolean",
-          "description": "Compact style menu"
-        },
-        {
-          "name": "noChildren",
-          "type": "boolean",
-          "description": "Don't include children of menu"
-        },
-        {
-          "name": "modifiers",
-          "type": "string|array|object",
-          "description": "Class modifiers (ie. 'transparent', 'secondary', etc)"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "name",
-          "description": ""
-        }
-      ]
-    },
-    "UluMenu": {
-      "description": "Vue Component Props, Emits, and Slots for UluMenu",
-      "properties": [
-        {
-          "name": "items",
-          "type": "array",
-          "description": "Items Array of Objects for each link\n[{\n  title: String (title of link)\n  icon: Icon definition passed to UluIcon\n  tag: Tag appearing after link text (count/etc), pass props you want bound to tag\n  tooltip: Add tooltip to menu item (pass options for tooltip), unless iconOnly than the title is presented in the tooltip\n  href: Will result in <a>\n  click: Will be called on click and result in <button>\n  to: Will result in <a> and use vue-router router-link component\n}]"
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{}",
-          "description": "Classes object to add class bindings to the different elements\n- { list, item, link, linkActive, linkExactActive, linkIcon, linkText }"
-        },
-        {
-          "name": "iconOnly",
-          "type": "boolean",
-          "description": "Use icon only version of menu"
-        },
-        {
-          "name": "noChildren",
-          "type": "boolean",
-          "description": "Do not print menu items children recursively"
-        }
-      ],
-      "events": [
-        {
-          "name": "item-click",
-          "description": "Fired anytime a item is clicked"
-        }
-      ],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        },
-        {
-          "name": "item",
-          "description": ""
-        },
-        {
-          "name": "name",
-          "description": ""
-        }
-      ]
-    },
-    "UluBreadcrumb": {
-      "description": "Vue Component Props, Emits, and Slots for UluBreadcrumb",
-      "properties": [
-        {
-          "name": "items",
-          "type": "array",
-          "default": "[]",
-          "description": "Array of breadcrumb items.\nEach item is an object: { title: String, to: [String, Object], current: Boolean }"
-        },
-        {
-          "name": "separatorIcon",
-          "type": "string",
-          "description": "Icon to use as a separator."
-        },
-        {
-          "name": "classes",
-          "type": "object",
-          "default": "{\n  nav: \"breadcrumb\",\n  list: \"breadcrumb__list\",\n  item: \"breadcrumb__item\",\n  link: \"breadcrumb__link\",\n  current: \"breadcrumb__current\",\n  separator: \"breadcrumb__separator\"\n}",
-          "description": "Classes object to be applied to elements.\nKeys: nav, list, item, link, current, separator"
-        }
-      ],
-      "events": [],
-      "slots": [
-        {
-          "name": "default",
-          "description": ""
-        },
-        {
-          "name": "separator",
-          "description": ""
-        }
-      ]
-    },
     "UluSanityRichText": {
       "description": "Vue Component Props, Emits, and Slots for UluSanityRichText",
       "properties": [
@@ -1745,6 +1430,321 @@
       "slots": [
         {
           "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluSkipLink": {
+      "description": "Vue Component Props, Emits, and Slots for UluSkipLink",
+      "properties": [],
+      "events": [],
+      "slots": []
+    },
+    "UluPager": {
+      "description": "Vue Component Props, Emits, and Slots for UluPager",
+      "properties": [
+        {
+          "name": "titleElement",
+          "type": "string",
+          "default": "'h4'",
+          "description": "The HTML element to use for the visually hidden title."
+        },
+        {
+          "name": "items",
+          "type": "object",
+          "default": "{}",
+          "description": "List of pager items."
+        },
+        {
+          "name": "current",
+          "type": "number",
+          "default": "1",
+          "description": "The page number of the current page."
+        },
+        {
+          "name": "ellipses",
+          "type": "object",
+          "default": "{}",
+          "description": "Ellipses configuration."
+        }
+      ],
+      "events": [],
+      "slots": []
+    },
+    "UluNavStrip": {
+      "description": "Vue Component Props, Emits, and Slots for UluNavStrip",
+      "properties": [
+        {
+          "name": "items",
+          "type": "array",
+          "description": "Array of items for list (uses UluMenu, see structure there)"
+        },
+        {
+          "name": "center",
+          "type": "boolean",
+          "description": "Center aligned"
+        },
+        {
+          "name": "right",
+          "type": "boolean",
+          "description": "Right aligned"
+        },
+        {
+          "name": "rule",
+          "type": "boolean",
+          "description": "Rule nav strip style"
+        },
+        {
+          "name": "modifiers",
+          "type": "string|array|object",
+          "description": "Modifiers (to add any modifier classes based on base class)"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "name",
+          "description": ""
+        }
+      ]
+    },
+    "UluMenuStack": {
+      "description": "Vue Component Props, Emits, and Slots for UluMenuStack",
+      "properties": [
+        {
+          "name": "items",
+          "type": "array",
+          "description": "Menu item (see UluMenu)"
+        },
+        {
+          "name": "containerElement",
+          "type": "string",
+          "default": "\"nav\"",
+          "description": "The HTML element to use as the container (e.g., 'nav', 'div', 'aside')."
+        },
+        {
+          "name": "hanging",
+          "type": "boolean",
+          "description": "Hanging style menu"
+        },
+        {
+          "name": "compact",
+          "type": "boolean",
+          "description": "Compact style menu"
+        },
+        {
+          "name": "noChildren",
+          "type": "boolean",
+          "description": "Don't include children of menu"
+        },
+        {
+          "name": "modifiers",
+          "type": "string|array|object",
+          "description": "Class modifiers (ie. 'transparent', 'secondary', etc)"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "name",
+          "description": ""
+        }
+      ]
+    },
+    "UluMenu": {
+      "description": "Vue Component Props, Emits, and Slots for UluMenu",
+      "properties": [
+        {
+          "name": "items",
+          "type": "array",
+          "description": "Items Array of Objects for each link\n[{\n  title: String (title of link)\n  icon: Icon definition passed to UluIcon\n  tag: Tag appearing after link text (count/etc), pass props you want bound to tag\n  tooltip: Add tooltip to menu item (pass options for tooltip), unless iconOnly than the title is presented in the tooltip\n  href: Will result in <a>\n  click: Will be called on click and result in <button>\n  to: Will result in <a> and use vue-router router-link component\n}]"
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{}",
+          "description": "Classes object to add class bindings to the different elements\n- { list, item, link, linkActive, linkExactActive, linkIcon, linkText }"
+        },
+        {
+          "name": "iconOnly",
+          "type": "boolean",
+          "description": "Use icon only version of menu"
+        },
+        {
+          "name": "noChildren",
+          "type": "boolean",
+          "description": "Do not print menu items children recursively"
+        }
+      ],
+      "events": [
+        {
+          "name": "item-click",
+          "description": "Fired anytime a item is clicked"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        },
+        {
+          "name": "item",
+          "description": ""
+        },
+        {
+          "name": "name",
+          "description": ""
+        }
+      ]
+    },
+    "UluBreadcrumb": {
+      "description": "Vue Component Props, Emits, and Slots for UluBreadcrumb",
+      "properties": [
+        {
+          "name": "items",
+          "type": "array",
+          "default": "[]",
+          "description": "Array of breadcrumb items.\nEach item is an object: { title: String, to: [String, Object], current: Boolean }"
+        },
+        {
+          "name": "separatorIcon",
+          "type": "string",
+          "description": "Icon to use as a separator."
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{\n  nav: \"breadcrumb\",\n  list: \"breadcrumb__list\",\n  item: \"breadcrumb__item\",\n  link: \"breadcrumb__link\",\n  current: \"breadcrumb__current\",\n  separator: \"breadcrumb__separator\"\n}",
+          "description": "Classes object to be applied to elements.\nKeys: nav, list, item, link, current, separator"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        },
+        {
+          "name": "separator",
+          "description": ""
+        }
+      ]
+    },
+    "UluWhenBreakpoint": {
+      "description": "Vue Component Props, Emits, and Slots for UluWhenBreakpoint",
+      "properties": [
+        {
+          "name": "max",
+          "type": "string",
+          "description": "The maximum breakpoint to show the content at."
+        },
+        {
+          "name": "min",
+          "type": "string",
+          "description": "The minimum breakpoint to show the content at."
+        },
+        {
+          "name": "only",
+          "type": "string",
+          "description": "Only show the content at this breakpoint."
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluTitleRail": {
+      "description": "Vue Component Props, Emits, and Slots for UluTitleRail",
+      "properties": [
+        {
+          "name": "icon",
+          "type": "string",
+          "description": "Icon to display next to the title."
+        },
+        {
+          "name": "iconAlign",
+          "type": "string",
+          "default": "\"baseline\"",
+          "description": "The alignment of the icon with the title."
+        },
+        {
+          "name": "classes",
+          "type": "object",
+          "default": "{\n  title: \"h2\",\n  icon: \"margin-right-small\"\n}",
+          "description": "Classes for the different elements in the component."
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "description": "The title to display."
+        },
+        {
+          "name": "titleElement",
+          "type": "string",
+          "default": "\"h2\"",
+          "description": "The HTML element to use for the title."
+        },
+        {
+          "name": "rule",
+          "type": "boolean",
+          "description": "If true, a rule will be displayed under the title."
+        },
+        {
+          "name": "modifiers",
+          "type": "string|array|object",
+          "description": "Modifiers (to add any modifier classes based on base class)"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        },
+        {
+          "name": "end",
+          "description": ""
+        }
+      ]
+    },
+    "UluDataGrid": {
+      "description": "Vue Component Props, Emits, and Slots for UluDataGrid",
+      "properties": [
+        {
+          "name": "element",
+          "type": "string",
+          "default": "\"div\"",
+          "description": "The element to use on data-grid container"
+        },
+        {
+          "name": "hidden",
+          "type": "boolean",
+          "description": "Tell the component when this grid is actually in a hidden container \n- When value changes the component will properly update position classes"
+        }
+      ],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        }
+      ]
+    },
+    "UluAdaptiveLayout": {
+      "description": "Vue Component Props, Emits, and Slots for UluAdaptiveLayout",
+      "properties": [],
+      "events": [],
+      "slots": [
+        {
+          "name": "default",
+          "description": ""
+        },
+        {
+          "name": "mobile",
           "description": ""
         }
       ]
@@ -4017,6 +4017,12 @@
         }
       ]
     },
+    "CustomToast": {
+      "description": "Vue Component Props, Emits, and Slots for CustomToast",
+      "properties": [],
+      "events": [],
+      "slots": []
+    },
     "TestTooltipInline": {
       "description": "Vue Component Props, Emits, and Slots for TestTooltipInline",
       "properties": [],
@@ -4061,12 +4067,6 @@
     },
     "AllTests": {
       "description": "Vue Component Props, Emits, and Slots for AllTests",
-      "properties": [],
-      "events": [],
-      "slots": []
-    },
-    "CustomToast": {
-      "description": "Vue Component Props, Emits, and Slots for CustomToast",
       "properties": [],
       "events": [],
       "slots": []
@@ -5065,6 +5065,70 @@
         ]
       }
     },
+    "UluToastDisplay": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluToastDisplay",
+        "description": "",
+        "tags": {},
+        "sourceFiles": [
+          "lib/plugins/toast/UluToastDisplay.vue"
+        ]
+      }
+    },
+    "UluToast": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluToast",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "toast",
+            "description": "Toast configuration",
+            "type": {
+              "name": "object"
+            }
+          },
+          {
+            "name": "classes",
+            "description": "Icons for each element { icon, header, content, date, actions, action, closeButton, title, body, closeButton }",
+            "type": {
+              "name": "object|boolean|func"
+            },
+            "defaultValue": {
+              "func": true,
+              "value": "() => ({})"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "icon",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "toast",
+                "title": "binding"
+              }
+            ]
+          },
+          {
+            "name": "content",
+            "scoped": true,
+            "bindings": [
+              {
+                "name": "toast",
+                "title": "binding"
+              }
+            ]
+          }
+        ],
+        "sourceFiles": [
+          "lib/plugins/toast/UluToast.vue"
+        ]
+      }
+    },
     "UluTooltipPopover": {
       "raw_ast_dump": {
         "exportName": "default",
@@ -5433,70 +5497,6 @@
         ],
         "sourceFiles": [
           "lib/plugins/popovers/UluPopover.vue"
-        ]
-      }
-    },
-    "UluToastDisplay": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluToastDisplay",
-        "description": "",
-        "tags": {},
-        "sourceFiles": [
-          "lib/plugins/toast/UluToastDisplay.vue"
-        ]
-      }
-    },
-    "UluToast": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluToast",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "toast",
-            "description": "Toast configuration",
-            "type": {
-              "name": "object"
-            }
-          },
-          {
-            "name": "classes",
-            "description": "Icons for each element { icon, header, content, date, actions, action, closeButton, title, body, closeButton }",
-            "type": {
-              "name": "object|boolean|func"
-            },
-            "defaultValue": {
-              "func": true,
-              "value": "() => ({})"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "icon",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "toast",
-                "title": "binding"
-              }
-            ]
-          },
-          {
-            "name": "content",
-            "scoped": true,
-            "bindings": [
-              {
-                "name": "toast",
-                "title": "binding"
-              }
-            ]
-          }
-        ],
-        "sourceFiles": [
-          "lib/plugins/toast/UluToast.vue"
         ]
       }
     },
@@ -5902,179 +5902,354 @@
         ]
       }
     },
-    "UluWhenBreakpoint": {
+    "UluSanityRichText": {
       "raw_ast_dump": {
         "exportName": "default",
-        "displayName": "UluWhenBreakpoint",
+        "displayName": "UluSanityRichText",
         "description": "",
         "tags": {},
         "props": [
           {
-            "name": "max",
-            "description": "The maximum breakpoint to show the content at.",
+            "name": "content",
+            "description": "The array of Portable Text blocks to render.",
             "type": {
-              "name": "string"
+              "name": "array"
             }
           },
           {
-            "name": "min",
-            "description": "The minimum breakpoint to show the content at.",
+            "name": "noWrapper",
+            "description": "If true, the output will not be wrapped in a div with the 'wysiwyg' class.",
             "type": {
-              "name": "string"
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "false"
             }
-          },
-          {
-            "name": "only",
-            "description": "Only show the content at this breakpoint.",
-            "type": {
-              "name": "string"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
           }
         ],
         "sourceFiles": [
-          "lib/components/layout/UluWhenBreakpoint.vue"
+          "lib/components/utils/UluSanityRichText.vue"
         ]
       }
     },
-    "UluTitleRail": {
+    "UluRouteAnnouncer": {
       "raw_ast_dump": {
         "exportName": "default",
-        "displayName": "UluTitleRail",
+        "displayName": "UluRouteAnnouncer",
         "description": "",
         "tags": {},
         "props": [
           {
-            "name": "icon",
-            "description": "Icon to display next to the title.",
+            "name": "validator",
+            "description": "Allow user to bypass this functionality\n- Function should return true if the page should be announced\n- Function is passed (to, from) => {}\n  - to/from are RouteLocationNormalizedLoaded objects",
             "type": {
-              "name": "string"
+              "name": "func"
+            },
+            "defaultValue": {
+              "func": true,
+              "value": "() => true"
             }
           },
           {
-            "name": "iconAlign",
-            "description": "The alignment of the icon with the title.",
+            "name": "exclude",
+            "description": "Array of paths to exclude\n- Can be exact path \"/about\" \n- Or can be path with wildcard \"/about/*\" (match all paths under about)",
             "type": {
-              "name": "string"
+              "name": "array"
             },
             "defaultValue": {
               "func": false,
-              "value": "\"baseline\""
+              "value": "[]"
             }
           },
           {
-            "name": "classes",
-            "description": "Classes for the different elements in the component.",
+            "name": "getTitle",
+            "description": "Function to retrieve routes title",
             "type": {
-              "name": "object"
+              "name": "func"
             },
             "defaultValue": {
-              "func": false,
-              "value": "{\n  title: \"h2\",\n  icon: \"margin-right-small\"\n}"
+              "func": true,
+              "value": "(route) => getRouteTitle(route)"
             }
           },
           {
-            "name": "title",
-            "description": "The title to display.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "titleElement",
-            "description": "The HTML element to use for the title.",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"h2\""
-            }
-          },
-          {
-            "name": "rule",
-            "description": "If true, a rule will be displayed under the title.",
+            "name": "debug",
+            "description": "Enable debug logging",
             "type": {
               "name": "boolean"
             }
-          },
-          {
-            "name": "modifiers",
-            "description": "Modifiers (to add any modifier classes based on base class)",
-            "type": {
-              "name": "string|array|object"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          },
-          {
-            "name": "end"
           }
         ],
         "sourceFiles": [
-          "lib/components/layout/UluTitleRail.vue"
+          "lib/components/utils/UluRouteAnnouncer.vue"
         ]
       }
     },
-    "UluDataGrid": {
+    "UluPlaceholderText": {
       "raw_ast_dump": {
         "exportName": "default",
-        "displayName": "UluDataGrid",
+        "displayName": "UluPlaceholderText",
         "description": "",
         "tags": {},
         "props": [
+          {
+            "name": "amount",
+            "type": {
+              "name": "number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "1"
+            }
+          },
           {
             "name": "element",
-            "description": "The element to use on data-grid container",
             "type": {
               "name": "string"
             },
             "defaultValue": {
               "func": false,
-              "value": "\"div\""
+              "value": "\"p\""
+            }
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/utils/UluPlaceholderText.vue"
+        ]
+      }
+    },
+    "UluPlaceholderImage": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluPlaceholderImage",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "imageId",
+            "type": {
+              "name": "string"
             }
           },
           {
-            "name": "hidden",
-            "description": "Tell the component when this grid is actually in a hidden container \n- When value changes the component will properly update position classes",
+            "name": "width",
+            "description": "Width of the image",
+            "type": {
+              "name": "string|number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"300\""
+            }
+          },
+          {
+            "name": "height",
+            "description": "Height of the image",
+            "type": {
+              "name": "string|number"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"400\""
+            }
+          },
+          {
+            "name": "alt",
+            "description": "Alt text for placeholder image",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "random",
+            "description": "Random size",
             "type": {
               "name": "boolean"
             }
           }
         ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
         "sourceFiles": [
-          "lib/components/layout/UluDataGrid.vue"
+          "lib/components/utils/UluPlaceholderImage.vue"
         ]
       }
     },
-    "UluAdaptiveLayout": {
+    "UluEmptyView": {
       "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluAdaptiveLayout",
+        "displayName": "UluEmptyView",
         "description": "",
         "tags": {},
+        "sourceFiles": [
+          "lib/components/utils/UluEmptyView.vue"
+        ]
+      }
+    },
+    "UluEmpty": {
+      "raw_ast_dump": {
+        "displayName": "UluEmpty",
+        "description": "",
+        "tags": {},
+        "sourceFiles": [
+          "lib/components/utils/UluEmpty.vue"
+        ]
+      }
+    },
+    "UluConditionalWrapper": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluConditionalWrapper",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "is",
+            "description": "The underlying component or HTML tag to render.\nCan be a string like 'div' or an imported component object.",
+            "type": {
+              "name": "string|object|func"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "'div'"
+            }
+          },
+          {
+            "name": "unwrapped",
+            "description": "If true, the wrapper will not be rendered and the content\nwill be output directly.",
+            "type": {
+              "name": "boolean"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "false"
+            }
+          }
+        ],
         "slots": [
           {
             "name": "default"
-          },
-          {
-            "name": "mobile"
           }
         ],
         "sourceFiles": [
-          "lib/components/layout/UluAdaptiveLayout.vue"
+          "lib/components/utils/UluConditionalWrapper.vue"
+        ]
+      }
+    },
+    "UluConditionalText": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluConditionalText",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "text",
+            "description": "Text to print in element",
+            "type": {
+              "name": "string|number|array|object"
+            }
+          },
+          {
+            "name": "element",
+            "description": "Element type to render (ie. h1, h2, p, etc)",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"p\""
+            }
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/utils/UluConditionalText.vue"
+        ]
+      }
+    },
+    "UluAction": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluAction",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "to",
+            "description": "Router link target.",
+            "type": {
+              "name": "string|object"
+            }
+          },
+          {
+            "name": "path",
+            "description": "Alternative to 'to' (used in some legacy or specific data structures like UluMenu items).",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "href",
+            "description": "Standard URL for native anchor tags.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "target",
+            "description": "Target attribute for anchor tags (e.g. '_blank').",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "download",
+            "description": "Download attribute for anchor tags.",
+            "type": {
+              "name": "boolean|string"
+            }
+          },
+          {
+            "name": "element",
+            "description": "Optional explicit element to use (e.g., if you need 'div' or 'span' instead of a button).",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "activeClass",
+            "description": "Vue Router active class override.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "exactActiveClass",
+            "description": "Vue Router exact active class override.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "click",
+            "description": "Allows passing 'click' as a prop to signify this is an action (used in UluMenu data objects).\nNote: The actual @click listener should be attached via fallthrough attrs, this is just for logic routing.",
+            "type": {
+              "name": "func"
+            }
+          },
+          {
+            "name": "type",
+            "description": "Button type (e.g. 'submit', 'reset', 'button'). Defaults to 'button' to prevent accidental form submissions.",
+            "type": {
+              "name": "string"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/utils/UluAction.vue"
         ]
       }
     },
@@ -6424,342 +6599,30 @@
         ]
       }
     },
-    "UluSanityRichText": {
+    "UluWhenBreakpoint": {
       "raw_ast_dump": {
         "exportName": "default",
-        "displayName": "UluSanityRichText",
+        "displayName": "UluWhenBreakpoint",
         "description": "",
         "tags": {},
         "props": [
           {
-            "name": "content",
-            "description": "The array of Portable Text blocks to render.",
-            "type": {
-              "name": "array"
-            }
-          },
-          {
-            "name": "noWrapper",
-            "description": "If true, the output will not be wrapped in a div with the 'wysiwyg' class.",
-            "type": {
-              "name": "boolean"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "false"
-            }
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/utils/UluSanityRichText.vue"
-        ]
-      }
-    },
-    "UluRouteAnnouncer": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluRouteAnnouncer",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "validator",
-            "description": "Allow user to bypass this functionality\n- Function should return true if the page should be announced\n- Function is passed (to, from) => {}\n  - to/from are RouteLocationNormalizedLoaded objects",
-            "type": {
-              "name": "func"
-            },
-            "defaultValue": {
-              "func": true,
-              "value": "() => true"
-            }
-          },
-          {
-            "name": "exclude",
-            "description": "Array of paths to exclude\n- Can be exact path \"/about\" \n- Or can be path with wildcard \"/about/*\" (match all paths under about)",
-            "type": {
-              "name": "array"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "[]"
-            }
-          },
-          {
-            "name": "getTitle",
-            "description": "Function to retrieve routes title",
-            "type": {
-              "name": "func"
-            },
-            "defaultValue": {
-              "func": true,
-              "value": "(route) => getRouteTitle(route)"
-            }
-          },
-          {
-            "name": "debug",
-            "description": "Enable debug logging",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/utils/UluRouteAnnouncer.vue"
-        ]
-      }
-    },
-    "UluPlaceholderText": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluPlaceholderText",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "amount",
-            "type": {
-              "name": "number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "1"
-            }
-          },
-          {
-            "name": "element",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"p\""
-            }
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/utils/UluPlaceholderText.vue"
-        ]
-      }
-    },
-    "UluPlaceholderImage": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluPlaceholderImage",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "imageId",
+            "name": "max",
+            "description": "The maximum breakpoint to show the content at.",
             "type": {
               "name": "string"
             }
           },
           {
-            "name": "width",
-            "description": "Width of the image",
-            "type": {
-              "name": "string|number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"300\""
-            }
-          },
-          {
-            "name": "height",
-            "description": "Height of the image",
-            "type": {
-              "name": "string|number"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"400\""
-            }
-          },
-          {
-            "name": "alt",
-            "description": "Alt text for placeholder image",
+            "name": "min",
+            "description": "The minimum breakpoint to show the content at.",
             "type": {
               "name": "string"
             }
           },
           {
-            "name": "random",
-            "description": "Random size",
-            "type": {
-              "name": "boolean"
-            }
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/utils/UluPlaceholderImage.vue"
-        ]
-      }
-    },
-    "UluEmptyView": {
-      "raw_ast_dump": {
-        "displayName": "UluEmptyView",
-        "description": "",
-        "tags": {},
-        "sourceFiles": [
-          "lib/components/utils/UluEmptyView.vue"
-        ]
-      }
-    },
-    "UluEmpty": {
-      "raw_ast_dump": {
-        "displayName": "UluEmpty",
-        "description": "",
-        "tags": {},
-        "sourceFiles": [
-          "lib/components/utils/UluEmpty.vue"
-        ]
-      }
-    },
-    "UluConditionalWrapper": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluConditionalWrapper",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "is",
-            "description": "The underlying component or HTML tag to render.\nCan be a string like 'div' or an imported component object.",
-            "type": {
-              "name": "string|object|func"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "'div'"
-            }
-          },
-          {
-            "name": "unwrapped",
-            "description": "If true, the wrapper will not be rendered and the content\nwill be output directly.",
-            "type": {
-              "name": "boolean"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "false"
-            }
-          }
-        ],
-        "slots": [
-          {
-            "name": "default"
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/utils/UluConditionalWrapper.vue"
-        ]
-      }
-    },
-    "UluConditionalText": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluConditionalText",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "text",
-            "description": "Text to print in element",
-            "type": {
-              "name": "string|number|array|object"
-            }
-          },
-          {
-            "name": "element",
-            "description": "Element type to render (ie. h1, h2, p, etc)",
-            "type": {
-              "name": "string"
-            },
-            "defaultValue": {
-              "func": false,
-              "value": "\"p\""
-            }
-          }
-        ],
-        "sourceFiles": [
-          "lib/components/utils/UluConditionalText.vue"
-        ]
-      }
-    },
-    "UluAction": {
-      "raw_ast_dump": {
-        "exportName": "default",
-        "displayName": "UluAction",
-        "description": "",
-        "tags": {},
-        "props": [
-          {
-            "name": "to",
-            "description": "Router link target.",
-            "type": {
-              "name": "string|object"
-            }
-          },
-          {
-            "name": "path",
-            "description": "Alternative to 'to' (used in some legacy or specific data structures like UluMenu items).",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "href",
-            "description": "Standard URL for native anchor tags.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "target",
-            "description": "Target attribute for anchor tags (e.g. '_blank').",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "download",
-            "description": "Download attribute for anchor tags.",
-            "type": {
-              "name": "boolean|string"
-            }
-          },
-          {
-            "name": "element",
-            "description": "Optional explicit element to use (e.g., if you need 'div' or 'span' instead of a button).",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "activeClass",
-            "description": "Vue Router active class override.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "exactActiveClass",
-            "description": "Vue Router exact active class override.",
-            "type": {
-              "name": "string"
-            }
-          },
-          {
-            "name": "click",
-            "description": "Allows passing 'click' as a prop to signify this is an action (used in UluMenu data objects).\nNote: The actual @click listener should be attached via fallthrough attrs, this is just for logic routing.",
-            "type": {
-              "name": "func"
-            }
-          },
-          {
-            "name": "type",
-            "description": "Button type (e.g. 'submit', 'reset', 'button'). Defaults to 'button' to prevent accidental form submissions.",
+            "name": "only",
+            "description": "Only show the content at this breakpoint.",
             "type": {
               "name": "string"
             }
@@ -6771,7 +6634,144 @@
           }
         ],
         "sourceFiles": [
-          "lib/components/utils/UluAction.vue"
+          "lib/components/layout/UluWhenBreakpoint.vue"
+        ]
+      }
+    },
+    "UluTitleRail": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluTitleRail",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "icon",
+            "description": "Icon to display next to the title.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "iconAlign",
+            "description": "The alignment of the icon with the title.",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"baseline\""
+            }
+          },
+          {
+            "name": "classes",
+            "description": "Classes for the different elements in the component.",
+            "type": {
+              "name": "object"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "{\n  title: \"h2\",\n  icon: \"margin-right-small\"\n}"
+            }
+          },
+          {
+            "name": "title",
+            "description": "The title to display.",
+            "type": {
+              "name": "string"
+            }
+          },
+          {
+            "name": "titleElement",
+            "description": "The HTML element to use for the title.",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"h2\""
+            }
+          },
+          {
+            "name": "rule",
+            "description": "If true, a rule will be displayed under the title.",
+            "type": {
+              "name": "boolean"
+            }
+          },
+          {
+            "name": "modifiers",
+            "description": "Modifiers (to add any modifier classes based on base class)",
+            "type": {
+              "name": "string|array|object"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          },
+          {
+            "name": "end"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/layout/UluTitleRail.vue"
+        ]
+      }
+    },
+    "UluDataGrid": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluDataGrid",
+        "description": "",
+        "tags": {},
+        "props": [
+          {
+            "name": "element",
+            "description": "The element to use on data-grid container",
+            "type": {
+              "name": "string"
+            },
+            "defaultValue": {
+              "func": false,
+              "value": "\"div\""
+            }
+          },
+          {
+            "name": "hidden",
+            "description": "Tell the component when this grid is actually in a hidden container \n- When value changes the component will properly update position classes",
+            "type": {
+              "name": "boolean"
+            }
+          }
+        ],
+        "slots": [
+          {
+            "name": "default"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/layout/UluDataGrid.vue"
+        ]
+      }
+    },
+    "UluAdaptiveLayout": {
+      "raw_ast_dump": {
+        "exportName": "default",
+        "displayName": "UluAdaptiveLayout",
+        "description": "",
+        "tags": {},
+        "slots": [
+          {
+            "name": "default"
+          },
+          {
+            "name": "mobile"
+          }
+        ],
+        "sourceFiles": [
+          "lib/components/layout/UluAdaptiveLayout.vue"
         ]
       }
     },
@@ -10692,6 +10692,16 @@
         ]
       }
     },
+    "CustomToast": {
+      "raw_ast_dump": {
+        "displayName": "CustomToast",
+        "description": "",
+        "tags": {},
+        "sourceFiles": [
+          "lib/plugins/toast/tests/CustomToast.vue"
+        ]
+      }
+    },
     "TestTooltipInline": {
       "raw_ast_dump": {
         "displayName": "TestTooltipInline",
@@ -10773,16 +10783,6 @@
         "tags": {},
         "sourceFiles": [
           "lib/plugins/popovers/tests/AllTests.vue"
-        ]
-      }
-    },
-    "CustomToast": {
-      "raw_ast_dump": {
-        "displayName": "CustomToast",
-        "description": "",
-        "tags": {},
-        "sourceFiles": [
-          "lib/plugins/toast/tests/CustomToast.vue"
         ]
       }
     },
@@ -12629,7 +12629,7 @@
       "raw_markdown": "# useBreakpointManager\n\nComposable for adding breakpoint manager and related breakpoint info (via breakpoint manager from `@ulu/frontend/js/ui/breakpoints.js > BreakpointManager`).\n\n**Note:** Using the composable is only necessary for unique situations. For basic breakpoint setup use the `breakpointsPlugin`. Which uses this composable.\n\n## Options for this composable\n\n```js\nconst defaults = {\n  /**\n   * Set an initial value (value in mounted, SSR)\n   */\n  initialValue: null,\n  /**\n   * Function called after init (passed manager)\n   */\n  onReady: null,\n  /**\n   * Options sent to CssBreakpoints library (ulu/frontend/js/breakpoints <BreakpointManager>)\n   */\n  plugin: {\n    customProperty: \"--breakpoint\"\n  }\n}\n```\n\n## Example Usage\n\n```html\n<script setup>\n  import { ref, computed, provide } from \"vue\";\n  import { useBreakpointManager } from \"./useBreakpointManager.js\";\n\n  const isMobile = ref(false);\n\n  // Example using the onReady callback to set reactive value isMobile\n  // - In this situation isMobile is being used as a primary change in  \n  //   the applications layout \n  const options = { \n    onReady(manager) {\n      manager.at(\"small\").max(() => isMobile.value = true);\n      manager.at(\"large\").min(() => isMobile.value = false);\n    }\n  };\n\n  // Composable returns the following\n  const { \n    /**\n     * Reference to underlying BreakpointManager class\n    */\n    breakpointManager, \n    /**\n     * Active breakpoint name\n    */\n    breakpointActive, \n    /**\n     * Current resizeDirection (\"up\"|\"down\"|null)\n    */\n    breakpointDirection \n  } = useBreakpointManager(options);\n\n\n  // Allowing all components to access these values\n  provide(\"uluBreakpointActive\", computed(() => breakpointActive));\n  provide(\"uluBreakpointDirection\", computed(() => breakpointDirection));\n  provide(\"uluBreakpointManager\", computed(() => breakpointManager));\n  provide(\"uluIsMobile\", computed(() => isMobile));\n\n</script>\n```"
     },
     "tour": {
-      "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as TourStories from './tour.stories.js';\n\n# Tour Plugin\n\nThe Tour plugin allows configuring an app-wide guided tour that leverages `UluModal` and `@floating-ui/vue`. Register the plugin, and use the global API (or composable) to start step-by-step onboarding flows.\n\n## Installing the plugin\n\nExample `./src/main.js`\n\n```js\nimport UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);\n```\n\nTo display the tour, you must include the `UluTourDisplay` component somewhere in your application root (e.g. `App.vue`):\n\n```html\n<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>\n```\n\n## Creating a Tour\n\nA tour is defined as an object containing a `name` and an array of `steps`. You can also define global `modalProps` or `popoverProps` on the root tour object to apply them to all steps by default.\n\n```js\nconst demoTour = {\n  name: 'demo-tour',\n  popoverProps: { modifiers: 'large' }, // Global popover styling for all steps\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalProps: { size: 'small' } // Step-specific override\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};\n```\n\n## Configuration API Reference\n\nHere is a complete representation of a tour object demonstrating all available configuration properties, global overrides, lifecycle hooks, and step options.\n\n```js\nconst comprehensiveTour = {\n  // Optional identifier for the tour\n  name: 'my-feature-tour',\n  \n  // --- GLOBAL LIFECYCLE HOOKS ---\n  // Async hook called right before the tour initializes\n  onStart: async () => {\n    console.log('Tour is starting! Preparing UI...');\n  },\n  // Async hook called when the tour stops/closes (via api.stop() or the last step)\n  onStop: async () => {\n    console.log('Tour finished! Cleaning up...');\n  },\n\n  // --- GLOBAL COMPONENT OVERRIDES ---\n  // Replace the structural layout for ALL steps by default\n  component: MyFullTakeoverComponent,         // Bypasses Modal/Popover completely\n  modalComponent: MyCustomModalWrapper,       // Replaces UluModal wrapper\n  popoverComponent: MyCustomPopoverWrapper,   // Replaces UluPopoverBase wrapper\n  contentComponent: MyCustomContentLayout,    // Replaces the inner text layout\n  pagerComponent: MyCustomPaginationFooter,   // Replaces the UluTourPager (Next/Back footer)\n  \n  // --- GLOBAL PROP OVERRIDES ---\n  modalProps: { size: 'large' },             // Props passed to every Modal step\n  popoverProps: { modifiers: 'large' },      // Props passed to every Popover step\n  modalTitleClass: ['h3', 'text-primary'],   // Typography classes for Modal titles\n  popoverTitleClass: ['h4', 'text-primary'], // Typography classes for Popover titles\n  pagerClass: ['margin-top-large'],          // Classes applied to the pager footer wrapper\n  progressClass: 'headline-label',           // Classes applied to the progress indicator\n  hideProgress: false,                       // Globally hides the progress indicator (\"Part 1 / 3\")\n\n  // --- STEP DEFINITIONS ---\n  steps: [\n    {\n      // --- CORE ---\n      // Target: String (CSS Selector), DOM HTMLElement, or a Function returning either (or a ref).\n      // If the target is omitted or the function returns falsy, it renders as a Modal.\n      target: () => window.innerWidth > 768 ? '#desktop-sidebar' : null,\n      \n      // Highlight Element: String, DOM HTMLElement, Function or Ref. \n      // Used for the backdrop highlight if it needs to be different from the target. Falls back to target if omitted.\n      highlightElement: () => window.innerWidth > 768 ? '#desktop-sidebar-container' : null,\n      \n      title: 'Step Title',\n      content: 'Step body content.',\n\n      // --- STYLING & POSITIONING ---\n      placement: 'right', // Floating UI placement (e.g. 'bottom', 'left-start')\n      highlight: true,    // Dims the background around the target element\n      titleClass: 'custom-title', // Override global title classes for this step\n      pagerClass: 'custom-pager', // Override global pager classes for this step\n      modalProps: {},     // Step-specific props for UluModal\n      popoverProps: {},   // Step-specific props for UluPopoverBase\n      \n      // --- COMPONENT OVERRIDES (Step Level) ---\n      // These override the global tour configurations above for this specific step.\n      component: null, \n      contentComponent: null, \n      pagerComponent: null,\n      modalComponent: null,\n      popoverComponent: null,\n      componentProps: { }, // Props passed down to custom component overrides\n\n      // --- BEHAVIOR ---\n      hideFooter: false,   // If true, the pager (Next/Prev) is not rendered\n      hideProgress: false, // If true, hides the \"Part X / Y\" progress indicator for this step\n      \n      // Boolean or Sync/Async function. If true, the step is bypassed dynamically!\n      skip: async () => await checkUserSettings('sawFeature1'),\n\n      // --- STEP LIFECYCLE HOOKS ---\n      // Awaited right before the step transitions in\n      onEnter: async () => {\n        await openSidebarMenu();\n      },\n      // Awaited right before the step transitions out (either forward or backward)\n      onLeave: async () => {\n        await closeSidebarMenu();\n      }\n    }\n  ]\n};\n```\n\n## Starting the Tour\n\nYou can control the tour programmatically using the `useTour` composable:\n\n```html\n<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>\n```\n\nAlternatively, you can use the global API:\n\n```js\nthis.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();\n```\n\n## Custom Components & Layouts\n\nIf you need custom designs, the plugin supports two levels of control:\n\n### 1. Custom Inner Content (`contentComponent`)\n\nUse `contentComponent` if you want to render an image, form, or custom layout inside the step, but want to **keep** the default popover/modal wrappers and the Next/Back footer buttons.\n\n```html\n<template>\n  <div style=\"text-align: center;\">\n    <img src=\"/logo.png\" />\n    <p>This is my custom graphic step.</p>\n  </div>\n</template>\n```\n\n### 2. Full Wrapper Takeover (`component`)\n\nUse `component` if you want to bypass the `<UluModal>` and `<UluPopoverBase>` wrappers entirely. This allows you to build custom off-canvas drawers, alert banners, or custom absolute-positioned panels. \n\nYou are responsible for your own positioning, styling, and wiring up the Next/Back buttons via `useTour()`.\n\n```html\n<template>\n  <div class=\"my-custom-floating-drawer\">\n    <h3>Custom Design</h3>\n    <!-- Wire up your own buttons -->\n    <button @click=\"api.next()\">Got it!</button>\n  </div>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n  const { api } = useTour();\n</script>\n```\n\n## Demonstration\n\n<Canvas of={TourStories.Default} />\n"
+      "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as TourStories from './tour.stories.js';\n\n# Tour Plugin\n\nThe Tour plugin allows configuring an app-wide guided tour that leverages `UluModal` and `@floating-ui/vue`. Register the plugin, and use the global API (or composable) to start step-by-step onboarding flows.\n\n## Installing the plugin\n\nExample `./src/main.js`\n\n```js\nimport UluTour from \"@ulu/frontend-vue/plugins/tour/index.js\";\n\n//...\n\napp.use(UluTour);\n```\n\nTo display the tour, you must include the `UluTourDisplay` component somewhere in your application root (e.g. `App.vue`):\n\n```html\n<template>\n  <div id=\"app\">\n    <router-view />\n    <UluTourDisplay />\n  </div>\n</template>\n```\n\n## Creating a Tour\n\nA tour is defined as an object containing a `name` and an array of `steps`. You can also define global `modalProps` or `popoverProps` on the root tour object to apply them to all steps by default.\n\n```js\nconst demoTour = {\n  name: 'demo-tour',\n  popoverProps: { modifiers: 'large' }, // Global popover styling for all steps\n  steps: [\n    {\n      title: 'Welcome!',\n      content: 'This step is a modal because it has no target element. Click next to continue.',\n      modalProps: { size: 'small' } // Step-specific override\n    },\n    {\n      target: '#step-1-btn',\n      title: 'First Feature',\n      content: 'This points to a simple button.',\n      placement: 'bottom'\n    }\n  ]\n};\n```\n\n## Configuration API Reference\n\nHere is a complete representation of a tour object demonstrating all available configuration properties, global overrides, lifecycle hooks, and step options.\n\n```js\nconst comprehensiveTour = {\n  // Optional identifier for the tour\n  name: 'my-feature-tour',\n  \n  // --- GLOBAL LIFECYCLE HOOKS ---\n  // Async hook called right before the tour initializes\n  onStart: async () => {\n    console.log('Tour is starting! Preparing UI...');\n  },\n  // Async hook called when the tour stops/closes (via api.stop() or the last step)\n  onStop: async () => {\n    console.log('Tour finished! Cleaning up...');\n  },\n\n  // --- GLOBAL COMPONENT OVERRIDES ---\n  // Replace the structural layout for ALL steps by default\n  component: MyFullTakeoverComponent,         // Bypasses Modal/Popover completely\n  modalComponent: MyCustomModalWrapper,       // Replaces UluModal wrapper\n  popoverComponent: MyCustomPopoverWrapper,   // Replaces UluPopoverBase wrapper\n  contentComponent: MyCustomContentLayout,    // Replaces the inner text layout\n  pagerComponent: MyCustomPaginationFooter,   // Replaces the UluTourPager (Next/Back footer)\n  \n  // --- GLOBAL PROP OVERRIDES ---\n  modalProps: { size: 'large' },             // Props passed to every Modal step\n  popoverProps: { modifiers: 'large' },      // Props passed to every Popover step\n  modalTitleClass: ['h3', 'text-primary'],   // Typography classes for Modal titles\n  popoverTitleClass: ['h4', 'text-primary'], // Typography classes for Popover titles\n  pagerClass: ['margin-top-large'],          // Classes applied to the pager footer wrapper\n  progressClass: 'headline-label',           // Classes applied to the progress indicator\n  hideProgress: false,                       // Globally hides the progress indicator (\"Part 1 / 3\")\n\n  // --- STEP DEFINITIONS ---\n  steps: [\n    {\n      // --- CORE ---\n      // Target: String (CSS Selector), DOM HTMLElement, or a Function returning either (or a ref).\n      // If the target is omitted or the function returns falsy, it renders as a Modal.\n      target: () => window.innerWidth > 768 ? '#desktop-sidebar' : null,\n      title: 'Step Title',\n      content: 'Step body content.',\n\n      // --- STYLING & POSITIONING ---\n      placement: 'right', // Floating UI placement (e.g. 'bottom', 'left-start')\n      \n      // Highlight: Boolean, String (CSS Selector), DOM HTMLElement, Function, or Ref.\n      // If true, darkens the backdrop around the target element. \n      // If a selector, element, or function is provided, it highlights that specific element instead.\n      highlight: () => window.innerWidth > 768 ? '#desktop-sidebar-container' : true,\n      \n      titleClass: 'custom-title', // Override global title classes for this step\n      pagerClass: 'custom-pager', // Override global pager classes for this step\n      modalProps: {},     // Step-specific props for UluModal\n      popoverProps: {},   // Step-specific props for UluPopoverBase\n      \n      // --- COMPONENT OVERRIDES (Step Level) ---\n      // These override the global tour configurations above for this specific step.\n      component: null, \n      contentComponent: null, \n      pagerComponent: null,\n      modalComponent: null,\n      popoverComponent: null,\n      componentProps: { }, // Props passed down to custom component overrides\n\n      // --- BEHAVIOR ---\n      hideFooter: false,   // If true, the pager (Next/Prev) is not rendered\n      hideProgress: false, // If true, hides the \"Part X / Y\" progress indicator for this step\n      \n      // Boolean or Sync/Async function. If true, the step is bypassed dynamically!\n      skip: async () => await checkUserSettings('sawFeature1'),\n\n      // --- STEP LIFECYCLE HOOKS ---\n      // Awaited right before the step transitions in\n      onEnter: async () => {\n        await openSidebarMenu();\n      },\n      // Awaited right before the step transitions out (either forward or backward)\n      onLeave: async () => {\n        await closeSidebarMenu();\n      }\n    }\n  ]\n};\n```\n\n## Starting the Tour\n\nYou can control the tour programmatically using the `useTour` composable:\n\n```html\n<template>\n  <button @click=\"startTour\">Start Tour</button>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n\n  const { api } = useTour();\n\n  const startTour = () => {\n    api.start(demoTour);\n  };\n</script>\n```\n\nAlternatively, you can use the global API:\n\n```js\nthis.$uluTour.start(demoTour);\nthis.$uluTour.next();\nthis.$uluTour.prev();\nthis.$uluTour.stop();\n```\n\n## Custom Components & Layouts\n\nIf you need custom designs, the plugin supports two levels of control:\n\n### 1. Custom Inner Content (`contentComponent`)\n\nUse `contentComponent` if you want to render an image, form, or custom layout inside the step, but want to **keep** the default popover/modal wrappers and the Next/Back footer buttons.\n\n```html\n<template>\n  <div style=\"text-align: center;\">\n    <img src=\"/logo.png\" />\n    <p>This is my custom graphic step.</p>\n  </div>\n</template>\n```\n\n### 2. Full Wrapper Takeover (`component`)\n\nUse `component` if you want to bypass the `<UluModal>` and `<UluPopoverBase>` wrappers entirely. This allows you to build custom off-canvas drawers, alert banners, or custom absolute-positioned panels. \n\nYou are responsible for your own positioning, styling, and wiring up the Next/Back buttons via `useTour()`.\n\n```html\n<template>\n  <div class=\"my-custom-floating-drawer\">\n    <h3>Custom Design</h3>\n    <!-- Wire up your own buttons -->\n    <button @click=\"api.next()\">Got it!</button>\n  </div>\n</template>\n\n<script setup>\n  import { useTour } from \"@ulu/frontend-vue\";\n  const { api } = useTour();\n</script>\n```\n\n## Demonstration\n\n<Canvas of={TourStories.Default} />\n"
     },
     "modals": {
       "raw_markdown": "import { Canvas } from '@storybook/addon-docs/blocks';\nimport * as ModalStories from '../../components/collapsible/UluModal.stories.js';\n\n# Modals\n\nModals plugin allows configuring app-wide modals that are triggered by the global API. Register your modals when you install the plugin then interact with them using the global API.\n\n## Registering your app-wide modals\n\nCreate the modal component file like:\n\n```html\n<template>\n  <UluModal>\n    User setting modal…\n  </UluModal>\n</template>\n```\n\n\nExample ./scr/modals.js\n\n```js\nimport { defineAsyncComponent } from \"vue\";\n\nexport default [\n  {\n    name: \"settings\",\n    component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n  }\n]\n```\n\n## Installing the plugin\n\nExample ./src/main.js\n\n```js\nimport UluModals from \"@ulu/frontend-vue/plugins/modals/index.js\";\nimport modals from \"./src/modals.js\";\n\n//...\n\napp.use(UluModals, { modals });\n\n```\n\n## Using Global API\n\n```js\n\n// Open a app-wide modal\nthis.$uluModals.open({ exampleProp: value });\n\n// Close app-wide modal \nthis.$uluModals.close();\n\n// Add modals after post-install\nthis.$uluModals.add({\n  name: \"settings\",\n  component: defineAsyncComponent(() => import('./components/modals/UserSettingsModal.vue')),\n});\n\n// Remove a modal from the registry\nthis.$uluModals.remove(\"settings\");\n\n// Get Modal from registry (not usually needed)\nconst settingsModal = this.$uluModals.get(\"settings\");\n// console.log(settingsModal.name) ==> \"settings\"\n```\n\n## Using Composition API (via composable)\n\nComposable is used get access to modals API (through inject)\n\n```html\n\n<template>\n  <button @click=\"showSettingsModal\">My Settings</button>\n</template>\n\n<script setup>\n  import { useModals } from \"./useModals\";\n\n  const modals = useModals();\n  const showSettingsModal = () => {\n    console.log(\"This is opening via uluModals composable\");\n    modals.open(\"settings\");\n  };\n</script>\n\n```\n\n## Standalone Modal Component\n\nThe `UluModal` **component is independent of this plugin.** The plugin is simply a convenient way to manage global modals (for things like a settings dialog) that need to be opened from anywhere in your application.\n\nYou can use `UluModal` as the component that the plugin displays, or you can use it on its own for any case where you are managing the state locally within a component and don't need a global API.\n\nHere is a demonstration of the standalone `UluModal` component:\n\n<Canvas of={ModalStories.Default} />"
@@ -13087,6 +13087,19 @@
         "level": 0
       },
       {
+        "id": "module:breakpointsPlugin",
+        "longname": "module:breakpointsPlugin",
+        "name": "breakpointsPlugin",
+        "kind": "module",
+        "meta": {
+          "lineno": 1,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
+        },
+        "order": 137,
+        "level": 0
+      },
+      {
         "id": "module:corePlugin",
         "longname": "module:corePlugin",
         "name": "corePlugin",
@@ -13097,20 +13110,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 137,
-        "level": 0
-      },
-      {
-        "id": "module:breakpointsPlugin",
-        "longname": "module:breakpointsPlugin",
-        "name": "breakpointsPlugin",
-        "kind": "module",
-        "meta": {
-          "lineno": 1,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
-        },
-        "order": 139,
+        "order": 142,
         "level": 0
       },
       {
@@ -13267,6 +13267,63 @@
         "level": 0
       },
       {
+        "id": "module:breakpointsPlugin--module.exports",
+        "longname": "module:breakpointsPlugin",
+        "name": "module.exports",
+        "kind": "function",
+        "isExported": true,
+        "description": "Installs the breakpoints plugin, providing app-wide reactive breakpoint information.\nIt uses `useBreakpointManager` internally and provides `uluIsMobile`,\n`uluBreakpointActive`, `uluBreakpointDirection`, and `uluBreakpointManager` to all components.",
+        "memberof": "module:breakpointsPlugin",
+        "params": [
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "The Vue app instance.",
+            "name": "app"
+          },
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "description": "User-defined options.",
+            "name": "userOptions"
+          },
+          {
+            "type": {
+              "names": [
+                "string"
+              ]
+            },
+            "optional": true,
+            "defaultvalue": "\"small\"",
+            "description": "The breakpoint name to use for `isMobile` detection.",
+            "name": "userOptions.breakpointMobile"
+          },
+          {
+            "type": {
+              "names": [
+                "object"
+              ]
+            },
+            "optional": true,
+            "description": "Options to pass to the underlying `useBreakpointManager`.",
+            "name": "userOptions.managerOptions"
+          }
+        ],
+        "meta": {
+          "lineno": 31,
+          "filename": "index.js",
+          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
+        },
+        "order": 141,
+        "level": 0
+      },
+      {
         "id": "module:corePlugin--module.exports",
         "longname": "module:corePlugin",
         "name": "module.exports",
@@ -13340,63 +13397,6 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/core"
         },
-        "order": 138,
-        "level": 0
-      },
-      {
-        "id": "module:breakpointsPlugin--module.exports",
-        "longname": "module:breakpointsPlugin",
-        "name": "module.exports",
-        "kind": "function",
-        "isExported": true,
-        "description": "Installs the breakpoints plugin, providing app-wide reactive breakpoint information.\nIt uses `useBreakpointManager` internally and provides `uluIsMobile`,\n`uluBreakpointActive`, `uluBreakpointDirection`, and `uluBreakpointManager` to all components.",
-        "memberof": "module:breakpointsPlugin",
-        "params": [
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "The Vue app instance.",
-            "name": "app"
-          },
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "description": "User-defined options.",
-            "name": "userOptions"
-          },
-          {
-            "type": {
-              "names": [
-                "string"
-              ]
-            },
-            "optional": true,
-            "defaultvalue": "\"small\"",
-            "description": "The breakpoint name to use for `isMobile` detection.",
-            "name": "userOptions.breakpointMobile"
-          },
-          {
-            "type": {
-              "names": [
-                "object"
-              ]
-            },
-            "optional": true,
-            "description": "Options to pass to the underlying `useBreakpointManager`.",
-            "name": "userOptions.managerOptions"
-          }
-        ],
-        "meta": {
-          "lineno": 31,
-          "filename": "index.js",
-          "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
-        },
         "order": 143,
         "level": 0
       },
@@ -13429,7 +13429,7 @@
           }
         ],
         "meta": {
-          "lineno": 31,
+          "lineno": 30,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13585,7 +13585,7 @@
           }
         ],
         "meta": {
-          "lineno": 47,
+          "lineno": 46,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13599,7 +13599,7 @@
         "scope": "global",
         "description": "Advances the tour to the next step, or stops if it is the last step",
         "meta": {
-          "lineno": 79,
+          "lineno": 78,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13613,7 +13613,7 @@
         "scope": "global",
         "description": "Returns the tour to the previous step",
         "meta": {
-          "lineno": 108,
+          "lineno": 107,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13640,7 +13640,7 @@
           }
         ],
         "meta": {
-          "lineno": 136,
+          "lineno": 135,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13665,7 +13665,7 @@
           }
         ],
         "meta": {
-          "lineno": 159,
+          "lineno": 158,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13690,7 +13690,7 @@
           }
         ],
         "meta": {
-          "lineno": 168,
+          "lineno": 167,
           "filename": "api.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/tour"
         },
@@ -13719,18 +13719,6 @@
             "optional": true,
             "description": "The CSS selector, DOM element, or function returning either, for the target element. If omitted or resolves to falsy, step renders as a modal.",
             "name": "target"
-          },
-          {
-            "type": {
-              "names": [
-                "String",
-                "function",
-                "HTMLElement"
-              ]
-            },
-            "optional": true,
-            "description": "Element to highlight if different from target. Falls back to target if not provided.",
-            "name": "highlightElement"
           },
           {
             "type": {
@@ -13851,11 +13839,14 @@
           {
             "type": {
               "names": [
-                "Boolean"
+                "Boolean",
+                "String",
+                "function",
+                "HTMLElement"
               ]
             },
             "optional": true,
-            "description": "If true, darkens the backdrop around the target element.",
+            "description": "If true, darkens the backdrop around the target element. If a selector, element, or function is provided, the backdrop highlights that specific element instead of the target.",
             "name": "highlight"
           },
           {
@@ -14456,7 +14447,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 141,
+        "order": 139,
         "level": 0
       },
       {
@@ -14472,7 +14463,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 142,
+        "order": 140,
         "level": 0
       },
       {
@@ -16538,7 +16529,7 @@
           "filename": "index.js",
           "path": "/Users/joescherben/Personal/Projects/ULU/frontend-vue/lib/plugins/breakpoints"
         },
-        "order": 140,
+        "order": 138,
         "level": 0
       },
       {

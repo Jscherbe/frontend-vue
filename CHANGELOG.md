@@ -1,5 +1,10 @@
 # Change Log
 
+## 0.6.37
+
+- **Tour Plugin**
+  - Refactored `highlightElement` into a unified `highlight` property. The `highlight` option now accepts a boolean (to toggle the backdrop using the default target) or a specific Element/Selector/Function/Ref to target an alternate element for the backdrop.
+
 ## 0.6.36
 
 - **Tour Plugin**

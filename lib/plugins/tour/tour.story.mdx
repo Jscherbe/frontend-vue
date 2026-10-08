@@ -95,17 +95,17 @@ const comprehensiveTour = {
       // Target: String (CSS Selector), DOM HTMLElement, or a Function returning either (or a ref).
       // If the target is omitted or the function returns falsy, it renders as a Modal.
       target: () => window.innerWidth > 768 ? '#desktop-sidebar' : null,
-      
-      // Highlight Element: String, DOM HTMLElement, Function or Ref. 
-      // Used for the backdrop highlight if it needs to be different from the target. Falls back to target if omitted.
-      highlightElement: () => window.innerWidth > 768 ? '#desktop-sidebar-container' : null,
-      
       title: 'Step Title',
       content: 'Step body content.',
 
       // --- STYLING & POSITIONING ---
       placement: 'right', // Floating UI placement (e.g. 'bottom', 'left-start')
-      highlight: true,    // Dims the background around the target element
+      
+      // Highlight: Boolean, String (CSS Selector), DOM HTMLElement, Function, or Ref.
+      // If true, darkens the backdrop around the target element. 
+      // If a selector, element, or function is provided, it highlights that specific element instead.
+      highlight: () => window.innerWidth > 768 ? '#desktop-sidebar-container' : true,
+      
       titleClass: 'custom-title', // Override global title classes for this step
       pagerClass: 'custom-pager', // Override global pager classes for this step
       modalProps: {},     // Step-specific props for UluModal

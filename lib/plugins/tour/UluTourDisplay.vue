@@ -110,7 +110,7 @@
   });
 
   const resolvedHighlightDescriptor = computed(() => {
-    const h = unref(currentStep.value?.highlightElement);
+    const h = unref(currentStep.value?.highlight);
     if (typeof h === 'function') return unref(h());
     return h;
   });
@@ -204,7 +204,7 @@
       targetEl.value = null;
     }
 
-    if (highlightDesc) {
+    if (highlightDesc && typeof highlightDesc !== 'boolean') {
       await nextTick();
       const hEl = typeof highlightDesc === 'string' ? document.querySelector(highlightDesc) : unref(highlightDesc);
       if (hEl) {
@@ -217,7 +217,7 @@
       highlightEl.value = null;
     }
 
-    if (currentStep.value?.highlight) {
+    if (highlightDesc) {
       updateTargetRect();
     }
   }, { immediate: true });
