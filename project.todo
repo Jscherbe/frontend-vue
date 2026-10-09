@@ -1,4 +1,6 @@
 Todos:
+  ☐ Tour: Need to setup the scrollIntoViewAsync function when changing to any popovers, 
+    ☐ @important Although double check that we are directing focus correctly, although since the target wasn't focused its probably correct (popover's title should be in focus, but still the browser should have jumped to it? not necessarily so double check that it (a) is the activeElement after navigating forward and back), also double check we return focus to the trigger of the tour start (or allow the developer to pass something, don't end tour to body or in strange place on the page)
   ☐ Start refactoring classes props to use mergeClassLookups util so the API is all consistent @in-progress
     * Done: UluToast, UluAccordion
   ☐ Need to rethink some of the :classes bindings, these should really be merged with defaults so users can simply add a single key vs having to copy the defaults into their project 
